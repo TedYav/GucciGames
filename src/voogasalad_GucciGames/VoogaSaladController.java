@@ -9,8 +9,6 @@ public class VoogaSaladController {
 	//GameAuthoringEnvironment, when initialized, draws the toolbar with buttons
 	
 	//press New Game
-	
-	
-	
+
 	
 }

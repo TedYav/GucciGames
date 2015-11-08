@@ -1,5 +1,5 @@
 package voogasalad_GucciGames;
 
-public interface GameEngine {
+public class UnitCollection {
 
 }
