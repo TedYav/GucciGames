@@ -62,7 +62,7 @@ public interface GameEngineToActualGame {
 	 * this will be the "Move" command, which picks an acting unit and moves it
 	 * to the action target.
 	 * 
-	 * @param actingUnit is the unit acting
+	 * @param actingUnit is the unit acting	
 	 * @param actionType is the type of action
 	 * @param actionTarget is where the action is going to happen
 	 * 	 */
