@@ -1,4 +1,4 @@
-package voogasalad_GucciGames;
+package voogasalad_GucciGames.gameEngine.defaultCharacteristics;
 
 public class RealHealthCharacteristic extends HealthCharacteristic{
 

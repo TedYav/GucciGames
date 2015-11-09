@@ -1,7 +1,10 @@
-package voogasalad_GucciGames;
+package voogasalad_GucciGames.gameEngine.mapObject;
 
 import java.util.List;
 import java.util.Map;
+
+import voogasalad_GucciGames.gameEngine.defaultCharacteristics.HealthCharacteristic;
+import voogasalad_GucciGames.gameEngine.targetCoordinate.TargetCoordinate;
 
 public abstract class MapObjectType {
 
@@ -17,6 +20,11 @@ public abstract class MapObjectType {
 	protected HealthCharacteristic myHealthCharacteristic;
 	
 
+	public MapObjectType(String name, String imagePath){
+		myName = name;
+		myImagePath = imagePath;
+	}
+	
 	public void changeHealth(double healthDiff){
 		myHealthCharacteristic.changeHealth(healthDiff);
 	}

@@ -1,4 +1,4 @@
-package voogasalad_GucciGames;
+package voogasalad_GucciGames.gameEngine.gameUnit;
 
 //this is the exception that will be thrown on the backend to let front-end know that user tried an illegal move. We will give you the reason in a String format
 

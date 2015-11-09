@@ -1,11 +1,13 @@
-package voogasalad_GucciGames;
+package voogasalad_GucciGames.gameEngine.gameRule;
 
-public class GameRule {
+public abstract class GameRule {
 
 	
 	//give access to units (treasure)
 	
 	//check how to do groovy
+	
+	
 	public boolean hasGameEnded() {
 		
 		return false;

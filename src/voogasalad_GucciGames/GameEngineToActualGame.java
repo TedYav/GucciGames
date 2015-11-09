@@ -1,5 +1,10 @@
 package voogasalad_GucciGames;
 
+import voogasalad_GucciGames.gameEngine.gameUnit.AbilityException;
+import voogasalad_GucciGames.gameEngine.gameUnit.GameUnit;
+import voogasalad_GucciGames.gameEngine.mapObject.MapObjectAction;
+import voogasalad_GucciGames.gameEngine.targetCoordinate.TargetCoordinate;
+
 public interface GameEngineToActualGame {
 
 	// for all methods that say String actionType, use reflection
@@ -44,7 +49,7 @@ public interface GameEngineToActualGame {
 	 * @param actingUnit is the unit acting
 	 * @param actionType is the type of action
 	 */
-	public void performAction(GameUnit actingUnit, String actionType) throws AbilityException;
+	public void performAction(GameUnit actingUnit, MapObjectAction actionType) throws AbilityException;
 
 	/**
 	 * This method performs an action specified by the acting unit, the name of
@@ -56,7 +61,7 @@ public interface GameEngineToActualGame {
 	 * @param actionType is the type of action
 	 * @param actionTarget is where the action is going to happen
 	 * 	 */
-	public void performAction(GameUnit actingUnit, String actionType, TargetCoordinate actionTarget) throws AbilityException;
+	public void performAction(GameUnit actingUnit, MapObjectAction actionType, TargetCoordinate actionTarget) throws AbilityException;
 
 	
 	
