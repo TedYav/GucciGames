@@ -58,4 +58,16 @@ public class GaeController implements IGuiGaeController, IModelGaeController{
 //    addListeners() {
 //        myBackEnd.addVariableObserver(myGUI.getObserver());
 //    }
+
+    @Override
+    public void setMapWidth (double x) {
+        // TODO Auto-generated method stub
+        
+    }
+
+    @Override
+    public void setMapHeight (double y) {
+        // TODO Auto-generated method stub
+        
+    }
 }

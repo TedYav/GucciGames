@@ -20,4 +20,7 @@ public interface IGuiGaeController {
     public List<GameUnitType> getUnitTypes();
     
     public void saveToXML();
+    
+    public void setMapWidth(double x);
+    public void setMapHeight(double y);
 }

@@ -47,4 +47,12 @@ public class GAEModel implements IGAEModel{
     private boolean validate(){
         return false;
     }
+
+    @Override
+    public void setMapWidth (double x) {
+    }
+
+    @Override
+    public void setMapHeight (double y) {
+    }
 }
