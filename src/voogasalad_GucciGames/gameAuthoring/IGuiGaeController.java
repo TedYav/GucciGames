@@ -4,7 +4,6 @@ import java.util.List;
 import java.util.Map;
 import voogasalad_GucciGames.gameEngine.gameUnit.GameUnitType;
 import voogasalad_GucciGames.gameEngine.mapObject.MapObject;
-import voogasalad_GucciGames.gameEngine.structure.StructureType;
 import voogasalad_GucciGames.gameEngine.tile.TileType;
 
 public interface IGuiGaeController {
