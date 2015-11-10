@@ -1,4 +1,4 @@
-Introduction
+##Introduction
 
 The purpose of VOOGASalad is to create a game engine that can implement any game of a specific genre. Our game genre is turn-based strategy.  It should be able to make games like Civilizations, Checkers, Heroes of Might and Magic, Madden Coach-Mode, etc.  In our turn based strategy, we will have each player move one at a time.  While a player is moving, the other player(s) cannot move.  At the end of a move, the game checks for a goal state (i.e. win-lose condition).  If the win-lose condition is not satisfied, then the game continues to the next players move.
 
@@ -8,7 +8,7 @@ The frontend will contain the GUI which contains the different components which 
  
 In the frontend, we want to be flexible in adding new components, screens, and objects (e.g. units, structures, maps) on the UI.  Also, we will be flexible in how the user interacts with the game (i.e., click versus buttons versus controller).  In the backend, we want to be flexible in adding new rules, types of moves, winning conditions, etc.  However, we want to be inflexible with regard to certain rules of a turn based strategy game such as one player turn at a time.  Overall, we want a separation of the frontend and backend.  That is, the backend should contain no JavaFX imports and be able to work with a different front end. 
 
-Overview
+##Overview
 The project was given to us already divided into the Graphical Authoring Environment (GAE), Game Engine, Game Player, and Game Data parts, and we plan to stick with these major divisions because they are well-defined, separate components of the project. We have also further divided up the most complicated part, Graphical Authoring Environment, into front and back end parts in order to separate the Authoring Environment’s view from the model.
 
 The Game Data portion includes the shared files from which the program is loaded from and the format of saved game files and sessions. For the former we will use Java resource and media files by calling ResourceBundle.getBundle(String). The purpose of these files is to make our VOOGASalad data driven, so that the details of the program are located in one place and can be easily modified. For the latter we will create a package of classes that use write and read XML, and this will be the main way that games are saved, loaded, and played. We will also implement our cloud database utility module for this part which will allow game authors to save games to and load from an online repository. The GAE, Engine, and Player will interact with a Game Data class whenever each of them loads from .properties, media, and XML files using DOM parsing. The GAE and Player in addition will need to reference a special Game Data class that is able to write to XML using XStream’s toXML() and fromXML() methods.
@@ -21,10 +21,10 @@ Finally the Graphical Authoring Environment is what the game author will use to 
 
 For an example use case of editing the Map, the author drags and drops a tile onto the Map, the View calls the addComponent() method in the controller passing in the MapObject and a TargetCoordinate, the Model adds a new instance of the MapObject to its list, and the View observes this change in the list and updates its Map display. Another example is the author creating a custom MapObjectType, and for this the View will call the controller to ask the back end for an ObservableList of fields, the author edits those field values in the View, the View sends back a Map<String,String> through the controller to the back end along with custom Groovy code if needed, using this the back end will add a new MapObjectType to its ObservableList, and the new MapObjectType will appear in the View. The Model will have a reference to the Engine, and clicking the “Build” button will call its checkForErrors() method for Groovy code.
 
-User Interface
+##User Interface
 There will be two user interfaces as part of our front end: the Game Authoring Environment and the Game Player.
 
-Game Authoring Environment
+##Game Authoring Environment
 
 The game authoring environment consists of a UI that communicates with the model data (also contained within the game authoring environment) to create instances of the game components, including board tiles, structures, and units. A user can create their own game environment using either the default choices, or customizing the game components. All the view components will be implemented using a BorderPane and will be designed according to a hierarchy that can be easily extendible. 
 
@@ -46,7 +46,7 @@ Visual Depiction:
 
 //TODO
 
-II. Game Player
+###II. Game Player
 
 The Game Player front end is the user interface that display the newly created turn-based strategy game for interactive play. Characteristics of the Game Player front end are briefly described below, followed by a visual depiction:
 
@@ -56,23 +56,22 @@ At any point during the game, the user can decide to save the game’s current s
 Visual Depiction:
 //TODO:
 
-Design Details
+##Design Details
 The four main modules for VOOGASalad are:
-Game Authoring Environment
-Game Engine:
-	The game engine will contain functionality needed to both create and play a game.  The game engine is built through composition.  The game engine starts with the MainGameEngine class.  The MainGameEngine contains the global game rules and map via GlobalGameRule and GameMap class.  The GlobalGameRule are the rules which applies to all the players.  The GameMap contains the players via an AllPlayers class.  AllPlayers contains a list of GamePersonPlayer (which are all the players). Each GamePersonPlayer contains a class which contains collections of units (UnitCollection), structures (StructureCollection), and rules unqiue to the players (PlayerGameRule).  There will be a neutral player which loads the units and structures for all the players to use.  Each of the other players will contain the units and structures they built and attained.
+
+1. Game Authoring Environment
+2. Game Engine: The game engine will contain functionality needed to both create and play a game.  The game engine is built through composition.  The game engine starts with the MainGameEngine class.  The MainGameEngine contains the global game rules and map via GlobalGameRule and GameMap class.  The GlobalGameRule are the rules which applies to all the players.  The GameMap contains the players via an AllPlayers class.  AllPlayers contains a list of GamePersonPlayer (which are all the players). Each GamePersonPlayer contains a class which contains collections of units (UnitCollection), structures (StructureCollection), and rules unqiue to the players (PlayerGameRule).  There will be a neutral player which loads the units and structures for all the players to use.  Each of the other players will contain the units and structures they built and attained.
 While creating the game, the game engine will use information from a specified XML file about default maps, units, structures, etc.  While playing or loading the game, the game engine will interact with the GameData class to load previously saved games.
 The Game Authoring Environment and Game Player will interact with the Game Engine via interfaces.  The Game Authoring Environment will initially get all the default settings for creating the game (i.e. default map, rules, etc.).  Then, the user will be allowed to update the creation of the game (i.e., changing preferences, adding new rules, etc.).  These changes will be relayed back to the Game Engine via methods in an interface.  The Game Engine will check to see if the changes are valid and throw exceptions if necessary.  The Game Engine will interact with the Game Player through a different interface.  This other interface will contain execute methods which the Game Player will use when a player moves.  These execute methods will allow the Game Engine to update the state of the players and check the goal condition.
-  
-Game Player
-Game Data
+3. Game Player
+4. Game Data
 
 The Game Data module holds, edits, and passes data between the Game Player and Game Engine. It will contain information in two formats: XML and properties files. Properties files will be used mainly in the front end for loading game settings. XML will be used in the backend for creating, saving, and editing new game settings and variables. A Parser class implementing XStream will be used to read in and edit XML data. The data files will include all variables and information pertaining to game creations. These variables include, but are not limited to, high score values which will not be loaded, but will be saved into a cloud-based module that updates whenever a higher score is achieved. Further variables include number and types of tiles and units allowed for the specified game, number of players and characteristics of the players including, but not limited to, default characteristics such as health points, rules of the game including global game rules that apply to each player, and individual game rules which applies only to specific players (think BANG! where each player has a different win condition), and end game conditions (how players win, lose, or cause a draw). As part of the Game Data, there will be a cloud database utility module that will hold data for a game outside of when the game is being played so players can compare results from different instances of a game.
 Other modules will be able to access the data files and extract information from them using the Parser class (if needed) to read and write to XML in the backend, and Resource Bundles to read from properties files in the front end. 
 The Game Data module should not be extended to have any other functionality that does not deal with editing, saving, and loading data.
 The Game Data module is necessary in order to allow for ease of access in creating new games and saving and passing around game states. It allows users to save progress in games, and resume at a later date, or play different games using the same game engine. It also allows for custom creation of game settings.
 
-Example Games
+##Example Games
 
 Describe three example games from your genre in detail that differ significantly. Clearly identify how the functional differences in these games is supported by your design and enabled by your authoring environment. Use these examples to help make concrete the abstractions in your design. This section may be as long as it needs to be and go into as much detail as necessary to cover all your team wants to say.
 
@@ -82,6 +81,6 @@ We have considered the following games in our genre:
 
 Civilization 4 is a main game in our genre that shaped most of our design. It has units, structures and tiles and different units, structures and tiles have different abilities. To account for Civ, we have  
 
-Design considerations
+##Design considerations
 
-Team Responsibilities 	
+##Team Responsibilities 	
