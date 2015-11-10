@@ -1,5 +1,7 @@
 package voogasalad_GucciGames.gameEngine.defaultCharacteristics;
 
-public class PolearmCharacteristic{
+import voogasalad_GucciGames.gameEngine.mapObject.MapObjectCharacteristic;
+
+public class PolearmCharacteristic extends MapObjectCharacteristic{
 
 }

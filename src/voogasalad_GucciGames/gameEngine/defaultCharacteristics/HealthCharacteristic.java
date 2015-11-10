@@ -1,6 +1,8 @@
 package voogasalad_GucciGames.gameEngine.defaultCharacteristics;
 
-public abstract class HealthCharacteristic {
+import voogasalad_GucciGames.gameEngine.mapObject.MapObjectCharacteristic;
+
+public abstract class HealthCharacteristic extends MapObjectCharacteristic{
 
 	
 	public abstract void changeHealth(double healthDiff);
