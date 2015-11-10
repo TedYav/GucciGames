@@ -18,6 +18,7 @@ Once you commit all code to a branch and want to merge with master, create a pul
 pull request.  The partner can either merge the branch to give a LGTM (looks good to me) for you to merge the branch.
 
 How to assess a pull request:
+
 1. Checkout the branch requesting to be merged.
 2. Run the code in the branch.
 3. Each subgroup should have its own method of code evaluation.  J-Unit tests are a good option.
