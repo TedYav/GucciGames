@@ -8,7 +8,7 @@ public class GameAuthoringEnvironmentGUI {
 		
 	}
 	
-	public void initializeMap(int width, int height, Grid g){
+	public void initializeMap(int width, int height/*, Grid g*/){
 		
 	}
 
