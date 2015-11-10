@@ -1,5 +1,5 @@
 package voogasalad_GucciGames.gameEngine.targetCoordinate;
 
-public class TargetCoordinateMultiple {
+public class TargetCoordinateMultiple extends TargetCoordinate {
 
 }
