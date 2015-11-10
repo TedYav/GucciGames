@@ -2,11 +2,15 @@ package voogasalad_GucciGames.gameAuthoring;
 
 import java.util.List;
 import java.util.Map;
+import voogasalad_GucciGames.gameAuthoring.gui.GameAuthoringEnvironmentGUI;
+import voogasalad_GucciGames.gameAuthoring.model.IGAEModel;
 import voogasalad_GucciGames.gameEngine.gameUnit.GameUnitType;
 import voogasalad_GucciGames.gameEngine.mapObject.MapObject;
 import voogasalad_GucciGames.gameEngine.tile.TileType;
 
 public class GaeController implements IGuiGaeController, IModelGaeController{
+    IGAEModel model;
+    GameAuthoringEnvironmentGUI gui;
 
     @Override
     public void addComponent (MapObject mapObj) {
@@ -55,9 +59,9 @@ public class GaeController implements IGuiGaeController, IModelGaeController{
         // TODO Auto-generated method stub
         
     }
-//    addListeners() {
-//        myBackEnd.addVariableObserver(myGUI.getObserver());
-//    }
+    public void addListeners() {
+        model.addObserver(gui);
+    }
 
     @Override
     public void setMapWidth (double x) {

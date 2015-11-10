@@ -5,6 +5,7 @@ import java.util.Map;
 
 import voogasalad_GucciGames.gameAuthoring.GaeController;
 import voogasalad_GucciGames.gameAuthoring.IGuiGaeController;
+import voogasalad_GucciGames.gameAuthoring.IModelGaeController;
 import voogasalad_GucciGames.gameAuthoring.gui.GameAuthoringEnvironmentGUI;
 import voogasalad_GucciGames.gameAuthoring.model.GAEModel;
 import voogasalad_GucciGames.gameAuthoring.model.IGAEModel;
@@ -23,8 +24,8 @@ public class UseCreateCustomTile {
 		
 		// Pretend that the front end called a method and passed us this map 
 		Map<String, String> tileProperties = gui.getMapForCustomTile();
-		gui.getController.createCustomTileType(tileProperties);
-			
+		gui.getController().createCustomTileType(tileProperties);
+
 		
 	}
 	
