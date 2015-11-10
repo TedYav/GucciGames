@@ -2,6 +2,7 @@ package voogasalad_GucciGames;
 
 import voogasalad_GucciGames.gameEngine.gameUnit.AbilityException;
 import voogasalad_GucciGames.gameEngine.gameUnit.GameUnit;
+import voogasalad_GucciGames.gameEngine.map.GUIMap;
 import voogasalad_GucciGames.gameEngine.mapObject.MapObjectAction;
 import voogasalad_GucciGames.gameEngine.targetCoordinate.TargetCoordinate;
 
@@ -14,7 +15,11 @@ public interface GameEngineToActualGame {
 	 */
 	public void initialize();
 
-	
+	/**
+	 * 
+	 * @param map -> interface 
+	 */
+	public void loadMap(GUIMap map);
 	
 	/**
 	 * This method finds the valid locations for a unit and returns an
@@ -62,6 +67,16 @@ public interface GameEngineToActualGame {
 	 * @param actionTarget is where the action is going to happen
 	 * 	 */
 	public void performAction(GameUnit actingUnit, MapObjectAction actionType, TargetCoordinate actionTarget) throws AbilityException;
+	
+	/**
+	 * This method performs an action specified by the name of
+	 * the action and where the action is aimed at. A natural application to
+	 * this will be the "Build" command, which does not require a unit to perform.
+	 * 
+	 * @param actionType is the type of action
+	 * @param actionTarget is where the action is going to happen
+	 * 	 */
+	public void performAction(MapObjectAction actionType, TargetCoordinate actionTarget) throws AbilityException;
 
 	
 	
