@@ -42,7 +42,6 @@ public class UseCreateCustomTile {
 		
 		// controller then calls
 		model.createCustomTileType(tileProperties);
-
 		
 	}
 
