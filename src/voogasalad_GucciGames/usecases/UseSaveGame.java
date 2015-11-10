@@ -17,18 +17,18 @@ public class UseSaveGame {
 		GameAuthoringEnvironmentGUI gui = new GameAuthoringEnvironmentGUI((IGuiGaeController)controller);
 		
 		/*
-		 * 
-		 * 
-		 * Model has instance of XMLGameData which does saving
-		 * 
+		 * After author has finished modifying their game in the GAE
+		 * author clicks save which triggers the controller to call
+		 * saveToXML() in the model. The model has an instance of
+		 * XMLGameData which writes all of the information the user
+		 * has inputed about their game as an XML document.
 		 * 
 		 */
 		
+		controller.saveToXML();
 		
-		//controller.addComponent(unit);
+		model.saveToXML();
 		
-		
-		//model.addComponent(unit);
-	}
+		}
 
 }
