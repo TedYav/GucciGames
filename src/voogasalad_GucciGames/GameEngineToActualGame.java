@@ -1,8 +1,8 @@
 package voogasalad_GucciGames;
 
+import voogasalad_GucciGames.gameAuthoring.gui.GUIMap;
 import voogasalad_GucciGames.gameEngine.gameUnit.AbilityException;
 import voogasalad_GucciGames.gameEngine.gameUnit.GameUnit;
-import voogasalad_GucciGames.gameEngine.map.GUIMap;
 import voogasalad_GucciGames.gameEngine.mapObject.MapObjectAction;
 import voogasalad_GucciGames.gameEngine.targetCoordinate.TargetCoordinate;
 

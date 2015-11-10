@@ -1,4 +1,4 @@
-package voogasalad_GucciGames.gameEngine.map;
+package voogasalad_GucciGames.gameAuthoring.gui;
 
 /**
  * interface for a game map -> passed to front end to populate list of maps
