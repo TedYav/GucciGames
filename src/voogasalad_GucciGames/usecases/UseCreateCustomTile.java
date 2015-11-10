@@ -24,9 +24,7 @@ public class UseCreateCustomTile {
 		
 		// Pretend that the front end called a method and passed us this map 
 		Map<String, String> tileProperties = gui.getMapForCustomTile();
-		gui.getController.createCustomTileType(tileProperties);
-		
-		
+		gui.getController().createCustomTileType(tileProperties);
 		
 		
 		
