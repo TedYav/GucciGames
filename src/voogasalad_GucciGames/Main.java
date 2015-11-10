@@ -7,7 +7,6 @@ import voogasalad_GucciGames.gameEngine.GameMap;
 import voogasalad_GucciGames.gameEngine.MainGameEngine;
 import voogasalad_GucciGames.gameEngine.gamePlayer.AllPlayers;
 import voogasalad_GucciGames.gameEngine.gamePlayer.GamePlayerPerson;
-import voogasalad_GucciGames.gameEngine.gamePlayer.StructureCollection;
 import voogasalad_GucciGames.gameEngine.gamePlayer.UnitCollection;
 import voogasalad_GucciGames.gameEngine.gameRule.NoUnitsGlobalGameRule;
 import voogasalad_GucciGames.gameEngine.gameUnit.GameUnit;
@@ -22,8 +21,7 @@ public class Main {
 		
 	
 	UnitCollection neutralUnits = new UnitCollection();
-	StructureCollection neutralStructures = new StructureCollection();
-	myListOfPlayers.add(new GamePlayerPerson(neutralUnits, neutralStructures, 0)); //neutral player
+	myListOfPlayers.add(new GamePlayerPerson(neutralUnits, 0)); //neutral player
 	
 	UnitCollection p1Units = new UnitCollection();
 	
@@ -32,15 +30,13 @@ public class Main {
 	
 	p1Units.addUnit(new GameUnit(1, soldier, 3, 3));
 	p1Units.addUnit(new GameUnit(1, archer, 1, 1));
-	StructureCollection p1Structures = new StructureCollection();
-	myListOfPlayers.add(new GamePlayerPerson(p1Units, p1Structures, 0)); //player 1 
+	myListOfPlayers.add(new GamePlayerPerson(p1Units, 0)); //player 1 
 	
 	UnitCollection p2Units = new UnitCollection();
 	
 	p2Units.addUnit(new GameUnit(2, soldier, 2, 2));
 	
-	StructureCollection p2Structures = new StructureCollection();
-	myListOfPlayers.add(new GamePlayerPerson(p2Units, p2Structures, 0)); //player 2
+	myListOfPlayers.add(new GamePlayerPerson(p2Units, 0)); //player 2
 	
 	
 	AllPlayers myPlayers = new AllPlayers(myListOfPlayers);

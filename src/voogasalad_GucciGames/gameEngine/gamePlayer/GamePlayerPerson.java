@@ -11,13 +11,11 @@ public class GamePlayerPerson {
 	
 	private int myPlayerId; //playerID == 0 iff the unit is neutral. (should we make this static?)
 	private UnitCollection myUnits;
-	private StructureCollection myStructures;
 	private PlayerGameRule myPlayConditions;
 	
-	public GamePlayerPerson(UnitCollection units, StructureCollection structures, int playerId){
+	public GamePlayerPerson(UnitCollection units, int playerId){
 		
 		myUnits = units;
-		myStructures = structures;
 		myPlayerId = playerId;
 		
 	}
