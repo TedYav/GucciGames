@@ -17,14 +17,23 @@ public class UseDragAndDropUnit {
 		IGAEModel model = new GAEModel((IModelGaeController)controller);
 		GameAuthoringEnvironmentGUI gui = new GameAuthoringEnvironmentGUI((IGuiGaeController)controller);
 		
+		/*
+		 * When a user drags and drops a unit or tile onto the map
+		 * a map object is initialized based on the type of the unit
+		 * or tile. A map object contains both the type of the unit 
+		 * or tile but also contains its coordinate on the map. 
+		 * The initialized object is passed to the controller which 
+		 * then passes it in a call to the model where it is stored
+		 * in the back end.
+		 *  
+		 */
 		
 		
-		
-		MapObject unit = new MapObject(); 
+		// This unit would be initialized by the front end
+		// then passed through the call to the controller
+		MapObject unit = new MapObject();
 		
 		controller.addComponent(unit);
-		
-		
 		model.addComponent(unit);
 	}
 }
