@@ -10,6 +10,10 @@ import voogasalad_GucciGames.gameEngine.tile.TileType;
 public class GAEModel implements IGAEModel{
     private GameSourceData data;
     private IModelGaeController myController;
+    
+    public GAEModel(IModelGaeController controller) {
+    	myController = controller;
+    }
 
     @Override
     public void addComponent (MapObject mapObj) {
