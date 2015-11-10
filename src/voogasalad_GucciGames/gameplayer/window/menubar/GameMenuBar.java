@@ -2,6 +2,9 @@ package voogasalad_GucciGames.gameplayer.window.menubar;
 
 import java.util.List;
 
+import javafx.scene.Node;
+import javafx.scene.control.MenuBar;
+
 public class GameMenuBar {
 
 	/**
@@ -11,6 +14,10 @@ public class GameMenuBar {
 	 */
 	public GameMenuBar(List<GameMenu> menus){
 		
+	}
+
+	public Node returnToolbar() {
+		return new MenuBar();
 	}
 	
 }

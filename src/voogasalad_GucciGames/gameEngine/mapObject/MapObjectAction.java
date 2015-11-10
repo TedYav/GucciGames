@@ -3,11 +3,10 @@ package voogasalad_GucciGames.gameEngine.mapObject;
 import java.util.List;
 import java.util.Map;
 
-import voogasalad_GucciGames.gameEngine.defaultActions.Movement;
 import voogasalad_GucciGames.gameEngine.targetCoordinate.TargetCoordinate;
 import voogasalad_GucciGames.gameEngine.tile.TileType;
 
-public class MapObjectAction extends Movement{
+public class MapObjectAction{
 
 
 
