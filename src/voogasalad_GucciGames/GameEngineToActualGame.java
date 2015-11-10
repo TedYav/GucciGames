@@ -1,8 +1,8 @@
 package voogasalad_GucciGames;
 
+import voogasalad_GucciGames.gameAuthoring.gui.IGUIMap;
 import voogasalad_GucciGames.gameEngine.gameUnit.AbilityException;
 import voogasalad_GucciGames.gameEngine.gameUnit.GameUnit;
-import voogasalad_GucciGames.gameEngine.map.GUIMap;
 import voogasalad_GucciGames.gameEngine.mapObject.MapObjectAction;
 import voogasalad_GucciGames.gameEngine.targetCoordinate.TargetCoordinate;
 
@@ -19,7 +19,7 @@ public interface GameEngineToActualGame {
 	 * 
 	 * @param map -> interface 
 	 */
-	public void loadMap(GUIMap map);
+	public void loadMap(IGUIMap map);
 	
 	/**
 	 * This method finds the valid locations for a unit and returns an
