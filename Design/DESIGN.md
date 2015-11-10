@@ -44,7 +44,14 @@ After defining a game, the user can choose to run the game from the menu bar. Th
 
 Visual Depiction:
 
-//TODO
+![Fig1](DesignFig1.jpg "Figure 1")
+Figure 1: Game Authoring Environment
+
+![Fig2](DesignFig2.jpg "Figure 2")
+Figure 2: Game Settings Dialog in GAE
+
+![Fig3](DesignFig3.jpg "Figure 3")
+Figure 3: Dialog for adding new game objects (tile/unit/structure)
 
 ###II. Game Player
 
@@ -54,7 +61,8 @@ Our Game Player environment will also feature a mini map that displays the explo
 At any point during the game, the user can decide to save the game’s current state, and later load the game beginning from the state at which it was saved at. These options will be specified in the menu bar of the Game Player environment.
 
 Visual Depiction:
-//TODO:
+![Fig4](DesignFig4.jpg "Figure 4")
+Figure 4: Game Player
 
 ##Design Details
 The four main modules for VOOGASalad are:
