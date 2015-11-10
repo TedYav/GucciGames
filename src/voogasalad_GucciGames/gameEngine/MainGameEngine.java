@@ -21,6 +21,10 @@ public class MainGameEngine {
 		myGameMap = gameMap;
 	}
 
+	public MainGameEngine(SomeData someData) {
+	
+	}
+
 	public void takeTurn() {
 
 		myGamePlayers.takeTurn(myCurrentTurn);
@@ -34,6 +38,11 @@ public class MainGameEngine {
 	
 	public void incrementCurrentTurn(){
 		this.myCurrentTurn++;
+	}
+
+	public void initialize(SomeData data) {
+		// TODO Auto-generated method stub
+		
 	}
 	
 }
