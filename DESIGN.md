@@ -78,6 +78,7 @@ The Game Data module should not be extended to have any other functionality that
 	The Game Data module is necessary in order to allow for ease of access in creating new games and saving and passing around game states. It allows users to save progress in games, and resume at a later date, or play different games using the same game engine. It also allows for custom creation of game settings.  
 
 	An example of saving and loading via xstream is given in: ./examples/XStreamExample/XStreamGameEngine.
+	
 ##Example Games
 
 Describe three example games from your genre in detail that differ significantly. Clearly identify how the functional differences in these games is supported by your design and enabled by your authoring environment. Use these examples to help make concrete the abstractions in your design. This section may be as long as it needs to be and go into as much detail as necessary to cover all your team wants to say.
