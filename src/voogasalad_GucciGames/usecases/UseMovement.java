@@ -1,4 +1,4 @@
-package voogasalad_GucciGames.gameEngine.defaultActions;
+package voogasalad_GucciGames.usecases;
 
 import java.util.List;
 
@@ -12,7 +12,7 @@ import voogasalad_GucciGames.gameEngine.mapObject.TheMap;
  * @use case #2
  *
  */
-public class Movement extends MapObjectAction{
+public class UseMovement extends MapObjectAction{
 	private static final String CARDINAL = "cardinal";
 	private static final String DIAGONAL = "diagonal";
 	private static final String ALL = "all";

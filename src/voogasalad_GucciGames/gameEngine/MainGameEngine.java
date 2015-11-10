@@ -25,6 +25,10 @@ public class MainGameEngine {
 		myGameMap = gameMap;
 	}
 
+	public MainGameEngine(SomeData someData) {
+	
+	}
+
 	public void takeTurn() {
 
 		myGamePlayers.takeTurn(myCurrentTurn);
@@ -49,6 +53,11 @@ public class MainGameEngine {
 		this.myCurrentTurn++;
 	}
 
+	public void initialize(SomeData data) {
+		// TODO Auto-generated method stub
+		
+	}
+	
 	public void CreatGoal(List<String> names, List<Double> values){
 		myGlobalGoal.addRequirement(names, values);
 	}

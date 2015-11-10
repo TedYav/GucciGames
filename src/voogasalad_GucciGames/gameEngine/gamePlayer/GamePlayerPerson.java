@@ -13,10 +13,14 @@ public class GamePlayerPerson {
 							// make this static?)
 	private UnitCollection myUnits;
 	private PlayerGameRule myPlayConditions;
+	private PlayerResources myResources;
+
 	private Goal myGoal;
 	private String myGoalStatus="goalNotAchieved";
 
-	public GamePlayerPerson(UnitCollection units, int playerId) {
+	
+	public GamePlayerPerson(UnitCollection units, int playerId){
+		
 
 		myUnits = units;
 		myPlayerId = playerId;
