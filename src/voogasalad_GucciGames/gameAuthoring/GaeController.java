@@ -2,6 +2,7 @@ package voogasalad_GucciGames.gameAuthoring;
 
 import java.util.List;
 import java.util.Map;
+import voogasalad_GucciGames.gameEngine.gameUnit.GameUnitType;
 import voogasalad_GucciGames.gameEngine.mapObject.MapObject;
 import voogasalad_GucciGames.gameEngine.tile.TileType;
 
@@ -44,7 +45,7 @@ public class GaeController implements IGuiGaeController, IModelGaeController{
     }
 
     @Override
-    public List<Object> getUnitTypes () {
+    public List<GameUnitType> getUnitTypes () {
         // TODO Auto-generated method stub
         return null;
     }
