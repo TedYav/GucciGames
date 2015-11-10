@@ -1,12 +1,14 @@
-package voogasalad_GucciGames.gameEngine.gamePlayer;
+package voogasalad_GucciGames.usecases;
 
 import java.util.Scanner;
 
+import voogasalad_GucciGames.gameEngine.gamePlayer.PlayerResources;
+import voogasalad_GucciGames.gameEngine.gamePlayer.UnitCollection;
 import voogasalad_GucciGames.gameEngine.gameRule.GameRule;
 import voogasalad_GucciGames.gameEngine.gameRule.PlayerGameRule;
 import voogasalad_GucciGames.gameEngine.gameUnit.GameUnit;
 
-public class GamePlayerPerson {
+public class UseGamePlayerPerson {
 
 	
 	private int myPlayerId; //playerID == 0 iff the unit is neutral. (should we make this static?)
@@ -14,7 +16,7 @@ public class GamePlayerPerson {
 	private PlayerGameRule myPlayConditions;
 	private PlayerResources myResources;
 	
-	public GamePlayerPerson(UnitCollection units, int playerId){
+	public UseGamePlayerPerson(UnitCollection units, int playerId){
 		
 		myUnits = units;
 		myPlayerId = playerId;
