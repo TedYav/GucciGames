@@ -1,4 +1,4 @@
-package voogasalad_GucciGames;
+package voogasalad_GucciGames.gameAuthoring.gui;
 
 public interface GameAuthoringEnvironmentGUI {
 
