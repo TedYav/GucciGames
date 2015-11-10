@@ -1,3 +1,74 @@
 <voogasalad__GucciGames.gameEngine.MainGameEngine>
+  <myGamePlayers>
+    <myListOfPlayers>
+      <voogasalad__GucciGames.gameEngine.gamePlayer.GamePlayerPerson>
+        <myPlayerId>0</myPlayerId>
+        <myUnits>
+          <myUnits/>
+        </myUnits>
+        <myGoal>
+          <myId>0</myId>
+          <ConditionRequirements/>
+        </myGoal>
+        <myGoalStatus>goalNotAchieved</myGoalStatus>
+      </voogasalad__GucciGames.gameEngine.gamePlayer.GamePlayerPerson>
+      <voogasalad__GucciGames.gameEngine.gamePlayer.GamePlayerPerson>
+        <myPlayerId>0</myPlayerId>
+        <myUnits>
+          <myUnits>
+            <voogasalad__GucciGames.gameEngine.gameUnit.GameUnit>
+              <myOwnerId>1</myOwnerId>
+              <myType>
+                <myName>soldier</myName>
+                <myCharacteristics/>
+                <myAbilities/>
+              </myType>
+              <myX>3</myX>
+              <myY>3</myY>
+            </voogasalad__GucciGames.gameEngine.gameUnit.GameUnit>
+            <voogasalad__GucciGames.gameEngine.gameUnit.GameUnit>
+              <myOwnerId>1</myOwnerId>
+              <myType>
+                <myName>archer</myName>
+                <myCharacteristics/>
+                <myAbilities/>
+              </myType>
+              <myX>1</myX>
+              <myY>1</myY>
+            </voogasalad__GucciGames.gameEngine.gameUnit.GameUnit>
+          </myUnits>
+        </myUnits>
+        <myGoal>
+          <myId>0</myId>
+          <ConditionRequirements/>
+        </myGoal>
+        <myGoalStatus>goalNotAchieved</myGoalStatus>
+      </voogasalad__GucciGames.gameEngine.gamePlayer.GamePlayerPerson>
+      <voogasalad__GucciGames.gameEngine.gamePlayer.GamePlayerPerson>
+        <myPlayerId>0</myPlayerId>
+        <myUnits>
+          <myUnits>
+            <voogasalad__GucciGames.gameEngine.gameUnit.GameUnit>
+              <myOwnerId>2</myOwnerId>
+              <myType reference="../../../../../voogasalad__GucciGames.gameEngine.gamePlayer.GamePlayerPerson[2]/myUnits/myUnits/voogasalad__GucciGames.gameEngine.gameUnit.GameUnit/myType"/>
+              <myX>2</myX>
+              <myY>2</myY>
+            </voogasalad__GucciGames.gameEngine.gameUnit.GameUnit>
+          </myUnits>
+        </myUnits>
+        <myGoal>
+          <myId>0</myId>
+          <ConditionRequirements/>
+        </myGoal>
+        <myGoalStatus>goalNotAchieved</myGoalStatus>
+      </voogasalad__GucciGames.gameEngine.gamePlayer.GamePlayerPerson>
+    </myListOfPlayers>
+  </myGamePlayers>
   <myCurrentTurn>2</myCurrentTurn>
+  <myGlobalRule class="voogasalad_GucciGames.gameEngine.gameRule.NoUnitsGlobalGameRule">
+    <myGameMap>
+      <myGamePlayers reference="../../../myGamePlayers"/>
+    </myGameMap>
+  </myGlobalRule>
+  <myGameMap reference="../myGlobalRule/myGameMap"/>
 </voogasalad__GucciGames.gameEngine.MainGameEngine>

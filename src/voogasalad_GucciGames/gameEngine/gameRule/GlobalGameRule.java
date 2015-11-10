@@ -5,7 +5,7 @@ import java.util.List;
 import voogasalad_GucciGames.gameEngine.GameMap;
 
 //make real and null
-public abstract class GlobalGameRule {
+public abstract class GlobalGameRule extends GameRule{
 
 	protected GameMap myGameMap; //change it to private later
 	
