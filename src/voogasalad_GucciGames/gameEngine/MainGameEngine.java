@@ -6,7 +6,7 @@ import voogasalad_GucciGames.gameEngine.gameRule.GlobalGameRule;
 public class MainGameEngine {
 
 	private AllPlayers myGamePlayers;
-	private int currentTurn;
+	private int myCurrentTurn;
 	private GlobalGameRule myGlobalRule;
 	
 	private GameMap myGameMap;
@@ -15,7 +15,7 @@ public class MainGameEngine {
 	
 		
 		myGamePlayers = gamePlayers;
-		currentTurn = 1;
+		myCurrentTurn = 1;
 		myGlobalRule = globalRule;
 		
 		myGameMap = gameMap;
@@ -23,16 +23,17 @@ public class MainGameEngine {
 
 	public void takeTurn() {
 
-		myGamePlayers.takeTurn(currentTurn);
-		currentTurn++;
+		myGamePlayers.takeTurn(myCurrentTurn);
+		myCurrentTurn++;
 		
 	}
 	
+	public int getCurrentTurn(){
+		return this.myCurrentTurn;
+	}
 	
-	
-	
-	
-	
-	
+	public void incrementCurrentTurn(){
+		this.myCurrentTurn++;
+	}
 	
 }
