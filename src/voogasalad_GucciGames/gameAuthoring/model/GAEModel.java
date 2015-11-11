@@ -6,9 +6,10 @@ import javafx.collections.ListChangeListener;
 import voogasalad_GucciGames.GameEngineToGameAuthoringEnvironment;
 import voogasalad_GucciGames.gameAuthoring.IModelGaeController;
 import voogasalad_GucciGames.gameData.XMLGameData;
-import voogasalad_GucciGames.gameData.XMLParser;
+import voogasalad_GucciGames.gameEngine.GameMap;
 import voogasalad_GucciGames.gameEngine.gameUnit.GameUnitType;
 import voogasalad_GucciGames.gameEngine.mapObject.MapObject;
+import voogasalad_GucciGames.gameEngine.mapObject.MapObjectType;
 import voogasalad_GucciGames.gameEngine.tile.TileType;
 
 public class GAEModel implements IGAEModel{
@@ -16,43 +17,54 @@ public class GAEModel implements IGAEModel{
     private IModelGaeController myController;
     private XMLGameData xmlData;
     private GameEngineToGameAuthoringEnvironment engine;
+    private GameMap map;
     
     public GAEModel(IModelGaeController controller) {
     	myController = controller;
     }
 
     @Override
-    public void addComponent (MapObject mapObj) {
+    public void addComponent (Map<String,String> objParams) {
+        MapObject mapObj = new MapObject();// MapObject(objParams);
+        validate();
+        data.addToMap(mapObj);
     }
 
     @Override
     public void deleteComponent (MapObject mapObj) {
+        data.deleteFromMap(mapObj);
     }
 
     @Override
     public void clearMap () {
+        data.clearMap();
     }
 
     @Override
     public void createCustomTileType (Map<String, String> m) {
+        TileType objType = new TileType(m.get("name"), m.get("imagePath"));//TODO: properties file
+        data.addTileType(objType);
     }
 
     @Override
     public void createCustomUnitType (Map<String, String> m) {  
+        GameUnitType objType = new GameUnitType(m.get("name"), m.get("imagePath"));//TODO: properties file
+        data.addUnitType(objType);
     }
 
     @Override
-    public List<TileType> getTileTypes () {
-        return null;
+    public List<TileType> getImmutableTileTypes () {
+        return data.getImmutableTileTypes();
     }
 
     @Override
-    public List<GameUnitType> getUnitTypes () {
-        return null;
+    public List<GameUnitType> getImmutableUnitTypes () {
+        return data.getImmutableUnitTypes();
     }
 
     @Override
     public void saveToXML () {
+        //xmlData.write();
     }
     private boolean validate(){
         return false;
@@ -60,10 +72,12 @@ public class GAEModel implements IGAEModel{
 
     @Override
     public void setMapWidth (double x) {
+        //map.setWidth(x);
     }
 
     @Override
     public void setMapHeight (double y) {
+        //map.setHeight(y);
     }
 
     @Override

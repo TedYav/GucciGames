@@ -31,7 +31,7 @@ public class UseDragAndDropUnit {
 		
 		// This unit would be initialized by the front end
 		// then passed through the call to the controller
-		MapObject unit = new MapObject();
+		Map<String,String> unit = new HashMap<String,String>;
 		
 		controller.addComponent(unit);
 		model.addComponent(unit);

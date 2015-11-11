@@ -12,7 +12,7 @@ public interface IGuiGaeController {
 	 * Add Map Object
 	 * @param mapObj
 	 */
-    public void addComponent(MapObject mapObj); //validate in back end
+    public void addComponent(Map<String,String> mapObj); //validate in back end
 
     public void deleteComponent(MapObject mapObj);
 
@@ -22,9 +22,9 @@ public interface IGuiGaeController {
 
     public void createCustomUnitType(Map<String,String> m);
 
-    public List<TileType> getTileTypes();
+    public List<TileType> getImmutableTileTypes();
 
-    public List<GameUnitType> getUnitTypes();
+    public List<GameUnitType> getImmutableUnitTypes();
 
 
 

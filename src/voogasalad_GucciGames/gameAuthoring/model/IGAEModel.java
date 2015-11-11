@@ -8,7 +8,7 @@ import voogasalad_GucciGames.gameEngine.mapObject.MapObject;
 import voogasalad_GucciGames.gameEngine.tile.TileType;
 
 public interface IGAEModel {
-    public void addComponent(MapObject mapObj);
+    public void addComponent(Map<String,String> objParams);
     
     public void deleteComponent(MapObject mapObj);
     public void clearMap();
@@ -16,8 +16,8 @@ public interface IGAEModel {
     public void createCustomTileType(Map<String,String> m);
     public void createCustomUnitType(Map<String,String> m);
     
-    public List<TileType> getTileTypes();
-    public List<GameUnitType> getUnitTypes();
+    public List<TileType> getImmutableTileTypes();
+    public List<GameUnitType> getImmutableUnitTypes();
     
     public void saveToXML();
     
