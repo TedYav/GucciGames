@@ -1,6 +1,6 @@
 package voogasalad_GucciGames;
 
-import voogasalad_GucciGames.gameAuthoring.gui.IGUIMap;
+import voogasalad_GucciGames.gameAuthoring.gui.map.IGUIMap;
 import voogasalad_GucciGames.gameEngine.gameUnit.AbilityException;
 import voogasalad_GucciGames.gameEngine.gameUnit.GameUnit;
 import voogasalad_GucciGames.gameEngine.mapObject.MapObjectAction;

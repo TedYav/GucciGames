@@ -1,4 +1,4 @@
-package voogasalad_GucciGames.gameAuthoring.gui;
+package voogasalad_GucciGames.gameAuthoring.gui.menubar;
 
 public class GAEMenuBar {
 	

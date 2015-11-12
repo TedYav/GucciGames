@@ -1,4 +1,4 @@
-package voogasalad_GucciGames.gameAuthoring.gui;
+package voogasalad_GucciGames.gameAuthoring.gui.map;
 
 import javafx.geometry.Point2D;
 
@@ -13,9 +13,9 @@ import javafx.geometry.Point2D;
 public interface IGUIMap {
 	
 	
-	public void setMapObjectForPosition(GUIObject obj, Point2D pos );
+	public void setMapObjectForPosition(GUIMapObject obj, Point2D pos );
 	
-	public void removeMapObjectAtPosition(GUIObject obj, Point2D pos );
+	public void removeMapObjectAtPosition(GUIMapObject obj, Point2D pos );
 	
 
 }
