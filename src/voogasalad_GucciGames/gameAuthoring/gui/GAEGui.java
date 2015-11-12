@@ -1,22 +1,24 @@
 package voogasalad_GucciGames.gameAuthoring.gui;
 
 import java.util.Map;
-import javafx.collections.ListChangeListener;
+import javafx.scene.Group;
+import javafx.scene.Scene;
+import javafx.scene.layout.BorderPane;
+import javafx.stage.Stage;
 import voogasalad_GucciGames.gameAuthoring.IGuiGaeController;
 
-public class GameAuthoringEnvironmentGUI implements ListChangeListener{
+public class GAEGui extends BorderPane{
+	
     private IGuiGaeController myController;
-    public GameAuthoringEnvironmentGUI(IGuiGaeController controller){
+    
+    public GAEGui(IGuiGaeController controller, Stage stage){
         myController = controller;
+        Group root = new Group();
+        Scene scene = new Scene(root);
+        stage.setScene(scene);
     }
 
     public void initializeMap(int width, int height/*, Grid g*/){
-
-    }
-    
-    @Override
-    public void onChanged (Change arg0) {
-        // TODO Auto-generated method stub
 
     }
     
