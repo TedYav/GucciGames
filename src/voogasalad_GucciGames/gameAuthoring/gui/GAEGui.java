@@ -15,6 +15,9 @@ import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import voogasalad_GucciGames.gameAuthoring.IGuiGaeController;
 import voogasalad_GucciGames.gameAuthoring.gui.sidebar.TileTab;
+import voogasalad_GucciGames.gameAuthoring.gui.statusbar.StatusBar;
+import voogasalad_GucciGames.gameAuthoring.gui.map.GUIMap;
+import voogasalad_GucciGames.gameAuthoring.gui.map.IGUIMap;
 import voogasalad_GucciGames.gameAuthoring.gui.menubar.GAEMenuBar;
 
 public class GAEGui extends BorderPane {
@@ -24,18 +27,22 @@ public class GAEGui extends BorderPane {
 	public GAEGui(IGuiGaeController controller, Stage stage) {
 		myController = controller;
 		stage.setScene(new Scene(this));
-
+		
 		addRightPane();
+		GAEMenuBar menuBar = null;
 		try {
-			HBox statusbar = new HBox();
-			statusbar.getChildren().add(new GAEMenuBar(controller));
-			statusbar.setBackground(
-					new Background(new BackgroundFill(Color.AQUAMARINE, new CornerRadii(0), getInsets())));
-			setTop(new GAEMenuBar(controller));
-			setBottom(statusbar);
+			menuBar = new GAEMenuBar(controller);
 		} catch (Exception e) {
+			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		setTop(menuBar);
+		StatusBar statusBar = new StatusBar(controller);
+		setBottom(statusBar);
+		setOnMouseMoved(e->statusBar.update(e));
+		GUIMap map = new GUIMap(myController);
+		
+		setCenter(map);
 	}
 
 	private void addRightPane() {
