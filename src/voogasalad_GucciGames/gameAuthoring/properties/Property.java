@@ -1,4 +1,4 @@
-package voogasalad_GucciGames.gameAuthoring.gui;
+package voogasalad_GucciGames.gameAuthoring.properties;
 
 import voogasalad_GucciGames.gameAuthoring.guiexceptions.InvalidInputException;
 

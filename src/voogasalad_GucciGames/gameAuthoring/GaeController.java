@@ -2,7 +2,9 @@ package voogasalad_GucciGames.gameAuthoring;
 
 import java.util.List;
 import java.util.Map;
-import voogasalad_GucciGames.gameAuthoring.gui.GameAuthoringEnvironmentGUI;
+
+import javafx.stage.Stage;
+import voogasalad_GucciGames.gameAuthoring.gui.GAEGui;
 import voogasalad_GucciGames.gameAuthoring.model.IGAEModel;
 import voogasalad_GucciGames.gameEngine.gameUnit.GameUnitType;
 import voogasalad_GucciGames.gameEngine.mapObject.MapObject;
@@ -10,8 +12,11 @@ import voogasalad_GucciGames.gameEngine.tile.TileType;
 
 public class GaeController implements IGuiGaeController, IModelGaeController{
     IGAEModel model;
-    GameAuthoringEnvironmentGUI gui;
-
+    GAEGui gui;
+    
+    public GaeController(Stage stage){
+    	new GAEGui(this,stage);
+    }
     @Override
     public void addComponent (MapObject mapObj) {
         // TODO Auto-generated method stub
@@ -60,7 +65,7 @@ public class GaeController implements IGuiGaeController, IModelGaeController{
         
     }
     public void addListeners() {
-        model.addObserver(gui);
+       // model.addObserver(gui);
     }
 
     @Override
