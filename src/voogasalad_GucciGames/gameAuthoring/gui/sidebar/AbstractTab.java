@@ -32,8 +32,10 @@ public abstract class AbstractTab extends Tab implements ITab{
 			imageView.setFitWidth(30);
 			
 			myGridPane.add(imageView, i, j);
-			if(i>4) i=0; j++;
-			i++;
+			if(i>4){ i=0;j++;}
+			else{
+				i++;
+			}
 		}
 	}
 	
