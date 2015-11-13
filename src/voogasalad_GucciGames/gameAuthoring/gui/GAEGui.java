@@ -8,7 +8,9 @@ import javafx.scene.control.TabPane;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
 import voogasalad_GucciGames.gameAuthoring.IGuiGaeController;
+import voogasalad_GucciGames.gameAuthoring.gui.sidebar.StructureTab;
 import voogasalad_GucciGames.gameAuthoring.gui.sidebar.TileTab;
+import voogasalad_GucciGames.gameAuthoring.gui.sidebar.UnitTab;
 
 public class GAEGui extends BorderPane{
 	
@@ -20,15 +22,17 @@ public class GAEGui extends BorderPane{
         Scene scene = new Scene(root);
         stage.setScene(scene);
       
-        addRightPane();
+        addRightPane(stage);
         
         root.getChildren().addAll(this);
     }
 
-    private void addRightPane() {
+    private void addRightPane(Stage stage) {
     	TabPane rightTabPane = new TabPane();
-    	TileTab tileTab = new TileTab();
-    	rightTabPane.getTabs().add(tileTab);
+    	TileTab tileTab = new TileTab(stage);
+    	UnitTab unitTab = new UnitTab(stage);
+    	StructureTab strucTab = new StructureTab(stage);
+    	rightTabPane.getTabs().addAll(tileTab, unitTab, strucTab);
     	setRight(rightTabPane);
 	}
 
