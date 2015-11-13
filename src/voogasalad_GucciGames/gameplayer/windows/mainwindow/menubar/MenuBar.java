@@ -1,4 +1,4 @@
-package voogasalad_GucciGames.gameplayer.window.menubar;
+package voogasalad_GucciGames.gameplayer.windows.mainwindow.menubar;
 
 import java.util.List;
 
