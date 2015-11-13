@@ -5,7 +5,7 @@ import java.util.Map;
 import voogasalad_GucciGames.gameAuthoring.GaeController;
 import voogasalad_GucciGames.gameAuthoring.IGuiGaeController;
 import voogasalad_GucciGames.gameAuthoring.IModelGaeController;
-import voogasalad_GucciGames.gameAuthoring.gui.GameAuthoringEnvironmentGUI;
+import voogasalad_GucciGames.gameAuthoring.gui.GAEGui;
 import voogasalad_GucciGames.gameAuthoring.model.GAEModel;
 import voogasalad_GucciGames.gameAuthoring.model.IGAEModel;
 
@@ -15,7 +15,7 @@ public class UseCreateCustomTile {
 	public void use() {
 		GaeController controller = new GaeController();
 		IGAEModel model = new GAEModel((IModelGaeController)controller);
-		GameAuthoringEnvironmentGUI gui = new GameAuthoringEnvironmentGUI((IGuiGaeController)controller);
+		GAEGui gui = new GAEGui((IGuiGaeController)controller);
 
 		
 		/*
