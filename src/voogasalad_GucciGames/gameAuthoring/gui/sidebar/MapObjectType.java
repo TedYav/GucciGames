@@ -1,5 +1,14 @@
 package voogasalad_GucciGames.gameAuthoring.gui.sidebar;
 
-public class MapObjectType implements IMapObjectType {
-
+public abstract class MapObjectType implements IMapObjectType {
+	String myPath;
+	
+	MapObjectType(String path) {
+		myPath = path;
+	}
+	
+	@Override 
+	public String getPath(){
+		return myPath;
+	}
 }

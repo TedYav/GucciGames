@@ -1,11 +1,14 @@
 package voogasalad_GucciGames.gameAuthoring.gui;
 
 import java.util.Map;
+
 import javafx.scene.Group;
 import javafx.scene.Scene;
+import javafx.scene.control.TabPane;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
 import voogasalad_GucciGames.gameAuthoring.IGuiGaeController;
+import voogasalad_GucciGames.gameAuthoring.gui.sidebar.TileTab;
 
 public class GAEGui extends BorderPane{
 	
@@ -16,9 +19,20 @@ public class GAEGui extends BorderPane{
         Group root = new Group();
         Scene scene = new Scene(root);
         stage.setScene(scene);
+      
+        addRightPane();
+        
+        root.getChildren().addAll(this);
     }
 
-    public void initializeMap(int width, int height/*, Grid g*/){
+    private void addRightPane() {
+    	TabPane rightTabPane = new TabPane();
+    	TileTab tileTab = new TileTab();
+    	rightTabPane.getTabs().add(tileTab);
+    	setRight(rightTabPane);
+	}
+
+	public void initializeMap(int width, int height/*, Grid g*/){
 
     }
     

@@ -1,10 +1,11 @@
 package voogasalad_GucciGames.gameAuthoring.gui.sidebar;
 
-public class StructureTab implements ITab {
+import javafx.scene.control.Tab;
+
+public class StructureTab extends Tab implements ITab {
 
 	@Override
 	public void update() {
-		// TODO Auto-generated method stub
 
 	}
 

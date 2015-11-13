@@ -1,6 +1,8 @@
 package voogasalad_GucciGames.gameAuthoring.gui.sidebar;
 
-public class UnitTab implements ITab {
+import javafx.scene.control.Tab;
+
+public class UnitTab extends Tab implements ITab {
 
 	@Override
 	public void update() {
