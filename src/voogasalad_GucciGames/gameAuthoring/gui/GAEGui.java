@@ -2,68 +2,80 @@ package voogasalad_GucciGames.gameAuthoring.gui;
 
 import java.util.Map;
 
+import javafx.scene.Scene;
+import javafx.scene.control.TabPane;
+import javafx.scene.image.Image;
+import javafx.scene.layout.BorderPane;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
-import javafx.scene.layout.BorderPane;
-import javafx.scene.layout.VBox;
-import javafx.scene.paint.Color;
-import javafx.scene.shape.Rectangle;
-import javafx.scene.text.Text;
-import javafx.stage.Modality;
 import javafx.stage.Stage;
 import voogasalad_GucciGames.gameAuthoring.IGuiGaeController;
-import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.GameSettingDialog;
-import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.TileMaker;
+import voogasalad_GucciGames.gameAuthoring.gui.sidebar.StructureTab;
+import voogasalad_GucciGames.gameAuthoring.gui.sidebar.TileTab;
+import voogasalad_GucciGames.gameAuthoring.gui.sidebar.UnitTab;
+import voogasalad_GucciGames.gameAuthoring.gui.statusbar.StatusBar;
+import voogasalad_GucciGames.gameAuthoring.gui.map.GUIMap;
+import voogasalad_GucciGames.gameAuthoring.gui.menubar.GAEMenuBar;
 
-public class GAEGui /*extends BorderPane*/{
-	
-    private IGuiGaeController myController;
-   
-    
-    public GAEGui(IGuiGaeController controller, Stage stage){
-        myController = controller;
-        Group root = new Group();
-        Scene scene = new Scene(root);
+public class GAEGui extends BorderPane {
 
-        stage.setScene(scene);
-        
-//        Button btn = new Button();
-//        btn.setText("Open Dialog");
-//        root.getChildren().add(btn);
-//        btn.setOnAction(
-//            new EventHandler<ActionEvent>() {
-//                @Override
-//                public void handle(ActionEvent event) {
-//                	GameSettingDialog dialog = new GameSettingDialog();
-//                	//TileMaker dialog = new TileMaker();
-//                	dialog.showGameSettingsDialog();
-//                }
-//             });
-        
+	private IGuiGaeController myController;
 
-    
-    }
+	public GAEGui(IGuiGaeController controller, Stage stage) {
+		myController = controller;
+		stage.setScene(new Scene(this));
 
-    public void initializeMap(int width, int height/*, Grid g*/){
+		addRightPane(stage);
+		GAEMenuBar menuBar = null;
+		try {
+			menuBar = new GAEMenuBar(controller);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		setTop(menuBar);
+		StatusBar statusBar = new StatusBar(controller);
+		setBottom(statusBar);
+		setOnMouseMoved(e->statusBar.update(e));
+		GUIMap map = new GUIMap(myController);
+		setCenter(map);
+		stage.show();
+		map.initGrid();
+		map.setBackground(new Image("http://www.narniaweb.com/wp-content/uploads/2009/08/NarniaMap.jpg"));
+	}
 
-    }
-    
-    /**
-     * Mock methods for use case purposes, can delete if obsolete.
-     */
-    
-    /**
-     * 
-     * For when user creates a custom MapObjectType.
-     * @return the Map that specifies the MapObjectType properties
-     */
-    public Map<String,String> getMapForCustomTile() {
-        return null;
-    }
-    public IGuiGaeController getController() {
-        return myController;
-    }
+	private void addRightPane(Stage stage) {
+		TabPane rightTabPane = new TabPane();
+    	TileTab tileTab = new TileTab(stage);
+    	UnitTab unitTab = new UnitTab(stage);
+    	StructureTab strucTab = new StructureTab(stage);
+    	rightTabPane.getTabs().addAll(tileTab, unitTab, strucTab);
+    	setRight(rightTabPane);
+	}
+
+	public void initializeMap(int width, int height/* , Grid g */) {
+
+	}
+
+	/**
+	 * Mock methods for use case purposes, can delete if obsolete.
+	 */
+
+	/**
+	 * 
+	 * For when user creates a custom MapObjectType.
+	 * 
+	 * @return the Map that specifies the MapObjectType properties
+	 */
+	public Map<String, String> getMapForCustomTile() {
+		return null;
+	}
+
+	public IGuiGaeController getController() {
+		return myController;
+	}
+
 }

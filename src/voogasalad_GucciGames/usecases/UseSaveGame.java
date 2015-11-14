@@ -13,8 +13,10 @@ public class UseSaveGame {
 
 /*		GaeController controller = new GaeController();
 		IGAEModel model = new GAEModel((IModelGaeController)controller);
+<<<<<<< HEAD
 		GameAuthoringEnvironmentGUI gui = new GameAuthoringEnvironmentGUI((IGuiGaeController)controller);
 	*/	
+
 		/*
 		 * After author has finished modifying their game in the GAE
 		 * author clicks save which triggers the controller to call

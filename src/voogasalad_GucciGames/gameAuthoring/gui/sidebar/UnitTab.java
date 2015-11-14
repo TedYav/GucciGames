@@ -1,6 +1,20 @@
 package voogasalad_GucciGames.gameAuthoring.gui.sidebar;
 
-public class UnitTab implements ITab {
+import java.util.Arrays;
+
+import javafx.stage.Stage;
+
+
+public class UnitTab extends AbstractTab {
+	
+	public UnitTab(Stage stage) {
+		super(stage);
+		setText("Units");
+		allImagePaths = Arrays.asList("voogasalad_GucciGames/graphics/fire.png", "voogasalad_GucciGames/graphics/water.jpg");
+		addImages();
+		addImageHandler();
+		addDragDropListener();
+	}
 
 	@Override
 	public void update() {
