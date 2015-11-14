@@ -8,12 +8,11 @@ import javafx.stage.Stage;
 
 import java.util.Map;
 
-public abstract class GameWindow {	
+public abstract class GameWindow implements GameWindowInterface {	
 	
 	int myID;
 	private ResourceBundle myConfig = ResourceBundle.getBundle("voogasalad_GucciGames.gameplayer.config.WindowManager");
 	private Stage myStage;
-	private Scene myCurrentScene;
 	
 	public GameWindow(int id){
 		myID = id;
@@ -28,7 +27,6 @@ public abstract class GameWindow {
 		myStage.setResizable(Integer.parseInt(myWindowConfig.get("Resizable"))==1);
 		myStage.setTitle(myWindowConfig.get("Title"));
 		myStage.show();
-		
 	}
 
 	private Map<String, String> parseConfig() {
@@ -37,5 +35,12 @@ public abstract class GameWindow {
 			.collect(Collectors.toMap((s)->s.toString().split(",")[0].substring(6),
 					(s)->myConfig.getString(s)));
 	}
+
+	@Override
+	public void loadScene(Scene scene) {
+		myStage.setScene(scene);
+	}
+	
+	public abstract void initialize();
 	
 }
