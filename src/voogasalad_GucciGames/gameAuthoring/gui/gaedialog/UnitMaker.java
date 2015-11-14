@@ -1,44 +1,62 @@
 package voogasalad_GucciGames.gameAuthoring.gui.gaedialog;
+
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Properties;
-import voogasalad_GucciGames.gameAuthoring.guiexceptions.InvalidInputException;
+
 import voogasalad_GucciGames.gameAuthoring.properties.TileProperty;
+import voogasalad_GucciGames.gameAuthoring.properties.UnitProperty;
 import javafx.scene.Scene;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
-import javafx.stage.Modality;
 import javafx.stage.Stage;
 
-public class TileMaker extends NewObjectMaker {
-	
+public class UnitMaker extends NewObjectMaker {
 	private static final int WIDTH = 600;
 	private static final int HEIGHT = 600;
 
 	static GroovyTabPane groovyTabPane;
 	private VBox myContent = new VBox();
-	private Stage tileMakerDialog = new Stage();
+	private Stage unitMakerDialog = new Stage();
 	private Map<Integer, String> groovyBuffer = new HashMap<Integer, String>();
 	private Properties prop;
-	private TileProperty tileProperty = new TileProperty();
+	private UnitProperty unitProperty = new UnitProperty();
 	private ISaveGroovy saveGroovy;
 	private ISaveObjProperty saveObjProperty;
 	private Scene scene;
 	
-	public TileMaker(){
+	public UnitMaker(){
 		super();
 		prop = loadProperties("dialogproperties/tiledialogproperties.properties");	
 		saveGroovy = super.setSaveGroovyFunctions(groovyBuffer, saveGroovy);
-		saveObjProperty = super.setSavePropertyFunction(tileProperty, saveObjProperty);		
+		saveObjProperty = super.setSavePropertyFunction(unitProperty, saveObjProperty);		
 		groovyTabPane = new GroovyTabPane(prop, saveGroovy);
 		myContent = initializeDialog(initializeCustomContent());
 		Scene tileDialogScene = new Scene(myContent, WIDTH, HEIGHT);
 		tileDialogScene.getStylesheets().add("voogasalad_GucciGames/gameAuthoring/gui/gaedialog/stylesheets/dialogstylesheet.css");
-		tileMakerDialog.setScene(tileDialogScene);		
+		unitMakerDialog.setScene(tileDialogScene);	
 	}
 	
-	
-	protected VBox initializeCustomContent(){
+
+
+	@Override
+	protected VBox initializeDialog() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	protected VBox initializeDialog(VBox customProperties) {
+		// TODO Auto-generated method stub
+		VBox content = new VBox();
+		content = super.initDefaultContentForObjMaker(prop, customProperties, groovyTabPane, 
+				"vbox-element", saveObjProperty);
+		return content;
+	}
+
+	@Override
+	protected VBox initializeCustomContent() {
+		// TODO Auto-generated method stub
 		VBox vbox = new VBox();
 		HBox prop1Element = createElement(prop.getProperty("prop1"),
 				makeRadioButtons(prop, "prop1", "prop1_items", saveObjProperty), "hbox-element");
@@ -49,33 +67,8 @@ public class TileMaker extends NewObjectMaker {
 		return vbox;
 	}
 	
-
-	@Override
-	protected VBox initializeDialog(VBox customProperties) {
-		// TODO Auto-generated method stub
-		VBox content = new VBox();
-		content = super.initDefaultContentForObjMaker(prop, customProperties, groovyTabPane, 
-				"vbox-element", saveObjProperty);
-		return content;
+	public void showUnitMakerDialog(){
+		super.showDialog(unitMakerDialog);
 	}
-	
-	public void showTileMakerDialog(){
-		super.showDialog(tileMakerDialog);
-	}
-
-	@Override
-	protected VBox initializeDialog() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-
-
-
 
 }
-   
-
-
-
-

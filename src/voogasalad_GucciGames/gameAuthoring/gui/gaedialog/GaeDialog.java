@@ -147,6 +147,11 @@ abstract public class GaeDialog{
 		hbox.getChildren().addAll(pathTextField, browseBtn);	
 		return hbox;
 	}
+	
+	public void showDialog(Stage stage){
+		stage.initModality(Modality.APPLICATION_MODAL);
+		stage.show();
+	}
 
 	
 

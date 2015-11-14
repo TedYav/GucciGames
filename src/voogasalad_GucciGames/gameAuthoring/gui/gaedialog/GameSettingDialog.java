@@ -36,11 +36,6 @@ public class GameSettingDialog extends GaeDialog {
 		gameSettingDialog.setScene(gameSettingDialogScene);		
 	}
 
-	public void showGameSettingsDialog(){
-		gameSettingDialog.initModality(Modality.APPLICATION_MODAL);
-		gameSettingDialog.show();
-	}
-
 
 	@Override
 	protected VBox initializeDialog() {
@@ -67,17 +62,15 @@ public class GameSettingDialog extends GaeDialog {
 		content.setId("vbox-element");	
 		return content;
 	}
-	
-	
-	
-	public Stage getStage(){
-		return gameSettingDialog;
-	}
 
 	@Override
 	protected VBox initializeDialog(VBox customProperties) {
 		// TODO Auto-generated method stub
 		return null;
+	}
+	
+	public void showGameSettingsDialog(){
+		super.showDialog(gameSettingDialog);
 	}
 
 

@@ -3,6 +3,8 @@ package voogasalad_GucciGames.gameAuthoring.gui.sidebar;
 import java.util.ArrayList;
 import java.util.List;
 
+import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.TileMaker;
+import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.UnitMaker;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.geometry.Insets;
@@ -69,6 +71,10 @@ public abstract class AbstractTab extends Tab implements ITab{
 		myAddButton.setOnAction(new EventHandler<ActionEvent>() {
 			@Override public void handle(ActionEvent e) {
 				//dialog
+//				TileMaker tileMaker = new TileMaker();
+//				tileMaker.showTileMakerDialog();
+				UnitMaker unitMaker = new UnitMaker();
+				unitMaker.showUnitMakerDialog();
 			}
 		});
 		
