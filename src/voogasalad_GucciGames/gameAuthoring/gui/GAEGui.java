@@ -9,14 +9,12 @@ import javafx.scene.image.Image;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Screen;
 import javafx.stage.Stage;
-
 import voogasalad_GucciGames.gameAuthoring.IGuiGaeController;
 import voogasalad_GucciGames.gameAuthoring.gui.sidebar.StructureTab;
 import voogasalad_GucciGames.gameAuthoring.gui.sidebar.TileTab;
 import voogasalad_GucciGames.gameAuthoring.gui.sidebar.UnitTab;
 import voogasalad_GucciGames.gameAuthoring.gui.statusbar.StatusBar;
 import voogasalad_GucciGames.gameAuthoring.gui.map.GUIMap;
-import voogasalad_GucciGames.gameAuthoring.gui.map.IMap;
 import voogasalad_GucciGames.gameAuthoring.gui.menubar.GAEMenuBar;
 
 public class GAEGui extends BorderPane {
@@ -86,4 +84,5 @@ public class GAEGui extends BorderPane {
 	public IGuiGaeController getController() {
 		return myController;
 	}
+
 }

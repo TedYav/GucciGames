@@ -15,7 +15,10 @@ public class GaeController implements IGuiGaeController, IModelGaeController{
     GAEGui gui;
     
     public GaeController(Stage stage){
+    	System.out.println("called 1");
     	new GAEGui(this,stage);
+    	
+    	
     }
     @Override
     public void addComponent (MapObject mapObj) {

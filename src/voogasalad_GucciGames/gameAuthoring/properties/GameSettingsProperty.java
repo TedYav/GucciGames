@@ -5,23 +5,24 @@ import java.util.Map;
 
 import voogasalad_GucciGames.gameAuthoring.guiexceptions.InvalidInputException;
 
-public class TileProperty extends Property {
+public class GameSettingsProperty extends Property {
 	
 	private Map<String, String> myMap = new HashMap<String, String>();
-	
 
 	@Override
-	public void setProperty(String key, String value) throws InvalidInputException {
+	public void setProperty(String key, String value)
+			throws InvalidInputException {
 		// TODO Auto-generated method stub
 		
 	}
 
 	@Override
-	public void addPropertyElement(String propName, String prop) throws InvalidInputException {
+	public void addPropertyElement(String propName, String prop)
+			throws InvalidInputException {
 		// TODO Auto-generated method stub
 		myMap.put(propName, prop);
-		printProperty(myMap);
+		super.printProperty(myMap);
+		
 	}
-	
 
 }
