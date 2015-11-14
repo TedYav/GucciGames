@@ -22,10 +22,10 @@ import voogasalad_GucciGames.gameEngine.defaultCharacteristics.RealHealthCharact
 // this class replaces playergamerule.java
 public abstract class PlayerCondition implements GameCondition {
 
-	// I would advise against passing just a healthCharacteristic; you should
-	// pass the whole player (or an interface of it)
+
 	public PlayerCondition(RealHealthCharacteristic playerhealth) {
 
 	}
+	protected  abstract List<EndGameConditions> executeRule();
 
 }
