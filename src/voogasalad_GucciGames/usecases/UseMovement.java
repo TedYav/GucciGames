@@ -3,7 +3,7 @@ package voogasalad_GucciGames.usecases;
 import java.util.List;
 
 import voogasalad_GucciGames.gameEngine.mapObject.MapObject;
-import voogasalad_GucciGames.gameEngine.mapObject.MapObjectAction;
+import voogasalad_GucciGames.gameEngine.mapObject.IMapObjectAction;
 import voogasalad_GucciGames.gameEngine.mapObject.TheMap;
 
 /**
@@ -12,7 +12,7 @@ import voogasalad_GucciGames.gameEngine.mapObject.TheMap;
  * @use case #2
  *
  */
-public class UseMovement extends MapObjectAction{
+public class UseMovement extends IMapObjectAction{
 	private static final String CARDINAL = "cardinal";
 	private static final String DIAGONAL = "diagonal";
 	private static final String ALL = "all";
