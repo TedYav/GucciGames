@@ -10,7 +10,7 @@ import voogasalad_GucciGames.gameEngine.defaultCharacteristics.RealHealthCharact
  * @author Sally Al
  *
  */
-public class PlayerHealthRule extends PlayerRules {
+public class PlayerHealthRule extends PlayerConditions {
 
 	private RealHealthCharacteristic myPlayerHealth;
 
