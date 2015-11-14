@@ -6,6 +6,8 @@ import java.util.List;
 import java.util.Map;
 import java.util.Properties;
 
+import voogasalad_GucciGames.gameAuthoring.guiexceptions.InvalidInputException;
+import voogasalad_GucciGames.gameAuthoring.properties.TileProperty;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.Scene;
@@ -31,33 +33,63 @@ public class TileMaker extends NewObjectMaker {
 	private Stage tileMakerDialog = new Stage();
 	private Map<Integer, String> groovyBuffer = new HashMap<Integer, String>();
 	private Properties prop;
+	private TileProperty tileProperty = new TileProperty();
+	private ISaveGroovy saveGroovy;
+	private ISaveObjProperty saveObjProperty;
 	
 	public TileMaker(){
 		prop = loadProperties("dialogproperties/tiledialogproperties.properties");	
-		ISaveGroovy saveGroovy = (str, index) -> {
+		saveGroovy = (str, index) -> {
 			groovyBuffer.put(index, str);
-			//debugg
+			//debug
 			groovyBuffer.forEach((k, v) -> System.out.println(" " + k + " " + v));
 			System.out.println("---------");
 		};
 		groovyTabPane = new GroovyTabPane(prop, saveGroovy);
-		myContent = initializeDialog();
+		myContent = initializeDialog(initializeCustomProperties());
 		Scene tileDialogScene = new Scene(myContent, WIDTH, HEIGHT);
-		tileDialogScene .getStylesheets().add("voogasalad_GucciGames/gameAuthoring/gui/gaedialog/stylesheets/dialogstylesheet.css");
+		tileDialogScene.getStylesheets().add("voogasalad_GucciGames/gameAuthoring/gui/gaedialog/stylesheets/dialogstylesheet.css");
 		tileMakerDialog.setScene(tileDialogScene);		
 	}
+	
+	protected VBox initializeCustomProperties(){
+		VBox vbox = new VBox();
+		HBox prop1Element = createElement(prop.getProperty("prop1"),
+				makeRadioButtons(prop, "prop1_items"), "hbox-element");
+		HBox prop2Element = createElement(prop.getProperty("prop2"),
+				makeRadioButtons(prop, "prop2_items"), "hbox-element");	
+		vbox.getChildren().addAll(prop1Element, prop2Element);
+		vbox.setId("vbox-element");
+		return vbox;
+	}
+	
 
 	@Override
-	protected VBox initializeDialog() {
+	protected VBox initializeDialog(VBox customProperties) {
 		// TODO Auto-generated method stub
+		saveObjProperty = (propName, prop) -> {
+			try {
+				tileProperty.addPropertyElement(propName, prop);
+			} catch (InvalidInputException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		};
 		VBox content = new VBox();
-		content = super.initializeDefaultContent(prop, groovyTabPane);
+		content = super.initDefaultContentForObjMaker(prop, customProperties, groovyTabPane, 
+				"vbox-element", saveObjProperty);
 		return content;
 	}
 	
 	public void showGameSettingsDialog(){
 		tileMakerDialog.initModality(Modality.APPLICATION_MODAL);
 		tileMakerDialog.show();
+	}
+
+	@Override
+	protected VBox initializeDialog() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 

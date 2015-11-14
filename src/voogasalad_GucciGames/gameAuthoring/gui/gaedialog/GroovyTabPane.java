@@ -27,15 +27,16 @@ public class GroovyTabPane {
 		this.saveGroovy = saveGroovy;
 		addGroovyTab();
 		setSelectedTab(tabPane.getTabs().get(0));
-		contentVBox = createTabPaneElements(tabPane, prop);			
+		contentVBox = createTabPaneElements(tabPane, prop, "vbox-element", "hbox-element");			
 		setTabProperties(tabPane);
 	}	
-	 protected VBox createTabPaneElements(TabPane tabPane, Properties prop){
+	 protected VBox createTabPaneElements(TabPane tabPane, Properties prop, String vboxStyleId, String hboxStyleId){
 		 VBox vbox = new VBox();
 		 HBox hbox = new HBox();
 		 Button saveBtn = new Button(prop.getProperty("savebtn"));
 		 Button editBtn = new Button(prop.getProperty("editbtn"));
 		 hbox.getChildren().addAll(editBtn, saveBtn);
+		 hbox.setId(hboxStyleId);
 		 saveBtn.setOnAction(e -> {
 			 String groovy = getTextAreaForTab(getSelectedTab()).getText();
 			 saveGroovy.saveGroovyTextArea(groovy, getIdForTab(getSelectedTab()));
@@ -45,9 +46,8 @@ public class GroovyTabPane {
 			 getTextAreaForTab(getSelectedTab()).setDisable(false);			
 		 });
 		 Button addBtn = createAddButton(prop, "addbtn", "groovytitle");
-		 Button saveCustomObjBtn = new Button(prop.getProperty("savebtn"));
-		 saveCustomObjBtn.setOnAction(e -> {} );
-		 vbox.getChildren().addAll(tabPane, hbox, addBtn, saveCustomObjBtn);
+		 vbox.getChildren().addAll(tabPane, hbox, addBtn);
+		 vbox.setId(vboxStyleId);
 		 return vbox;
 	 }
 	 

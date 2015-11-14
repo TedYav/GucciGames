@@ -4,6 +4,8 @@ import java.util.Properties;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.ListChangeListener;
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.scene.control.Button;
 import javafx.scene.control.ListView;
 import javafx.scene.control.Tab;
@@ -22,18 +24,28 @@ public abstract class NewObjectMaker extends GaeDialog{
 		 
 	 }
 	 
-	 protected VBox initializeDefaultContent(Properties prop, GroovyTabPane groovyTabPane){
+	 protected VBox initDefaultContentForObjMaker(Properties prop, VBox customContent,
+			 GroovyTabPane groovyTabPane, String styleId, ISaveObjProperty saveObjProperty){
 		 VBox content = new VBox();
-		 content.setId("vbox-content");
+		 
 		 Text titleTextElement = new Text(prop.getProperty("title"));
 		 titleTextElement.setId("title");
-		 TextField nameTextField = new TextField();		
+		 TextField nameTextField = new TextField();	
+		 nameTextField.textProperty().addListener((observable, oldValue, newValue)->{
+			 System.out.println("changed");
+			 saveObjProperty.saveObjProperty("name", newValue);
+		 });
+
 		 HBox nameElement = createElement(prop.getProperty("name"), 
-				 nameTextField, "field-title-element");
+				 nameTextField, "hbox-element");
 		 HBox imageElement = createElement(prop.getProperty("image"),
-				 makeBrowseElement(prop, "browse", "filechoosertitle"), "" );
+				 makeBrowseElement(prop, "browse", "filechoosertitle", saveObjProperty), "hbox-element");	 
 		 VBox tabPaneElements = groovyTabPane.getContent();
-		 content.getChildren().addAll(titleTextElement, nameElement, imageElement, tabPaneElements);
+		 Button saveCustomObjBtn = new Button(prop.getProperty("savebtn"));
+		 saveCustomObjBtn.setOnAction(e -> {/*TODO*/} );
+		 content.getChildren().addAll(titleTextElement, nameElement, imageElement, 
+				 customContent, tabPaneElements, saveCustomObjBtn);
+		 content.setId(styleId);
 		 return content;
 	 }
 

@@ -1,5 +1,6 @@
 package voogasalad_GucciGames.gameAuthoring.gui.gaedialog;
 
+import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;
@@ -21,17 +22,16 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 import javafx.stage.FileChooser;
+import javafx.stage.FileChooser.ExtensionFilter;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 
-abstract public class GaeDialog{
-	
+abstract public class GaeDialog{	
 	public GaeDialog(){
-		//initializeDialog();
-		
 		
 	}
 	protected abstract VBox initializeDialog();
+	protected abstract VBox initializeDialog(VBox customProperties);
 	
 	protected HBox initializeControl(Properties prop, String keyStyleId){
 		HBox controls = new HBox();
@@ -47,22 +47,19 @@ abstract public class GaeDialog{
 		InputStream input = null;
 		input = getClass().getResourceAsStream(path);
 		try {
-			prop.load(input);
-			
+			prop.load(input);		
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		return prop;
-		
+		return prop;		
 	}
 	
-	protected HBox createElement(String name, Node n, String keyStyleId){
+	protected HBox createElement(String name, Node n, String hboxId){
 		HBox hbox = new HBox();
 		Text key = new Text(name);
-		key.setId(keyStyleId);
-		hbox.getChildren().addAll(key, n);
-		
+		hbox.getChildren().addAll(key, n);	
+		hbox.setId(hboxId);
 		return hbox;	
 	}
 	
@@ -108,25 +105,28 @@ abstract public class GaeDialog{
 		return scrollBar;
 	}
 	
-	protected HBox makeBrowseElement(Properties prop, String browseKey, String fileChooserKey){
+	protected HBox makeBrowseElement(Properties prop, String browseKey, String fileChooserKey, ISaveObjProperty saveObjProperty){
 		HBox hbox = new HBox();
 		TextField pathTextField = new TextField();
 		Button browseBtn = new Button(prop.getProperty(browseKey));
-		browseBtn.setOnAction((event) -> {
+		browseBtn.setOnAction(e -> {
 			FileChooser fileChooser = new FileChooser();
 			fileChooser.setTitle(prop.getProperty(fileChooserKey));
-			fileChooser.showOpenDialog(null);
+			fileChooser.getExtensionFilters().add(
+			         new ExtensionFilter("Image Files", "*.png", "*.jpg", "*.gif"));	         
+			File selectedFile  = fileChooser.showOpenDialog(null);
+			//TODO: get file path
+			pathTextField.setText(selectedFile.getAbsolutePath());
 		});
+		
+		pathTextField.textProperty().addListener((observable, oldValue, newValue)->{
+			 saveObjProperty.saveObjProperty("imagepath", newValue);
+		 });
+
 		hbox.getChildren().addAll(pathTextField, browseBtn);	
 		return hbox;
 	}
-	
 
-
-
-	
-	
-	
 	
 
 }

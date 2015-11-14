@@ -1,14 +1,6 @@
 package voogasalad_GucciGames.gameAuthoring.gui.gaedialog;
-import java.io.IOException;
-import java.io.InputStream;
 import java.util.Properties;
-
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
-import javafx.scene.Node;
-import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
@@ -20,7 +12,7 @@ public class GameSettingDialog extends GaeDialog {
 	
 	private Stage gameSettingDialog = new Stage();
 	private VBox myContent = new VBox();
-	private HBox control = new HBox();
+
 
 	private Properties prop;
 	
@@ -62,8 +54,7 @@ public class GameSettingDialog extends GaeDialog {
 		HBox zoomableElement = createElement(prop.getProperty("zoomable"),
 				makeRadioButtons(prop, "zoomable_items"), "field-title-element");
 		HBox numPlayerElement = createElement(prop.getProperty("numplayer"),
-				makeScrollBar(prop, "player_min", "player_max", "player_increment"), "field-title-element");
-		
+				makeScrollBar(prop, "player_min", "player_max", "player_increment"), "field-title-element");		
 		content.getChildren().addAll(titleElement, nameElement, mapSizeElement, fogOfWarElement,
 				miniMapElement, zoomableElement, numPlayerElement);
 		content.getChildren().forEach(hbox->hbox.setId("hbox-element"));
@@ -76,6 +67,12 @@ public class GameSettingDialog extends GaeDialog {
 	
 	public Stage getStage(){
 		return gameSettingDialog;
+	}
+
+	@Override
+	protected VBox initializeDialog(VBox customProperties) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 
