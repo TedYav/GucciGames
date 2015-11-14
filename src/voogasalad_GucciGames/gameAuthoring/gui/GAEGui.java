@@ -3,19 +3,20 @@ package voogasalad_GucciGames.gameAuthoring.gui;
 import java.util.Map;
 
 import javafx.scene.Scene;
+import javafx.scene.control.Tab;
 import javafx.scene.control.TabPane;
 import javafx.scene.layout.Background;
 import javafx.scene.layout.BackgroundFill;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.CornerRadii;
 import javafx.scene.layout.HBox;
+import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import voogasalad_GucciGames.gameAuthoring.IGuiGaeController;
 import voogasalad_GucciGames.gameAuthoring.gui.sidebar.StructureTab;
 import voogasalad_GucciGames.gameAuthoring.gui.sidebar.TileTab;
 import voogasalad_GucciGames.gameAuthoring.gui.sidebar.UnitTab;
-
 import voogasalad_GucciGames.gameAuthoring.gui.menubar.GAEMenuBar;
 
 public class GAEGui extends BorderPane {
@@ -41,9 +42,14 @@ public class GAEGui extends BorderPane {
 
 	private void addRightPane(Stage stage) {
 		TabPane rightTabPane = new TabPane();
-    	TileTab tileTab = new TileTab(stage);
-    	UnitTab unitTab = new UnitTab(stage);
-    	StructureTab strucTab = new StructureTab(stage);
+    	TileTab tileTab = new TileTab();
+    	UnitTab unitTab = new UnitTab();
+    	StructureTab strucTab = new StructureTab();
+    	
+    	setSize(tileTab,stage);
+    	setSize(unitTab,stage);
+    	setSize(strucTab,stage);
+    	
     	rightTabPane.getTabs().addAll(tileTab, unitTab, strucTab);
     	setRight(rightTabPane);
 	}
@@ -68,5 +74,10 @@ public class GAEGui extends BorderPane {
 
 	public IGuiGaeController getController() {
 		return myController;
+	}
+	
+	private void setSize(Tab tab, Stage stage){
+		VBox currBox = (VBox) tab.getContent();
+    	currBox.setMinWidth(stage.getWidth()/4);
 	}
 }

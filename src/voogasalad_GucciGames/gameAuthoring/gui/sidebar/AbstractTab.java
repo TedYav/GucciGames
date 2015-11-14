@@ -29,10 +29,10 @@ public abstract class AbstractTab extends Tab implements ITab{
 	protected GridPane myGridPane = new GridPane();
 	protected ContextMenu myContextMenu = new ContextMenu();
 
-	AbstractTab(Stage stage) {
+	AbstractTab() {
 		allImageViews = new ArrayList<ImageView>();
 		this.setClosable(false);
-		createEmptyContent(stage);
+		createEmptyContent();
 		createMenu();
 	}
 	
@@ -58,13 +58,10 @@ public abstract class AbstractTab extends Tab implements ITab{
 		myContextMenu.getItems().addAll(item1, item2, item3);
 	}
 
-	protected void createEmptyContent(Stage stage) {
-		myVBox.setMinWidth(stage.getWidth()/4);
-
-		myGridPane.setMinWidth(stage.getWidth()/4);
-		myGridPane.setVgap(10);
-		myGridPane.setHgap(10);
-		myGridPane.setPadding(new Insets(10, 10, 10, 10));
+	protected void createEmptyContent() {
+		myGridPane.setVgap(20);
+		myGridPane.setHgap(20);
+		myGridPane.setPadding(new Insets(20, 20, 20, 20));
 
 		myAddButton.setOnAction(new EventHandler<ActionEvent>() {
 			@Override public void handle(ActionEvent e) {
@@ -72,6 +69,7 @@ public abstract class AbstractTab extends Tab implements ITab{
 			}
 		});
 		
+		myVBox.setPadding(new Insets(20, 20, 20, 20));
 		myVBox.getChildren().addAll(myGridPane, myAddButton);
 		
 		this.setContent(myVBox);
