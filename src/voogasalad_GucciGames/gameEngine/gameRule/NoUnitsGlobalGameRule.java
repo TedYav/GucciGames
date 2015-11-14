@@ -12,7 +12,6 @@ public class NoUnitsGlobalGameRule extends GlobalGameRule{
 	public NoUnitsGlobalGameRule(GameMap gameMap) {
 		super(gameMap);
 
-		// TODO Auto-generated constructor stub
 	}
 
 

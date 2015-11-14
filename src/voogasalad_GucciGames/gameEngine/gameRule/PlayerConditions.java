@@ -12,10 +12,9 @@ import voogasalad_GucciGames.gameEngine.defaultCharacteristics.RealHealthCharact
  */
 
 //make real and null
-//this class replaces playergamerule.java
-public abstract class PlayerRules extends GameRule {
+public abstract class PlayerConditions extends GameConditions {
 
-	public PlayerRules(RealHealthCharacteristic playerhealth) {
+	public PlayerConditions(RealHealthCharacteristic playerhealth) {
 
 	}
 	protected  abstract List<EndGameConditions> executeRule();

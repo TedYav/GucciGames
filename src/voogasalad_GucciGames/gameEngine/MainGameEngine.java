@@ -35,6 +35,10 @@ public class MainGameEngine {
 	}
 
 	private void checkTurnOutcome() {
+
+
+
+
 		// this will become very long as conditions are added .. re-factor
 		String currentStatus = myGamePlayers.getActivePlayer(myCurrentTurn).getStatus();
 		if (currentStatus.equals("LOSE")) {
