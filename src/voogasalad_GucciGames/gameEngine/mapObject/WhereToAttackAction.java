@@ -15,10 +15,10 @@ public class WhereToAttackAction implements IMapObjectAction{
 	public CommunicationParams action(CommunicationParams communication) {
 		// TODO Auto-generated method stub
 		AllPlayers players = communication.getPlayers();
-		GamePlayerPerson player = players.getPlayer(players.getCurrentTurn());
+		GamePlayerPerson player = players.getActivePlayer(players.getCurrentTurn());
 		List<ATargetCoordinate> result = new ArrayList<>();
 		for(int i = 0; i < players.getNumberOfPlayers(); i++){
-			for(MapObject mo: players.getPlayer(i).getMapObjects()){
+			for(MapObject mo: players.getActivePlayer(i).getMapObjects()){
 				result.add(mo.getCoordinate());
 			}
 		}
