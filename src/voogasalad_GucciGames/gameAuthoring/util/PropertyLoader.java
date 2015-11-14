@@ -13,7 +13,7 @@ import java.util.Properties;
  */
 public class PropertyLoader {
 
-	private static final String PATH = PropertyLoader.class.getPackage()"resources/";
+	private static final String PATH = PropertyLoader.class.getPackage()+"resources/";
 	private static final String EXTENSION = ".properties";
 
 	public Properties load(String fileName) throws IOException {

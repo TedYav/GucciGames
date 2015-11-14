@@ -1,11 +1,11 @@
 package voogasalad_GucciGames.gameEngine.mapObject;
 
-import java.util.HashMap;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+import java.util.TreeMap;
 
-import voogasalad_GucciGames.gameEngine.defaultCharacteristics.HealthCharacteristic;
-import voogasalad_GucciGames.gameEngine.targetCoordinate.TargetCoordinate;
+import voogasalad_GucciGames.gameEngine.targetCoordinate.ATargetCoordinate;
 
 public abstract class MapObjectType {
 
@@ -13,12 +13,10 @@ public abstract class MapObjectType {
 	private String myName;
 	private String myImagePath;
 	
-	//size
+	//sizes
 	
-	private TargetCoordinate myLocation;
-	
-	protected Map<String, MapObjectCharacteristic> myCharacteristics; //test
-	protected Map<String, MapObjectAction> myAbilities; //test
+	protected Map<String, AMapObjectCharacteristic> myCharacteristics; //test
+	protected Map<String, IMapObjectAction> myAbilities; //test
 
 	
 
@@ -26,8 +24,9 @@ public abstract class MapObjectType {
 		myName = name;
 		myImagePath = imagePath;
 		
-		myCharacteristics = new HashMap<String,  MapObjectCharacteristic>();
-		myAbilities = new HashMap<String, MapObjectAction>();
+		// TreeMap so alphabetized when giving to front end
+		myCharacteristics = new TreeMap<String,  AMapObjectCharacteristic>();
+		myAbilities = new TreeMap<String, IMapObjectAction>();
 		
 	}
 	
@@ -44,11 +43,37 @@ public abstract class MapObjectType {
 		return myName;
 	}
 	
-	public MapObjectAction getAction(String name){
+	public IMapObjectAction getAction(String name){
 		return myAbilities.get(name);
 	}
 	
+	public AMapObjectCharacteristic getCharacteristic(String name){
+		return this.myCharacteristics.get(name);
+	}
 	
+	public List<String> getActionStrings(){
+		return new ArrayList<String>(this.myAbilities.keySet());
+	}
+	
+	public List<String> getCharacteristicStrings(){
+		return new ArrayList<String>(this.myCharacteristics.keySet());
+	}
+	
+	public void addAction(String name, IMapObjectAction action){
+		this.myAbilities.put(name, action);
+	}
+	
+	public void addCharacteristic(String name, AMapObjectCharacteristic characteristic){
+		this.myCharacteristics.put(name, characteristic);
+	}
+	
+	public boolean hasCharacteristic(String name){
+		return this.myCharacteristics.containsKey(name);
+	}
+	
+	public boolean hasAction(String name){
+		return this.myAbilities.containsKey(name);
+	}
 	
 	
 }

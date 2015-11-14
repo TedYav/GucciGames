@@ -1,40 +1,78 @@
 package voogasalad_GucciGames.gameEngine.gamePlayer;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
-import voogasalad_GucciGames.gameEngine.gameRule.PlayerGameRule;
+import voogasalad_GucciGames.gameEngine.defaultCharacteristics.RealHealthCharacteristic;
+import voogasalad_GucciGames.gameEngine.gameRule.EndGameConditions;
+import voogasalad_GucciGames.gameEngine.gameRule.PlayerHealthRule;
 import voogasalad_GucciGames.gameEngine.gameRule.Goal.Goal;
-import voogasalad_GucciGames.gameEngine.gameUnit.GameUnit;
+import voogasalad_GucciGames.gameEngine.mapObject.MapObject;
 
 public class GamePlayerPerson {
 
 	private int myPlayerId; // playerID == 0 iff the unit is neutral. (should we
 							// make this static?)
 	private UnitCollection myUnits;
-	private PlayerGameRule myPlayConditions;
+	// private PlayerGameRule myPlayConditions;
 	private PlayerResources myResources;
+	private List<MapObject> myMapObjects;
+	private RealHealthCharacteristic myHealth;
+	private PlayerHealthRule myHealthRule;
+	Goal myGoal;
 
-	private Goal myGoal;
-	private String myGoalStatus="goalNotAchieved";
+	private String myStatus = "goalNotAchieved";
 
-	
-	public GamePlayerPerson(UnitCollection units, int playerId){
-		
+	public GamePlayerPerson(UnitCollection units, int playerId) {
 
 		myUnits = units;
 		myPlayerId = playerId;
 		myGoal = new Goal();
+		this.myMapObjects = new ArrayList<>();
 
+	}
+
+	// should be called by gae when a player is created
+	public void definePlayerHealth(double healthValue) {
+		myHealth = new RealHealthCharacteristic();
+		myHealth.defineHealthValue(healthValue);
+		myHealthRule = new PlayerHealthRule(myHealth);
 	}
 
 	public UnitCollection getUnits() {
-
 		return myUnits;
 	}
 
-	public void takeTurn() {
+	public List<MapObject> getMapObjects(){
+		return this.myMapObjects;
+	}
 
+	public void takeTurn() {
+		attack();
+		checkHealth();
+
+	}
+
+	private void checkHealth() {
+		if (myHealth != null) {
+			List<EndGameConditions> list = myHealthRule.executeRule();
+			if (list.size() != 0) {
+				myStatus = list.get(0).toString();
+			}
+		}
+
+	}
+
+	public RealHealthCharacteristic myHealth() {
+		return myHealth;
+	}
+
+	public String getStatus() {
+		return myStatus;
+	}
+
+	private void attack() {
 		System.out.println(myUnits);
 
 		Scanner reader = new Scanner(System.in); // Reading from System.in
@@ -42,7 +80,7 @@ public class GamePlayerPerson {
 		int n = reader.nextInt(); // Scans the next token of the input as an
 									// int.
 
-		GameUnit unit = myUnits.getUnit(n);
+		MapObject unit = myUnits.getUnit(n);
 
 		System.out.println("What would you like to do? 0: move, 1: attack");
 		n = reader.nextInt(); // Scans the next token of the input as an int.
@@ -51,25 +89,14 @@ public class GamePlayerPerson {
 
 			System.out.println("Where would you like to move? Pick the correct point on the spot");
 
-			unit.performAction("move");
+			//unit.performAction("move");
 		}
 
 		else {
 			System.out.println("Where would you like to attack? Pick the correct point on the spot");
 
-			unit.performAction("attack");
+			//unit.performAction("attack");
 		}
-
-		myGoal.checkSatisfied();
-		myGoalStatus= myGoal.getMyStatus();
-
-	}
-	public void CreatGoal(List<String> names, List<Double> values){
-		myGoal.addRequirement(names, values);
-	}
-
-	public String getMyGoalStatus() {
-		return myGoalStatus;
 	}
 
 }

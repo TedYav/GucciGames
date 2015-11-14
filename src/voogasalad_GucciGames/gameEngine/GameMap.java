@@ -15,10 +15,12 @@ public class GameMap {
 		
 	}
 
+	
+	/**
+	 * Returns a list of all units in the game with index i reserved for the units of ith player.
+	 * @return
+	 */
 	public List<UnitCollection> getAllUnits() {
-		
-	
-	
 		return myGamePlayers.getAllUnits();
 	}
 
