@@ -4,11 +4,13 @@ import java.util.Scanner;
 
 import voogasalad_GucciGames.gameEngine.gamePlayer.PlayerResources;
 import voogasalad_GucciGames.gameEngine.gamePlayer.UnitCollection;
-import voogasalad_GucciGames.gameEngine.gameRule.GameRule;
-import voogasalad_GucciGames.gameEngine.gameRule.PlayerGameRule;
-import voogasalad_GucciGames.gameEngine.gameUnit.GameUnit;
+<<<<<<< HEAD
+import voogasalad_GucciGames.gameEngine.gameRule.GameCondition;
+=======
+import voogasalad_GucciGames.gameEngine.gameRule.GameConditions;
+>>>>>>> d4a4da7a35986caecec73e5a45d8c4ecf0e29662
 
-public class UseGamePlayerPerson {
+/*public class UseGamePlayerPerson {
 
 	
 	private int myPlayerId; //playerID == 0 iff the unit is neutral. (should we make this static?)
@@ -60,8 +62,9 @@ public class UseGamePlayerPerson {
 		// TODO Auto-generated method stub
 		
 	}
-	
+	}
+	*/
 
 	
 	
-}
+
