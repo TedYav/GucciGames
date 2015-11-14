@@ -17,14 +17,11 @@ import voogasalad_GucciGames.gameplayer.gameloader.GameLoader;
 import voogasalad_GucciGames.gameplayer.windows.GameScene;
 import voogasalad_GucciGames.gameplayer.windows.GameSceneManager;
 import voogasalad_GucciGames.gameplayer.windows.GameWindow;
+import voogasalad_GucciGames.gameplayer.windows.mainwindow.components.SplashScreen;
 
 public class InitialScene extends GameScene {
 
-	private String mySplash;
 	private Scene myScene;
-	private StackPane myPane;
-	private Timeline myTimeline;
-	private Text myText;
 	
 	public InitialScene(GameSceneManager manager, GameWindow window, String config) {
 		super(manager, window, config);
@@ -33,40 +30,15 @@ public class InitialScene extends GameScene {
 	@Override
 	protected void readConfig(){
 		super.readConfig();
-		mySplash = myConfig.getString("SplashImage");
 	}
 
 	@Override
 	public void load() {
-		initializePane();
-		initializeText();
-		animateText();
-		myScene = new Scene(myPane);
+		SplashScreen splash = new SplashScreen(myConfig.getString("Text"), myConfig.getString("SplashImage"));
+		myScene = new Scene(splash.getParent());
 		myScene.addEventHandler(KeyEvent.KEY_PRESSED, (e)->myManager.sceneFinished());
 		loadScene(myScene);
 	}
 	
-	private void initializeText(){
-		myText = new Text();
-		myText.setText("Press any key to continue...");
-		myText.setFont(Font.font ("Verdana", 72));
-		myText.setFill(Color.WHITE);
-		myPane.getChildren().add(myText);
-	}
 	
-	private void animateText(){
-		FadeTransition f = new FadeTransition(Duration.millis(Double.parseDouble(myConfig.getString("FrameDuration"))), myText);
-		f.setFromValue(1.0);
-		f.setToValue(0.0);
-		f.setCycleCount(Timeline.INDEFINITE);
-		f.setAutoReverse(true);
-		f.play();
-	}
-	
-	private void initializePane() {
-		myPane = new StackPane();
-		Image splash = new Image(mySplash);
-		ImageView splashview = new ImageView(splash);
-		myPane.getChildren().add(splashview);
-	}
 }
