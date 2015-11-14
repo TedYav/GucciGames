@@ -3,19 +3,20 @@ package voogasalad_GucciGames.gameEngine;
 import java.util.List;
 
 import voogasalad_GucciGames.gameEngine.gamePlayer.AllPlayers;
-import voogasalad_GucciGames.gameEngine.gameRule.GlobalGameRule;
+import voogasalad_GucciGames.gameEngine.gameRule.GameCondition;
+import voogasalad_GucciGames.gameEngine.gameRule.GlobalGameCondition;
 import voogasalad_GucciGames.gameEngine.gameRule.Goal.Goal;
 
 public class MainGameEngine {
 
 	private AllPlayers myGamePlayers;
 	private int myCurrentTurn;
-	private GlobalGameRule myGlobalRule;
+	private GameCondition myGlobalRule;
 
 	private GameMap myGameMap;
 	private Goal myGlobalStatus;
 
-	public MainGameEngine(AllPlayers gamePlayers, GlobalGameRule globalRule, GameMap gameMap) {
+	public MainGameEngine(AllPlayers gamePlayers, GlobalGameCondition globalRule, GameMap gameMap) {
 
 		myGamePlayers = gamePlayers;
 		myCurrentTurn = 1;

@@ -12,23 +12,4 @@ public interface IMapObjectAction{
 	
 	public CommunicationParams action(CommunicationParams communication);
 	
-
-/*
-	private Map<String, List<TileType>> myPossibleTileInteractions; // this
-																	// string
-	// will be
-	// something
-	// like
-	// "CannotMove"
-	// or
-	// "RegainHealth"
-	private TargetCoordinate myPossibleTargetSquares; //TargetCoordinate can be single or multiple
-	public void onClick(){
-		//this method calls findPossibleMovements() in Movement.java
-		//it passes with it an interface of the map, and the object itself
-		//findPossibleMovements returns a list of possible coordinates that will
-		// be stored in this class.
-	}
-*/
-
 }
