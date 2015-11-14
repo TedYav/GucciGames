@@ -34,6 +34,7 @@ public class MainGameScene extends GameScene{
 		 * 6. Go to Next Level or Go to Main Menu
 		 */
 		showSplash();
+		myWindow.loadScene(new Scene(new BorderPane()));
 		
 	}
 	
