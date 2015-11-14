@@ -23,4 +23,8 @@ public class MapObject {
     	this.myCoordinate = coordinate;
     }
 
+	public boolean isUnit() {
+		return myObjectType.hasCharacteristic("unit");
+	}
+
 }

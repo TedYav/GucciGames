@@ -1,14 +1,12 @@
-package voogasalad_GucciGames;
+package voogasalad_GucciGames.gameEngine;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import voogasalad_GucciGames.gameEngine.GameMap;
-import voogasalad_GucciGames.gameEngine.MainGameEngine;
 import voogasalad_GucciGames.gameEngine.gamePlayer.AllPlayers;
 import voogasalad_GucciGames.gameEngine.gamePlayer.GamePlayerPerson;
 import voogasalad_GucciGames.gameEngine.gamePlayer.UnitCollection;
-import voogasalad_GucciGames.gameEngine.gameRule.NoUnitsGlobalGameRule;
+import voogasalad_GucciGames.gameEngine.gameRule.OnlyOnePlayerHasUnitsCondition;
 
 /*public class Main {
 
