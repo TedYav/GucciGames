@@ -3,8 +3,9 @@ package voogasalad_GucciGames.gameEngine.gamePlayer;
 import java.util.List;
 import java.util.Scanner;
 
-import voogasalad_GucciGames.gameEngine.gameRule.PlayerGameRule;
-import voogasalad_GucciGames.gameEngine.gameRule.Goal.Goal;
+import voogasalad_GucciGames.gameEngine.defaultCharacteristics.RealHealthCharacteristic;
+import voogasalad_GucciGames.gameEngine.gameRule.EndGameConditions;
+import voogasalad_GucciGames.gameEngine.gameRule.PlayerHealthRule;
 import voogasalad_GucciGames.gameEngine.gameUnit.GameUnit;
 
 public class GamePlayerPerson {
@@ -12,29 +13,56 @@ public class GamePlayerPerson {
 	private int myPlayerId; // playerID == 0 iff the unit is neutral. (should we
 							// make this static?)
 	private UnitCollection myUnits;
-	private PlayerGameRule myPlayConditions;
+	// private PlayerGameRule myPlayConditions;
 	private PlayerResources myResources;
+	private RealHealthCharacteristic myHealth;
+	private PlayerHealthRule myHealthRule;
 
-	private Goal myGoal;
-	private String myGoalStatus="goalNotAchieved";
+	private String myStatus = "goalNotAchieved";
 
-	
-	public GamePlayerPerson(UnitCollection units, int playerId){
-		
+	public GamePlayerPerson(UnitCollection units, int playerId) {
 
 		myUnits = units;
 		myPlayerId = playerId;
-		myGoal = new Goal();
 
 	}
 
-	public UnitCollection getUnits() {
+	// should be called by front end when a player is created
+	public void definePlayerHealth(double healthValue) {
+		myHealth = new RealHealthCharacteristic();
+		myHealth.defineHealthValue(healthValue);
+		myHealthRule = new PlayerHealthRule(myHealth);
+	}
 
+	public UnitCollection getUnits() {
 		return myUnits;
 	}
 
 	public void takeTurn() {
+		attack();
+		checkHealth();
 
+	}
+
+	private void checkHealth() {
+		if (myHealth != null) {
+			List<EndGameConditions> list = myHealthRule.executeRule();
+			if (list.size() != 0) {
+				myStatus = list.get(0).toString();
+			}
+		}
+
+	}
+
+	public RealHealthCharacteristic myHealth() {
+		return myHealth;
+	}
+
+	public String getStatus() {
+		return myStatus;
+	}
+
+	private void attack() {
 		System.out.println(myUnits);
 
 		Scanner reader = new Scanner(System.in); // Reading from System.in
@@ -59,17 +87,6 @@ public class GamePlayerPerson {
 
 			unit.performAction("attack");
 		}
-
-		myGoal.checkSatisfied();
-		myGoalStatus= myGoal.getMyStatus();
-
-	}
-	public void CreatGoal(List<String> names, List<Double> values){
-		myGoal.addRequirement(names, values);
-	}
-
-	public String getMyGoalStatus() {
-		return myGoalStatus;
 	}
 
 }
