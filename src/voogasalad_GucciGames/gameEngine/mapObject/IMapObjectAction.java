@@ -7,7 +7,6 @@ import voogasalad_GucciGames.gameEngine.GameMap;
 import voogasalad_GucciGames.gameEngine.CommunicationParams.CommunicationParams;
 import voogasalad_GucciGames.gameEngine.gamePlayer.AllPlayers;
 import voogasalad_GucciGames.gameEngine.targetCoordinate.ATargetCoordinate;
-import voogasalad_GucciGames.gameEngine.tile.TileType;
 
 public interface IMapObjectAction{
 	

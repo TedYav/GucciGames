@@ -9,10 +9,8 @@ import voogasalad_GucciGames.gameEngine.gamePlayer.AllPlayers;
 import voogasalad_GucciGames.gameEngine.gamePlayer.GamePlayerPerson;
 import voogasalad_GucciGames.gameEngine.gamePlayer.UnitCollection;
 import voogasalad_GucciGames.gameEngine.gameRule.NoUnitsGlobalGameRule;
-import voogasalad_GucciGames.gameEngine.gameUnit.GameUnit;
-import voogasalad_GucciGames.gameEngine.gameUnit.GameUnitType;
 
-public class Main {
+/*public class Main {
 
 	public static void main(String[] args){
 
@@ -54,6 +52,6 @@ public class Main {
 	}
 
 	}
-
+	}
+*/
 	//initialize Controller
-}

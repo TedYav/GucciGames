@@ -3,17 +3,18 @@ package voogasalad_GucciGames.gameEngine.gamePlayer;
 import java.util.ArrayList;
 import java.util.List;
 
-import voogasalad_GucciGames.gameEngine.gameUnit.GameUnit;
+import voogasalad_GucciGames.gameEngine.mapObject.MapObject;
+
 
 public class UnitCollection {
 	
-	private List<GameUnit> myUnits;
+	private List<MapObject> myUnits;
 	
 	public UnitCollection(){
-		myUnits = new ArrayList<GameUnit>();
+		myUnits = new ArrayList<MapObject>();
 	}
 	
-	public UnitCollection(List<GameUnit> units){
+	public UnitCollection(List<MapObject> units){
 		
 		myUnits = units;
 		
@@ -28,7 +29,7 @@ public class UnitCollection {
 	
 	
 	//change this later
-	public List<GameUnit> getUnits(){
+	public List<MapObject> getUnits(){
 		return myUnits;
 	}
 
@@ -36,12 +37,12 @@ public class UnitCollection {
 		return myUnits.size();
 	}
 
-	public GameUnit getUnit(int n) {
+	public MapObject getUnit(int n) {
 		return myUnits.get(n);
 	}
 
-	public void addUnit(GameUnit gameUnit) {
-myUnits.add(gameUnit);		
+	public void addUnit(MapObject MapObject) {
+myUnits.add(MapObject);		
 	}
 	
 	public String toString(){
