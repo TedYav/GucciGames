@@ -1,23 +1,32 @@
 package voogasalad_GucciGames.gameAuthoring.gui.map;
 
-import javafx.application.Application;
+import javafx.beans.property.DoubleProperty;
+import javafx.beans.property.SimpleDoubleProperty;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.geometry.Point2D;
-import javafx.scene.Scene;
+import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.DragEvent;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
-import javafx.stage.Stage;
+import javafx.scene.paint.Color;
+import javafx.scene.shape.Rectangle;
 import voogasalad_GucciGames.gameAuthoring.IGuiGaeController;
 
 /** Constructs a scene with a pannable Map background. */
-public class GUIMap extends ScrollPane implements IGUIMap {
+public class GUIMap extends ScrollPane implements IMap, IGuiMap {
+	private static final int GRID_SIZE = 10;
+
 	private IGuiGaeController myController;
-	private StackPane myLayout;
+	private Pane myLayout;
+	private ImageView myBackground;
+	private DoubleProperty myCellSize;
+	private Rectangle myMouseBound;
 
 	public GUIMap(IGuiGaeController controller) {
 		setHbarPolicy(ScrollPane.ScrollBarPolicy.NEVER);
@@ -26,61 +35,96 @@ public class GUIMap extends ScrollPane implements IGUIMap {
 		// center the scroll contents.
 		setHvalue(getHmin() + (getHmax() - getHmin()) / 2);
 		setVvalue(getVmin() + (getVmax() - getVmin()) / 2);
-		// construct the scene contents over a stacked background.
-		Image backgroundImage = new Image("http://www.narniaweb.com/wp-content/uploads/2009/08/NarniaMap.jpg");
+
+		myLayout = new Pane();
+		setContent(myLayout);
+		myBackground = new ImageView();
+		myLayout.getChildren().setAll(myBackground);
+		myBackground.fitWidthProperty().bind(myLayout.widthProperty());
+		myBackground.fitHeightProperty().bind(myLayout.heightProperty());
+
+		myCellSize = new SimpleDoubleProperty(getViewportBounds().getWidth() / GRID_SIZE);
+
+		myCellSize.addListener((ch, oV, nV) -> System.out.println(nV));
+		viewportBoundsProperty().addListener((ch, oV, nV) -> myCellSize.set(nV.getWidth() / GRID_SIZE));
+		myLayout.setOnMouseMoved(e -> trackMouseMove(e.getX(),e.getY()));
+		myLayout.setOnDragOver(e -> trackMouseMove(e.getX(),e.getY()));
+		myLayout.setOnMouseExited(e->removeMouseBound());
+		myLayout.setOnDragExited(e->removeMouseBound());
 		
-		StackPane layout = new StackPane();
-		layout.getChildren().setAll(new ImageView(backgroundImage));
-		setContent(layout);
-
-		// wrap the scene contents in a pannable scroll pane.
-		//ScrollPane scroll = createScrollPane(layout);
-
-		// bind the preferred size of the scroll area to the size of the scene.
-		//scroll.prefWidthProperty().bind(scene.widthProperty());
-		//scroll.prefHeightProperty().bind(scene.widthProperty());
-
-		
+		myLayout.setOnDragDropped(e->System.out.println("Dropped"));
+		myLayout.setOnDragDetected(e->System.out.println("Detected"));
+		myLayout.setOnDragEntered(e->System.out.println("Entered"));
+		myLayout.setOnDragDone(e->System.out.println("Done"));
+		myLayout.setOnMouseReleased(e->System.out.println("Released"));
 	}
 
-	/**
-	 * @return a control to place on the scene.
-	 */
-	private Button createKillButton() {
-		final Button killButton = new Button("Kill the evil witch");
-		killButton.setStyle("-fx-base: firebrick;");
-		killButton.setTranslateX(65);
-		killButton.setTranslateY(-130);
-		killButton.setOnAction(new EventHandler<ActionEvent>() {
-			@Override
-			public void handle(ActionEvent t) {
-				killButton.setStyle("-fx-base: forestgreen;");
-				killButton.setText("Ding-Dong! The Witch is Dead");
+	public void initGrid() {
+		int width = 50, height = 10;
+		for (int x = 0; x < width; x++) {
+			for (int y = 0; y < height; y++) {
+				new CellGUI(this, x, y);
 			}
-		});
-		return killButton;
+		}
 	}
 
-	/**
-	 * @return a ScrollPane which scrolls the layout.
-	 */
-	private ScrollPane createScrollPane(Pane layout) {
-		ScrollPane scroll = new ScrollPane();
-		
-		scroll.setPrefSize(800, 600);
-		scroll.setContent(layout);
-		return scroll;
+	public void setBackground(Image background) {
+		myBackground.setImage(background);
+
 	}
 
 	@Override
-	public void setMapObjectForPosition(GUIMapObject obj, Point2D pos) {
+	public void setMapObjectForPosition(CellGUI obj, Point2D pos) {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	@Override
-	public void removeMapObjectAtPosition(GUIMapObject obj, Point2D pos) {
+	public void removeMapObjectAtPosition(CellGUI obj, Point2D pos) {
 		// TODO Auto-generated method stub
-		
+
+	}
+
+	@Override
+	public DoubleProperty getCellSizeProperty() {
+		return myCellSize;
+	}
+
+	@Override
+	public void add(Node n) {
+		myLayout.getChildren().add(n);
+	}
+
+	@Override
+	public void remove(Node n) {
+		myLayout.getChildren().remove(n);
+
+	}
+
+	private void trackMouseMove(double x,double y) {
+		double size = myCellSize.get();
+		double xt = x - x % size;
+		double yt = y - y % size;
+		if (myMouseBound == null) {
+			myMouseBound = new Rectangle(xt, yt, size, size);
+			myMouseBound.setFill(Color.TRANSPARENT);
+			myMouseBound.setStroke(Color.YELLOW);
+			myMouseBound.setStrokeWidth(1.5);
+			myLayout.getChildren().add(myMouseBound);
+		} else if (!myMouseBound.contains(x, y)) {
+			myLayout.getChildren().remove(myMouseBound);
+			myMouseBound = new Rectangle(xt, yt, size, size);
+			myMouseBound.setFill(Color.TRANSPARENT);
+			myMouseBound.setStroke(Color.YELLOW);
+			myMouseBound.setStrokeWidth(2);
+			myLayout.getChildren().add(myMouseBound);
+		}
+	}
+
+	private void removeMouseBound() {
+		if (myMouseBound != null) {
+			myLayout.getChildren().remove(myMouseBound);
+			myMouseBound = null;
+		}
 	}
 }

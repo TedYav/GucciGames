@@ -17,7 +17,6 @@ public class Main extends Application {
 		stage.setHeight(bounds.getHeight());
 		//stage.setResizable(false);
 		new GaeController(stage);
-		stage.show();
 
 	}
 	

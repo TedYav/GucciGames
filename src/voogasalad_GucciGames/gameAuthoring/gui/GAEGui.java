@@ -4,20 +4,16 @@ import java.util.Map;
 
 import javafx.scene.Scene;
 import javafx.scene.control.TabPane;
-import javafx.scene.layout.Background;
-import javafx.scene.layout.BackgroundFill;
+import javafx.scene.image.Image;
 import javafx.scene.layout.BorderPane;
-import javafx.scene.layout.CornerRadii;
-import javafx.scene.layout.HBox;
-import javafx.scene.paint.Color;
 import javafx.stage.Stage;
+
 import voogasalad_GucciGames.gameAuthoring.IGuiGaeController;
 import voogasalad_GucciGames.gameAuthoring.gui.sidebar.StructureTab;
 import voogasalad_GucciGames.gameAuthoring.gui.sidebar.TileTab;
 import voogasalad_GucciGames.gameAuthoring.gui.sidebar.UnitTab;
 import voogasalad_GucciGames.gameAuthoring.gui.statusbar.StatusBar;
 import voogasalad_GucciGames.gameAuthoring.gui.map.GUIMap;
-import voogasalad_GucciGames.gameAuthoring.gui.map.IGUIMap;
 import voogasalad_GucciGames.gameAuthoring.gui.menubar.GAEMenuBar;
 
 public class GAEGui extends BorderPane {
@@ -41,8 +37,10 @@ public class GAEGui extends BorderPane {
 		setBottom(statusBar);
 		setOnMouseMoved(e->statusBar.update(e));
 		GUIMap map = new GUIMap(myController);
-		
 		setCenter(map);
+		stage.show();
+		map.initGrid();
+		map.setBackground(new Image("http://www.narniaweb.com/wp-content/uploads/2009/08/NarniaMap.jpg"));
 	}
 
 	private void addRightPane(Stage stage) {

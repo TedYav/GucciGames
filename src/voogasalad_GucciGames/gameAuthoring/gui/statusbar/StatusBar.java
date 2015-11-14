@@ -29,8 +29,9 @@ public class StatusBar extends HBox{
 				new Background(new BackgroundFill(Color.ALICEBLUE, new CornerRadii(2), getInsets())));
 		myText = new Text();
 		myText.setFont(Font.font("Verdana", 15));
-		myText.setTranslateY(5);
+		
 		getChildren().add(myText);
+		myText.setTranslateY(5);
 		myTextTransition = new PauseTransition(Duration.millis(1000));
 		myTextTransition.setOnFinished(f->myText.setVisible(false));
 	}
