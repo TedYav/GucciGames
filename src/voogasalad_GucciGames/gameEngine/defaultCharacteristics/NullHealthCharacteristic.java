@@ -1,16 +1,16 @@
 package voogasalad_GucciGames.gameEngine.defaultCharacteristics;
 
-public class NullHealthCharacteristic extends HealthCharacteristic{
+public class NullHealthCharacteristic extends HealthCharacteristic {
 
 	@Override
 	public void changeHealth(double healthDiff) {
-//do nothing
+		// do nothing
 		return;
 	}
 
 	@Override
 	public void resetHealth() {
-//do nothing
+		// do nothing
 		return;
 	}
 
@@ -19,9 +19,13 @@ public class NullHealthCharacteristic extends HealthCharacteristic{
 	 * Returns a NaN type
 	 */
 	public double getCurrentHealth() {
-		// TODO Auto-generated method stub
 		return Double.NaN;
 	}
 
-	
+	@Override
+	public void defineHealthValue(double healthValue) {
+		// do not do anything
+
+	}
+
 }

@@ -62,12 +62,11 @@ public class InitialScene extends GameScene {
 		f.setAutoReverse(true);
 		f.play();
 	}
-
+	
 	private void initializePane() {
 		myPane = new StackPane();
 		Image splash = new Image(mySplash);
 		ImageView splashview = new ImageView(splash);
 		myPane.getChildren().add(splashview);
 	}
-	
 }

@@ -3,17 +3,17 @@ package voogasalad_GucciGames.usecases;
 import voogasalad_GucciGames.gameEngine.GameMap;
 import voogasalad_GucciGames.gameEngine.SomeData;
 import voogasalad_GucciGames.gameEngine.gamePlayer.AllPlayers;
-import voogasalad_GucciGames.gameEngine.gameRule.GlobalGameRule;
+import voogasalad_GucciGames.gameEngine.gameRule.GlobalGameCondition;
 
 public class UseMainGameEngine {
 
 	private AllPlayers myGamePlayers;
 	private int myCurrentTurn;
-	private GlobalGameRule myGlobalRule;
+	private GlobalGameCondition myGlobalRule;
 	
 	private GameMap myGameMap;
 	
-	public UseMainGameEngine(AllPlayers gamePlayers, GlobalGameRule globalRule, GameMap gameMap){
+	public UseMainGameEngine(AllPlayers gamePlayers, GlobalGameCondition globalRule, GameMap gameMap){
 	
 		
 		myGamePlayers = gamePlayers;

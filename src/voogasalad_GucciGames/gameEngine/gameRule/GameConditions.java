@@ -1,6 +1,6 @@
 package voogasalad_GucciGames.gameEngine.gameRule;
 
-public abstract class GameRule {
+public abstract class GameConditions {
 
 	
 	//give access to units (treasure)
