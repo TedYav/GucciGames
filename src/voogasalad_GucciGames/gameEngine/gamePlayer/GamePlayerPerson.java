@@ -1,12 +1,15 @@
 package voogasalad_GucciGames.gameEngine.gamePlayer;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
 import voogasalad_GucciGames.gameEngine.defaultCharacteristics.RealHealthCharacteristic;
 import voogasalad_GucciGames.gameEngine.gameRule.EndGameConditions;
 import voogasalad_GucciGames.gameEngine.gameRule.PlayerHealthRule;
+import voogasalad_GucciGames.gameEngine.gameRule.Goal.Goal;
 import voogasalad_GucciGames.gameEngine.gameUnit.GameUnit;
+import voogasalad_GucciGames.gameEngine.mapObject.MapObject;
 
 public class GamePlayerPerson {
 
@@ -15,8 +18,10 @@ public class GamePlayerPerson {
 	private UnitCollection myUnits;
 	// private PlayerGameRule myPlayConditions;
 	private PlayerResources myResources;
+	private List<MapObject> myMapObjects;
 	private RealHealthCharacteristic myHealth;
 	private PlayerHealthRule myHealthRule;
+	Goal myGoal;
 
 	private String myStatus = "goalNotAchieved";
 
@@ -24,6 +29,8 @@ public class GamePlayerPerson {
 
 		myUnits = units;
 		myPlayerId = playerId;
+		myGoal = new Goal();
+		this.myMapObjects = new ArrayList<>();
 
 	}
 
@@ -36,6 +43,10 @@ public class GamePlayerPerson {
 
 	public UnitCollection getUnits() {
 		return myUnits;
+	}
+	
+	public List<MapObject> getMapObjects(){
+		return this.myMapObjects;
 	}
 
 	public void takeTurn() {

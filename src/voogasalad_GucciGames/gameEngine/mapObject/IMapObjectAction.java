@@ -3,14 +3,18 @@ package voogasalad_GucciGames.gameEngine.mapObject;
 import java.util.List;
 import java.util.Map;
 
-import voogasalad_GucciGames.gameEngine.targetCoordinate.TargetCoordinate;
+import voogasalad_GucciGames.gameEngine.GameMap;
+import voogasalad_GucciGames.gameEngine.CommunicationParams.CommunicationParams;
+import voogasalad_GucciGames.gameEngine.gamePlayer.AllPlayers;
+import voogasalad_GucciGames.gameEngine.targetCoordinate.ATargetCoordinate;
 import voogasalad_GucciGames.gameEngine.tile.TileType;
 
-public class MapObjectAction{
+public interface IMapObjectAction{
+	
+	public CommunicationParams action(CommunicationParams communication);
+	
 
-
-
-
+/*
 	private Map<String, List<TileType>> myPossibleTileInteractions; // this
 																	// string
 	// will be
@@ -26,6 +30,6 @@ public class MapObjectAction{
 		//findPossibleMovements returns a list of possible coordinates that will
 		// be stored in this class.
 	}
-
+*/
 
 }

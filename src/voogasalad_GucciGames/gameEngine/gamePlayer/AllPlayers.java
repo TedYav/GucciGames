@@ -8,9 +8,11 @@ public class AllPlayers {
 
 	//maybe put an interface in the middle?
 	private List<GamePlayerPerson> myListOfPlayers;
+	private int myCurrentTurn;
 
 	public AllPlayers(List<GamePlayerPerson> players){
 		myListOfPlayers = players;
+		this.myCurrentTurn = 1;
 	}
 
 	public List<UnitCollection> getAllUnits() {
@@ -31,7 +33,7 @@ public class AllPlayers {
 	}
 
 	public void takeTurn(int currentTurn) {
-
+		this.myCurrentTurn = currentTurn;
 		int whoseTurn = (currentTurn % (getNumberOfPlayers() - 1)) + 1;
 
 		myListOfPlayers.get(whoseTurn).takeTurn();
@@ -42,6 +44,8 @@ public class AllPlayers {
 	public GamePlayerPerson getActivePlayer(int index){
 		return myListOfPlayers.get(index);
 	}
-
-
+	
+	public int getCurrentTurn(){
+		return this.myCurrentTurn;
+	}
 }
