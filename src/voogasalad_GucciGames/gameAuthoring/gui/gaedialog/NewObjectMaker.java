@@ -1,11 +1,15 @@
 package voogasalad_GucciGames.gameAuthoring.gui.gaedialog;
+import java.util.Map;
 import java.util.Properties;
 
+import voogasalad_GucciGames.gameAuthoring.guiexceptions.InvalidInputException;
+import voogasalad_GucciGames.gameAuthoring.properties.Property;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.ListChangeListener;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ListView;
 import javafx.scene.control.Tab;
@@ -15,12 +19,14 @@ import javafx.scene.control.TextField;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
+import javafx.stage.Modality;
 import javafx.stage.Stage;
 
 public abstract class NewObjectMaker extends GaeDialog{
 	
 	public NewObjectMaker(){
-		 super();	
+		 super();
+
 		 
 	 }
 	 
@@ -63,4 +69,30 @@ public abstract class NewObjectMaker extends GaeDialog{
 		 });
 		 return addBtn;		 
 	 }
+	 
+	 protected ISaveObjProperty setSavePropertyFunction(Property property, ISaveObjProperty saveObjProperty){
+			saveObjProperty = (propName, prop) -> {
+				try {
+					property.addPropertyElement(propName, prop);
+				} catch (InvalidInputException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			};
+			return saveObjProperty;
+	 }
+	 
+	 protected ISaveGroovy setSaveGroovyFunctions(Map<Integer, String> buffer, ISaveGroovy saveGroovy){		 
+			saveGroovy = (str, index) -> {
+				buffer.put(index, str);
+				//debug
+				buffer.forEach((k, v) -> System.out.println(" " + k + " " + v));
+				System.out.println("---------");
+			};	
+			return saveGroovy;
+		 
+	 }
+	 
+	 protected abstract VBox initializeCustomContent();
+
 }

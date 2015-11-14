@@ -14,6 +14,12 @@ public class UseCreateCustomTile {
 	public void use() {
 /*		GaeController controller = new GaeController();
 		IGAEModel model = new GAEModel((IModelGaeController)controller);
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+		GameAuthoringEnvironmentGUI gui = new GameAuthoringEnvironmentGUI((IGuiGaeController)controller);
+*/
+
 		
 		/*
 		 * In the GUI the author would click to create a new custom tile.
