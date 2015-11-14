@@ -32,6 +32,7 @@ public class GAEGui extends BorderPane {
 		stage.show();
 		
 		initLayout(stage);
+		//initializeMap(20, 20);
 	}
 
 	private TabPane rightPane(Stage stage) {
