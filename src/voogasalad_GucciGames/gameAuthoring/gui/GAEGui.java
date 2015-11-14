@@ -30,18 +30,18 @@ public class GAEGui /*extends BorderPane*/{
 
         stage.setScene(scene);
         
-        Button btn = new Button();
-        btn.setText("Open Dialog");
-        root.getChildren().add(btn);
-        btn.setOnAction(
-            new EventHandler<ActionEvent>() {
-                @Override
-                public void handle(ActionEvent event) {
-                	//GameSettingDialog dialog = new GameSettingDialog();
-                	TileMaker dialog = new TileMaker();
-                	dialog.showGameSettingsDialog();
-                }
-             });
+//        Button btn = new Button();
+//        btn.setText("Open Dialog");
+//        root.getChildren().add(btn);
+//        btn.setOnAction(
+//            new EventHandler<ActionEvent>() {
+//                @Override
+//                public void handle(ActionEvent event) {
+//                	GameSettingDialog dialog = new GameSettingDialog();
+//                	//TileMaker dialog = new TileMaker();
+//                	dialog.showGameSettingsDialog();
+//                }
+//             });
         
 
     

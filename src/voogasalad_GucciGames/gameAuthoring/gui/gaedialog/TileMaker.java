@@ -1,23 +1,12 @@
 package voogasalad_GucciGames.gameAuthoring.gui.gaedialog;
-
-import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 import java.util.Properties;
-
 import voogasalad_GucciGames.gameAuthoring.guiexceptions.InvalidInputException;
 import voogasalad_GucciGames.gameAuthoring.properties.TileProperty;
-import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.Tab;
-import javafx.scene.control.TabPane;
-import javafx.scene.control.TextField;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
-import javafx.scene.text.Text;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 
@@ -25,9 +14,7 @@ public class TileMaker extends NewObjectMaker {
 	
 	private static final int WIDTH = 600;
 	private static final int HEIGHT = 600;
-	
-//	private TabPane tabPane = new TabPane();
-//	private Tab currentTab;
+
 	GroovyTabPane groovyTabPane;
 	private VBox myContent = new VBox();
 	private Stage tileMakerDialog = new Stage();
@@ -39,12 +26,22 @@ public class TileMaker extends NewObjectMaker {
 	
 	public TileMaker(){
 		prop = loadProperties("dialogproperties/tiledialogproperties.properties");	
+		
 		saveGroovy = (str, index) -> {
 			groovyBuffer.put(index, str);
 			//debug
 			groovyBuffer.forEach((k, v) -> System.out.println(" " + k + " " + v));
 			System.out.println("---------");
+		};	
+		saveObjProperty = (propName, prop) -> {
+			try {
+				tileProperty.addPropertyElement(propName, prop);
+			} catch (InvalidInputException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 		};
+		
 		groovyTabPane = new GroovyTabPane(prop, saveGroovy);
 		myContent = initializeDialog(initializeCustomProperties());
 		Scene tileDialogScene = new Scene(myContent, WIDTH, HEIGHT);
@@ -55,9 +52,9 @@ public class TileMaker extends NewObjectMaker {
 	protected VBox initializeCustomProperties(){
 		VBox vbox = new VBox();
 		HBox prop1Element = createElement(prop.getProperty("prop1"),
-				makeRadioButtons(prop, "prop1_items"), "hbox-element");
+				makeRadioButtons(prop, "prop1", "prop1_items", saveObjProperty), "hbox-element");
 		HBox prop2Element = createElement(prop.getProperty("prop2"),
-				makeRadioButtons(prop, "prop2_items"), "hbox-element");	
+				makeRadioButtons(prop, "prop2", "prop2_items", saveObjProperty), "hbox-element");	
 		vbox.getChildren().addAll(prop1Element, prop2Element);
 		vbox.setId("vbox-element");
 		return vbox;
@@ -67,14 +64,6 @@ public class TileMaker extends NewObjectMaker {
 	@Override
 	protected VBox initializeDialog(VBox customProperties) {
 		// TODO Auto-generated method stub
-		saveObjProperty = (propName, prop) -> {
-			try {
-				tileProperty.addPropertyElement(propName, prop);
-			} catch (InvalidInputException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-		};
 		VBox content = new VBox();
 		content = super.initDefaultContentForObjMaker(prop, customProperties, groovyTabPane, 
 				"vbox-element", saveObjProperty);
