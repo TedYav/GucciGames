@@ -6,7 +6,6 @@ import java.util.Scanner;
 import voogasalad_GucciGames.gameEngine.defaultCharacteristics.RealHealthCharacteristic;
 import voogasalad_GucciGames.gameEngine.gameRule.EndGameConditions;
 import voogasalad_GucciGames.gameEngine.gameRule.PlayerHealthRule;
-import voogasalad_GucciGames.gameEngine.gameRule.Goal.Goal;
 import voogasalad_GucciGames.gameEngine.gameUnit.GameUnit;
 
 public class GamePlayerPerson {
@@ -19,7 +18,6 @@ public class GamePlayerPerson {
 	private RealHealthCharacteristic myHealth;
 	private PlayerHealthRule myHealthRule;
 
-	private Goal myGoal;
 	private String myStatus = "goalNotAchieved";
 
 	public GamePlayerPerson(UnitCollection units, int playerId) {
@@ -29,6 +27,7 @@ public class GamePlayerPerson {
 
 	}
 
+	// should be called by front end when a player is created
 	public void definePlayerHealth(double healthValue) {
 		myHealth = new RealHealthCharacteristic();
 		myHealth.defineHealthValue(healthValue);
@@ -36,12 +35,10 @@ public class GamePlayerPerson {
 	}
 
 	public UnitCollection getUnits() {
-
 		return myUnits;
 	}
 
 	public void takeTurn() {
-
 		attack();
 		checkHealth();
 
@@ -59,6 +56,10 @@ public class GamePlayerPerson {
 
 	public RealHealthCharacteristic myHealth() {
 		return myHealth;
+	}
+
+	public String getStatus() {
+		return myStatus;
 	}
 
 	private void attack() {
