@@ -31,10 +31,6 @@ abstract public class GaeDialog{
 		
 		
 	}
-	
-	
-	
-	
 	protected abstract VBox initializeDialog();
 	
 	protected HBox initializeControl(Properties prop, String keyStyleId){
@@ -114,14 +110,14 @@ abstract public class GaeDialog{
 	
 	protected HBox makeBrowseElement(Properties prop, String browseKey, String fileChooserKey){
 		HBox hbox = new HBox();
-		TextField path = new TextField();
+		TextField pathTextField = new TextField();
 		Button browseBtn = new Button(prop.getProperty(browseKey));
 		browseBtn.setOnAction((event) -> {
 			FileChooser fileChooser = new FileChooser();
 			fileChooser.setTitle(prop.getProperty(fileChooserKey));
 			fileChooser.showOpenDialog(null);
 		});
-		
+		hbox.getChildren().addAll(pathTextField, browseBtn);	
 		return hbox;
 	}
 	
