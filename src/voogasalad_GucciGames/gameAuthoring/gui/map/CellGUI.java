@@ -5,20 +5,21 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 
 public class CellGUI {
-	private ImageView myImageView;
-	private IGuiMap myMap;
+	private static Image myImage = new Image(CellGUI.class.getClassLoader().getResourceAsStream("voogasalad_GucciGames/graphics/water.jpg"));
+	private ImageView myMapView;
+	private ImageView myMiniView;
+	private MapGrid myMap;
 	private DoubleProperty mySize;
 	
-	public CellGUI(IGuiMap map, int x, int y){
+	public CellGUI(MapGrid map, int x, int y){
 		myMap = map;
-		myImageView = new ImageView(new Image(getClass().getClassLoader().getResourceAsStream("voogasalad_GucciGames/graphics/water.jpg")));
-		mySize = myMap.getCellSizeProperty();
-		myImageView.fitWidthProperty().bind(mySize);
-		myImageView.fitHeightProperty().bind(mySize);
-		myImageView.xProperty().bind(mySize.multiply(x));
-		myImageView.yProperty().bind(mySize.multiply(y));
-		myMap.add(myImageView);
-		
+		myMapView = new ImageView(myImage);
+		mySize = myMap.getCellSize();
+		myMapView.fitWidthProperty().bind(mySize);
+		myMapView.fitHeightProperty().bind(mySize);
+		myMapView.xProperty().bind(mySize.multiply(x));
+		myMapView.yProperty().bind(mySize.multiply(y));
+		myMap.getChildren().add(myMapView);	
 	}
 
 }

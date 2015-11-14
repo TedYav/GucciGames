@@ -12,6 +12,8 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.DragEvent;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Color;
@@ -19,58 +21,51 @@ import javafx.scene.shape.Rectangle;
 import voogasalad_GucciGames.gameAuthoring.IGuiGaeController;
 
 /** Constructs a scene with a pannable Map background. */
-public class GUIMap extends ScrollPane implements IMap, IGuiMap {
-	private static final int GRID_SIZE = 10;
+public class GUIMap extends Pane implements IMap{
+	private static final int GRID_SIZE = 20;
 
 	private IGuiGaeController myController;
-	private Pane myLayout;
-	private ImageView myBackground;
-	private DoubleProperty myCellSize;
-	private Rectangle myMouseBound;
+	private MapGrid myGrid;
+	private ScrollPane myGridViewer;
+	
 
 	public GUIMap(IGuiGaeController controller) {
-		setHbarPolicy(ScrollPane.ScrollBarPolicy.NEVER);
-		setVbarPolicy(ScrollPane.ScrollBarPolicy.NEVER);
-		setPannable(true);
-		// center the scroll contents.
-		setHvalue(getHmin() + (getHmax() - getHmin()) / 2);
-		setVvalue(getVmin() + (getVmax() - getVmin()) / 2);
-
-		myLayout = new Pane();
-		setContent(myLayout);
-		myBackground = new ImageView();
-		myLayout.getChildren().setAll(myBackground);
-		myBackground.fitWidthProperty().bind(myLayout.widthProperty());
-		myBackground.fitHeightProperty().bind(myLayout.heightProperty());
-
-		myCellSize = new SimpleDoubleProperty(getViewportBounds().getWidth() / GRID_SIZE);
-
-		myCellSize.addListener((ch, oV, nV) -> System.out.println(nV));
-		viewportBoundsProperty().addListener((ch, oV, nV) -> myCellSize.set(nV.getWidth() / GRID_SIZE));
-		myLayout.setOnMouseMoved(e -> trackMouseMove(e.getX(),e.getY()));
-		myLayout.setOnDragOver(e -> trackMouseMove(e.getX(),e.getY()));
-		myLayout.setOnMouseExited(e->removeMouseBound());
-		myLayout.setOnDragExited(e->removeMouseBound());
+		myController = controller;
+		myGridViewer = new ScrollPane();
+		DoubleProperty cellSize = new SimpleDoubleProperty(myGridViewer.getViewportBounds().getWidth() / GRID_SIZE);
+		myGridViewer.viewportBoundsProperty().addListener((ch, oV, nV) -> cellSize.set(nV.getWidth() / GRID_SIZE));
 		
-		myLayout.setOnDragDropped(e->System.out.println("Dropped"));
-		myLayout.setOnDragDetected(e->System.out.println("Detected"));
-		myLayout.setOnDragEntered(e->System.out.println("Entered"));
-		myLayout.setOnDragDone(e->System.out.println("Done"));
-		myLayout.setOnMouseReleased(e->System.out.println("Released"));
+		myGrid = new MapGrid(cellSize);
+		myGridViewer.setContent(myGrid);
+		myGridViewer.setHbarPolicy(ScrollPane.ScrollBarPolicy.NEVER);
+		myGridViewer.setVbarPolicy(ScrollPane.ScrollBarPolicy.NEVER);
+		myGridViewer.setPannable(true);
+		// center the scroll contents.
+		myGridViewer.setHvalue(myGridViewer.getHmin() + (myGridViewer.getHmax() - myGridViewer.getHmin()) / 2);
+		myGridViewer.setVvalue(myGridViewer.getVmin() + (myGridViewer.getVmax() - myGridViewer.getVmin()) / 2);
+		
+		myGridViewer.prefViewportWidthProperty().bind(widthProperty());
+		myGridViewer.prefViewportHeightProperty().bind(heightProperty());
+		
+		getChildren().add(myGridViewer);
+		
+		Rectangle rect = new Rectangle(0, 0, 200, 200);
+		rect.setFill(Color.BLACK);
+		
+		Pane pane = new Pane();
+		pane.setMaxSize(200, 200);
+		pane.setLayoutX(50);
+		pane.setLayoutY(50);
+		pane.getChildren().add(rect);
+		getChildren().add(pane);
 	}
 
-	public void initGrid() {
-		int width = 50, height = 10;
-		for (int x = 0; x < width; x++) {
-			for (int y = 0; y < height; y++) {
-				new CellGUI(this, x, y);
-			}
-		}
+	public void initGrid(int width, int height) {
+		myGrid.initGrid(width, height);
 	}
 
 	public void setBackground(Image background) {
-		myBackground.setImage(background);
-
+		myGrid.setBackground(background);
 	}
 
 	@Override
@@ -84,47 +79,10 @@ public class GUIMap extends ScrollPane implements IMap, IGuiMap {
 		// TODO Auto-generated method stub
 
 	}
-
-	@Override
-	public DoubleProperty getCellSizeProperty() {
-		return myCellSize;
+	
+	public ScrollPane getPane(){
+		return myGridViewer;
 	}
 
-	@Override
-	public void add(Node n) {
-		myLayout.getChildren().add(n);
-	}
-
-	@Override
-	public void remove(Node n) {
-		myLayout.getChildren().remove(n);
-
-	}
-
-	private void trackMouseMove(double x,double y) {
-		double size = myCellSize.get();
-		double xt = x - x % size;
-		double yt = y - y % size;
-		if (myMouseBound == null) {
-			myMouseBound = new Rectangle(xt, yt, size, size);
-			myMouseBound.setFill(Color.TRANSPARENT);
-			myMouseBound.setStroke(Color.YELLOW);
-			myMouseBound.setStrokeWidth(1.5);
-			myLayout.getChildren().add(myMouseBound);
-		} else if (!myMouseBound.contains(x, y)) {
-			myLayout.getChildren().remove(myMouseBound);
-			myMouseBound = new Rectangle(xt, yt, size, size);
-			myMouseBound.setFill(Color.TRANSPARENT);
-			myMouseBound.setStroke(Color.YELLOW);
-			myMouseBound.setStrokeWidth(2);
-			myLayout.getChildren().add(myMouseBound);
-		}
-	}
-
-	private void removeMouseBound() {
-		if (myMouseBound != null) {
-			myLayout.getChildren().remove(myMouseBound);
-			myMouseBound = null;
-		}
-	}
+	
 }
