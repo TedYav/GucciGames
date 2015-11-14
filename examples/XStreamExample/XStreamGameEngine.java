@@ -19,12 +19,12 @@ import voogasalad_GucciGames.gameEngine.gamePlayer.AllPlayers;
 import voogasalad_GucciGames.gameEngine.gamePlayer.GamePlayerPerson;
 import voogasalad_GucciGames.gameEngine.gamePlayer.UnitCollection;
 import voogasalad_GucciGames.gameEngine.gameRule.NoUnitsGlobalGameRule;
-import voogasalad_GucciGames.gameEngine.gameUnit.GameUnit;
-import voogasalad_GucciGames.gameEngine.gameUnit.GameUnitType;
 
 public class XStreamGameEngine {
 	
 	@SuppressWarnings("resource")
+	
+	
 	public static void main(String[] args0){
 		XStream serializer = new XStream(new DomDriver());
 		String currentTurn = "Current Turn: ";
@@ -35,7 +35,7 @@ public class XStreamGameEngine {
 			
 
 			List<GamePlayerPerson> myListOfPlayers = new ArrayList<GamePlayerPerson>();	
-				
+/*				
 			
 			UnitCollection neutralUnits = new UnitCollection();
 			myListOfPlayers.add(new GamePlayerPerson(neutralUnits, 0)); //neutral player
@@ -55,7 +55,7 @@ public class XStreamGameEngine {
 			
 			myListOfPlayers.add(new GamePlayerPerson(p2Units, 0)); //player 2
 			
-			
+			*/
 			AllPlayers myPlayers = new AllPlayers(myListOfPlayers);
 			
 			

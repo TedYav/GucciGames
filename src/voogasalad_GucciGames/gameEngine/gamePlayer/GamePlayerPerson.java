@@ -8,7 +8,6 @@ import voogasalad_GucciGames.gameEngine.defaultCharacteristics.RealHealthCharact
 import voogasalad_GucciGames.gameEngine.gameRule.EndGameConditions;
 import voogasalad_GucciGames.gameEngine.gameRule.PlayerHealthRule;
 import voogasalad_GucciGames.gameEngine.gameRule.Goal.Goal;
-import voogasalad_GucciGames.gameEngine.gameUnit.GameUnit;
 import voogasalad_GucciGames.gameEngine.mapObject.MapObject;
 
 public class GamePlayerPerson {
@@ -81,7 +80,7 @@ public class GamePlayerPerson {
 		int n = reader.nextInt(); // Scans the next token of the input as an
 									// int.
 
-		GameUnit unit = myUnits.getUnit(n);
+		MapObject unit = myUnits.getUnit(n);
 
 		System.out.println("What would you like to do? 0: move, 1: attack");
 		n = reader.nextInt(); // Scans the next token of the input as an int.
@@ -90,13 +89,13 @@ public class GamePlayerPerson {
 
 			System.out.println("Where would you like to move? Pick the correct point on the spot");
 
-			unit.performAction("move");
+			//unit.performAction("move");
 		}
 
 		else {
 			System.out.println("Where would you like to attack? Pick the correct point on the spot");
 
-			unit.performAction("attack");
+			//unit.performAction("attack");
 		}
 	}
 

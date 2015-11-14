@@ -7,9 +7,8 @@ import voogasalad_GucciGames.GameEngineToGameAuthoringEnvironment;
 import voogasalad_GucciGames.gameAuthoring.IModelGaeController;
 import voogasalad_GucciGames.gameData.XMLGameData;
 import voogasalad_GucciGames.gameData.XMLParser;
-import voogasalad_GucciGames.gameEngine.gameUnit.GameUnitType;
 import voogasalad_GucciGames.gameEngine.mapObject.MapObject;
-import voogasalad_GucciGames.gameEngine.tile.TileType;
+import voogasalad_GucciGames.gameEngine.mapObject.MapObjectType;
 
 public class GAEModel implements IGAEModel{
     private GameSourceData data;
@@ -41,7 +40,7 @@ public class GAEModel implements IGAEModel{
     public void createCustomUnitType (Map<String, String> m) {  
     }
 
-    @Override
+  /*  @Override
     public List<TileType> getTileTypes () {
         return null;
     }
@@ -49,7 +48,7 @@ public class GAEModel implements IGAEModel{
     @Override
     public List<GameUnitType> getUnitTypes () {
         return null;
-    }
+    } */
 
     @Override
     public void saveToXML () {
@@ -70,4 +69,16 @@ public class GAEModel implements IGAEModel{
     public void addObserver (ListChangeListener o) {
         data.addListener(o);
     }
+
+	@Override
+	public List<MapObjectType> getTileTypes() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public List<MapObjectType> getUnitTypes() {
+		// TODO Auto-generated method stub
+		return null;
+	}
 }

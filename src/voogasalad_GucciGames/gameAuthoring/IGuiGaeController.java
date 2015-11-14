@@ -3,9 +3,8 @@ package voogasalad_GucciGames.gameAuthoring;
 import java.util.List;
 import java.util.Map;
 
-import voogasalad_GucciGames.gameEngine.gameUnit.GameUnitType;
 import voogasalad_GucciGames.gameEngine.mapObject.MapObject;
-import voogasalad_GucciGames.gameEngine.tile.TileType;
+import voogasalad_GucciGames.gameEngine.mapObject.MapObjectType;
 
 public interface IGuiGaeController {
 	/**
@@ -22,9 +21,9 @@ public interface IGuiGaeController {
 
     public void createCustomUnitType(Map<String,String> m);
 
-    public List<TileType> getTileTypes();
+    public List<MapObjectType> getTileTypes();
 
-    public List<GameUnitType> getUnitTypes();
+    public List<MapObjectType> getUnitTypes();
 
 
 
