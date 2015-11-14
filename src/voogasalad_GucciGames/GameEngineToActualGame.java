@@ -1,10 +1,10 @@
 package voogasalad_GucciGames;
 
-import voogasalad_GucciGames.gameAuthoring.gui.IGUIMap;
+import voogasalad_GucciGames.gameAuthoring.gui.map.IGUIMap;
 import voogasalad_GucciGames.gameEngine.gameUnit.AbilityException;
-import voogasalad_GucciGames.gameEngine.gameUnit.GameUnit;
-import voogasalad_GucciGames.gameEngine.mapObject.MapObjectAction;
-import voogasalad_GucciGames.gameEngine.targetCoordinate.TargetCoordinate;
+import voogasalad_GucciGames.gameEngine.mapObject.IMapObjectAction;
+import voogasalad_GucciGames.gameEngine.mapObject.MapObject;
+import voogasalad_GucciGames.gameEngine.targetCoordinate.ATargetCoordinate;
 
 public interface GameEngineToActualGame {
 
@@ -35,7 +35,7 @@ public interface GameEngineToActualGame {
 	// may make this return an iterator or take in a lambda instead
 
 	// TargetCoordinate class will have a list of Point2Ds
-	public TargetCoordinate getValidLocations(GameUnit actingUnit, String actionType);
+	public ATargetCoordinate getValidLocations(MapObject actingUnit, String actionType);
 
 	/**
 	 *
@@ -54,7 +54,7 @@ public interface GameEngineToActualGame {
 	 * @param actingUnit is the unit acting
 	 * @param actionType is the type of action
 	 */
-	public void performAction(GameUnit actingUnit, MapObjectAction actionType) throws AbilityException;
+	public void performAction(MapObject actingUnit, IMapObjectAction actionType) throws AbilityException;
 
 	/**
 	 * This method performs an action specified by the acting unit, the name of
@@ -66,7 +66,7 @@ public interface GameEngineToActualGame {
 	 * @param actionType is the type of action
 	 * @param actionTarget is where the action is going to happen
 	 * 	 */
-	public void performAction(GameUnit actingUnit, MapObjectAction actionType, TargetCoordinate actionTarget) throws AbilityException;
+	public void performAction(MapObject actingUnit, IMapObjectAction actionType, ATargetCoordinate actionTarget) throws AbilityException;
 	
 	/**
 	 * This method performs an action specified by the name of
@@ -76,7 +76,7 @@ public interface GameEngineToActualGame {
 	 * @param actionType is the type of action
 	 * @param actionTarget is where the action is going to happen
 	 * 	 */
-	public void performAction(MapObjectAction actionType, TargetCoordinate actionTarget) throws AbilityException;
+	public void performAction(IMapObjectAction actionType, ATargetCoordinate actionTarget) throws AbilityException;
 
 	
 	

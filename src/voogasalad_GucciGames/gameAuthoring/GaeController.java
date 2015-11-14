@@ -2,16 +2,20 @@ package voogasalad_GucciGames.gameAuthoring;
 
 import java.util.List;
 import java.util.Map;
-import voogasalad_GucciGames.gameAuthoring.gui.GameAuthoringEnvironmentGUI;
+
+import javafx.stage.Stage;
+import voogasalad_GucciGames.gameAuthoring.gui.GAEGui;
 import voogasalad_GucciGames.gameAuthoring.model.IGAEModel;
-import voogasalad_GucciGames.gameEngine.gameUnit.GameUnitType;
 import voogasalad_GucciGames.gameEngine.mapObject.MapObject;
-import voogasalad_GucciGames.gameEngine.tile.TileType;
+import voogasalad_GucciGames.gameEngine.mapObject.MapObjectType;
 
 public class GaeController implements IGuiGaeController, IModelGaeController{
     IGAEModel model;
-    GameAuthoringEnvironmentGUI gui;
-
+    GAEGui gui;
+    
+    public GaeController(Stage stage){
+    	new GAEGui(this,stage);
+    }
     @Override
     public void addComponent (Map<String,String> mapObj) {
         model.addComponent(mapObj);
@@ -33,19 +37,27 @@ public class GaeController implements IGuiGaeController, IModelGaeController{
         model.createCustomUnitType(m);
     }
     @Override
-    public List<TileType> getImmutableTileTypes () {
+    public List<MapObjectType> getImmutableTileTypes () {
         return model.getImmutableTileTypes();
     }
+    public List<MapObjectType> getTileTypes () {
+        // TODO Auto-generated method stub
+        return null;
+    }
     @Override
-    public List<GameUnitType> getImmutableUnitTypes () {
+    public List<MapObjectType> getImmutableUnitTypes () {
         return model.getImmutableUnitTypes();
+    }
+    public List<MapObjectType> getUnitTypes () {
+        // TODO Auto-generated method stub
+        return null;
     }
     @Override
     public void saveToXML () {
         model.saveToXML();
     }
     public void addListeners() {
-        model.addObserver(gui);
+       // model.addObserver(gui);
     }
     @Override
     public void setMapWidth (double x) {

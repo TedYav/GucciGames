@@ -4,18 +4,16 @@ import java.util.Collections;
 import java.util.List;
 import javafx.collections.ListChangeListener;
 import javafx.collections.ObservableList;
-import voogasalad_GucciGames.gameEngine.gameUnit.GameUnit;
-import voogasalad_GucciGames.gameEngine.gameUnit.GameUnitType;
 import voogasalad_GucciGames.gameEngine.mapObject.MapObject;
 import voogasalad_GucciGames.gameEngine.mapObject.MapObjectType;
-import voogasalad_GucciGames.gameEngine.tile.Tile;
-import voogasalad_GucciGames.gameEngine.tile.TileType;
+import voogasalad_GucciGames.gameEngine.mapObject.MapObject;
+import voogasalad_GucciGames.gameEngine.mapObject.MapObjectType;
 
 public class GameSourceData {
-    private ObservableList<TileType> tileTypes;
-    private ObservableList<Tile> tiles;
-    private ObservableList<GameUnitType> unitTypes;
-    private ObservableList<GameUnit> units;
+  private ObservableList<MapObjectType> tileTypes;
+    private ObservableList<MapObject> tiles;
+    private ObservableList<MapObjectType> unitTypes;
+    private ObservableList<MapObject> units; 
     
     private ObservableList<MapObject> onMap;
     
@@ -36,16 +34,16 @@ public class GameSourceData {
     public void clearMap() {
         onMap.clear();
     }
-    public void addTileType(TileType type) {
+    public void addTileType(MapObjectType type) {
         tileTypes.add(type);
     }
-    public void addUnitType(GameUnitType type) {
+    public void addUnitType(MapObjectType type) {
         unitTypes.add(type);
     }
-    public List<TileType> getImmutableTileTypes() {
+    public List<MapObjectType> getImmutableTileTypes() {
         return Collections.unmodifiableList(tileTypes);
     }
-    public List<GameUnitType> getImmutableUnitTypes() {
+    public List<MapObjectType> getImmutableUnitTypes() {
         return Collections.unmodifiableList(unitTypes);
     }
 }
