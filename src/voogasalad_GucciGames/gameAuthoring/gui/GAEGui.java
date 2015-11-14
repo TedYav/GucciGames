@@ -2,45 +2,42 @@ package voogasalad_GucciGames.gameAuthoring.gui;
 
 import java.util.Map;
 
+import javafx.geometry.Rectangle2D;
 import javafx.scene.Scene;
 import javafx.scene.control.Tab;
 import javafx.scene.control.TabPane;
-import javafx.scene.layout.Background;
-import javafx.scene.layout.BackgroundFill;
+import javafx.scene.image.Image;
 import javafx.scene.layout.BorderPane;
-import javafx.scene.layout.CornerRadii;
-import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
-import javafx.scene.paint.Color;
+import javafx.stage.Screen;
 import javafx.stage.Stage;
 import voogasalad_GucciGames.gameAuthoring.IGuiGaeController;
 import voogasalad_GucciGames.gameAuthoring.gui.sidebar.StructureTab;
 import voogasalad_GucciGames.gameAuthoring.gui.sidebar.TileTab;
 import voogasalad_GucciGames.gameAuthoring.gui.sidebar.UnitTab;
+import voogasalad_GucciGames.gameAuthoring.gui.statusbar.StatusBar;
+import voogasalad_GucciGames.gameAuthoring.gui.map.GUIMap;
 import voogasalad_GucciGames.gameAuthoring.gui.menubar.GAEMenuBar;
 
 public class GAEGui extends BorderPane {
 
 	private IGuiGaeController myController;
+	private GUIMap myMap;
 
 	public GAEGui(IGuiGaeController controller, Stage stage) {
 		myController = controller;
 		stage.setScene(new Scene(this));
 
-		addRightPane(stage);
-		try {
-			HBox statusbar = new HBox();
-			statusbar.getChildren().add(new GAEMenuBar(controller));
-			statusbar.setBackground(
-					new Background(new BackgroundFill(Color.AQUAMARINE, new CornerRadii(0), getInsets())));
-			setTop(new GAEMenuBar(controller));
-			setBottom(statusbar);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
+		Rectangle2D screenBounds = Screen.getPrimary().getVisualBounds();
+		stage.setWidth(screenBounds.getWidth());
+		stage.setHeight(screenBounds.getHeight());
+		stage.show();
+		
+		initLayout(stage);
+		//initializeMap(20, 20);
 	}
 
-	private void addRightPane(Stage stage) {
+	private TabPane rightPane(Stage stage) {
 		TabPane rightTabPane = new TabPane();
     	TileTab tileTab = new TileTab();
     	UnitTab unitTab = new UnitTab();
@@ -51,11 +48,31 @@ public class GAEGui extends BorderPane {
     	setSize(strucTab,stage);
     	
     	rightTabPane.getTabs().addAll(tileTab, unitTab, strucTab);
-    	setRight(rightTabPane);
+    	return rightTabPane;
+	}
+	
+	private void initLayout(Stage stage){
+		GAEMenuBar menuBar = null;
+		try {
+			menuBar = new GAEMenuBar(myController);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		setTop(menuBar);
+		StatusBar statusBar = new StatusBar(myController);
+		setBottom(statusBar);
+		setRight(rightPane(stage));
+		
+		myMap = new GUIMap(myController);
+		myMap.setOnMouseMoved(e->statusBar.update(e));
+		setCenter(myMap);
+
+		myMap.setBackground(new Image("http://www.narniaweb.com/wp-content/uploads/2009/08/NarniaMap.jpg"));
 	}
 
-	public void initializeMap(int width, int height/* , Grid g */) {
-
+	public void initializeMap(int width, int height) {
+		myMap.initGrid(width, height);
 	}
 
 	/**

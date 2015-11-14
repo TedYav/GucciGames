@@ -6,16 +6,18 @@ import java.util.Map;
 import javafx.stage.Stage;
 import voogasalad_GucciGames.gameAuthoring.gui.GAEGui;
 import voogasalad_GucciGames.gameAuthoring.model.IGAEModel;
-import voogasalad_GucciGames.gameEngine.gameUnit.GameUnitType;
 import voogasalad_GucciGames.gameEngine.mapObject.MapObject;
-import voogasalad_GucciGames.gameEngine.tile.TileType;
+import voogasalad_GucciGames.gameEngine.mapObject.MapObjectType;
 
 public class GaeController implements IGuiGaeController, IModelGaeController{
     IGAEModel model;
     GAEGui gui;
     
     public GaeController(Stage stage){
+    	System.out.println("called 1");
     	new GAEGui(this,stage);
+    	
+    	
     }
     @Override
     public void addComponent (MapObject mapObj) {
@@ -48,13 +50,13 @@ public class GaeController implements IGuiGaeController, IModelGaeController{
     }
 
     @Override
-    public List<TileType> getTileTypes () {
+    public List<MapObjectType> getTileTypes () {
         // TODO Auto-generated method stub
         return null;
     }
 
     @Override
-    public List<GameUnitType> getUnitTypes () {
+    public List<MapObjectType> getUnitTypes () {
         // TODO Auto-generated method stub
         return null;
     }

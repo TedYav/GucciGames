@@ -10,12 +10,13 @@ import javafx.geometry.Point2D;
  * @author Ted Yavuzkurt
  *
  */
-public interface IGUIMap {
+public interface IMap {
 	
 	
-	public void setMapObjectForPosition(GUIMapObject obj, Point2D pos );
+	public void setMapObjectForPosition(CellGUI obj, Point2D pos );
 	
-	public void removeMapObjectAtPosition(GUIMapObject obj, Point2D pos );
+	public void removeMapObjectAtPosition(CellGUI obj, Point2D pos );
+	
 	
 
 }

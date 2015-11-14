@@ -5,7 +5,6 @@ import java.util.Map;
 import voogasalad_GucciGames.gameAuthoring.GaeController;
 import voogasalad_GucciGames.gameAuthoring.IGuiGaeController;
 import voogasalad_GucciGames.gameAuthoring.IModelGaeController;
-import voogasalad_GucciGames.gameAuthoring.gui.GAEGui;
 import voogasalad_GucciGames.gameAuthoring.model.GAEModel;
 import voogasalad_GucciGames.gameAuthoring.model.IGAEModel;
 
@@ -13,10 +12,8 @@ public class UseCreateCustomTile {
 	
 	
 	public void use() {
-		GaeController controller = new GaeController();
+/*		GaeController controller = new GaeController();
 		IGAEModel model = new GAEModel((IModelGaeController)controller);
-		GAEGui gui = new GAEGui((IGuiGaeController)controller);
-
 		
 		/*
 		 * In the GUI the author would click to create a new custom tile.
@@ -35,14 +32,14 @@ public class UseCreateCustomTile {
 		
 		// This map will actually be passed on the front end call to the
 		// controller
-		Map<String, String> tileProperties = gui.getMapForCustomTile();
+/*		Map<String, String> tileProperties = gui.getMapForCustomTile();
 		
 		// gui calls
 		controller.createCustomTileType(tileProperties);
 		
 		// controller then calls
 		model.createCustomTileType(tileProperties);
-		
+	*/	
 	}
 
 }
