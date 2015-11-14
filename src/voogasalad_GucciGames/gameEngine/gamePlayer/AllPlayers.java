@@ -5,21 +5,24 @@ import java.util.List;
 
 public class AllPlayers {
 
-
-	//maybe put an interface in the middle?
+	// maybe put an interface in the middle?
 	private List<GamePlayerPerson> myListOfPlayers;
 	private int myCurrentTurn;
 
-	public AllPlayers(List<GamePlayerPerson> players){
+	public AllPlayers(List<GamePlayerPerson> players) {
 		myListOfPlayers = players;
 		this.myCurrentTurn = 1;
+	}
+
+	public int numberOfPlayer() {
+		return myListOfPlayers.size();
 	}
 
 	public List<UnitCollection> getAllUnits() {
 
 		List<UnitCollection> allUnits = new ArrayList<UnitCollection>();
 
-		for(GamePlayerPerson player : myListOfPlayers){
+		for (GamePlayerPerson player : myListOfPlayers) {
 
 			allUnits.add(player.getUnits());
 
@@ -27,7 +30,7 @@ public class AllPlayers {
 		return allUnits;
 	}
 
-	//right now includes the neutral player
+	// right now includes the neutral player
 	public int getNumberOfPlayers() {
 		return myListOfPlayers.size();
 	}
@@ -37,15 +40,17 @@ public class AllPlayers {
 		int whoseTurn = (currentTurn % (getNumberOfPlayers() - 1)) + 1;
 
 		myListOfPlayers.get(whoseTurn).takeTurn();
-		// TODO Auto-generated method stub
 
 	}
 
-	public GamePlayerPerson getActivePlayer(int index){
+	public GamePlayerPerson getActivePlayer(int index) {
 		return myListOfPlayers.get(index);
 	}
-	
-	public int getCurrentTurn(){
+
+	public int getCurrentTurn() {
 		return this.myCurrentTurn;
 	}
+
+
+
 }

@@ -33,7 +33,7 @@ public class GamePlayerPerson {
 
 	}
 
-	// should be called by front end when a player is created
+	// should be called by gae when a player is created
 	public void definePlayerHealth(double healthValue) {
 		myHealth = new RealHealthCharacteristic();
 		myHealth.defineHealthValue(healthValue);
@@ -43,7 +43,7 @@ public class GamePlayerPerson {
 	public UnitCollection getUnits() {
 		return myUnits;
 	}
-	
+
 	public List<MapObject> getMapObjects(){
 		return this.myMapObjects;
 	}
