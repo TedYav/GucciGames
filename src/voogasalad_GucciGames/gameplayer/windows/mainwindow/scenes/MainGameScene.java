@@ -1,5 +1,6 @@
 package voogasalad_GucciGames.gameplayer.windows.mainwindow.scenes;
 
+import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.text.Text;
@@ -14,6 +15,12 @@ public class MainGameScene extends GameScene{
 
 	private GameEngineInterface myGame;
 	private Scene myCurrentScene;
+	
+	private BorderPane myPane;
+	private Parent myTop;
+	private Parent myLeft;
+	private Parent myRight;
+	private Parent myCenter;
 	
 	public MainGameScene(GameSceneManager manager, GameWindowInterface window, String config) {
 		super(manager, window, config);
@@ -35,12 +42,19 @@ public class MainGameScene extends GameScene{
 		 * 5. Show Result of Game
 		 * 6. Go to Next Level or Go to Main Menu
 		 */
-		myWindow.loadScene(new Scene(new BorderPane()));
+		
+		initializePane();
+		myWindow.loadScene(myScene);
 		
 	}
 	
+	private void initializePane(){
+		myScene = new Scene(new BorderPane());
+	}
+	
 	private void showSplash(){
-		Text text = new Text(myGame.getName());
+		//Text text = new Text(myGame.getName());
+		
 		
 	}
 	
