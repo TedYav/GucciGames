@@ -12,9 +12,9 @@ public class CellUnit{
 	private MapInterface myMap;
 	private MapCell myCell;
 	
-	private EngineUnit myUnit;
+	private PlayerMapObjectInterface myUnit;
 		
-	public CellUnit(MapInterface map, MapCell cell, EngineUnit unit){
+	public CellUnit(MapInterface map, MapCell cell, PlayerMapObjectInterface unit){
 		myMap = map;
 		myCell = cell;
 		myUnit = unit;

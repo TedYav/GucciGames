@@ -25,7 +25,7 @@ import voogasalad_GucciGames.gameplayer.windows.WindowComponent;
 import voogasalad_GucciGames.gameplayer.windows.mainwindow.map.MapInterface;
 import voogasalad_GucciGames.gameplayer.windows.mainwindow.map.cell.MapCell;
 import voogasalad_GucciGames.gameplayer.windows.mainwindow.map.cell.contents.CellUnit;
-import voogasalad_GucciGames.gameplayer.windows.mainwindow.map.cell.contents.EngineUnit;
+import voogasalad_GucciGames.gameplayer.windows.mainwindow.map.cell.contents.PlayerMapObjectInterface;
 import voogasalad_GucciGames.gameplayer.windows.mainwindow.map.mini.MiniMap;
 
 public class MainMap extends WindowComponent implements MapInterface {
@@ -33,7 +33,7 @@ public class MainMap extends WindowComponent implements MapInterface {
 	private MiniMap myMiniMap;
 	
 	private ResourceBundle myConfig = ResourceBundle.getBundle("voogasalad_GucciGames.gameplayer.config.components.Map");
-	protected Map<EngineUnit, CellUnit> myUnitMap;
+	protected Map<PlayerMapObjectInterface, CellUnit> myUnitMap;
 	protected Map<Point2D, MapCell> myCellMap;
 	
 	private StackPane myStackPane;

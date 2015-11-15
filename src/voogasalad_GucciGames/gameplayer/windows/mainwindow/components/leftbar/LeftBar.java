@@ -1,14 +1,16 @@
-package voogasalad_GucciGames.gameplayer.windows.mainwindow.menubar.leftbar;
+package voogasalad_GucciGames.gameplayer.windows.mainwindow.components.leftbar;
 
 import java.util.ResourceBundle;
+
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.layout.VBox;
 import voogasalad_GucciGames.gameplayer.controller.GameEngineInterface;
 import voogasalad_GucciGames.gameplayer.windows.GameScene;
 import voogasalad_GucciGames.gameplayer.windows.WindowComponent;
+import voogasalad_GucciGames.gameplayer.windows.mainwindow.components.DisplayComponent;
 
-public class LeftBar extends WindowComponent implements MiniDisplayComponent{
+public class LeftBar extends WindowComponent implements DisplayComponent{
     private VBox container;
     private double spacing = 5;
     ResourceBundle myBundle;
