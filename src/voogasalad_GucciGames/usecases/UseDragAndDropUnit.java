@@ -16,6 +16,10 @@ public class UseDragAndDropUnit {
 
 /*		GaeController controller = new GaeController();
 		IGAEModel model = new GAEModel((IModelGaeController)controller);
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> feature_gae_frontend_dialog
 		GameAuthoringEnvironmentGUI gui = new GameAuthoringEnvironmentGUI((IGuiGaeController)controller);
 	*/	
 		/*
