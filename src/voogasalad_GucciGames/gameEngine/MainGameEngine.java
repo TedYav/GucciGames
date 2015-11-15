@@ -1,8 +1,8 @@
 package voogasalad_GucciGames.gameEngine;
 
 import voogasalad_GucciGames.gameEngine.gamePlayer.AllPlayers;
-import voogasalad_GucciGames.gameEngine.gameRule.temps.GameCondition;
-import voogasalad_GucciGames.gameEngine.gameRule.temps.GlobalGameCondition;
+import voogasalad_GucciGames.gameEngine.gameRule.defaultConditions.game.GameCondition;
+import voogasalad_GucciGames.gameEngine.gameRule.defaultConditions.game.GlobalGameCondition;
 
 public class MainGameEngine {
 

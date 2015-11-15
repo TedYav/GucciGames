@@ -1,19 +1,13 @@
-package voogasalad_GucciGames.gameEngine.gameRule.temps;
-
-import java.util.ArrayList;
-import java.util.List;
-
-import voogasalad_GucciGames.gameEngine.defaultCharacteristics.RealHealthCharacteristic;
-import voogasalad_GucciGames.gameEngine.gameRule.EndGameConditions;
+package voogasalad_GucciGames.gameEngine.gameRule.defaultConditions.player;
 
 /**
  *
  * @author Sally Al
  *
  */
-public class PlayerHealthRule extends PlayerCondition {
+public class PlayerHealthRule {
 
-	private RealHealthCharacteristic myPlayerHealth;
+	/*private RealHealthCharacteristic myPlayerHealth;
 
 	public PlayerHealthRule(RealHealthCharacteristic player) {
 		super(player);
@@ -46,5 +40,5 @@ public class PlayerHealthRule extends PlayerCondition {
 		// TODO Auto-generated method stub
 
 	}
-
+*/
 }

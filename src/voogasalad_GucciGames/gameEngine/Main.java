@@ -6,7 +6,7 @@ import java.util.List;
 import voogasalad_GucciGames.gameEngine.gamePlayer.AllPlayers;
 import voogasalad_GucciGames.gameEngine.gamePlayer.GamePlayerPerson;
 import voogasalad_GucciGames.gameEngine.gamePlayer.UnitCollection;
-import voogasalad_GucciGames.gameEngine.gameRule.temps.OnlyOnePlayerHasUnitsCondition;
+import voogasalad_GucciGames.gameEngine.gameRule.defaultConditions.game.OnlyOnePlayerHasUnitsCondition;
 
 /*public class Main {
 

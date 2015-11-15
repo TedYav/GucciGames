@@ -7,7 +7,6 @@ import java.util.List;
 import voogasalad_GucciGames.gameEngine.GameMap;
 import voogasalad_GucciGames.gameEngine.gamePlayer.UnitCollection;
 import voogasalad_GucciGames.gameEngine.gameRule.EndGameConditions;
-import voogasalad_GucciGames.gameEngine.gameRule.temps.GlobalGameRule;
 
 public class NoUnitsGlobalGameRule extends GlobalGameRule{
 
