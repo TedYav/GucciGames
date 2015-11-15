@@ -3,9 +3,14 @@
 	-fx-font: bold 200pt "Arial";	
 }
 
-.vbox-element{
+.root{
 	-fx-background-radius: 5.0;
 	-fx-padding: 10;
 	-fx-spacing: 15;
-	-fs-background-color: #00ff00;
+	-fx-background: #00aa33;
+}
+
+.vbox{
+	-fx-font: bold 20pt "Arial";
+	-fx-background-color: #2f4f4f;
 }

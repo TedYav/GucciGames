@@ -10,6 +10,7 @@ import voogasalad_GucciGames.gameplayer.windows.GameScene;
 import voogasalad_GucciGames.gameplayer.windows.GameSceneManager;
 import voogasalad_GucciGames.gameplayer.windows.GameWindow;
 import voogasalad_GucciGames.gameplayer.windows.GameWindowInterface;
+import voogasalad_GucciGames.gameplayer.windows.mainwindow.menubar.leftbar.LeftBar;
 
 public class MainGameScene extends GameScene{
 
@@ -50,6 +51,9 @@ public class MainGameScene extends GameScene{
 	
 	private void initializePane(){
 		myScene = new Scene(new BorderPane());
+		LeftBar leftBar = new LeftBar(this,myGame);
+		leftBar.getNodeToDraw().getStyleClass().add("vbox");
+		((BorderPane)myScene.getRoot()).setLeft(leftBar.getNodeToDraw());
 	        myScene.getStylesheets().add("voogasalad_GucciGames/gameplayer/config/scenes/mainscene.css");
 	}
 	

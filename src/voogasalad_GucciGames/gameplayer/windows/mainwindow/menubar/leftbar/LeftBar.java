@@ -7,7 +7,7 @@ import voogasalad_GucciGames.gameplayer.controller.GameEngineInterface;
 import voogasalad_GucciGames.gameplayer.windows.GameScene;
 import voogasalad_GucciGames.gameplayer.windows.WindowComponent;
 
-public class LeftBar extends WindowComponent{
+public class LeftBar extends WindowComponent implements IDisplay{
     private VBox container;
     private double spacing = 5;
     public LeftBar (GameScene scene, GameEngineInterface game) {
@@ -22,6 +22,9 @@ public class LeftBar extends WindowComponent{
 
     @Override
     public Parent getParent () {
+        return container;
+    }
+    public Node getNodeToDraw() {
         return container;
     }
 
