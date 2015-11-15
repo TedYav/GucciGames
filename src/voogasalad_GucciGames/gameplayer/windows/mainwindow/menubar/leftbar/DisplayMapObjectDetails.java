@@ -7,7 +7,7 @@ import javafx.collections.ObservableList;
 import javafx.scene.Node;
 import javafx.scene.control.ListView;
 
-public class DisplayMapObjectDetails  implements IDisplay{
+public class DisplayMapObjectDetails  implements MiniDisplayComponent{
     private ListView<String> list;
     public DisplayMapObjectDetails() {
         List<String> temp = new ArrayList<String>();

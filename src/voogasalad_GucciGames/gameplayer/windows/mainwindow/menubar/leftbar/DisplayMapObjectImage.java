@@ -1,5 +1,13 @@
 package voogasalad_GucciGames.gameplayer.windows.mainwindow.menubar.leftbar;
 
-public class DisplayMapObjectImage implements IDisplay{
+import javafx.scene.Node;
+
+public class DisplayMapObjectImage implements MiniDisplayComponent{
+
+	@Override
+	public Node getNodeToDraw() {
+		// TODO Auto-generated method stub
+		return null;
+	}
 
 }

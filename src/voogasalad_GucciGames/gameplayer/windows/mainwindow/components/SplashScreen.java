@@ -13,39 +13,40 @@ import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import javafx.util.Duration;
+import voogasalad_GucciGames.gameplayer.controller.GameEngineInterface;
+import voogasalad_GucciGames.gameplayer.windows.GameScene;
 import voogasalad_GucciGames.gameplayer.windows.WindowComponent;
 
-public class SplashScreen implements WindowComponent {
+public class SplashScreen extends WindowComponent {
 	
 	private ImageView myImage;
 	private Text myText;
 	private StackPane myPane;
-	private ResourceBundle myConfig = ResourceBundle.getBundle("voogasalad_GucciGames.gameplayer.config.components.Splash");
+	private ResourceBundle myMainConfig = ResourceBundle.getBundle("voogasalad_GucciGames.gameplayer.config.components.Splash");
+	private ResourceBundle myConfig;
 	
-	public SplashScreen(String text){
-		this(text, "");
-	}
-	
-	public SplashScreen(String text, String image){
+	public SplashScreen(GameScene scene, GameEngineInterface game, String config) {
+		super(scene, game);
 		myPane = new StackPane();
-		initializeImage(image);
-		initializeText(text);
+		myConfig = ResourceBundle.getBundle(config);
+		initializeImage(myConfig.getString("Image"));
+		initializeText(myConfig.getString("Text"));
 		animateText();
 	}
 	
 	private void initializeText(String text){
 		myText = new Text();
 		myText.setText(text);
-		myText.setFont(Font.font (myConfig.getString("Font"), Integer.parseInt(myConfig.getString("Size"))));
-		myText.setFill(new Color(Double.parseDouble(myConfig.getString("R"))
-				, Double.parseDouble(myConfig.getString("G"))
-				, Double.parseDouble(myConfig.getString("B")) 
-				, Double.parseDouble(myConfig.getString("A"))));
+		myText.setFont(Font.font (myMainConfig.getString("Font"), Integer.parseInt(myMainConfig.getString("Size"))));
+		myText.setFill(new Color(Double.parseDouble(myMainConfig.getString("R"))
+				, Double.parseDouble(myMainConfig.getString("G"))
+				, Double.parseDouble(myMainConfig.getString("B")) 
+				, Double.parseDouble(myMainConfig.getString("A"))));
 		myPane.getChildren().add(myText);
 	}
 	
 	private void animateText(){
-		FadeTransition f = new FadeTransition(Duration.millis(Double.parseDouble(myConfig.getString("Duration"))), myText);
+		FadeTransition f = new FadeTransition(Duration.millis(Double.parseDouble(myMainConfig.getString("Duration"))), myText);
 		f.setFromValue(1.0);
 		f.setToValue(0.0);
 		f.setCycleCount(Timeline.INDEFINITE);

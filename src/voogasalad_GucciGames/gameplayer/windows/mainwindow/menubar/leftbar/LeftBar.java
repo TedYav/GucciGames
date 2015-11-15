@@ -7,7 +7,7 @@ import voogasalad_GucciGames.gameplayer.controller.GameEngineInterface;
 import voogasalad_GucciGames.gameplayer.windows.GameScene;
 import voogasalad_GucciGames.gameplayer.windows.WindowComponent;
 
-public class LeftBar extends WindowComponent implements IDisplay{
+public class LeftBar extends WindowComponent implements MiniDisplayComponent{
     private VBox container;
     private double spacing = 5;
     public LeftBar (GameScene scene, GameEngineInterface game) {

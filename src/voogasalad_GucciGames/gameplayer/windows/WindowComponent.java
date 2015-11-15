@@ -5,8 +5,8 @@ import voogasalad_GucciGames.gameplayer.controller.GameEngineInterface;
 
 public abstract class WindowComponent {
 
-	private GameScene myScene;
-	private GameEngineInterface myGame;
+	protected GameScene myScene;
+	protected GameEngineInterface myGame;
 	
 	public WindowComponent(GameScene scene, GameEngineInterface game){
 		myScene = scene;
