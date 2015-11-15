@@ -26,13 +26,6 @@ public class GAEModel implements IGAEModel{
     }
 
     @Override
-    public void addComponent (Map<String,String> objParams) {
-        MapObject mapObj = new MapObject(null,null, 0);// TODO:MapObject(objParams);
-        validate();
-        data.addToMap(mapObj);
-    }
-
-    @Override
     public void deleteComponent (MapObject mapObj) {
         data.deleteFromMap(mapObj);
     }
@@ -107,4 +100,18 @@ public class GAEModel implements IGAEModel{
 		// TODO Auto-generated method stub
 		return null;
 	}
+
+	@Override
+	//implemet this
+	public void addComponent(MapObject mapObj) {
+		// TODO Auto-generated method stub
+		
+	}
+	
+    public void addComponent (Map<String,String> objParams) {
+        MapObject mapObj = new MapObject(null,null, 0);// TODO:MapObject(objParams);
+        validate();
+        data.addToMap(mapObj);
+    }
+
 }

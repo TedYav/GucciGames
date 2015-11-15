@@ -42,6 +42,9 @@ public class MapObjectType {
 		return myName;
 	}
 
+	public String getMyImagePath() {
+		return myImagePath;
+	}
 	
 	public String toString(){
 		return myName;
