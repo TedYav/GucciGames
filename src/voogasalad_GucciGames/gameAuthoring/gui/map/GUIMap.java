@@ -58,6 +58,9 @@ public class GUIMap extends Pane implements IMap{
 		pane.setLayoutY(50);
 		pane.getChildren().add(rect);
 		getChildren().add(pane);
+		
+		setOnDragDropped(e->System.out.println("Dropped2"));
+
 	}
 
 	public void initGrid(int width, int height) {

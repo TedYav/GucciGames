@@ -26,11 +26,7 @@ public class MapGrid extends Pane {
 		setOnDragExited(e->removeMouseBound());
 		
 		//Experiments
-		setOnDragDropped(e->System.out.println("Dropped"));
-		setOnDragDetected(e->System.out.println("Detected"));
-		setOnDragEntered(e->System.out.println("Entered"));
-		setOnDragDone(e->System.out.println("Done"));
-		setOnMouseReleased(e->System.out.println("Released"));
+		this.setOnDragExited(e->System.out.println("DragExited"));
 		
 	}
 	

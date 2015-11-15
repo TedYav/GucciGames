@@ -19,7 +19,6 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.input.TransferMode;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.VBox;
-import javafx.stage.Stage;
 
 public abstract class AbstractTab extends Tab implements ITab{
 	protected List<String> allImagePaths;
@@ -28,6 +27,7 @@ public abstract class AbstractTab extends Tab implements ITab{
 	protected Button myAddButton = new Button("Add Custom");
 	protected GridPane myGridPane = new GridPane();
 	protected ContextMenu myContextMenu = new ContextMenu();
+	protected Image myDraggedImage;
 
 	AbstractTab() {
 		allImageViews = new ArrayList<ImageView>();
@@ -109,6 +109,13 @@ public abstract class AbstractTab extends Tab implements ITab{
 	
 	protected void addDragDropListener(){
 		for(ImageView imageview : allImageViews) {
+//			imageview.setOnMouseDragged(new EventHandler<MouseEvent>() {
+//				public void handle(MouseEvent event) {
+//					System.out.println("hi");
+//			        myDraggedImage = imageview.getImage();
+//			        event.consume();
+//			    }
+//			});
 			imageview.setOnDragDetected(new EventHandler<MouseEvent>() {
 				public void handle(MouseEvent event) {
 			        /* drag was detected, start a drag-and-drop gesture*/
@@ -127,4 +134,7 @@ public abstract class AbstractTab extends Tab implements ITab{
 		}
 	}
 
+	public Image getDraggedImageView(){
+		return myDraggedImage;
+	}
 }
