@@ -1,5 +1,7 @@
 package voogasalad_GucciGames.usecases;
 
+import java.util.HashMap;
+import java.util.Map;
 import voogasalad_GucciGames.gameAuthoring.GaeController;
 import voogasalad_GucciGames.gameAuthoring.IGuiGaeController;
 import voogasalad_GucciGames.gameAuthoring.IModelGaeController;
@@ -34,7 +36,9 @@ public class UseDragAndDropUnit {
 		
 		// This unit would be initialized by the front end
 		// then passed through the call to the controller
+		Map<String,String> unit = new HashMap<String,String>();
 /*		MapObject unit = new MapObject();
+>>>>>>> 56b04a76cc49420d6a705704811b1df68a756cb0
 		
 		controller.addComponent(unit);
 		model.addComponent(unit); */

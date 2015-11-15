@@ -20,65 +20,54 @@ public class GaeController implements IGuiGaeController, IModelGaeController{
     	
     }
     @Override
-    public void addComponent (MapObject mapObj) {
-        // TODO Auto-generated method stub
-        
+    public void addComponent (Map<String,String> mapObj) {
+        model.addComponent(mapObj);
     }
-
     @Override
     public void deleteComponent (MapObject mapObj) {
-        // TODO Auto-generated method stub
-        
+        model.deleteComponent(mapObj);
     }
-
     @Override
     public void clearMap () {
-        // TODO Auto-generated method stub
-        
+        model.clearMap();
     }
-
     @Override
     public void createCustomTileType (Map<String, String> m) {
-        // TODO Auto-generated method stub
-        
+        model.createCustomTileType(m);
     }
-
     @Override
     public void createCustomUnitType (Map<String, String> m) {
-        // TODO Auto-generated method stub
-        
+        model.createCustomUnitType(m);
     }
-
     @Override
+    public List<MapObjectType> getImmutableTileTypes () {
+        return model.getImmutableTileTypes();
+    }
     public List<MapObjectType> getTileTypes () {
         // TODO Auto-generated method stub
         return null;
     }
-
     @Override
+    public List<MapObjectType> getImmutableUnitTypes () {
+        return model.getImmutableUnitTypes();
+    }
     public List<MapObjectType> getUnitTypes () {
         // TODO Auto-generated method stub
         return null;
     }
-
     @Override
     public void saveToXML () {
-        // TODO Auto-generated method stub
-        
+        model.saveToXML();
     }
     public void addListeners() {
        // model.addObserver(gui);
     }
-
     @Override
     public void setMapWidth (double x) {
-        // TODO Auto-generated method stub
-        
+        model.setMapWidth(x);
     }
-
     @Override
     public void setMapHeight (double y) {
-        // TODO Auto-generated method stub
-        
+        model.setMapHeight(y);
     }
 }
