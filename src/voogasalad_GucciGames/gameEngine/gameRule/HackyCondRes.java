@@ -18,7 +18,7 @@ public class HackyCondRes {
 
 	protected HackyCondRes() {
 		map = new HashMap<String, String>();
-		map.put("PlayerUnitCondition", "defaultConditions.player.PlayerUnitCondition");
+		map.put("PlayerUnitCondition", "voogasalad_GucciGames.gameEngine.gameRule.defaultConditions.player.PlayerUnitCondition");
 
 	}
 
