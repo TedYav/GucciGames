@@ -3,7 +3,7 @@ package voogasalad_GucciGames.usecases;
 import voogasalad_GucciGames.gameEngine.GameMap;
 import voogasalad_GucciGames.gameEngine.SomeData;
 import voogasalad_GucciGames.gameEngine.gamePlayer.AllPlayers;
-import voogasalad_GucciGames.gameEngine.gameRule.GlobalGameCondition;
+import voogasalad_GucciGames.gameEngine.gameRule.defaultConditions.game.GlobalGameCondition;
 
 public class UseMainGameEngine {
 
