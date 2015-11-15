@@ -63,7 +63,7 @@ public class MainGameScene extends GameScene{
 	}
 	
 	private void showGame(){
-	    myLeftBar = new LeftBar(this, myGame, myConfig);
+	    myLeftBar = new LeftBar(this, myGame, myConfig); 
 	    myPane.setLeft(myLeftBar.getParent());
 	}
 	

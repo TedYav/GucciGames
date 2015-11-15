@@ -7,19 +7,22 @@ import javafx.scene.layout.VBox;
 import voogasalad_GucciGames.gameplayer.controller.GameEngineInterface;
 import voogasalad_GucciGames.gameplayer.windows.GameScene;
 import voogasalad_GucciGames.gameplayer.windows.WindowComponent;
+import voogasalad_GucciGames.gameplayer.windows.mainwindow.map.MapInterface;
 
 public class LeftBar extends WindowComponent implements MiniDisplayComponent{
     private VBox container;
     private double spacing = 5;
+    private MapInterface myMap;
     ResourceBundle myBundle;
-    public LeftBar (GameScene scene, GameEngineInterface game, ResourceBundle bundle) {
+    public LeftBar (GameScene scene, GameEngineInterface game, MapInterface map, ResourceBundle bundle) {
         super(scene, game);
+        myMap=map;
         container = new VBox(spacing);
         myBundle=bundle;
         initializeData();
     }
     private void initializeData() {
-        DisplayMapObjectDetails objectDetails = new DisplayMapObjectDetails();
+        DisplayMapObjectDetails objectDetails = new DisplayMapObjectDetails(myMap);
         container.getChildren().add(objectDetails.getNodeToDraw());
         container.getStyleClass().add(myBundle.getString("LeftVBox"));
     }
