@@ -1,0 +1,11 @@
+
+.title{
+	-fx-font: bold 200pt "Arial";	
+}
+
+.vbox-element{
+	-fx-background-radius: 5.0;
+	-fx-padding: 10;
+	-fx-spacing: 15;
+	-fs-background-color: #00ff00;
+}

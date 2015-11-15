@@ -65,6 +65,7 @@ public class InitialScene extends GameScene {
 	
 	private void initializePane() {
 		myPane = new StackPane();
+		System.out.println(mySplash);
 		Image splash = new Image(mySplash);
 		ImageView splashview = new ImageView(splash);
 		myPane.getChildren().add(splashview);

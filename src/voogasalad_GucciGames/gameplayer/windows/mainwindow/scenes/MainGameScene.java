@@ -34,8 +34,9 @@ public class MainGameScene extends GameScene{
 		 * 6. Go to Next Level or Go to Main Menu
 		 */
 		showSplash();
-		myWindow.loadScene(new Scene(new BorderPane()));
-		
+	        Scene mainScene = new Scene(new BorderPane());
+	        mainScene.getStylesheets().add("voogasalad_GucciGames/gameplayer/config/scenes/mainscene.css");
+		myWindow.loadScene(mainScene);
 	}
 	
 	private void showSplash(){
