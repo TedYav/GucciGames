@@ -1,10 +1,10 @@
 package voogasalad_GucciGames.gameplayer.gameloader;
 
-import voogasalad_GucciGames.gameplayer.controller.GameEngineInterface;
+import voogasalad_GucciGames.gameplayer.controller.GameEngineToGamePlayerInterface;
 
 public class GameLoader {
 
-	public GameEngineInterface getCurrentGame() {
+	public GameEngineToGamePlayerInterface getCurrentGame() {
 		return null;
 	}
 
