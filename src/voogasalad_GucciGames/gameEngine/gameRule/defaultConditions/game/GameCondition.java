@@ -1,6 +1,8 @@
-package voogasalad_GucciGames.gameEngine.gameRule;
+package voogasalad_GucciGames.gameEngine.gameRule.defaultConditions.game;
 
 import java.util.List;
+
+import voogasalad_GucciGames.gameEngine.gameRule.EndGameConditions;
 
 public interface GameCondition {
 

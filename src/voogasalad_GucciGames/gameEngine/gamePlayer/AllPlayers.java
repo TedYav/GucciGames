@@ -1,6 +1,7 @@
 package voogasalad_GucciGames.gameEngine.gamePlayer;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
 public class AllPlayers {
@@ -8,7 +9,10 @@ public class AllPlayers {
 	// maybe put an interface in the middle?
 	// maybe use a map here instead
 
-	private List<GamePlayerPerson> myListOfPlayers;
+	private List<GamePlayerPerson> myListOfPlayers; // Efe, I suggest that we
+													// change this list to a
+													// map, and use player id as
+													// a key
 	private TurnCounter myCurrentTurnCounter;
 
 	private ATurnDecider myTurnDecider;
@@ -53,6 +57,16 @@ public class AllPlayers {
 
 	public int getCurrentTurn() {
 		return this.myCurrentTurnCounter.getCurrentTurn();
+	}
+
+	public void removePlayer(int id) {
+		Iterator<GamePlayerPerson> itr = myListOfPlayers.iterator();
+		while (itr.hasNext()) {
+			if (itr.next().getMyPlayerId() == id) {
+				itr.remove();
+				return;
+			}
+		}
 	}
 
 }

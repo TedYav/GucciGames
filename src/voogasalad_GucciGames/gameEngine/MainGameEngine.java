@@ -1,11 +1,8 @@
 package voogasalad_GucciGames.gameEngine;
 
-import java.util.List;
-
 import voogasalad_GucciGames.gameEngine.gamePlayer.AllPlayers;
-import voogasalad_GucciGames.gameEngine.gameRule.GameCondition;
-import voogasalad_GucciGames.gameEngine.gameRule.GlobalGameCondition;
-import voogasalad_GucciGames.gameEngine.gameRule.Goal.Goal;
+import voogasalad_GucciGames.gameEngine.gameRule.defaultConditions.game.GameCondition;
+import voogasalad_GucciGames.gameEngine.gameRule.defaultConditions.game.GlobalGameCondition;
 
 public class MainGameEngine {
 
@@ -14,17 +11,16 @@ public class MainGameEngine {
 	private GameCondition myGlobalRule;
 	private String myName;
 
-	
-	
-	
-	private GameMap myGameMap;
-	private Goal myGlobalStatus;
 
-	
+
+
+	private GameMap myGameMap;
+
+
 	public String getName(){
 		return myName;
 	}
-	
+
 	public MainGameEngine(AllPlayers gamePlayers, GlobalGameCondition globalRule, GameMap gameMap) {
 
 		myGamePlayers = gamePlayers;
@@ -76,8 +72,6 @@ public class MainGameEngine {
 
 	}
 
-	public void CreatGoal(List<String> names, List<Double> values) {
-		myGlobalStatus.addRequirement(names, values);
-	}
+
 
 }
