@@ -14,7 +14,7 @@ import javafx.scene.shape.Rectangle;
 
 public class CellGUI {
 	private static Image myImage = new Image(
-			CellGUI.class.getClassLoader().getResourceAsStream("voogasalad_GucciGames/graphics/water.jpg"));
+			CellGUI.class.getClassLoader().getResourceAsStream("voogasalad_GucciGames/graphics/water.png"));
 	private ImageView myMapView;
 	private ImageView myMiniView;
 	private Rectangle myBoundBox;

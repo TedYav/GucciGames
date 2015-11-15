@@ -4,9 +4,11 @@ import java.util.Map;
 
 import javafx.geometry.Rectangle2D;
 import javafx.scene.Scene;
+import javafx.scene.control.Tab;
 import javafx.scene.control.TabPane;
 import javafx.scene.image.Image;
 import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.VBox;
 import javafx.stage.Screen;
 import javafx.stage.Stage;
 import voogasalad_GucciGames.gameAuthoring.IGuiGaeController;
@@ -36,9 +38,14 @@ public class GAEGui extends BorderPane {
 
 	private TabPane rightPane(Stage stage) {
 		TabPane rightTabPane = new TabPane();
-    	TileTab tileTab = new TileTab(stage);
-    	UnitTab unitTab = new UnitTab(stage);
-    	StructureTab strucTab = new StructureTab(stage);
+    	TileTab tileTab = new TileTab(myController);
+    	UnitTab unitTab = new UnitTab(myController);
+    	StructureTab strucTab = new StructureTab(myController);
+    	
+    	setSize(tileTab,stage);
+    	setSize(unitTab,stage);
+    	setSize(strucTab,stage);
+    	
     	rightTabPane.getTabs().addAll(tileTab, unitTab, strucTab);
     	return rightTabPane;
 	}
@@ -84,5 +91,9 @@ public class GAEGui extends BorderPane {
 	public IGuiGaeController getController() {
 		return myController;
 	}
-
+	
+	private void setSize(Tab tab, Stage stage){
+		VBox currBox = (VBox) tab.getContent();
+    	currBox.setMinWidth(stage.getWidth()/4);
+	}
 }
