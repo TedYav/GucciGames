@@ -2,7 +2,7 @@ package voogasalad_GucciGames.usecases;
 
 import javafx.scene.layout.BorderPane;
 import voogasalad_GucciGames.gameplayer.window.menubar.FileMenu;
-import voogasalad_GucciGames.gameplayer.window.menubar.GameMenuBar;
+import voogasalad_GucciGames.gameplayer.windows.mainwindow.menubar.GameMenuBar;
 
 public class UseMainGamePlayer{
 

@@ -1,10 +1,9 @@
-package voogasalad_GucciGames.gameplayer.window.menubar;
+package voogasalad_GucciGames.gameplayer.controller;
 
 import javafx.scene.control.Button;
 import javafx.stage.Popup;
 import voogasalad_GucciGames.gameEngine.MainGameEngine;
 import voogasalad_GucciGames.gameEngine.SomeData;
-import voogasalad_GucciGames.gameplayer.controller.GameDataInterface;
 
 public class GameDataInterfaceImplementer implements GameDataInterface{
 
