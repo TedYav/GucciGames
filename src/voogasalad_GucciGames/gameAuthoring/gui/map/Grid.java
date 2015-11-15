@@ -30,8 +30,6 @@ class Grid extends Pane {
 		setOnDragOver(e -> trackMouseMove(e.getX(), e.getY()));
 		setOnMouseExited(e -> removeMouseBound());
 		setOnDragExited(e -> removeMouseBound());
-		
-
 	}
 
 	public void initGrid(int width, int height) {
