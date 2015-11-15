@@ -19,3 +19,9 @@
 	-fx-stroke-width: 4;
 	-fx-stroke: #404040;
 }
+
+.rightvbox{
+	-fx-font: bold 20pt "Arial";
+	-fx-background-color: #2f4f4f;
+	
+}
