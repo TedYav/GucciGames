@@ -63,7 +63,7 @@ public class GUIMap extends Pane implements IMap{
 		pane.setLayoutX(50);
 		pane.setLayoutY(50);
 		pane.getChildren().add(rect);
-		getChildren().add(pane);
+		//getChildren().add(pane);
 	}
 
 	public void initGrid(int width, int height) {

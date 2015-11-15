@@ -7,6 +7,7 @@ import javafx.beans.property.DoubleProperty;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.DragEvent;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.input.TransferMode;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
@@ -31,12 +32,20 @@ class Grid extends Pane {
 		setOnMouseExited(e -> removeMouseBound());
 		setOnDragExited(e -> removeMouseBound());
 		
-
+		setOnDragExited(e->fetchDraggedContent(e));
+		
 	}
 
 	public void initGrid(int width, int height) {
 		maxWidthProperty().bind(myCellSize.multiply(width));
 		maxHeightProperty().bind(myCellSize.multiply(height));
+		Pane pane = new Pane();
+		getChildren().setAll(myBackground,pane);
+		pane.minWidthProperty().bind(widthProperty());
+		pane.maxWidthProperty().bind(widthProperty());
+		pane.minHeightProperty().bind(heightProperty());
+		pane.maxHeightProperty().bind(heightProperty());
+		pane.setOnMouseClicked(e->placeObject(e));
 		for (int x = 0; x < width; x++) {
 			for (int y = 0; y < height; y++) {
 				new CellGUI(this, x, y);
@@ -89,6 +98,12 @@ class Grid extends Pane {
 			cell.removeFromMap();
 		});
 		selectedCells.clear();
+	}
+	
+	private void placeObject(MouseEvent e){
+		int x = (int)Math.floor(e.getX()/myCellSize.get());
+		int y = (int)Math.floor(e.getY()/myCellSize.get());
+		new CellGUI(this, x, y);
 	}
 	
 	private void fetchDraggedContent(DragEvent e){
