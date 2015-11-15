@@ -15,7 +15,7 @@ import voogasalad_GucciGames.gameplayer.windows.mainwindow.components.SplashScre
 
 public class InitialScene extends GameScene {
 
-	private Scene myScene;
+        private Scene myScene;
 	
 	public InitialScene(GameSceneManager manager, GameWindow window, String config) {
 		super(manager, window, config);
@@ -33,6 +33,4 @@ public class InitialScene extends GameScene {
 		myScene.addEventHandler(KeyEvent.KEY_PRESSED, (e)->myManager.sceneFinished());
 		loadScene(myScene);
 	}
-	
-	
 }

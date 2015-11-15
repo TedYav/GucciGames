@@ -1,8 +1,10 @@
 package voogasalad_GucciGames.gameplayer.windows.mainwindow.scenes;
 
+import java.util.ResourceBundle;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.HBox;
 import javafx.scene.text.Text;
 import voogasalad_GucciGames.gameplayer.controller.GameEngineInterface;
 import voogasalad_GucciGames.gameplayer.gameloader.GameLoader;
@@ -10,6 +12,7 @@ import voogasalad_GucciGames.gameplayer.windows.GameScene;
 import voogasalad_GucciGames.gameplayer.windows.GameSceneManager;
 import voogasalad_GucciGames.gameplayer.windows.GameWindow;
 import voogasalad_GucciGames.gameplayer.windows.GameWindowInterface;
+import voogasalad_GucciGames.gameplayer.windows.mainwindow.menubar.leftbar.LeftBar;
 
 public class MainGameScene extends GameScene{
 
@@ -17,10 +20,8 @@ public class MainGameScene extends GameScene{
 	private Scene myCurrentScene;
 	
 	private BorderPane myPane;
-	private Parent myTop;
-	private Parent myLeft;
-	private Parent myRight;
-	private Parent myCenter;
+	
+	private LeftBar myLeftBar;
 	
 	public MainGameScene(GameSceneManager manager, GameWindowInterface window, String config) {
 		super(manager, window, config);
@@ -44,12 +45,15 @@ public class MainGameScene extends GameScene{
 		 */
 		
 		initializePane();
+		showGame();
 		myWindow.loadScene(myScene);
 		
 	}
 	
 	private void initializePane(){
-		myScene = new Scene(new BorderPane());
+	        myPane = new BorderPane();
+		myScene = new Scene(myPane);
+	        myScene.getStylesheets().add(myConfig.getString("CssFile"));
 	}
 	
 	private void showSplash(){
@@ -58,5 +62,9 @@ public class MainGameScene extends GameScene{
 		
 	}
 	
+	private void showGame(){
+	    myLeftBar = new LeftBar(this, myGame, myConfig);
+	    myPane.setLeft(myLeftBar.getParent());
+	}
 	
 }
