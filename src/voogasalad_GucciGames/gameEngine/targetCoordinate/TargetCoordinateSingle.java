@@ -7,4 +7,10 @@ public class TargetCoordinateSingle extends ATargetCoordinate{
 		this.centerX = x;
 		this.centerY = y;
 	}
+
+	@Override
+	public ATargetCoordinate clone() {
+		// TODO Auto-generated method stub
+		return new TargetCoordinateSingle(centerX, centerY);
+	}
 }

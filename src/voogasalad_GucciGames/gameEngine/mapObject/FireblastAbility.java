@@ -1,21 +1,16 @@
-package voogasalad_GucciGames.gameEngine.gameUnit;
+package voogasalad_GucciGames.gameEngine.mapObject;
 
 import java.util.List;
 
 import voogasalad_GucciGames.gameEngine.GameMap;
 import voogasalad_GucciGames.gameEngine.CommunicationParams.CommunicationParams;
 import voogasalad_GucciGames.gameEngine.gamePlayer.AllPlayers;
-import voogasalad_GucciGames.gameEngine.mapObject.IMapObjectAction;
-import voogasalad_GucciGames.gameEngine.mapObject.MapObject;
+import voogasalad_GucciGames.gameEngine.targetCoordinate.ATargetCoordinate;
 
 public class FireblastAbility implements IMapObjectAction{
 
-	public FireblastAbility(){
-		
-	}
-
 	@Override
-	public CommunicationParams action(CommunicationParams communication) {
+	public CommunicationParams action(CommunicationParams communication, ATargetCoordinate targetCoords) {
 		// TODO Auto-generated method stub
 		return null;
 	}
