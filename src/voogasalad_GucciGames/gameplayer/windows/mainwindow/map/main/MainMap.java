@@ -102,30 +102,12 @@ public class MainMap extends WindowComponent implements MapInterface {
 				myMap.add(r, i, j);
 			}
 		}
-		myScene.getScene().addEventHandler(KeyEvent.KEY_PRESSED, (e)->handleKeys(e));
-		myMap.setOnKeyPressed((e) -> handleKeys(e));
+        myStackPane.getStyleClass().add(myConfig.getString("MainCSSClass"));
+        myStackPane.applyCss();
+        myMap.getStyleClass().add(myConfig.getString("MainCSSClass"));
+        myMap.applyCss();
 	}
 	
-	private void handleKeys(KeyEvent e){
-			switch (e.getCode()) {
-			case RIGHT:
-				move(e.getCode());
-				break;
-			case LEFT:
-				move(e.getCode());
-				break;
-			case UP:
-				move(e.getCode());
-				break;
-			case DOWN:
-				move(e.getCode());
-				break;
-			default:
-				System.out.println(e.getCode());
-			}
-
-	}
-
 	@Override
 	public Parent getParent() {
 		return myStackPane;
