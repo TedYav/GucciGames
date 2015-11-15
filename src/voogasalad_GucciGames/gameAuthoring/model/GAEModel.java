@@ -5,6 +5,8 @@ import java.util.Map;
 import javafx.collections.ListChangeListener;
 import voogasalad_GucciGames.GameEngineToGameAuthoringEnvironment;
 import voogasalad_GucciGames.gameAuthoring.IModelGaeController;
+import voogasalad_GucciGames.gameAuthoring.properties.TileProperty;
+import voogasalad_GucciGames.gameAuthoring.properties.UnitProperty;
 import voogasalad_GucciGames.gameData.XMLGameData;
 import voogasalad_GucciGames.gameEngine.GameMap;
 import voogasalad_GucciGames.gameEngine.mapObject.DefaultMapObjectType;
@@ -26,10 +28,13 @@ public class GAEModel implements IGAEModel{
     }
 
     @Override
-    public void addComponent (Map<String,String> objParams) {
+    public boolean addComponent (Map<String,String> objParams) {
         MapObject mapObj = new MapObject(null,null);// TODO:MapObject(objParams);
-        validate();
+        if (!validate()) {
+            return false;
+        }
         data.addToMap(mapObj);
+        return true;
     }
 
     @Override
@@ -43,15 +48,25 @@ public class GAEModel implements IGAEModel{
     }
 
     @Override
-    public void createCustomTileType (Map<String, String> m) {
-        MapObjectType objType = new DefaultMapObjectType(m.get("name"), m.get("imagePath"));//TODO: properties file
-        data.addTileType(objType);
+    public void createCustomTileType (TileProperty property) throws InvalidTypeParamsException{
+        try {
+            MapObjectType objType = new DefaultMapObjectType(property.get("name"), property.get("imagePath"));//TODO: properties file
+            data.addTileType(objType);
+        }
+        catch (Exception e) {
+            throw new InvalidTypeParamsException("TileType parameters are invalid");
+        }
     }
 
     @Override
-    public void createCustomUnitType (Map<String, String> m) {  
-        MapObjectType objType = new DefaultMapObjectType(m.get("name"), m.get("imagePath"));//TODO: properties file
+    public void createCustomUnitType (UnitProperty property) throws InvalidTypeParamsException{ 
+        try {
+        MapObjectType objType = new DefaultMapObjectType(property.get("name"), property.get("imagePath"));//TODO: properties file
         data.addUnitType(objType);
+        }
+        catch (Exception e) {
+            throw new InvalidTypeParamsException("UnitType parameters are invalid");
+        }
     }
 
     @Override

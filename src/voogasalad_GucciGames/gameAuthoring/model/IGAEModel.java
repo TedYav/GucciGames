@@ -3,17 +3,19 @@ package voogasalad_GucciGames.gameAuthoring.model;
 import java.util.List;
 import java.util.Map;
 import javafx.collections.ListChangeListener;
+import voogasalad_GucciGames.gameAuthoring.properties.TileProperty;
+import voogasalad_GucciGames.gameAuthoring.properties.UnitProperty;
 import voogasalad_GucciGames.gameEngine.mapObject.MapObject;
 import voogasalad_GucciGames.gameEngine.mapObject.MapObjectType;
 
 public interface IGAEModel {
-    public void addComponent(Map<String,String> objParams);
+    public boolean addComponent(Map<String,String> objParams);
     
     public void deleteComponent(MapObject mapObj);
     public void clearMap();
     
-    public void createCustomTileType(Map<String,String> m);
-    public void createCustomUnitType(Map<String,String> m);
+    public void createCustomTileType(TileProperty property) throws InvalidTypeParamsException;
+    public void createCustomUnitType(UnitProperty property) throws InvalidTypeParamsException;
     
     public List<MapObjectType> getImmutableTileTypes();
     public List<MapObjectType> getImmutableUnitTypes();

@@ -6,6 +6,8 @@ import java.util.Map;
 import javafx.stage.Stage;
 import voogasalad_GucciGames.gameAuthoring.gui.GAEGui;
 import voogasalad_GucciGames.gameAuthoring.model.IGAEModel;
+import voogasalad_GucciGames.gameAuthoring.properties.TileProperty;
+import voogasalad_GucciGames.gameAuthoring.properties.UnitProperty;
 import voogasalad_GucciGames.gameEngine.mapObject.MapObject;
 import voogasalad_GucciGames.gameEngine.mapObject.MapObjectType;
 
@@ -29,12 +31,12 @@ public class GaeController implements IGuiGaeController, IModelGaeController{
         model.clearMap();
     }
     @Override
-    public void createCustomTileType (Map<String, String> m) {
-        model.createCustomTileType(m);
+    public void createCustomTileType (TileProperty property) {
+        model.createCustomTileType(property);
     }
     @Override
-    public void createCustomUnitType (Map<String, String> m) {
-        model.createCustomUnitType(m);
+    public void createCustomUnitType (UnitProperty property) {
+        model.createCustomUnitType(property);
     }
     @Override
     public List<MapObjectType> getImmutableTileTypes () {
