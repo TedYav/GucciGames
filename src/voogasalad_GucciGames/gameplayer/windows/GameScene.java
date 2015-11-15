@@ -12,6 +12,7 @@ public abstract class GameScene {
 	protected GameSceneManager myManager;
 	protected GameWindowInterface myWindow;
 	protected ResourceBundle myConfig;
+	protected Scene myScene;
 	
 	public GameScene(GameSceneManager manager, GameWindowInterface window, String config){
 		myManager = manager;
@@ -26,7 +27,8 @@ public abstract class GameScene {
 	}
 	
 	protected void loadScene(Scene scene){
-		myWindow.loadScene(scene);
+		myScene = scene;
+		myWindow.loadScene(myScene);
 	}
 
 	/**
