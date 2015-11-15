@@ -3,6 +3,7 @@ package voogasalad_GucciGames.gameAuthoring;
 import java.util.List;
 import java.util.Map;
 
+import javafx.collections.ObservableList;
 import javafx.stage.Stage;
 import voogasalad_GucciGames.gameAuthoring.gui.GAEGui;
 import voogasalad_GucciGames.gameAuthoring.model.IGAEModel;
@@ -14,10 +15,12 @@ public class GaeController implements IGuiGaeController, IModelGaeController{
     GAEGui gui;
     
     public GaeController(Stage stage){
-    	new GAEGui(this,stage);
+    	System.out.println("called 1");
+    	new GAEGui(this,stage);	
     }
+    
     @Override
-    public void addComponent (Map<String,String> mapObj) {
+    public void addComponent (MapObject mapObj) {
         model.addComponent(mapObj);
     }
     @Override
@@ -37,18 +40,18 @@ public class GaeController implements IGuiGaeController, IModelGaeController{
         model.createCustomUnitType(m);
     }
     @Override
-    public List<MapObjectType> getImmutableTileTypes () {
-        return model.getImmutableTileTypes();
+    public ObservableList<MapObjectType> getImmutableTileTypes () {
+        return (ObservableList<MapObjectType>) model.getImmutableTileTypes();
     }
-    public List<MapObjectType> getTileTypes () {
+    public ObservableList<MapObjectType> getTileTypes () {
         // TODO Auto-generated method stub
         return null;
     }
     @Override
-    public List<MapObjectType> getImmutableUnitTypes () {
-        return model.getImmutableUnitTypes();
+    public ObservableList<MapObjectType> getImmutableUnitTypes () {
+        return (ObservableList<MapObjectType>) model.getImmutableUnitTypes();
     }
-    public List<MapObjectType> getUnitTypes () {
+    public ObservableList<MapObjectType> getUnitTypes () {
         // TODO Auto-generated method stub
         return null;
     }
