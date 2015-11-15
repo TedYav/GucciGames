@@ -5,12 +5,14 @@ import java.util.List;
 import java.util.Observable;
 import java.util.Observer;
 import javafx.collections.FXCollections;
+import javafx.collections.ListChangeListener;
 import javafx.collections.ObservableList;
 import javafx.scene.Node;
 import javafx.scene.control.ListView;
 import voogasalad_GucciGames.gameplayer.windows.mainwindow.map.MapInterface;
+import voogasalad_GucciGames.gameplayer.windows.mainwindow.map.cell.contents.PlayerMapObjectInterface;
 
-public class DisplayMapObjectDetails  implements MiniDisplayComponent, Observer{
+public class DisplayMapObjectDetails  implements MiniDisplayComponent, ListChangeListener<PlayerMapObjectInterface>{
     private ListView<String> list;
     private MapInterface myMap;
     private List<String> temp;
@@ -23,10 +25,13 @@ public class DisplayMapObjectDetails  implements MiniDisplayComponent, Observer{
         return list;
     }
     @Override
-    public void update (Observable arg0, Object arg1) {
-        if (arg0.getClass()==null) {
+    public void onChanged (Change c) {
+        while (c.next()) {
+            List<PlayerMapObjectInterface> list = c.getList();
             temp.clear();
-            temp.add("afs");
+            for (PlayerMapObjectInterface o: list){
+                temp.add("afs");
+            }
         }
     }
 }
