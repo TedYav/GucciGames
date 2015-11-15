@@ -27,7 +27,7 @@ public class GAEModel implements IGAEModel{
 
     @Override
     public void addComponent (Map<String,String> objParams) {
-        MapObject mapObj = new MapObject(null,null);// TODO:MapObject(objParams);
+        MapObject mapObj = new MapObject(null,null, 0);// TODO:MapObject(objParams);
         validate();
         data.addToMap(mapObj);
     }

@@ -1,7 +1,7 @@
 package voogasalad_GucciGames;
 
 import voogasalad_GucciGames.gameAuthoring.gui.map.IGUIMap;
-import voogasalad_GucciGames.gameEngine.gameUnit.AbilityException;
+import voogasalad_GucciGames.gameEngine.mapObject.AbilityException;
 import voogasalad_GucciGames.gameEngine.mapObject.IMapObjectAction;
 import voogasalad_GucciGames.gameEngine.mapObject.MapObject;
 import voogasalad_GucciGames.gameEngine.targetCoordinate.ATargetCoordinate;
@@ -11,16 +11,19 @@ public interface GameEngineToActualGame {
 	// for all methods that say String actionType, use reflection
 
 	/**
-	 * This method starts the first turn
+	 * This method starts the first turn; makes sure that the TurnCounter and
+	 * TurnDecider is observable, ListOfAllUnits. In the future, we may combine them into one
+	 * class.
 	 */
 	public void initialize();
 
 	/**
 	 * 
-	 * @param map -> interface 
+	 * @param map
+	 *            -> interface
 	 */
 	public void loadMap(IGUIMap map);
-	
+
 	/**
 	 * This method finds the valid locations for a unit and returns an
 	 * unmodifiable list of them.
@@ -51,8 +54,10 @@ public interface GameEngineToActualGame {
 	 * of the action. Use it for abilities that do not have a target (e.g. a tax
 	 * collector increasing gold)
 	 * 
-	 * @param actingUnit is the unit acting
-	 * @param actionType is the type of action
+	 * @param actingUnit
+	 *            is the unit acting
+	 * @param actionType
+	 *            is the type of action
 	 */
 	public void performAction(MapObject actingUnit, IMapObjectAction actionType) throws AbilityException;
 
@@ -62,24 +67,26 @@ public interface GameEngineToActualGame {
 	 * this will be the "Move" command, which picks an acting unit and moves it
 	 * to the action target.
 	 * 
-	 * @param actingUnit is the unit acting
-	 * @param actionType is the type of action
-	 * @param actionTarget is where the action is going to happen
-	 * 	 */
-	public void performAction(MapObject actingUnit, IMapObjectAction actionType, ATargetCoordinate actionTarget) throws AbilityException;
-	
-	/**
-	 * This method performs an action specified by the name of
-	 * the action and where the action is aimed at. A natural application to
-	 * this will be the "Build" command, which does not require a unit to perform.
-	 * 
-	 * @param actionType is the type of action
-	 * @param actionTarget is where the action is going to happen
-	 * 	 */
-	public void performAction(IMapObjectAction actionType, ATargetCoordinate actionTarget) throws AbilityException;
+	 * @param actingUnit
+	 *            is the unit acting
+	 * @param actionType
+	 *            is the type of action
+	 * @param actionTarget
+	 *            is where the action is going to happen
+	 */
+	public void performAction(MapObject actingUnit, IMapObjectAction actionType, ATargetCoordinate actionTarget)
+			throws AbilityException;
 
-	
-	
-	
+	/**
+	 * This method performs an action specified by the name of the action and
+	 * where the action is aimed at. A natural application to this will be the
+	 * "Build" command, which does not require a unit to perform.
+	 * 
+	 * @param actionType
+	 *            is the type of action
+	 * @param actionTarget
+	 *            is where the action is going to happen
+	 */
+	public void performAction(IMapObjectAction actionType, ATargetCoordinate actionTarget) throws AbilityException;
 
 }
