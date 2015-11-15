@@ -18,8 +18,15 @@ public class GamePlayerPerson {
 	// private PlayerGameRule myPlayConditions;
 	private PlayerResources myResources;
 	private List<MapObject> myMapObjects;
-	private RealHealthCharacteristic myHealth;
-	private PlayerHealthRule myHealthRule;
+
+	// why are these here?
+/*	private RealHealthCharacteristic myHealth;
+	private PlayerHealthRule myHealthRule; */
+
+	// extract these into a separate class
+	int unitsMaxMovedLimit;
+	int unitsMoved;
+
 	Goal myGoal;
 
 	private String myStatus = "goalNotAchieved";
@@ -34,27 +41,29 @@ public class GamePlayerPerson {
 	}
 
 	// should be called by gae when a player is created
-	public void definePlayerHealth(double healthValue) {
+/*	public void definePlayerHealth(double healthValue) {
 		myHealth = new RealHealthCharacteristic();
 		myHealth.defineHealthValue(healthValue);
 		myHealthRule = new PlayerHealthRule(myHealth);
-	}
+	}*/
 
 	public UnitCollection getUnits() {
 		return myUnits;
 	}
 
-	public List<MapObject> getMapObjects(){
+	public List<MapObject> getMapObjects() {
 		return this.myMapObjects;
 	}
 
 	public void takeTurn() {
-		attack();
-		checkHealth();
+	
+		
+		//attack();
+		//checkHealth();
 
 	}
 
-	private void checkHealth() {
+	/*private void checkHealth() {
 		if (myHealth != null) {
 			List<EndGameConditions> list = myHealthRule.executeRule();
 			if (list.size() != 0) {
@@ -66,13 +75,13 @@ public class GamePlayerPerson {
 
 	public RealHealthCharacteristic myHealth() {
 		return myHealth;
-	}
+	} */
 
 	public String getStatus() {
 		return myStatus;
 	}
 
-	private void attack() {
+	/*private void attack() {
 		System.out.println(myUnits);
 
 		Scanner reader = new Scanner(System.in); // Reading from System.in
@@ -89,14 +98,14 @@ public class GamePlayerPerson {
 
 			System.out.println("Where would you like to move? Pick the correct point on the spot");
 
-			//unit.performAction("move");
+			// unit.performAction("move");
 		}
 
 		else {
 			System.out.println("Where would you like to attack? Pick the correct point on the spot");
 
-			//unit.performAction("attack");
+			// unit.performAction("attack");
 		}
-	}
+	} */
 
 }

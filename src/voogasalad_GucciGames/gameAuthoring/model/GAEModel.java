@@ -29,7 +29,7 @@ public class GAEModel implements IGAEModel{
 
     @Override
     public boolean addComponent (Map<String,String> objParams) {
-        MapObject mapObj = new MapObject(null,null);// TODO:MapObject(objParams);
+        MapObject mapObj = new MapObject(null,null, 0);// TODO:MapObject(objParams);
         if (!validate()) {
             return false;
         }
@@ -122,4 +122,12 @@ public class GAEModel implements IGAEModel{
 		// TODO Auto-generated method stub
 		return null;
 	}
+
+	@Override
+	//implemet this
+	public void addComponent(MapObject mapObj) {
+		// TODO Auto-generated method stub
+		
+	}
+
 }
