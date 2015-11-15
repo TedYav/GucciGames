@@ -3,6 +3,7 @@ package voogasalad_GucciGames.gameplayer.windows.mainwindow.scenes;
 import java.util.ResourceBundle;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.text.Text;
@@ -12,9 +13,12 @@ import voogasalad_GucciGames.gameplayer.windows.GameScene;
 import voogasalad_GucciGames.gameplayer.windows.GameSceneManager;
 import voogasalad_GucciGames.gameplayer.windows.GameWindow;
 import voogasalad_GucciGames.gameplayer.windows.GameWindowInterface;
+import voogasalad_GucciGames.gameplayer.windows.mainwindow.GameKeyHandler;
+import voogasalad_GucciGames.gameplayer.windows.mainwindow.map.MapInterface;
+import voogasalad_GucciGames.gameplayer.windows.mainwindow.map.main.MainMap;
 import voogasalad_GucciGames.gameplayer.windows.mainwindow.menubar.leftbar.LeftBar;
 
-public class MainGameScene extends GameScene{
+public class MainGameScene extends GameScene implements GameSceneController{
 
 	private GameEngineInterface myGame;
 	private Scene myCurrentScene;
@@ -22,6 +26,9 @@ public class MainGameScene extends GameScene{
 	private BorderPane myPane;
 	
 	private LeftBar myLeftBar;
+	private MainMap myMap;
+	
+	private GameKeyHandler myKeyHandler;
 	
 	public MainGameScene(GameSceneManager manager, GameWindowInterface window, String config) {
 		super(manager, window, config);
@@ -51,9 +58,9 @@ public class MainGameScene extends GameScene{
 	}
 	
 	private void initializePane(){
-	        myPane = new BorderPane();
-		myScene = new Scene(myPane);
-	        myScene.getStylesheets().add(myConfig.getString("CssFile"));
+        myPane = new BorderPane();
+        myScene = new Scene(myPane);
+        myScene.getStylesheets().add(myConfig.getString("CssFile"));
 	}
 	
 	private void showSplash(){
@@ -63,8 +70,19 @@ public class MainGameScene extends GameScene{
 	}
 	
 	private void showGame(){
-	    myLeftBar = new LeftBar(this, myGame, myConfig); 
+	    myLeftBar = new LeftBar(this, myGame, null, myConfig); 
+	    myMap = new MainMap(this, myGame);
+	    myPane.setCenter(myMap.getParent());
 	    myPane.setLeft(myLeftBar.getParent());
+
+	    myKeyHandler = new GameKeyHandler(this);
+	    myScene.addEventFilter(KeyEvent.KEY_PRESSED, (e)->myKeyHandler.handle(e));
+	    
+	}
+
+	@Override
+	public MapInterface getMap() {
+		return myMap;
 	}
 	
 }

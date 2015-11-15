@@ -24,7 +24,7 @@ public class DisplayMapObjectDetails  implements MiniDisplayComponent, Observer{
     }
     @Override
     public void update (Observable arg0, Object arg1) {
-        if (arg0.getClass()==) {
+        if (arg0.getClass()==null) {
             temp.clear();
             temp.add("afs");
         }
