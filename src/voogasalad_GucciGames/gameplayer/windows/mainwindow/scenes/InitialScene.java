@@ -1,12 +1,6 @@
 package voogasalad_GucciGames.gameplayer.windows.mainwindow.scenes;
 
-import javafx.animation.FadeTransition;
-import javafx.animation.KeyFrame;
-import javafx.animation.Timeline;
-import javafx.scene.Group;
 import javafx.scene.Scene;
-import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Color;
@@ -34,7 +28,7 @@ public class InitialScene extends GameScene {
 
 	@Override
 	public void load() {
-		SplashScreen splash = new SplashScreen(myConfig.getString("Text"), myConfig.getString("SplashImage"));
+		SplashScreen splash = new SplashScreen(this, null, myConfig.getBaseBundleName());
 		myScene = new Scene(splash.getParent());
 		myScene.addEventHandler(KeyEvent.KEY_PRESSED, (e)->myManager.sceneFinished());
 		loadScene(myScene);

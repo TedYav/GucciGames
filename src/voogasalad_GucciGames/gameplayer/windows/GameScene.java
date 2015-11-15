@@ -48,6 +48,7 @@ public abstract class GameScene {
 		return myNext;
 	}
 	
+	
 	/**
 	 * Tells this scene to load its necessary information and write it to the GameWindow.
 	 */
