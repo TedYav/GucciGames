@@ -1,40 +1,40 @@
 package voogasalad_GucciGames.gameAuthoring.gui.map;
 
+import java.util.HashSet;
+import java.util.Set;
+
 import javafx.beans.property.DoubleProperty;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.DragEvent;
+import javafx.scene.input.TransferMode;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 
-public class MapGrid extends Pane {
-	
+class Grid extends Pane {
+
 	private final ImageView myBackground;
 	private final DoubleProperty myCellSize;
+	private final Set<CellGUI> selectedCells = new HashSet<>();
 	private Rectangle myMouseBound;
-	
-	public MapGrid(DoubleProperty cellSize) {
+
+	public Grid(DoubleProperty cellSize) {
 		myBackground = new ImageView();
 		getChildren().setAll(myBackground);
 		myBackground.fitWidthProperty().bind(widthProperty());
 		myBackground.fitHeightProperty().bind(heightProperty());
 		myCellSize = cellSize;
+
+		setOnMouseMoved(e -> trackMouseMove(e.getX(), e.getY()));
+		setOnDragOver(e -> trackMouseMove(e.getX(), e.getY()));
+		setOnMouseExited(e -> removeMouseBound());
+		setOnDragExited(e -> removeMouseBound());
 		
-		setOnMouseMoved(e -> trackMouseMove(e.getX(),e.getY()));
-		setOnDragOver(e -> trackMouseMove(e.getX(),e.getY()));
-		setOnMouseExited(e->removeMouseBound());
-		setOnDragExited(e->removeMouseBound());
-		
-		//Experiments
-		setOnDragDropped(e->System.out.println("Dropped"));
-		setOnDragDetected(e->System.out.println("Detected"));
-		setOnDragEntered(e->System.out.println("Entered"));
-		setOnDragDone(e->System.out.println("Done"));
-		setOnMouseReleased(e->System.out.println("Released"));
-		
+
 	}
-	
-	public void initGrid(int width,int height){
+
+	public void initGrid(int width, int height) {
 		maxWidthProperty().bind(myCellSize.multiply(width));
 		maxHeightProperty().bind(myCellSize.multiply(height));
 		for (int x = 0; x < width; x++) {
@@ -43,8 +43,8 @@ public class MapGrid extends Pane {
 			}
 		}
 	}
-	
-	private void trackMouseMove(double x,double y) {
+
+	private void trackMouseMove(double x, double y) {
 		double size = myCellSize.get();
 		double xt = x - x % size;
 		double yt = y - y % size;
@@ -55,12 +55,13 @@ public class MapGrid extends Pane {
 			addMouseBound(xt, yt, size);
 		}
 	}
-	
-	private void addMouseBound(double x,double y, double size){
+
+	private void addMouseBound(double x, double y, double size) {
 		myMouseBound = new Rectangle(x, y, size, size);
 		myMouseBound.setFill(Color.TRANSPARENT);
 		myMouseBound.setStroke(Color.YELLOW);
 		myMouseBound.setStrokeWidth(2);
+		myMouseBound.setMouseTransparent(true);
 		getChildren().add(myMouseBound);
 	}
 
@@ -70,13 +71,34 @@ public class MapGrid extends Pane {
 			myMouseBound = null;
 		}
 	}
-	
-	public void setBackground(Image img){
+
+	public void setBackground(Image img) {
 		myBackground.setImage(img);
 	}
 
 	public DoubleProperty getCellSize() {
 		return myCellSize;
+	}
+
+	public void addSelectedCell(CellGUI cell) {
+		selectedCells.add(cell);
+	}
+
+	public void removeSelectedCells() {
+		selectedCells.forEach(cell -> {
+			cell.removeFromMap();
+		});
+		selectedCells.clear();
+	}
+	
+	private void fetchDraggedContent(DragEvent e){
+		System.out.println(e.getX()+" "+e.getY());
+		e.acceptTransferModes(TransferMode.ANY);
+		int x = (int)Math.floor(e.getX()/myCellSize.get());
+		int y = (int)Math.floor(e.getY()/myCellSize.get());
+		//CellGUI cell = new CellGUI(this, x, y);
+		System.out.println("New Cell");
+		//cell.setImage(e.getDragboard().getImage());
 	}
 
 }

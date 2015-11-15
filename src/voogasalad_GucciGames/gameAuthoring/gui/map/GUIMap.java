@@ -11,6 +11,7 @@ import javafx.scene.control.ScrollPane;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.DragEvent;
+import javafx.scene.input.KeyCode;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
@@ -25,7 +26,7 @@ public class GUIMap extends Pane implements IMap{
 	private static final int GRID_SIZE = 20;
 
 	private IGuiGaeController myController;
-	private MapGrid myGrid;
+	private Grid myGrid;
 	private ScrollPane myGridViewer;
 	
 
@@ -35,7 +36,7 @@ public class GUIMap extends Pane implements IMap{
 		DoubleProperty cellSize = new SimpleDoubleProperty(myGridViewer.getViewportBounds().getWidth() / GRID_SIZE);
 		myGridViewer.viewportBoundsProperty().addListener((ch, oV, nV) -> cellSize.set(nV.getWidth() / GRID_SIZE));
 		
-		myGrid = new MapGrid(cellSize);
+		myGrid = new Grid(cellSize);
 		myGridViewer.setContent(myGrid);
 		myGridViewer.setHbarPolicy(ScrollPane.ScrollBarPolicy.NEVER);
 		myGridViewer.setVbarPolicy(ScrollPane.ScrollBarPolicy.NEVER);
@@ -46,6 +47,11 @@ public class GUIMap extends Pane implements IMap{
 		
 		myGridViewer.prefViewportWidthProperty().bind(widthProperty());
 		myGridViewer.prefViewportHeightProperty().bind(heightProperty());
+		
+		setOnKeyPressed(e -> {
+			if (e.getCode() == KeyCode.BACK_SPACE || e.getCode() == KeyCode.DELETE)
+				myGrid.removeSelectedCells();
+		});
 		
 		getChildren().add(myGridViewer);
 		
