@@ -2,12 +2,7 @@ package voogasalad_GucciGames.gameEngine.gamePlayer;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Scanner;
 
-import voogasalad_GucciGames.gameEngine.defaultCharacteristics.RealHealthCharacteristic;
-import voogasalad_GucciGames.gameEngine.gameRule.EndGameConditions;
-import voogasalad_GucciGames.gameEngine.gameRule.PlayerHealthRule;
-import voogasalad_GucciGames.gameEngine.gameRule.Goal.Goal;
 import voogasalad_GucciGames.gameEngine.mapObject.MapObject;
 
 public class GamePlayerPerson {
@@ -27,15 +22,13 @@ public class GamePlayerPerson {
 	int unitsMaxMovedLimit;
 	int unitsMoved;
 
-	Goal myGoal;
 
-	private String myStatus = "goalNotAchieved";
+	private String myStatus = "DRAW";
 
 	public GamePlayerPerson(UnitCollection units, int playerId) {
 
 		myUnits = units;
-		myPlayerId = playerId;
-		myGoal = new Goal();
+		myPlayerId=(playerId);
 		this.myMapObjects = new ArrayList<>();
 
 	}
@@ -56,8 +49,8 @@ public class GamePlayerPerson {
 	}
 
 	public void takeTurn() {
-	
-		
+
+
 		//attack();
 		//checkHealth();
 
@@ -80,32 +73,16 @@ public class GamePlayerPerson {
 	public String getStatus() {
 		return myStatus;
 	}
+	public void setStatus(String status){
+		myStatus=status;
+	}
 
-	/*private void attack() {
-		System.out.println(myUnits);
+	public int getMyPlayerId() {
+		return myPlayerId;
+	}
 
-		Scanner reader = new Scanner(System.in); // Reading from System.in
-		System.out.println("Enter the unit to act: (a number from 0 up to " + (myUnits.size() - 1));
-		int n = reader.nextInt(); // Scans the next token of the input as an
-									// int.
 
-		MapObject unit = myUnits.getUnit(n);
 
-		System.out.println("What would you like to do? 0: move, 1: attack");
-		n = reader.nextInt(); // Scans the next token of the input as an int.
 
-		if (n == 0) {
-
-			System.out.println("Where would you like to move? Pick the correct point on the spot");
-
-			// unit.performAction("move");
-		}
-
-		else {
-			System.out.println("Where would you like to attack? Pick the correct point on the spot");
-
-			// unit.performAction("attack");
-		}
-	} */
 
 }
