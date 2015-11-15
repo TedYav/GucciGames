@@ -1,10 +1,23 @@
 package voogasalad_GucciGames.gameAuthoring.gui.sidebar;
 
-public class StructureTab implements ITab {
+import java.util.Arrays;
 
+import voogasalad_GucciGames.gameAuthoring.IGuiGaeController;
+
+
+public class StructureTab extends AbstractTab {
+
+	public StructureTab(IGuiGaeController controller) {
+		super(controller);
+		setText("Structures");
+		allImagePaths = Arrays.asList("voogasalad_GucciGames/graphics/water.png");
+		addImages();
+		addImageHandler();
+		addDragDropListener();
+	}
+	
 	@Override
 	public void update() {
-		// TODO Auto-generated method stub
 
 	}
 

@@ -7,7 +7,7 @@ import java.util.TreeMap;
 
 import voogasalad_GucciGames.gameEngine.targetCoordinate.ATargetCoordinate;
 
-public abstract class MapObjectType {
+public class MapObjectType {
 
 	
 	private String myName;
@@ -15,9 +15,13 @@ public abstract class MapObjectType {
 	
 	//sizes
 	
-	protected Map<String, AMapObjectCharacteristic> myCharacteristics; //test
-	protected Map<String, IMapObjectAction> myAbilities; //test
-
+	private  Map<String, AMapObjectCharacteristic> myCharacteristics; //test
+	private Map<String, IMapObjectAction> myAbilities; //test
+	private Map<String, IMapObjectActionTarget> myActionTargets;
+	
+	private Map<String, Integer> allowableMoves;
+	private Map<String, Integer> movesDoneSoFar;
+	
 	
 
 	public MapObjectType(String name, String imagePath){
@@ -38,6 +42,9 @@ public abstract class MapObjectType {
 		return myName;
 	}
 
+	public String getMyImagePath() {
+		return myImagePath;
+	}
 	
 	public String toString(){
 		return myName;
