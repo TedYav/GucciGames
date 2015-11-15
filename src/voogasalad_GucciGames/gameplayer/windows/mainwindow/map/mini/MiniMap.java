@@ -12,7 +12,7 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
 import javafx.scene.shape.Rectangle;
-import voogasalad_GucciGames.gameplayer.windows.mainwindow.map.cell.MapCell;
+import voogasalad_GucciGames.gameplayer.windows.mainwindow.map.cell.MapCellInterface;
 
 public class MiniMap implements MiniMapInterface {
 
@@ -54,7 +54,7 @@ public class MiniMap implements MiniMapInterface {
 		
 	}
 	
-	public void recenter(MapCell cell) {
+	public void recenter(MapCellInterface cell) {
 		// TODO Auto-generated method stub
 		
 	}

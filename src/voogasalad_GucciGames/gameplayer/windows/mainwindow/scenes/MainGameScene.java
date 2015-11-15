@@ -7,7 +7,7 @@ import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.text.Text;
-import voogasalad_GucciGames.gameplayer.controller.GameEngineInterface;
+import voogasalad_GucciGames.gameplayer.controller.GameEngineToGamePlayerInterface;
 import voogasalad_GucciGames.gameplayer.gameloader.GameLoader;
 import voogasalad_GucciGames.gameplayer.windows.GameScene;
 import voogasalad_GucciGames.gameplayer.windows.GameSceneManager;
@@ -20,7 +20,7 @@ import voogasalad_GucciGames.gameplayer.windows.mainwindow.menubar.leftbar.LeftB
 
 public class MainGameScene extends GameScene implements GameSceneController{
 
-	private GameEngineInterface myGame;
+	private GameEngineToGamePlayerInterface myGame;
 	private Scene myCurrentScene;
 	
 	private BorderPane myPane;
@@ -64,8 +64,6 @@ public class MainGameScene extends GameScene implements GameSceneController{
 	}
 	
 	private void showSplash(){
-		//Text text = new Text(myGame.getName());
-		
 		
 	}
 	
@@ -77,9 +75,18 @@ public class MainGameScene extends GameScene implements GameSceneController{
 	    myLeftBar = new LeftBar(this, myGame, myConfig);
 	    myPane.setLeft(myLeftBar.getParent());
 
+	    enableEventHandling();
+	    enableObservers();
+	       
+	}
+
+	private void enableEventHandling(){
 	    myKeyHandler = new GameKeyHandler(this);
 	    myScene.addEventFilter(KeyEvent.KEY_PRESSED, (e)->myKeyHandler.handle(e));
-	    
+	}
+	
+	private void enableObservers() {
+		
 	}
 
 	@Override

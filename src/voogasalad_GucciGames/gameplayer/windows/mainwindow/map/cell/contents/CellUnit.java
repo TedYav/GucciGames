@@ -4,17 +4,17 @@ import java.util.Observable;
 import java.util.Observer;
 
 import voogasalad_GucciGames.gameplayer.windows.mainwindow.map.MapInterface;
-import voogasalad_GucciGames.gameplayer.windows.mainwindow.map.cell.MapCell;
+import voogasalad_GucciGames.gameplayer.windows.mainwindow.map.cell.MapCellInterface;
 
 public class CellUnit{
 
 	private String myImage;
 	private MapInterface myMap;
-	private MapCell myCell;
+	private MapCellInterface myCell;
 	
-	private EngineUnit myUnit;
+	private PlayerMapObjectInterface myUnit;
 		
-	public CellUnit(MapInterface map, MapCell cell, EngineUnit unit){
+	public CellUnit(MapInterface map, MapCellInterface cell, PlayerMapObjectInterface unit){
 		myMap = map;
 		myCell = cell;
 		myUnit = unit;
