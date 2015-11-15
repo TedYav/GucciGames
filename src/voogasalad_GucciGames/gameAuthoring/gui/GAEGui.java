@@ -39,9 +39,9 @@ public class GAEGui extends BorderPane {
 
 	private TabPane rightPane(Stage stage) {
 		TabPane rightTabPane = new TabPane();
-    	TileTab tileTab = new TileTab();
-    	UnitTab unitTab = new UnitTab();
-    	StructureTab strucTab = new StructureTab();
+    	TileTab tileTab = new TileTab(myController);
+    	UnitTab unitTab = new UnitTab(myController);
+    	StructureTab strucTab = new StructureTab(myController);
     	
     	setSize(tileTab,stage);
     	setSize(unitTab,stage);

@@ -2,6 +2,8 @@ package voogasalad_GucciGames.gameAuthoring;
 
 import java.util.List;
 import java.util.Map;
+
+import javafx.collections.ObservableList;
 import voogasalad_GucciGames.gameEngine.mapObject.MapObject;
 import voogasalad_GucciGames.gameEngine.mapObject.MapObjectType;
 
@@ -12,8 +14,6 @@ public interface IGuiGaeController {
 	 */
     public void addComponent(MapObject mapObj); //validate in back end
     
-    public void addComponent(Map<String,String> mapObj); //validate in back end
-
     public void deleteComponent(MapObject mapObj);
     
     public void clearMap();
@@ -22,13 +22,13 @@ public interface IGuiGaeController {
     
     public void createCustomUnitType(Map<String,String> m);
 
-    public List<MapObjectType> getImmutableTileTypes();
+    public ObservableList<MapObjectType> getImmutableTileTypes();
 
-    public List<MapObjectType> getImmutableUnitTypes();
+    public ObservableList<MapObjectType> getImmutableUnitTypes();
 
-    public List<MapObjectType> getTileTypes();
+    public ObservableList<MapObjectType> getTileTypes();
 
-    public List<MapObjectType> getUnitTypes();
+    public ObservableList<MapObjectType> getUnitTypes();
 
     public void saveToXML();
     

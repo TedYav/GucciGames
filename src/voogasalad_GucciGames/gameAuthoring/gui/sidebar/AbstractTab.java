@@ -3,6 +3,7 @@ package voogasalad_GucciGames.gameAuthoring.gui.sidebar;
 import java.util.ArrayList;
 import java.util.List;
 
+import voogasalad_GucciGames.gameAuthoring.IGuiGaeController;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.geometry.Insets;
@@ -29,7 +30,7 @@ public abstract class AbstractTab extends Tab implements ITab{
 	protected ContextMenu myContextMenu = new ContextMenu();
 	protected Image myDraggedImage;
 
-	AbstractTab() {
+	AbstractTab(IGuiGaeController controller) {
 		allImageViews = new ArrayList<ImageView>();
 		this.setClosable(false);
 		createEmptyContent();
