@@ -5,6 +5,7 @@ import java.util.Scanner;
 import voogasalad_GucciGames.gameEngine.gamePlayer.PlayerResources;
 import voogasalad_GucciGames.gameEngine.gamePlayer.UnitCollection;
 import voogasalad_GucciGames.gameEngine.gameRule.GameCondition;
+import voogasalad_GucciGames.gameEngine.gameRule.GameCondition;
 import voogasalad_GucciGames.gameEngine.gameRule.GameConditions;
 
 /*public class UseGamePlayerPerson {

@@ -1,0 +1,29 @@
+
+#title{
+	-fx-font: bold 20pt "Arial";	
+}
+
+#vbox-element{
+	-fx-background-radius: 5.0;
+	-fx-padding: 10;
+	-fx-spacing: 15;
+}
+
+#hbox-control{
+	-fx-background-radius: 5.0; 
+    -fx-padding: 10;
+    -fx-spacing: 15;
+	
+}
+
+#hbox-element{
+	-fx-background-radius: 5.0; 
+    -fx-padding: 0;
+    -fx-spacing: 15;
+	
+}
+
+#field-title-element{
+	-fx-font-size: 14pt;
+    -fx-font-family: "Arial";
+}
