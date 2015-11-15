@@ -1,5 +1,6 @@
 package voogasalad_GucciGames.gameplayer.windows.mainwindow.menubar.leftbar;
 
+import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.layout.VBox;
 import voogasalad_GucciGames.gameplayer.controller.GameEngineInterface;
@@ -12,6 +13,11 @@ public class LeftBar extends WindowComponent{
     public LeftBar (GameScene scene, GameEngineInterface game) {
         super(scene, game);
         container = new VBox(spacing);
+        initializeData();
+    }
+    private void initializeData() {
+        DisplayMapObjectDetails objectDetails = new DisplayMapObjectDetails();
+        container.getChildren().add(objectDetails.getNodeToDraw());
     }
 
     @Override
