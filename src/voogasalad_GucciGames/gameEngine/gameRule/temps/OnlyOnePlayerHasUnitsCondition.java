@@ -1,4 +1,4 @@
-package voogasalad_GucciGames.gameEngine.gameRule;
+package voogasalad_GucciGames.gameEngine.gameRule.temps;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -6,6 +6,7 @@ import java.util.List;
 
 import voogasalad_GucciGames.gameEngine.GameMap;
 import voogasalad_GucciGames.gameEngine.gamePlayer.UnitCollection;
+import voogasalad_GucciGames.gameEngine.gameRule.EndGameConditions;
 
 public class OnlyOnePlayerHasUnitsCondition extends GlobalGameCondition {
 

@@ -1,4 +1,4 @@
-package voogasalad_GucciGames.gameEngine.gameRule;
+package voogasalad_GucciGames.gameEngine.gameRule.temps;
 
 import java.util.List;
 
