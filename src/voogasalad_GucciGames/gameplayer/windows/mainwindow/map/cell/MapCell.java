@@ -63,7 +63,6 @@ public abstract class MapCell implements MapCellInterface {
 		myOverlayLayer = new StackPane();
 		myParent.getChildren().addAll(myObjectLayer, myOverlayLayer);
 		myParent.setMaxSize(mySize, mySize);
-		
 	}
 
 	public Parent getParent(){
@@ -71,7 +70,6 @@ public abstract class MapCell implements MapCellInterface {
 	}
 	
 	public void addObject(PlayerMapObjectInterface object){
-		System.out.println(object);
 		if(!myObjects.containsKey(object.getLayer())){
 			myObjects.put(object.getLayer(), new ArrayList<PlayerMapObjectInterface>());
 		}
@@ -112,7 +110,6 @@ public abstract class MapCell implements MapCellInterface {
 	}
 	
 	private void redrawLayer(int layer){
-		System.out.println("REDRAWING LAYER " + layer);
 		makeLayers(layer);
 		int count = myObjects.get(layer).size();
 		myLayerMap.get(layer).getChildren().removeAll();
@@ -128,8 +125,7 @@ public abstract class MapCell implements MapCellInterface {
 	}
 
 	private ImageView renderImage(PlayerMapObjectInterface object, double size) {
-		System.out.println(myController);
-		ImageView image = new ImageView(myController.getMap().requestImage(object.getImageURI()));
+		ImageView image = new ImageView(myController.requestImage(object.getImageURI()));
 		image.setFitWidth(size);
 		image.setFitHeight(size);
 		return image;
@@ -142,7 +138,6 @@ public abstract class MapCell implements MapCellInterface {
 					continue;
 				GridPane g = new GridPane();
 				myLayerMap.put(i, g);
-				System.out.println("ADDING LAYER " + i);
 				myObjectLayer.getChildren().add(g);
 			}
 		}

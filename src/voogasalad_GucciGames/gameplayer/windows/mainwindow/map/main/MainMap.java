@@ -46,7 +46,6 @@ public class MainMap extends WindowComponent implements MapInterface {
 	
 	private ResourceBundle myConfig = ResourceBundle.getBundle("voogasalad_GucciGames.gameplayer.config.components.Map");
 	private TwoWayMap<Point2D, MapCell> myCellMap;
-	private Map<String, Image> myImageMap;
 	private List<MapCell> myHighlightedCells;
 	private List<MapCell> myActiveCells;
 	
@@ -87,7 +86,6 @@ public class MainMap extends WindowComponent implements MapInterface {
 
 	private void initializeMap() {
 		myCellMap = new TwoWayMap<>();
-		myImageMap = new HashMap<>();
 		myHighlightedCells = new ArrayList<>();
 		myActiveCells = new ArrayList<>();
 		
@@ -201,16 +199,6 @@ public class MainMap extends WindowComponent implements MapInterface {
 	public void addUnitListener(ListChangeListener<PlayerMapObjectInterface> listener){
 		mySelectedUnits.addListener(listener);
 	}
-
-
-	@Override
-	public Image requestImage(String URI) {
-		if(!myImageMap.containsKey(URI)){
-			myImageMap.put(URI, new Image(URI));
-		}
-		return myImageMap.get(URI);
-	}
-
 
 	@Override
 	public void highlightCell(Point2D target) {

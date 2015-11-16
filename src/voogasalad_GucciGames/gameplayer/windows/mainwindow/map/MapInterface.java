@@ -21,7 +21,4 @@ public interface MapInterface {
 	
 	public void recenter(Point2D center);
 	public void move(KeyCode code);
-	
-	public Image requestImage(String URI);
-
 }

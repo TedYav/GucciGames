@@ -1,7 +1,10 @@
 package voogasalad_GucciGames.gameplayer.controller;
 
+import java.util.List;
 import java.util.Map;
 
+import javafx.scene.image.Image;
+import voogasalad_GucciGames.gameplayer.datastructures.ImageDatabase;
 import voogasalad_GucciGames.gameplayer.windows.mainwindow.map.MapInterface;
 import voogasalad_GucciGames.gameplayer.windows.mainwindow.map.cell.MapCell;
 import voogasalad_GucciGames.gameplayer.windows.mainwindow.map.cell.contents.CellUnit;
@@ -10,10 +13,11 @@ public class GameController implements GameControllerInterface {
 
 	private GameEngineToGamePlayerInterface myEngine;
 	private MapInterface myMap;
-	
+	private ImageDatabase myImageDatabase;
 	
 	public GameController(GameEngineToGamePlayerInterface engine){
 		myEngine = engine;
+		myImageDatabase = new ImageDatabase();
 	}
 	
 	@Override
@@ -23,7 +27,7 @@ public class GameController implements GameControllerInterface {
 	}
 
 	@Override
-	public MapCell getActiveCell() {
+	public List<MapCell> getActiveCells() {
 		// TODO Auto-generated method stub
 		return null;
 	}
@@ -66,6 +70,11 @@ public class GameController implements GameControllerInterface {
 	public void endTurn() {
 		// TODO Auto-generated method stub
 
+	}
+
+	@Override
+	public Image requestImage(String imageURI) {
+		return myImageDatabase.request(imageURI);
 	}
 
 }
