@@ -1,20 +1,25 @@
 package voogasalad_GucciGames.gameEngine;
 
-import java.util.List;
-
 import voogasalad_GucciGames.gameEngine.gamePlayer.AllPlayers;
-import voogasalad_GucciGames.gameEngine.gameRule.GameCondition;
-import voogasalad_GucciGames.gameEngine.gameRule.GlobalGameCondition;
-import voogasalad_GucciGames.gameEngine.gameRule.Goal.Goal;
+import voogasalad_GucciGames.gameEngine.gameRule.defaultConditions.game.GameCondition;
+import voogasalad_GucciGames.gameEngine.gameRule.defaultConditions.game.GlobalGameCondition;
 
 public class MainGameEngine {
 
 	private AllPlayers myGamePlayers;
 	private int myCurrentTurn;
 	private GameCondition myGlobalRule;
+	private String myName;
+
+
+
 
 	private GameMap myGameMap;
-	private Goal myGlobalStatus;
+
+
+	public String getName(){
+		return myName;
+	}
 
 	public MainGameEngine(AllPlayers gamePlayers, GlobalGameCondition globalRule, GameMap gameMap) {
 
@@ -37,10 +42,10 @@ public class MainGameEngine {
 
 	private void checkTurnOutcome() {
 
+		myGlobalRule.evaluateEndResult();
 
 
-
-		// this will become very long as conditions are added .. re-factor
+/*		// this will become very long as conditions are added .. re-factor
 		String currentStatus = myGamePlayers.getActivePlayer(myCurrentTurn).getStatus();
 		if (currentStatus.equals("LOSE")) {
 
@@ -51,7 +56,7 @@ public class MainGameEngine {
 		// this method checks the status of a player's goal, and the global
 		// game's goal
 		// if the status for both is goalNotAchieved, it does not do anything
-		// else, it halts the game and send an update to the front end
+		// else, it halts the game and send an update to the front end  */
 
 	}
 
@@ -67,8 +72,6 @@ public class MainGameEngine {
 
 	}
 
-	public void CreatGoal(List<String> names, List<Double> values) {
-		myGlobalStatus.addRequirement(names, values);
-	}
+
 
 }

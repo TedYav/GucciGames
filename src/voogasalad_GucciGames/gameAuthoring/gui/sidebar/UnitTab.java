@@ -6,12 +6,16 @@ import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import voogasalad_GucciGames.gameAuthoring.IGuiGaeController;
 import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.UnitMaker;
+import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.ISaveCustomObj;
+
 
 
 public class UnitTab extends AbstractTab {
+	private ISaveCustomObj saveCustomObj;
 	
-	public UnitTab(IGuiGaeController controller) {
+	public UnitTab(IGuiGaeController controller, ISaveCustomObj saveCustomObj) {
 		super(controller);
+		this.saveCustomObj = saveCustomObj;
 		setText("Units");
 		allImagePaths = Arrays.asList("voogasalad_GucciGames/graphics/fire.png", "voogasalad_GucciGames/graphics/water.png");
 		addImages();

@@ -1,0 +1,21 @@
+
+.title{
+	-fx-font: bold 200pt "Arial";	
+}
+
+.root{
+	-fx-background-radius: 5.0;
+	-fx-padding: 10;
+	-fx-spacing: 15;
+	-fx-background: #00aa33;
+}
+
+.leftvbox{
+	-fx-font: bold 20pt "Arial";
+	-fx-background-color: #2f4f4f;
+}
+
+.mainmap{
+	-fx-stroke-width: 4;
+	-fx-stroke: #404040;
+}

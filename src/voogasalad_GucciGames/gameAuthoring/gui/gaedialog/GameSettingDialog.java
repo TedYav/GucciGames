@@ -1,9 +1,12 @@
 package voogasalad_GucciGames.gameAuthoring.gui.gaedialog;
 import java.util.Properties;
 
+import voogasalad_GucciGames.gameAuthoring.IDialogGaeController;
 import voogasalad_GucciGames.gameAuthoring.guiexceptions.InvalidInputException;
 import voogasalad_GucciGames.gameAuthoring.properties.GameSettingsProperty;
+import voogasalad_GucciGames.gameAuthoring.properties.MapObjectProperty;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
@@ -16,10 +19,13 @@ public class GameSettingDialog extends GaeDialog {
 	private Stage gameSettingDialog = new Stage();
 	private VBox myContent = new VBox();
 	private Properties prop;
-	private GameSettingsProperty gameSettingsProperty = new GameSettingsProperty();
+	private MapObjectProperty gameSettingsProperty = new MapObjectProperty();
+	private IDialogGaeController dialogGaeController;
 	private ISaveObjProperty saveObjProperty;
 	
-	public GameSettingDialog(){
+	
+	public GameSettingDialog(IDialogGaeController dialogGaeController){
+		this.dialogGaeController = dialogGaeController;
 		prop = loadProperties("dialogproperties/gamedialog.properties");	
 		saveObjProperty = (propName, prop) -> {
 			try {
@@ -30,7 +36,8 @@ public class GameSettingDialog extends GaeDialog {
 			}
 		};
 		myContent = initializeDialog();
-		myContent.getChildren().add(initializeControl(prop, "hbox-control"));
+		myContent.getChildren().add(initializeControl(prop, "hbox-control", 
+				dialogGaeController, gameSettingsProperty));
 		Scene gameSettingDialogScene = new Scene(myContent, 500, 500);
 		gameSettingDialogScene.getStylesheets().add("voogasalad_GucciGames/gameAuthoring/gui/gaedialog/stylesheets/dialogstylesheet.css");
 		gameSettingDialog.setScene(gameSettingDialogScene);		
@@ -43,18 +50,21 @@ public class GameSettingDialog extends GaeDialog {
 		VBox content = new VBox();				
 		Text titleElement = new Text();
 		titleElement.setText(prop.getProperty("title"));
-		TextField nameTextField = new TextField();		
+		TextField nameTextField = new TextField();	
+		nameTextField.textProperty().addListener((observable, oldValue, newValue) -> {
+			saveObjProperty.saveObjProperty(prop.getProperty("title"), newValue);		
+		});
 		HBox nameElement = createElement(prop.getProperty("name"), nameTextField, "field-title-element");
 		HBox mapSizeElement = createElement(prop.getProperty("mapsize"), 
-				makeDropDownList(prop, "mapsize_items"), "field-title-element");
+				makeDropDownList(prop,"mapsize", "mapsize_items", saveObjProperty), "field-title-element");
 		HBox fogOfWarElement = createElement(prop.getProperty("fogofwar"),
-				makeDropDownList(prop, "fogofwar_items"), "field-title-element");
+				makeDropDownList(prop, "fogofwar", "fogofwar_items", saveObjProperty), "field-title-element");
 		HBox miniMapElement = createElement(prop.getProperty("minimap"),
 				makeRadioButtons(prop, "minimap", "minimap_items",saveObjProperty), "field-title-element");
 		HBox zoomableElement = createElement(prop.getProperty("zoomable"),
 				makeRadioButtons(prop, "zoomable","zoomable_items" , saveObjProperty), "field-title-element");
 		HBox numPlayerElement = createElement(prop.getProperty("numplayer"),
-				makeScrollBar(prop, "player_min", "player_max", "player_increment"), "field-title-element");		
+				makeScrollBar(prop, "numplayer","player_min", "player_max", "player_increment", saveObjProperty), "field-title-element");
 		content.getChildren().addAll(titleElement, nameElement, mapSizeElement, fogOfWarElement,
 				miniMapElement, zoomableElement, numPlayerElement);
 		content.getChildren().forEach(hbox->hbox.setId("hbox-element"));
