@@ -25,3 +25,11 @@
 	-fx-background-color: #2f4f4f;
 	
 }
+
+
+.menubar{
+	-fx-background-color: #2f4f4f;
+}
+.dropdown{
+	-fx-font: bold 14pt "Arial";
+}
