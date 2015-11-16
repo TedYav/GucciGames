@@ -2,7 +2,7 @@ package voogasalad_GucciGames.gameplayer.controller;
 
 import java.util.List;
 import java.util.Map;
-
+import java.util.Observer;
 import javafx.scene.image.Image;
 import voogasalad_GucciGames.gameplayer.windows.mainwindow.map.MapInterface;
 import voogasalad_GucciGames.gameplayer.windows.mainwindow.map.cell.MapCell;
@@ -19,6 +19,7 @@ public interface GameControllerInterface{
 	
 	public void setActiveMapObject(PlayerMapObjectInterface mapObj);
 	public PlayerMapObjectInterface getActiveMapObject();
+	public void addMOObserver(Observer o);
 	
 	public void setActionInProgress(String action);
 	public String getActionInProgress();

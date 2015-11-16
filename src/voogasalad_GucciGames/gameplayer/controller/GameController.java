@@ -1,8 +1,9 @@
 package voogasalad_GucciGames.gameplayer.controller;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
-
+import java.util.Observer;
 import javafx.scene.image.Image;
 import voogasalad_GucciGames.gameplayer.datastructures.ImageDatabase;
 import voogasalad_GucciGames.gameplayer.windows.mainwindow.map.MapInterface;
@@ -16,11 +17,12 @@ public class GameController implements GameControllerInterface {
 	private MapInterface myMap;
 	private ImageDatabase myImageDatabase;
 	private PlayerMapObjectInterface activeMapObject;
-	
+	private List<Observer> activeMOObservers;
 	
 	public GameController(GameEngineToGamePlayerInterface engine){
 		myEngine = engine;
 		myImageDatabase = new ImageDatabase();
+		activeMOObservers=new ArrayList<Observer>();
 	}
 	
 	@Override
@@ -83,8 +85,19 @@ public class GameController implements GameControllerInterface {
     @Override
     public void setActiveMapObject (PlayerMapObjectInterface mapObj) {
         activeMapObject=mapObj;
+        notifyMOObservers();
     }
     public PlayerMapObjectInterface getActiveMapObject() {
         return activeMapObject;
+    }
+
+    @Override
+    public void addMOObserver (Observer o) {
+        activeMOObservers.add(o);
+    }
+    private void notifyMOObservers() {
+        for (Observer o: activeMOObservers) {
+            o.update(null, activeMapObject);
+        }
     }
 }

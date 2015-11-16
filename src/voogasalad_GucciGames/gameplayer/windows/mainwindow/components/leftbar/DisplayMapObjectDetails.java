@@ -17,7 +17,7 @@ import javafx.scene.layout.VBox;
 import voogasalad_GucciGames.gameplayer.windows.mainwindow.map.MapInterface;
 import voogasalad_GucciGames.gameplayer.windows.mainwindow.map.cell.contents.PlayerMapObjectInterface;
 
-public class DisplayMapObjectDetails  implements DisplayComponent, ListChangeListener<PlayerMapObjectInterface>{
+public class DisplayMapObjectDetails  implements DisplayComponent, ListChangeListener<PlayerMapObjectInterface>, Observer{
     private ListView<String> list;
     private MapInterface myMap;
     private List<String> temp;
@@ -35,6 +35,8 @@ public class DisplayMapObjectDetails  implements DisplayComponent, ListChangeLis
         display = new VBox();
         display.getChildren().add(imageDisplay.getNodeToDraw());
         display.getChildren().add(list);
+        
+        myController.addMOObserver(this);
     }
     public Node getNodeToDraw() {
         return display;
@@ -55,6 +57,17 @@ public class DisplayMapObjectDetails  implements DisplayComponent, ListChangeLis
                 mapObjectsOnCell.add(o);
             }
             imageDisplay.updateImages();
+        }
+    }
+    @Override
+    public void update (Observable o, Object arg) {
+        System.out.println("ho");
+        if (arg!=null && arg.getClass().equals(PlayerMapObjectInterface.class)) {
+            PlayerMapObjectInterface mapObj=(PlayerMapObjectInterface)arg;
+            List<String> list = mapObj.getAttributes();
+            for (String s: list) {
+                temp.add(s);
+            }
         }
     }
 }
