@@ -36,7 +36,7 @@ public abstract class NewObjectMaker extends GaeDialog{
 		 titleTextElement.setId("title");
 		 TextField nameTextField = new TextField();	
 		 nameTextField.textProperty().addListener((observable, oldValue, newValue)->{
-			 System.out.println("changed");
+			 
 			 saveObjProperty.saveObjProperty("name", newValue);
 		 });
 
@@ -71,8 +71,7 @@ public abstract class NewObjectMaker extends GaeDialog{
 	 protected Button createAddButton(Properties prop, String btnKey, String headerKey, GroovyTabPane groovyTabPane){
 		 Button addBtn = new Button(prop.getProperty(btnKey));
 		 addBtn.setOnAction(e -> {
-			 groovyTabPane.addGroovyTab();
-			 
+			 groovyTabPane.addGroovyTab();			 
 		 });
 		 return addBtn;		 
 	 }

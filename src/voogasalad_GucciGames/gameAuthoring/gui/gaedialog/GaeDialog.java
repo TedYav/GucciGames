@@ -128,12 +128,26 @@ abstract public class GaeDialog{
 	}
 	
 
-	protected ScrollBar makeScrollBar(Properties prop, String minKey, String maxKey, String incrementKey){
+	protected HBox makeScrollBar(Properties prop, String propKey, String minKey, String maxKey, String incrementKey, 
+			ISaveObjProperty saveObjProperty){
+		HBox hbox = new HBox();
 		ScrollBar scrollBar = new ScrollBar();
+		Text numSpriteText = new Text(Double.toString(scrollBar.getValue()));
 		scrollBar.setMin(Double.parseDouble(prop.getProperty(minKey)));
 		scrollBar.setMax(Double.parseDouble(prop.getProperty(maxKey)));
-		scrollBar.setUnitIncrement(Double.parseDouble(prop.getProperty(incrementKey)));
-		return scrollBar;
+		scrollBar.setUnitIncrement(1);
+		scrollBar.valueProperty().addListener(new ChangeListener<Number>() {
+			@Override
+			public void changed(ObservableValue<? extends Number> observable,
+					Number oldValue, Number newValue) {
+				// TODO Auto-generated method stub
+				numSpriteText.setText(newValue.intValue()+"");
+				saveObjProperty.saveObjProperty(propKey, newValue.intValue()+"");				
+			}			
+		});
+		hbox.getChildren().addAll(scrollBar, numSpriteText);
+		hbox.setId("hbox-content");
+		return hbox;
 	}
 	
 	protected HBox makeBrowseElement(Properties prop, String browseKey, String fileChooserKey, ISaveObjProperty saveObjProperty){

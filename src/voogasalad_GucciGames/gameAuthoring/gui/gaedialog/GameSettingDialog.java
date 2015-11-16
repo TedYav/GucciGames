@@ -50,7 +50,10 @@ public class GameSettingDialog extends GaeDialog {
 		VBox content = new VBox();				
 		Text titleElement = new Text();
 		titleElement.setText(prop.getProperty("title"));
-		TextField nameTextField = new TextField();		
+		TextField nameTextField = new TextField();	
+		nameTextField.textProperty().addListener((observable, oldValue, newValue) -> {
+			saveObjProperty.saveObjProperty(prop.getProperty("title"), newValue);		
+		});
 		HBox nameElement = createElement(prop.getProperty("name"), nameTextField, "field-title-element");
 		HBox mapSizeElement = createElement(prop.getProperty("mapsize"), 
 				makeDropDownList(prop,"mapsize", "mapsize_items", saveObjProperty), "field-title-element");
@@ -61,7 +64,7 @@ public class GameSettingDialog extends GaeDialog {
 		HBox zoomableElement = createElement(prop.getProperty("zoomable"),
 				makeRadioButtons(prop, "zoomable","zoomable_items" , saveObjProperty), "field-title-element");
 		HBox numPlayerElement = createElement(prop.getProperty("numplayer"),
-				makeScrollBar(prop, "player_min", "player_max", "player_increment"), "field-title-element");
+				makeScrollBar(prop, "numplayer","player_min", "player_max", "player_increment", saveObjProperty), "field-title-element");
 		content.getChildren().addAll(titleElement, nameElement, mapSizeElement, fogOfWarElement,
 				miniMapElement, zoomableElement, numPlayerElement);
 		content.getChildren().forEach(hbox->hbox.setId("hbox-element"));
