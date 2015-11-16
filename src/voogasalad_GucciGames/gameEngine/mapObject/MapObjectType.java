@@ -31,6 +31,7 @@ public class MapObjectType {
 		// TreeMap so alphabetized when giving to front end
 		myCharacteristics = new TreeMap<String,  AMapObjectCharacteristic>();
 		myAbilities = new TreeMap<String, IMapObjectAction>();
+		myActionTargets = new TreeMap<String,IMapObjectActionTarget>();
 		
 	}
 	
@@ -82,5 +83,16 @@ public class MapObjectType {
 		return this.myAbilities.containsKey(name);
 	}
 	
+	public void addActionTarget(String name, IMapObjectActionTarget func){
+		this.myActionTargets.put(name, func);
+	}
+	
+	public IMapObjectActionTarget getActionTarget(String name){
+		return this.myActionTargets.get(name);
+	}
+	
+	public boolean hasActionTarget(String name){
+		return this.myActionTargets.containsKey(name);
+	}
 	
 }
