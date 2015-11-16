@@ -5,8 +5,6 @@ import voogasalad_GucciGames.gameEngine.targetCoordinate.ATargetCoordinate;
 
 public interface IMapObjectActionTarget {
 
-	
 	public ATargetCoordinate coordinatesToAct(CommunicationParams params);
-	
 	
 }

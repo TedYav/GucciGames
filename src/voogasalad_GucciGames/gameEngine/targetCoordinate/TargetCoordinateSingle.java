@@ -13,4 +13,10 @@ public class TargetCoordinateSingle extends ATargetCoordinate{
 		// TODO Auto-generated method stub
 		return new TargetCoordinateSingle(centerX, centerY);
 	}
+	
+	@Override
+	public boolean equals(Object o){
+		TargetCoordinateSingle other = (TargetCoordinateSingle) o;
+		return (this.centerX == other.centerX) && (this.centerY == other.centerY); 
+	}
 }
