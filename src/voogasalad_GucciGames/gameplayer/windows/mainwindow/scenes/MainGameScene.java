@@ -1,6 +1,7 @@
 package voogasalad_GucciGames.gameplayer.windows.mainwindow.scenes;
 
 import java.util.ResourceBundle;
+
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.input.KeyEvent;
@@ -15,9 +16,10 @@ import voogasalad_GucciGames.gameplayer.windows.GameSceneManager;
 import voogasalad_GucciGames.gameplayer.windows.GameWindow;
 import voogasalad_GucciGames.gameplayer.windows.GameWindowInterface;
 import voogasalad_GucciGames.gameplayer.windows.mainwindow.GameKeyHandler;
+import voogasalad_GucciGames.gameplayer.windows.mainwindow.components.leftbar.LeftBar;
+import voogasalad_GucciGames.gameplayer.windows.mainwindow.components.rightbar.RightBar;
 import voogasalad_GucciGames.gameplayer.windows.mainwindow.map.MapInterface;
 import voogasalad_GucciGames.gameplayer.windows.mainwindow.map.main.MainMap;
-import voogasalad_GucciGames.gameplayer.windows.mainwindow.menubar.leftbar.LeftBar;
 
 public class MainGameScene extends GameScene {
 
@@ -27,6 +29,7 @@ public class MainGameScene extends GameScene {
 	private BorderPane myPane;
 	
 	private LeftBar myLeftBar;
+	private RightBar myRightBar;
 	private MainMap myMap;
 	
 	private GameKeyHandler myKeyHandler;
@@ -69,11 +72,15 @@ public class MainGameScene extends GameScene {
 	}
 	
 	private void showGame(){
+		
 	    myMap = new MainMap(this, myController);
 	    myPane.setCenter(myMap.getParent());
 	
 	    myLeftBar = new LeftBar(this, myController, myConfig);
 	    myPane.setLeft(myLeftBar.getParent());
+	    
+	    myRightBar = new RightBar(this, myController, myConfig);
+	    myPane.setRight(myRightBar.getParent());
 
 	    enableEventHandling();
 	    enableObservers();
