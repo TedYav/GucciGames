@@ -3,6 +3,7 @@ import java.util.Map;
 import java.util.Properties;
 
 import voogasalad_GucciGames.gameAuthoring.guiexceptions.InvalidInputException;
+import voogasalad_GucciGames.gameAuthoring.properties.MapObjectProperty;
 import voogasalad_GucciGames.gameAuthoring.properties.Property;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
@@ -22,18 +23,15 @@ import javafx.scene.text.Text;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 
-public abstract class NewObjectMaker extends GaeDialog{
-	
+public abstract class NewObjectMaker extends GaeDialog{	
 	public NewObjectMaker(){
-		 super();
-
-		 
-	 }
-	 
+		 super();		 
+	 }	 
 	 protected VBox initDefaultContentForObjMaker(Properties prop, VBox customContent,
-			 GroovyTabPane groovyTabPane, String styleId, ISaveObjProperty saveObjProperty){
-		 VBox content = new VBox();
+			 GroovyTabPane groovyTabPane, String styleId, ISaveObjProperty saveObjProperty, 
+			 ISaveCustomObj saveCustomObject, MapObjectProperty property){
 		 
+		 VBox content = new VBox();	 
 		 Text titleTextElement = new Text(prop.getProperty("title"));
 		 titleTextElement.setId("title");
 		 TextField nameTextField = new TextField();	
@@ -45,10 +43,19 @@ public abstract class NewObjectMaker extends GaeDialog{
 		 HBox nameElement = createElement(prop.getProperty("name"), 
 				 nameTextField, "hbox-element");
 		 HBox imageElement = createElement(prop.getProperty("image"),
-				 makeBrowseElement(prop, "browse", "filechoosertitle", saveObjProperty), "hbox-element");	 
-		 VBox tabPaneElements = groovyTabPane.getContent();
+				 makeBrowseElement(prop, "browse", "filechoosertitle", saveObjProperty), "hbox-element");		 
+		 VBox tabPaneElements = groovyTabPane.getContent();		 
 		 Button saveCustomObjBtn = new Button(prop.getProperty("savebtn"));
-		 saveCustomObjBtn.setOnAction(e -> {/*TODO*/} );
+		 
+		 if(saveCustomObject == null){
+			 System.out.println("save Custom Obj null");
+		 }
+		 
+		 saveCustomObjBtn.setOnAction(e -> {
+			 ISaveCustomObj saveCustomObj = null;
+			 ISaveCustomObj saveCustomO = this.setSaveCustomObj(saveCustomObj);
+			 saveCustomO.saveCustomObj(property);});
+		 
 		 content.getChildren().addAll(titleTextElement, nameElement, imageElement, 
 				 customContent, tabPaneElements, saveCustomObjBtn);
 		 content.setId(styleId);
@@ -70,7 +77,7 @@ public abstract class NewObjectMaker extends GaeDialog{
 		 return addBtn;		 
 	 }
 	 
-	 protected ISaveObjProperty setSavePropertyFunction(Property property, ISaveObjProperty saveObjProperty){
+	 protected ISaveObjProperty setSavePropertyFunction(MapObjectProperty property, ISaveObjProperty saveObjProperty){
 			saveObjProperty = (propName, prop) -> {
 				try {
 					property.addPropertyElement(propName, prop);
@@ -93,6 +100,13 @@ public abstract class NewObjectMaker extends GaeDialog{
 		 
 	 }
 	 
+	 protected ISaveCustomObj setSaveCustomObj(ISaveCustomObj saveCustomObject){
+		 saveCustomObject = p -> {System.out.println("here");};
+		 return saveCustomObject;
+	 }
+	 
+	 
 	 protected abstract VBox initializeCustomContent();
+	 
 
 }

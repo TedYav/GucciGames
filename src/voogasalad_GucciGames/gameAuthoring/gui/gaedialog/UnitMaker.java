@@ -4,6 +4,7 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Properties;
 
+import voogasalad_GucciGames.gameAuthoring.properties.MapObjectProperty;
 import voogasalad_GucciGames.gameAuthoring.properties.TileProperty;
 import voogasalad_GucciGames.gameAuthoring.properties.UnitProperty;
 import javafx.scene.Scene;
@@ -20,7 +21,7 @@ public class UnitMaker extends NewObjectMaker {
 	private Stage unitMakerDialog = new Stage();
 	private Map<Integer, String> groovyBuffer = new HashMap<Integer, String>();
 	private Properties prop;
-	private UnitProperty unitProperty = new UnitProperty();
+	private MapObjectProperty unitProperty = new MapObjectProperty();
 	private ISaveGroovy saveGroovy;
 	private ISaveObjProperty saveObjProperty;
 	private Scene scene;
@@ -50,7 +51,7 @@ public class UnitMaker extends NewObjectMaker {
 		// TODO Auto-generated method stub
 		VBox content = new VBox();
 		content = super.initDefaultContentForObjMaker(prop, customProperties, groovyTabPane, 
-				"vbox-element", saveObjProperty);
+				"vbox-element", saveObjProperty, null/*TODO: pass saveCustomObj */, unitProperty);
 		return content;
 	}
 

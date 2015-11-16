@@ -1,4 +1,6 @@
 package voogasalad_GucciGames.gameAuthoring;
+import voogasalad_GucciGames.gameAuthoring.properties.MapObjectProperty;
+import voogasalad_GucciGames.gameAuthoring.properties.Property;
 
 import java.util.List;
 import java.util.Map;
@@ -7,7 +9,7 @@ import javafx.collections.ObservableList;
 import voogasalad_GucciGames.gameEngine.mapObject.MapObject;
 import voogasalad_GucciGames.gameEngine.mapObject.MapObjectType;
 
-public interface IGuiGaeController {
+public interface IGuiGaeController extends IDialogGaeController {
 	/**
 	 * Add Map Object
 	 * @param mapObj
@@ -21,6 +23,9 @@ public interface IGuiGaeController {
     public void createCustomTileType(Map<String,String> m);
     
     public void createCustomUnitType(Map<String,String> m);
+    
+    @Override
+    public void createCustomMapObject(MapObjectProperty p);
 
     public ObservableList<MapObjectType> getImmutableTileTypes();
 

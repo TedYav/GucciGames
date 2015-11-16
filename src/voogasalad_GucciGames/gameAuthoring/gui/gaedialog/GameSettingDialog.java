@@ -1,9 +1,12 @@
 package voogasalad_GucciGames.gameAuthoring.gui.gaedialog;
 import java.util.Properties;
 
+import voogasalad_GucciGames.gameAuthoring.IDialogGaeController;
 import voogasalad_GucciGames.gameAuthoring.guiexceptions.InvalidInputException;
 import voogasalad_GucciGames.gameAuthoring.properties.GameSettingsProperty;
+import voogasalad_GucciGames.gameAuthoring.properties.MapObjectProperty;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
@@ -17,9 +20,12 @@ public class GameSettingDialog extends GaeDialog {
 	private VBox myContent = new VBox();
 	private Properties prop;
 	private GameSettingsProperty gameSettingsProperty = new GameSettingsProperty();
+	private IDialogGaeController dialogGaeController;
 	private ISaveObjProperty saveObjProperty;
+	private MapObjectProperty property;
 	
-	public GameSettingDialog(){
+	public GameSettingDialog(IDialogGaeController dialogGaeController){
+		this.dialogGaeController = dialogGaeController;
 		prop = loadProperties("dialogproperties/gamedialog.properties");	
 		saveObjProperty = (propName, prop) -> {
 			try {
@@ -54,9 +60,11 @@ public class GameSettingDialog extends GaeDialog {
 		HBox zoomableElement = createElement(prop.getProperty("zoomable"),
 				makeRadioButtons(prop, "zoomable","zoomable_items" , saveObjProperty), "field-title-element");
 		HBox numPlayerElement = createElement(prop.getProperty("numplayer"),
-				makeScrollBar(prop, "player_min", "player_max", "player_increment"), "field-title-element");		
+				makeScrollBar(prop, "player_min", "player_max", "player_increment"), "field-title-element");
+		Button saveBtn = new Button("Save");
+		saveBtn.setOnAction(e -> this.dialogGaeController.createCustomMapObject(property));
 		content.getChildren().addAll(titleElement, nameElement, mapSizeElement, fogOfWarElement,
-				miniMapElement, zoomableElement, numPlayerElement);
+				miniMapElement, zoomableElement, numPlayerElement, saveBtn);
 		content.getChildren().forEach(hbox->hbox.setId("hbox-element"));
 		titleElement.setId("title");
 		content.setId("vbox-element");	

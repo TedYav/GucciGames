@@ -7,6 +7,8 @@ import javafx.collections.ObservableList;
 import javafx.stage.Stage;
 import voogasalad_GucciGames.gameAuthoring.gui.GAEGui;
 import voogasalad_GucciGames.gameAuthoring.model.IGAEModel;
+import voogasalad_GucciGames.gameAuthoring.properties.MapObjectProperty;
+import voogasalad_GucciGames.gameAuthoring.properties.Property;
 import voogasalad_GucciGames.gameEngine.mapObject.MapObject;
 import voogasalad_GucciGames.gameEngine.mapObject.MapObjectType;
 
@@ -70,4 +72,20 @@ public class GaeController implements IGuiGaeController, IModelGaeController{
     public void setMapHeight (double y) {
         model.setMapHeight(y);
     }
+
+    
+	@Override
+	/**
+	 * create custom map object from a property object
+	 * Access type via type key
+	 */
+	public void createCustomMapObject(MapObjectProperty p) {
+		// TODO Auto-generated method stub
+		// Debug:
+		
+		System.out.println("saving");
+		p.printProperty();
+		
+		
+	}
 }
