@@ -1,5 +1,7 @@
 package voogasalad_GucciGames.gameplayer.windows.mainwindow.map.cell;
 
+import javafx.geometry.Point2D;
+
 public interface MapCellInterface {
 
 	public void activate();
