@@ -2,6 +2,7 @@ package voogasalad_GucciGames.gameplayer.windows.mainwindow.map.cell.contents;
 
 import java.util.List;
 
+// TODO: add getCoordnate(), getPlayer(), etc
 public interface PlayerMapObjectInterface {
         public List<String> getAttributes(); //i.e. HP=100, Owning Player=1, ...
 
@@ -10,6 +11,10 @@ public interface PlayerMapObjectInterface {
 	public String getImageURI();
 	
 	//public int getVisibility();
+	
+	public default int getLayer(){
+		return 0;
+	}
 	
 	public MapObjectBasicType getBasicType();
 	

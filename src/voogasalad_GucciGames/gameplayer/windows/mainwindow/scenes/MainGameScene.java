@@ -8,6 +8,7 @@ import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.text.Text;
+import voogasalad_GucciGames.gameplayer.controller.GameControllerInterface;
 import voogasalad_GucciGames.gameplayer.controller.GameEngineToGamePlayerInterface;
 import voogasalad_GucciGames.gameplayer.gameloader.GameLoader;
 import voogasalad_GucciGames.gameplayer.windows.GameScene;
@@ -20,9 +21,9 @@ import voogasalad_GucciGames.gameplayer.windows.mainwindow.components.rightbar.R
 import voogasalad_GucciGames.gameplayer.windows.mainwindow.map.MapInterface;
 import voogasalad_GucciGames.gameplayer.windows.mainwindow.map.main.MainMap;
 
-public class MainGameScene extends GameScene implements GameSceneController{
+public class MainGameScene extends GameScene {
 
-	private GameEngineToGamePlayerInterface myGame;
+	private GameControllerInterface myController;
 	private Scene myCurrentScene;
 	
 	private BorderPane myPane;
@@ -38,8 +39,7 @@ public class MainGameScene extends GameScene implements GameSceneController{
 	}
 	
 	private void loadGameData(){
-		// do a bunch of stuff with myLoader
-		myGame = myManager.getLoader().getCurrentGame();
+		myController = myManager.getLoader().getController();
 	}
 
 	@Override
@@ -55,6 +55,7 @@ public class MainGameScene extends GameScene implements GameSceneController{
 		 */
 		
 		initializePane();
+		loadGameData();
 		showGame();
 		myWindow.loadScene(myScene);
 		
@@ -71,12 +72,14 @@ public class MainGameScene extends GameScene implements GameSceneController{
 	}
 	
 	private void showGame(){
-	    myLeftBar = new LeftBar(this, myGame, null, myConfig); 
-	    myMap = new MainMap(this, myGame);
+		
+	    myMap = new MainMap(this, myController);
 	    myPane.setCenter(myMap.getParent());
+	
+	    myLeftBar = new LeftBar(this, myController, myConfig);
 	    myPane.setLeft(myLeftBar.getParent());
 	    
-	    myRightBar = new RightBar(this, myGame, myConfig);
+	    myRightBar = new RightBar(this, myController, myConfig);
 	    myPane.setRight(myRightBar.getParent());
 
 	    enableEventHandling();
@@ -85,17 +88,12 @@ public class MainGameScene extends GameScene implements GameSceneController{
 	}
 
 	private void enableEventHandling(){
-	    myKeyHandler = new GameKeyHandler(this);
+	    myKeyHandler = new GameKeyHandler(myController);
 	    myScene.addEventFilter(KeyEvent.KEY_PRESSED, (e)->myKeyHandler.handle(e));
 	}
 	
 	private void enableObservers() {
 		
-	}
-
-	@Override
-	public MapInterface getMap() {
-		return myMap;
 	}
 	
 }
