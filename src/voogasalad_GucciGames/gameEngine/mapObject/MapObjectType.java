@@ -1,15 +1,17 @@
 package voogasalad_GucciGames.gameEngine.mapObject;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.TreeMap;
 
-import voogasalad_GucciGames.gameEngine.targetCoordinate.ATargetCoordinate;
+public class MapObjectType{
 
-public abstract class MapObjectType {
-
-	
+	/**
+	 * 
+	 */
+//	private static final long serialVersionUID = 1L;
 	private String myName;
 	private String myImagePath;
 	

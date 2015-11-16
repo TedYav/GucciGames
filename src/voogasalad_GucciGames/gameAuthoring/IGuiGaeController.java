@@ -22,16 +22,21 @@ public interface IGuiGaeController {
     
     public void createCustomUnitType(Map<String,String> m);
 
-    public ObservableList<MapObjectType> getImmutableTileTypes();
+    public List<MapObjectType> getImmutableTileTypes();
 
-    public ObservableList<MapObjectType> getImmutableUnitTypes();
+    public List<MapObjectType> getImmutableUnitTypes();
 
-    public ObservableList<MapObjectType> getTileTypes();
+    public List<MapObjectType> getTileTypes();
 
-    public ObservableList<MapObjectType> getUnitTypes();
+    public List<MapObjectType> getUnitTypes();
 
     public void saveToXML();
     
     public void setMapWidth(double x);
+    
     public void setMapHeight(double y);
+    
+    public void setMapObjectTypeToMap(MapObjectType mapType);
+
+	public MapObjectType getMapObjectTypeToMap();
 }
