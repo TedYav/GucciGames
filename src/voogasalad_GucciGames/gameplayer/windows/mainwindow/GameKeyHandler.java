@@ -3,14 +3,15 @@ package voogasalad_GucciGames.gameplayer.windows.mainwindow;
 import javafx.event.Event;
 import javafx.event.EventHandler;
 import javafx.scene.input.KeyEvent;
+import voogasalad_GucciGames.gameplayer.controller.GameControllerInterface;
 import voogasalad_GucciGames.gameplayer.windows.mainwindow.scenes.GameSceneController;
 
 public class GameKeyHandler implements EventHandler<KeyEvent> {
 
-	private GameSceneController myScene;
+	private GameControllerInterface myController;
 	
-	public GameKeyHandler(GameSceneController scene){
-		myScene = scene;
+	public GameKeyHandler(GameControllerInterface controller){
+		myController = controller;
 	}
 	
 	@Override
@@ -20,7 +21,7 @@ public class GameKeyHandler implements EventHandler<KeyEvent> {
 		case LEFT:
 		case UP:
 		case DOWN:
-			myScene.getMap().move(e.getCode());
+			myController.getMap().move(e.getCode());
 			break;
 		default:
 			System.out.println(e.getCode());
