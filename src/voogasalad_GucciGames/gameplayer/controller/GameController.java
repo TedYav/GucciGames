@@ -8,12 +8,15 @@ import voogasalad_GucciGames.gameplayer.datastructures.ImageDatabase;
 import voogasalad_GucciGames.gameplayer.windows.mainwindow.map.MapInterface;
 import voogasalad_GucciGames.gameplayer.windows.mainwindow.map.cell.MapCell;
 import voogasalad_GucciGames.gameplayer.windows.mainwindow.map.cell.contents.CellUnit;
+import voogasalad_GucciGames.gameplayer.windows.mainwindow.map.cell.contents.PlayerMapObjectInterface;
 
 public class GameController implements GameControllerInterface {
 
 	private GameEngineToGamePlayerInterface myEngine;
 	private MapInterface myMap;
 	private ImageDatabase myImageDatabase;
+	private PlayerMapObjectInterface activeMapObject;
+	
 	
 	public GameController(GameEngineToGamePlayerInterface engine){
 		myEngine = engine;
@@ -77,4 +80,11 @@ public class GameController implements GameControllerInterface {
 		return myImageDatabase.request(imageURI);
 	}
 
+    @Override
+    public void setActiveMapObject (PlayerMapObjectInterface mapObj) {
+        activeMapObject=mapObj;
+    }
+    public PlayerMapObjectInterface getActiveMapObject() {
+        return activeMapObject;
+    }
 }

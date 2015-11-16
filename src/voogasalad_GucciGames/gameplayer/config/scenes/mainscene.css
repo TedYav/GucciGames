@@ -5,9 +5,9 @@
 
 .root{
 	-fx-background-radius: 5.0;
-	-fx-padding: 10;
+	-fx-padding: 0;
 	-fx-spacing: 15;
-	-fx-background: #00aa33;
+	-fx-background: #000000;
 }
 
 .leftvbox{
@@ -31,7 +31,7 @@
 
 
 .menubar{
-	-fx-background-color: #2f4f4f;
+	-fx-background-color: #1f2f2f;
 }
 .dropdown{
 	-fx-font: bold 14pt "Palatino Linotype";

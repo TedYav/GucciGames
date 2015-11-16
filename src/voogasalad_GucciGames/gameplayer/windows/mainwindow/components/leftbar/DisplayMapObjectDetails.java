@@ -21,7 +21,7 @@ public class DisplayMapObjectDetails  implements DisplayComponent, ListChangeLis
     private ListView<String> list;
     private MapInterface myMap;
     private List<String> temp;
-    private List<String> imageUrls;
+    private List<PlayerMapObjectInterface> mapObjectsOnCell;
     private DisplayMapObjectImage imageDisplay;
     private VBox display;
     private GameControllerInterface myController;
@@ -30,8 +30,8 @@ public class DisplayMapObjectDetails  implements DisplayComponent, ListChangeLis
         temp.add("fasdf");
         list=new ListView<String>(FXCollections.observableList(temp));
         myController=controller;
-        imageUrls=new ArrayList<String>();
-        imageDisplay = new DisplayMapObjectImage(imageUrls, myController);
+        mapObjectsOnCell=new ArrayList<PlayerMapObjectInterface>();
+        imageDisplay = new DisplayMapObjectImage(mapObjectsOnCell, myController);
         display = new VBox();
         display.getChildren().add(imageDisplay.getNodeToDraw());
         display.getChildren().add(list);
@@ -45,14 +45,14 @@ public class DisplayMapObjectDetails  implements DisplayComponent, ListChangeLis
         while (c.next()) {
             List<PlayerMapObjectInterface> list = c.getList();
             temp.clear();
-            imageUrls.clear();
+            mapObjectsOnCell.clear();
             for (PlayerMapObjectInterface o: list){
                 temp.add(o.getImageURI());
                 contents=o.getActionNames();
                 for (String s: contents) {
                     temp.add(s);
                 }
-                imageUrls.add(o.getImageURI());
+                mapObjectsOnCell.add(o);
             }
             imageDisplay.updateImages();
         }
