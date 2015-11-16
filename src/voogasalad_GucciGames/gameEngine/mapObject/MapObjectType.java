@@ -8,18 +8,18 @@ import java.util.TreeMap;
 
 public class MapObjectType{
 
-	/**
-	 * 
-	 */
-//	private static final long serialVersionUID = 1L;
 	private String myName;
 	private String myImagePath;
 	
 	//sizes
 	
-	protected Map<String, AMapObjectCharacteristic> myCharacteristics; //test
-	protected Map<String, IMapObjectAction> myAbilities; //test
-
+	private  Map<String, AMapObjectCharacteristic> myCharacteristics; //test
+	private Map<String, IMapObjectAction> myAbilities; //test
+	private Map<String, IMapObjectActionTarget> myActionTargets;
+	
+	private Map<String, Integer> allowableMoves;
+	private Map<String, Integer> movesDoneSoFar;
+	
 	
 
 	public MapObjectType(String name, String imagePath){

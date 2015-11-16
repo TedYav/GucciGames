@@ -2,7 +2,9 @@ package voogasalad_GucciGames.gameAuthoring.gui.gaedialog;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Properties;
+
 import voogasalad_GucciGames.gameAuthoring.guiexceptions.InvalidInputException;
+import voogasalad_GucciGames.gameAuthoring.properties.MapObjectProperty;
 import voogasalad_GucciGames.gameAuthoring.properties.TileProperty;
 import javafx.scene.Scene;
 import javafx.scene.layout.HBox;
@@ -20,16 +22,18 @@ public class TileMaker extends NewObjectMaker {
 	private Stage tileMakerDialog = new Stage();
 	private Map<Integer, String> groovyBuffer = new HashMap<Integer, String>();
 	private Properties prop;
-	private TileProperty tileProperty = new TileProperty();
+	private MapObjectProperty tileProperty = new MapObjectProperty();
 	private ISaveGroovy saveGroovy;
 	private ISaveObjProperty saveObjProperty;
-	private Scene scene;
+	private ISaveCustomObj saveCustomObject;
+
 	
 	public TileMaker(){
 		super();
 		prop = loadProperties("dialogproperties/tiledialogproperties.properties");	
 		saveGroovy = super.setSaveGroovyFunctions(groovyBuffer, saveGroovy);
-		saveObjProperty = super.setSavePropertyFunction(tileProperty, saveObjProperty);		
+		saveObjProperty = super.setSavePropertyFunction(tileProperty, saveObjProperty);
+		this.saveCustomObject = super.setSaveCustomObj(saveCustomObject);
 		groovyTabPane = new GroovyTabPane(prop, saveGroovy);
 		myContent = initializeDialog(initializeCustomContent());
 		Scene tileDialogScene = new Scene(myContent, WIDTH, HEIGHT);
@@ -51,11 +55,11 @@ public class TileMaker extends NewObjectMaker {
 	
 
 	@Override
-	protected VBox initializeDialog(VBox customProperties) {
+	protected VBox initializeDialog(VBox customProperties ) {
 		// TODO Auto-generated method stub
 		VBox content = new VBox();
-		content = super.initDefaultContentForObjMaker(prop, customProperties, groovyTabPane, 
-				"vbox-element", saveObjProperty);
+		content = initDefaultContentForObjMaker(prop, customProperties, groovyTabPane, 
+				"vbox-element", saveObjProperty, saveCustomObject, tileProperty);
 		return content;
 	}
 	

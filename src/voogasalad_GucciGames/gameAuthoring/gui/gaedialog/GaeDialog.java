@@ -8,6 +8,8 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Properties;
 
+import voogasalad_GucciGames.gameAuthoring.IDialogGaeController;
+import voogasalad_GucciGames.gameAuthoring.properties.MapObjectProperty;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
@@ -35,12 +37,13 @@ abstract public class GaeDialog{
 	protected abstract VBox initializeDialog();
 	protected abstract VBox initializeDialog(VBox customProperties);
 	
-	protected HBox initializeControl(Properties prop, String keyStyleId){
+	protected HBox initializeControl(Properties prop, String keyStyleId, IDialogGaeController dialogGaeController, MapObjectProperty property){
 		HBox controls = new HBox();
 		controls.setId("hbox-control");
 		Button cancelBtn = new Button( prop.getProperty("cancel"));
-		Button okBtn = new Button(prop.getProperty("ok"));
-		controls.getChildren().addAll(cancelBtn, okBtn);	
+		Button saveBtn = new Button(prop.getProperty("save"));
+		saveBtn.setOnAction(e -> dialogGaeController.createCustomMapObject(property));
+		controls.getChildren().addAll(cancelBtn, saveBtn);	
 		return controls;
 	}
 	
@@ -78,12 +81,22 @@ abstract public class GaeDialog{
 		return propertiesList;		
 	}
 	
-	protected ComboBox makeDropDownList(Properties prop, String itemsKey){
+	protected ComboBox makeDropDownList(Properties prop, String propKey, String itemsKey, ISaveObjProperty saveObjProperty){
 		List<String> propertiesList = parseStringToList(prop, itemsKey);
 		ComboBox dropDown = new ComboBox();
 		ObservableList<String> options = FXCollections.observableArrayList(propertiesList);
 		dropDown.setItems(options);
+		dropDown.setOnAction(e -> {
+			String s = dropDown.getSelectionModel().getSelectedItem().toString();
+			saveObjProperty.saveObjProperty(propKey, s);		
+		});
+		
 		return dropDown;	
+	}
+	
+	private void addListenerToDropDownOptions(ComboBox dropDown, ISaveObjProperty saveObjProperty, String propKey){
+		
+		
 	}
 	protected HBox makeRadioButtons(Properties prop, String name, String itemsKey, ISaveObjProperty saveObjProperty){
 		HBox checkBoxes = new HBox();
@@ -108,22 +121,33 @@ abstract public class GaeDialog{
 					Toggle oldValue, Toggle newValue) {
 				// TODO Auto-generated method stub
 				if(group.getSelectedToggle() != null){
-					saveObjProperty.saveObjProperty(propKey, group.getSelectedToggle().getUserData().toString());
-					
-				}
-				
+					saveObjProperty.saveObjProperty(propKey, group.getSelectedToggle().getUserData().toString());				
+				}				
 			}
 		});
 	}
 	
 
-	
-	protected ScrollBar makeScrollBar(Properties prop, String minKey, String maxKey, String incrementKey){
+	protected HBox makeScrollBar(Properties prop, String propKey, String minKey, String maxKey, String incrementKey, 
+			ISaveObjProperty saveObjProperty){
+		HBox hbox = new HBox();
 		ScrollBar scrollBar = new ScrollBar();
+		Text numSpriteText = new Text(Double.toString(scrollBar.getValue()));
 		scrollBar.setMin(Double.parseDouble(prop.getProperty(minKey)));
 		scrollBar.setMax(Double.parseDouble(prop.getProperty(maxKey)));
-		scrollBar.setUnitIncrement(Double.parseDouble(prop.getProperty(incrementKey)));
-		return scrollBar;
+		scrollBar.setUnitIncrement(1);
+		scrollBar.valueProperty().addListener(new ChangeListener<Number>() {
+			@Override
+			public void changed(ObservableValue<? extends Number> observable,
+					Number oldValue, Number newValue) {
+				// TODO Auto-generated method stub
+				numSpriteText.setText(newValue.intValue()+"");
+				saveObjProperty.saveObjProperty(propKey, newValue.intValue()+"");				
+			}			
+		});
+		hbox.getChildren().addAll(scrollBar, numSpriteText);
+		hbox.setId("hbox-content");
+		return hbox;
 	}
 	
 	protected HBox makeBrowseElement(Properties prop, String browseKey, String fileChooserKey, ISaveObjProperty saveObjProperty){

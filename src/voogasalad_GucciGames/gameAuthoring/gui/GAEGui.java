@@ -16,6 +16,7 @@ import voogasalad_GucciGames.gameAuthoring.gui.sidebar.StructureTab;
 import voogasalad_GucciGames.gameAuthoring.gui.sidebar.TileTab;
 import voogasalad_GucciGames.gameAuthoring.gui.sidebar.UnitTab;
 import voogasalad_GucciGames.gameAuthoring.gui.statusbar.StatusBar;
+import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.ISaveCustomObj;
 import voogasalad_GucciGames.gameAuthoring.gui.map.GUIMap;
 import voogasalad_GucciGames.gameAuthoring.gui.menubar.GAEMenuBar;
 
@@ -23,9 +24,12 @@ public class GAEGui extends BorderPane {
 
 	private IGuiGaeController myController;
 	private GUIMap myMap;
+	//private ISaveCustomObj saveCustomObj;
 
 	public GAEGui(IGuiGaeController controller, Stage stage) {
 		myController = controller;
+		// defines function for saving custom object
+		//saveCustomObj = initSaveCustomObj();
 		stage.setScene(new Scene(this));
 
 		Rectangle2D screenBounds = Screen.getPrimary().getVisualBounds();
@@ -34,13 +38,16 @@ public class GAEGui extends BorderPane {
 		stage.show();
 		initLayout(stage);
 		initializeMap(100, 100);
+		
 	}
+	
 
 	private TabPane rightPane(Stage stage) {
 		TabPane rightTabPane = new TabPane();
-    	TileTab tileTab = new TileTab(myController);
-    	UnitTab unitTab = new UnitTab(myController);
-    	StructureTab strucTab = new StructureTab(myController);
+		//TODO: change argument
+    	TileTab tileTab = new TileTab(myController, null);
+    	UnitTab unitTab = new UnitTab(myController, null);
+    	StructureTab strucTab = new StructureTab(myController, null);
     	
     	setSize(tileTab,stage);
     	setSize(unitTab,stage);
@@ -92,8 +99,15 @@ public class GAEGui extends BorderPane {
 		return myController;
 	}
 	
+	private ISaveCustomObj initSaveCustomObj(){
+		ISaveCustomObj save = (p) -> {this.myController.createCustomMapObject(p);};
+		return save;
+	}
+	
 	private void setSize(Tab tab, Stage stage){
 		VBox currBox = (VBox) tab.getContent();
     	currBox.setMinWidth(stage.getWidth()/4);
 	}
+	
+	
 }

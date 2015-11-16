@@ -9,6 +9,8 @@ import javafx.stage.Stage;
 import voogasalad_GucciGames.gameAuthoring.gui.GAEGui;
 import voogasalad_GucciGames.gameAuthoring.model.GAEModel;
 import voogasalad_GucciGames.gameAuthoring.model.IGAEModel;
+import voogasalad_GucciGames.gameAuthoring.properties.MapObjectProperty;
+import voogasalad_GucciGames.gameAuthoring.properties.Property;
 import voogasalad_GucciGames.gameEngine.mapObject.MapObject;
 import voogasalad_GucciGames.gameEngine.mapObject.MapObjectType;
 
@@ -93,6 +95,20 @@ public class GaeController implements IGuiGaeController, IModelGaeController{
 
 	@Override
 	public void setCurrDraggedImage(Image draggedImage) {
-		currDraggedImage = draggedImage;		
+		currDraggedImage = draggedImage;	
+	}
+    
+	@Override
+	/**
+	 * create custom map object from a property object
+	 * Access type via type key
+	 */
+	public void createCustomMapObject(MapObjectProperty p) {
+		// TODO Auto-generated method stub
+		// Debug:
+		
+		System.out.println("saving");
+		p.printProperty();
+		
 	}
 }
