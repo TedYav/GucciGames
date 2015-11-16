@@ -1,12 +1,10 @@
 /**
  *
  */
-package voogasalad_GucciGames;
+package voogasalad_GucciGames.gameEngine.gameConditions;
 
 import java.util.ArrayList;
 import java.util.List;
-
-import voogasalad_GucciGames.gameEngine.gameConditions.Conditions;
 
 /**
  *
