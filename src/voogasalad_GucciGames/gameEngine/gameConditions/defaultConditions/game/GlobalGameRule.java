@@ -1,9 +1,9 @@
-package voogasalad_GucciGames.gameEngine.gameRule.defaultConditions.game;
+package voogasalad_GucciGames.gameEngine.gameConditions.defaultConditions.game;
 
 import java.util.List;
 
 import voogasalad_GucciGames.gameEngine.GameMap;
-import voogasalad_GucciGames.gameEngine.gameRule.EndGameConditions;
+import voogasalad_GucciGames.gameEngine.gameConditions.EndGameConditions;
 
 //make real and null
 public abstract class GlobalGameRule extends GameConditions {

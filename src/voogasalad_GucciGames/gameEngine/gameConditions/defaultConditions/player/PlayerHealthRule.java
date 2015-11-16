@@ -1,4 +1,4 @@
-package voogasalad_GucciGames.gameEngine.gameRule.defaultConditions.player;
+package voogasalad_GucciGames.gameEngine.gameConditions.defaultConditions.player;
 
 /**
  *

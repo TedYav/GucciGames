@@ -1,7 +1,7 @@
 /**
  *
  */
-package voogasalad_GucciGames.gameEngine.gameRule;
+package voogasalad_GucciGames.gameEngine.gameConditions;
 
 import java.util.HashMap;
 import java.util.Map;

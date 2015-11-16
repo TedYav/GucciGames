@@ -1,10 +1,10 @@
-package voogasalad_GucciGames.gameEngine.gameRule.defaultConditions;
+package voogasalad_GucciGames.gameEngine.gameConditions.defaultConditions;
 
 import java.util.List;
 
+import voogasalad_GucciGames.gameEngine.gameConditions.Conditions;
+import voogasalad_GucciGames.gameEngine.gameConditions.oucomes.Outcome;
 import voogasalad_GucciGames.gameEngine.gamePlayer.GamePlayerPerson;
-import voogasalad_GucciGames.gameEngine.gameRule.Conditions;
-import voogasalad_GucciGames.gameEngine.gameRule.oucomes.Outcome;
 
 /**
  *
