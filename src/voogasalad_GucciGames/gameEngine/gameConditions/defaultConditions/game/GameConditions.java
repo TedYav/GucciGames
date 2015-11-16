@@ -1,4 +1,4 @@
-package voogasalad_GucciGames.gameEngine.gameRule.defaultConditions.game;
+package voogasalad_GucciGames.gameEngine.gameConditions.defaultConditions.game;
 
 public abstract class GameConditions {
 

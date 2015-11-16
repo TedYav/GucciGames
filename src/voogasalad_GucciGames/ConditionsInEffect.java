@@ -6,7 +6,7 @@ package voogasalad_GucciGames;
 import java.util.ArrayList;
 import java.util.List;
 
-import voogasalad_GucciGames.gameEngine.gameRule.Conditions;
+import voogasalad_GucciGames.gameEngine.gameConditions.Conditions;
 
 /**
  *

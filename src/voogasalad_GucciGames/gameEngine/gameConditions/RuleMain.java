@@ -1,4 +1,4 @@
-package voogasalad_GucciGames.gameEngine.gameRule;
+package voogasalad_GucciGames.gameEngine.gameConditions;
 
 import java.lang.reflect.InvocationTargetException;
 

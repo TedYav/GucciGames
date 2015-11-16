@@ -1,4 +1,4 @@
-package voogasalad_GucciGames.gameEngine.gameRule.oucomes;
+package voogasalad_GucciGames.gameEngine.gameConditions.oucomes;
 
 import voogasalad_GucciGames.gameEngine.gamePlayer.AllPlayers;
 

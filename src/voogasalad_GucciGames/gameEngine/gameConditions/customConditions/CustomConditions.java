@@ -1,5 +1,5 @@
 
-package voogasalad_GucciGames.gameEngine.gameRule.customConditions;
+package voogasalad_GucciGames.gameEngine.gameConditions.customConditions;
 
 /**
  *
