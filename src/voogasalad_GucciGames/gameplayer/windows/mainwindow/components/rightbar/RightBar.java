@@ -25,7 +25,8 @@ public class RightBar extends WindowComponent {
 
 	private void initializeData() {
         GameStatsDisplay gameStats = new GameStatsDisplay();
-        
+        ActionDisplay actions = new ActionDisplay();
+        container.getChildren().add(actions.getNodeToDraw());
         container.getChildren().add(gameStats.getNodeToDraw());
         container.getStyleClass().add(myBundle.getString("RightVBox"));
 	}
