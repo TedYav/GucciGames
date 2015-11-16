@@ -1,10 +1,9 @@
 package voogasalad_GucciGames.gameEngine.gameRules.defaultRules;
 
-import java.util.List;
 import java.util.Map;
 
+import voogasalad_GucciGames.gameEngine.CommunicationParams.CommunicationParams;
 import voogasalad_GucciGames.gameEngine.gameRules.Rules;
-import voogasalad_GucciGames.gameEngine.mapObject.MapObjectType;
 
 /**
  *
@@ -14,16 +13,17 @@ import voogasalad_GucciGames.gameEngine.mapObject.MapObjectType;
 public class UnitsMovablePerTurn extends Rules {
 	private int targetValue;
 	private String target;
+	private CommunicationParams myBigMap;
 
-	public UnitsMovablePerTurn(MapObjectType theBigMap,  Map<String,Object> ruleArgs) {
-		super(theBigMap,ruleArgs);
+	public UnitsMovablePerTurn(CommunicationParams theBigMap, Map<String, Object> ruleArgs) {
+		super(theBigMap, ruleArgs);
 		targetValue = (int) ruleArgs.get(target);
+		myBigMap = theBigMap;
 	}
 
 	@Override
-	protected Boolean executeRules(List<Object> list) {
-
-		int unitsMovedCounter = (int) list.get(0);
+	public Boolean executeRules(int playerID) {
+		int unitsMovedCounter = myBigMap.getPlayers().getActivePlayer(playerID).getMyPlayerId();
 		if (unitsMovedCounter < targetValue) {
 			return true;
 		} else
