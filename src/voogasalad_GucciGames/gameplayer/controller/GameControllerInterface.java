@@ -33,4 +33,5 @@ public interface GameControllerInterface{
 	public void endTurn();
 	
 	public Image requestImage(String imageURI);
+	public void addNewImage(String imageURI, Image image);
 }

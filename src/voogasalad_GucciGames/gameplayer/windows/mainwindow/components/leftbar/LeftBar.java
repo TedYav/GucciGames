@@ -19,19 +19,21 @@ public class LeftBar extends WindowComponent implements DisplayComponent{
     private VBox container;
     private double spacing = 5;
     private MapInterface myMap;
-    private DisplayMapObjectDetails objectDetails;
     ResourceBundle myBundle;
+
+    private DisplayMapObjectDetails objectDetails;
 
     public LeftBar (GameScene scene, GameControllerInterface controller, ResourceBundle bundle) {
         super(scene, controller);
         container = new VBox(spacing);
         myBundle=bundle;
         initializeData();
+        myMap=myController.getMap();
     }
     
     private void initializeData() {
-        Map<String,ImageView> temp = new HashMap<String,ImageView>();//TODO
-        objectDetails = new DisplayMapObjectDetails(myMap,temp);
+        //Map<String,ImageView> temp = new HashMap<String,ImageView>();//TODO
+        objectDetails = new DisplayMapObjectDetails(myMap,myController);
         container.getChildren().add(objectDetails.getNodeToDraw());
         container.getStyleClass().add(myBundle.getString("LeftVBox"));
     }

@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Observable;
 import java.util.Observer;
+import voogasalad_GucciGames.gameplayer.controller.GameControllerInterface;
 import voogasalad_GucciGames.gameplayer.windows.mainwindow.components.DisplayComponent;
 import javafx.collections.FXCollections;
 import javafx.collections.ListChangeListener;
@@ -23,12 +24,14 @@ public class DisplayMapObjectDetails  implements DisplayComponent, ListChangeLis
     private List<String> imageUrls;
     private DisplayMapObjectImage imageDisplay;
     private VBox display;
-    public DisplayMapObjectDetails(MapInterface map, Map<String,ImageView> imageCache) {
+    private GameControllerInterface myController;
+    public DisplayMapObjectDetails(MapInterface map, GameControllerInterface controller) {
         temp= new ArrayList<String>();
         temp.add("fasdf");
         list=new ListView<String>(FXCollections.observableList(temp));
+        myController=controller;
         imageUrls=new ArrayList<String>();
-        imageDisplay = new DisplayMapObjectImage(imageUrls, imageCache);
+        imageDisplay = new DisplayMapObjectImage(imageUrls, myController);
         display = new VBox();
         display.getChildren().add(imageDisplay.getNodeToDraw());
         display.getChildren().add(list);
