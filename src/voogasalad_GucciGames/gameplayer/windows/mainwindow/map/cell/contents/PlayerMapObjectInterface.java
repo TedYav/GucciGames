@@ -11,6 +11,10 @@ public interface PlayerMapObjectInterface {
 	
 	//public int getVisibility();
 	
+	public default int getLayer(){
+		return 0;
+	}
+	
 	public MapObjectBasicType getBasicType();
 	
 	public List<String> getActionNames();

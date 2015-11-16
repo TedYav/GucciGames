@@ -52,6 +52,7 @@ public class MainGameScene extends GameScene {
 		 */
 		
 		initializePane();
+		loadGameData();
 		showGame();
 		myWindow.loadScene(myScene);
 		
@@ -68,7 +69,6 @@ public class MainGameScene extends GameScene {
 	}
 	
 	private void showGame(){
-
 	    myMap = new MainMap(this, myController);
 	    myPane.setCenter(myMap.getParent());
 	

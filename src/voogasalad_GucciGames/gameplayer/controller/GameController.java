@@ -9,6 +9,8 @@ import voogasalad_GucciGames.gameplayer.windows.mainwindow.map.cell.contents.Cel
 public class GameController implements GameControllerInterface {
 
 	private GameEngineToGamePlayerInterface myEngine;
+	private MapInterface myMap;
+	
 	
 	public GameController(GameEngineToGamePlayerInterface engine){
 		myEngine = engine;
@@ -46,14 +48,12 @@ public class GameController implements GameControllerInterface {
 
 	@Override
 	public MapInterface getMap() {
-		// TODO Auto-generated method stub
-		return null;
+		return myMap;
 	}
 
 	@Override
 	public void setMap(MapInterface map) {
-		// TODO Auto-generated method stub
-
+		myMap = map;
 	}
 
 	@Override

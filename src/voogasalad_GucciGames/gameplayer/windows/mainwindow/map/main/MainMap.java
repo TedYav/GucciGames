@@ -1,5 +1,6 @@
 package voogasalad_GucciGames.gameplayer.windows.mainwindow.map.main;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -47,6 +48,7 @@ public class MainMap extends WindowComponent implements MapInterface {
 	private TwoWayMap<Point2D, MapCell> myCellMap;
 	private Map<String, Image> myImageMap;
 	private List<MapCell> myHighlightedCells;
+	private List<MapCell> myActiveCells;
 	
 	private StackPane myStackPane;
 	private ScrollPane myFirstLayer;
@@ -80,10 +82,14 @@ public class MainMap extends WindowComponent implements MapInterface {
 		myBorderWidth = Double.parseDouble(myConfig.getString("BorderWidth"));
 		myMoveDistance = Double.parseDouble(myConfig.getString("MoveDistance"));
 		mySelectedUnits = FXCollections.observableArrayList();
+		myController.setMap(this);
 	}
 
 	private void initializeMap() {
 		myCellMap = new TwoWayMap<>();
+		myImageMap = new HashMap<>();
+		myHighlightedCells = new ArrayList<>();
+		myActiveCells = new ArrayList<>();
 		
 		// query width, size, etc
 		// myGame.etc etc etc

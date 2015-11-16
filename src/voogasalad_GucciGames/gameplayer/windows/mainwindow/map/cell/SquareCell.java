@@ -8,4 +8,10 @@ public class SquareCell extends MapCell {
 		super(controller, myCellSize);
 	}
 
+	@Override
+	protected void initializeOverlays() {
+		// TODO Auto-generated method stub
+		
+	}
+
 }

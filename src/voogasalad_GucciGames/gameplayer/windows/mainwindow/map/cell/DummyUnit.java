@@ -30,7 +30,7 @@ public class DummyUnit implements PlayerMapObjectInterface {
 
 	@Override
 	public String getImageURI() {
-		return "player/images/dummytexture.jpg";
+		return ((myX+myY)%2 == 0)?"player/images/dummytexture.jpg":"player/images/dummytexture2.jpg";
 	}
 
 	@Override
@@ -53,6 +53,12 @@ public class DummyUnit implements PlayerMapObjectInterface {
 	public void performAction(String action, TargetCoordinate coordinate) {
 		// TODO Auto-generated method stub
 		
+	}
+
+	@Override
+	public int getLayer() {
+		// TODO Auto-generated method stub
+		return 0;
 	}
 
 }
