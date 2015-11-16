@@ -26,7 +26,8 @@ import javafx.stage.Stage;
 public abstract class NewObjectMaker extends GaeDialog{	
 	public NewObjectMaker(){
 		 super();		 
-	 }	 
+	 }	
+	
 	 protected VBox initDefaultContentForObjMaker(Properties prop, VBox customContent,
 			 GroovyTabPane groovyTabPane, String styleId, ISaveObjProperty saveObjProperty, 
 			 ISaveCustomObj saveCustomObject, MapObjectProperty property){

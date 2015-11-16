@@ -16,7 +16,7 @@ public class UnitMaker extends NewObjectMaker {
 	private static final int WIDTH = 600;
 	private static final int HEIGHT = 600;
 
-	static GroovyTabPane groovyTabPane;
+	private GroovyTabPane groovyTabPane;
 	private VBox myContent = new VBox();
 	private Stage unitMakerDialog = new Stage();
 	private Map<Integer, String> groovyBuffer = new HashMap<Integer, String>();

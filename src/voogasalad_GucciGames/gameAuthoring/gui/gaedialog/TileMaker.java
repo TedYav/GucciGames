@@ -28,13 +28,11 @@ public class TileMaker extends NewObjectMaker {
 	private ISaveCustomObj saveCustomObject;
 
 	
-	public TileMaker(ISaveCustomObj saveCustomObj){
+	public TileMaker(){
 		super();
-		//this.saveCustomObj = saveCustomObj;
 		prop = loadProperties("dialogproperties/tiledialogproperties.properties");	
 		saveGroovy = super.setSaveGroovyFunctions(groovyBuffer, saveGroovy);
 		saveObjProperty = super.setSavePropertyFunction(tileProperty, saveObjProperty);
-		//
 		this.saveCustomObject = super.setSaveCustomObj(saveCustomObject);
 		groovyTabPane = new GroovyTabPane(prop, saveGroovy);
 		myContent = initializeDialog(initializeCustomContent());
@@ -57,12 +55,9 @@ public class TileMaker extends NewObjectMaker {
 	
 
 	@Override
-	protected VBox initializeDialog(VBox customProperties) {
+	protected VBox initializeDialog(VBox customProperties ) {
 		// TODO Auto-generated method stub
 		VBox content = new VBox();
-		if(saveCustomObject == null){
-			System.out.println("null");
-		}
 		content = initDefaultContentForObjMaker(prop, customProperties, groovyTabPane, 
 				"vbox-element", saveObjProperty, saveCustomObject, tileProperty);
 		return content;
