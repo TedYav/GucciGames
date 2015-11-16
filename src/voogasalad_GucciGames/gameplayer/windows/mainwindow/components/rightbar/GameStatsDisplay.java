@@ -1,20 +1,25 @@
-package voogasalad_GucciGames.gameplayer.windows.mainwindow.menubar.leftbar;
+package voogasalad_GucciGames.gameplayer.windows.mainwindow.components.rightbar;
 
 import java.util.ArrayList;
 import java.util.List;
+
 import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import javafx.scene.Node;
 import javafx.scene.control.ListView;
+import voogasalad_GucciGames.gameplayer.windows.mainwindow.components.DisplayComponent;
 
-public class DisplayMapObjectDetails  implements MiniDisplayComponent{
+public class GameStatsDisplay implements DisplayComponent {
     private ListView<String> list;
-    public DisplayMapObjectDetails() {
+    
+    public GameStatsDisplay() {
         List<String> temp = new ArrayList<String>();
-        temp.add("fasdf");
+        temp.add("gamestats");
         list=new ListView<String>(FXCollections.observableList(temp));
     }
+    
+    @Override
     public Node getNodeToDraw() {
         return list;
     }
+
 }

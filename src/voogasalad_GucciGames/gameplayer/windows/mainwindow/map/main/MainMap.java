@@ -39,6 +39,7 @@ public class MainMap extends WindowComponent implements MapInterface {
 	private MiniMap myMiniMap;
 	
 	private ResourceBundle myConfig = ResourceBundle.getBundle("voogasalad_GucciGames.gameplayer.config.components.Map");
+
 	private Map<PlayerMapObjectInterface, CellUnit> myUnitMap;
 	private Map<Point2D, MapCellInterface> myCellMap;
 	private Map<String, Image> myImageMap;
