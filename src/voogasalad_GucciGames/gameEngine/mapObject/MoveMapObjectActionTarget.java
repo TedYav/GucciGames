@@ -20,8 +20,6 @@ public class MoveMapObjectActionTarget implements IMapObjectActionTarget{
 				coordinates.addCoordinate(location.getCoordinate());
 			}
 		}
-		
-		
 		return coordinates;
 	}
 

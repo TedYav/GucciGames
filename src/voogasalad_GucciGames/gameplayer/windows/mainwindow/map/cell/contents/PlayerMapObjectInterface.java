@@ -1,5 +1,27 @@
 package voogasalad_GucciGames.gameplayer.windows.mainwindow.map.cell.contents;
 
-public interface PlayerMapObjectInterface {
+import java.util.List;
 
+// TODO: add getCoordnate(), getPlayer(), etc
+public interface PlayerMapObjectInterface {
+        public List<String> getAttributes(); //i.e. HP=100, Owning Player=1, ...
+
+	public String getName();
+	
+	public String getImageURI();
+	
+	//public int getVisibility();
+	
+	public default int getLayer(){
+		return 0;
+	}
+	
+	public MapObjectBasicType getBasicType();
+	
+	public List<String> getActionNames();
+	
+	public List<TargetCoordinate> getActionTarget();
+	
+	public void performAction(String action, TargetCoordinate coordinate);
+	
 }

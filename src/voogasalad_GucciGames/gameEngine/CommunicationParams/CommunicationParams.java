@@ -12,14 +12,15 @@ public class CommunicationParams {
 	private AllPlayers myPlayers;
 	private GameMap myGameMap;
 	private List<MapObject> myLocations;
-	private MapObject currentActiveMapObject;
+	private MapObject myCurrentActiveMapObject;
 	
 	
 	
-	public CommunicationParams(AllPlayers players, GameMap gameMap, List<MapObject> locations){ 
+	public CommunicationParams(AllPlayers players, GameMap gameMap, List<MapObject> locations, MapObject currentActiveMapObject){ 
 		this.myPlayers = players;
 		this.myGameMap = gameMap;
 		this.myLocations = locations;
+		this.myCurrentActiveMapObject = currentActiveMapObject;
 	}
 	
 	public CommunicationParams(CommunicationParams params){
@@ -41,7 +42,7 @@ public class CommunicationParams {
 	}
 
 	public MapObject getMapObject() {
-		return currentActiveMapObject;
+		return myCurrentActiveMapObject;
 	}
 	
 }
