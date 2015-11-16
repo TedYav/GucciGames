@@ -1,12 +1,15 @@
 package voogasalad_GucciGames.gameAuthoring.gui.map;
 
+import java.util.HashMap;
 import java.util.HashSet;
+import java.util.Map;
 import java.util.Set;
 
 import javafx.beans.property.DoubleProperty;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.DragEvent;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.input.TransferMode;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
@@ -17,7 +20,9 @@ class Grid extends Pane {
 	private final ImageView myBackground;
 	private final DoubleProperty myCellSize;
 	private final Set<CellGUI> selectedCells = new HashSet<>();
+	private final Map<GridPoint,CellGUI> myCells = new HashMap<>();
 	private Rectangle myMouseBound;
+	private GridSelector myGridSelector;
 
 	public Grid(DoubleProperty cellSize) {
 		myBackground = new ImageView();
@@ -27,19 +32,29 @@ class Grid extends Pane {
 		myCellSize = cellSize;
 
 		setOnMouseMoved(e -> trackMouseMove(e.getX(), e.getY()));
+		addEventHandler(MouseEvent.DRAG_DETECTED, e->removeMouseBound());
 		setOnDragOver(e -> trackMouseMove(e.getX(), e.getY()));
 		setOnMouseExited(e -> removeMouseBound());
 		setOnDragExited(e -> removeMouseBound());
+		
 	}
 
 	public void initGrid(int width, int height) {
 		maxWidthProperty().bind(myCellSize.multiply(width));
 		maxHeightProperty().bind(myCellSize.multiply(height));
+		Pane pane = new Pane();
+		getChildren().setAll(myBackground,pane);
+		pane.minWidthProperty().bind(widthProperty());
+		pane.maxWidthProperty().bind(widthProperty());
+		pane.minHeightProperty().bind(heightProperty());
+		pane.maxHeightProperty().bind(heightProperty());
+		pane.setOnMouseClicked(e->placeObject(e));
 		for (int x = 0; x < width; x++) {
 			for (int y = 0; y < height; y++) {
-				new CellGUI(this, x, y);
+				myCells.put(new GridPoint(x, y), new CellGUI(this, x, y));
 			}
 		}
+		myGridSelector = new GridSelector(this);
 	}
 
 	private void trackMouseMove(double x, double y) {
@@ -78,8 +93,12 @@ class Grid extends Pane {
 		return myCellSize;
 	}
 
-	public void addSelectedCell(CellGUI cell) {
-		selectedCells.add(cell);
+	public boolean selectCell(CellGUI cell) {
+		return selectedCells.add(cell);
+	}
+	
+	public boolean deselectCell(CellGUI cell) {
+		return selectedCells.remove(cell);
 	}
 
 	public void removeSelectedCells() {
@@ -87,6 +106,12 @@ class Grid extends Pane {
 			cell.removeFromMap();
 		});
 		selectedCells.clear();
+	}
+	
+	private void placeObject(MouseEvent e){
+		int x = (int)Math.floor(e.getX()/myCellSize.get());
+		int y = (int)Math.floor(e.getY()/myCellSize.get());
+		new CellGUI(this, x, y);
 	}
 	
 	private void fetchDraggedContent(DragEvent e){
@@ -97,6 +122,14 @@ class Grid extends Pane {
 		//CellGUI cell = new CellGUI(this, x, y);
 		System.out.println("New Cell");
 		//cell.setImage(e.getDragboard().getImage());
+	}
+	
+	public CellGUI getCell(GridPoint pt){
+		return myCells.get(pt);
+	}
+	
+	public CellGUI remove(GridPoint pt){
+		return myCells.remove(pt);
 	}
 
 }
