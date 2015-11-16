@@ -22,6 +22,7 @@ public class LeftBar extends WindowComponent implements DisplayComponent{
     ResourceBundle myBundle;
 
     private DisplayMapObjectDetails objectDetails;
+    private DisplayChat chatDisplay;
 
     public LeftBar (GameScene scene, GameControllerInterface controller, ResourceBundle bundle) {
         super(scene, controller);
@@ -32,10 +33,12 @@ public class LeftBar extends WindowComponent implements DisplayComponent{
     }
     
     private void initializeData() {
-        //Map<String,ImageView> temp = new HashMap<String,ImageView>();//TODO
-        objectDetails = new DisplayMapObjectDetails(myMap,myController);
+        objectDetails = new DisplayMapObjectDetails(myMap,myController);//TODO: create in properties file?
+        chatDisplay = new DisplayChat();
         container.getChildren().add(objectDetails.getNodeToDraw());
+        container.getChildren().add(chatDisplay.getNodeToDraw());
         container.getStyleClass().add(myBundle.getString("LeftVBox"));
+        container.setPrefWidth(Double.parseDouble(myBundle.getString("leftprefwidth")));
     }
 
     @Override
