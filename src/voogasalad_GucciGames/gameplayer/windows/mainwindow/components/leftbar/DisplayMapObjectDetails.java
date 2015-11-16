@@ -27,11 +27,16 @@ public class DisplayMapObjectDetails  implements DisplayComponent, ListChangeLis
     }
     @Override
     public void onChanged (Change c) {
+        List<String> contents;
         while (c.next()) {
             List<PlayerMapObjectInterface> list = c.getList();
             temp.clear();
             for (PlayerMapObjectInterface o: list){
-                temp.add("afs");
+                temp.add(o.getImageURI());
+                contents=o.getActionNames();
+                for (String s: contents) {
+                    temp.add(s);
+                }
             }
         }
     }
