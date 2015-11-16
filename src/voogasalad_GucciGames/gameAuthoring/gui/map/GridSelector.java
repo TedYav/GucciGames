@@ -29,6 +29,7 @@ class GridSelector {
 		myGrid.addEventHandler(MouseDragEvent.DRAG_DETECTED, e -> dragStart(e));
 		myGrid.addEventHandler(MouseDragEvent.MOUSE_DRAG_OVER, e -> dragMoved(e));
 		myGrid.addEventHandler(MouseDragEvent.MOUSE_DRAG_RELEASED, e -> dragEnd(e));
+		myGrid.addEventHandler(MouseDragEvent.MOUSE_DRAG_EXITED, e -> dragEnd(e));
 	}
 
 	/**

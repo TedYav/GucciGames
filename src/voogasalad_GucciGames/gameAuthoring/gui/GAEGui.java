@@ -26,12 +26,14 @@ public class GAEGui extends BorderPane {
 
 	public GAEGui(IGuiGaeController controller, Stage stage) {
 		myController = controller;
+		stage = new Stage();
 		stage.setScene(new Scene(this));
-
+		
 		Rectangle2D screenBounds = Screen.getPrimary().getVisualBounds();
 		stage.setWidth(screenBounds.getWidth());
 		stage.setHeight(screenBounds.getHeight());
 		stage.show();
+		
 		initLayout(stage);
 		initializeMap(100, 100);
 	}
