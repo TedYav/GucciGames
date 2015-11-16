@@ -13,10 +13,10 @@ public class MapObjectProperty {
 	public void addPropertyElement(String propName, String prop) throws InvalidInputException {
 		// TODO Auto-generated method stub
 		myMap.put(propName, prop);
-		printProperty(myMap);
+		printProperty();
 	}
 	
-	public void printProperty(Map myMap){
+	public void printProperty(){
 		myMap.forEach((k,v) -> System.out.println("key: " + k + " value: " + v));
 	}
 

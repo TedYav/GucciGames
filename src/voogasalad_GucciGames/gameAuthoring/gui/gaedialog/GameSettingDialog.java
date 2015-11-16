@@ -19,10 +19,10 @@ public class GameSettingDialog extends GaeDialog {
 	private Stage gameSettingDialog = new Stage();
 	private VBox myContent = new VBox();
 	private Properties prop;
-	private GameSettingsProperty gameSettingsProperty = new GameSettingsProperty();
+	private MapObjectProperty gameSettingsProperty = new MapObjectProperty();
 	private IDialogGaeController dialogGaeController;
 	private ISaveObjProperty saveObjProperty;
-	private MapObjectProperty property;
+	
 	
 	public GameSettingDialog(IDialogGaeController dialogGaeController){
 		this.dialogGaeController = dialogGaeController;
@@ -36,7 +36,8 @@ public class GameSettingDialog extends GaeDialog {
 			}
 		};
 		myContent = initializeDialog();
-		myContent.getChildren().add(initializeControl(prop, "hbox-control"));
+		myContent.getChildren().add(initializeControl(prop, "hbox-control", 
+				dialogGaeController, gameSettingsProperty));
 		Scene gameSettingDialogScene = new Scene(myContent, 500, 500);
 		gameSettingDialogScene.getStylesheets().add("voogasalad_GucciGames/gameAuthoring/gui/gaedialog/stylesheets/dialogstylesheet.css");
 		gameSettingDialog.setScene(gameSettingDialogScene);		
@@ -52,19 +53,17 @@ public class GameSettingDialog extends GaeDialog {
 		TextField nameTextField = new TextField();		
 		HBox nameElement = createElement(prop.getProperty("name"), nameTextField, "field-title-element");
 		HBox mapSizeElement = createElement(prop.getProperty("mapsize"), 
-				makeDropDownList(prop, "mapsize_items"), "field-title-element");
+				makeDropDownList(prop,"mapsize", "mapsize_items", saveObjProperty), "field-title-element");
 		HBox fogOfWarElement = createElement(prop.getProperty("fogofwar"),
-				makeDropDownList(prop, "fogofwar_items"), "field-title-element");
+				makeDropDownList(prop, "fogofwar", "fogofwar_items", saveObjProperty), "field-title-element");
 		HBox miniMapElement = createElement(prop.getProperty("minimap"),
 				makeRadioButtons(prop, "minimap", "minimap_items",saveObjProperty), "field-title-element");
 		HBox zoomableElement = createElement(prop.getProperty("zoomable"),
 				makeRadioButtons(prop, "zoomable","zoomable_items" , saveObjProperty), "field-title-element");
 		HBox numPlayerElement = createElement(prop.getProperty("numplayer"),
 				makeScrollBar(prop, "player_min", "player_max", "player_increment"), "field-title-element");
-		Button saveBtn = new Button("Save");
-		saveBtn.setOnAction(e -> this.dialogGaeController.createCustomMapObject(property));
 		content.getChildren().addAll(titleElement, nameElement, mapSizeElement, fogOfWarElement,
-				miniMapElement, zoomableElement, numPlayerElement, saveBtn);
+				miniMapElement, zoomableElement, numPlayerElement);
 		content.getChildren().forEach(hbox->hbox.setId("hbox-element"));
 		titleElement.setId("title");
 		content.setId("vbox-element");	

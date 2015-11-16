@@ -8,6 +8,8 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Properties;
 
+import voogasalad_GucciGames.gameAuthoring.IDialogGaeController;
+import voogasalad_GucciGames.gameAuthoring.properties.MapObjectProperty;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
@@ -35,12 +37,13 @@ abstract public class GaeDialog{
 	protected abstract VBox initializeDialog();
 	protected abstract VBox initializeDialog(VBox customProperties);
 	
-	protected HBox initializeControl(Properties prop, String keyStyleId){
+	protected HBox initializeControl(Properties prop, String keyStyleId, IDialogGaeController dialogGaeController, MapObjectProperty property){
 		HBox controls = new HBox();
 		controls.setId("hbox-control");
 		Button cancelBtn = new Button( prop.getProperty("cancel"));
-		Button okBtn = new Button(prop.getProperty("ok"));
-		controls.getChildren().addAll(cancelBtn, okBtn);	
+		Button saveBtn = new Button(prop.getProperty("save"));
+		saveBtn.setOnAction(e -> dialogGaeController.createCustomMapObject(property));
+		controls.getChildren().addAll(cancelBtn, saveBtn);	
 		return controls;
 	}
 	
@@ -78,12 +81,22 @@ abstract public class GaeDialog{
 		return propertiesList;		
 	}
 	
-	protected ComboBox makeDropDownList(Properties prop, String itemsKey){
+	protected ComboBox makeDropDownList(Properties prop, String propKey, String itemsKey, ISaveObjProperty saveObjProperty){
 		List<String> propertiesList = parseStringToList(prop, itemsKey);
 		ComboBox dropDown = new ComboBox();
 		ObservableList<String> options = FXCollections.observableArrayList(propertiesList);
 		dropDown.setItems(options);
+		dropDown.setOnAction(e -> {
+			String s = dropDown.getSelectionModel().getSelectedItem().toString();
+			saveObjProperty.saveObjProperty(propKey, s);		
+		});
+		
 		return dropDown;	
+	}
+	
+	private void addListenerToDropDownOptions(ComboBox dropDown, ISaveObjProperty saveObjProperty, String propKey){
+		
+		
 	}
 	protected HBox makeRadioButtons(Properties prop, String name, String itemsKey, ISaveObjProperty saveObjProperty){
 		HBox checkBoxes = new HBox();
