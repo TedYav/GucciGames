@@ -22,6 +22,7 @@ public class GAEModel implements IGAEModel{
     private GameMap map;
     
     public GAEModel(IModelGaeController controller) {
+    	data = new GameSourceData();
     	myController = controller;
     }
 
