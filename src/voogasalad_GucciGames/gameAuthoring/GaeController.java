@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Map;
 
 import javafx.collections.ObservableList;
+import javafx.scene.image.Image;
 import javafx.stage.Stage;
 import voogasalad_GucciGames.gameAuthoring.gui.GAEGui;
 import voogasalad_GucciGames.gameAuthoring.model.GAEModel;
@@ -15,6 +16,7 @@ public class GaeController implements IGuiGaeController, IModelGaeController{
     IGAEModel model;
     GAEGui gui;
     MapObjectType mapobjecttype;
+    Image currDraggedImage;
     
     public GaeController(Stage stage){
     	System.out.println("called 1");
@@ -82,5 +84,15 @@ public class GaeController implements IGuiGaeController, IModelGaeController{
 	@Override
 	public MapObjectType getMapObjectTypeToMap() {
 		return mapobjecttype;
+	}
+
+	@Override
+	public Image getCurrDraggedImage() {
+		return currDraggedImage;
+	}
+
+	@Override
+	public void setCurrDraggedImage(Image draggedImage) {
+		currDraggedImage = draggedImage;		
 	}
 }

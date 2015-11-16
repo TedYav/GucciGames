@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import voogasalad_GucciGames.gameAuthoring.IGuiGaeController;
+import voogasalad_GucciGames.gameEngine.mapObject.MapObjectType;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.geometry.Insets;
@@ -25,16 +26,17 @@ import javafx.scene.layout.VBox;
 public abstract class AbstractTab extends Tab implements ITab{
 	protected List<String> allImagePaths = new ArrayList<String>();
 	protected List<ImageView> allImageViews;
+	protected List<Button> allImageButtons;
 	protected VBox myVBox = new VBox(30);
 	protected Button myAddButton = new Button("Add Custom");
 	protected GridPane myGridPane = new GridPane();
 	protected ContextMenu myContextMenu = new ContextMenu();
 	protected IGuiGaeController myController;
-//	protected DataFormat myDataFormat = new DataFormat("voogasalad_GucciGames/gameEngine/mapObject/MapObjectType");
 
 	AbstractTab(IGuiGaeController controller) {
 		myController = controller;
 		allImageViews = new ArrayList<ImageView>();
+		allImageButtons = new ArrayList<Button>();
 		this.setClosable(false);
 		createEmptyContent();
 		createMenu();
@@ -105,9 +107,22 @@ public abstract class AbstractTab extends Tab implements ITab{
 		}
 	}
 	
-	protected abstract void addDragDropListener();
+	protected void addDragDropListener(List<MapObjectType> listTypes){
+		List<MapObjectType> currMapTypeList = listTypes;
+		for(int i=0; i<allImageViews.size(); i++){
+			ImageView imageview = allImageViews.get(i);
+			imageview.setOnMousePressed(new EventHandler<MouseEvent>() {
+				public void handle(MouseEvent event) {
+					int imageviewId = allImageViews.indexOf(imageview);
+					MapObjectType currMapType = currMapTypeList.get(imageviewId);
+					myController.setMapObjectTypeToMap(currMapType);
+					myController.setCurrDraggedImage(imageview.getImage());
+					event.consume();
+				}
+			});
+
+		}
+	}
 	
 	protected abstract void addAddButtonListener();
-	
-	protected abstract void addPlayerOwnership();
 }

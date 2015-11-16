@@ -5,6 +5,7 @@ import java.util.Arrays;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import voogasalad_GucciGames.gameAuthoring.IGuiGaeController;
+import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.UnitMaker;
 
 
 public class UnitTab extends AbstractTab {
@@ -15,7 +16,8 @@ public class UnitTab extends AbstractTab {
 		allImagePaths = Arrays.asList("voogasalad_GucciGames/graphics/fire.png", "voogasalad_GucciGames/graphics/water.png");
 		addImages();
 		addImageHandler();
-		addDragDropListener();
+//		addDragDropListener();
+		addAddButtonListener();
 	}
 
 	@Override
@@ -29,14 +31,10 @@ public class UnitTab extends AbstractTab {
 		// TODO Auto-generated method stub
 		myAddButton.setOnAction(new EventHandler<ActionEvent>() {
 			@Override public void handle(ActionEvent e) {
-				//dialog
+				UnitMaker unitMaker = new UnitMaker();
+				unitMaker.showUnitMakerDialog();
 			}
 		});
 	}
 
-	@Override
-	protected void addPlayerOwnership() {
-		// TODO Auto-generated method stub
-		
-	}
 }

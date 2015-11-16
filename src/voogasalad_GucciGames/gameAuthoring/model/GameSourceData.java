@@ -9,8 +9,6 @@ import javafx.collections.ListChangeListener;
 import javafx.collections.ObservableList;
 import voogasalad_GucciGames.gameEngine.mapObject.MapObject;
 import voogasalad_GucciGames.gameEngine.mapObject.MapObjectType;
-import voogasalad_GucciGames.gameEngine.mapObject.MapObject;
-import voogasalad_GucciGames.gameEngine.mapObject.MapObjectType;
 
 public class GameSourceData {
   private ObservableList<MapObjectType> tileTypes;

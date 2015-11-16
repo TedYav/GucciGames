@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Map;
 
 import javafx.collections.ObservableList;
+import javafx.scene.image.Image;
 import voogasalad_GucciGames.gameEngine.mapObject.MapObject;
 import voogasalad_GucciGames.gameEngine.mapObject.MapObjectType;
 
@@ -39,4 +40,8 @@ public interface IGuiGaeController {
     public void setMapObjectTypeToMap(MapObjectType mapType);
 
 	public MapObjectType getMapObjectTypeToMap();
+	
+	public Image getCurrDraggedImage();
+	
+	public void setCurrDraggedImage(Image draggedImage);
 }

@@ -6,6 +6,7 @@ import java.util.List;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.ClipboardContent;
 import javafx.scene.input.DataFormat;
@@ -28,7 +29,8 @@ public class TileTab extends AbstractTab {
 		}
 		addImages();
 		addImageHandler();
-		addDragDropListener();
+		addDragDropListener(myController.getImmutableTileTypes());
+		addAddButtonListener();
 	}
 
 	@Override
@@ -38,48 +40,17 @@ public class TileTab extends AbstractTab {
 	}
 
 	@Override
-	protected void addDragDropListener(){
-		List<MapObjectType> currMapTypeList = myController.getImmutableTileTypes();
-		for(int i=0; i<allImageViews.size(); i++){
-			ImageView imageview = allImageViews.get(i);
-			imageview.setOnDragDetected(new EventHandler<MouseEvent>() {
-				public void handle(MouseEvent event) {
-					/* drag was detected, start a drag-and-drop gesture*/
-					/* allow any transfer mode */
-					Dragboard db = imageview.startDragAndDrop(TransferMode.ANY);
-
-					/* Put a image on a dragboard */
-					ClipboardContent content = new ClipboardContent();
-					content.putImage(imageview.getImage());
-
-					int imageviewId = allImageViews.indexOf(imageview);
-					MapObjectType currMapType = currMapTypeList.get(imageviewId);
-					myController.setMapObjectTypeToMap(currMapType);
-
-					db.setContent(content);
-					event.consume();
-				}
-			});
-
-		}
-	}
-
-	@Override
 	protected void addAddButtonListener() {
 		// TODO Auto-generated method stub
 		myAddButton.setOnAction(new EventHandler<ActionEvent>() {
 			@Override public void handle(ActionEvent e) {
 				//dialog
 				TileMaker addNewTileDialog = new TileMaker();
+				addNewTileDialog.showTileMakerDialog();
 			}
 		});
 	}
 
-	@Override
-	protected void addPlayerOwnership() {
-		// TODO Auto-generated method stub
-		
-	}
 }
 
 
