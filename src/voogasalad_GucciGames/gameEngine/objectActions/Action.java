@@ -18,6 +18,7 @@ public abstract class Action {
 		myName = actionName;
 	}
 
+	// must keep executeAction() final
 	public final void executeAction(ActionToRuleMap mapobj, int playerID) {
 		Boolean check = checkRules(mapobj, playerID);
 		if (check) {
@@ -26,7 +27,7 @@ public abstract class Action {
 
 	}
 
-	protected Boolean checkRules(ActionToRuleMap mapobj, int playerID) {
+	private Boolean checkRules(ActionToRuleMap mapobj, int playerID) {
 		Boolean ruletest = false;
 		if (mapobj.contains(myName)) {
 			List<Rules> list = mapobj.getKey(myName);
@@ -34,6 +35,9 @@ public abstract class Action {
 				Iterator<Rules> ruleItr = list.iterator();
 				while (ruleItr.hasNext()) {
 					ruletest = ruleItr.next().executeRules(playerID);
+					if (ruletest == false) {
+						return ruletest;
+					}
 				}
 			}
 		}

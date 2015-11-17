@@ -13,7 +13,7 @@ public class GamePlayerPerson {
 	private PlayerResources myResources;
 	private List<MapObject> myMapObjects;
 	private int unitsMoved=0;
-	int unitsMaxMovedLimit;
+	private int unitsMaxMovedLimit;
 	private String myStatus = "DRAW";
 
 	public GamePlayerPerson(UnitCollection units, int playerId) {
