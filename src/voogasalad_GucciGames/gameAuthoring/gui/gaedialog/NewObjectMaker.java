@@ -134,7 +134,7 @@ public class NewObjectMaker extends GaeDialog{
 		 return saveCustomObject;
 	 }
 	 
-		public void showUnitMakerDialog(){
+		public void showDialog(){
 			super.showDialog(unitMakerDialog);
 		}
 

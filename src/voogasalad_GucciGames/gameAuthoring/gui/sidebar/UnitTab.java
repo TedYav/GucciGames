@@ -36,7 +36,7 @@ public class UnitTab extends AbstractTab {
 		myAddButton.setOnAction(new EventHandler<ActionEvent>() {
 			@Override public void handle(ActionEvent e) {
 				NewObjectMaker unitMaker = new NewObjectMaker(new UnitMakerCustomContent(), myController);
-				unitMaker.showUnitMakerDialog();
+				unitMaker.showDialog();
 			}
 		});
 	}

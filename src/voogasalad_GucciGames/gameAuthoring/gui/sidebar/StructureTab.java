@@ -5,7 +5,8 @@ import java.util.Arrays;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import voogasalad_GucciGames.gameAuthoring.IGuiGaeController;
-import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.StructureMaker;
+import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.NewObjectMaker;
+import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.StructMakerCustomContent;
 import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.ISaveCustomObj;
 
 public class StructureTab extends AbstractTab {
@@ -31,8 +32,8 @@ public class StructureTab extends AbstractTab {
 	protected void addAddButtonListener() {
 		myAddButton.setOnAction(new EventHandler<ActionEvent>() {
 			@Override public void handle(ActionEvent e) {
-				StructureMaker structMaker = new StructureMaker();
-//				structMaker.showStructureMakerDialog();
+				NewObjectMaker structMaker = new NewObjectMaker(new StructMakerCustomContent(), myController);
+				structMaker.showDialog();
 			}
 		});
 	}
