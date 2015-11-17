@@ -8,19 +8,19 @@ import voogasalad_GucciGames.gameAuthoring.IGuiGaeController;
 public class MiniMapItem extends Menu{
 	MiniMapItem(String name, IGuiGaeController controller) {
 		super(name);
-		ToggleGroup groupShape = new ToggleGroup();
+		ToggleGroup group = new ToggleGroup();
 		RadioMenuItem on = new RadioMenuItem("On");
 		on.setUserData("On");
-		on.setToggleGroup(groupShape);
+		on.setToggleGroup(group);
 		
 		RadioMenuItem off = new RadioMenuItem("Off");
 		off.setUserData("Off");
-		off.setToggleGroup(groupShape);
+		off.setToggleGroup(group);
 		
 		off.setSelected(true);
 		getItems().addAll(on,off);
-		groupShape.selectedToggleProperty().addListener((ob,oldV,newV)->{
-			if (groupShape.getSelectedToggle() != null) {
+		group.selectedToggleProperty().addListener((ob,oldV,newV)->{
+			if (group.getSelectedToggle() != null) {
 				//TODO
 				//myGui.myCellType = (String)newV.getUserData();
 				//myGui.reset();

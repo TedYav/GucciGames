@@ -60,4 +60,10 @@ public class MapObject implements PlayerMapObjectInterface{
 		return ownerID;
 	}
 
+	@Override
+	public int getLayer() {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
 }

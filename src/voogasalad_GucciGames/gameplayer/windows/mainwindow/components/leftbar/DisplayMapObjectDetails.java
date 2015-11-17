@@ -60,30 +60,26 @@ public class DisplayMapObjectDetails  implements DisplayComponent, ListChangeLis
                 mapObjectsOnCell.add(o);
             }
             imageDisplay.updateImages();
+            if (mapObjectsOnCell.size()>0) {
+                updateActiveMapObject(mapObjectsOnCell.stream().reduce((u1, u2) -> u2).orElseGet(()->mapObjectsOnCell.get(0)));
+            }
             listView.setItems(FXCollections.observableList(temp));
         }
     }
     @Override
     public void update (Observable o, Object arg) {
-        if (arg!=null) {
-            System.out.println("ho");
-            PlayerMapObjectInterface mapObj=(PlayerMapObjectInterface)arg;
-<<<<<<< HEAD
-            
-              Map<String, String> list = mapObj.getAttributes();
-            for (String s: list.keySet()) {
-                temp.add(s);
-            } 
-            
-            
-=======
-            Map<String,String> map = mapObj.getAttributes();
-            temp.add(mapObj.getName());
-            for (String s: map.keySet()) {
-                temp.add(s+": "+map.get(s));
-            }
-            listView.setItems(FXCollections.observableList(temp));
->>>>>>> bc04a0911582ee1d848db86e02ae6b2a082cc2af
-        }
+    	 if (arg!=null) {
+             PlayerMapObjectInterface mapObj=(PlayerMapObjectInterface)arg;
+             Map<String,String> map = mapObj.getAttributes();
+             temp.clear();
+             temp.add(mapObj.getName());
+             for (String s: map.keySet()) {
+                 temp.add(s+": "+map.get(s));
+             }
+             listView.setItems(FXCollections.observableList(temp));
+         }
+    }
+    private void updateActiveMapObject(PlayerMapObjectInterface mapObj) {
+        myController.setActiveMapObject(mapObj);
     }
 }

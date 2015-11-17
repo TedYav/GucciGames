@@ -16,5 +16,8 @@ public interface MapCellInterface {
 	public void toggleHighlight(boolean highlight);
 	
 	public Map<Integer,List<PlayerMapObjectInterface>> getUnits();
+	
+	public void addObject(PlayerMapObjectInterface object);
+	public void removeObject(PlayerMapObjectInterface object);
 
 }
