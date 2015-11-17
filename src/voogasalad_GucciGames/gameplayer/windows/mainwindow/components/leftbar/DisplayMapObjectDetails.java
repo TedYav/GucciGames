@@ -60,6 +60,9 @@ public class DisplayMapObjectDetails  implements DisplayComponent, ListChangeLis
                 mapObjectsOnCell.add(o);
             }
             imageDisplay.updateImages();
+            if (mapObjectsOnCell.size()>0) {
+                updateActiveMapObject(mapObjectsOnCell.get(0));
+            }
             listView.setItems(FXCollections.observableList(temp));
         }
     }
@@ -69,11 +72,15 @@ public class DisplayMapObjectDetails  implements DisplayComponent, ListChangeLis
             System.out.println("ho");
             PlayerMapObjectInterface mapObj=(PlayerMapObjectInterface)arg;
             Map<String,String> map = mapObj.getAttributes();
+            temp.clear();
             temp.add(mapObj.getName());
             for (String s: map.keySet()) {
                 temp.add(s+": "+map.get(s));
             }
             listView.setItems(FXCollections.observableList(temp));
         }
+    }
+    private void updateActiveMapObject(PlayerMapObjectInterface mapObj) {
+        myController.setActiveMapObject(mapObj);
     }
 }
