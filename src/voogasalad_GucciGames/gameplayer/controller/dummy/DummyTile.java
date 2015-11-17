@@ -1,5 +1,6 @@
 package voogasalad_GucciGames.gameplayer.controller.dummy;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
@@ -50,9 +51,8 @@ public class DummyTile implements PlayerMapObjectInterface {
 	}
 
 	@Override
-	public void performAction(String action, TargetCoordinate coordinate) {
-		// TODO Auto-generated method stub
-		
+	public List<PlayerMapObjectInterface> performAction(String action, TargetCoordinate coordinate) {
+		return new ArrayList<>();
 	}
 
 	@Override
