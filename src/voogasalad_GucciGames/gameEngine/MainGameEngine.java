@@ -32,7 +32,7 @@ public class MainGameEngine implements GameEngineToGamePlayerInterface {
 		myGameMap = gameMap;
 		myCurrentTurnCounter = new TurnCounter();
 		myTurnDecider = new DefaultTurnDecider(gamePlayers.getNumberOfPlayers(), myCurrentTurnCounter);
-
+		myConditionHandler=new ConditionHandler();
 	}
 
 	@Override

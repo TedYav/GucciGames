@@ -29,77 +29,58 @@ public class XStreamGameEngine implements GameDataInterface{
 
     XStream serializer = new XStream(new DomDriver());
     String currentTurn = "Current Turn: ";
-    String engineLocation = "./src/voogasalad_GucciGames/gameData/engine.xml";
+    String defaultEngineLocation = "./src/voogasalad_GucciGames/gameData/engine.xml";
 
     public static void main(String[] args0){
         XStreamGameEngine xStream = new XStreamGameEngine();
         System.out.println("Creating and saving engine.");
         try {
             Map<Integer,GamePlayerPerson> myMapOfPlayers = new TreeMap<Integer,GamePlayerPerson>();	
-
-            //UnitCollection neutralUnits = new UnitCollection();
             myMapOfPlayers.put(-1,new GamePlayerPerson()); //neutral player
-
-            //UnitCollection p1Units = new UnitCollection();
-
             MapObjectType soldier = new MapObjectType("soldier", null);
             MapObjectType archer = new MapObjectType("archer" , null);
-
-            //p1Units.addUnit(new GameUnit(1, soldier, 3, 3));
-            //p1Units.addUnit(new GameUnit(1, archer, 1, 1));
             myMapOfPlayers.put(0,new GamePlayerPerson()); //player 1 
-
-            //UnitCollection p2Units = new UnitCollection();
-
-            //p2Units.addUnit(new GameUnit(2, soldier, 2, 2));
-
             myMapOfPlayers.put(1,new GamePlayerPerson()); //player 2
-
-
             AllPlayers myPlayers = new AllPlayers(myMapOfPlayers);
-
 
             GameMap myMap = new GameMap(myPlayers);
             OnlyOnePlayerHasUnitsCondition myRule = new OnlyOnePlayerHasUnitsCondition(myMap); 
+            
             MainGameEngine engine = new MainGameEngine(myPlayers, myRule, myMap);
-
-
-
-            //System.out.println(xStream.currentTurn + engine.getCurrentTurn()); // current turn should be 1
-            //engine.endTurn(); 
-            //System.out.println(xStream.currentTurn + engine.getCurrentTurn()); // current turn should be 2
-
+            
             String engineXML = xStream.serializer.toXML(engine); // saved XML File should have current turn as 2
-
-            File file = new File(xStream.engineLocation);
+            File file = new File(xStream.defaultEngineLocation);
             BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter(file));
             bufferedWriter.write(engineXML);
             bufferedWriter.close();
-        } catch (IOException e) {
-            // TODO Auto-generated catch block
+        } 
+        catch (IOException e) {
             e.printStackTrace();
         }
         System.out.println("Save Complete.");
-
         xStream.loadEngine();
     }
     public GameEngineToGamePlayerInterface loadEngine() {
+        return loadEngine(null);
+    }
+    public GameEngineToGamePlayerInterface loadEngine(String path) {
+        String myPath = path;
+        if (path==null) {
+            myPath=defaultEngineLocation;
+        }
         System.out.println("Loading engine.");
         MainGameEngine engine=null;
         try {
-            File file = new File(engineLocation);
+            File file = new File(myPath);
             BufferedReader bufferedReader = new BufferedReader(new FileReader(file));
             StringBuilder engineXMLBuilder = new StringBuilder();
             bufferedReader.lines().forEach(line->engineXMLBuilder.append(line));
 
             // loaded XML File should have current turn as 2
             engine = (MainGameEngine) serializer.fromXML(engineXMLBuilder.toString());
-
-            //System.out.println(currentTurn + engine.getCurrentTurn()); // current turn should be 2
-            //engine.endTurn(); 
-            //System.out.println(currentTurn + engine.getCurrentTurn()); // current turn should be 3
-        } catch (FileNotFoundException e) {
-            // TODO Auto-generated catch block
+            
+        } 
+        catch (FileNotFoundException e) {
             e.printStackTrace();
         }
         System.out.println("Load complete.");

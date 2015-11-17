@@ -43,6 +43,9 @@
     <numPlayers>3</numPlayers>
     <turnCounter reference="../../myCurrentTurnCounter"/>
   </myTurnDecider>
+  <myConditionHandler>
+    <map/>
+  </myConditionHandler>
   <myGameMap>
     <myGamePlayers reference="../../myGamePlayers"/>
   </myGameMap>
