@@ -43,6 +43,7 @@ public class DialogContent {
 		dropDown.setItems(options);
 		return dropDown;	
 	}
+	/*
 	protected HBox makeRadioButtons(Properties prop, String name, String itemsKey, ISaveObjProperty saveObjProperty){
 		HBox checkBoxes = new HBox();
 		final ToggleGroup group = new ToggleGroup();
@@ -75,7 +76,7 @@ public class DialogContent {
 			}
 		});
 	}
-
+*/
 	protected ScrollBar makeScrollBar(Properties prop, String minKey, String maxKey, String incrementKey){
 		ScrollBar scrollBar = new ScrollBar();
 		scrollBar.setMin(Double.parseDouble(prop.getProperty(minKey)));

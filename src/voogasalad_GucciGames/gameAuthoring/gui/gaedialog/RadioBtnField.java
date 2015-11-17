@@ -11,14 +11,16 @@ import javafx.scene.control.RadioButton;
 import javafx.scene.control.Toggle;
 import javafx.scene.control.ToggleGroup;
 import javafx.scene.layout.HBox;
+import javafx.scene.text.Text;
 
-public class RadioBtnField extends DialogComponents {
+public class RadioBtnField extends DialogComponent {
 	
 	private DialogElements dialogElements;
 	private String propKey;
 	private String itemsKey;
 	private ToggleGroup group = new ToggleGroup();
-	private HBox content;
+	private HBox content = new HBox();
+	
 	
 	public RadioBtnField(DialogElements dialogElements, String propKey, String itemsKey){
 		this.dialogElements = dialogElements;
@@ -28,6 +30,7 @@ public class RadioBtnField extends DialogComponents {
 	}
 		
 	protected void makeRadioButtons(){
+		Text label = new Text(propKey);
 		List<RadioButton> checkBoxList = new ArrayList<RadioButton>();
 		List<String> propertiesList = parseStringToList(dialogElements.getDialogProperties(), itemsKey);
 		for (int i = 0; i < propertiesList.size(); i++){
@@ -37,7 +40,8 @@ public class RadioBtnField extends DialogComponents {
 			radioBtn.setToggleGroup(group);
 			radioBtn.setUserData(radioBtn.getText());});		
 		addListenerToToggleGroup();
-		content.getChildren().addAll(checkBoxList);
+		content.getChildren().add(label);
+		content.getChildren().addAll( checkBoxList);
 	}
 	
 	private void addListenerToToggleGroup() {
@@ -50,8 +54,7 @@ public class RadioBtnField extends DialogComponents {
 					dialogElements.getSaveObjProperty()
 					.saveObjProperty(propKey, group.getSelectedToggle().getUserData().toString());
 					
-				}
-				
+				}			
 			}
 		});
 	}
