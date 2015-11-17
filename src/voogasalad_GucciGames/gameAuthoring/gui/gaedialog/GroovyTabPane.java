@@ -10,24 +10,25 @@ import javafx.scene.control.ListView;
 import javafx.scene.control.Tab;
 import javafx.scene.control.TabPane;
 import javafx.scene.control.TextArea;
+import javafx.scene.control.TextField;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 
-public class GroovyTabPane {
+public class GroovyTabPane extends DialogComponent{
 	
 	private VBox contentVBox = new VBox();
 	private TabPane tabPane = new TabPane();
 	private Tab selectedTab = new Tab();
-	private Properties prop;
-	private ISaveGroovy saveGroovy;
+	private DialogElements dialogElements;
+
 	
-	public GroovyTabPane(Properties prop, ISaveGroovy saveGroovy){
-		this.prop = prop;
-		this.saveGroovy = saveGroovy;
+	public GroovyTabPane(DialogElements dialogElements){
+		this.dialogElements = dialogElements;
+
 		addGroovyTab();
 		setSelectedTab(tabPane.getTabs().get(0));
-		contentVBox = createTabPaneElements(tabPane, prop, "vbox-element", "hbox-element");			
+		contentVBox = createTabPaneElements(tabPane, this.dialogElements.getDialogProperties(), "vbox-element", "hbox-element");			
 		setTabProperties(tabPane);
 	}	
 	 protected VBox createTabPaneElements(TabPane tabPane, Properties prop, String vboxStyleId, String hboxStyleId){
@@ -39,7 +40,8 @@ public class GroovyTabPane {
 		 hbox.setId(hboxStyleId);
 		 saveBtn.setOnAction(e -> {
 			 String groovy = getTextAreaForTab(getSelectedTab()).getText();
-			 saveGroovy.saveGroovyTextArea(groovy, getIdForTab(getSelectedTab()));
+			 dialogElements.getSaveGroovy().
+			 saveGroovyTextArea(groovy, getIdForTab(getSelectedTab()));
 			 getTextAreaForTab(getSelectedTab()).setDisable(true);			 
 		 });
 		 editBtn.setOnAction(e -> {
@@ -63,9 +65,10 @@ public class GroovyTabPane {
 	 protected void addGroovyTab( ){
 		 Tab tab = new Tab();
 		 VBox content = new VBox();
-		 Text title = new Text(prop.getProperty("groovytitle"));
+		 Text title = new Text(dialogElements.getDialogProperties().getProperty("groovytitle"));
+		 TextInputField name = new TextInputField(dialogElements, "attributename");
 		 TextArea textArea = new TextArea();
-		 content.getChildren().addAll(title, textArea);
+		 content.getChildren().addAll(title, name.getContent(), textArea);
 		 tab.setContent(content);
 		 tabPane.getTabs().add(tab); 
 	 }
@@ -113,7 +116,7 @@ public class GroovyTabPane {
 	 }
 	 
 	 private TextArea getTextAreaForTab(Tab t){
-		 return (TextArea) (((VBox) t.getContent()).getChildren().get(1));
+		 return (TextArea) (((VBox) t.getContent()).getChildren().get(2));
 	 }
 	 
 	 protected int getIdForTab(Tab t){
@@ -127,9 +130,21 @@ public class GroovyTabPane {
 	 public Tab getSelectedTab(){
 		 return selectedTab;
 	 }
-	 public VBox getContent(){
-		 return contentVBox;
+	 public HBox getContent(){
+		 HBox hbox = new HBox();
+		 hbox.getChildren().add(contentVBox);
+		 return hbox;
 	 }
+
+	@Override
+	public void setSelected(String s) {
+		// TODO Auto-generated method stub
+		
+	}
+	
+	public void setValueForTab(int index, String name, String content){
+		
+	}
 	
 	
 
