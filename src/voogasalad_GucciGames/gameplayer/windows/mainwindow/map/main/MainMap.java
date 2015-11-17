@@ -107,8 +107,9 @@ public class MainMap extends WindowComponent implements MapInterface {
 		mySecondLayer.getChildren().add(myMiniMap.getParent());
 	}
 	
+	//TODO: add loading bar
+	
 	private void drawMap(List<PlayerMapObjectInterface> initialState){
-		System.out.println(initialState);
 		initialState.stream()
 			.forEach(o->addToMap(o));
         myParent.getStyleClass().add(myConfig.getString("MainCSSClass"));
@@ -169,6 +170,7 @@ public class MainMap extends WindowComponent implements MapInterface {
 		targets.stream()
 			.map((t) -> new Point2D(t.getCenterX(), t.getCenterY()))
 			.map((c) -> myCellMap.get(c))
+			.filter((c) -> c!=null)
 			.forEach((c) -> { c.toggleHighlight(true); myHighlightedCells.add(c);} );
 	}
 	

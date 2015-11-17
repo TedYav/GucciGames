@@ -45,8 +45,8 @@ public class DummyUnit extends ADummy implements PlayerMapObjectInterface {
 	@Override
 	public List<ATargetCoordinate> getActionTargets(String action) {
 		List<ATargetCoordinate> myTargets = new ArrayList<>();
-		for(int i=-1; i<2; i++){
-			for(int j=-1; j<2; j++){
+		for(int i=-2; i<=2; i++){
+			for(int j=-2; j<=2; j++){
 				if(i==0 & j==0)
 					continue;
 				myTargets.add(new TargetCoordinateSingle(myX+i, myY+j));
