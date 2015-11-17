@@ -28,8 +28,8 @@ public abstract class MapObjectEvent {
 			return execute(params);
 		}
 		return new EmptyParameters();
-
 	}
+
 
 	private Boolean checkRules(int playerID, CommunicationParameters params) {
 		Boolean ruletest = false;

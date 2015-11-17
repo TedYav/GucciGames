@@ -2,12 +2,15 @@ package voogasalad_GucciGames.gameEngine;
 
 import java.util.List;
 
+import voogasalad_GucciGames.gameEngine.CommunicationParams.MainGameEngineCommunicationParams;
 import voogasalad_GucciGames.gameEngine.gameConditions.ConditionHandler;
+import voogasalad_GucciGames.gameEngine.gameConditions.GridCoordinateParameters;
 import voogasalad_GucciGames.gameEngine.gameConditions.defaultConditions.game.GlobalGameCondition;
 import voogasalad_GucciGames.gameEngine.gamePlayer.ATurnDecider;
 import voogasalad_GucciGames.gameEngine.gamePlayer.AllPlayers;
 import voogasalad_GucciGames.gameEngine.gamePlayer.DefaultTurnDecider;
 import voogasalad_GucciGames.gameEngine.gamePlayer.TurnCounter;
+import voogasalad_GucciGames.gameEngine.mapObject.MapObject;
 import voogasalad_GucciGames.gameplayer.controller.GameEngineToGamePlayerInterface;
 import voogasalad_GucciGames.gameplayer.controller.PlayerMapObjectInterface;
 
@@ -18,18 +21,16 @@ public class MainGameEngine implements GameEngineToGamePlayerInterface {
 	private ATurnDecider myTurnDecider;
 
 	private ConditionHandler myConditionHandler;
-
+	
 	private String myName;
-	private GameMap myGameMap;
 
 	public String getName() {
 		return myName;
 	}
 
-	public MainGameEngine(AllPlayers gamePlayers, GlobalGameCondition globalRule, GameMap gameMap) {
+	public MainGameEngine(AllPlayers gamePlayers, GlobalGameCondition globalRule) {
 
 		myGamePlayers = gamePlayers;
-		myGameMap = gameMap;
 		myCurrentTurnCounter = new TurnCounter();
 		myTurnDecider = new DefaultTurnDecider(gamePlayers.getNumberOfPlayers(), myCurrentTurnCounter);
 
@@ -62,6 +63,14 @@ public class MainGameEngine implements GameEngineToGamePlayerInterface {
 	@Override
 	public List<PlayerMapObjectInterface> getInitialState() {
 		return myGamePlayers.getInitialState();
+	}
+
+	@Override
+	public GridCoordinateParameters getPossibleCoordinates(String action, PlayerMapObjectInterface myMapObject) {
+		return ((MapObject) myMapObject).performAction(action, new MainGameEngineCommunicationParams(myGamePlayers, null, ((MapObject) myMapObject), null, this));
+		
+		
+		
 	}
 
 }

@@ -10,7 +10,6 @@ public class EmptyParameters extends CommunicationParameters{
 
 	public EmptyParameters() {
 		super();
-		// TODO Auto-generated constructor stub
 	}
 	
 }

@@ -5,31 +5,33 @@ import java.util.List;
 import java.util.Map;
 import java.util.TreeMap;
 
+import voogasalad_GucciGames.gameEngine.CommunicationParams.MainGameEngineCommunicationParams;
+import voogasalad_GucciGames.gameEngine.gameConditions.GridCoordinateParameters;
 import voogasalad_GucciGames.gameEngine.targetCoordinate.ATargetCoordinate;
 import voogasalad_GucciGames.gameplayer.controller.PlayerMapObjectInterface;
 
 public class MapObject implements PlayerMapObjectInterface{
-    private MapObjectType myObjectType;
-    private ATargetCoordinate myCoordinate;
-    private int ownerID;
+	private MapObjectType myObjectType;
+	private ATargetCoordinate myCoordinate;
+	private int ownerID;
 
-    public MapObject(MapObjectType type, ATargetCoordinate coor, int ownerID){
-    	this.myObjectType = type;
-    	this.myCoordinate = coor;
-    }
+	public MapObject(MapObjectType type, ATargetCoordinate coor, int ownerID){
+		this.myObjectType = type;
+		this.myCoordinate = coor;
+	}
 
-    public MapObjectType getObjectType(){
-    	return myObjectType;
-    }
+	public MapObjectType getObjectType(){
+		return myObjectType;
+	}
 
-    @Override
+	@Override
 	public ATargetCoordinate getCoordinate(){
-    	return myCoordinate;
-    }
+		return myCoordinate;
+	}
 
-    public void setCoordinate(ATargetCoordinate coordinate){
-    	this.myCoordinate = coordinate;
-    }
+	public void setCoordinate(ATargetCoordinate coordinate){
+		this.myCoordinate = coordinate;
+	}
 
 	public boolean isUnit() {
 		return myObjectType.hasCharacteristic("unit");
@@ -69,12 +71,19 @@ public class MapObject implements PlayerMapObjectInterface{
 		return 0;
 	}
 
+
 	//FIX THIS!!! ERROR WAS CAUSED FROM ActionDisplay.java line 52 
 	// myController.getMap().highlightCells(activeMapObject.getActionTargets(name));
 	@Override
 	public List<ATargetCoordinate> getActionTargets(String name) {
 		// TODO Auto-generated method stub
 		return new ArrayList<>();
+	}
+
+	public GridCoordinateParameters performAction(String action,
+			MainGameEngineCommunicationParams mainGameEngineCommunicationParams) {
+		// TODO Auto-generated method stub
+		return (GridCoordinateParameters) myObjectType.getAction(action).executeAction(mainGameEngineCommunicationParams, ownerID);
 	}
 
 }
