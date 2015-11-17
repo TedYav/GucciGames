@@ -35,6 +35,10 @@ public class TextInputField extends DialogComponent{
 		
 	}
 
+	
+	protected TextField getTextField(){
+		return textField;
+	}
 	@Override
 	HBox getContent() {
 		// TODO Auto-generated method stub

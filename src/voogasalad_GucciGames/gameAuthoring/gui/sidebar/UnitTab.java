@@ -6,7 +6,6 @@ import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import voogasalad_GucciGames.gameAuthoring.IGuiGaeController;
 import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.NewObjectMaker;
-import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.UnitMaker;
 import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.ISaveCustomObj;
 import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.UnitMakerCustomContent;
 

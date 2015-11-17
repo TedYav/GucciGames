@@ -19,7 +19,7 @@ public class NewObjectMaker extends GaeDialog{
 	private GroovyTabPane groovyTabPane;
 	private VBox myContent = new VBox();
 	private Stage unitMakerDialog = new Stage();
-	private Map<Integer, String> groovyBuffer = new HashMap<Integer, String>();
+	private Map<String, String> groovyBuffer = new HashMap<String, String>();
 	private Properties prop;
 	private ObjectProperty unitProperty = new ObjectProperty();
 	private ISaveGroovy saveGroovy;
@@ -53,13 +53,13 @@ public class NewObjectMaker extends GaeDialog{
 	 }
 	 	 
 
-	 protected Button createAddButton(Properties prop, String btnKey, String headerKey, GroovyTabPane groovyTabPane){
-		 Button addBtn = new Button(prop.getProperty(btnKey));
-		 addBtn.setOnAction(e -> {
-			 groovyTabPane.addGroovyTab();			 
-		 });
-		 return addBtn;		 
-	 }
+//	 protected Button createAddButton(Properties prop, String btnKey, String headerKey, GroovyTabPane groovyTabPane){
+//		 Button addBtn = new Button(prop.getProperty(btnKey));
+//		 addBtn.setOnAction(e -> {
+//			 groovyTabPane.addGroovyTab();			 
+//		 });
+//		 return addBtn;		 
+//	 }
 	 
 	 protected ISaveObjProperty setSavePropertyFunction(ObjectProperty property, ISaveObjProperty saveObjProperty){
 			saveObjProperty = (propName, prop) -> {
@@ -73,11 +73,11 @@ public class NewObjectMaker extends GaeDialog{
 			return saveObjProperty;
 	 }
 	 
-	 protected ISaveGroovy setSaveGroovyFunctions(Map<Integer, String> buffer, ISaveGroovy saveGroovy){		 
-			saveGroovy = (str, index) -> {
-				buffer.put(index, str);
+	 protected ISaveGroovy setSaveGroovyFunctions(Map<String, String> groovyBuffer2, ISaveGroovy saveGroovy){		 
+			saveGroovy = (str, strName) -> {
+				groovyBuffer2.put(strName, str);
 				//debug
-				buffer.forEach((k, v) -> System.out.println(" " + k + " " + v));
+				groovyBuffer2.forEach((k, v) -> System.out.println(" " + k + " " + v));
 				System.out.println("---------");
 			};	
 			return saveGroovy;
