@@ -9,21 +9,20 @@ public class UnitMakerCustomContent extends DialogContent{
 	private DialogElements dialogElements;
 	
 	public UnitMakerCustomContent(){
-		
+		//initializeCustomContent();
 	}
 	
 	protected void setDialogElements(DialogElements dialogElements){
 		this.dialogElements = dialogElements;
 	}
 	
-	protected VBox initializeCustomContent() {
+	protected void initializeCustomContent() {
 		// TODO Auto-generated method stub
-		VBox vbox = new VBox();
 		RadioBtnField prop1 = new RadioBtnField(dialogElements, "prop1", "prop1_items");
 		RadioBtnField prop2 = new RadioBtnField(dialogElements, "prop1", "prop1_items");
-		vbox.getChildren().addAll(prop1.getContent(), prop2.getContent());
-		vbox.setId("vbox-element");
-		return vbox;
+		content.getChildren().addAll(prop1.getContent(), prop2.getContent());
+		content.setId("vbox-element");
+
 	}
 	
 	protected VBox getContent(){

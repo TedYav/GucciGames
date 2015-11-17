@@ -39,12 +39,6 @@ public class GroovyTabPane extends DialogComponent{
 	 protected VBox createTabPaneElements(TabPane tabPane, Properties prop, String vboxStyleId, String hboxStyleId){
 		 VBox vbox = new VBox();
 		 controlBtnBox = new HBox();
-//		 saveBtn = new Button(prop.getProperty("savebtn"));
-//		 addSaveBtnListener();
-//		 editBtn = new Button(prop.getProperty("editbtn"));
-//		 addEditBtnListener();
-//		 hbox.getChildren().addAll(editBtn, saveBtn);
-//		 hbox.setId(hboxStyleId);
 		 Button addBtn = createAddButton(prop, "addbtn", "groovytitle");
 		 vbox.getChildren().addAll(tabPane, controlBtnBox, addBtn);
 		 vbox.setId(vboxStyleId);
@@ -60,11 +54,11 @@ public class GroovyTabPane extends DialogComponent{
 	 private void addSaveBtnListener(){
 		 saveBtn.setOnAction(e -> {
 			 String groovy = getTextAreaForTab(getSelectedTab().getText()).getText();
-			 String name = getSelectedTab().getId();
+			 String name = getSelectedTab().getText();
 			 dialogElements.getSaveGroovy().
 			 saveGroovyTextArea(groovy, getIdForTab(getSelectedTab()));
 			 try {
-				 dialogElements.getObjectProperty().addPropertyElement("attributeName", name);
+				 dialogElements.getObjectProperty().addPropertyElement(name + "_groovy", groovy);
 			 } catch (Exception e1) {
 				 e1.printStackTrace();
 			 }
@@ -76,7 +70,6 @@ public class GroovyTabPane extends DialogComponent{
 	 protected Button createAddButton(Properties prop, String btnKey, String headerKey){
 		 Button addBtn = new Button(prop.getProperty(btnKey));
 		 addBtn.setOnAction(e -> {
-			 //addGroovyTab();
 			 openAddNewDialog();
 			 
 		 });
