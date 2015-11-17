@@ -2,7 +2,9 @@ package voogasalad_GucciGames.gameAuthoring.model;
 
 import java.util.List;
 import java.util.Map;
+
 import javafx.collections.ListChangeListener;
+import javafx.collections.ObservableList;
 import voogasalad_GucciGames.gameEngine.mapObject.MapObject;
 import voogasalad_GucciGames.gameEngine.mapObject.MapObjectType;
 
@@ -15,10 +17,12 @@ public interface IGAEModel {
     public void createCustomTileType(Map<String,String> m);
     public void createCustomUnitType(Map<String,String> m);
     
-    public List<MapObjectType> getImmutableTileTypes();
-    public List<MapObjectType> getImmutableUnitTypes();
-    public List<MapObjectType> getTileTypes();
-    public List<MapObjectType> getUnitTypes();
+    public ObservableList<MapObjectType> getImmutableTileTypes();
+    public ObservableList<MapObjectType> getImmutableUnitTypes();
+    public ObservableList<MapObjectType> getImmutableStructureTypes();
+    public ObservableList<MapObjectType> getTileTypes();
+    public ObservableList<MapObjectType> getUnitTypes();
+    public ObservableList<MapObjectType> getStructureTypes();
     
     public void saveToXML();
     

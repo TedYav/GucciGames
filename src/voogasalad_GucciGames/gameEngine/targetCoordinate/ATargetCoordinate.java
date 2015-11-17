@@ -1,15 +1,12 @@
 package voogasalad_GucciGames.gameEngine.targetCoordinate;
 
+import java.util.List;
+
 public abstract class ATargetCoordinate {
 
 	public abstract ATargetCoordinate clone();
 
-	public double getCenterX() {
-		return ((TargetCoordinateSingle)this).getCenterX();
-	}
-	
-	public double getCenterY() {
-		return ((TargetCoordinateSingle)this).getCenterY();
-	}
+	public abstract List<TargetCoordinateSingle> getListOfCoordinates();
+
 	
 }

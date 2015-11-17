@@ -1,10 +1,10 @@
 package voogasalad_GucciGames.gameEngine.mapObject;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.TreeMap;
 
-import voogasalad_GucciGames.gameEngine.CommunicationParams.WhereToParams;
 import voogasalad_GucciGames.gameEngine.targetCoordinate.ATargetCoordinate;
 import voogasalad_GucciGames.gameplayer.controller.PlayerMapObjectInterface;
 
@@ -17,15 +17,16 @@ public class MapObject implements PlayerMapObjectInterface{
     	this.myObjectType = type;
     	this.myCoordinate = coor;
     }
-    
+
     public MapObjectType getObjectType(){
     	return myObjectType;
     }
-    
-    public ATargetCoordinate getCoordinate(){
+
+    @Override
+	public ATargetCoordinate getCoordinate(){
     	return myCoordinate;
     }
-    
+
     public void setCoordinate(ATargetCoordinate coordinate){
     	this.myCoordinate = coordinate;
     }
@@ -57,21 +58,23 @@ public class MapObject implements PlayerMapObjectInterface{
 	}
 
 	@Override
-	public List<ATargetCoordinate> getActionTargets(String action) {
-		// TODO Auto-generated method stub
-		return ((WhereToParams) myObjectType.getAction(action).executeAction(null, ownerID)).getTargetCoordinateMultiple().getCoordinates();
-	}
-
-	@Override
 	public int getPlayerID() {
 		// TODO Auto-generated method stub
-		return 0;
+		return ownerID;
 	}
 
 	@Override
 	public int getLayer() {
 		// TODO Auto-generated method stub
 		return 0;
+	}
+
+	//FIX THIS!!! ERROR WAS CAUSED FROM ActionDisplay.java line 52 
+	// myController.getMap().highlightCells(activeMapObject.getActionTargets(name));
+	@Override
+	public List<ATargetCoordinate> getActionTargets(String name) {
+		// TODO Auto-generated method stub
+		return new ArrayList<>();
 	}
 
 }

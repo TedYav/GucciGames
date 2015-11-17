@@ -22,7 +22,7 @@ public abstract class MapObjectEvent {
 
 	// must keep executeAction() final
 	public final CommunicationParams executeAction(CommunicationParams params, int playerID) {
-		Boolean check = checkRules(params.getActionToRuleMap(), playerID);
+		Boolean check = checkRules(playerID,params);
 		if (check) {
 			return execute(params);
 		}
@@ -30,14 +30,15 @@ public abstract class MapObjectEvent {
 
 	}
 
-	private Boolean checkRules(ActionToRuleMap mapobj, int playerID) {
+	private Boolean checkRules(int playerID, CommunicationParams params) {
 		Boolean ruletest = false;
+		ActionToRuleMap mapobj = params.getActionToRuleMap();
 		if (mapobj.contains(myName)) {
 			List<Rules> list = mapobj.getKey(myName);
 			if (list != null) {
 				Iterator<Rules> ruleItr = list.iterator();
 				while (ruleItr.hasNext()) {
-					ruletest = ruleItr.next().executeRules(playerID);
+					ruletest = ruleItr.next().executeRules(params, playerID);
 					if (ruletest == false) {
 						return ruletest;
 					}
