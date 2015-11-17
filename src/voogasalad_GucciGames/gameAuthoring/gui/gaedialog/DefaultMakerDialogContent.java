@@ -15,12 +15,16 @@ import javafx.scene.text.Text;
 
 public class DefaultMakerDialogContent extends DialogContent {
 	private VBox myContent;
-	Properties prop;
-	Property objProp;
-	ISaveObjProperty saveObjProp;
+	private Properties prop;
+	private Property objProp;
+	
+	private ISaveObjProperty saveObjProp;
+	private ISaveGroovy saveGroovy;
+	private ISaveCustomObj saveCustomObj;
 	
 	
-	public DefaultMakerDialogContent(Properties prop, Property objProp, ISaveObjProperty saveObjProp){
+	public DefaultMakerDialogContent(Properties prop, Property objProp, 
+			ISaveObjProperty saveObjProp, ISaveGroovy saveGroovy, ISaveCustomObj saveCustomObj){
 		myContent = initContent();
 		this.prop = prop;
 		this.objProp = objProp;

@@ -4,7 +4,7 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Properties;
 
-import voogasalad_GucciGames.gameAuthoring.properties.MapObjectProperty;
+import voogasalad_GucciGames.gameAuthoring.properties.ObjectProperty;
 import voogasalad_GucciGames.gameAuthoring.properties.UnitProperty;
 import javafx.scene.Scene;
 import javafx.scene.layout.HBox;
@@ -20,7 +20,7 @@ public class StructureMaker extends NewObjectMaker{
 	private VBox myContent = new VBox();
 	private Stage structureMakerDialog = new Stage();
 	private Properties prop;
-	private MapObjectProperty unitProperty = new MapObjectProperty();
+	private ObjectProperty unitProperty = new ObjectProperty();
 	private Map<Integer, String> groovyBuffer = new HashMap<Integer, String>();
 
 	private ISaveGroovy saveGroovy;

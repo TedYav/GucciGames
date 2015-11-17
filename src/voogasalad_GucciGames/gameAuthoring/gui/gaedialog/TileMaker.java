@@ -4,7 +4,7 @@ import java.util.Map;
 import java.util.Properties;
 
 import voogasalad_GucciGames.gameAuthoring.guiexceptions.InvalidInputException;
-import voogasalad_GucciGames.gameAuthoring.properties.MapObjectProperty;
+import voogasalad_GucciGames.gameAuthoring.properties.ObjectProperty;
 import voogasalad_GucciGames.gameAuthoring.properties.TileProperty;
 import javafx.scene.Scene;
 import javafx.scene.layout.HBox;
@@ -22,7 +22,7 @@ public class TileMaker extends NewObjectMaker {
 	private Stage tileMakerDialog = new Stage();
 	private Map<Integer, String> groovyBuffer = new HashMap<Integer, String>();
 	private Properties prop;
-	private MapObjectProperty tileProperty = new MapObjectProperty();
+	private ObjectProperty tileProperty = new ObjectProperty();
 	private ISaveGroovy saveGroovy;
 	private ISaveObjProperty saveObjProperty;
 	private ISaveCustomObj saveCustomObject;

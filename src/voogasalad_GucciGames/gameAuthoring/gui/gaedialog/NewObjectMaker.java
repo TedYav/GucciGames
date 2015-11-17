@@ -3,7 +3,7 @@ import java.util.Map;
 import java.util.Properties;
 
 import voogasalad_GucciGames.gameAuthoring.guiexceptions.InvalidInputException;
-import voogasalad_GucciGames.gameAuthoring.properties.MapObjectProperty;
+import voogasalad_GucciGames.gameAuthoring.properties.ObjectProperty;
 import voogasalad_GucciGames.gameAuthoring.properties.Property;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
@@ -30,7 +30,7 @@ public abstract class NewObjectMaker extends GaeDialog{
 	
 	 protected VBox initDefaultContentForObjMaker(Properties prop, VBox customContent,
 			 GroovyTabPane groovyTabPane, String styleId, ISaveObjProperty saveObjProperty, 
-			 ISaveCustomObj saveCustomObject, MapObjectProperty property){
+			 ISaveCustomObj saveCustomObject, ObjectProperty property){
 		 
 		 VBox content = new VBox();	 
 		 Text titleTextElement = new Text(prop.getProperty("title"));
@@ -77,7 +77,7 @@ public abstract class NewObjectMaker extends GaeDialog{
 		 return addBtn;		 
 	 }
 	 
-	 protected ISaveObjProperty setSavePropertyFunction(MapObjectProperty property, ISaveObjProperty saveObjProperty){
+	 protected ISaveObjProperty setSavePropertyFunction(ObjectProperty property, ISaveObjProperty saveObjProperty){
 			saveObjProperty = (propName, prop) -> {
 				try {
 					property.addPropertyElement(propName, prop);

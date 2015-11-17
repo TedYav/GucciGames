@@ -5,7 +5,7 @@ import java.util.Map;
 
 import voogasalad_GucciGames.gameAuthoring.guiexceptions.InvalidInputException;
 
-public class MapObjectProperty {
+public class ObjectProperty {
 	
 	private Map<String, String> myMap = new HashMap<String, String>();
 	

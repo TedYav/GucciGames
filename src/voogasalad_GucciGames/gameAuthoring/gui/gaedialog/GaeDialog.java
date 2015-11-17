@@ -9,7 +9,7 @@ import java.util.List;
 import java.util.Properties;
 
 import voogasalad_GucciGames.gameAuthoring.IDialogGaeController;
-import voogasalad_GucciGames.gameAuthoring.properties.MapObjectProperty;
+import voogasalad_GucciGames.gameAuthoring.properties.ObjectProperty;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
@@ -37,7 +37,7 @@ abstract public class GaeDialog{
 	protected abstract VBox initializeDialog();
 	protected abstract VBox initializeDialog(VBox customProperties);
 	
-	protected HBox initializeControl(Properties prop, String keyStyleId, IDialogGaeController dialogGaeController, MapObjectProperty property){
+	protected HBox initializeControl(Properties prop, String keyStyleId, IDialogGaeController dialogGaeController, ObjectProperty property){
 		HBox controls = new HBox();
 		controls.setId("hbox-control");
 		Button cancelBtn = new Button( prop.getProperty("cancel"));

@@ -4,7 +4,7 @@ import java.util.Properties;
 import voogasalad_GucciGames.gameAuthoring.IDialogGaeController;
 import voogasalad_GucciGames.gameAuthoring.guiexceptions.InvalidInputException;
 import voogasalad_GucciGames.gameAuthoring.properties.GameSettingsProperty;
-import voogasalad_GucciGames.gameAuthoring.properties.MapObjectProperty;
+import voogasalad_GucciGames.gameAuthoring.properties.ObjectProperty;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
@@ -19,7 +19,7 @@ public class GameSettingDialog extends GaeDialog {
 	private Stage gameSettingDialog = new Stage();
 	private VBox myContent = new VBox();
 	private Properties prop;
-	private MapObjectProperty gameSettingsProperty = new MapObjectProperty();
+	private ObjectProperty gameSettingsProperty = new ObjectProperty();
 	private IDialogGaeController dialogGaeController;
 	private ISaveObjProperty saveObjProperty;
 	
