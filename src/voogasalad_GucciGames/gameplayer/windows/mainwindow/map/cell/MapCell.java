@@ -104,7 +104,6 @@ public abstract class MapCell implements MapCellInterface {
 	}
 	
 	public void removeObject(PlayerMapObjectInterface object){
-		System.out.println("REMOVING");
 		myObjects.get(object.getLayer()).remove(object);
 		myLayerMap.get(object.getLayer()).getChildren().remove(object);
 		redrawLayer(object.getLayer());
@@ -171,7 +170,7 @@ public abstract class MapCell implements MapCellInterface {
 			for(int i=0, total=0; i<countPerRow; i++){
 				for(int j=0; j<countPerRow; j++, total++){
 					if(total==count) break;
-					myLayerMap.get(layer).add(renderImage(myObjects.get(layer).get(total), (mySize/countPerRow)), i, j);
+					myLayerMap.get(layer).add(renderImage(myObjects.get(layer).get(total), (mySize/countPerRow)), j, i);
 				}
 			}
 		}
