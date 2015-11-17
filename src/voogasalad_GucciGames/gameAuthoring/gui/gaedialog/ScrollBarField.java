@@ -29,13 +29,13 @@ public class ScrollBarField extends DialogComponent {
 	}
 	
 	protected void makeScrollBar(){
-		Text numSpriteText = new Text(Double.toString(scrollBar.getValue()));
+		Text title = new Text(dialogElements.getDialogProperties().getProperty(propKey));
 		List<String> params = super.parseStringToList(dialogElements.getDialogProperties(), itemsKey);
 		scrollBar.setMin(Double.parseDouble(params.get(0)));
 		scrollBar.setMax(Double.parseDouble(params.get(1)));
 		scrollBar.setUnitIncrement(Integer.parseInt(params.get(2)));
 		addListenerToScrollBar();
-		content.getChildren().addAll(scrollBar, numSpriteText);
+		content.getChildren().addAll(title, scrollBar, numSpriteText);
 		content.setId("hbox-content");
 	}
 	

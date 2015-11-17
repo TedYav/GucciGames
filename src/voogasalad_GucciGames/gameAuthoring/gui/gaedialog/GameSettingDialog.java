@@ -22,6 +22,7 @@ public class GameSettingDialog extends GaeDialog {
 	private ObjectProperty gameSettingsProperty = new ObjectProperty();
 	private IDialogGaeController dialogGaeController;
 	private ISaveObjProperty saveObjProperty;
+	private DialogElements dialogElements;
 	
 	
 	public GameSettingDialog(IDialogGaeController dialogGaeController){
@@ -35,6 +36,7 @@ public class GameSettingDialog extends GaeDialog {
 				e.printStackTrace();
 			}
 		};
+		dialogElements = new DialogElements(prop, gameSettingsProperty, saveObjProperty, null, null);
 		myContent = initializeDialog();
 		myContent.getChildren().add(initializeControl(prop, "hbox-control", 
 				dialogGaeController, gameSettingsProperty));
@@ -55,19 +57,15 @@ public class GameSettingDialog extends GaeDialog {
 			saveObjProperty.saveObjProperty(prop.getProperty("title"), newValue);		
 		});
 		HBox nameElement = createElement(prop.getProperty("name"), nameTextField, "field-title-element");
-		HBox mapSizeElement = createElement(prop.getProperty("mapsize"), 
-				makeDropDownList(prop,"mapsize", "mapsize_items", saveObjProperty), "field-title-element");
-		HBox fogOfWarElement = createElement(prop.getProperty("fogofwar"),
-				makeDropDownList(prop, "fogofwar", "fogofwar_items", saveObjProperty), "field-title-element");
-		HBox miniMapElement = createElement(prop.getProperty("minimap"),
-				makeRadioButtons(prop, "minimap", "minimap_items",saveObjProperty), "field-title-element");
-		HBox zoomableElement = createElement(prop.getProperty("zoomable"),
-				makeRadioButtons(prop, "zoomable","zoomable_items" , saveObjProperty), "field-title-element");
-		HBox numPlayerElement = createElement(prop.getProperty("numplayer"),
-				makeScrollBar(prop, "numplayer","player_min", "player_max", "player_increment", saveObjProperty), "field-title-element");
-		content.getChildren().addAll(titleElement, nameElement, mapSizeElement, fogOfWarElement,
-				miniMapElement, zoomableElement, numPlayerElement);
-		content.getChildren().forEach(hbox->hbox.setId("hbox-element"));
+		DropDownMenuField mapSize = new DropDownMenuField(dialogElements, "mapsize", "mapsize_items");
+		DropDownMenuField fogOfWar = new DropDownMenuField(dialogElements, "fogofwar", "fogofwar_items");
+		RadioBtnField miniMap = new RadioBtnField(dialogElements, "minimap", "minimap_items");
+		RadioBtnField zoomable = new RadioBtnField(dialogElements, "zoomable", "zoomable_items");
+		ScrollBarField numPlayer = new ScrollBarField(dialogElements, "numplayer", "numplayer_items");		
+		content.getChildren().addAll(titleElement, nameElement, mapSize.getContent(), fogOfWar.getContent(),
+				miniMap.getContent(), zoomable.getContent(), numPlayer.getContent());
+		
+		content.getChildren().forEach(hbox->hbox.setId("hbox-element"));		
 		titleElement.setId("title");
 		content.setId("vbox-element");	
 		return content;
