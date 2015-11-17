@@ -11,6 +11,7 @@ import javafx.geometry.Point2D;
 
 import java.util.Observer;
 import javafx.scene.image.Image;
+import voogasalad_GucciGames.gameplayer.controller.dummy.ADummy;
 import voogasalad_GucciGames.gameplayer.datastructures.Coordinate;
 import voogasalad_GucciGames.gameplayer.datastructures.ImageDatabase;
 import voogasalad_GucciGames.gameplayer.windows.mainwindow.map.MapInterface;
@@ -69,7 +70,7 @@ public class GameController implements GameControllerInterface {
 	
 	@Override
 	public void performActionInProgress(Point2D target){
-		List<PlayerMapObjectInterface> result = myTargetUnit.performAction(myActionInProgress, Coordinate.PointToCoordinate(target));
+		List<PlayerMapObjectInterface> result = ((ADummy)myTargetUnit).performAction(myActionInProgress, Coordinate.PointToCoordinate(target));
 		cancelAction();
 		myMap.update(result);
 	}

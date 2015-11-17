@@ -16,11 +16,11 @@ import javafx.scene.layout.StackPane;
 import javafx.stage.Screen;
 import voogasalad.util.reflection.Reflection;
 import voogasalad_GucciGames.gameEngine.targetCoordinate.ATargetCoordinate;
+import voogasalad_GucciGames.gameEngine.targetCoordinate.TargetCoordinateSingle;
 import voogasalad_GucciGames.gameplayer.controller.GameControllerInterface;
 import voogasalad_GucciGames.gameplayer.controller.PlayerMapObjectInterface;
 import voogasalad_GucciGames.gameplayer.controller.dummy.DummyTile;
 import voogasalad_GucciGames.gameplayer.controller.dummy.DummyUnit;
-import voogasalad_GucciGames.gameplayer.controller.dummy.TargetCoordinate;
 import voogasalad_GucciGames.gameplayer.datastructures.Coordinate;
 import voogasalad_GucciGames.gameplayer.datastructures.TwoWayMap;
 import voogasalad_GucciGames.gameplayer.windows.GameScene;
@@ -122,7 +122,7 @@ public class MainMap extends WindowComponent implements MapInterface {
 		if(!myCellMap.containsKey(key)){
 			MapCell newCell = (MapCell)Reflection.createInstance(myConfig.getString("CellClass"), myController, myCellSize);
 			myCellMap.put(key, newCell);
-			myMap.add(newCell.getParent(), object.getCoordinate().getX(), object.getCoordinate().getY());
+			myMap.add(newCell.getParent(), ((Double)object.getCoordinate().getCenterX()).intValue(), ((Double)object.getCoordinate().getCenterY()).intValue());
 		}
 		MapCellInterface target = myCellMap.get(key);
 		target.addObject(object);
@@ -167,7 +167,7 @@ public class MainMap extends WindowComponent implements MapInterface {
 	@Override
 	public void highlightCells(List<ATargetCoordinate> targets) {
 		targets.stream()
-			.map((t) -> new Point2D(t.getX(), t.getY()))
+			.map((t) -> new Point2D(t.getCenterX(), t.getCenterY()))
 			.map((c) -> myCellMap.get(c))
 			.forEach((c) -> { c.toggleHighlight(true); myHighlightedCells.add(c);} );
 	}

@@ -16,7 +16,7 @@ import voogasalad_GucciGames.gameplayer.controller.PlayerMapObjectInterface;
  * @author Ted Yavuzkurt
  *
  */
-public class DummyUnit implements PlayerMapObjectInterface {
+public class DummyUnit extends ADummy implements PlayerMapObjectInterface {
 	
 	private int myX, myY;
 	
