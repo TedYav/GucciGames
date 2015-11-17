@@ -1,15 +1,15 @@
 package voogasalad_GucciGames.gameEngine.mapObject;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.TreeMap;
-
 import voogasalad_GucciGames.gameEngine.objectActions.MapObjectEvent;
 
-public class MapObjectType {
+public class MapObjectType{
 
-	
+
 	private String myName;
 	private String myImagePath;
 	
