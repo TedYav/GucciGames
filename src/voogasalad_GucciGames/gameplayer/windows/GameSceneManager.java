@@ -5,7 +5,9 @@ import java.util.ResourceBundle;
 import java.util.stream.Collectors;
 
 import javafx.scene.Scene;
+import javafx.stage.Stage;
 import voogasalad.util.reflection.Reflection;
+import voogasalad_GucciGames.gameData.XStreamGameEngine;
 import voogasalad_GucciGames.gameplayer.gameloader.GameLoader;
 
 public class GameSceneManager implements SceneManager{
@@ -15,12 +17,14 @@ public class GameSceneManager implements SceneManager{
 	private GameScene myCurrentScene;
 	private GameWindowInterface myWindow;
 	private GameLoader myLoader;
+	private XStreamGameEngine myData;
 	
 	public GameSceneManager(String config, GameWindowInterface window){
 		myConfig = ResourceBundle.getBundle("voogasalad_GucciGames.gameplayer.config." + config);
 		myWindow = window;
 		myScenes = generateScenes();
-		myLoader = new GameLoader();
+		myData = new XStreamGameEngine();
+		myLoader = new GameLoader(myData.loadEngine());
 		myCurrentScene = myScenes.get(myConfig.getString("DefaultScene"));
 		myCurrentScene.load();
 	}
@@ -36,7 +40,9 @@ public class GameSceneManager implements SceneManager{
 		myCurrentScene = myScenes.get(myCurrentScene.getNext());
 		myCurrentScene.load();
 	}
-	
+	public Stage getStage() {
+	    return myWindow.getStage();
+	}
 	public GameLoader getLoader(){
 		return myLoader;
 	}

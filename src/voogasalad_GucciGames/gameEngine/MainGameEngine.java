@@ -33,7 +33,7 @@ public class MainGameEngine implements GameEngineToGamePlayerInterface {
 		myGamePlayers = gamePlayers;
 		myCurrentTurnCounter = new TurnCounter();
 		myTurnDecider = new DefaultTurnDecider(gamePlayers.getNumberOfPlayers(), myCurrentTurnCounter);
-
+		myConditionHandler=new ConditionHandler();
 	}
 
 	@Override
@@ -65,6 +65,11 @@ public class MainGameEngine implements GameEngineToGamePlayerInterface {
 		return myGamePlayers.getInitialState();
 	}
 
+    @Override
+    public int getTurnPlayerID () {
+        // TODO Auto-generated method stub
+        return 0;
+    }
 	@Override
 	public GridCoordinateParameters getPossibleCoordinates(String action, PlayerMapObjectInterface myMapObject) {
 		return ((MapObject) myMapObject).performAction(action, new MainGameEngineCommunicationParams(myGamePlayers, null, ((MapObject) myMapObject), null, this));
