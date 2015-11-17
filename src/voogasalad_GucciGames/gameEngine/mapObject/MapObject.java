@@ -5,7 +5,6 @@ import java.util.Map;
 
 import voogasalad_GucciGames.gameEngine.targetCoordinate.ATargetCoordinate;
 import voogasalad_GucciGames.gameplayer.controller.PlayerMapObjectInterface;
-import voogasalad_GucciGames.gameplayer.controller.dummy.MapObjectBasicType;
 
 public class MapObject implements PlayerMapObjectInterface{
     private MapObjectType myObjectType;
@@ -16,15 +15,16 @@ public class MapObject implements PlayerMapObjectInterface{
     	this.myObjectType = type;
     	this.myCoordinate = coor;
     }
-    
+
     public MapObjectType getObjectType(){
     	return myObjectType;
     }
-    
-    public ATargetCoordinate getCoordinate(){
+
+    @Override
+	public ATargetCoordinate getCoordinate(){
     	return myCoordinate;
     }
-    
+
     public void setCoordinate(ATargetCoordinate coordinate){
     	this.myCoordinate = coordinate;
     }

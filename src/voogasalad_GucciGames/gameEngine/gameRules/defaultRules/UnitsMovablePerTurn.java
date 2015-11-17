@@ -1,8 +1,7 @@
 package voogasalad_GucciGames.gameEngine.gameRules.defaultRules;
 
-import java.util.List;
-
 import voogasalad_GucciGames.gameEngine.CommunicationParams.CommunicationParams;
+import voogasalad_GucciGames.gameEngine.gamePlayer.GamePlayerPerson;
 import voogasalad_GucciGames.gameEngine.gameRules.Rules;
 
 /**
@@ -11,23 +10,45 @@ import voogasalad_GucciGames.gameEngine.gameRules.Rules;
  *
  */
 public class UnitsMovablePerTurn extends Rules {
-	private int targetValue;
-	private String target;
-	private CommunicationParams myCommunicationParams;
-
-	public UnitsMovablePerTurn(CommunicationParams communicationParams, List<Object> ruleArgs) {
-		super(communicationParams, ruleArgs);
-		targetValue = (int) ruleArgs.get(0);
-		myCommunicationParams = communicationParams;
-	}
 
 	@Override
-	public Boolean executeRules(int playerID) {
-		int unitsMovedCounter = myCommunicationParams.getPlayers().getPlayerById(playerID).getUnitsMoved();
-		if (unitsMovedCounter < targetValue) {
+	public Boolean executeRules(CommunicationParams communicationParams, int playerID) {
+		GamePlayerPerson player = communicationParams.getPlayers().getPlayerById(playerID);
+		int objAllowedMoves = player.getUnitsMoved();
+		int playerAllowedMoves = player.getAllowedMovesPerTurn();
+		int objcurrentMoves = 0; // fix it;
+		int playerCurrentMoves = player.getTurnCounter();
+		if (playerAllowedMoves == -1 && objAllowedMoves == -1) {
 			return true;
-		} else
-			return false;
+		} else if (playerAllowedMoves != -1 && objAllowedMoves == -1) {
+			return evalIf(playerAllowedMoves, playerCurrentMoves);
+		} else if (playerAllowedMoves == -1 && objAllowedMoves != -1) {
+			return evalIf(objAllowedMoves, objcurrentMoves);
+		} else if (playerAllowedMoves != -1 && objAllowedMoves != -1) {
+			if (objAllowedMoves < playerAllowedMoves) {
+				return evalIf(objAllowedMoves, objcurrentMoves);
+
+			} else if (playerAllowedMoves < objAllowedMoves) {
+				return evalIf(playerAllowedMoves, playerCurrentMoves);
+
+			} else {
+				if ((playerCurrentMoves < playerAllowedMoves) && (objcurrentMoves < objAllowedMoves)) {
+					return true;
+				} else
+					return false;
+
+			}
+
+		}
+
+		return false;
 	}
 
+	private Boolean evalIf(int allowed, int current) {
+		if (current < allowed) {
+			return true;
+		} else {
+			return false;
+		}
+	}
 }
