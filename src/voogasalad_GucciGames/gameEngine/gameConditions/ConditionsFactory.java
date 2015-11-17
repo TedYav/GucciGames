@@ -7,8 +7,7 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.ResourceBundle;
 
-import voogasalad_GucciGames.gameEngine.gameConditions.oucomes.Outcome;
-import voogasalad_GucciGames.gameEngine.gamePlayer.AllPlayers;
+import voogasalad_GucciGames.gameEngine.CommunicationParams.CommunicationParams;
 import voogasalad_GucciGames.gameEngine.gamePlayer.GamePlayerPerson;
 
 /**
@@ -17,61 +16,47 @@ import voogasalad_GucciGames.gameEngine.gamePlayer.GamePlayerPerson;
  *
  */
 public class ConditionsFactory {
-	private AllPlayers myPlayers;
-	private Outcome myOutcomes;
-///resources/gameConditions/conditions.properties
 	private static final String PATH_TO_CONDITIONS_PROPERTIES = "voogasalad_GucciGames.resources.gameConditions.conditionPath";
-private static final String PATH_TO_OUTCOMES_PROPERTIES = "voogasalad_GucciGames.resources.gameOutcomes.outcomes";
+	private static final String PATH_TO_OUTCOMES_PROPERTIES = "voogasalad_GucciGames.resources.gameOutcomes.outcomes";
 	private ResourceBundle conditionBundle;
 	private ResourceBundle outcomeBundle;
 
 
 
-	public ConditionsFactory(AllPlayers players) {
-		myPlayers = players;
-		myOutcomes = new Outcome(players);
-
+	public ConditionsFactory() {
 		conditionBundle = ResourceBundle.getBundle(PATH_TO_CONDITIONS_PROPERTIES);
 		outcomeBundle = ResourceBundle.getBundle(PATH_TO_OUTCOMES_PROPERTIES);
 
 
 	}
 
-	public ConditionsCreated createCondition(String name, String type, List<Object> args,
-			ConditionsCreated createdConditons)
+	public CommunicationParams createCondition(ConditionParams condParams, CommunicationParams params)
 					throws InstantiationException, IllegalAccessException, ClassNotFoundException,
 					IllegalArgumentException, InvocationTargetException, NoSuchMethodException, SecurityException {
 		// 1. default vs custom rule
-		if (conditionBundle.containsKey(name)) {
+		if (conditionBundle.containsKey(condParams.getName())) {
 			List<GamePlayerPerson> players = new ArrayList<GamePlayerPerson>();
-
-			if (type.equals("player")) {
-				if (args != null) {
+			if (condParams.getType().equals("player")) {
+				if (condParams.getArgs() != null) {
 					@SuppressWarnings("unchecked")
-					List<Integer> playerID = (List<Integer>) args.get(0);
+					List<Integer> playerID = (List<Integer>) condParams.getArgs().get(0);
 					Iterator<Integer> idIterator = playerID.iterator();
 					while (idIterator.hasNext()) {
-						players.add(myPlayers.getPlayerById(idIterator.next()));
+						players.add(params.getPlayers().getPlayerById(idIterator.next()));
 					}
 				}
 				// thanks Efe!
-				Class<Conditions> condition = (Class<Conditions>) Class.forName(conditionBundle.getString(name));
-				// if you pass a list do not need its type. make sure you are
-				// not passing an arraylist by mistake
-				Constructor<Conditions> condConstructor = condition.getDeclaredConstructor(List.class,
-						myOutcomes.getClass());
-				Conditions conditionInstance = condConstructor.newInstance(players, myOutcomes);
-				createdConditons.addCondition(name, conditionInstance);
+				Class<Conditions> condition = (Class<Conditions>) Class.forName(conditionBundle.getString(condParams.getName()));
+				Constructor<Conditions> condConstructor = condition.getDeclaredConstructor(List.class,CommunicationParams.class );
+				Conditions conditionInstance = condConstructor.newInstance(players, params);
+				//params.getcreatedConditons().addCondition(condParams.getName(), conditionInstance);
 			} else {
-				// add rules for levels
+				System.out.println("cond for level");
 			}
 		} else {
 			System.out.println("not found");
-			// add custom rules
-			// another if then so re-factor above into methods
-			// add cond to condproperties file
 		}
-		return createdConditons;
+		return params;
 
 	}
 

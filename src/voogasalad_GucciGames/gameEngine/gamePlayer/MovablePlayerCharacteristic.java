@@ -1,7 +1,7 @@
 package voogasalad_GucciGames.gameEngine.gamePlayer;
 
 public class MovablePlayerCharacteristic extends GamePlayerPerson{
-	private int myNumberOfMoves;
+	private int myNumberOfMoves =-1;
 	private int moveCount = 0;
 
 
@@ -10,7 +10,7 @@ public class MovablePlayerCharacteristic extends GamePlayerPerson{
 		myNumberOfMoves = -1;
 		// TODO Auto-generated constructor stub
 	}*/
-	
+
 	public int getMyNumberOfMoves() {
 		return myNumberOfMoves;
 	}
@@ -18,7 +18,7 @@ public class MovablePlayerCharacteristic extends GamePlayerPerson{
 	public void setMyNumberOfMoves(int numberOfMoves) {
 		this.myNumberOfMoves = numberOfMoves;
 	}
-	
+
 	public void updateMoves(){
 		moveCount++;
 	}

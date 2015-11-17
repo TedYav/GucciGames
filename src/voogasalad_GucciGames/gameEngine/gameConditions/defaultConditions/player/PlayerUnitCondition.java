@@ -1,8 +1,8 @@
 package voogasalad_GucciGames.gameEngine.gameConditions.defaultConditions.player;
 import java.util.List;
 
+import voogasalad_GucciGames.gameEngine.CommunicationParams.CommunicationParams;
 import voogasalad_GucciGames.gameEngine.gameConditions.EndGameConditions;
-import voogasalad_GucciGames.gameEngine.gameConditions.oucomes.Outcome;
 import voogasalad_GucciGames.gameEngine.gamePlayer.GamePlayerPerson;
 
 /**
@@ -11,11 +11,11 @@ import voogasalad_GucciGames.gameEngine.gamePlayer.GamePlayerPerson;
  *
  */
 public class PlayerUnitCondition extends PlayerConditions {
-	private Outcome myOutcome;
 
-	public PlayerUnitCondition(List<GamePlayerPerson> players, Outcome outcome) {
-		super(players, outcome);
-		myOutcome = outcome;
+
+	public PlayerUnitCondition(List<GamePlayerPerson> players, CommunicationParams params) {
+		super(players, params);
+
 	}
 
 	@Override
@@ -23,7 +23,7 @@ public class PlayerUnitCondition extends PlayerConditions {
 		if (player.getUnits() != null) {
 			if (player.getUnits().size() == 0) {
 				player.setStatus(EndGameConditions.LOSE.toString());
-				myOutcome.removePlayer(player.getMyPlayerId());
+				getMyOutcome().removePlayer(player.getMyPlayerId());
 			}
 		}
 	}

@@ -28,13 +28,17 @@ public interface IGuiGaeController extends IDialogGaeController {
     @Override
     public void createCustomMapObject(ObjectProperty p);
 
-    public List<MapObjectType> getImmutableTileTypes();
+    public ObservableList<MapObjectType> getImmutableTileTypes();
 
-    public List<MapObjectType> getImmutableUnitTypes();
+    public ObservableList<MapObjectType> getImmutableUnitTypes();
+    
+    public ObservableList<MapObjectType> getImmutableStructureTypes();
 
-    public List<MapObjectType> getTileTypes();
+    public ObservableList<MapObjectType> getTileTypes();
 
-    public List<MapObjectType> getUnitTypes();
+    public ObservableList<MapObjectType> getUnitTypes();
+    
+    public ObservableList<MapObjectType> getStructureTypes();
 
     public void saveToXML();
     

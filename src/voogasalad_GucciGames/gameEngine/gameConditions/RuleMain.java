@@ -1,11 +1,6 @@
 package voogasalad_GucciGames.gameEngine.gameConditions;
 
 import java.lang.reflect.InvocationTargetException;
-import java.util.ArrayList;
-import java.util.List;
-
-import voogasalad_GucciGames.gameEngine.gamePlayer.AllPlayers;
-import voogasalad_GucciGames.gameEngine.gamePlayer.GamePlayerPerson;
 
 /**
  *
@@ -16,8 +11,23 @@ public class RuleMain {
 	public static void main(String[] args)
 			throws InstantiationException, IllegalAccessException, ClassNotFoundException, IllegalArgumentException,
 			InvocationTargetException, NoSuchMethodException, SecurityException {
+
+		/*GamePlayerPerson p0 = new GamePlayerPerson(null, 0);
+<<<<<<< HEAD
+
+	/*	GamePlayerPerson p0 = new GamePlayerPerson(null, 0);
+=======
+	GamePlayerPerson p0 = new GamePlayerPerson(null, 0);
+
+>>>>>>> dbe28434e2d2bf044461256175a5c7bb80b526f5
+		GamePlayerPerson p = new GamePlayerPerson(null, 1);
+
 		GamePlayerPerson p0 = new GamePlayerPerson();
 		GamePlayerPerson p = new GamePlayerPerson();
+<<<<<<< HEAD
+=======
+
+>>>>>>> dbe28434e2d2bf044461256175a5c7bb80b526f5
 		List<GamePlayerPerson> l = new ArrayList<GamePlayerPerson>();
 		l.add(p0);
 		l.add(p);
@@ -30,7 +40,11 @@ public class RuleMain {
 		ConditionsCreated c = new ConditionsCreated();
 		c = f.createCondition("PlayerUnitCondition", "player", s, c);
 		c.loop();
-		System.out.println("test1");
+
+		System.out.println("test1");*/
+
+
+
 
 	}
 

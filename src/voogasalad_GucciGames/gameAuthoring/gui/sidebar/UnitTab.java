@@ -26,13 +26,7 @@ public class UnitTab extends AbstractTab {
 	}
 
 	@Override
-	public void update() {
-		// TODO Auto-generated method stub
-	}
-
-	@Override
 	protected void addAddButtonListener() {
-		// TODO Auto-generated method stub
 		myAddButton.setOnAction(new EventHandler<ActionEvent>() {
 			@Override public void handle(ActionEvent e) {
 				NewObjectMaker unitMaker = new NewObjectMaker(new UnitMakerCustomContent(), myController);
