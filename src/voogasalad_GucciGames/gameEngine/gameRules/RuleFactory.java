@@ -14,7 +14,7 @@ import voogasalad_GucciGames.gameEngine.CommunicationParams.CommunicationParams;
  *
  */
 public class RuleFactory {
-	private static final String PATH_TO_RULE_PROPERTIES = "fixit";
+	private static final String PATH_TO_RULE_PROPERTIES = "voogasalad_GucciGames.resources.gameRules.rulePath";
 	private ResourceBundle ruleBundle;
 	private CommunicationParams myCommunicationParams;
 	private ActionToRuleMap myActionToRuleMap;
@@ -28,7 +28,6 @@ public class RuleFactory {
 		List<Object> ruleArgs = new ArrayList<Object>();//instead of passing argument map from gae, get a property file of rule: variable, value pairs//talk to gae first
 		if(ruleBundle.containsKey(actionName)){
 			//while loop to populate  the map
-
 			Class<Rules> condition = (Class<Rules>) Class.forName(ruleBundle.getString(actionName));
 			Constructor<Rules> condConstructor = condition.getDeclaredConstructor(myCommunicationParams.getClass(), List.class);
 			Rules ruleInstance = condConstructor.newInstance(myCommunicationParams, ruleArgs);
