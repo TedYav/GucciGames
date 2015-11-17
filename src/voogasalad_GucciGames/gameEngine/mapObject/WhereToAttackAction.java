@@ -22,7 +22,7 @@ public class WhereToAttackAction implements IMapObjectActionTarget{
 		// TODO Auto-generated method stub
 		
 		AllPlayers players = communication.getPlayers();
-		GamePlayerPerson player = players.getActivePlayer(players.getCurrentTurn());
+		GamePlayerPerson player = players.getActivePlayer(communication.getTurn());
 		//List<ATargetCoordinate> result = new ArrayList<>();
 		
 		TargetCoordinateMultiple result = new TargetCoordinateMultiple();

@@ -9,7 +9,7 @@ import voogasalad_GucciGames.gameEngine.mapObject.MapObject;
 public class EmptyParams extends CommunicationParams{
 
 	public EmptyParams() {
-		super(null, null, null,null);
+		super(null, null, null,null, null);
 		// TODO Auto-generated constructor stub
 	}
 	

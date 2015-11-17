@@ -1,13 +1,14 @@
 package voogasalad_GucciGames.gameplayer.controller;
 
 import java.util.List;
+import java.util.Map;
 
+import voogasalad_GucciGames.gameEngine.targetCoordinate.ATargetCoordinate;
 import voogasalad_GucciGames.gameplayer.controller.dummy.MapObjectBasicType;
-import voogasalad_GucciGames.gameplayer.controller.dummy.TargetCoordinate;
 
 // TODO: add getCoordnate(), getPlayer(), etc
 public interface PlayerMapObjectInterface {
-        public List<String> getAttributes(); //i.e. HP=100, Owning Player=1, ...
+    public Map<String, String> getAttributes(); //i.e. HP=100, Owning Player=1, ...
 
 	public String getName();
 	
@@ -19,12 +20,13 @@ public interface PlayerMapObjectInterface {
 		return 0;
 	}
 	
-	public MapObjectBasicType getBasicType();
-	
 	public List<String> getActionNames();
 	
-	public List<TargetCoordinate> getActionTarget();
+	public List<ATargetCoordinate> getActionTargets(String action);
 	
-	public void performAction(String action, TargetCoordinate coordinate);
+	public void performAction(String action, ATargetCoordinate coordinate);
 	
+	public int getPlayerID();
+
+	public ATargetCoordinate getCoordinate();
 }

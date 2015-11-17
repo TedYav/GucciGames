@@ -11,7 +11,7 @@ import voogasalad_GucciGames.gameEngine.gamePlayer.GamePlayerPerson;
  *
  */
 public class PlayerUnitCondition extends PlayerConditions {
-	Outcome myOutcome;
+	private Outcome myOutcome;
 
 	public PlayerUnitCondition(List<GamePlayerPerson> players, Outcome outcome) {
 		super(players, outcome);

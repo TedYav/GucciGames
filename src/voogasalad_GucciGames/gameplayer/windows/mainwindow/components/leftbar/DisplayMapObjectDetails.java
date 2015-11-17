@@ -64,10 +64,13 @@ public class DisplayMapObjectDetails  implements DisplayComponent, ListChangeLis
         System.out.println("ho");
         if (arg!=null && arg.getClass().equals(PlayerMapObjectInterface.class)) {
             PlayerMapObjectInterface mapObj=(PlayerMapObjectInterface)arg;
-            List<String> list = mapObj.getAttributes();
-            for (String s: list) {
+            
+              Map<String, String> list = mapObj.getAttributes();
+            for (String s: list.keySet()) {
                 temp.add(s);
-            }
+            } 
+            
+            
         }
     }
 }

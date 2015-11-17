@@ -4,6 +4,7 @@ import java.util.Collections;
 import java.util.List;
 import javafx.collections.ListChangeListener;
 import javafx.collections.ObservableList;
+import voogasalad_GucciGames.gameEngine.mapObject.DefaultMapObjectType;
 import voogasalad_GucciGames.gameEngine.mapObject.MapObject;
 import voogasalad_GucciGames.gameEngine.mapObject.MapObjectType;
 import voogasalad_GucciGames.gameEngine.mapObject.MapObject;
@@ -14,6 +15,11 @@ public class GameSourceData {
     private ObservableList<MapObject> tiles;
     private ObservableList<MapObjectType> unitTypes;
     private ObservableList<MapObject> units; 
+   
+    //havent implemeneted these yet
+    private ObservableList<MapObjectType> structureTypes;
+    private ObservableList<MapObject> structures;
+    
     
     private ObservableList<MapObject> onMap;
     
@@ -23,6 +29,9 @@ public class GameSourceData {
         unitTypes.addListener(o);
         units.addListener(o);
         onMap.addListener(o);
+        
+
+        
     }
     
     public void addToMap(MapObject obj) {

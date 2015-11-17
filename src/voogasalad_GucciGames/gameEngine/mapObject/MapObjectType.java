@@ -39,11 +39,11 @@ public class MapObjectType {
 	//	myHealthCharacteristic.changeHealth(healthDiff);
 	//}
 
-	public String getMyName() {
+	public String getName() {
 		return myName;
 	}
 
-	public String getMyImagePath() {
+	public String getImagePath() {
 		return myImagePath;
 	}
 	
