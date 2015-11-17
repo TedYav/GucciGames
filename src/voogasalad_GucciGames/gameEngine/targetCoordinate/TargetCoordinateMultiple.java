@@ -61,4 +61,10 @@ public class TargetCoordinateMultiple extends ATargetCoordinate {
 		return new TargetCoordinateMultiple(myList);
 	}
 
+	@Override
+	public List<TargetCoordinateSingle> getListOfCoordinates() {
+		// TODO Auto-generated method stub
+		return myCoordinates;
+	}
+
 }

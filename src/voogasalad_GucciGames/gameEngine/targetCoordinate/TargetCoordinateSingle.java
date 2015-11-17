@@ -1,5 +1,8 @@
 package voogasalad_GucciGames.gameEngine.targetCoordinate;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class TargetCoordinateSingle extends ATargetCoordinate{
 	private double myCenterX, myCenterY;
 	
@@ -26,6 +29,14 @@ public class TargetCoordinateSingle extends ATargetCoordinate{
 
 	public double getCenterY() {
 		return myCenterY;
+	}
+
+	@Override
+	public List<TargetCoordinateSingle> getListOfCoordinates() {
+		// TODO Auto-generated method stub
+		List<TargetCoordinateSingle> myList = new ArrayList<>();
+		myList.add(this);
+		return myList;
 	}
 
 	
