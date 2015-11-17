@@ -35,7 +35,7 @@ public class DisplayMapObjectDetails  implements DisplayComponent, ListChangeLis
         display = new VBox();
         display.getChildren().add(imageDisplay.getNodeToDraw());
         display.getChildren().add(listView);
-        
+
         myController.addMOObserver(this);
     }
     public Node getNodeToDraw() {
@@ -49,11 +49,13 @@ public class DisplayMapObjectDetails  implements DisplayComponent, ListChangeLis
             temp.clear();
             mapObjectsOnCell.clear();
             for (PlayerMapObjectInterface o: list){
-                temp.add(o.getImageURI());
-                contents=o.getActionNames();
-                for (String s: contents) {
-                    temp.add(s);
-                }
+                //temp.add(o.getImageURI());
+//                contents=o.getAttributes();
+//                if (contents!=null) {
+//                    for (String s: contents) {
+//                        temp.add(s);
+//                    }
+//                }
                 mapObjectsOnCell.add(o);
             }
             imageDisplay.updateImages();
@@ -62,13 +64,15 @@ public class DisplayMapObjectDetails  implements DisplayComponent, ListChangeLis
     }
     @Override
     public void update (Observable o, Object arg) {
-        System.out.println("ho");
-        if (arg!=null && arg.getClass().equals(PlayerMapObjectInterface.class)) {
+        System.out.println(arg);
+        if (arg!=null) {
+            System.out.println("ho");
             PlayerMapObjectInterface mapObj=(PlayerMapObjectInterface)arg;
-            List<String> list = mapObj.getAttributes();
+            List<String> list = mapObj.getActionNames();
             for (String s: list) {
                 temp.add(s);
             }
+            listView.setItems(FXCollections.observableList(temp));
         }
     }
 }
