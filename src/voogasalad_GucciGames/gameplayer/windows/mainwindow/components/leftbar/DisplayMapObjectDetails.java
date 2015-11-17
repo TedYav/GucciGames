@@ -5,8 +5,8 @@ import java.util.List;
 import java.util.Map;
 import java.util.Observable;
 import java.util.Observer;
-
 import voogasalad_GucciGames.gameplayer.controller.PlayerMapObjectInterface;
+import voogasalad_GucciGames.gameplayer.controller.GameControllerInterface;
 import voogasalad_GucciGames.gameplayer.windows.mainwindow.components.DisplayComponent;
 import javafx.collections.FXCollections;
 import javafx.collections.ListChangeListener;
@@ -17,22 +17,26 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.VBox;
 import voogasalad_GucciGames.gameplayer.windows.mainwindow.map.MapInterface;
 
-public class DisplayMapObjectDetails  implements DisplayComponent, ListChangeListener<PlayerMapObjectInterface>{
+public class DisplayMapObjectDetails  implements DisplayComponent, ListChangeListener<PlayerMapObjectInterface>, Observer{
     private ListView<String> list;
     private MapInterface myMap;
     private List<String> temp;
-    private List<String> imageUrls;
+    private List<PlayerMapObjectInterface> mapObjectsOnCell;
     private DisplayMapObjectImage imageDisplay;
     private VBox display;
-    public DisplayMapObjectDetails(MapInterface map, Map<String,ImageView> imageCache) {
+    private GameControllerInterface myController;
+    public DisplayMapObjectDetails(MapInterface map, GameControllerInterface controller) {
         temp= new ArrayList<String>();
         temp.add("fasdf");
         list=new ListView<String>(FXCollections.observableList(temp));
-        imageUrls=new ArrayList<String>();
-        imageDisplay = new DisplayMapObjectImage(imageUrls, imageCache);
+        myController=controller;
+        mapObjectsOnCell=new ArrayList<PlayerMapObjectInterface>();
+        imageDisplay = new DisplayMapObjectImage(mapObjectsOnCell, myController);
         display = new VBox();
         display.getChildren().add(imageDisplay.getNodeToDraw());
         display.getChildren().add(list);
+        
+        myController.addMOObserver(this);
     }
     public Node getNodeToDraw() {
         return display;
@@ -43,16 +47,27 @@ public class DisplayMapObjectDetails  implements DisplayComponent, ListChangeLis
         while (c.next()) {
             List<PlayerMapObjectInterface> list = c.getList();
             temp.clear();
-            imageUrls.clear();
+            mapObjectsOnCell.clear();
             for (PlayerMapObjectInterface o: list){
                 temp.add(o.getImageURI());
                 contents=o.getActionNames();
                 for (String s: contents) {
                     temp.add(s);
                 }
-                imageUrls.add(o.getImageURI());
+                mapObjectsOnCell.add(o);
             }
             imageDisplay.updateImages();
+        }
+    }
+    @Override
+    public void update (Observable o, Object arg) {
+        System.out.println("ho");
+        if (arg!=null && arg.getClass().equals(PlayerMapObjectInterface.class)) {
+            PlayerMapObjectInterface mapObj=(PlayerMapObjectInterface)arg;
+            List<String> list = mapObj.getAttributes();
+            for (String s: list) {
+                temp.add(s);
+            }
         }
     }
 }

@@ -6,12 +6,14 @@ import java.util.Map;
 import javafx.event.Event;
 import javafx.event.EventHandler;
 import javafx.event.EventType;
+import java.util.Observer;
 import javafx.scene.image.Image;
 import voogasalad_GucciGames.gameplayer.windows.mainwindow.map.MapInterface;
 import voogasalad_GucciGames.gameplayer.windows.mainwindow.map.cell.MapCell;
 import voogasalad_GucciGames.gameplayer.windows.mainwindow.map.cell.contents.CellUnit;
 import voogasalad_GucciGames.gameplayer.windows.mainwindow.scenes.GameSceneInterface;
 import voogasalad_GucciGames.gameplayer.windows.mainwindow.scenes.MainGameScene;
+
 
 //TODO:
 // NEEDS WAY TO GET CURRENT PLAYER
@@ -20,6 +22,10 @@ public interface GameControllerInterface{
 	
 	public void activateCell(MapCell cell);
 	public List<MapCell> getActiveCells();
+	
+	public void setActiveMapObject(PlayerMapObjectInterface mapObj);
+	public PlayerMapObjectInterface getActiveMapObject();
+	public void addMOObserver(Observer o);
 	
 	public void setActionInProgress(String action);
 	public String getActionInProgress();

@@ -1,11 +1,13 @@
 package voogasalad_GucciGames.gameplayer.controller;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
 import javafx.event.Event;
 import javafx.event.EventHandler;
 import javafx.event.EventType;
+import java.util.Observer;
 import javafx.scene.image.Image;
 import voogasalad_GucciGames.gameplayer.datastructures.ImageDatabase;
 import voogasalad_GucciGames.gameplayer.windows.mainwindow.map.MapInterface;
@@ -22,11 +24,14 @@ public class GameController implements GameControllerInterface {
 	
 	// TODO: factor into component
 	private String myActionInProgress;
-	
+	private PlayerMapObjectInterface activeMapObject;
+	private List<Observer> activeMOObservers;
+
 	public GameController(GameEngineToGamePlayerInterface engine){
 		myEngine = engine;
 		myImageDatabase = new ImageDatabase();
 		myActionInProgress = "";
+		activeMOObservers=new ArrayList<Observer>();
 	}
 	
 	@Override
@@ -103,4 +108,24 @@ public class GameController implements GameControllerInterface {
 		myScene = scene;
 	}
 
+    @Override
+    public void setActiveMapObject (PlayerMapObjectInterface mapObj) {
+        activeMapObject=mapObj;
+        notifyMOObservers();
+    }
+    
+    public PlayerMapObjectInterface getActiveMapObject() {
+        return activeMapObject;
+    }
+
+    @Override
+    public void addMOObserver (Observer o) {
+        activeMOObservers.add(o);
+    }
+    
+    private void notifyMOObservers() {
+        for (Observer o: activeMOObservers) {
+            o.update(null, activeMapObject);
+        }
+    }
 }
