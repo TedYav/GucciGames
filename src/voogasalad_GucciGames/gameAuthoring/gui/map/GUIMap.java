@@ -43,8 +43,8 @@ public class GUIMap extends Pane implements IMap {
 		
 		myGrid = new Grid(cellSize, myController);
 		myGridViewer.setContent(myGrid);
-		myGridViewer.setHbarPolicy(ScrollPane.ScrollBarPolicy.ALWAYS);
-		myGridViewer.setVbarPolicy(ScrollPane.ScrollBarPolicy.ALWAYS);
+		myGridViewer.setHbarPolicy(ScrollPane.ScrollBarPolicy.NEVER);
+		myGridViewer.setVbarPolicy(ScrollPane.ScrollBarPolicy.NEVER);
 		//myGridViewer.vmaxProperty().bind(myGridViewer.widthProperty());
 		//myGridViewer.hmaxProperty().bind(myGridViewer.heightProperty());
 		myGridViewer.setPannable(true);
