@@ -42,7 +42,6 @@ public class DummyUnit extends ADummy implements PlayerMapObjectInterface {
 		return Arrays.asList("Attack", "Destroy", "Pwn", "Wingame");
 	}
 
-	@Override
 	public List<ATargetCoordinate> getActionTargets(String action) {
 		List<ATargetCoordinate> myTargets = new ArrayList<>();
 		for(int i=-2; i<=2; i++){
@@ -56,8 +55,8 @@ public class DummyUnit extends ADummy implements PlayerMapObjectInterface {
 	}
 
 	public List<PlayerMapObjectInterface> performAction(String action, ATargetCoordinate coordinate) {
-		myX = ((Double)coordinate.getCenterX()).intValue();
-		myY = ((Double)coordinate.getCenterY()).intValue();
+		myX = ((Double)coordinate.getListOfCoordinates().get(0).getCenterX()).intValue();
+		myY = ((Double)coordinate.getListOfCoordinates().get(0).getCenterY()).intValue();
 		ArrayList<PlayerMapObjectInterface> target = new ArrayList<>();
 		target.add(this);
 		return target;

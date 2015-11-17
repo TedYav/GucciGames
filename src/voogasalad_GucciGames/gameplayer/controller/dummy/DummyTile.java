@@ -42,7 +42,6 @@ public class DummyTile extends ADummy implements PlayerMapObjectInterface {
 		return Arrays.asList("Build", "Destroy", "Pwn", "Wingame");
 	}
 
-	@Override
 	public List<ATargetCoordinate> getActionTargets(String action) {
 		return Arrays.asList(new TargetCoordinateSingle(myX, myY));
 	}
