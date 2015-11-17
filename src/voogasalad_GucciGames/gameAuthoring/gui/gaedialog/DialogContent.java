@@ -59,6 +59,8 @@ public class DialogContent {
 		return checkBoxes;
 	}
 	
+	
+	
 	private void addListenerToToggleGroup(ToggleGroup group, ISaveObjProperty saveObjProperty, String propKey ){
 		group.selectedToggleProperty().addListener(new ChangeListener<Toggle>(){
 			@Override

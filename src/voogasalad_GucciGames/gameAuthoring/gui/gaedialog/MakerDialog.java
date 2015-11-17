@@ -22,10 +22,10 @@ public class MakerDialog extends DialogContent {
 	private ISaveGroovy saveGroovy;
 	private ISaveCustomObj saveCustomObj;
 	
-	private DialogMakerElements dialogMakerElements;
+	private DialogElements dialogMakerElements;
 	
 	
-	public MakerDialog(DialogMakerElements dialogMakerElements){
+	public MakerDialog(DialogElements dialogMakerElements){
 		
 		myContent = initContent();
 		this.prop = prop;

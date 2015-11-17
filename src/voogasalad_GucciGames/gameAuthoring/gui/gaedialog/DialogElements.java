@@ -10,7 +10,7 @@ import voogasalad_GucciGames.gameAuthoring.properties.Property;
  * @author yingqi
  *
  */
-public class DialogMakerElements {
+public class DialogElements {
 	
 	private Properties prop;
 	private ObjectProperty objProp;	
@@ -18,7 +18,7 @@ public class DialogMakerElements {
 	private ISaveGroovy saveGroovy;
 	private ISaveCustomObj saveCustomObj;
 	
-	public DialogMakerElements(Properties prop, ObjectProperty objProp, 
+	public DialogElements(Properties prop, ObjectProperty objProp, 
 			ISaveObjProperty saveObjProp, ISaveGroovy saveGroovy, ISaveCustomObj saveCustomObj){
 		this.prop = prop;
 		this.objProp = objProp;		
