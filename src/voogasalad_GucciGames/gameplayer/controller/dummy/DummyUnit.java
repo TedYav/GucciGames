@@ -68,7 +68,7 @@ public class DummyUnit implements PlayerMapObjectInterface {
 	public int getLayer() {
 		
 		// TODO Auto-generated method stub
-		return 0;
+		return 1;
 	}
 
 	@Override
