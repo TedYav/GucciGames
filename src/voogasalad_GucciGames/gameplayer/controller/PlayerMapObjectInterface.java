@@ -16,9 +16,13 @@ public interface PlayerMapObjectInterface {
 	public int getLayer();
 
 	public List<String> getActionNames();
+<<<<<<< HEAD
 
 	public List<ATargetCoordinate> getActionTargets(String action);
 
+=======
+	
+>>>>>>> 4868772e6761a23a6b33d79d292f394861519838
 	public int getPlayerID();
 
 	public ATargetCoordinate getCoordinate();

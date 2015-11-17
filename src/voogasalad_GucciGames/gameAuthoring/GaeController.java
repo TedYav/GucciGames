@@ -4,19 +4,26 @@ import java.util.List;
 import java.util.Map;
 
 import javafx.collections.ObservableList;
+import javafx.scene.image.Image;
 import javafx.stage.Stage;
 import voogasalad_GucciGames.gameAuthoring.gui.GAEGui;
+import voogasalad_GucciGames.gameAuthoring.model.GAEModel;
 import voogasalad_GucciGames.gameAuthoring.model.IGAEModel;
+import voogasalad_GucciGames.gameAuthoring.properties.ObjectProperty;
+import voogasalad_GucciGames.gameAuthoring.properties.Property;
 import voogasalad_GucciGames.gameEngine.mapObject.MapObject;
 import voogasalad_GucciGames.gameEngine.mapObject.MapObjectType;
 
 public class GaeController implements IGuiGaeController, IModelGaeController{
     IGAEModel model;
     GAEGui gui;
+    MapObjectType mapobjecttype;
+    Image currDraggedImage;
     
     public GaeController(Stage stage){
     	System.out.println("called 1");
-    	new GAEGui(this,stage);	
+    	model = new GAEModel(this);
+    	gui = new GAEGui(this,stage);	
     }
     
     @Override
@@ -40,18 +47,18 @@ public class GaeController implements IGuiGaeController, IModelGaeController{
         model.createCustomUnitType(m);
     }
     @Override
-    public ObservableList<MapObjectType> getImmutableTileTypes () {
-        return (ObservableList<MapObjectType>) model.getImmutableTileTypes();
+    public List<MapObjectType> getImmutableTileTypes () {
+        return model.getImmutableTileTypes();
     }
-    public ObservableList<MapObjectType> getTileTypes () {
+    public List<MapObjectType> getTileTypes () {
         // TODO Auto-generated method stub
         return (ObservableList<MapObjectType>) model.getTileTypes();
     }
     @Override
-    public ObservableList<MapObjectType> getImmutableUnitTypes () {
+    public List<MapObjectType> getImmutableUnitTypes () {
         return (ObservableList<MapObjectType>) model.getImmutableUnitTypes();
     }
-    public ObservableList<MapObjectType> getUnitTypes () {
+    public List<MapObjectType> getUnitTypes () {
         // TODO Auto-generated method stub
         return null;
     }
@@ -70,4 +77,38 @@ public class GaeController implements IGuiGaeController, IModelGaeController{
     public void setMapHeight (double y) {
         model.setMapHeight(y);
     }
+
+	@Override
+	public void setMapObjectTypeToMap(MapObjectType mapType) {
+		mapobjecttype = mapType;
+	}
+	
+	@Override
+	public MapObjectType getMapObjectTypeToMap() {
+		return mapobjecttype;
+	}
+
+	@Override
+	public Image getCurrDraggedImage() {
+		return currDraggedImage;
+	}
+
+	@Override
+	public void setCurrDraggedImage(Image draggedImage) {
+		currDraggedImage = draggedImage;	
+	}
+    
+	@Override
+	/**
+	 * create custom map object from a property object
+	 * Access type via type key
+	 */
+	public void createCustomMapObject(ObjectProperty p) {
+		// TODO Auto-generated method stub
+		// Debug:
+		
+		System.out.println("saving");
+		p.printProperty();
+		
+	}
 }
