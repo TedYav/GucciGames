@@ -14,4 +14,8 @@ public interface GameEngineToGamePlayerInterface {
 	public void addMapObjectListener(ListChangeListener<PlayerMapObjectInterface> listener);
 	
 	public void endTurn();
+	
+	public Enum gameEnded();
+	public List<String> getGameStatus();
+	public List<String> getGameFeed();
 }
