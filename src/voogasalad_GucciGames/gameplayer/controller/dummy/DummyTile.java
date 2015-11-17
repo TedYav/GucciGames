@@ -16,7 +16,7 @@ import voogasalad_GucciGames.gameplayer.controller.PlayerMapObjectInterface;
  * @author Ted Yavuzkurt
  *
  */
-public class DummyTile implements PlayerMapObjectInterface {
+public class DummyTile extends ADummy implements PlayerMapObjectInterface {
 	
 	private int myX, myY;
 	
@@ -67,8 +67,12 @@ public class DummyTile implements PlayerMapObjectInterface {
 
 	@Override
 	public ATargetCoordinate getCoordinate() {
-		// TODO Auto-generated method stub
-		return null;
+		return new TargetCoordinateSingle(myX, myY);
+	}
+
+	@Override
+	public List<PlayerMapObjectInterface> performAction(String action, ATargetCoordinate target) {
+		return new ArrayList<PlayerMapObjectInterface>();
 	}
 
 }

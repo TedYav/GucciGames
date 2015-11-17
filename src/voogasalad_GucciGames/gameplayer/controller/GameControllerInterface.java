@@ -6,6 +6,8 @@ import java.util.Map;
 import javafx.event.Event;
 import javafx.event.EventHandler;
 import javafx.event.EventType;
+import javafx.geometry.Point2D;
+
 import java.util.Observer;
 import javafx.scene.image.Image;
 import voogasalad_GucciGames.gameplayer.windows.mainwindow.map.MapInterface;
@@ -52,4 +54,5 @@ public interface GameControllerInterface{
 	
 	// TODO: refactor out
 	public void setScene(GameSceneInterface scene);
+	void performActionInProgress(Point2D target);
 }
