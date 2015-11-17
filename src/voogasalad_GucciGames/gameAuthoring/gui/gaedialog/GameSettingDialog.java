@@ -27,7 +27,17 @@ public class GameSettingDialog extends GaeDialog {
 	
 	public GameSettingDialog(IDialogGaeController dialogGaeController){
 		this.dialogGaeController = dialogGaeController;
-		prop = loadProperties("dialogproperties/gamedialog.properties");	
+		prop = loadProperties("dialogproperties/gamedialog.properties");
+		this.initializeSaveObjProperty();
+		dialogElements = new DialogElements(prop, gameSettingsProperty, saveObjProperty, null, null);
+		SaveField saveField = new SaveField(dialogElements, dialogGaeController);
+		myContent.getChildren().addAll(this.initializeDialog(), saveField.getContent());
+		Scene gameSettingDialogScene = new Scene(myContent, 500, 500);
+		gameSettingDialogScene.getStylesheets().add("voogasalad_GucciGames/gameAuthoring/gui/gaedialog/stylesheets/dialogstylesheet.css");
+		gameSettingDialog.setScene(gameSettingDialogScene);		
+	}
+	
+	private void initializeSaveObjProperty(){
 		saveObjProperty = (propName, prop) -> {
 			try {
 				gameSettingsProperty.addPropertyElement(propName, prop);
@@ -36,13 +46,6 @@ public class GameSettingDialog extends GaeDialog {
 				e.printStackTrace();
 			}
 		};
-		dialogElements = new DialogElements(prop, gameSettingsProperty, saveObjProperty, null, null);
-		myContent = initializeDialog();
-		myContent.getChildren().add(initializeControl(prop, "hbox-control", 
-				dialogGaeController, gameSettingsProperty));
-		Scene gameSettingDialogScene = new Scene(myContent, 500, 500);
-		gameSettingDialogScene.getStylesheets().add("voogasalad_GucciGames/gameAuthoring/gui/gaedialog/stylesheets/dialogstylesheet.css");
-		gameSettingDialog.setScene(gameSettingDialogScene);		
 	}
 
 
@@ -53,19 +56,13 @@ public class GameSettingDialog extends GaeDialog {
 		Text titleElement = new Text();
 		titleElement.setText(prop.getProperty("title"));
 		TextInputField nameText = new TextInputField(dialogElements, "name");
-//		TextField nameTextField = new TextField();	
-//		nameTextField.textProperty().addListener((observable, oldValue, newValue) -> {
-//			saveObjProperty.saveObjProperty(prop.getProperty("title"), newValue);		
-//		});
-//		HBox nameElement = createElement(prop.getProperty("name"), nameTextField, "field-title-element");
 		DropDownMenuField mapSize = new DropDownMenuField(dialogElements, "mapsize", "mapsize_items");
 		DropDownMenuField fogOfWar = new DropDownMenuField(dialogElements, "fogofwar", "fogofwar_items");
 		RadioBtnField miniMap = new RadioBtnField(dialogElements, "minimap", "minimap_items");
 		RadioBtnField zoomable = new RadioBtnField(dialogElements, "zoomable", "zoomable_items");
 		ScrollBarField numPlayer = new ScrollBarField(dialogElements, "numplayer", "numplayer_items");		
 		content.getChildren().addAll(titleElement, nameText.getContent(), mapSize.getContent(), fogOfWar.getContent(),
-				miniMap.getContent(), zoomable.getContent(), numPlayer.getContent());
-		
+				miniMap.getContent(), zoomable.getContent(), numPlayer.getContent());		
 		content.getChildren().forEach(hbox->hbox.setId("hbox-element"));		
 		titleElement.setId("title");
 		content.setId("vbox-element");	
