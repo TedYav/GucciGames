@@ -100,7 +100,12 @@ public class CellGUI {
 
 	public void addBound() {
 		if (myBoundBox == null) {
-			myBoundBox = new Rectangle(myMapView.getX(), myMapView.getY(), mySize.get(), mySize.get());
+			//myBoundBox = new Rectangle(myMapView.getX(), myMapView.getY(), mySize.get(), mySize.get());
+			myBoundBox = new Rectangle();
+			myBoundBox.widthProperty().bind(mySize);
+			myBoundBox.heightProperty().bind(mySize);
+			myBoundBox.xProperty().bind(myMapView.xProperty());
+			myBoundBox.yProperty().bind(myMapView.yProperty());
 			myBoundBox.setStroke(Color.YELLOW);
 			myBoundBox.setFill(Color.rgb(0, 255, 255, 0.2));
 			myBoundBox.setStrokeWidth(2);
@@ -120,6 +125,10 @@ public class CellGUI {
 	public void removeBound() {
 		if (myBoundBox != null) {
 			myMap.getChildren().remove(myBoundBox);
+			myBoundBox.xProperty().unbind();
+			myBoundBox.yProperty().unbind();
+			myBoundBox.widthProperty().unbind();
+			myBoundBox.heightProperty().unbind();
 			myBoundBox = null;
 		}
 	}
@@ -133,11 +142,11 @@ public class CellGUI {
 	}
 
 	public void removeFromMap() {
-		if (myBoundBox != null) {
-			myMap.getChildren().remove(myBoundBox);
-			myBoundBox = null;
-		}
-		myMap.getChildren().remove(myMapView);
+		removeBound();
+		myMapView.xProperty().unbind();
+		myMapView.yProperty().unbind();
+		myMapView.fitWidthProperty().unbind();
+		myMapView.fitHeightProperty().unbind();
 		myMap.remove(this);
 	}
 	

@@ -24,11 +24,6 @@ public class StructureTab extends AbstractTab {
 	}
 	
 	@Override
-	public void update() {
-
-	}
-	
-	@Override
 	protected void addAddButtonListener() {
 		myAddButton.setOnAction(new EventHandler<ActionEvent>() {
 			@Override public void handle(ActionEvent e) {

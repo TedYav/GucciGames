@@ -12,57 +12,63 @@ import voogasalad_GucciGames.gameEngine.mapObject.MapObject;
 import voogasalad_GucciGames.gameEngine.mapObject.MapObjectType;
 
 public class GameSourceData {
-  private ObservableList<MapObjectType> tileTypes;
-    private ObservableList<MapObject> tiles;
-    private ObservableList<MapObjectType> unitTypes;
-    private ObservableList<MapObject> units; 
-   
-    //havent implemeneted these yet
-    private ObservableList<MapObjectType> structureTypes;
-    private ObservableList<MapObject> structures;
-    
-    
-    private ObservableList<MapObject> onMap;
-    
-    GameSourceData(){
-    	tileTypes = FXCollections.observableArrayList();
-    	
-    	MapObjectType objType = new MapObjectType("fire", "voogasalad_GucciGames/graphics/fire.png");
-        MapObjectType objType2 = new MapObjectType("hurricane", "voogasalad_GucciGames/graphics/hurricane.png");
-        tileTypes.add(objType);
-        tileTypes.add(objType2);
-    }
-    
-    public void addListener(ListChangeListener o) {
-        tileTypes.addListener(o);
-        tiles.addListener(o);
-        unitTypes.addListener(o);
-        units.addListener(o);
-        onMap.addListener(o);
-        
+	private ObservableList<MapObjectType> tileTypes;
+	private ObservableList<MapObject> tiles;
+	private ObservableList<MapObjectType> unitTypes;
+	private ObservableList<MapObject> units; 
+	private ObservableList<MapObjectType> structureTypes;
+	private ObservableList<MapObject> structures;
 
-        
-    }
-    
-    public void addToMap(MapObject obj) {
-        onMap.add(obj);
-    }
-    public void deleteFromMap(MapObject obj) {
-        onMap.remove(obj);
-    }
-    public void clearMap() {
-        onMap.clear();
-    }
-    public void addTileType(MapObjectType type) {
-        tileTypes.add(type);
-    }
-    public void addUnitType(MapObjectType type) {
-        unitTypes.add(type);
-    }
-    public List<MapObjectType> getImmutableTileTypes() {
-        return Collections.unmodifiableList(tileTypes);
-    }
-    public List<MapObjectType> getImmutableUnitTypes() {
-        return Collections.unmodifiableList(unitTypes);
-    }
+
+	private ObservableList<MapObject> onMap;
+
+	GameSourceData(){
+		tileTypes = FXCollections.observableArrayList();
+
+		MapObjectType objType = new MapObjectType("fire", "voogasalad_GucciGames/graphics/fire.png");
+		MapObjectType objType2 = new MapObjectType("hurricane", "voogasalad_GucciGames/graphics/hurricane.png");
+		tileTypes.add(objType);
+		tileTypes.add(objType2);
+	}
+
+	public void addListener(ListChangeListener o) {
+		tileTypes.addListener(o);
+		tiles.addListener(o);
+		unitTypes.addListener(o);
+		units.addListener(o);
+		structureTypes.addListener(o);
+		structures.addListener(o);
+		onMap.addListener(o);
+
+
+
+	}
+
+	public void addToMap(MapObject obj) {
+		onMap.add(obj);
+	}
+	public void deleteFromMap(MapObject obj) {
+		onMap.remove(obj);
+	}
+	public void clearMap() {
+		onMap.clear();
+	}
+	public void addTileType(MapObjectType type) {
+		tileTypes.add(type);
+	}
+	public void addUnitType(MapObjectType type) {
+		unitTypes.add(type);
+	}
+	public void addStructureType(MapObjectType type) {
+		structureTypes.add(type);
+	}
+	public ObservableList<MapObjectType> getImmutableTileTypes() {
+		return (ObservableList<MapObjectType>) Collections.unmodifiableList(tileTypes);
+	}
+	public ObservableList<MapObjectType> getImmutableUnitTypes() {
+		return (ObservableList<MapObjectType>) Collections.unmodifiableList(unitTypes);
+	}
+	public ObservableList<MapObjectType> getImmutableStructureTypes() {
+		return (ObservableList<MapObjectType>) Collections.unmodifiableList(structureTypes);
+	}
 }
