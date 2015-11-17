@@ -111,10 +111,11 @@ public abstract class MapCell implements MapCellInterface {
 	
 	@Override
 	public void activate() {
-		if(myController.actionInProgress()){
+		if(myController.actionInProgress()&&active){
 			handleActionInProgress();
 		}
 		else{
+			myController.getMap().clearHighlights();
 			myController.cancelAction();
 			myController.getMap().selectCell(this);
 			active = true;
