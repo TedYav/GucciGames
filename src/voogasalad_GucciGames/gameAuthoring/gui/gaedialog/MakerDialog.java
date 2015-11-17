@@ -13,7 +13,7 @@ import javafx.scene.text.Text;
  *
  */
 
-public class DefaultMakerDialogContent extends DialogContent {
+public class MakerDialog extends DialogContent {
 	private VBox myContent;
 	private Properties prop;
 	private Property objProp;
@@ -22,9 +22,11 @@ public class DefaultMakerDialogContent extends DialogContent {
 	private ISaveGroovy saveGroovy;
 	private ISaveCustomObj saveCustomObj;
 	
+	private DialogMakerElements dialogMakerElements;
 	
-	public DefaultMakerDialogContent(Properties prop, Property objProp, 
-			ISaveObjProperty saveObjProp, ISaveGroovy saveGroovy, ISaveCustomObj saveCustomObj){
+	
+	public MakerDialog(DialogMakerElements dialogMakerElements){
+		
 		myContent = initContent();
 		this.prop = prop;
 		this.objProp = objProp;
