@@ -13,13 +13,21 @@ public class RuleMain {
 			InvocationTargetException, NoSuchMethodException, SecurityException {
 
 		/*GamePlayerPerson p0 = new GamePlayerPerson(null, 0);
+<<<<<<< HEAD
+
+	/*	GamePlayerPerson p0 = new GamePlayerPerson(null, 0);
+=======
 	GamePlayerPerson p0 = new GamePlayerPerson(null, 0);
 
+>>>>>>> dbe28434e2d2bf044461256175a5c7bb80b526f5
 		GamePlayerPerson p = new GamePlayerPerson(null, 1);
 
 		GamePlayerPerson p0 = new GamePlayerPerson();
 		GamePlayerPerson p = new GamePlayerPerson();
+<<<<<<< HEAD
+=======
 
+>>>>>>> dbe28434e2d2bf044461256175a5c7bb80b526f5
 		List<GamePlayerPerson> l = new ArrayList<GamePlayerPerson>();
 		l.add(p0);
 		l.add(p);
