@@ -5,7 +5,8 @@ import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-
+import voogasalad_GucciGames.gameEngine.targetCoordinate.ATargetCoordinate;
+import voogasalad_GucciGames.gameEngine.targetCoordinate.TargetCoordinateSingle;
 import voogasalad_GucciGames.gameplayer.controller.PlayerMapObjectInterface;
 
 
@@ -74,8 +75,8 @@ public class DummyTile implements PlayerMapObjectInterface {
 	}
 
     @Override
-    public TargetCoordinate getCoordinate () {
-        return new TargetCoordinate(myX,myY);
+    public ATargetCoordinate getCoordinate () {
+        return new TargetCoordinateSingle(myX,myY);
     }
 
 }

@@ -90,14 +90,12 @@ public class GameController implements GameControllerInterface {
 
 	@Override
 	public List<PlayerMapObjectInterface> getInitialState() {
-		// TODO Auto-generated method stub
 		return myEngine.getInitialState();
 	}
 
 	@Override
 	public void endTurn() {
-		// TODO Auto-generated method stub
-
+		myEngine.endTurn();
 	}
 
 	@Override
@@ -140,10 +138,4 @@ public class GameController implements GameControllerInterface {
             o.update(null, activeMapObject);
         }
     }
-
-	@Override
-	public GameEngineToGamePlayerInterface getEngine() {
-		// TODO Auto-generated method stub
-		return myEngine;
-	}
 }

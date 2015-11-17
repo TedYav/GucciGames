@@ -37,7 +37,7 @@ public interface GameControllerInterface{
 	public void setMap(MapInterface map);
 	
 //	public void setEngine(GameEngineToGamePlayerInterface engine);
-	public GameEngineToGamePlayerInterface getEngine();
+//	public GameEngineToGamePlayerInterface getEngine();
 	
 	public List<PlayerMapObjectInterface> getInitialState();
 	

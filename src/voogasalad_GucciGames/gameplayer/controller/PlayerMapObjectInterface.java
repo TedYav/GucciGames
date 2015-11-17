@@ -2,7 +2,7 @@ package voogasalad_GucciGames.gameplayer.controller;
 
 import java.util.List;
 import java.util.Map;
-
+import voogasalad_GucciGames.gameEngine.targetCoordinate.ATargetCoordinate;
 import voogasalad_GucciGames.gameplayer.controller.dummy.MapObjectBasicType;
 import voogasalad_GucciGames.gameplayer.controller.dummy.TargetCoordinate;
 
@@ -28,6 +28,6 @@ public interface PlayerMapObjectInterface {
 	
 	public int getPlayerID();
 	
-	public TargetCoordinate getCoordinate();
+	public ATargetCoordinate getCoordinate();
 	
 }

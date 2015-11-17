@@ -14,6 +14,9 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
 import javafx.stage.Screen;
+import voogasalad_GucciGames.gameEngine.targetCoordinate.ATargetCoordinate;
+import voogasalad_GucciGames.gameEngine.targetCoordinate.TargetCoordinateMultiple;
+import voogasalad_GucciGames.gameEngine.targetCoordinate.TargetCoordinateSingle;
 import voogasalad_GucciGames.gameplayer.controller.GameControllerInterface;
 import voogasalad_GucciGames.gameplayer.controller.PlayerMapObjectInterface;
 import voogasalad_GucciGames.gameplayer.controller.dummy.DummyTile;
@@ -124,8 +127,19 @@ public class MainMap extends WindowComponent implements MapInterface {
 	            }
 	        }
 	        List<PlayerMapObjectInterface> initialState = myController.getInitialState();
+	        ATargetCoordinate targCoordBuffer;
 	        for (PlayerMapObjectInterface mapObj: initialState) {
-	            myCellMap.get(new Point2D(mapObj.getCoordinate().getX(),mapObj.getCoordinate().getY())).addObject(mapObj);
+	            targCoordBuffer = mapObj.getCoordinate();
+	            if (targCoordBuffer.getClass().equals(TargetCoordinateSingle.class)){
+	                TargetCoordinateSingle single = (TargetCoordinateSingle)targCoordBuffer;
+	                myCellMap.get(new Point2D(single.getCenterX(),single.getCenterY())).addObject(mapObj);
+	            }
+	            else if (targCoordBuffer.getClass().equals(TargetCoordinateMultiple.class)) {
+	                TargetCoordinateMultiple multiple = (TargetCoordinateMultiple)targCoordBuffer;
+	                for (TargetCoordinateSingle single: multiple.getCoordinates()) {
+	                    myCellMap.get(new Point2D(single.getCenterX(),single.getCenterY())).addObject(mapObj);//TODO: multiple coords
+	                }
+	            }
 	        }
         myParent.getStyleClass().add(myConfig.getString("MainCSSClass"));
         myParent.applyCss();
