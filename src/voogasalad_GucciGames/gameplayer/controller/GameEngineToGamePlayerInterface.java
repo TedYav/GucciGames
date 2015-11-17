@@ -14,4 +14,5 @@ public interface GameEngineToGamePlayerInterface {
 	
 	public void endTurn();
 	
+	public int getTurnPlayerID();
 }
