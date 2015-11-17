@@ -21,6 +21,7 @@ public class FileBrowserField extends DialogComponent{
 		this.dialogElements = dialogElements;
 		this.browseBtnKey = browseBtnKey;
 		this.fileChooserKey = fileChooserKey;
+		this.labelKey = labelKey;
 		makeBrowseElement()	;	
 		
 	}

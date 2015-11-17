@@ -6,23 +6,10 @@ import java.util.Properties;
 import voogasalad_GucciGames.gameAuthoring.IDialogGaeController;
 import voogasalad_GucciGames.gameAuthoring.guiexceptions.InvalidInputException;
 import voogasalad_GucciGames.gameAuthoring.properties.ObjectProperty;
-import voogasalad_GucciGames.gameAuthoring.properties.Property;
-import javafx.beans.value.ChangeListener;
-import javafx.beans.value.ObservableValue;
-import javafx.collections.ListChangeListener;
-import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
-import javafx.scene.control.ListView;
 import javafx.scene.control.Tab;
-import javafx.scene.control.TabPane;
-import javafx.scene.control.TextArea;
-import javafx.scene.control.TextField;
-import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
-import javafx.scene.text.Text;
-import javafx.stage.Modality;
 import javafx.stage.Stage;
 
 public class NewObjectMaker extends GaeDialog{	
