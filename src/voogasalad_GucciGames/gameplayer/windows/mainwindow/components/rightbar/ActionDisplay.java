@@ -12,19 +12,18 @@ import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.control.ListView;
 import voogasalad_GucciGames.gameplayer.controller.GameControllerInterface;
+import voogasalad_GucciGames.gameplayer.controller.PlayerMapObjectInterface;
 import voogasalad_GucciGames.gameplayer.windows.mainwindow.components.DisplayComponent;
-import voogasalad_GucciGames.gameplayer.windows.mainwindow.map.cell.contents.PlayerMapObjectInterface;
 
 public class ActionDisplay implements DisplayComponent, Observer {
     private GameControllerInterface myController;
-	private List<String> currentActions;
+    private PlayerMapObjectInterface activeMapObject;
     private ListView<Button> buttons;
 	private List<Button> temp;
     
     public ActionDisplay(GameControllerInterface controller) {
 		myController = controller;
 		myController.addMOObserver(this);
-
     	
         temp = new ArrayList<Button>();
         
@@ -50,7 +49,7 @@ public class ActionDisplay implements DisplayComponent, Observer {
             @Override
             public void handle(ActionEvent event) {
                 myController.setActionInProgress(name);
-                // TODO highlight places
+                myController.getMap().highlightCells(activeMapObject.getActionTargets(name));
             }
         });
         return button;
@@ -59,8 +58,11 @@ public class ActionDisplay implements DisplayComponent, Observer {
     
     private void updateButtons() {
     	List<Button> updatedActions = new ArrayList<>();
-    	currentActions.stream().map(action -> updatedActions.add(makeButton(action)));
+    	activeMapObject.getActionNames().stream().
+    		forEach(action -> updatedActions.add(makeButton(action)));
     	temp = updatedActions;
+    	System.out.println("buttons  " + temp.size());
+        buttons.setItems(FXCollections.observableList(temp));
     }
     
     @Override
@@ -70,12 +72,11 @@ public class ActionDisplay implements DisplayComponent, Observer {
 
     @Override
     public void update (Observable o, Object arg) {
-        if (arg!=null && arg.getClass().equals(PlayerMapObjectInterface.class)) {
-        	PlayerMapObjectInterface activeMapObject = (PlayerMapObjectInterface)arg;
-        	currentActions = activeMapObject.getActionNames();
-        	
+        if (arg!=null) {
+        	activeMapObject = (PlayerMapObjectInterface)arg;
         }
+        updateButtons();
+
     }
-	
 
 }

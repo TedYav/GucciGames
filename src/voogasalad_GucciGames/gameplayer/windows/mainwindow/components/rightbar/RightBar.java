@@ -7,9 +7,9 @@ import java.util.ResourceBundle;
 import javafx.scene.Parent;
 import javafx.scene.layout.VBox;
 import voogasalad_GucciGames.gameplayer.controller.GameControllerInterface;
+import voogasalad_GucciGames.gameplayer.controller.PlayerMapObjectInterface;
 import voogasalad_GucciGames.gameplayer.windows.GameScene;
 import voogasalad_GucciGames.gameplayer.windows.WindowComponent;
-import voogasalad_GucciGames.gameplayer.windows.mainwindow.map.cell.contents.PlayerMapObjectInterface;
 
 
 public class RightBar extends WindowComponent implements Observer {
