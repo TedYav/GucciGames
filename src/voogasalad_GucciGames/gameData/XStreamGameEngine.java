@@ -19,6 +19,7 @@ import voogasalad_GucciGames.gameEngine.MainGameEngine;
 import voogasalad_GucciGames.gameEngine.gameConditions.defaultConditions.game.OnlyOnePlayerHasUnitsCondition;
 import voogasalad_GucciGames.gameEngine.gamePlayer.AllPlayers;
 import voogasalad_GucciGames.gameEngine.gamePlayer.GamePlayerPerson;
+import voogasalad_GucciGames.gameEngine.mapObject.MapObjectType;
 import voogasalad_GucciGames.gameplayer.controller.GameDataInterface;
 import voogasalad_GucciGames.gameplayer.controller.GameEngineToGamePlayerInterface;
 
@@ -35,26 +36,26 @@ public class XStreamGameEngine implements GameDataInterface{
         System.out.println("Creating and saving engine.");
         try {
             Map<Integer,GamePlayerPerson> myMapOfPlayers = new TreeMap<Integer,GamePlayerPerson>();	
-            /*				
-			UnitCollection neutralUnits = new UnitCollection();
-			myListOfPlayers.add(new GamePlayerPerson(neutralUnits, 0)); //neutral player
 
-			UnitCollection p1Units = new UnitCollection();
+            //UnitCollection neutralUnits = new UnitCollection();
+            myMapOfPlayers.put(-1,new GamePlayerPerson()); //neutral player
 
-			GameUnitType soldier = new GameUnitType("soldier", null);
-			GameUnitType archer = new GameUnitType("archer" , null);
+            //UnitCollection p1Units = new UnitCollection();
 
-			p1Units.addUnit(new GameUnit(1, soldier, 3, 3));
-			p1Units.addUnit(new GameUnit(1, archer, 1, 1));
-			myListOfPlayers.add(new GamePlayerPerson(p1Units, 0)); //player 1 
+            MapObjectType soldier = new MapObjectType("soldier", null);
+            MapObjectType archer = new MapObjectType("archer" , null);
 
-			UnitCollection p2Units = new UnitCollection();
+            //p1Units.addUnit(new GameUnit(1, soldier, 3, 3));
+            //p1Units.addUnit(new GameUnit(1, archer, 1, 1));
+            myMapOfPlayers.put(0,new GamePlayerPerson()); //player 1 
 
-			p2Units.addUnit(new GameUnit(2, soldier, 2, 2));
+            //UnitCollection p2Units = new UnitCollection();
 
-			myListOfPlayers.add(new GamePlayerPerson(p2Units, 0)); //player 2
+            //p2Units.addUnit(new GameUnit(2, soldier, 2, 2));
 
-             */
+            myMapOfPlayers.put(1,new GamePlayerPerson()); //player 2
+
+
             AllPlayers myPlayers = new AllPlayers(myMapOfPlayers);
 
 
@@ -107,6 +108,6 @@ public class XStreamGameEngine implements GameDataInterface{
     @Override
     public void loadGames () {
         // TODO Auto-generated method stub
-        
+
     }
 }

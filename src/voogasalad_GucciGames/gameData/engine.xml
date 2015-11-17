@@ -1,12 +1,46 @@
 <voogasalad__GucciGames.gameEngine.MainGameEngine>
   <myGamePlayers>
-    <myMapOfPlayers class="tree-map"/>
+    <myMapOfPlayers class="tree-map">
+      <entry>
+        <int>-1</int>
+        <voogasalad__GucciGames.gameEngine.gamePlayer.GamePlayerPerson>
+          <myPlayerId>0</myPlayerId>
+          <unitsMoved>0</unitsMoved>
+          <unitsMaxMovedLimit>0</unitsMaxMovedLimit>
+          <turnMoves>-1</turnMoves>
+          <turnCounter>0</turnCounter>
+          <myStatus>DRAW</myStatus>
+        </voogasalad__GucciGames.gameEngine.gamePlayer.GamePlayerPerson>
+      </entry>
+      <entry>
+        <int>0</int>
+        <voogasalad__GucciGames.gameEngine.gamePlayer.GamePlayerPerson>
+          <myPlayerId>0</myPlayerId>
+          <unitsMoved>0</unitsMoved>
+          <unitsMaxMovedLimit>0</unitsMaxMovedLimit>
+          <turnMoves>-1</turnMoves>
+          <turnCounter>0</turnCounter>
+          <myStatus>DRAW</myStatus>
+        </voogasalad__GucciGames.gameEngine.gamePlayer.GamePlayerPerson>
+      </entry>
+      <entry>
+        <int>1</int>
+        <voogasalad__GucciGames.gameEngine.gamePlayer.GamePlayerPerson>
+          <myPlayerId>0</myPlayerId>
+          <unitsMoved>0</unitsMoved>
+          <unitsMaxMovedLimit>0</unitsMaxMovedLimit>
+          <turnMoves>-1</turnMoves>
+          <turnCounter>0</turnCounter>
+          <myStatus>DRAW</myStatus>
+        </voogasalad__GucciGames.gameEngine.gamePlayer.GamePlayerPerson>
+      </entry>
+    </myMapOfPlayers>
   </myGamePlayers>
   <myCurrentTurnCounter>
     <currentTurn>0</currentTurn>
   </myCurrentTurnCounter>
   <myTurnDecider class="voogasalad_GucciGames.gameEngine.gamePlayer.DefaultTurnDecider">
-    <numPlayers>0</numPlayers>
+    <numPlayers>3</numPlayers>
     <turnCounter reference="../../myCurrentTurnCounter"/>
   </myTurnDecider>
   <myGameMap>

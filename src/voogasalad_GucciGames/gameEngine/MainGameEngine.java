@@ -64,4 +64,10 @@ public class MainGameEngine implements GameEngineToGamePlayerInterface {
 		return myGamePlayers.getInitialState();
 	}
 
+    @Override
+    public int getTurnPlayerID () {
+        // TODO Auto-generated method stub
+        return 0;
+    }
+
 }

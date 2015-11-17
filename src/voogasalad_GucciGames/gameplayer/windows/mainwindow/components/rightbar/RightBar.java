@@ -35,9 +35,12 @@ public class RightBar extends WindowComponent implements Observer {
         
         Button endTurn = new Button("End turn");
         endTurn.setOnMouseClicked(e->{
+            System.out.println("end");
             myController.getEngine().endTurn();
             });
+        container.getChildren().add(endTurn);
 	}
+	
 
 	@Override
 	public Parent getParent() {
