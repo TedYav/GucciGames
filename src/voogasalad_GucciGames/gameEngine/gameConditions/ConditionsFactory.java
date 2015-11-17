@@ -51,7 +51,7 @@ private static final String PATH_TO_OUTCOMES_PROPERTIES = "voogasalad_GucciGames
 					List<Integer> playerID = (List<Integer>) args.get(0);
 					Iterator<Integer> idIterator = playerID.iterator();
 					while (idIterator.hasNext()) {
-						players.add(myPlayers.getActivePlayer(idIterator.next()));
+						players.add(myPlayers.getPlayerById(idIterator.next()));
 					}
 				}
 				// thanks Efe!

@@ -1,22 +1,31 @@
 package voogasalad_GucciGames.gameEngine.targetCoordinate;
 
 public class TargetCoordinateSingle extends ATargetCoordinate{
-	private double centerX, centerY;
+	private double myCenterX, myCenterY;
 	
 	public TargetCoordinateSingle(double x, double y){
-		this.centerX = x;
-		this.centerY = y;
+		this.myCenterX = x;
+		this.myCenterY = y;
 	}
 
 	@Override
 	public ATargetCoordinate clone() {
 		// TODO Auto-generated method stub
-		return new TargetCoordinateSingle(centerX, centerY);
+		return new TargetCoordinateSingle(myCenterX, myCenterY);
 	}
 	
 	@Override
 	public boolean equals(Object o){
 		TargetCoordinateSingle other = (TargetCoordinateSingle) o;
-		return (this.centerX == other.centerX) && (this.centerY == other.centerY); 
+		return (this.myCenterX == other.myCenterX) && (this.myCenterY == other.myCenterY); 
 	}
+
+	public double getCenterX() {
+		return myCenterX;
+	}
+
+	public double getCenterY() {
+		return myCenterY;
+	}
+	
 }

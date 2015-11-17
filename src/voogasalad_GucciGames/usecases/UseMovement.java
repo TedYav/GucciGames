@@ -4,8 +4,8 @@ import java.util.List;
 
 import voogasalad_GucciGames.gameEngine.mapObject.MapObject;
 import voogasalad_GucciGames.gameEngine.CommunicationParams.CommunicationParams;
-import voogasalad_GucciGames.gameEngine.mapObject.IMapObjectAction;
 import voogasalad_GucciGames.gameEngine.mapObject.TheMap;
+import voogasalad_GucciGames.gameEngine.objectActions.MapObjectEvent;
 import voogasalad_GucciGames.gameEngine.targetCoordinate.ATargetCoordinate;
 
 /**
@@ -14,14 +14,28 @@ import voogasalad_GucciGames.gameEngine.targetCoordinate.ATargetCoordinate;
  * @use case #2
  *
  */
-public class UseMovement implements IMapObjectAction{
+public class UseMovement extends MapObjectEvent{
 
+	public UseMovement(String actionName) {
+		super(actionName);
+		// TODO Auto-generated constructor stub
+	}
+
+	@Override
+	protected CommunicationParams execute(CommunicationParams params) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	
+	/*
 	@Override
 	public CommunicationParams action(CommunicationParams communication, ATargetCoordinate targetCoords) {
 		// TODO Auto-generated method stub
 		return null;
 	}
-/*	private static final String CARDINAL = "cardinal";
+
+	private static final String CARDINAL = "cardinal";
 	private static final String DIAGONAL = "diagonal";
 	private static final String ALL = "all";
 	private static final String CUSTOM = "custom";
