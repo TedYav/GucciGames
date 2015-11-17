@@ -3,16 +3,8 @@ package voogasalad_GucciGames.gameAuthoring.gui.sidebar;
 import java.util.Arrays;
 import java.util.List;
 
-import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
-import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
-import javafx.scene.input.ClipboardContent;
-import javafx.scene.input.DataFormat;
-import javafx.scene.input.Dragboard;
-import javafx.scene.input.MouseEvent;
-import javafx.scene.input.TransferMode;
 import voogasalad_GucciGames.gameAuthoring.IGuiGaeController;
 import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.NewObjectMaker;
 import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.ISaveCustomObj;
@@ -41,12 +33,6 @@ public class TileTab extends AbstractTab {
 		addAddButtonListener();
 		
 	}
-
-	@Override
-	public void update() {
-		// TODO Auto-generated method stub
-
-	}
 	
 	//TODO: create add button, pass saveCustomObj to dialog
 
@@ -63,5 +49,3 @@ public class TileTab extends AbstractTab {
 	}
 
 }
-
-
