@@ -13,9 +13,10 @@ public class FileMenu implements GameMenu {
 	public FileMenu(GameDataInterface myLoader){
 		myDropdown = new ComboBox<String>();
 		myDropdown.setValue(myBundle.getString("file"));
+		myDropdown.getItems().add("load");
 		myDropdown.setOnInputMethodTextChanged(e -> {if(myDropdown.getPromptText().equals("load")){
 		myLoader.loadGames();
-			
+			System.out.println("asf");
 		}
 		});
 		myDropdown.getStyleClass().add(myBundle.getString("dropdowncssclass"));
