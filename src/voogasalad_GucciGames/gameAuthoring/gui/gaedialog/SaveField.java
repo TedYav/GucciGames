@@ -22,7 +22,7 @@ public class SaveField extends DialogComponent {
 	
 	protected void initializeControl(){
 		content.setId("hbox-control");
-		saveBtn = new Button(dialogElements.getDialogProperties().getProperty("save"));
+		saveBtn = new Button(dialogElements.getDialogProperties().getProperty("savebtn"));
 		addListenerToSaveBtn();
 		content.getChildren().add(saveBtn);	
 	}
