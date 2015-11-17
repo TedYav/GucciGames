@@ -198,7 +198,6 @@ public class MainMap extends WindowComponent implements MapInterface {
 
 	@Override
 	public void clearActiveCells() {
-		System.out.println("CLEARING");
 		mySelectedCells.forEach(c -> c.deactivate());
 		mySelectedUnits.clear();
 		mySelectedCells.clear();
@@ -207,7 +206,17 @@ public class MainMap extends WindowComponent implements MapInterface {
 
 	@Override
 	public void update(List<PlayerMapObjectInterface> result) {
+		result.stream().forEach(u -> redrawUnit(u));
 		update();
+	}
+
+
+	private void redrawUnit(PlayerMapObjectInterface unit) {
+		if(myUnitMap.containsKey(unit)){
+			myUnitMap.getKey(unit).removeObject(unit);
+			myUnitMap.remove(unit);
+		}
+		addToMap(unit);
 	}
 
 
