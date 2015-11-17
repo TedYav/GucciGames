@@ -1,6 +1,9 @@
-package voogasalad_GucciGames.gameplayer.windows.mainwindow.map.cell.contents;
+package voogasalad_GucciGames.gameplayer.controller;
 
 import java.util.List;
+
+import voogasalad_GucciGames.gameplayer.controller.dummy.MapObjectBasicType;
+import voogasalad_GucciGames.gameplayer.controller.dummy.TargetCoordinate;
 
 // TODO: add getCoordnate(), getPlayer(), etc
 public interface PlayerMapObjectInterface {
@@ -12,16 +15,16 @@ public interface PlayerMapObjectInterface {
 	
 	//public int getVisibility();
 	
-	public default int getLayer(){
-		return 0;
-	}
+	public int getLayer();
 	
 	public MapObjectBasicType getBasicType();
 	
 	public List<String> getActionNames();
 	
-	public List<TargetCoordinate> getActionTarget();
+	public List<TargetCoordinate> getActionTargets(String action);
 	
 	public void performAction(String action, TargetCoordinate coordinate);
+	
+	public int getPlayerID();
 	
 }

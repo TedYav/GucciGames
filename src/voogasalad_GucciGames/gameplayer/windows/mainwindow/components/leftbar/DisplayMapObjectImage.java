@@ -1,8 +1,8 @@
 package voogasalad_GucciGames.gameplayer.windows.mainwindow.components.leftbar;
 
 import voogasalad_GucciGames.gameplayer.controller.GameControllerInterface;
+import voogasalad_GucciGames.gameplayer.controller.PlayerMapObjectInterface;
 import voogasalad_GucciGames.gameplayer.windows.mainwindow.components.DisplayComponent;
-import voogasalad_GucciGames.gameplayer.windows.mainwindow.map.cell.contents.PlayerMapObjectInterface;
 import java.awt.event.MouseEvent;
 import java.util.List;
 import java.util.Map;
@@ -43,6 +43,8 @@ public class DisplayMapObjectImage implements DisplayComponent{
                 buffer = myController.requestImage(m.getImageURI());
             }
             imgView=new ImageView(buffer);
+            imgView.setPreserveRatio(true);
+            imgView.setFitWidth(100);
             imgView.setOnMouseClicked(e->{
                 updateActiveMapObject(m);
             });

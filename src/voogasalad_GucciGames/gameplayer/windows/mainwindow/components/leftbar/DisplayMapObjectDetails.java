@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Observable;
 import java.util.Observer;
+import voogasalad_GucciGames.gameplayer.controller.PlayerMapObjectInterface;
 import voogasalad_GucciGames.gameplayer.controller.GameControllerInterface;
 import voogasalad_GucciGames.gameplayer.windows.mainwindow.components.DisplayComponent;
 import javafx.collections.FXCollections;
@@ -15,10 +16,9 @@ import javafx.scene.control.ListView;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.VBox;
 import voogasalad_GucciGames.gameplayer.windows.mainwindow.map.MapInterface;
-import voogasalad_GucciGames.gameplayer.windows.mainwindow.map.cell.contents.PlayerMapObjectInterface;
 
 public class DisplayMapObjectDetails  implements DisplayComponent, ListChangeListener<PlayerMapObjectInterface>, Observer{
-    private ListView<String> list;
+    private ListView<String> listView;
     private MapInterface myMap;
     private List<String> temp;
     private List<PlayerMapObjectInterface> mapObjectsOnCell;
@@ -28,13 +28,13 @@ public class DisplayMapObjectDetails  implements DisplayComponent, ListChangeLis
     public DisplayMapObjectDetails(MapInterface map, GameControllerInterface controller) {
         temp= new ArrayList<String>();
         temp.add("fasdf");
-        list=new ListView<String>(FXCollections.observableList(temp));
+        listView=new ListView<String>(FXCollections.observableList(temp));
         myController=controller;
         mapObjectsOnCell=new ArrayList<PlayerMapObjectInterface>();
         imageDisplay = new DisplayMapObjectImage(mapObjectsOnCell, myController);
         display = new VBox();
         display.getChildren().add(imageDisplay.getNodeToDraw());
-        display.getChildren().add(list);
+        display.getChildren().add(listView);
         
         myController.addMOObserver(this);
     }
@@ -57,6 +57,7 @@ public class DisplayMapObjectDetails  implements DisplayComponent, ListChangeLis
                 mapObjectsOnCell.add(o);
             }
             imageDisplay.updateImages();
+            listView.setItems(FXCollections.observableList(temp));
         }
     }
     @Override

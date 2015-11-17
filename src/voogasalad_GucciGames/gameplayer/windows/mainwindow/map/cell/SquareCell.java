@@ -1,5 +1,7 @@
 package voogasalad_GucciGames.gameplayer.windows.mainwindow.map.cell;
 
+import javafx.scene.input.MouseEvent;
+import javafx.scene.shape.Rectangle;
 import voogasalad_GucciGames.gameplayer.controller.GameControllerInterface;
 
 public class SquareCell extends MapCell {
@@ -9,9 +11,9 @@ public class SquareCell extends MapCell {
 	}
 
 	@Override
-	protected void initializeOverlays() {
-		// TODO Auto-generated method stub
-		
+	protected void initializeOverlayShapes() {
+		myOverlay = new Rectangle(mySize, mySize);
+		myOverlay.getStyleClass().add("inactivecell");
 	}
 
 }

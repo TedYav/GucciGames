@@ -12,6 +12,13 @@ import voogasalad_GucciGames.gameEngine.targetCoordinate.TargetCoordinateMultipl
 public class MoveMapObjectActionTarget implements IMapObjectActionTarget{
 
 	@Override
+	public ATargetCoordinate coordinatesToAct(CommunicationParams params) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	/*
+	@Override
 	public ATargetCoordinate coordinatesToAct(CommunicationParams communication) {
 		// TODO Auto-generated method stub
 		TargetCoordinateMultiple coordinates = new TargetCoordinateMultiple();
@@ -22,5 +29,6 @@ public class MoveMapObjectActionTarget implements IMapObjectActionTarget{
 		}
 		return coordinates;
 	}
+	*/
 
 }

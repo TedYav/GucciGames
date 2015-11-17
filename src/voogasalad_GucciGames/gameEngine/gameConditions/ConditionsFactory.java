@@ -20,8 +20,8 @@ public class ConditionsFactory {
 	private AllPlayers myPlayers;
 	private Outcome myOutcomes;
 ///resources/gameConditions/conditions.properties
-	private static final String PATH_TO_CONDITIONS_PROPERTIES = "voogasalad_GucciGames.resources.gameConditions.conditions";
-//	private static final String PATH_TO_OUTCOMES_PROPERTIES = "resources/gameOutcomes/outcomes";
+	private static final String PATH_TO_CONDITIONS_PROPERTIES = "voogasalad_GucciGames.resources.gameConditions.conditionPath";
+private static final String PATH_TO_OUTCOMES_PROPERTIES = "voogasalad_GucciGames.resources.gameOutcomes.outcomes";
 	private ResourceBundle conditionBundle;
 	private ResourceBundle outcomeBundle;
 
@@ -31,8 +31,8 @@ public class ConditionsFactory {
 		myPlayers = players;
 		myOutcomes = new Outcome(players);
 
-		conditionBundle = ResourceBundle.getBundle("PATH_TO_CONDITIONS_PROPERTIES ");
-	//	outcomeBundle = ResourceBundle.getBundle(PATH_TO_OUTCOMES_PROPERTIES);
+		conditionBundle = ResourceBundle.getBundle(PATH_TO_CONDITIONS_PROPERTIES);
+		outcomeBundle = ResourceBundle.getBundle(PATH_TO_OUTCOMES_PROPERTIES);
 
 
 	}

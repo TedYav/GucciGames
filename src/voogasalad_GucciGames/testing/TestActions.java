@@ -20,7 +20,7 @@ import voogasalad_GucciGames.gameEngine.targetCoordinate.TargetCoordinateMultipl
 import voogasalad_GucciGames.gameEngine.targetCoordinate.TargetCoordinateSingle;
 
 public class TestActions {
-
+/*
 	private MapObjectType test;
 	private MapObject obj;
 	private AllPlayers players;
@@ -53,4 +53,5 @@ public class TestActions {
 		TargetCoordinateMultiple multi = (TargetCoordinateMultiple) where;
 		assertEquals("Should be (50,50): ",multi.getCoordinates().get(0), new TargetCoordinateSingle(50,50));
 	}
+	*/
 }
