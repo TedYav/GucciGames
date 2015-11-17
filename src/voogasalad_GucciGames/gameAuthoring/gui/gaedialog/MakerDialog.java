@@ -15,36 +15,30 @@ import javafx.scene.text.Text;
 
 public class MakerDialog extends DialogContent {
 	private VBox myContent;
-	private Properties prop;
-	private Property objProp;
 	
 	private ISaveObjProperty saveObjProp;
 	private ISaveGroovy saveGroovy;
 	private ISaveCustomObj saveCustomObj;
+	private DialogElements dialogElements;
 	
-	private DialogElements dialogMakerElements;
 	
-	
-	public MakerDialog(DialogElements dialogMakerElements){
-		
-		myContent = initContent();
-		this.prop = prop;
-		this.objProp = objProp;
-		this.saveObjProp = saveObjProp;			
+	public MakerDialog(DialogElements dialogElements, DialogContent customContent){
+		this.dialogElements = dialogElements;	
+		myContent = initContent();		
 	}
 	
 	private VBox initContent(){
 		VBox vbox = new VBox();
-		Text titleTextElement = new Text(prop.getProperty("title"));
+		Text titleTextElement = new Text(dialogElements.getDialogProperties().getProperty("title"));
 		 titleTextElement.setId("title");
-		 TextField nameTextField = new TextField();	
-		 nameTextField.textProperty().addListener((observable, oldValue, newValue)->{
-			 System.out.println("changed");
-			 saveObjProp.saveObjProperty("name", newValue);
-		 });
-
-		 HBox nameElement = createElement(prop.getProperty("name"), 
-				 nameTextField, "hbox-element");
+//		 TextField nameTextField = new TextField();	
+//		 nameTextField.textProperty().addListener((observable, oldValue, newValue)->{
+//			 System.out.println("changed");
+//			 saveObjProp.saveObjProperty("name", newValue);
+//		 });
+		 TextInputField name = new TextInputField(dialogElements, "name");
+//		 HBox nameElement = createElement(prop.getProperty("name"), 
+//				 nameTextField, "hbox-element");
 		 HBox imageElement = createElement(prop.getProperty("image"),
 				 makeBrowseElement(prop, "browse", "filechoosertitle", saveObjProp), "hbox-element");
 		return vbox;
