@@ -115,11 +115,11 @@ public abstract class MapCell implements MapCellInterface {
 		}
 		else{
 			myController.cancelAction();
+			myController.getMap().selectCell(this);
+			active = true;
+			myOverlay.getStyleClass().clear();
+			myOverlay.getStyleClass().add("activecell");
 		}
-		myController.getMap().selectCell(this);
-		active = true;
-		myOverlay.getStyleClass().clear();
-		myOverlay.getStyleClass().add("activecell");
 	}
 	
 	@Override
@@ -131,7 +131,7 @@ public abstract class MapCell implements MapCellInterface {
 	}
 
 	private void handleActionInProgress() {
-		
+		myController.performActionInProgress(myController.getMap().getCellCoordinate(this));
 	}
 
 	@Override

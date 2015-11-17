@@ -28,4 +28,6 @@ public interface PlayerMapObjectInterface {
 	
 	public int getPlayerID();
 	
+	public TargetCoordinate getCoordinate();
+	
 }

@@ -67,6 +67,7 @@ public class GameController implements GameControllerInterface {
 		myTargetUnit = null;
 	}
 	
+	@Override
 	public void performActionInProgress(Point2D target){
 		List<PlayerMapObjectInterface> result = myTargetUnit.performAction(myActionInProgress, Coordinate.PointToCoordinate(target));
 		cancelAction();

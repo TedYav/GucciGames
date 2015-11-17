@@ -23,4 +23,7 @@ public interface MapInterface {
 	
 	public void recenter(Point2D center);
 	public void update(List<PlayerMapObjectInterface> result);
+	
+	public Point2D getCellCoordinate(MapCellInterface cell);
+	public MapCellInterface getCell(Point2D coordinate);
 }
