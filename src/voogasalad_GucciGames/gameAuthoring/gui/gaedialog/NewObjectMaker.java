@@ -1,7 +1,9 @@
 package voogasalad_GucciGames.gameAuthoring.gui.gaedialog;
+import java.util.HashMap;
 import java.util.Map;
 import java.util.Properties;
 
+import voogasalad_GucciGames.gameAuthoring.IDialogGaeController;
 import voogasalad_GucciGames.gameAuthoring.guiexceptions.InvalidInputException;
 import voogasalad_GucciGames.gameAuthoring.properties.ObjectProperty;
 import voogasalad_GucciGames.gameAuthoring.properties.Property;
@@ -23,41 +25,72 @@ import javafx.scene.text.Text;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 
-public abstract class NewObjectMaker extends GaeDialog{	
-	public NewObjectMaker(){
-		 super();		 
+public class NewObjectMaker extends GaeDialog{	
+	private static final int WIDTH = 600;
+	private static final int HEIGHT = 600;
+
+	private GroovyTabPane groovyTabPane;
+	private VBox myContent = new VBox();
+	private Stage unitMakerDialog = new Stage();
+	private Map<Integer, String> groovyBuffer = new HashMap<Integer, String>();
+	private Properties prop;
+	private ObjectProperty unitProperty = new ObjectProperty();
+	private ISaveGroovy saveGroovy;
+	private ISaveObjProperty saveObjProperty;
+	private ISaveCustomObj saveCustomObj;
+	private DialogElements dialogElements;
+	private Scene scene;
+	private SaveField save;
+	
+	
+	public NewObjectMaker(DialogContent customContent, IDialogGaeController controller){
+		super();
+		prop = loadProperties("dialogproperties/tiledialogproperties.properties");	
+		saveGroovy = setSaveGroovyFunctions(groovyBuffer, saveGroovy);
+		saveObjProperty = setSavePropertyFunction(unitProperty, saveObjProperty);		
+		dialogElements = new DialogElements(prop, unitProperty, saveObjProperty, saveGroovy, saveCustomObj);
+		groovyTabPane = new GroovyTabPane(prop, saveGroovy);
+		save = new SaveField(dialogElements, controller);
+		MakerDialog dialog = new MakerDialog(dialogElements, customContent, groovyTabPane, save);	
+		myContent = dialog.getContent();
+		Scene tileDialogScene = new Scene(myContent, WIDTH, HEIGHT);
+		tileDialogScene.getStylesheets().add("voogasalad_GucciGames/gameAuthoring/gui/gaedialog/stylesheets/dialogstylesheet.css");
+		unitMakerDialog.setScene(tileDialogScene);		
+		 
 	 }	
 	
-	 protected VBox initDefaultContentForObjMaker(Properties prop, VBox customContent,
-			 GroovyTabPane groovyTabPane, String styleId, ISaveObjProperty saveObjProperty, 
-			 ISaveCustomObj saveCustomObject, ObjectProperty property){
-		 
-		 VBox content = new VBox();	 
-		 Text titleTextElement = new Text(prop.getProperty("title"));
-		 titleTextElement.setId("title");
-		 TextField nameTextField = new TextField();	
-		 nameTextField.textProperty().addListener((observable, oldValue, newValue)->{
-			 
-			 saveObjProperty.saveObjProperty("name", newValue);
-		 });
-
-		 HBox nameElement = createElement(prop.getProperty("name"), 
-				 nameTextField, "hbox-element");
-		 HBox imageElement = createElement(prop.getProperty("image"),
-				 makeBrowseElement(prop, "browse", "filechoosertitle", saveObjProperty), "hbox-element");		 
-		 VBox tabPaneElements = groovyTabPane.getContent();		 
-		 Button saveCustomObjBtn = new Button(prop.getProperty("savebtn"));
-		 
-		 saveCustomObjBtn.setOnAction(e -> {
-			 ISaveCustomObj saveCustomObj = null;
-			 ISaveCustomObj saveCustomO = this.setSaveCustomObj(saveCustomObj);
-			 saveCustomO.saveCustomObj(property);});
-		 
-		 content.getChildren().addAll(titleTextElement, nameElement, imageElement, 
-				 customContent, tabPaneElements, saveCustomObjBtn);
-		 content.setId(styleId);
-		 return content;
-	 }
+	
+	
+//	 protected VBox initDefaultContentForObjMaker(Properties prop, VBox customContent,
+//			 GroovyTabPane groovyTabPane, String styleId, ISaveObjProperty saveObjProperty, 
+//			 ISaveCustomObj saveCustomObject, ObjectProperty property){
+//		 
+//		 VBox content = new VBox();	 
+//		 Text titleTextElement = new Text(prop.getProperty("title"));
+//		 titleTextElement.setId("title");
+//		 TextField nameTextField = new TextField();	
+//		 nameTextField.textProperty().addListener((observable, oldValue, newValue)->{
+//			 
+//			 saveObjProperty.saveObjProperty("name", newValue);
+//		 });
+//
+//		 HBox nameElement = createElement(prop.getProperty("name"), 
+//				 nameTextField, "hbox-element");
+//		 HBox imageElement = createElement(prop.getProperty("image"),
+//				 makeBrowseElement(prop, "browse", "filechoosertitle", saveObjProperty), "hbox-element");		 
+//		 VBox tabPaneElements = groovyTabPane.getContent();		 
+//		 Button saveCustomObjBtn = new Button(prop.getProperty("savebtn"));
+//		 
+//		 saveCustomObjBtn.setOnAction(e -> {
+//			 ISaveCustomObj saveCustomObj = null;
+//			 ISaveCustomObj saveCustomO = this.setSaveCustomObj(saveCustomObj);
+//			 saveCustomO.saveCustomObj(property);});
+//		 
+//		 content.getChildren().addAll(titleTextElement, nameElement, imageElement, 
+//				 customContent, tabPaneElements, saveCustomObjBtn);
+//		 content.setId(styleId);
+//		 return content;
+//	 }
 
 	 
 	 protected int getIdForTab(Tab t){
@@ -101,8 +134,22 @@ public abstract class NewObjectMaker extends GaeDialog{
 		 return saveCustomObject;
 	 }
 	 
-	 
-	 protected abstract VBox initializeCustomContent();
+		public void showUnitMakerDialog(){
+			super.showDialog(unitMakerDialog);
+		}
+
+	@Override
+	protected VBox initializeDialog() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	protected VBox initializeDialog(VBox customProperties) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 	 
 
 }

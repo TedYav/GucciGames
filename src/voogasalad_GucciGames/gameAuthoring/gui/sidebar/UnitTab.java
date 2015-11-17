@@ -5,6 +5,7 @@ import java.util.Arrays;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import voogasalad_GucciGames.gameAuthoring.IGuiGaeController;
+import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.NewObjectMaker;
 import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.UnitMaker;
 import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.ISaveCustomObj;
 import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.UnitMakerCustomContent;
@@ -34,7 +35,7 @@ public class UnitTab extends AbstractTab {
 		// TODO Auto-generated method stub
 		myAddButton.setOnAction(new EventHandler<ActionEvent>() {
 			@Override public void handle(ActionEvent e) {
-				UnitMaker unitMaker = new UnitMaker(new UnitMakerCustomContent(), myController);
+				NewObjectMaker unitMaker = new NewObjectMaker(new UnitMakerCustomContent(), myController);
 				unitMaker.showUnitMakerDialog();
 			}
 		});

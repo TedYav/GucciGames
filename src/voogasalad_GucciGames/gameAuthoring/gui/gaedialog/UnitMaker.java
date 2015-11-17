@@ -31,15 +31,12 @@ public class UnitMaker extends NewObjectMaker {
 	private SaveField save;
 	
 	public UnitMaker(DialogContent customContent, IDialogGaeController controller){
-		super();
+		super(customContent, controller);
 		prop = loadProperties("dialogproperties/tiledialogproperties.properties");	
 		saveGroovy = super.setSaveGroovyFunctions(groovyBuffer, saveGroovy);
 		saveObjProperty = super.setSavePropertyFunction(unitProperty, saveObjProperty);		
 		dialogElements = new DialogElements(prop, unitProperty, saveObjProperty, saveGroovy, saveCustomObj);
 		groovyTabPane = new GroovyTabPane(prop, saveGroovy);
-		
-		
-		//myContent = initializeDialog(initializeCustomContent());
 		save = new SaveField(dialogElements, controller);
 		MakerDialog dialog = new MakerDialog(dialogElements, customContent, groovyTabPane, save);	
 		myContent = dialog.getContent();
@@ -48,46 +45,16 @@ public class UnitMaker extends NewObjectMaker {
 		unitMakerDialog.setScene(tileDialogScene);	
 	}
 	
-
-//
-//	@Override
-//	protected VBox initializeDialog() {
-//		// TODO Auto-generated method stub
-//		return null;
-//	}
-//
-//	@Override
-//	protected VBox initializeDialog(VBox customProperties) {
-//		// TODO Auto-generated method stub
-//		VBox content = new VBox();
-//		content = super.initDefaultContentForObjMaker(prop, customProperties, groovyTabPane, 
-//				"vbox-element", saveObjProperty, null/*TODO: pass saveCustomObj */, unitProperty);
-//		return content;
-//	}
-//
-//	@Override
-//	protected VBox initializeCustomContent() {
-//		// TODO Auto-generated method stub
-//		VBox vbox = new VBox();
-//		RadioBtnField prop1 = new RadioBtnField(dialogElements, "prop1", "prop1_items");
-//		HBox prop1Element = prop1.getContent();
-//		HBox prop2Element = createElement(prop.getProperty("prop2"),
-//				makeRadioButtons(prop, "prop2", "prop2_items", saveObjProperty), "hbox-element");	
-//		vbox.getChildren().addAll(prop1Element, prop2Element);
-//		vbox.setId("vbox-element");
-//		return vbox;
-//	}
-	
 	public void showUnitMakerDialog(){
 		super.showDialog(unitMakerDialog);
 	}
 
-
-	@Override
-	protected VBox initializeCustomContent() {
-		// TODO Auto-generated method stub
-		return null;
-	}
+//
+//	@Override
+//	protected VBox initializeCustomContent() {
+//		// TODO Auto-generated method stub
+//		return null;
+//	}
 
 
 	@Override
