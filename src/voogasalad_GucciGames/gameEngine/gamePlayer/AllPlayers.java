@@ -1,72 +1,76 @@
 package voogasalad_GucciGames.gameEngine.gamePlayer;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Map;
+
+
+import voogasalad_GucciGames.gameEngine.mapObject.MapObject;
+import voogasalad_GucciGames.gameplayer.controller.PlayerMapObjectInterface;
 
 public class AllPlayers {
 
-	// maybe put an interface in the middle?
-	// maybe use a map here instead
+	private Map<Integer, GamePlayerPerson> myMapOfPlayers;
+	private List<PlayerMapObjectInterface> myListOfAllMapObjects; //perhaps change it to a set later
+	
+	public AllPlayers(Map<Integer, GamePlayerPerson> players) {
 
-	private List<GamePlayerPerson> myListOfPlayers; // Efe, I suggest that we
-													// change this list to a
-													// map, and use player id as
-													// a key
-	private TurnCounter myCurrentTurnCounter;
+		myMapOfPlayers = players;
+	}
 
-	private ATurnDecider myTurnDecider;
-
-	public AllPlayers(List<GamePlayerPerson> players) {
-
-		myListOfPlayers = players;
-		myCurrentTurnCounter = new TurnCounter();
-		myTurnDecider = new DefaultTurnDecider(getNumberOfPlayers(), myCurrentTurnCounter);
-
+	public AllPlayers() {
+		myMapOfPlayers = new HashMap<Integer, GamePlayerPerson>();
+	}
+	
+	/***
+	 * 
+	 * @param id
+	 * The neutral player with the game tiles (MapObject) has id -1.
+	 * @return
+	 */
+	
+	public GamePlayerPerson getPlayerById(int id){
+		
+		return myMapOfPlayers.get(id);
 	}
 
 	public int numberOfPlayer() {
-		return myListOfPlayers.size();
-	}
-
-	public List<UnitCollection> getAllUnits() {
-
-		List<UnitCollection> allUnits = new ArrayList<UnitCollection>();
-		for (GamePlayerPerson player : myListOfPlayers) {
-			allUnits.add(player.getUnits());
-		}
-		return allUnits;
+		return myMapOfPlayers.size();
 	}
 
 	// right now includes the neutral player
 	public int getNumberOfPlayers() {
-		return myListOfPlayers.size();
-	}
-
-	public void takeTurn(int currentTurn) {
-
-		// account for cases where a player gets skipped
-
-		myListOfPlayers.get(myTurnDecider.decideTurn()).takeTurn();
-
+		return myMapOfPlayers.size();
 	}
 
 	public GamePlayerPerson getActivePlayer(int index) {
-		return myListOfPlayers.get(index);
+		return myMapOfPlayers.get(index);
 	}
 
-	public int getCurrentTurn() {
-		return this.myCurrentTurnCounter.getCurrentTurn();
-	}
 
 	public void removePlayer(int id) {
-		Iterator<GamePlayerPerson> itr = myListOfPlayers.iterator();
+		Iterator<GamePlayerPerson> itr = myMapOfPlayers.values().iterator();
 		while (itr.hasNext()) {
 			if (itr.next().getMyPlayerId() == id) {
 				itr.remove();
 				return;
 			}
 		}
+	}
+
+	public List<PlayerMapObjectInterface> getInitialState() {
+		ArrayList<PlayerMapObjectInterface> myInitObjects = new ArrayList<PlayerMapObjectInterface>();
+		
+		for(GamePlayerPerson player : myMapOfPlayers.values()){
+			List<MapObject> myPlayerUnits = player.getMapObjects();
+			for(MapObject m : myPlayerUnits){
+				myInitObjects.add((PlayerMapObjectInterface) m);
+			}
+		}
+		
+		return null;
 	}
 
 }

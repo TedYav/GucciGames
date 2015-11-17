@@ -14,8 +14,9 @@ import javafx.scene.input.Dragboard;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.input.TransferMode;
 import voogasalad_GucciGames.gameAuthoring.IGuiGaeController;
-import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.TileMaker;
+import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.NewObjectMaker;
 import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.ISaveCustomObj;
+import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.TileMakerCustomContent;
 import voogasalad_GucciGames.gameEngine.mapObject.MapObjectType;
 
 
@@ -29,7 +30,7 @@ public class TileTab extends AbstractTab {
 		setText("Tiles");
 
 		for(MapObjectType maptype : myController.getImmutableTileTypes()){
-			allImagePaths.add(maptype.getMyImagePath());
+			allImagePaths.add(maptype.getImagePath());
 		}
 
 		allImagePaths = Arrays.asList("voogasalad_GucciGames/graphics/land.png", "voogasalad_GucciGames/graphics/water.png", "voogasalad_GucciGames/graphics/hurricane.png","voogasalad_GucciGames/graphics/fire.png","voogasalad_GucciGames/graphics/lava.png","voogasalad_GucciGames/graphics/mountain.png","voogasalad_GucciGames/graphics/sand.png");
@@ -55,8 +56,8 @@ public class TileTab extends AbstractTab {
 		myAddButton.setOnAction(new EventHandler<ActionEvent>() {
 			@Override public void handle(ActionEvent e) {
 				//dialog
-				TileMaker addNewTileDialog = new TileMaker();
-				addNewTileDialog.showTileMakerDialog();
+				NewObjectMaker addNewTileDialog = new NewObjectMaker(new TileMakerCustomContent(), myController);
+				addNewTileDialog.showDialog();
 			}
 		});
 	}

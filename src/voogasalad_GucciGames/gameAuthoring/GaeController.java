@@ -9,7 +9,7 @@ import javafx.stage.Stage;
 import voogasalad_GucciGames.gameAuthoring.gui.GAEGui;
 import voogasalad_GucciGames.gameAuthoring.model.GAEModel;
 import voogasalad_GucciGames.gameAuthoring.model.IGAEModel;
-import voogasalad_GucciGames.gameAuthoring.properties.MapObjectProperty;
+import voogasalad_GucciGames.gameAuthoring.properties.ObjectProperty;
 import voogasalad_GucciGames.gameAuthoring.properties.Property;
 import voogasalad_GucciGames.gameEngine.mapObject.MapObject;
 import voogasalad_GucciGames.gameEngine.mapObject.MapObjectType;
@@ -52,7 +52,7 @@ public class GaeController implements IGuiGaeController, IModelGaeController{
     }
     public List<MapObjectType> getTileTypes () {
         // TODO Auto-generated method stub
-        return null;
+        return (ObservableList<MapObjectType>) model.getTileTypes();
     }
     @Override
     public List<MapObjectType> getImmutableUnitTypes () {
@@ -103,7 +103,7 @@ public class GaeController implements IGuiGaeController, IModelGaeController{
 	 * create custom map object from a property object
 	 * Access type via type key
 	 */
-	public void createCustomMapObject(MapObjectProperty p) {
+	public void createCustomMapObject(ObjectProperty p) {
 		// TODO Auto-generated method stub
 		// Debug:
 		

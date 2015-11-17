@@ -1,8 +1,8 @@
 package voogasalad_GucciGames.gameAuthoring;
 
-import voogasalad_GucciGames.gameAuthoring.properties.MapObjectProperty;
+import voogasalad_GucciGames.gameAuthoring.properties.ObjectProperty;
 
 public interface IDialogGaeController {
-	public void createCustomMapObject(MapObjectProperty p);
+	public void createCustomMapObject(ObjectProperty p);
 
 }

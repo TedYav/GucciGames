@@ -1,16 +1,17 @@
 package voogasalad_GucciGames.gameplayer.windows;
 
 import javafx.scene.Parent;
+import voogasalad_GucciGames.gameplayer.controller.GameControllerInterface;
 import voogasalad_GucciGames.gameplayer.controller.GameEngineToGamePlayerInterface;
 
 public abstract class WindowComponent {
 
 	protected GameScene myScene;
-	protected GameEngineToGamePlayerInterface myGame;
+	protected GameControllerInterface myController;
 	
-	public WindowComponent(GameScene scene, GameEngineToGamePlayerInterface game){
+	public WindowComponent(GameScene scene, GameControllerInterface controller){
 		myScene = scene;
-		myGame = game;
+		myController = controller;
 	}
 	
 	public abstract Parent getParent();

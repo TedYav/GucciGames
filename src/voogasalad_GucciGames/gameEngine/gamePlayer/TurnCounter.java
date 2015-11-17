@@ -23,4 +23,5 @@ public class TurnCounter {
 	public int getCurrentTurn(){
 		return currentTurn;
 	}
+
 }

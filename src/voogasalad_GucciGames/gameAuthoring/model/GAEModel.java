@@ -24,6 +24,7 @@ public class GAEModel implements IGAEModel{
     public GAEModel(IModelGaeController controller) {
     	data = new GameSourceData();
     	myController = controller;
+    	data = new GameSourceData();
     }
 
     @Override
@@ -93,6 +94,11 @@ public class GAEModel implements IGAEModel{
 	@Override
 	public List<MapObjectType> getTileTypes() {
 		// TODO Auto-generated method stub
+		
+		
+		
+		
+		
 		return null;
 	}
 

@@ -1,5 +1,5 @@
 package voogasalad_GucciGames.gameAuthoring;
-import voogasalad_GucciGames.gameAuthoring.properties.MapObjectProperty;
+import voogasalad_GucciGames.gameAuthoring.properties.ObjectProperty;
 import voogasalad_GucciGames.gameAuthoring.properties.Property;
 
 import java.util.List;
@@ -26,7 +26,7 @@ public interface IGuiGaeController extends IDialogGaeController {
     public void createCustomUnitType(Map<String,String> m);
     
     @Override
-    public void createCustomMapObject(MapObjectProperty p);
+    public void createCustomMapObject(ObjectProperty p);
 
     public List<MapObjectType> getImmutableTileTypes();
 

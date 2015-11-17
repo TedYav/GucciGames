@@ -3,7 +3,7 @@ package voogasalad_GucciGames.gameEngine;
 import java.util.List;
 
 import voogasalad_GucciGames.gameEngine.gamePlayer.AllPlayers;
-import voogasalad_GucciGames.gameEngine.gamePlayer.UnitCollection;
+import voogasalad_GucciGames.gameEngine.gamePlayer.MapObjectCollection;
 
 public class GameMap {
 	
@@ -20,8 +20,9 @@ public class GameMap {
 	 * Returns a list of all units in the game with index i reserved for the units of ith player.
 	 * @return
 	 */
-	public List<UnitCollection> getAllUnits() {
-		return myGamePlayers.getAllUnits();
+	public List<MapObjectCollection> getAllUnits() {
+		return null;
+	//	return myGamePlayers.getAllUnits();
 	}
 
 	public int getNumberOfPlayers() {

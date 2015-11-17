@@ -2,26 +2,28 @@ package voogasalad_GucciGames.gameplayer.windows.mainwindow.map;
 
 import java.util.List;
 
-import com.sun.javafx.scene.traversal.Direction;
-
 import javafx.geometry.Point2D;
+import javafx.scene.image.Image;
 import javafx.scene.input.KeyCode;
+import voogasalad_GucciGames.gameEngine.targetCoordinate.ATargetCoordinate;
+import voogasalad_GucciGames.gameplayer.controller.PlayerMapObjectInterface;
 import voogasalad_GucciGames.gameplayer.windows.mainwindow.map.cell.MapCellInterface;
 
 public interface MapInterface {
 
-	public void activateCell(MapCellInterface cell);
-	public void activateCell(Point2D coordinate);
+	public void highlightCells(List<ATargetCoordinate> targets);
+	public void clearHighlights();
 	
-	public void fogCells(List<Point2D> targets);
-	public void unfogCells();
+	public void selectCell(MapCellInterface cell);
+	public List<MapCellInterface> getSelectedCells();
+	public void clearActiveCells();
 	
-	public MapCellInterface getCell(Point2D coordinate);
-	
-	public MapCellInterface moveObjectToCell(MapCellInterface target);
-	public MapCellInterface moveObjectToCell(Point2D target);
-	
-	public void move(KeyCode direction);
+	public void redrawFog();
+	public void update();
 	
 	public void recenter(Point2D center);
+	public void update(List<PlayerMapObjectInterface> result);
+	
+	public Point2D getCellCoordinate(MapCellInterface cell);
+	public MapCellInterface getCell(Point2D coordinate);
 }

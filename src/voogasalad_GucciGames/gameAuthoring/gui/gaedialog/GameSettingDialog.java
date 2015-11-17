@@ -4,7 +4,7 @@ import java.util.Properties;
 import voogasalad_GucciGames.gameAuthoring.IDialogGaeController;
 import voogasalad_GucciGames.gameAuthoring.guiexceptions.InvalidInputException;
 import voogasalad_GucciGames.gameAuthoring.properties.GameSettingsProperty;
-import voogasalad_GucciGames.gameAuthoring.properties.MapObjectProperty;
+import voogasalad_GucciGames.gameAuthoring.properties.ObjectProperty;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
@@ -19,14 +19,25 @@ public class GameSettingDialog extends GaeDialog {
 	private Stage gameSettingDialog = new Stage();
 	private VBox myContent = new VBox();
 	private Properties prop;
-	private MapObjectProperty gameSettingsProperty = new MapObjectProperty();
+	private ObjectProperty gameSettingsProperty = new ObjectProperty();
 	private IDialogGaeController dialogGaeController;
 	private ISaveObjProperty saveObjProperty;
+	private DialogElements dialogElements;
 	
 	
 	public GameSettingDialog(IDialogGaeController dialogGaeController){
 		this.dialogGaeController = dialogGaeController;
-		prop = loadProperties("dialogproperties/gamedialog.properties");	
+		prop = loadProperties("dialogproperties/gamedialog.properties");
+		this.initializeSaveObjProperty();
+		dialogElements = new DialogElements(prop, gameSettingsProperty, saveObjProperty, null, null);
+		SaveField saveField = new SaveField(dialogElements, dialogGaeController);
+		myContent.getChildren().addAll(this.initializeDialog(), saveField.getContent());
+		Scene gameSettingDialogScene = new Scene(myContent, 500, 500);
+		gameSettingDialogScene.getStylesheets().add("voogasalad_GucciGames/gameAuthoring/gui/gaedialog/stylesheets/dialogstylesheet.css");
+		gameSettingDialog.setScene(gameSettingDialogScene);		
+	}
+	
+	private void initializeSaveObjProperty(){
 		saveObjProperty = (propName, prop) -> {
 			try {
 				gameSettingsProperty.addPropertyElement(propName, prop);
@@ -35,50 +46,27 @@ public class GameSettingDialog extends GaeDialog {
 				e.printStackTrace();
 			}
 		};
-		myContent = initializeDialog();
-		myContent.getChildren().add(initializeControl(prop, "hbox-control", 
-				dialogGaeController, gameSettingsProperty));
-		Scene gameSettingDialogScene = new Scene(myContent, 500, 500);
-		gameSettingDialogScene.getStylesheets().add("voogasalad_GucciGames/gameAuthoring/gui/gaedialog/stylesheets/dialogstylesheet.css");
-		gameSettingDialog.setScene(gameSettingDialogScene);		
 	}
 
-
-	@Override
 	protected VBox initializeDialog() {
 		// TODO Auto-generated method stub
 		VBox content = new VBox();				
 		Text titleElement = new Text();
 		titleElement.setText(prop.getProperty("title"));
-		TextField nameTextField = new TextField();	
-		nameTextField.textProperty().addListener((observable, oldValue, newValue) -> {
-			saveObjProperty.saveObjProperty(prop.getProperty("title"), newValue);		
-		});
-		HBox nameElement = createElement(prop.getProperty("name"), nameTextField, "field-title-element");
-		HBox mapSizeElement = createElement(prop.getProperty("mapsize"), 
-				makeDropDownList(prop,"mapsize", "mapsize_items", saveObjProperty), "field-title-element");
-		HBox fogOfWarElement = createElement(prop.getProperty("fogofwar"),
-				makeDropDownList(prop, "fogofwar", "fogofwar_items", saveObjProperty), "field-title-element");
-		HBox miniMapElement = createElement(prop.getProperty("minimap"),
-				makeRadioButtons(prop, "minimap", "minimap_items",saveObjProperty), "field-title-element");
-		HBox zoomableElement = createElement(prop.getProperty("zoomable"),
-				makeRadioButtons(prop, "zoomable","zoomable_items" , saveObjProperty), "field-title-element");
-		HBox numPlayerElement = createElement(prop.getProperty("numplayer"),
-				makeScrollBar(prop, "numplayer","player_min", "player_max", "player_increment", saveObjProperty), "field-title-element");
-		content.getChildren().addAll(titleElement, nameElement, mapSizeElement, fogOfWarElement,
-				miniMapElement, zoomableElement, numPlayerElement);
-		content.getChildren().forEach(hbox->hbox.setId("hbox-element"));
+		TextInputField nameText = new TextInputField(dialogElements, "name");
+		DropDownMenuField mapSize = new DropDownMenuField(dialogElements, "mapsize", "mapsize_items");
+		DropDownMenuField fogOfWar = new DropDownMenuField(dialogElements, "fogofwar", "fogofwar_items");
+		RadioBtnField miniMap = new RadioBtnField(dialogElements, "minimap", "minimap_items");
+		RadioBtnField zoomable = new RadioBtnField(dialogElements, "zoomable", "zoomable_items");
+		ScrollBarField numPlayer = new ScrollBarField(dialogElements, "numplayer", "numplayer_items");		
+		content.getChildren().addAll(titleElement, nameText.getContent(), mapSize.getContent(), fogOfWar.getContent(),
+				miniMap.getContent(), zoomable.getContent(), numPlayer.getContent());		
+		content.getChildren().forEach(hbox->hbox.setId("hbox-element"));		
 		titleElement.setId("title");
 		content.setId("vbox-element");	
 		return content;
 	}
 
-	@Override
-	protected VBox initializeDialog(VBox customProperties) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-	
 	public void showGameSettingsDialog(){
 		super.showDialog(gameSettingDialog);
 	}
