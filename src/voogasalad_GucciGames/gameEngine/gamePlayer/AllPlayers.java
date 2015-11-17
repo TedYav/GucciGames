@@ -73,6 +73,7 @@ public class AllPlayers {
 		return result;
 	}
 
+	// make the following collections unmodifiable
 	public List<PlayerMapObjectInterface> getInitialState() {
 		ArrayList<PlayerMapObjectInterface> myInitObjects = new ArrayList<PlayerMapObjectInterface>();
 		
@@ -83,7 +84,22 @@ public class AllPlayers {
 			}
 		}
 		
-		return null;
+		return myInitObjects;
+	}
+
+	public List<MapObject> getAllUnits() {
+		// TODO Auto-generated method stub
+		
+ArrayList<MapObject> myInitObjects = new ArrayList<MapObject>();
+		
+		for(GamePlayerPerson player : myMapOfPlayers.values()){
+			List<MapObject> myPlayerUnits = player.getMapObjects();
+			for(MapObject m : myPlayerUnits){
+				myInitObjects.add(m);
+			}
+		}		
+		
+		return myInitObjects;
 	}
 
 }
