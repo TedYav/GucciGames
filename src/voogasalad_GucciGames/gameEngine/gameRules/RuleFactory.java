@@ -14,8 +14,7 @@ import voogasalad_GucciGames.gameEngine.CommunicationParams.CommunicationParams;
 public class RuleFactory {
 	private static final String PATH_TO_RULE_PROPERTIES = "voogasalad_GucciGames.resources.gameRules.rulePath";
 	private ResourceBundle ruleBundle;
-
-	public RuleFactory(CommunicationParams communicationParams, ActionToRuleMap actionToRuleMap) {
+	public RuleFactory() {
 		ruleBundle = ResourceBundle.getBundle(PATH_TO_RULE_PROPERTIES);
 
 	}
