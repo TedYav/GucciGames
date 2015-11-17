@@ -9,11 +9,12 @@ public interface MapCellInterface {
 
 	public void activate();
 	
-	public void hover();
-	
+	public void deactivate();
+		
 	public void toggleFog(boolean fog);
 	
 	public void toggleHighlight(boolean highlight);
 	
 	public Map<Integer,List<PlayerMapObjectInterface>> getUnits();
+
 }
