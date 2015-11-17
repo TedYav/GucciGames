@@ -49,25 +49,5 @@ public class UnitMaker extends NewObjectMaker {
 		super.showDialog(unitMakerDialog);
 	}
 
-//
-//	@Override
-//	protected VBox initializeCustomContent() {
-//		// TODO Auto-generated method stub
-//		return null;
-//	}
-
-
-	@Override
-	protected VBox initializeDialog() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-
-	@Override
-	protected VBox initializeDialog(VBox customProperties) {
-		// TODO Auto-generated method stub
-		return null;
-	}
 
 }

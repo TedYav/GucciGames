@@ -48,8 +48,6 @@ public class GameSettingDialog extends GaeDialog {
 		};
 	}
 
-
-	@Override
 	protected VBox initializeDialog() {
 		// TODO Auto-generated method stub
 		VBox content = new VBox();				
@@ -69,12 +67,6 @@ public class GameSettingDialog extends GaeDialog {
 		return content;
 	}
 
-	@Override
-	protected VBox initializeDialog(VBox customProperties) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-	
 	public void showGameSettingsDialog(){
 		super.showDialog(gameSettingDialog);
 	}

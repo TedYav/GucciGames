@@ -59,39 +59,6 @@ public class NewObjectMaker extends GaeDialog{
 		unitMakerDialog.setScene(tileDialogScene);		
 		 
 	 }	
-	
-	
-	
-//	 protected VBox initDefaultContentForObjMaker(Properties prop, VBox customContent,
-//			 GroovyTabPane groovyTabPane, String styleId, ISaveObjProperty saveObjProperty, 
-//			 ISaveCustomObj saveCustomObject, ObjectProperty property){
-//		 
-//		 VBox content = new VBox();	 
-//		 Text titleTextElement = new Text(prop.getProperty("title"));
-//		 titleTextElement.setId("title");
-//		 TextField nameTextField = new TextField();	
-//		 nameTextField.textProperty().addListener((observable, oldValue, newValue)->{
-//			 
-//			 saveObjProperty.saveObjProperty("name", newValue);
-//		 });
-//
-//		 HBox nameElement = createElement(prop.getProperty("name"), 
-//				 nameTextField, "hbox-element");
-//		 HBox imageElement = createElement(prop.getProperty("image"),
-//				 makeBrowseElement(prop, "browse", "filechoosertitle", saveObjProperty), "hbox-element");		 
-//		 VBox tabPaneElements = groovyTabPane.getContent();		 
-//		 Button saveCustomObjBtn = new Button(prop.getProperty("savebtn"));
-//		 
-//		 saveCustomObjBtn.setOnAction(e -> {
-//			 ISaveCustomObj saveCustomObj = null;
-//			 ISaveCustomObj saveCustomO = this.setSaveCustomObj(saveCustomObj);
-//			 saveCustomO.saveCustomObj(property);});
-//		 
-//		 content.getChildren().addAll(titleTextElement, nameElement, imageElement, 
-//				 customContent, tabPaneElements, saveCustomObjBtn);
-//		 content.setId(styleId);
-//		 return content;
-//	 }
 
 	 
 	 protected int getIdForTab(Tab t){
@@ -139,18 +106,12 @@ public class NewObjectMaker extends GaeDialog{
 			super.showDialog(unitMakerDialog);
 		}
 
-	@Override
-	protected VBox initializeDialog() {
-		// TODO Auto-generated method stub
-		return null;
-	}
 
-	@Override
-	protected VBox initializeDialog(VBox customProperties) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
+		@Override
+		protected VBox initializeDialog() {
+			// TODO Auto-generated method stub
+			return null;
+		}
 	 
 
 }
