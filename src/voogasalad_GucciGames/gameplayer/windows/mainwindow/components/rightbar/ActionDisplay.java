@@ -48,7 +48,7 @@ public class ActionDisplay implements DisplayComponent, Observer {
         button.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
-                myController.setActionInProgress(name);
+                myController.setActionInProgress(name, activeMapObject);
                 myController.getMap().highlightCells(activeMapObject.getActionTargets(name));
             }
         });

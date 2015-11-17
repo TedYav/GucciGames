@@ -200,4 +200,11 @@ public class MainMap extends WindowComponent implements MapInterface {
 		mySelectedUnits.clear();
 		mySelectedCells.clear();
 	}
+
+
+	@Override
+	public void update(List<PlayerMapObjectInterface> result) {
+		// TODO Auto-generated method stub
+		
+	}
 }
