@@ -43,7 +43,7 @@ public class DummyUnit implements PlayerMapObjectInterface {
 	}
 
 	@Override
-	public List<TargetCoordinate> getActionTarget() {
+	public List<TargetCoordinate> getActionTargets(String action) {
 		return null;
 	}
 
@@ -63,6 +63,12 @@ public class DummyUnit implements PlayerMapObjectInterface {
 	public List<String> getAttributes() {
 		// TODO Auto-generated method stub
 		return null;
+	}
+
+	@Override
+	public int getPlayerID() {
+		// TODO Auto-generated method stub
+		return 0;
 	}
 
 }
