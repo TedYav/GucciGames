@@ -1,6 +1,5 @@
 package voogasalad_GucciGames.gameEngine.gamePlayer;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -8,12 +7,14 @@ import voogasalad_GucciGames.gameEngine.mapObject.MapObject;
 
 public class GamePlayerPerson {
 
-	private int myPlayerId; 
+	private int myPlayerId;
 	private PlayerResources myResources;
 	private List<MapObject> myMapObjects;
-	
+
 	private int unitsMoved=0;
 	private int unitsMaxMovedLimit;
+	private int turnMoves = -1;//should move this away later
+	private int turnCounter = 0;//should move this away later
 	private String myStatus = "DRAW";
 
 	public List<MapObject> getMapObjects() {
@@ -21,7 +22,7 @@ public class GamePlayerPerson {
 	}
 
 	public void endTurn() {
-		
+
 	}
 
 	public int getMyPlayerId() {
@@ -36,12 +37,28 @@ public class GamePlayerPerson {
 
 	public void setStatus(String string) {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	public int getUnitsMoved() {
 		// TODO Auto-generated method stub
 		return 0;
+	}
+
+	public int getAllowedMovesPerTurn() {
+		return turnMoves;
+	}
+
+	public void setAllowedMovesPerTurn(int turnMoves) {
+		this.turnMoves = turnMoves;
+	}
+
+	public int getTurnCounter() {
+		return turnCounter;
+	}
+
+	public void setTurnCounter(int turnCounter) {
+		this.turnCounter = turnCounter;
 	}
 
 

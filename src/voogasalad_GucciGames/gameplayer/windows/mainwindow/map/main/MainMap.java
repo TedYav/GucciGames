@@ -107,8 +107,9 @@ public class MainMap extends WindowComponent implements MapInterface {
 		mySecondLayer.getChildren().add(myMiniMap.getParent());
 	}
 	
+	//TODO: add loading bar
+	
 	private void drawMap(List<PlayerMapObjectInterface> initialState){
-		System.out.println(initialState);
 		initialState.stream()
 			.forEach(o->addToMap(o));
         myParent.getStyleClass().add(myConfig.getString("MainCSSClass"));
@@ -169,6 +170,7 @@ public class MainMap extends WindowComponent implements MapInterface {
 		targets.stream()
 			.map((t) -> new Point2D(t.getCenterX(), t.getCenterY()))
 			.map((c) -> myCellMap.get(c))
+			.filter((c) -> c!=null)
 			.forEach((c) -> { c.toggleHighlight(true); myHighlightedCells.add(c);} );
 	}
 	
@@ -181,7 +183,6 @@ public class MainMap extends WindowComponent implements MapInterface {
 
 	@Override
 	public void selectCell(MapCellInterface cell) {
-		System.out.println("SELECTING");
 		clearActiveCells();
 	    for (Integer i: cell.getUnits().keySet()) {
 	        mySelectedUnits.addAll(cell.getUnits().get(i));
@@ -198,7 +199,6 @@ public class MainMap extends WindowComponent implements MapInterface {
 
 	@Override
 	public void clearActiveCells() {
-		System.out.println("CLEARING");
 		mySelectedCells.forEach(c -> c.deactivate());
 		mySelectedUnits.clear();
 		mySelectedCells.clear();
@@ -207,7 +207,18 @@ public class MainMap extends WindowComponent implements MapInterface {
 
 	@Override
 	public void update(List<PlayerMapObjectInterface> result) {
+		result.stream().forEach(u -> redrawUnit(u));
 		update();
+	}
+
+
+	private void redrawUnit(PlayerMapObjectInterface unit) {
+		if(myUnitMap.containsValue(unit)){
+			myUnitMap.getKey(unit).removeObject(unit);
+			myUnitMap.remove(unit);
+			myUnitMap.removeKey(unit);
+		}
+		addToMap(unit);
 	}
 
 

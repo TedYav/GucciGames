@@ -1,8 +1,6 @@
 
 package voogasalad_GucciGames.gameEngine.gameRules;
 
-import java.util.List;
-
 import voogasalad_GucciGames.gameEngine.CommunicationParams.CommunicationParams;
 
 /**
@@ -11,8 +9,7 @@ import voogasalad_GucciGames.gameEngine.CommunicationParams.CommunicationParams;
  *
  */
 public abstract class Rules {
-	//interface of map instead of class?
-	public Rules(CommunicationParams communicationParams, List<Object> ruleArgs){}
-	public abstract Boolean executeRules(int playerID);
+	public Rules(){}
+	public abstract Boolean executeRules(CommunicationParams communicationParams, int playerID);
 
 }

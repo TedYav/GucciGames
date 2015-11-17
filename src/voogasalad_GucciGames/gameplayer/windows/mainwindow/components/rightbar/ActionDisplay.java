@@ -61,7 +61,7 @@ public class ActionDisplay implements DisplayComponent, Observer {
     	activeMapObject.getActionNames().stream().
     		forEach(action -> updatedActions.add(makeButton(action)));
     	temp = updatedActions;
-    	System.out.println("buttons  " + temp.size());
+    	//System.out.println("buttons  " + temp.size());
         buttons.setItems(FXCollections.observableList(temp));
     }
     

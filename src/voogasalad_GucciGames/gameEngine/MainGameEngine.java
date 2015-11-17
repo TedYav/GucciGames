@@ -2,13 +2,12 @@ package voogasalad_GucciGames.gameEngine;
 
 import java.util.List;
 
-import voogasalad_GucciGames.gameEngine.gameConditions.defaultConditions.game.GameCondition;
+import voogasalad_GucciGames.gameEngine.gameConditions.ConditionHandler;
 import voogasalad_GucciGames.gameEngine.gameConditions.defaultConditions.game.GlobalGameCondition;
 import voogasalad_GucciGames.gameEngine.gamePlayer.ATurnDecider;
 import voogasalad_GucciGames.gameEngine.gamePlayer.AllPlayers;
 import voogasalad_GucciGames.gameEngine.gamePlayer.DefaultTurnDecider;
 import voogasalad_GucciGames.gameEngine.gamePlayer.TurnCounter;
-import voogasalad_GucciGames.gameEngine.mapObject.MapObject;
 import voogasalad_GucciGames.gameplayer.controller.GameEngineToGamePlayerInterface;
 import voogasalad_GucciGames.gameplayer.controller.PlayerMapObjectInterface;
 
@@ -17,10 +16,9 @@ public class MainGameEngine implements GameEngineToGamePlayerInterface {
 	private AllPlayers myGamePlayers;
 	private TurnCounter myCurrentTurnCounter;
 	private ATurnDecider myTurnDecider;
-	
+
 	private ConditionHandler myConditionHandler;
-	
-	
+
 	private String myName;
 	private GameMap myGameMap;
 
@@ -32,12 +30,10 @@ public class MainGameEngine implements GameEngineToGamePlayerInterface {
 
 		myGamePlayers = gamePlayers;
 		myGameMap = gameMap;
-
 		myCurrentTurnCounter = new TurnCounter();
 		myTurnDecider = new DefaultTurnDecider(gamePlayers.getNumberOfPlayers(), myCurrentTurnCounter);
 
 	}
-
 
 	@Override
 	public String getGameName() {
@@ -48,8 +44,8 @@ public class MainGameEngine implements GameEngineToGamePlayerInterface {
 	@Override
 	public void endTurn() {
 
-		myConditionHandler.checkAllConditions();
-		
+		myConditionHandler.evaluateAllConditions();
+
 		myCurrentTurnCounter.update();
 
 	}
@@ -65,7 +61,6 @@ public class MainGameEngine implements GameEngineToGamePlayerInterface {
 
 	@Override
 	public List<PlayerMapObjectInterface> getInitialState() {
-		// TODO Auto-generated method stub
 		return myGamePlayers.getInitialState();
 	}
 
