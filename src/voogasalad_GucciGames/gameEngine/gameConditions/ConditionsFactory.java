@@ -8,7 +8,6 @@ import java.util.List;
 import java.util.ResourceBundle;
 
 import voogasalad_GucciGames.gameEngine.CommunicationParams.CommunicationParams;
-import voogasalad_GucciGames.gameEngine.gameConditions.oucomes.Outcome;
 import voogasalad_GucciGames.gameEngine.gamePlayer.GamePlayerPerson;
 
 /**
@@ -47,11 +46,9 @@ public class ConditionsFactory {
 					}
 				}
 				// thanks Efe!
-				Outcome myOutcomes = new Outcome(params.getPlayers());
 				Class<Conditions> condition = (Class<Conditions>) Class.forName(conditionBundle.getString(condParams.getName()));
-				Constructor<Conditions> condConstructor = condition.getDeclaredConstructor(List.class,
-						myOutcomes.getClass());
-				Conditions conditionInstance = condConstructor.newInstance(players, myOutcomes);
+				Constructor<Conditions> condConstructor = condition.getDeclaredConstructor(List.class,CommunicationParams.class );
+				Conditions conditionInstance = condConstructor.newInstance(players, params);
 				//params.getcreatedConditons().addCondition(condParams.getName(), conditionInstance);
 			} else {
 				System.out.println("cond for level");
