@@ -133,6 +133,9 @@ public class MainMap extends WindowComponent implements MapInterface {
 		for(int i=0; i<myCellsWide; i++){
 			for(int j=0; j<myCellsTall; j++){
 				MapCell c = new SquareCell(myController, myCellSize);
+				c.getParent().setOnMouseClicked(e->{
+				    updateSelectedUnits(c);
+				});
 				c.addObject(new DummyUnit(i,j));
 				myCellMap.put(new Point2D(i,j), c);
 				myMap.add(c.getParent(), i, j);
@@ -144,6 +147,13 @@ public class MainMap extends WindowComponent implements MapInterface {
         myMap.applyCss();
 	}
 	
+	private void updateSelectedUnits(MapCell cell) {
+	    mySelectedUnits.clear();
+	    System.out.println("sfdsaf");
+	    for (Integer i: cell.getUnits().keySet()) {
+	        mySelectedUnits.addAll(cell.getUnits().get(i));
+	    }
+	}
 	@Override
 	public Parent getParent() {
 		return myParent;

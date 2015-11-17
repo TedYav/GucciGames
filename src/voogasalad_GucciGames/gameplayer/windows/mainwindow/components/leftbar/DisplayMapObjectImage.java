@@ -43,6 +43,8 @@ public class DisplayMapObjectImage implements DisplayComponent{
                 buffer = myController.requestImage(m.getImageURI());
             }
             imgView=new ImageView(buffer);
+            imgView.setPreserveRatio(true);
+            imgView.setFitWidth(100);
             imgView.setOnMouseClicked(e->{
                 updateActiveMapObject(m);
             });
