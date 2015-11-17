@@ -11,10 +11,10 @@ import java.util.Map;
  * @author Sally Al
  *
  */
-public class ConditionsCreated {
+public class ConditionHandler {
 	private Map<String, Conditions> map;
 
-	public ConditionsCreated() {
+	public ConditionHandler() {
 		map = new HashMap<String, Conditions>();
 	}
 
@@ -26,9 +26,7 @@ public class ConditionsCreated {
 		return map.get(condName);
 	}
 
-	// can move this later to MaingameEngine.java and do the loop there.
-	// To do so, need this map to be stored in CommunicationParams.java
-	public void loop() {
+	public void evaluateAllConditions() {
 		for (String key : map.keySet()) {
 			map.get(key).execute();
 		}

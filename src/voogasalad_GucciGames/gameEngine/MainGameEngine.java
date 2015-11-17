@@ -2,6 +2,7 @@ package voogasalad_GucciGames.gameEngine;
 
 import java.util.List;
 
+import voogasalad_GucciGames.gameEngine.gameConditions.ConditionHandler;
 import voogasalad_GucciGames.gameEngine.gameConditions.defaultConditions.game.GlobalGameCondition;
 import voogasalad_GucciGames.gameEngine.gamePlayer.ATurnDecider;
 import voogasalad_GucciGames.gameEngine.gamePlayer.AllPlayers;
@@ -17,7 +18,6 @@ public class MainGameEngine implements GameEngineToGamePlayerInterface {
 	private ATurnDecider myTurnDecider;
 
 	private ConditionHandler myConditionHandler;
-
 
 	private String myName;
 	private GameMap myGameMap;
@@ -35,7 +35,6 @@ public class MainGameEngine implements GameEngineToGamePlayerInterface {
 
 	}
 
-
 	@Override
 	public String getGameName() {
 
@@ -45,7 +44,7 @@ public class MainGameEngine implements GameEngineToGamePlayerInterface {
 	@Override
 	public void endTurn() {
 
-		myConditionHandler.checkAllConditions();
+		myConditionHandler.evaluateAllConditions();
 
 		myCurrentTurnCounter.update();
 
@@ -62,7 +61,6 @@ public class MainGameEngine implements GameEngineToGamePlayerInterface {
 
 	@Override
 	public List<PlayerMapObjectInterface> getInitialState() {
-		// TODO Auto-generated method stub
 		return myGamePlayers.getInitialState();
 	}
 
