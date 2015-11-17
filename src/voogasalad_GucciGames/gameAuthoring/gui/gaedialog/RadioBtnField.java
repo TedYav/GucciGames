@@ -30,7 +30,7 @@ public class RadioBtnField extends DialogComponent {
 	}
 		
 	protected void makeRadioButtons(){
-		Text label = new Text(propKey);
+		Text label = new Text(dialogElements.getDialogProperties().getProperty(propKey));
 		List<RadioButton> checkBoxList = new ArrayList<RadioButton>();
 		List<String> propertiesList = parseStringToList(dialogElements.getDialogProperties(), itemsKey);
 		for (int i = 0; i < propertiesList.size(); i++){

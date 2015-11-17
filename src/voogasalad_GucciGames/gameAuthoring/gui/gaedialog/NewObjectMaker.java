@@ -48,10 +48,6 @@ public abstract class NewObjectMaker extends GaeDialog{
 		 VBox tabPaneElements = groovyTabPane.getContent();		 
 		 Button saveCustomObjBtn = new Button(prop.getProperty("savebtn"));
 		 
-		 if(saveCustomObject == null){
-			 System.out.println("save Custom Obj null");
-		 }
-		 
 		 saveCustomObjBtn.setOnAction(e -> {
 			 ISaveCustomObj saveCustomObj = null;
 			 ISaveCustomObj saveCustomO = this.setSaveCustomObj(saveCustomObj);

@@ -24,6 +24,8 @@ public class UnitMaker extends NewObjectMaker {
 	private ObjectProperty unitProperty = new ObjectProperty();
 	private ISaveGroovy saveGroovy;
 	private ISaveObjProperty saveObjProperty;
+	private ISaveCustomObj saveCustomObj;
+	private DialogElements dialogElements;
 	private Scene scene;
 	
 	public UnitMaker(){
@@ -31,8 +33,11 @@ public class UnitMaker extends NewObjectMaker {
 		prop = loadProperties("dialogproperties/tiledialogproperties.properties");	
 		saveGroovy = super.setSaveGroovyFunctions(groovyBuffer, saveGroovy);
 		saveObjProperty = super.setSavePropertyFunction(unitProperty, saveObjProperty);		
+		dialogElements = new DialogElements(prop, unitProperty, saveObjProperty, saveGroovy, saveCustomObj);
 		groovyTabPane = new GroovyTabPane(prop, saveGroovy);
+		
 		myContent = initializeDialog(initializeCustomContent());
+		
 		Scene tileDialogScene = new Scene(myContent, WIDTH, HEIGHT);
 		tileDialogScene.getStylesheets().add("voogasalad_GucciGames/gameAuthoring/gui/gaedialog/stylesheets/dialogstylesheet.css");
 		unitMakerDialog.setScene(tileDialogScene);	
@@ -59,8 +64,8 @@ public class UnitMaker extends NewObjectMaker {
 	protected VBox initializeCustomContent() {
 		// TODO Auto-generated method stub
 		VBox vbox = new VBox();
-		HBox prop1Element = createElement(prop.getProperty("prop1"),
-				makeRadioButtons(prop, "prop1", "prop1_items", saveObjProperty), "hbox-element");
+		RadioBtnField prop1 = new RadioBtnField(dialogElements, "prop1", "prop1_items");
+		HBox prop1Element = prop1.getContent();
 		HBox prop2Element = createElement(prop.getProperty("prop2"),
 				makeRadioButtons(prop, "prop2", "prop2_items", saveObjProperty), "hbox-element");	
 		vbox.getChildren().addAll(prop1Element, prop2Element);

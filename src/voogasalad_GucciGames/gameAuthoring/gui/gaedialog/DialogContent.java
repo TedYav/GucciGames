@@ -36,13 +36,13 @@ public class DialogContent {
 		return propertiesList;		
 	}
 	
-	protected ComboBox makeDropDownList(Properties prop, String itemsKey){
-		List<String> propertiesList = parseStringToList(prop, itemsKey);
-		ComboBox dropDown = new ComboBox();
-		ObservableList<String> options = FXCollections.observableArrayList(propertiesList);
-		dropDown.setItems(options);
-		return dropDown;	
-	}
+//	protected ComboBox makeDropDownList(Properties prop, String itemsKey){
+//		List<String> propertiesList = parseStringToList(prop, itemsKey);
+//		ComboBox dropDown = new ComboBox();
+//		ObservableList<String> options = FXCollections.observableArrayList(propertiesList);
+//		dropDown.setItems(options);
+//		return dropDown;	
+//	}
 	/*
 	protected HBox makeRadioButtons(Properties prop, String name, String itemsKey, ISaveObjProperty saveObjProperty){
 		HBox checkBoxes = new HBox();

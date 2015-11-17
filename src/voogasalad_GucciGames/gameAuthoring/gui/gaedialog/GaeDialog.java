@@ -80,7 +80,7 @@ abstract public class GaeDialog{
 		List<String> propertiesList = Arrays.asList(items.split("\\s*,\\s*"));	
 		return propertiesList;		
 	}
-	
+	/**/
 	protected ComboBox makeDropDownList(Properties prop, String propKey, String itemsKey, ISaveObjProperty saveObjProperty){
 		List<String> propertiesList = parseStringToList(prop, itemsKey);
 		ComboBox dropDown = new ComboBox();
@@ -94,10 +94,8 @@ abstract public class GaeDialog{
 		return dropDown;	
 	}
 	
-	private void addListenerToDropDownOptions(ComboBox dropDown, ISaveObjProperty saveObjProperty, String propKey){
-		
-		
-	}
+	
+	/**/
 	protected HBox makeRadioButtons(Properties prop, String name, String itemsKey, ISaveObjProperty saveObjProperty){
 		HBox checkBoxes = new HBox();
 		final ToggleGroup group = new ToggleGroup();
