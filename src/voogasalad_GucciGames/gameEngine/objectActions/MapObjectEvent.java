@@ -4,6 +4,7 @@ import java.util.Iterator;
 import java.util.List;
 
 import voogasalad_GucciGames.gameEngine.CommunicationParams.CommunicationParams;
+import voogasalad_GucciGames.gameEngine.CommunicationParams.EmptyParams;
 import voogasalad_GucciGames.gameEngine.gameRules.ActionToRuleMap;
 import voogasalad_GucciGames.gameEngine.gameRules.Rules;
 
@@ -20,11 +21,12 @@ public abstract class MapObjectEvent {
 	}
 
 	// must keep executeAction() final
-	public final void executeAction(CommunicationParams params, int playerID) {
+	public final CommunicationParams executeAction(CommunicationParams params, int playerID) {
 		Boolean check = checkRules(playerID, params);
 		if (check) {
-			execute(params);
+			return execute(params);
 		}
+		return new EmptyParams();
 
 	}
 

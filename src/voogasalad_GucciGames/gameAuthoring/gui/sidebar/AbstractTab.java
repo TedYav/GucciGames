@@ -14,12 +14,8 @@ import javafx.scene.control.MenuItem;
 import javafx.scene.control.Tab;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.input.ClipboardContent;
-import javafx.scene.input.DataFormat;
-import javafx.scene.input.Dragboard;
 import javafx.scene.input.MouseButton;
 import javafx.scene.input.MouseEvent;
-import javafx.scene.input.TransferMode;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.VBox;
 
@@ -81,12 +77,15 @@ public abstract class AbstractTab extends Tab implements ITab{
 		for(String path : allImagePaths){
 			Image image = new Image(getClass().getClassLoader().getResourceAsStream(path));
 			ImageView imageView = new ImageView(image);
-			allImageViews.add(imageView);
-
 			imageView.setFitHeight(30);
 			imageView.setFitWidth(30);
+			allImageViews.add(imageView);
+			
+			Button buttonImage = new Button();
+			buttonImage.setGraphic(imageView);
+			allImageButtons.add(buttonImage);
 
-			myGridPane.add(imageView, i, j);
+			myGridPane.add(buttonImage, i, j);
 			if(i>4){ i=0;j++;}
 			else{ i++;}
 		}
@@ -109,9 +108,10 @@ public abstract class AbstractTab extends Tab implements ITab{
 	
 	protected void addDragDropListener(List<MapObjectType> listTypes){
 		List<MapObjectType> currMapTypeList = listTypes;
-		for(int i=0; i<allImageViews.size(); i++){
+		for(int i=0; i<allImageButtons.size(); i++){
 			ImageView imageview = allImageViews.get(i);
-			imageview.setOnMousePressed(new EventHandler<MouseEvent>() {
+			Button imageButton = allImageButtons.get(i);
+			imageButton.setOnMousePressed(new EventHandler<MouseEvent>() {
 				public void handle(MouseEvent event) {
 					int imageviewId = allImageViews.indexOf(imageview);
 					MapObjectType currMapType = currMapTypeList.get(imageviewId);

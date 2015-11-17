@@ -46,7 +46,4 @@
   <myConditionHandler>
     <map/>
   </myConditionHandler>
-  <myGameMap>
-    <myGamePlayers reference="../../myGamePlayers"/>
-  </myGameMap>
 </voogasalad__GucciGames.gameEngine.MainGameEngine>

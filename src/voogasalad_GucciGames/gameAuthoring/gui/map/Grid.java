@@ -42,12 +42,15 @@ class Grid extends Pane {
 		setOnDragOver(e -> trackMouseMove(e.getX(), e.getY()));
 		setOnMouseExited(e -> removeMouseBound());
 		setOnDragExited(e -> removeMouseBound());
+		myCellSize.addListener((c,o,n)->removeMouseBound());
 
 	}
 
 	public void initGrid(int width, int height) {
 		maxWidthProperty().bind(myCellSize.multiply(width));
 		maxHeightProperty().bind(myCellSize.multiply(height));
+		minWidthProperty().bind(myCellSize.multiply(width));
+		minHeightProperty().bind(myCellSize.multiply(height));
 		Pane pane = new Pane();
 		getChildren().setAll(myBackground, pane);
 		pane.minWidthProperty().bind(widthProperty());
@@ -62,11 +65,6 @@ class Grid extends Pane {
 			}
 		}
 		myGridSelector = new GridSelector(this);
-	}
-
-	public void scroll(KeyEvent e) {
-		if (e.getCode() == KeyCode.M)
-			myCellSize.set(myCellSize.get() * 1.1);
 	}
 
 	private void trackMouseMove(double x, double y) {

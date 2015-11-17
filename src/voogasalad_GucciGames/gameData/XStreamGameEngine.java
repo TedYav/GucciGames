@@ -46,7 +46,7 @@ public class XStreamGameEngine implements GameDataInterface{
             GameMap myMap = new GameMap(myPlayers);
             OnlyOnePlayerHasUnitsCondition myRule = new OnlyOnePlayerHasUnitsCondition(myMap); 
             
-            MainGameEngine engine = new MainGameEngine(myPlayers, myRule, myMap);
+            MainGameEngine engine = new MainGameEngine(myPlayers, myRule);
             
             String engineXML = xStream.serializer.toXML(engine); // saved XML File should have current turn as 2
             File file = new File(xStream.defaultEngineLocation);

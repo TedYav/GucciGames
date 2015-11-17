@@ -49,7 +49,7 @@ public class ActionDisplay implements DisplayComponent, Observer {
             @Override
             public void handle(ActionEvent event) {
                 myController.setActionInProgress(name, activeMapObject);
-                myController.getMap().highlightCells(null);//myController.getEngine(). //activeMapObject.getActionTargets(name));
+                myController.getMap().highlightCells(myController.getEngine().getPossibleCoordinates(name, activeMapObject).getListOfCoordinates());
             }
         });
         return button;

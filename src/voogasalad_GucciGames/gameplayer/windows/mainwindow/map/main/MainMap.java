@@ -166,7 +166,7 @@ public class MainMap extends WindowComponent implements MapInterface {
 	}
 
 	@Override
-	public void highlightCells(List<ATargetCoordinate> targets) {
+	public void highlightCells(List<TargetCoordinateSingle> targets) {
 		targets.stream()
 			.map((t) -> new Point2D(t.getListOfCoordinates().get(0).getCenterX(), t.getListOfCoordinates().get(0).getCenterY())) //TODO: get non-zero
 			.map((c) -> myCellMap.get(c))
