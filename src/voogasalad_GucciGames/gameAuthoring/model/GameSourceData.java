@@ -63,12 +63,12 @@ public class GameSourceData {
 		structureTypes.add(type);
 	}
 	public ObservableList<MapObjectType> getImmutableTileTypes() {
-		return (ObservableList<MapObjectType>) Collections.unmodifiableList(tileTypes);
+		return FXCollections.unmodifiableObservableList(tileTypes);
 	}
 	public ObservableList<MapObjectType> getImmutableUnitTypes() {
-		return (ObservableList<MapObjectType>) Collections.unmodifiableList(unitTypes);
+		return FXCollections.unmodifiableObservableList(unitTypes);
 	}
 	public ObservableList<MapObjectType> getImmutableStructureTypes() {
-		return (ObservableList<MapObjectType>) Collections.unmodifiableList(structureTypes);
+		return FXCollections.unmodifiableObservableList(structureTypes);
 	}
 }
