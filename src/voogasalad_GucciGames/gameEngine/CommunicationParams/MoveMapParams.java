@@ -11,16 +11,10 @@ public class MoveMapParams extends CommunicationParams{
 	
 	private TargetCoordinateMultiple myTargetCoordinateMultiple;
 	
-	public MoveMapParams(AllPlayers players, GameMap gameMap, List<MapObject> locations,
-			MapObject currentActiveMapObject,TargetCoordinateMultiple target) {
-		super(players, gameMap, locations, currentActiveMapObject);
+	public MoveMapParams(CommunicationParams params, TargetCoordinateMultiple target) {
+		super(params);
 		// TODO Auto-generated constructor stub
 		this.myTargetCoordinateMultiple = target;
-	}
-	
-	public MoveMapParams(CommunicationParams communication, TargetCoordinateMultiple target){
-		this(communication.getPlayers(), communication.getGameMap(), communication.getLocations(),
-				communication.getMapObject(),target);
 	}
 	
 	public TargetCoordinateMultiple getTargetCoordinateMultiple(){
