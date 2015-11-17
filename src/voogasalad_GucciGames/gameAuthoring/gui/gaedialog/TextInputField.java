@@ -42,7 +42,7 @@ public class TextInputField extends DialogComponent{
 	}
 
 	@Override
-	void setSelected(String s) {
+	public void setSelected(String s) {
 		// TODO Auto-generated method stub
 		textField.setText(s);
 		

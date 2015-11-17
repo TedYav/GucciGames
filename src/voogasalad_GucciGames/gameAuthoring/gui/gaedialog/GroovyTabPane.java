@@ -1,5 +1,7 @@
 package voogasalad_GucciGames.gameAuthoring.gui.gaedialog;
 
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Properties;
 
 import javafx.beans.value.ChangeListener;
@@ -21,6 +23,8 @@ public class GroovyTabPane extends DialogComponent{
 	private TabPane tabPane = new TabPane();
 	private Tab selectedTab = new Tab();
 	private DialogElements dialogElements;
+	private Map<Integer, String> attributeName = new HashMap<Integer, String>();
+	private Map<Integer, String> groovyCode = new HashMap<Integer, String>();
 
 	
 	public GroovyTabPane(DialogElements dialogElements){
@@ -42,6 +46,8 @@ public class GroovyTabPane extends DialogComponent{
 			 String groovy = getTextAreaForTab(getSelectedTab()).getText();
 			 dialogElements.getSaveGroovy().
 			 saveGroovyTextArea(groovy, getIdForTab(getSelectedTab()));
+			 dialogElements.getObjectProperty().addPropertyElement(propName, prop);
+			 getTextFieldForTab(getSelectedTab()).setDisable(true);
 			 getTextAreaForTab(getSelectedTab()).setDisable(true);			 
 		 });
 		 editBtn.setOnAction(e -> {
@@ -117,6 +123,10 @@ public class GroovyTabPane extends DialogComponent{
 	 
 	 private TextArea getTextAreaForTab(Tab t){
 		 return (TextArea) (((VBox) t.getContent()).getChildren().get(2));
+	 }
+	 
+	 private TextField getTextFieldForTab(Tab t){
+		 return (TextField) (((VBox) t.getContent()).getChildren().get(1));
 	 }
 	 
 	 protected int getIdForTab(Tab t){
