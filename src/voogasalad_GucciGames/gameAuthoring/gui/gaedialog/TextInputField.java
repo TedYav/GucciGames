@@ -30,7 +30,7 @@ public class TextInputField extends DialogComponent{
 	private void addListenerToTextInputField(){
 		textField.textProperty().addListener((observable, oldValue, newValue) -> {
 			dialogElements.getSaveObjProperty().
-			saveObjProperty(dialogElements.getDialogProperties().getProperty("title"), newValue);		
+			saveObjProperty(dialogElements.getDialogProperties().getProperty(propKey), newValue);		
 		});
 		
 	}

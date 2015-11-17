@@ -52,6 +52,7 @@ public class NewObjectMaker extends GaeDialog{
 		groovyTabPane = new GroovyTabPane(prop, saveGroovy);
 		save = new SaveField(dialogElements, controller);
 		MakerDialog dialog = new MakerDialog(dialogElements, customContent, groovyTabPane, save);	
+		customContent.setDialogElements(dialogElements);
 		myContent = dialog.getContent();
 		Scene tileDialogScene = new Scene(myContent, WIDTH, HEIGHT);
 		tileDialogScene.getStylesheets().add("voogasalad_GucciGames/gameAuthoring/gui/gaedialog/stylesheets/dialogstylesheet.css");

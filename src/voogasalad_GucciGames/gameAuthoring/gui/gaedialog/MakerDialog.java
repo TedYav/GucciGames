@@ -34,7 +34,7 @@ public class MakerDialog {
 		Text title = new Text(dialogElements.getDialogProperties().getProperty("title"));
 		title.setId("title");
 		TextInputField name = new TextInputField(dialogElements, "name");
-		FileBrowserField fileBrowser = new FileBrowserField(dialogElements, "browse", "filechoosertitle");
+		FileBrowserField fileBrowser = new FileBrowserField(dialogElements,"image", "browse", "filechoosertitle");
 		content.getChildren().addAll(title, name.getContent(), fileBrowser.getContent(), customContent.getContent(), 
 				groovyTabPane.getContent(), save.getContent());
 		

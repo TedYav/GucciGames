@@ -6,17 +6,18 @@ import java.util.Properties;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.HBox;
+import javafx.scene.text.Text;
 import javafx.stage.FileChooser;
 import javafx.stage.FileChooser.ExtensionFilter;
 
 public class FileBrowserField extends DialogComponent{
 	private DialogElements dialogElements;
-	private String browseBtnKey, fileChooserKey;
+	private String browseBtnKey, fileChooserKey, labelKey;
 	private HBox content = new HBox();
 	private TextField pathTextField = new TextField();
 	private Button browseBtn;
 	
-	public FileBrowserField(DialogElements dialogElements, String browseBtnKey, String fileChooserKey){
+	public FileBrowserField(DialogElements dialogElements, String labelKey, String browseBtnKey, String fileChooserKey){
 		this.dialogElements = dialogElements;
 		this.browseBtnKey = browseBtnKey;
 		this.fileChooserKey = fileChooserKey;
@@ -25,12 +26,13 @@ public class FileBrowserField extends DialogComponent{
 	}
 	
 	protected void makeBrowseElement(){
+		Text label = new Text(dialogElements.getDialogProperties().getProperty(labelKey));
 		browseBtn = new Button(dialogElements.getDialogProperties().getProperty(browseBtnKey));
 		addActionHandlerForBrowseBtn();
 		pathTextField = new TextField();
 		addListenerForPathTextField();
 
-		content.getChildren().addAll(pathTextField, browseBtn);	
+		content.getChildren().addAll(label, pathTextField, browseBtn);	
 
 	}
 	
