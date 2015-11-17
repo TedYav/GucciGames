@@ -27,7 +27,7 @@ public interface GameControllerInterface{
 	public PlayerMapObjectInterface getActiveMapObject();
 	public void addMOObserver(Observer o);
 	
-	public void setActionInProgress(String action);
+	public void setActionInProgress(String action, PlayerMapObjectInterface unit);
 	public String getActionInProgress();
 	public void cancelAction();
 	
@@ -37,7 +37,7 @@ public interface GameControllerInterface{
 	public void setMap(MapInterface map);
 	
 //	public void setEngine(GameEngineToGamePlayerInterface engine);
-//	public GameEngineToGamePlayerInterface getEngine();
+	public GameEngineToGamePlayerInterface getEngine();
 	
 	public List<PlayerMapObjectInterface> getInitialState();
 	

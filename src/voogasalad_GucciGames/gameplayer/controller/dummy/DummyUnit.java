@@ -59,9 +59,8 @@ public class DummyUnit implements PlayerMapObjectInterface {
 	}
 
 	@Override
-	public void performAction(String action, TargetCoordinate coordinate) {
-		// TODO Auto-generated method stub
-		
+	public List<PlayerMapObjectInterface> performAction(String action, TargetCoordinate coordinate) {
+		return new ArrayList<>();
 	}
 
 	@Override

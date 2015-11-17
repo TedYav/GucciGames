@@ -24,7 +24,7 @@ public interface PlayerMapObjectInterface {
 	
 	public List<TargetCoordinate> getActionTargets(String action);
 	
-	public void performAction(String action, TargetCoordinate coordinate);
+	public List<PlayerMapObjectInterface> performAction(String action, TargetCoordinate coordinate);
 	
 	public int getPlayerID();
 	
