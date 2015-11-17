@@ -1,6 +1,9 @@
-package voogasalad_GucciGames.gameplayer.windows.mainwindow.map.cell.contents;
+package voogasalad_GucciGames.gameplayer.controller;
 
 import java.util.List;
+
+import voogasalad_GucciGames.gameplayer.controller.dummy.MapObjectBasicType;
+import voogasalad_GucciGames.gameplayer.controller.dummy.TargetCoordinate;
 
 // TODO: add getCoordnate(), getPlayer(), etc
 public interface PlayerMapObjectInterface {

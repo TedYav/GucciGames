@@ -1,4 +1,4 @@
-package voogasalad_GucciGames.gameplayer.windows.mainwindow.map.cell.contents;
+package voogasalad_GucciGames.gameplayer.controller.dummy;
 
 public class TargetCoordinate {
 

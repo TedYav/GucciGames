@@ -5,17 +5,19 @@ import java.util.ResourceBundle;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.input.KeyEvent;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.text.Text;
 import voogasalad_GucciGames.gameplayer.controller.GameControllerInterface;
 import voogasalad_GucciGames.gameplayer.controller.GameEngineToGamePlayerInterface;
+import voogasalad_GucciGames.gameplayer.eventhandler.MapKeyHandler;
+import voogasalad_GucciGames.gameplayer.eventhandler.MapMouseHandler;
 import voogasalad_GucciGames.gameplayer.gameloader.GameLoader;
 import voogasalad_GucciGames.gameplayer.windows.GameScene;
 import voogasalad_GucciGames.gameplayer.windows.GameSceneManager;
 import voogasalad_GucciGames.gameplayer.windows.GameWindow;
 import voogasalad_GucciGames.gameplayer.windows.GameWindowInterface;
-import voogasalad_GucciGames.gameplayer.windows.mainwindow.GameKeyHandler;
 import voogasalad_GucciGames.gameplayer.windows.mainwindow.components.leftbar.LeftBar;
 import voogasalad_GucciGames.gameplayer.windows.mainwindow.components.rightbar.RightBar;
 import voogasalad_GucciGames.gameplayer.windows.mainwindow.map.MapInterface;
@@ -32,7 +34,7 @@ public class MainGameScene extends GameScene {
 	private RightBar myRightBar;
 	private MainMap myMap;
 	
-	private GameKeyHandler myKeyHandler;
+	private MapKeyHandler myKeyHandler;
 	
 	public MainGameScene(GameSceneManager manager, GameWindowInterface window, String config) {
 		super(manager, window, config);
@@ -40,6 +42,7 @@ public class MainGameScene extends GameScene {
 	
 	private void loadGameData(){
 		myController = myManager.getLoader().getController();
+		myController.setScene(this);
 	}
 
 	@Override
@@ -82,14 +85,8 @@ public class MainGameScene extends GameScene {
 	    myRightBar = new RightBar(this, myController, myConfig);
 	    myPane.setRight(myRightBar.getParent());
 
-	    enableEventHandling();
 	    enableObservers();
 	       
-	}
-
-	private void enableEventHandling(){
-	    myKeyHandler = new GameKeyHandler(myController);
-	    myScene.addEventFilter(KeyEvent.KEY_PRESSED, (e)->myKeyHandler.handle(e));
 	}
 	
 	private void enableObservers() {
