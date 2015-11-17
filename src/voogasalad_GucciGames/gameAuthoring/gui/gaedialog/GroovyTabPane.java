@@ -23,8 +23,7 @@ public class GroovyTabPane extends DialogComponent{
 	private TabPane tabPane = new TabPane();
 	private Tab selectedTab = new Tab();
 	private DialogElements dialogElements;
-	private Map<Integer, String> attributeName = new HashMap<Integer, String>();
-	private Map<Integer, String> groovyCode = new HashMap<Integer, String>();
+	private Map<Integer, GroovyTab> attributeName = new HashMap<Integer, GroovyTab>();
 
 	
 	public GroovyTabPane(DialogElements dialogElements){
@@ -59,6 +58,7 @@ public class GroovyTabPane extends DialogComponent{
 		 return vbox;
 	 }
 	 
+	 
 	 protected Button createAddButton(Properties prop, String btnKey, String headerKey){
 		 Button addBtn = new Button(prop.getProperty(btnKey));
 		 addBtn.setOnAction(e -> {
@@ -69,14 +69,8 @@ public class GroovyTabPane extends DialogComponent{
 	 }
 	  
 	 protected void addGroovyTab( ){
-		 Tab tab = new Tab();
-		 VBox content = new VBox();
-		 Text title = new Text(dialogElements.getDialogProperties().getProperty("groovytitle"));
-		 TextInputField name = new TextInputField(dialogElements, "attributename");
-		 TextArea textArea = new TextArea();
-		 content.getChildren().addAll(title, name.getContent(), textArea);
-		 tab.setContent(content);
-		 tabPane.getTabs().add(tab); 
+		 GroovyTab tab = new GroovyTab(dialogElements);
+		 tabPane.getTabs().add(tab.getTab()); 
 	 }
 	 
 	 private void setTabProperties(TabPane tabPane){

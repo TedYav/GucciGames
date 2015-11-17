@@ -33,4 +33,8 @@ public class GroovyTab {
 	protected Tab getTab(){
 		return tab;
 	}
+	
+	protected int getTabId(){
+		 return Integer.parseInt(tab.getText().split("\\s+")[1]);
+	}
 }
