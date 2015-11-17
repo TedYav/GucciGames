@@ -17,10 +17,6 @@ public interface PlayerMapObjectInterface {
 
 	public List<String> getActionNames();
 
-
-	public List<ATargetCoordinate> getActionTargets(String action);
-
-
 	public int getPlayerID();
 
 	public ATargetCoordinate getCoordinate();
