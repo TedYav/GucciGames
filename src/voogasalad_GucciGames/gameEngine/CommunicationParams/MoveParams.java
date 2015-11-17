@@ -25,7 +25,7 @@ public class MoveParams extends CommunicationParams{
 		return this.myNewLocation;
 	}
 	
-	public MovablePlayerCharacteristic myMovePerson(){
+	public MovablePlayerCharacteristic getMovePerson(){
 		return this.myMovable;
 	}
 }
