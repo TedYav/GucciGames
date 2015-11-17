@@ -20,5 +20,4 @@ public interface MapInterface {
 	public void update();
 	
 	public void recenter(Point2D center);
-	public void move(KeyCode code);
 }

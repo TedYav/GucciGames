@@ -1,0 +1,10 @@
+
+.inactivecell{
+	-fx-fill: #000000;
+	-fx-opacity: 0.0;
+}
+
+.inactivecell:hover{
+	-fx-fill: #ffff00;
+	-fx-opacity: 0.5;
+}
