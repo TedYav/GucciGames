@@ -49,7 +49,8 @@ public class DisplayMapObjectDetails  implements DisplayComponent, ListChangeLis
             temp.clear();
             mapObjectsOnCell.clear();
             for (PlayerMapObjectInterface o: list){
-                //temp.add(o.getImageURI());
+                
+                //temp.add(o.getName()));
 //                contents=o.getAttributes();
 //                if (contents!=null) {
 //                    for (String s: contents) {
@@ -67,9 +68,10 @@ public class DisplayMapObjectDetails  implements DisplayComponent, ListChangeLis
         if (arg!=null) {
             System.out.println("ho");
             PlayerMapObjectInterface mapObj=(PlayerMapObjectInterface)arg;
-            List<String> list = mapObj.getActionNames();
-            for (String s: list) {
-                temp.add(s);
+            Map<String,String> map = mapObj.getAttributes();
+            temp.add(mapObj.getName());
+            for (String s: map.keySet()) {
+                temp.add(s+": "+map.get(s));
             }
             listView.setItems(FXCollections.observableList(temp));
         }
