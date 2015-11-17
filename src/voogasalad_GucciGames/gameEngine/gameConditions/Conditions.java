@@ -12,8 +12,7 @@ import voogasalad_GucciGames.gameEngine.gamePlayer.GamePlayerPerson;
  *
  */
 public abstract class Conditions {
-	private static List<Conditions> RulesInEffect;
-
+	
 	public Conditions(List<GamePlayerPerson> players, Outcome outcome) {
 	}
 

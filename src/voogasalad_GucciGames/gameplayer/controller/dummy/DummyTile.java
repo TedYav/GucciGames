@@ -6,6 +6,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import voogasalad_GucciGames.gameEngine.targetCoordinate.ATargetCoordinate;
+import voogasalad_GucciGames.gameEngine.targetCoordinate.TargetCoordinateSingle;
 import voogasalad_GucciGames.gameplayer.controller.PlayerMapObjectInterface;
 
 
@@ -14,7 +16,7 @@ import voogasalad_GucciGames.gameplayer.controller.PlayerMapObjectInterface;
  * @author Ted Yavuzkurt
  *
  */
-public class DummyTile implements PlayerMapObjectInterface {
+public class DummyTile extends ADummy implements PlayerMapObjectInterface {
 	
 	private int myX, myY;
 	
@@ -41,18 +43,8 @@ public class DummyTile implements PlayerMapObjectInterface {
 	}
 
 	@Override
-	public MapObjectBasicType getBasicType() {
-		return MapObjectBasicType.GROUND;
-	}
-
-	@Override
-	public List<TargetCoordinate> getActionTargets(String action) {
-		return Arrays.asList(new TargetCoordinate(myX, myY));
-	}
-
-	@Override
-	public List<PlayerMapObjectInterface> performAction(String action, TargetCoordinate coordinate) {
-		return new ArrayList<>();
+	public List<ATargetCoordinate> getActionTargets(String action) {
+		return Arrays.asList(new TargetCoordinateSingle(myX, myY));
 	}
 
 	@Override
@@ -71,6 +63,16 @@ public class DummyTile implements PlayerMapObjectInterface {
 	public int getPlayerID() {
 		// TODO Auto-generated method stub
 		return 0;
+	}
+
+	@Override
+	public ATargetCoordinate getCoordinate() {
+		return new TargetCoordinateSingle(myX, myY);
+	}
+
+	@Override
+	public List<PlayerMapObjectInterface> performAction(String action, ATargetCoordinate target) {
+		return new ArrayList<PlayerMapObjectInterface>();
 	}
 
 }

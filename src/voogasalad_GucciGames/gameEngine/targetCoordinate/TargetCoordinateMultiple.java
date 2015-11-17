@@ -6,7 +6,7 @@ import java.util.List;
 
 public class TargetCoordinateMultiple extends ATargetCoordinate {
 
-	private List<TargetCoordinateSingle> myCoordinates;
+	private List<ATargetCoordinate> myCoordinates;
 
 	public TargetCoordinateMultiple(){
 		this.myCoordinates = new ArrayList<>();
@@ -45,7 +45,7 @@ public class TargetCoordinateMultiple extends ATargetCoordinate {
 
 	}
 
-	public List<TargetCoordinateSingle> getCoordinates(){
+	public List<ATargetCoordinate> getCoordinates(){
 		return this.myCoordinates;
 	}
 
@@ -54,7 +54,7 @@ public class TargetCoordinateMultiple extends ATargetCoordinate {
 		// TODO Auto-generated method stub
 		List<ATargetCoordinate> myList = new ArrayList<ATargetCoordinate>();
 
-		for(TargetCoordinateSingle coord : this.myCoordinates){
+		for(ATargetCoordinate coord : this.myCoordinates){
 			myList.add((ATargetCoordinate) coord);
 		}
 

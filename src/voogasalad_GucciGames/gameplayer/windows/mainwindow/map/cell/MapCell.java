@@ -105,6 +105,7 @@ public abstract class MapCell implements MapCellInterface {
 	
 	public void removeObject(PlayerMapObjectInterface object){
 		myObjects.get(object.getLayer()).remove(object);
+		myLayerMap.get(object.getLayer()).getChildren().remove(object);
 		redrawLayer(object.getLayer());
 	}
 	
@@ -115,11 +116,11 @@ public abstract class MapCell implements MapCellInterface {
 		}
 		else{
 			myController.cancelAction();
+			myController.getMap().selectCell(this);
+			active = true;
+			myOverlay.getStyleClass().clear();
+			myOverlay.getStyleClass().add("activecell");
 		}
-		myController.getMap().selectCell(this);
-		active = true;
-		myOverlay.getStyleClass().clear();
-		myOverlay.getStyleClass().add("activecell");
 	}
 	
 	@Override
@@ -131,7 +132,7 @@ public abstract class MapCell implements MapCellInterface {
 	}
 
 	private void handleActionInProgress() {
-		
+		myController.performActionInProgress(myController.getMap().getCellCoordinate(this));
 	}
 
 	@Override
@@ -163,13 +164,13 @@ public abstract class MapCell implements MapCellInterface {
 	private void redrawLayer(int layer){
 		makeLayers(layer);
 		int count = myObjects.get(layer).size();
-		myLayerMap.get(layer).getChildren().removeAll();
+		myLayerMap.get(layer).getChildren().clear();
 		if(count > 0){
 			double countPerRow = Math.ceil(Math.sqrt(count));
 			for(int i=0, total=0; i<countPerRow; i++){
 				for(int j=0; j<countPerRow; j++, total++){
 					if(total==count) break;
-					myLayerMap.get(layer).getChildren().add(renderImage(myObjects.get(layer).get(total), (mySize/countPerRow)));
+					myLayerMap.get(layer).add(renderImage(myObjects.get(layer).get(total), (mySize/countPerRow)), j, i);
 				}
 			}
 		}

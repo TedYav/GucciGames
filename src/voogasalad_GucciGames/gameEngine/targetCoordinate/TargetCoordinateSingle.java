@@ -27,5 +27,6 @@ public class TargetCoordinateSingle extends ATargetCoordinate{
 	public double getCenterY() {
 		return myCenterY;
 	}
+
 	
 }
