@@ -77,9 +77,9 @@ public class GameController implements GameControllerInterface {
 	}
 
 	@Override
-	public Map<String, CellUnit> getInitialState() {
+	public List<PlayerMapObjectInterface> getInitialState() {
 		// TODO Auto-generated method stub
-		return null;
+		return myEngine.getInitialState();
 	}
 
 	@Override

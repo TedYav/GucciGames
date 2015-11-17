@@ -84,5 +84,8 @@ public class DummyUnit implements PlayerMapObjectInterface {
 		// TODO Auto-generated method stub
 		return (myX % 2);
 	}
-
+	    @Override
+	    public TargetCoordinate getCoordinate () {
+	        return new TargetCoordinate(myX,myY);
+	    }
 }

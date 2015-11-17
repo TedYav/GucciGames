@@ -73,4 +73,9 @@ public class DummyTile implements PlayerMapObjectInterface {
 		return 0;
 	}
 
+    @Override
+    public TargetCoordinate getCoordinate () {
+        return new TargetCoordinate(myX,myY);
+    }
+
 }

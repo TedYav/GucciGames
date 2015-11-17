@@ -39,7 +39,7 @@ public interface GameControllerInterface{
 //	public void setEngine(GameEngineToGamePlayerInterface engine);
 //	public GameEngineToGamePlayerInterface getEngine();
 	
-	public Map<String, CellUnit> getInitialState();
+	public List<PlayerMapObjectInterface> getInitialState();
 	
 	public void endTurn();
 	
