@@ -25,10 +25,8 @@
 
 .rightvbox{
 	-fx-font: bold 20pt "Arial";
-	-fx-background-color: #2f4f4f;
-	
+	-fx-background-color: #2f4f4f;	
 }
-
 
 .menubar{
 	-fx-background-color: #1f2f2f;

@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Observable;
 import java.util.Observer;
+import java.util.ResourceBundle;
 
 import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
@@ -20,11 +21,12 @@ public class ActionDisplay implements DisplayComponent, Observer {
     private PlayerMapObjectInterface activeMapObject;
     private ListView<Button> buttons;
 	private List<Button> temp;
+    private String css = "voogasalad_GucciGames/gameplayer/config/components/actionDisplay.css";
+
     
     public ActionDisplay(GameControllerInterface controller) {
 		myController = controller;
 		myController.addMOObserver(this);
-    	
         temp = new ArrayList<Button>();       
         buttons = new ListView<Button>(FXCollections.observableList(temp));
         
@@ -33,6 +35,8 @@ public class ActionDisplay implements DisplayComponent, Observer {
     private Button makeButton(String name) {
         Button button = new Button();
         button.setText(name);
+        button.getStyleClass().add(css);
+        button.setId("action-button");
         button.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {

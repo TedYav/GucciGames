@@ -1,0 +1,6 @@
+.action-button{
+	-fx-font: bold 20pt "Arial";
+	-fx-effect: dropshadow( one-pass-box , black , 8 , 0.0 , 2 , 0 );
+	
+	
+}

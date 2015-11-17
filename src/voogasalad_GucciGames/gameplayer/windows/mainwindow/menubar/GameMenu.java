@@ -28,7 +28,6 @@ public class GameMenu implements MenuBarElement {
 		}
 		});
 		
-		
 		myDropdown.getStyleClass().add(myBundle.getString("dropdowncssclass"));
 	}
 	
