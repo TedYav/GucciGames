@@ -32,7 +32,7 @@ import javafx.stage.Screen;
 import voogasalad_GucciGames.gameplayer.controller.GameControllerInterface;
 import voogasalad_GucciGames.gameplayer.controller.GameEngineToGamePlayerInterface;
 import voogasalad_GucciGames.gameplayer.controller.PlayerMapObjectInterface;
-import voogasalad_GucciGames.gameplayer.controller.dummy.DummyUnit;
+import voogasalad_GucciGames.gameplayer.controller.dummy.DummyTile;
 import voogasalad_GucciGames.gameplayer.controller.dummy.TargetCoordinate;
 import voogasalad_GucciGames.gameplayer.datastructures.TwoWayMap;
 import voogasalad_GucciGames.gameplayer.windows.GameScene;
@@ -136,7 +136,7 @@ public class MainMap extends WindowComponent implements MapInterface {
 				c.getParent().setOnMouseClicked(e->{
 				    updateSelectedUnits(c);
 				});
-				c.addObject(new DummyUnit(i,j));
+				c.addObject(new DummyTile(i,j));
 				myCellMap.put(new Point2D(i,j), c);
 				myMap.add(c.getParent(), i, j);
 			}
