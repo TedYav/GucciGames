@@ -1,6 +1,7 @@
 package voogasalad_GucciGames.gameEngine.objectActions;
 
 import voogasalad_GucciGames.gameEngine.CommunicationParams.CommunicationParams;
+import voogasalad_GucciGames.gameEngine.CommunicationParams.MainGameEngineCommunicationParams;
 import voogasalad_GucciGames.gameEngine.CommunicationParams.WhereToParams;
 import voogasalad_GucciGames.gameEngine.gamePlayer.AllPlayers;
 import voogasalad_GucciGames.gameEngine.gamePlayer.GamePlayerPerson;
@@ -24,7 +25,7 @@ public class WhereToMoveEvent extends MapObjectEvent{
 	protected CommunicationParams execute(CommunicationParams params) {
 		// TODO Auto-generated method stub
 		AllPlayers players = params.getPlayers();
-		GamePlayerPerson player = players.getPlayerById(players.getCurrentTurn());
+		GamePlayerPerson player = players.getPlayerById(((MainGameEngineCommunicationParams) params).getTurn());
 		TargetCoordinateMultiple result = new TargetCoordinateMultiple();
 		MapObject calledMe = params.getCalledMe();
 

@@ -3,6 +3,7 @@ package voogasalad_GucciGames.gameplayer.controller;
 import java.util.List;
 
 import javafx.collections.ListChangeListener;
+import javafx.collections.MapChangeListener;
 import javafx.collections.ObservableList;
 
 public interface GameEngineToGamePlayerInterface {
@@ -11,7 +12,6 @@ public interface GameEngineToGamePlayerInterface {
 	
 	public List<PlayerMapObjectInterface> getInitialState();
 	
-	public void addMapObjectListener(ListChangeListener<PlayerMapObjectInterface> listener);
-	
 	public void endTurn();
+	
 }

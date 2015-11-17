@@ -6,6 +6,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import voogasalad_GucciGames.gameEngine.targetCoordinate.ATargetCoordinate;
+import voogasalad_GucciGames.gameEngine.targetCoordinate.TargetCoordinateSingle;
 import voogasalad_GucciGames.gameplayer.controller.PlayerMapObjectInterface;
 
 
@@ -41,25 +43,19 @@ public class DummyUnit implements PlayerMapObjectInterface {
 	}
 
 	@Override
-	public MapObjectBasicType getBasicType() {
-		return MapObjectBasicType.GROUND;
-	}
-
-	@Override
-	public List<TargetCoordinate> getActionTargets(String action) {
-		List<TargetCoordinate> myTargets = new ArrayList<>();
+	public List<ATargetCoordinate> getActionTargets(String action) {
+		List<ATargetCoordinate> myTargets = new ArrayList<>();
 		for(int i=-1; i<2; i++){
 			for(int j=-1; j<2; j++){
 				if(i==0 & j==0)
 					continue;
-				myTargets.add(new TargetCoordinate(myX+i, myY+j));
+				myTargets.add(new TargetCoordinateSingle(myX+i, myY+j));
 			}
 		}
 		return myTargets;
 	}
 
-	@Override
-	public List<PlayerMapObjectInterface> performAction(String action, TargetCoordinate coordinate) {
+	public List<PlayerMapObjectInterface> performAction(String action, ATargetCoordinate coordinate) {
 		return new ArrayList<>();
 	}
 
@@ -85,8 +81,8 @@ public class DummyUnit implements PlayerMapObjectInterface {
 	}
 
 	@Override
-	public TargetCoordinate getCoordinate() {
-		return new TargetCoordinate(myX, myY);
+	public ATargetCoordinate getCoordinate() {
+		return new TargetCoordinateSingle(myX, myY);
 	}
 
 }

@@ -15,6 +15,7 @@ import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
 import javafx.stage.Screen;
 import voogasalad.util.reflection.Reflection;
+import voogasalad_GucciGames.gameEngine.targetCoordinate.ATargetCoordinate;
 import voogasalad_GucciGames.gameplayer.controller.GameControllerInterface;
 import voogasalad_GucciGames.gameplayer.controller.PlayerMapObjectInterface;
 import voogasalad_GucciGames.gameplayer.controller.dummy.DummyTile;
@@ -164,7 +165,7 @@ public class MainMap extends WindowComponent implements MapInterface {
 	}
 
 	@Override
-	public void highlightCells(List<TargetCoordinate> targets) {
+	public void highlightCells(List<ATargetCoordinate> targets) {
 		targets.stream()
 			.map((t) -> new Point2D(t.getX(), t.getY()))
 			.map((c) -> myCellMap.get(c))
