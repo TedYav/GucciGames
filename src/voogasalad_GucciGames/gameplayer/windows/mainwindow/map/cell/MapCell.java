@@ -110,22 +110,28 @@ public abstract class MapCell implements MapCellInterface {
 	
 	@Override
 	public void activate() {
-		handleActionInProgress();
+		if(myController.actionInProgress()){
+			handleActionInProgress();
+		}
+		else{
+			myController.cancelAction();
+		}
+		myController.getMap().selectCell(this);
+		active = true;
 		myOverlay.getStyleClass().clear();
 		myOverlay.getStyleClass().add("activecell");
-		myController.getMap().selectCell(this);
 	}
 	
 	@Override
 	public void deactivate() {
+		active = false;
 		myOverlay.getStyleClass().clear();
 		myOverlay.getStyleClass().add("inactivecell");
+		blink(false);
 	}
 
 	private void handleActionInProgress() {
-		if(myController.actionInProgress() && active){
-			
-		}
+		
 	}
 
 	@Override
