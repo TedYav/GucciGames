@@ -7,17 +7,15 @@ import voogasalad_GucciGames.gameEngine.gamePlayer.AllPlayers;
 import voogasalad_GucciGames.gameEngine.gameRules.ActionToRuleMap;
 import voogasalad_GucciGames.gameEngine.mapObject.MapObject;
 
-public class CommunicationParams {
+public class BasicParameters extends CommunicationParameters{
 
 	// Classes which extend this will be used to share information between the front and back end
 	private AllPlayers myPlayers;
 	private GameMap myGameMap;
-	private List<MapObject> myLocations;
-	private MapObject myCurrentActiveMapObject;
 	private MapObject myCalledMe;
 	private ActionToRuleMap myActionToRuleMap;
 
-	public CommunicationParams(AllPlayers players, GameMap gameMap,
+	public BasicParameters(AllPlayers players, GameMap gameMap,
 		MapObject calledMe, ActionToRuleMap actionToRuleMap){
 		this.myPlayers = players;
 		this.myGameMap = gameMap;
@@ -26,7 +24,7 @@ public class CommunicationParams {
 
 	}
 
-	public CommunicationParams(CommunicationParams params){
+	public BasicParameters(BasicParameters params){
 		this(params.getPlayers(), params.getGameMap(), params.getCalledMe(), params.getActionToRuleMap());
 	}
 

@@ -7,12 +7,12 @@ import voogasalad_GucciGames.gameEngine.gamePlayer.AllPlayers;
 import voogasalad_GucciGames.gameEngine.mapObject.MapObject;
 import voogasalad_GucciGames.gameEngine.targetCoordinate.TargetCoordinateMultiple;
 
-public class WhereToParams extends CommunicationParams{
+public class WhereToParams extends CommunicationParameters{
 	
 	private TargetCoordinateMultiple myTargetCoordinateMultiple;
 	
-	public WhereToParams(CommunicationParams params, TargetCoordinateMultiple target) {
-		super(params);
+	public WhereToParams(TargetCoordinateMultiple target) {
+		super();
 		// TODO Auto-generated constructor stub
 		this.myTargetCoordinateMultiple = target;
 	}
