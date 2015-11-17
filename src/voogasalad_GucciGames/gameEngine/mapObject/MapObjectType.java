@@ -2,10 +2,12 @@ package voogasalad_GucciGames.gameEngine.mapObject;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.TreeMap;
 import voogasalad_GucciGames.gameEngine.objectActions.MapObjectEvent;
+import voogasalad_GucciGames.gameEngine.targetCoordinate.ATargetCoordinate;
 
 public class MapObjectType{
 
@@ -93,6 +95,12 @@ public class MapObjectType{
 	
 	public boolean hasRequest(String name){
 		return this.myRequests.containsKey(name);
+	}
+
+	public Map<String, String> getAttributes() {
+		Map<String, String> map = new HashMap<String, String>();
+		map.put("hello", "hi"); //change this later
+		return map;
 	}
 	
 }

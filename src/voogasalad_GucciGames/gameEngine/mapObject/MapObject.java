@@ -51,19 +51,13 @@ public class MapObject implements PlayerMapObjectInterface{
 	@Override
 	public List<String> getActionNames() {
 		// TODO Auto-generated method stub
-		return myObjectType.getActionTypes();
-	}
-
-	@Override
-	public List<ATargetCoordinate> getActionTargets(String action) {
-		// TODO Auto-generated method stub
-		return myObjectType.getActionTarget(action);
+		return ((MapObjectType) myObjectType).getActionStrings();
 	}
 
 	@Override
 	public int getPlayerID() {
 		// TODO Auto-generated method stub
-		return 0;
+		return ownerID;
 	}
 
 	@Override
