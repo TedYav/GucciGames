@@ -4,6 +4,7 @@ import java.util.List;
 
 import voogasalad_GucciGames.gameEngine.GameMap;
 import voogasalad_GucciGames.gameEngine.gamePlayer.AllPlayers;
+import voogasalad_GucciGames.gameEngine.gameRules.ActionToRuleMap;
 import voogasalad_GucciGames.gameEngine.mapObject.MapObject;
 
 public class CommunicationParams {
@@ -11,22 +12,20 @@ public class CommunicationParams {
 	// Classes which extend this will be used to share information between the front and back end
 	private AllPlayers myPlayers;
 	private GameMap myGameMap;
-	private List<MapObject> myLocations;
-	private MapObject myCurrentActiveMapObject;
+	private MapObject myCalledMe;
+	private ActionToRuleMap myActionToRuleMap;
 	
-	
-	
-	public CommunicationParams(AllPlayers players, GameMap gameMap, List<MapObject> locations, MapObject currentActiveMapObject){ 
+	public CommunicationParams(AllPlayers players, GameMap gameMap,
+			MapObject calledMe, ActionToRuleMap actionToRuleMap){ 
 		this.myPlayers = players;
 		this.myGameMap = gameMap;
-		this.myLocations = locations;
-		this.myCurrentActiveMapObject = currentActiveMapObject;
+		this.myCalledMe = calledMe;
+		this.myActionToRuleMap = actionToRuleMap;
+		
 	}
 	
 	public CommunicationParams(CommunicationParams params){
-		this.myPlayers = params.myPlayers;
-		this.myGameMap = params.myGameMap;
-		this.myLocations = params.getLocations();
+		this(params.getPlayers(), params.getGameMap(), params.getCalledMe(), params.getActionToRuleMap());
 	}
 
 	public AllPlayers getPlayers() {
@@ -37,12 +36,11 @@ public class CommunicationParams {
 		return myGameMap;
 	}
 
-	public List<MapObject> getLocations() {
-		return myLocations;
+	public MapObject getCalledMe() {
+		return myCalledMe;
 	}
 
-	public MapObject getMapObject() {
-		return myCurrentActiveMapObject;
-	}
-	
+	public ActionToRuleMap getActionToRuleMap() {
+		return myActionToRuleMap;
+	}	
 }
