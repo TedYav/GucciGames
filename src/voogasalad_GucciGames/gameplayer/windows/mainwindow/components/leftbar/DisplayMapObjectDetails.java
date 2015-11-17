@@ -68,12 +68,22 @@ public class DisplayMapObjectDetails  implements DisplayComponent, ListChangeLis
         if (arg!=null) {
             System.out.println("ho");
             PlayerMapObjectInterface mapObj=(PlayerMapObjectInterface)arg;
+<<<<<<< HEAD
+            
+              Map<String, String> list = mapObj.getAttributes();
+            for (String s: list.keySet()) {
+                temp.add(s);
+            } 
+            
+            
+=======
             Map<String,String> map = mapObj.getAttributes();
             temp.add(mapObj.getName());
             for (String s: map.keySet()) {
                 temp.add(s+": "+map.get(s));
             }
             listView.setItems(FXCollections.observableList(temp));
+>>>>>>> bc04a0911582ee1d848db86e02ae6b2a082cc2af
         }
     }
 }

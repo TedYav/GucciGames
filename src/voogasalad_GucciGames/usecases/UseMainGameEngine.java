@@ -7,7 +7,7 @@ import voogasalad_GucciGames.gameEngine.gamePlayer.AllPlayers;
 
 public class UseMainGameEngine {
 
-	private AllPlayers myGamePlayers;
+/*	private AllPlayers myGamePlayers;
 	private int myCurrentTurn;
 	private GlobalGameCondition myGlobalRule;
 
@@ -29,7 +29,7 @@ public class UseMainGameEngine {
 
 	public void takeTurn() {
 
-		myGamePlayers.takeTurn(myCurrentTurn);
+	myGamePlayers.takeTurn(myCurrentTurn);
 		myCurrentTurn++;
 
 	}
@@ -45,6 +45,6 @@ public class UseMainGameEngine {
 	public void initialize(SomeData data) {
 		// TODO Auto-generated method stub
 
-	}
+	} */
 
 }

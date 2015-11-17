@@ -6,7 +6,7 @@ import java.util.List;
 
 import voogasalad_GucciGames.gameEngine.GameMap;
 import voogasalad_GucciGames.gameEngine.gameConditions.EndGameConditions;
-import voogasalad_GucciGames.gameEngine.gamePlayer.UnitCollection;
+import voogasalad_GucciGames.gameEngine.gamePlayer.MapObjectCollection;
 
 public class OnlyOnePlayerHasUnitsCondition extends GlobalGameCondition {
 
@@ -18,7 +18,7 @@ public class OnlyOnePlayerHasUnitsCondition extends GlobalGameCondition {
 	public List<EndGameConditions> getConditionResolution() {
 
 		List<EndGameConditions> gameOverState = new ArrayList<EndGameConditions>();
-		List<UnitCollection> allUnits = myGameMap.getAllUnits();
+		List<MapObjectCollection> allUnits = myGameMap.getAllUnits();
 		HashMap<Integer, Boolean> hasUnits = new HashMap<Integer, Boolean>();
 
 		for (int i = 0; i < allUnits.size(); i++) {

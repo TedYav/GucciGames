@@ -16,8 +16,11 @@ import javafx.scene.layout.StackPane;
 import javafx.stage.Screen;
 import voogasalad_GucciGames.gameplayer.controller.GameControllerInterface;
 import voogasalad_GucciGames.gameplayer.controller.PlayerMapObjectInterface;
+<<<<<<< HEAD
+=======
 import voogasalad_GucciGames.gameplayer.controller.dummy.DummyTile;
 import voogasalad_GucciGames.gameplayer.controller.dummy.TargetCoordinate;
+>>>>>>> bc04a0911582ee1d848db86e02ae6b2a082cc2af
 import voogasalad_GucciGames.gameplayer.datastructures.TwoWayMap;
 import voogasalad_GucciGames.gameplayer.windows.GameScene;
 import voogasalad_GucciGames.gameplayer.windows.WindowComponent;
@@ -116,7 +119,11 @@ public class MainMap extends WindowComponent implements MapInterface {
 		for(int i=0; i<myCellsWide; i++){
 			for(int j=0; j<myCellsTall; j++){
 				MapCell c = new SquareCell(myController, myCellSize);
+<<<<<<< HEAD
+			//	c.addObject(new DummyUnit(i,j));
+=======
 				c.addObject(new DummyTile(i,j));
+>>>>>>> bc04a0911582ee1d848db86e02ae6b2a082cc2af
 				myCellMap.put(new Point2D(i,j), c);
 				myMap.add(c.getParent(), i, j);
 			}

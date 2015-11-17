@@ -14,7 +14,7 @@ import voogasalad_GucciGames.gameplayer.controller.PlayerMapObjectInterface;
  * @author Ted Yavuzkurt
  *
  */
-public class DummyUnit implements PlayerMapObjectInterface {
+/*public class DummyUnit implements PlayerMapObjectInterface {
 	
 	private int myX, myY;
 	
@@ -42,7 +42,7 @@ public class DummyUnit implements PlayerMapObjectInterface {
 
 	@Override
 	public MapObjectBasicType getBasicType() {
-		return MapObjectBasicType.GROUND;
+		return MapObjectBasicType.TILE;
 	}
 
 	@Override
@@ -84,4 +84,4 @@ public class DummyUnit implements PlayerMapObjectInterface {
 		return (myX % 2);
 	}
 
-}
+}*/
