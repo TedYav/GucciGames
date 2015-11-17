@@ -5,6 +5,7 @@ import java.util.Observer;
 import java.util.ResourceBundle;
 
 import javafx.scene.Parent;
+import javafx.scene.control.Button;
 import javafx.scene.layout.VBox;
 import voogasalad_GucciGames.gameplayer.controller.GameControllerInterface;
 import voogasalad_GucciGames.gameplayer.controller.PlayerMapObjectInterface;
@@ -31,6 +32,11 @@ public class RightBar extends WindowComponent implements Observer {
         container.getChildren().add(actions.getNodeToDraw());
         container.getChildren().add(gameStats.getNodeToDraw());
         container.getStyleClass().add(myBundle.getString("RightVBox"));
+        
+        Button endTurn = new Button("End turn");
+        endTurn.setOnMouseClicked(e->{
+            myController.getEngine().endTurn();
+            });
 	}
 
 	@Override
