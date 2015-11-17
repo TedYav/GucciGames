@@ -6,9 +6,9 @@ import voogasalad_GucciGames.gameEngine.GameMap;
 import voogasalad_GucciGames.gameEngine.CommunicationParams.CommunicationParams;
 import voogasalad_GucciGames.gameEngine.CommunicationParams.EmptyParams;
 import voogasalad_GucciGames.gameEngine.gamePlayer.AllPlayers;
-import voogasalad_GucciGames.gameEngine.mapObject.IMapObjectAction;
 import voogasalad_GucciGames.gameEngine.mapObject.MapObject;
 import voogasalad_GucciGames.gameEngine.mapObject.TheMap;
+import voogasalad_GucciGames.gameEngine.objectActions.MapObjectEvent;
 import voogasalad_GucciGames.gameEngine.targetCoordinate.ATargetCoordinate;
 
 /**
@@ -17,14 +17,26 @@ import voogasalad_GucciGames.gameEngine.targetCoordinate.ATargetCoordinate;
  * @use case #2
  *
  */
-public class Movement implements IMapObjectAction{
+public class Movement extends MapObjectEvent{
 
+	public Movement(String actionName) {
+		super(actionName);
+		// TODO Auto-generated constructor stub
+	}
+
+	@Override
+	protected CommunicationParams execute(CommunicationParams params) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	/*
 	@Override
 	public CommunicationParams action(CommunicationParams communication, ATargetCoordinate targetCoords) {
 		// TODO Auto-generated method stub
 		return null;
 	}
-/*	private static final String CARDINAL = "cardinal";
+	private static final String CARDINAL = "cardinal";
 	private static final String DIAGONAL = "diagonal";
 	private static final String ALL = "all";
 	private static final String CUSTOM = "custom";

@@ -1,77 +1,72 @@
 package voogasalad_GucciGames.gameEngine;
 
-import voogasalad_GucciGames.gameEngine.gamePlayer.AllPlayers;
-import voogasalad_GucciGames.gameEngine.gameRule.defaultConditions.game.GameCondition;
-import voogasalad_GucciGames.gameEngine.gameRule.defaultConditions.game.GlobalGameCondition;
+import java.util.List;
 
-public class MainGameEngine {
+import voogasalad_GucciGames.gameEngine.gameConditions.defaultConditions.game.GameCondition;
+import voogasalad_GucciGames.gameEngine.gameConditions.defaultConditions.game.GlobalGameCondition;
+import voogasalad_GucciGames.gameEngine.gamePlayer.ATurnDecider;
+import voogasalad_GucciGames.gameEngine.gamePlayer.AllPlayers;
+import voogasalad_GucciGames.gameEngine.gamePlayer.DefaultTurnDecider;
+import voogasalad_GucciGames.gameEngine.gamePlayer.TurnCounter;
+import voogasalad_GucciGames.gameEngine.mapObject.MapObject;
+import voogasalad_GucciGames.gameplayer.controller.GameEngineToGamePlayerInterface;
+import voogasalad_GucciGames.gameplayer.controller.PlayerMapObjectInterface;
+
+public class MainGameEngine implements GameEngineToGamePlayerInterface {
 
 	private AllPlayers myGamePlayers;
-	private int myCurrentTurn;
-	private GameCondition myGlobalRule;
+	private TurnCounter myCurrentTurnCounter;
+	private ATurnDecider myTurnDecider;
+	
+	private ConditionHandler myConditionHandler;
+	
+	
 	private String myName;
-
-
-
-
 	private GameMap myGameMap;
 
-
-	public String getName(){
+	public String getName() {
 		return myName;
 	}
 
 	public MainGameEngine(AllPlayers gamePlayers, GlobalGameCondition globalRule, GameMap gameMap) {
 
 		myGamePlayers = gamePlayers;
-		myCurrentTurn = 1;
-		myGlobalRule = globalRule;
 		myGameMap = gameMap;
-	}
 
-	public MainGameEngine(SomeData someData) {
-
-	}
-
-	public void takeTurn() {
-
-		myGamePlayers.takeTurn(myCurrentTurn);
-		// myGlobalStatus.checkSatisfied();
-		checkTurnOutcome();
-	}
-
-	private void checkTurnOutcome() {
-
-		myGlobalRule.evaluateEndResult();
-
-
-/*		// this will become very long as conditions are added .. re-factor
-		String currentStatus = myGamePlayers.getActivePlayer(myCurrentTurn).getStatus();
-		if (currentStatus.equals("LOSE")) {
-
-		} else if (currentStatus.equals("WIN")) {
-		} else if (currentStatus.equals("DRAW")) {
-		} else
-			myCurrentTurn++;
-		// this method checks the status of a player's goal, and the global
-		// game's goal
-		// if the status for both is goalNotAchieved, it does not do anything
-		// else, it halts the game and send an update to the front end  */
-
-	}
-
-	public int getCurrentTurn() {
-		return this.myCurrentTurn;
-	}
-
-	public void incrementCurrentTurn() {
-		this.myCurrentTurn++;
-	}
-
-	public void initialize(SomeData data) {
+		myCurrentTurnCounter = new TurnCounter();
+		myTurnDecider = new DefaultTurnDecider(gamePlayers.getNumberOfPlayers(), myCurrentTurnCounter);
 
 	}
 
 
+	@Override
+	public String getGameName() {
+
+		return myName;
+	}
+
+	@Override
+	public void endTurn() {
+
+		myConditionHandler.checkAllConditions();
+		
+		myCurrentTurnCounter.update();
+
+	}
+
+	public int getActivePlayer() {
+		return myTurnDecider.decideTurn();
+	}
+
+	public int getTurn() {
+
+		return myCurrentTurnCounter.getCurrentTurn();
+	}
+
+	@Override
+	public List<PlayerMapObjectInterface> getInitialState() {
+		// TODO Auto-generated method stub
+		return myGamePlayers.getInitialState();
+	}
 
 }

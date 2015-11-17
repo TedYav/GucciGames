@@ -5,8 +5,10 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.TreeMap;
+import voogasalad_GucciGames.gameEngine.objectActions.MapObjectEvent;
 
 public class MapObjectType{
+
 
 	private String myName;
 	private String myImagePath;
@@ -14,8 +16,8 @@ public class MapObjectType{
 	//sizes
 	
 	private  Map<String, AMapObjectCharacteristic> myCharacteristics; //test
-	private Map<String, IMapObjectAction> myAbilities; //test
-	private Map<String, IMapObjectActionTarget> myActionTargets;
+	private Map<String, MapObjectEvent> myActions; //test
+	private Map<String, MapObjectEvent> myRequests;
 	
 	private Map<String, Integer> allowableMoves;
 	private Map<String, Integer> movesDoneSoFar;
@@ -28,7 +30,8 @@ public class MapObjectType{
 		
 		// TreeMap so alphabetized when giving to front end
 		myCharacteristics = new TreeMap<String,  AMapObjectCharacteristic>();
-		myAbilities = new TreeMap<String, IMapObjectAction>();
+		myActions = new TreeMap<>();
+		myRequests = new TreeMap<>();
 		
 	}
 	
@@ -36,11 +39,11 @@ public class MapObjectType{
 	//	myHealthCharacteristic.changeHealth(healthDiff);
 	//}
 
-	public String getMyName() {
+	public String getName() {
 		return myName;
 	}
 
-	public String getMyImagePath() {
+	public String getImagePath() {
 		return myImagePath;
 	}
 	
@@ -48,8 +51,8 @@ public class MapObjectType{
 		return myName;
 	}
 	
-	public IMapObjectAction getAction(String name){
-		return myAbilities.get(name);
+	public MapObjectEvent getAction(String name){
+		return myActions.get(name);
 	}
 	
 	public AMapObjectCharacteristic getCharacteristic(String name){
@@ -57,15 +60,15 @@ public class MapObjectType{
 	}
 	
 	public List<String> getActionStrings(){
-		return new ArrayList<String>(this.myAbilities.keySet());
+		return new ArrayList<String>(this.myActions.keySet());
 	}
 	
 	public List<String> getCharacteristicStrings(){
 		return new ArrayList<String>(this.myCharacteristics.keySet());
 	}
 	
-	public void addAction(String name, IMapObjectAction action){
-		this.myAbilities.put(name, action);
+	public void addAction(String name, MapObjectEvent action){
+		this.myActions.put(name, action);
 	}
 	
 	public void addCharacteristic(String name, AMapObjectCharacteristic characteristic){
@@ -77,8 +80,19 @@ public class MapObjectType{
 	}
 	
 	public boolean hasAction(String name){
-		return this.myAbilities.containsKey(name);
+		return this.myActions.containsKey(name);
 	}
 	
+	public void addRequest(String name, MapObjectEvent func){
+		this.myRequests.put(name, func);
+	}
+	
+	public MapObjectEvent getRequest(String name){
+		return this.myRequests.get(name);
+	}
+	
+	public boolean hasRequest(String name){
+		return this.myRequests.containsKey(name);
+	}
 	
 }

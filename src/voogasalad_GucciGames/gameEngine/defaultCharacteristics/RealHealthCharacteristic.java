@@ -2,11 +2,8 @@ package voogasalad_GucciGames.gameEngine.defaultCharacteristics;
 
 public class RealHealthCharacteristic extends HealthCharacteristic{
 
-private double myCurrentHealth;
-private double myMaxHealth;
-
-
-
+	private double myCurrentHealth;
+	private double myMaxHealth;
 
 	@Override
 	public void changeHealth(double healthDiff){

@@ -52,7 +52,7 @@ public class GaeController implements IGuiGaeController, IModelGaeController{
     }
     public List<MapObjectType> getTileTypes () {
         // TODO Auto-generated method stub
-        return null;
+        return (ObservableList<MapObjectType>) model.getTileTypes();
     }
     @Override
     public List<MapObjectType> getImmutableUnitTypes () {

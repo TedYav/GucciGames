@@ -5,6 +5,8 @@ import java.util.List;
 import java.util.Map;
 import java.util.Observable;
 import java.util.Observer;
+import voogasalad_GucciGames.gameplayer.controller.PlayerMapObjectInterface;
+import voogasalad_GucciGames.gameplayer.controller.GameControllerInterface;
 import voogasalad_GucciGames.gameplayer.windows.mainwindow.components.DisplayComponent;
 import javafx.collections.FXCollections;
 import javafx.collections.ListChangeListener;
@@ -14,24 +16,27 @@ import javafx.scene.control.ListView;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.VBox;
 import voogasalad_GucciGames.gameplayer.windows.mainwindow.map.MapInterface;
-import voogasalad_GucciGames.gameplayer.windows.mainwindow.map.cell.contents.PlayerMapObjectInterface;
 
-public class DisplayMapObjectDetails  implements DisplayComponent, ListChangeListener<PlayerMapObjectInterface>{
-    private ListView<String> list;
+public class DisplayMapObjectDetails  implements DisplayComponent, ListChangeListener<PlayerMapObjectInterface>, Observer{
+    private ListView<String> listView;
     private MapInterface myMap;
     private List<String> temp;
-    private List<String> imageUrls;
+    private List<PlayerMapObjectInterface> mapObjectsOnCell;
     private DisplayMapObjectImage imageDisplay;
     private VBox display;
-    public DisplayMapObjectDetails(MapInterface map, Map<String,ImageView> imageCache) {
+    private GameControllerInterface myController;
+    public DisplayMapObjectDetails(MapInterface map, GameControllerInterface controller) {
         temp= new ArrayList<String>();
         temp.add("fasdf");
-        list=new ListView<String>(FXCollections.observableList(temp));
-        imageUrls=new ArrayList<String>();
-        imageDisplay = new DisplayMapObjectImage(imageUrls, imageCache);
+        listView=new ListView<String>(FXCollections.observableList(temp));
+        myController=controller;
+        mapObjectsOnCell=new ArrayList<PlayerMapObjectInterface>();
+        imageDisplay = new DisplayMapObjectImage(mapObjectsOnCell, myController);
         display = new VBox();
         display.getChildren().add(imageDisplay.getNodeToDraw());
-        display.getChildren().add(list);
+        display.getChildren().add(listView);
+
+        myController.addMOObserver(this);
     }
     public Node getNodeToDraw() {
         return display;
@@ -42,16 +47,39 @@ public class DisplayMapObjectDetails  implements DisplayComponent, ListChangeLis
         while (c.next()) {
             List<PlayerMapObjectInterface> list = c.getList();
             temp.clear();
-            imageUrls.clear();
+            mapObjectsOnCell.clear();
             for (PlayerMapObjectInterface o: list){
-                temp.add(o.getImageURI());
-                contents=o.getActionNames();
-                for (String s: contents) {
-                    temp.add(s);
-                }
-                imageUrls.add(o.getImageURI());
+                
+                //temp.add(o.getName()));
+//                contents=o.getAttributes();
+//                if (contents!=null) {
+//                    for (String s: contents) {
+//                        temp.add(s);
+//                    }
+//                }
+                mapObjectsOnCell.add(o);
             }
             imageDisplay.updateImages();
+            if (mapObjectsOnCell.size()>0) {
+                updateActiveMapObject(mapObjectsOnCell.stream().reduce((u1, u2) -> u2).orElseGet(()->mapObjectsOnCell.get(0)));
+            }
+            listView.setItems(FXCollections.observableList(temp));
         }
+    }
+    @Override
+    public void update (Observable o, Object arg) {
+    	 if (arg!=null) {
+             PlayerMapObjectInterface mapObj=(PlayerMapObjectInterface)arg;
+             Map<String,String> map = mapObj.getAttributes();
+             temp.clear();
+             temp.add(mapObj.getName());
+             for (String s: map.keySet()) {
+                 temp.add(s+": "+map.get(s));
+             }
+             listView.setItems(FXCollections.observableList(temp));
+         }
+    }
+    private void updateActiveMapObject(PlayerMapObjectInterface mapObj) {
+        myController.setActiveMapObject(mapObj);
     }
 }

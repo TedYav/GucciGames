@@ -30,7 +30,7 @@ public class TileTab extends AbstractTab {
 		setText("Tiles");
 
 		for(MapObjectType maptype : myController.getImmutableTileTypes()){
-			allImagePaths.add(maptype.getMyImagePath());
+			allImagePaths.add(maptype.getImagePath());
 		}
 
 		allImagePaths = Arrays.asList("voogasalad_GucciGames/graphics/land.png", "voogasalad_GucciGames/graphics/water.png", "voogasalad_GucciGames/graphics/hurricane.png","voogasalad_GucciGames/graphics/fire.png","voogasalad_GucciGames/graphics/lava.png","voogasalad_GucciGames/graphics/mountain.png","voogasalad_GucciGames/graphics/sand.png");
