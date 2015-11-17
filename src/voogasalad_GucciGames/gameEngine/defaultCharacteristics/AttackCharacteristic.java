@@ -11,18 +11,12 @@ public class AttackCharacteristic extends AMapObjectCharacteristic{
 		myDamage = damage;
 	}
 	
-	public double getMyRange() {
+	public double getRange() {
 		return myRange;
 	}
-	public void setMyRange(double myRange) {
-		this.myRange = myRange;
-	}
-	public double getMyDamage() {
+	
+	public double getDamage() {
 		return myDamage;
 	}
-	public void setMyDamage(double myDamage) {
-		this.myDamage = myDamage;
-	}
-	
 	
 }

@@ -81,5 +81,13 @@ public class AllPlayers {
 			}
 		}
 	}
+	
+	public List<Integer> getAllIds(){
+		List<Integer> result = new ArrayList<>();
+		for(GamePlayerPerson player: this.myListOfPlayers){
+			result.add(player.getMyPlayerId());
+		}
+		return result;
+	}
 
 }
