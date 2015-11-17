@@ -12,10 +12,10 @@ public class GameDataInterfaceImplementer implements GameDataInterface{
 		// TODO Auto-generated method stub
 		Popup p = new Popup();
 		
-		MainGameEngine m = new MainGameEngine(new SomeData());
+	/*	MainGameEngine m = new MainGameEngine(new SomeData());
 		Button b = new Button();
 		b.setOnMouseClicked(e->{m.initialize(new SomeData());});
-		p.getContent().add(b);
+		p.getContent().add(b);*/
 	}
 
 }

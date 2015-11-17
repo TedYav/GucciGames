@@ -5,25 +5,29 @@ import java.util.Arrays;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import voogasalad_GucciGames.gameAuthoring.IGuiGaeController;
+import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.NewObjectMaker;
 import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.UnitMaker;
+import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.ISaveCustomObj;
+import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.UnitMakerCustomContent;
+
 
 
 public class UnitTab extends AbstractTab {
+	private ISaveCustomObj saveCustomObj;
 	
-	public UnitTab(IGuiGaeController controller) {
+	public UnitTab(IGuiGaeController controller, ISaveCustomObj saveCustomObj) {
 		super(controller);
+		this.saveCustomObj = saveCustomObj;
 		setText("Units");
 		allImagePaths = Arrays.asList("voogasalad_GucciGames/graphics/fire.png", "voogasalad_GucciGames/graphics/water.png");
 		addImages();
 		addImageHandler();
-//		addDragDropListener();
 		addAddButtonListener();
 	}
 
 	@Override
 	public void update() {
 		// TODO Auto-generated method stub
-
 	}
 
 	@Override
@@ -31,8 +35,8 @@ public class UnitTab extends AbstractTab {
 		// TODO Auto-generated method stub
 		myAddButton.setOnAction(new EventHandler<ActionEvent>() {
 			@Override public void handle(ActionEvent e) {
-				UnitMaker unitMaker = new UnitMaker();
-				unitMaker.showUnitMakerDialog();
+				NewObjectMaker unitMaker = new NewObjectMaker(new UnitMakerCustomContent(), myController);
+				unitMaker.showDialog();
 			}
 		});
 	}

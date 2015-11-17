@@ -36,7 +36,7 @@ public class GUIMap extends Pane implements IMap {
 		DoubleProperty cellSize = new SimpleDoubleProperty(myGridViewer.getViewportBounds().getWidth() / GRID_SIZE);
 		myGridViewer.viewportBoundsProperty().addListener((ch, oV, nV) -> cellSize.set(nV.getWidth() / GRID_SIZE));
 
-		myGrid = new Grid(cellSize);
+		myGrid = new Grid(cellSize, myController);
 		myGridViewer.setContent(myGrid);
 		myGridViewer.setHbarPolicy(ScrollPane.ScrollBarPolicy.NEVER);
 		myGridViewer.setVbarPolicy(ScrollPane.ScrollBarPolicy.NEVER);
@@ -61,7 +61,8 @@ public class GUIMap extends Pane implements IMap {
 			if (e.getCode() == KeyCode.CONTROL)
 				myGridViewer.setPannable(true);
 		});
-
+		
+		addEventFilter(KeyEvent.KEY_PRESSED, e->myGrid.scroll(e));
 		getChildren().add(myGridViewer);
 
 		Rectangle rect = new Rectangle(0, 0, 200, 200);

@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <class-diagram version="1.1.8" icons="true" automaticImage="PNG" always-add-relationships="false" generalizations="true" 
   realizations="true" associations="true" dependencies="false" nesting-relationships="true">  
-  <class id="1" language="java" name="voogasalad_GucciGames.gameEngine.gamePlayer.UnitCollection" 
+  <class id="1" language="java" name="voogasalad_GucciGames.gameEngine.gamePlayer.MapObjectCollection" 
     project="voogasalad_GucciGames" 
-    file="/voogasalad_GucciGames/src/voogasalad_GucciGames/gameEngine/gamePlayer/UnitCollection.java" binary="false" 
-    corner="BOTTOM_RIGHT">    
+    file="/voogasalad_GucciGames/src/voogasalad_GucciGames/gameEngine/gamePlayer/MapObjectCollection.java" 
+    binary="false" corner="BOTTOM_RIGHT">    
     <position height="-1" width="-1" x="922" y="1172"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
@@ -33,9 +33,9 @@
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="4" language="java" name="voogasalad_GucciGames.gameEngine.gameUnit.FireblastAbility" 
+  <class id="4" language="java" name="voogasalad_GucciGames.gameEngine.mapObject.FireblastAbility" 
     project="voogasalad_GucciGames" 
-    file="/voogasalad_GucciGames/src/voogasalad_GucciGames/gameEngine/gameUnit/FireblastAbility.java" binary="false" 
+    file="/voogasalad_GucciGames/src/voogasalad_GucciGames/gameEngine/mapObject/FireblastAbility.java" binary="false" 
     corner="BOTTOM_RIGHT">    
     <position height="-1" width="-1" x="2334" y="1356"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
@@ -44,18 +44,7 @@
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="5" language="java" name="voogasalad_GucciGames.gameEngine.gameUnit.GameUnit" 
-    project="voogasalad_GucciGames" 
-    file="/voogasalad_GucciGames/src/voogasalad_GucciGames/gameEngine/gameUnit/GameUnit.java" binary="false" 
-    corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="1145" y="1437"/>    
-    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
-      sort-features="false" accessors="true" visibility="true">      
-      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
-      <operations public="true" package="true" protected="true" private="true" static="true"/>    
-    </display>  
-  </class>  
-  <class id="6" language="java" name="voogasalad_GucciGames.gameEngine.defaultCharacteristics.RealHealthCharacteristic" 
+  <class id="5" language="java" name="voogasalad_GucciGames.gameEngine.defaultCharacteristics.RealHealthCharacteristic" 
     project="voogasalad_GucciGames" 
     file="/voogasalad_GucciGames/src/voogasalad_GucciGames/gameEngine/defaultCharacteristics/RealHealthCharacteristic.java" 
     binary="false" corner="BOTTOM_RIGHT">    
@@ -66,7 +55,7 @@
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="7" language="java" name="voogasalad_GucciGames.gameEngine.gamePlayer.GamePlayerPerson" 
+  <class id="6" language="java" name="voogasalad_GucciGames.gameEngine.gamePlayer.GamePlayerPerson" 
     project="voogasalad_GucciGames" 
     file="/voogasalad_GucciGames/src/voogasalad_GucciGames/gameEngine/gamePlayer/GamePlayerPerson.java" binary="false" 
     corner="BOTTOM_RIGHT">    
@@ -77,7 +66,7 @@
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="8" language="java" name="voogasalad_GucciGames.gameEngine.mapObject.MapObjectType" 
+  <class id="7" language="java" name="voogasalad_GucciGames.gameEngine.mapObject.MapObjectType" 
     project="voogasalad_GucciGames" 
     file="/voogasalad_GucciGames/src/voogasalad_GucciGames/gameEngine/mapObject/MapObjectType.java" binary="false" 
     corner="BOTTOM_RIGHT">    
@@ -88,20 +77,8 @@
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="9" language="java" name="voogasalad_GucciGames.gameEngine.tile.Tile" project="voogasalad_GucciGames" 
-    file="/voogasalad_GucciGames/src/voogasalad_GucciGames/gameEngine/tile/Tile.java" binary="false" 
-    corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="2649" y="898"/>    
-    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
-      sort-features="false" accessors="true" visibility="true">      
-      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
-      <operations public="true" package="true" protected="true" private="true" static="true"/>    
-    </display>  
-  </class>  
-  <class id="10" language="java" name="voogasalad_GucciGames.gameEngine.defaultActions.Movement" 
-    project="voogasalad_GucciGames" 
-    file="/voogasalad_GucciGames/src/voogasalad_GucciGames/gameEngine/defaultActions/Movement.java" binary="false" 
-    corner="BOTTOM_RIGHT">    
+  <class id="8" language="java" name="voogasalad_GucciGames.usecases.Movement" project="voogasalad_GucciGames" 
+    file="/voogasalad_GucciGames/src/voogasalad_GucciGames/usecases/Movement.java" binary="false" corner="BOTTOM_RIGHT">    
     <position height="-1" width="-1" x="2930" y="1491"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
@@ -109,7 +86,7 @@
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="11" language="java" name="voogasalad_GucciGames.gameEngine.GameMap" project="voogasalad_GucciGames" 
+  <class id="9" language="java" name="voogasalad_GucciGames.gameEngine.GameMap" project="voogasalad_GucciGames" 
     file="/voogasalad_GucciGames/src/voogasalad_GucciGames/gameEngine/GameMap.java" binary="false" corner="BOTTOM_RIGHT">    
     <position height="-1" width="-1" x="938" y="566"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
@@ -118,7 +95,7 @@
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="12" language="java" name="voogasalad_GucciGames.gameEngine.MainGameEngine" project="voogasalad_GucciGames" 
+  <class id="10" language="java" name="voogasalad_GucciGames.gameEngine.MainGameEngine" project="voogasalad_GucciGames" 
     file="/voogasalad_GucciGames/src/voogasalad_GucciGames/gameEngine/MainGameEngine.java" binary="false" 
     corner="BOTTOM_RIGHT">    
     <position height="-1" width="-1" x="1029" y="183"/>    
@@ -128,7 +105,7 @@
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="13" language="java" name="voogasalad_GucciGames.gameEngine.defaultCharacteristics.PolearmCharacteristic" 
+  <class id="11" language="java" name="voogasalad_GucciGames.gameEngine.defaultCharacteristics.PolearmCharacteristic" 
     project="voogasalad_GucciGames" 
     file="/voogasalad_GucciGames/src/voogasalad_GucciGames/gameEngine/defaultCharacteristics/PolearmCharacteristic.java" 
     binary="false" corner="BOTTOM_RIGHT">    
@@ -139,7 +116,7 @@
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="14" language="java" name="voogasalad_GucciGames.gameEngine.targetCoordinate.TargetCoordinateMultiple" 
+  <class id="12" language="java" name="voogasalad_GucciGames.gameEngine.targetCoordinate.TargetCoordinateMultiple" 
     project="voogasalad_GucciGames" 
     file="/voogasalad_GucciGames/src/voogasalad_GucciGames/gameEngine/targetCoordinate/TargetCoordinateMultiple.java" 
     binary="false" corner="BOTTOM_RIGHT">    
@@ -150,40 +127,7 @@
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="15" language="java" name="voogasalad_GucciGames.gameEngine.gameRule.OnlyOnePlayerHasUnitsCondition" 
-    project="voogasalad_GucciGames" 
-    file="/voogasalad_GucciGames/src/voogasalad_GucciGames/gameEngine/gameRule/OnlyOnePlayerHasUnitsCondition.java" 
-    binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="1199" y="557"/>    
-    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
-      sort-features="false" accessors="true" visibility="true">      
-      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
-      <operations public="true" package="true" protected="true" private="true" static="true"/>    
-    </display>  
-  </class>  
-  <class id="16" language="java" name="voogasalad_GucciGames.gameEngine.gameRule.Goal.Goal" 
-    project="voogasalad_GucciGames" 
-    file="/voogasalad_GucciGames/src/voogasalad_GucciGames/gameEngine/gameRule/Goal/Goal.java" binary="false" 
-    corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="641" y="1163"/>    
-    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
-      sort-features="false" accessors="true" visibility="true">      
-      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
-      <operations public="true" package="true" protected="true" private="true" static="true"/>    
-    </display>  
-  </class>  
-  <class id="17" language="java" name="voogasalad_GucciGames.gameEngine.gameUnit.GameUnitType" 
-    project="voogasalad_GucciGames" 
-    file="/voogasalad_GucciGames/src/voogasalad_GucciGames/gameEngine/gameUnit/GameUnitType.java" binary="false" 
-    corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="1420" y="1756"/>    
-    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
-      sort-features="false" accessors="true" visibility="true">      
-      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
-      <operations public="true" package="true" protected="true" private="true" static="true"/>    
-    </display>  
-  </class>  
-  <class id="18" language="java" name="voogasalad_GucciGames.gameEngine.gamePlayer.PlayerResources" 
+  <class id="13" language="java" name="voogasalad_GucciGames.gameEngine.gamePlayer.PlayerResources" 
     project="voogasalad_GucciGames" 
     file="/voogasalad_GucciGames/src/voogasalad_GucciGames/gameEngine/gamePlayer/PlayerResources.java" binary="false" 
     corner="BOTTOM_RIGHT">    
@@ -194,7 +138,7 @@
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="19" language="java" name="voogasalad_GucciGames.gameEngine.defaultCharacteristics.NullHealthCharacteristic" 
+  <class id="14" language="java" name="voogasalad_GucciGames.gameEngine.defaultCharacteristics.NullHealthCharacteristic" 
     project="voogasalad_GucciGames" 
     file="/voogasalad_GucciGames/src/voogasalad_GucciGames/gameEngine/defaultCharacteristics/NullHealthCharacteristic.java" 
     binary="false" corner="BOTTOM_RIGHT">    
@@ -205,7 +149,7 @@
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="20" language="java" name="voogasalad_GucciGames.gameEngine.mapObject.MoveAction" 
+  <class id="15" language="java" name="voogasalad_GucciGames.gameEngine.mapObject.MoveAction" 
     project="voogasalad_GucciGames" 
     file="/voogasalad_GucciGames/src/voogasalad_GucciGames/gameEngine/mapObject/MoveAction.java" binary="false" 
     corner="BOTTOM_RIGHT">    
@@ -216,7 +160,7 @@
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="21" language="java" name="voogasalad_GucciGames.gameEngine.gamePlayer.AllPlayers" 
+  <class id="16" language="java" name="voogasalad_GucciGames.gameEngine.gamePlayer.AllPlayers" 
     project="voogasalad_GucciGames" 
     file="/voogasalad_GucciGames/src/voogasalad_GucciGames/gameEngine/gamePlayer/AllPlayers.java" binary="false" 
     corner="BOTTOM_RIGHT">    
@@ -227,28 +171,7 @@
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="22" language="java" name="voogasalad_GucciGames.gameEngine.tile.TileType" project="voogasalad_GucciGames" 
-    file="/voogasalad_GucciGames/src/voogasalad_GucciGames/gameEngine/tile/TileType.java" binary="false" 
-    corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="2649" y="1118"/>    
-    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
-      sort-features="false" accessors="true" visibility="true">      
-      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
-      <operations public="true" package="true" protected="true" private="true" static="true"/>    
-    </display>  
-  </class>  
-  <class id="23" language="java" name="voogasalad_GucciGames.gameEngine.gameRule.GlobalGameCondition" 
-    project="voogasalad_GucciGames" 
-    file="/voogasalad_GucciGames/src/voogasalad_GucciGames/gameEngine/gameRule/GlobalGameCondition.java" binary="false" 
-    corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="1203" y="418"/>    
-    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
-      sort-features="false" accessors="true" visibility="true">      
-      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
-      <operations public="true" package="true" protected="true" private="true" static="true"/>    
-    </display>  
-  </class>  
-  <class id="24" language="java" name="voogasalad_GucciGames.gameEngine.targetCoordinate.TargetCoordinateSingle" 
+  <class id="17" language="java" name="voogasalad_GucciGames.gameEngine.targetCoordinate.TargetCoordinateSingle" 
     project="voogasalad_GucciGames" 
     file="/voogasalad_GucciGames/src/voogasalad_GucciGames/gameEngine/targetCoordinate/TargetCoordinateSingle.java" 
     binary="false" corner="BOTTOM_RIGHT">    
@@ -259,7 +182,7 @@
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="25" language="java" name="voogasalad_GucciGames.gameEngine.mapObject.MapObject" 
+  <class id="18" language="java" name="voogasalad_GucciGames.gameEngine.mapObject.MapObject" 
     project="voogasalad_GucciGames" 
     file="/voogasalad_GucciGames/src/voogasalad_GucciGames/gameEngine/mapObject/MapObject.java" binary="false" 
     corner="BOTTOM_RIGHT">    
@@ -270,194 +193,100 @@
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <generalization id="26">    
-    <end type="SOURCE" refId="6"/>    
-    <end type="TARGET" refId="3"/>  
-  </generalization>  
-  <association id="27">    
-    <end type="SOURCE" refId="5" navigable="false">      
-      <attribute id="28" name="myType">        
+  <association id="19">    
+    <end type="SOURCE" refId="6" navigable="false">      
+      <attribute id="20" name="myResources">        
         <position height="0" width="0" x="0" y="0"/>      
       </attribute>      
-      <multiplicity id="29" minimum="0" maximum="1">        
+      <multiplicity id="21" minimum="0" maximum="1">        
         <position height="0" width="0" x="0" y="0"/>      
       </multiplicity>    
     </end>    
-    <end type="TARGET" refId="17" navigable="true"/>    
+    <end type="TARGET" refId="13" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
-  <generalization id="30">    
-    <bendpoint x="1584" y="1316"/>    
-    <bendpoint x="1584" y="1069"/>    
-    <end type="SOURCE" refId="17"/>    
-    <end type="TARGET" refId="8"/>  
-  </generalization>  
-  <association id="31">    
+  <association id="22">    
+    <bendpoint x="1009" y="369"/>    
+    <end type="SOURCE" refId="10" navigable="false">      
+      <attribute id="23" name="myGameMap">        
+        <position height="0" width="0" x="0" y="0"/>      
+      </attribute>      
+      <multiplicity id="24" minimum="0" maximum="1">        
+        <position height="0" width="0" x="0" y="0"/>      
+      </multiplicity>    
+    </end>    
+    <end type="TARGET" refId="9" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="25">    
+    <end type="SOURCE" refId="16" navigable="false">      
+      <attribute id="26" name="myMapOfPlayers">        
+        <position height="0" width="0" x="0" y="0"/>      
+      </attribute>      
+      <multiplicity id="27" minimum="0" maximum="2147483647">        
+        <position height="0" width="0" x="0" y="0"/>      
+      </multiplicity>    
+    </end>    
+    <end type="TARGET" refId="6" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="28">    
+    <bendpoint x="817" y="508"/>    
     <end type="SOURCE" refId="2" navigable="false">      
-      <attribute id="32" name="currentMap">        
+      <attribute id="29" name="storedPlayers">        
         <position height="0" width="0" x="0" y="0"/>      
       </attribute>      
-      <multiplicity id="33" minimum="0" maximum="1">        
-        <position height="0" width="0" x="0" y="0"/>      
-      </multiplicity>    
-    </end>    
-    <end type="TARGET" refId="11" navigable="true"/>    
-    <display labels="true" multiplicity="true"/>  
-  </association>  
-  <association id="34">    
-    <end type="SOURCE" refId="7" navigable="false">      
-      <attribute id="35" name="myGoal">        
-        <position height="0" width="0" x="0" y="0"/>      
-      </attribute>      
-      <multiplicity id="36" minimum="0" maximum="1">        
+      <multiplicity id="30" minimum="0" maximum="1">        
         <position height="0" width="0" x="0" y="0"/>      
       </multiplicity>    
     </end>    
     <end type="TARGET" refId="16" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
-  <association id="37">    
-    <end type="SOURCE" refId="23" navigable="false">      
-      <attribute id="38" name="myGameMap">        
+  <association id="31">    
+    <end type="SOURCE" refId="9" navigable="false">      
+      <attribute id="32" name="myGamePlayers">        
         <position height="0" width="0" x="0" y="0"/>      
       </attribute>      
-      <multiplicity id="39" minimum="0" maximum="1">        
+      <multiplicity id="33" minimum="0" maximum="1">        
         <position height="0" width="0" x="0" y="0"/>      
       </multiplicity>    
     </end>    
-    <end type="TARGET" refId="11" navigable="true"/>    
+    <end type="TARGET" refId="16" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
-  <generalization id="40">    
-    <end type="SOURCE" refId="19"/>    
+  <association id="34">    
+    <end type="SOURCE" refId="2" navigable="false">      
+      <attribute id="35" name="currentMap">        
+        <position height="0" width="0" x="0" y="0"/>      
+      </attribute>      
+      <multiplicity id="36" minimum="0" maximum="1">        
+        <position height="0" width="0" x="0" y="0"/>      
+      </multiplicity>    
+    </end>    
+    <end type="TARGET" refId="9" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <generalization id="37">    
+    <end type="SOURCE" refId="5"/>    
     <end type="TARGET" refId="3"/>  
   </generalization>  
-  <association id="41">    
-    <end type="SOURCE" refId="7" navigable="false">      
-      <attribute id="42" name="myResources">        
-        <position height="0" width="0" x="0" y="0"/>      
-      </attribute>      
-      <multiplicity id="43" minimum="0" maximum="1">        
-        <position height="0" width="0" x="0" y="0"/>      
-      </multiplicity>    
-    </end>    
-    <end type="TARGET" refId="18" navigable="true"/>    
-    <display labels="true" multiplicity="true"/>  
-  </association>  
-  <association id="44">    
+  <generalization id="38">    
+    <end type="SOURCE" refId="14"/>    
+    <end type="TARGET" refId="3"/>  
+  </generalization>  
+  <association id="39">    
     <bendpoint x="1059" y="369"/>    
     <bendpoint x="1059" y="508"/>    
-    <end type="SOURCE" refId="12" navigable="false">      
-      <attribute id="45" name="myGamePlayers">        
+    <end type="SOURCE" refId="10" navigable="false">      
+      <attribute id="40" name="myGamePlayers">        
         <position height="0" width="0" x="0" y="0"/>      
       </attribute>      
-      <multiplicity id="46" minimum="0" maximum="1">        
+      <multiplicity id="41" minimum="0" maximum="1">        
         <position height="0" width="0" x="0" y="0"/>      
       </multiplicity>    
     </end>    
-    <end type="TARGET" refId="21" navigable="true"/>    
-    <display labels="true" multiplicity="true"/>  
-  </association>  
-  <association id="47">    
-    <end type="SOURCE" refId="12" navigable="false">      
-      <attribute id="48" name="myGlobalRule">        
-        <position height="0" width="0" x="0" y="0"/>      
-      </attribute>      
-      <multiplicity id="49" minimum="0" maximum="1">        
-        <position height="0" width="0" x="0" y="0"/>      
-      </multiplicity>    
-    </end>    
-    <end type="TARGET" refId="23" navigable="true"/>    
-    <display labels="true" multiplicity="true"/>  
-  </association>  
-  <association id="50">    
-    <bendpoint x="1009" y="369"/>    
-    <end type="SOURCE" refId="12" navigable="false">      
-      <attribute id="51" name="myGameMap">        
-        <position height="0" width="0" x="0" y="0"/>      
-      </attribute>      
-      <multiplicity id="52" minimum="0" maximum="1">        
-        <position height="0" width="0" x="0" y="0"/>      
-      </multiplicity>    
-    </end>    
-    <end type="TARGET" refId="11" navigable="true"/>    
-    <display labels="true" multiplicity="true"/>  
-  </association>  
-  <association id="53">    
-    <end type="SOURCE" refId="11" navigable="false">      
-      <attribute id="54" name="myGamePlayers">        
-        <position height="0" width="0" x="0" y="0"/>      
-      </attribute>      
-      <multiplicity id="55" minimum="0" maximum="1">        
-        <position height="0" width="0" x="0" y="0"/>      
-      </multiplicity>    
-    </end>    
-    <end type="TARGET" refId="21" navigable="true"/>    
-    <display labels="true" multiplicity="true"/>  
-  </association>  
-  <association id="56">    
-    <end type="SOURCE" refId="21" navigable="false">      
-      <attribute id="57" name="myListOfPlayers">        
-        <position height="0" width="0" x="0" y="0"/>      
-      </attribute>      
-      <multiplicity id="58" minimum="0" maximum="2147483647">        
-        <position height="0" width="0" x="0" y="0"/>      
-      </multiplicity>    
-    </end>    
-    <end type="TARGET" refId="7" navigable="true"/>    
-    <display labels="true" multiplicity="true"/>  
-  </association>  
-  <association id="59">    
-    <bendpoint x="817" y="508"/>    
-    <end type="SOURCE" refId="2" navigable="false">      
-      <attribute id="60" name="storedPlayers">        
-        <position height="0" width="0" x="0" y="0"/>      
-      </attribute>      
-      <multiplicity id="61" minimum="0" maximum="1">        
-        <position height="0" width="0" x="0" y="0"/>      
-      </multiplicity>    
-    </end>    
-    <end type="TARGET" refId="21" navigable="true"/>    
-    <display labels="true" multiplicity="true"/>  
-  </association>  
-  <generalization id="62">    
-    <end type="SOURCE" refId="22"/>    
-    <end type="TARGET" refId="8"/>  
-  </generalization>  
-  <association id="63">    
-    <end type="SOURCE" refId="7" navigable="false">      
-      <attribute id="64" name="myUnits">        
-        <position height="0" width="0" x="0" y="0"/>      
-      </attribute>      
-      <multiplicity id="65" minimum="0" maximum="1">        
-        <position height="0" width="0" x="0" y="0"/>      
-      </multiplicity>    
-    </end>    
-    <end type="TARGET" refId="1" navigable="true"/>    
-    <display labels="true" multiplicity="true"/>  
-  </association>  
-  <association id="66">    
-    <end type="SOURCE" refId="9" navigable="false">      
-      <attribute id="67" name="myType">        
-        <position height="0" width="0" x="0" y="0"/>      
-      </attribute>      
-      <multiplicity id="68" minimum="0" maximum="1">        
-        <position height="0" width="0" x="0" y="0"/>      
-      </multiplicity>    
-    </end>    
-    <end type="TARGET" refId="22" navigable="true"/>    
-    <display labels="true" multiplicity="true"/>  
-  </association>  
-  <association id="69">    
-    <end type="SOURCE" refId="1" navigable="false">      
-      <attribute id="70" name="myUnits">        
-        <position height="0" width="0" x="0" y="0"/>      
-      </attribute>      
-      <multiplicity id="71" minimum="0" maximum="2147483647">        
-        <position height="0" width="0" x="0" y="0"/>      
-      </multiplicity>    
-    </end>    
-    <end type="TARGET" refId="5" navigable="true"/>    
+    <end type="TARGET" refId="16" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
   <classifier-display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 

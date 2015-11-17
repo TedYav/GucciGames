@@ -24,13 +24,7 @@ public class GAEModel implements IGAEModel{
     public GAEModel(IModelGaeController controller) {
     	data = new GameSourceData();
     	myController = controller;
-    }
-
-    @Override
-    public void addComponent (MapObject objParams) {
-        MapObject mapObj = new MapObject(null,null);// TODO:MapObject(objParams);
-        validate();
-        data.addToMap(mapObj);
+    	data = new GameSourceData();
     }
 
     @Override
@@ -100,6 +94,11 @@ public class GAEModel implements IGAEModel{
 	@Override
 	public List<MapObjectType> getTileTypes() {
 		// TODO Auto-generated method stub
+		
+		
+		
+		
+		
 		return null;
 	}
 
@@ -108,4 +107,18 @@ public class GAEModel implements IGAEModel{
 		// TODO Auto-generated method stub
 		return null;
 	}
+
+	@Override
+	//implemet this
+	public void addComponent(MapObject mapObj) {
+		// TODO Auto-generated method stub
+		
+	}
+	
+    public void addComponent (Map<String,String> objParams) {
+        MapObject mapObj = new MapObject(null,null, 0);// TODO:MapObject(objParams);
+        validate();
+        data.addToMap(mapObj);
+    }
+
 }

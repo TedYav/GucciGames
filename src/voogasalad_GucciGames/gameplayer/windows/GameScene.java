@@ -2,16 +2,21 @@ package voogasalad_GucciGames.gameplayer.windows;
 
 import java.util.ResourceBundle;
 
+import javafx.event.Event;
+import javafx.event.EventHandler;
+import javafx.event.EventType;
 import javafx.scene.Scene;
 import voogasalad_GucciGames.gameplayer.gameloader.GameLoader;
+import voogasalad_GucciGames.gameplayer.windows.mainwindow.scenes.GameSceneInterface;
 
-public abstract class GameScene {
+public abstract class GameScene implements GameSceneInterface{
 
 	private String myName;
 	private String myNext;
 	protected GameSceneManager myManager;
 	protected GameWindowInterface myWindow;
 	protected ResourceBundle myConfig;
+	protected Scene myScene;
 	
 	public GameScene(GameSceneManager manager, GameWindowInterface window, String config){
 		myManager = manager;
@@ -26,7 +31,8 @@ public abstract class GameScene {
 	}
 	
 	protected void loadScene(Scene scene){
-		myWindow.loadScene(scene);
+		myScene = scene;
+		myWindow.loadScene(myScene);
 	}
 
 	/**
@@ -46,9 +52,26 @@ public abstract class GameScene {
 		return myNext;
 	}
 	
+	public Scene getScene(){
+		return myScene;
+	}
+	
+	
 	/**
 	 * Tells this scene to load its necessary information and write it to the GameWindow.
 	 */
 	public abstract void load();
+
+	@Override
+	public <T extends Event> void addEventHandler(EventType<T> eventType, EventHandler<T> eventHandler) {
+		myScene.addEventHandler(eventType, eventHandler);
+	}
+
+	@Override
+	public <T extends Event> void addEventFilter(EventType<T> eventType, EventHandler<T> eventFilter) {
+		myScene.addEventFilter(eventType, eventFilter);
+	}
+
+	
 	
 }

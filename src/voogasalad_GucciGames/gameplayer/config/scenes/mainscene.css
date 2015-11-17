@@ -1,0 +1,38 @@
+
+.title{
+	-fx-font: bold 200pt "Arial";	
+}
+
+.root{
+	-fx-background-radius: 5.0;
+	-fx-padding: 0;
+	-fx-spacing: 15;
+	-fx-background: #000000;
+}
+
+.leftvbox{
+	-fx-font: bold 20pt "Palatino Linotype";
+	-fx-background-color: #2f4f4f;
+}
+.vbox-chat{
+	-fx-font: 12pt "Palatino Linotype";
+}
+
+.mainmap{
+	-fx-stroke-width: 4;
+	-fx-stroke: #404040;
+}
+
+.rightvbox{
+	-fx-font: bold 20pt "Arial";
+	-fx-background-color: #2f4f4f;
+	
+}
+
+
+.menubar{
+	-fx-background-color: #1f2f2f;
+}
+.dropdown{
+	-fx-font: bold 14pt "Palatino Linotype";
+}

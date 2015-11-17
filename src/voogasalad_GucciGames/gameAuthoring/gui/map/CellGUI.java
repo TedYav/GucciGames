@@ -35,14 +35,14 @@ public class CellGUI {
 		myMapView.fitHeightProperty().bind(mySize);
 		myMapView.xProperty().bind(mySize.multiply(x));
 		myMapView.yProperty().bind(mySize.multiply(y));
-		myMap.getChildren().add(myMapView);
 		myMapView.setOnMouseClicked(e -> mouseClickEvent(e));
 		createMenu();
 		myPos = new GridPoint(x, y);
+		myMap.add(this);
 	}
 
 	public void setImage(Image img) {
-		// myMapView.setImage(img);
+		myMapView.setImage(img);
 	}
 
 	private void createMenu() {
@@ -102,7 +102,7 @@ public class CellGUI {
 		if (myBoundBox == null) {
 			myBoundBox = new Rectangle(myMapView.getX(), myMapView.getY(), mySize.get(), mySize.get());
 			myBoundBox.setStroke(Color.YELLOW);
-			myBoundBox.setFill(Color.TRANSPARENT);
+			myBoundBox.setFill(Color.rgb(0, 255, 255, 0.2));
 			myBoundBox.setStrokeWidth(2);
 			myBoundBox.setMouseTransparent(true);
 			myMap.getChildren().add(myBoundBox);
@@ -138,7 +138,15 @@ public class CellGUI {
 			myBoundBox = null;
 		}
 		myMap.getChildren().remove(myMapView);
-		myMap.remove(myPos);
+		myMap.remove(this);
+	}
+	
+	public GridPoint getPosition(){
+		return myPos;
+	}
+	
+	public ImageView getMapView(){
+		return myMapView;
 	}
 
 }
