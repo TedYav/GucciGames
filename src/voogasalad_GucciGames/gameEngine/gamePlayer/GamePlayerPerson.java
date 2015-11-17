@@ -11,13 +11,11 @@ public class GamePlayerPerson {
 	private int myPlayerId; 
 	private PlayerResources myResources;
 	private List<MapObject> myMapObjects;
-	private String myStatus;
 	
-	public GamePlayerPerson(int playerID){
-		myPlayerId = (playerID);
-		this.myMapObjects = new ArrayList<MapObject>();
-	}
-	
+	private int unitsMoved=0;
+	private int unitsMaxMovedLimit;
+	private String myStatus = "DRAW";
+
 	public List<MapObject> getMapObjects() {
 		return this.myMapObjects;
 	}
@@ -39,6 +37,11 @@ public class GamePlayerPerson {
 	public void setStatus(String string) {
 		// TODO Auto-generated method stub
 		
+	}
+
+	public int getUnitsMoved() {
+		// TODO Auto-generated method stub
+		return 0;
 	}
 
 

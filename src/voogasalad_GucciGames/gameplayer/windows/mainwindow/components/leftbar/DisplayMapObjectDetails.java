@@ -18,7 +18,7 @@ import javafx.scene.layout.VBox;
 import voogasalad_GucciGames.gameplayer.windows.mainwindow.map.MapInterface;
 
 public class DisplayMapObjectDetails  implements DisplayComponent, ListChangeListener<PlayerMapObjectInterface>, Observer{
-    private ListView<String> list;
+    private ListView<String> listView;
     private MapInterface myMap;
     private List<String> temp;
     private List<PlayerMapObjectInterface> mapObjectsOnCell;
@@ -28,14 +28,14 @@ public class DisplayMapObjectDetails  implements DisplayComponent, ListChangeLis
     public DisplayMapObjectDetails(MapInterface map, GameControllerInterface controller) {
         temp= new ArrayList<String>();
         temp.add("fasdf");
-        list=new ListView<String>(FXCollections.observableList(temp));
+        listView=new ListView<String>(FXCollections.observableList(temp));
         myController=controller;
         mapObjectsOnCell=new ArrayList<PlayerMapObjectInterface>();
         imageDisplay = new DisplayMapObjectImage(mapObjectsOnCell, myController);
         display = new VBox();
         display.getChildren().add(imageDisplay.getNodeToDraw());
-        display.getChildren().add(list);
-        
+        display.getChildren().add(listView);
+
         myController.addMOObserver(this);
     }
     public Node getNodeToDraw() {
@@ -49,21 +49,26 @@ public class DisplayMapObjectDetails  implements DisplayComponent, ListChangeLis
             temp.clear();
             mapObjectsOnCell.clear();
             for (PlayerMapObjectInterface o: list){
-                temp.add(o.getImageURI());
-                contents=o.getActionNames();
-                for (String s: contents) {
-                    temp.add(s);
-                }
+                
+                //temp.add(o.getName()));
+//                contents=o.getAttributes();
+//                if (contents!=null) {
+//                    for (String s: contents) {
+//                        temp.add(s);
+//                    }
+//                }
                 mapObjectsOnCell.add(o);
             }
             imageDisplay.updateImages();
+            listView.setItems(FXCollections.observableList(temp));
         }
     }
     @Override
     public void update (Observable o, Object arg) {
-        System.out.println("ho");
-        if (arg!=null && arg.getClass().equals(PlayerMapObjectInterface.class)) {
+        if (arg!=null) {
+            System.out.println("ho");
             PlayerMapObjectInterface mapObj=(PlayerMapObjectInterface)arg;
+<<<<<<< HEAD
             
               Map<String, String> list = mapObj.getAttributes();
             for (String s: list.keySet()) {
@@ -71,6 +76,14 @@ public class DisplayMapObjectDetails  implements DisplayComponent, ListChangeLis
             } 
             
             
+=======
+            Map<String,String> map = mapObj.getAttributes();
+            temp.add(mapObj.getName());
+            for (String s: map.keySet()) {
+                temp.add(s+": "+map.get(s));
+            }
+            listView.setItems(FXCollections.observableList(temp));
+>>>>>>> bc04a0911582ee1d848db86e02ae6b2a082cc2af
         }
     }
 }

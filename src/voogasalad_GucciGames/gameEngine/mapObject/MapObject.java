@@ -61,12 +61,6 @@ public class MapObject implements PlayerMapObjectInterface{
 	}
 
 	@Override
-	public void performAction(String action, ATargetCoordinate coordinate) {
-
-		myObjectType.getAction(action).action(communication, targetCoords)
-	}
-
-	@Override
 	public int getPlayerID() {
 		// TODO Auto-generated method stub
 		return 0;

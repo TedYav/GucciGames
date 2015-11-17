@@ -8,23 +8,17 @@ import voogasalad_GucciGames.gameplayer.controller.dummy.MapObjectBasicType;
 
 // TODO: add getCoordnate(), getPlayer(), etc
 public interface PlayerMapObjectInterface {
-    public Map<String, String> getAttributes(); //i.e. HP=100, Owning Player=1, ...
+	public Map<String, String> getAttributes(); //i.e. HP=100, Owning Player=1, ...
 
 	public String getName();
 	
 	public String getImageURI();
-	
-	//public int getVisibility();
-	
-	public default int getLayer(){
-		return 0;
-	}
+
+	public int getLayer();
 	
 	public List<String> getActionNames();
 	
 	public List<ATargetCoordinate> getActionTargets(String action);
-	
-	public void performAction(String action, ATargetCoordinate coordinate);
 	
 	public int getPlayerID();
 

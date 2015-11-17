@@ -23,6 +23,18 @@ public class AllPlayers {
 	public AllPlayers() {
 		myMapOfPlayers = new HashMap<Integer, GamePlayerPerson>();
 	}
+	
+	/***
+	 * 
+	 * @param id
+	 * The neutral player with the game tiles (MapObject) has id -1.
+	 * @return
+	 */
+	
+	public GamePlayerPerson getPlayerById(int id){
+		
+		return myMapOfPlayers.get(id);
+	}
 
 	public int numberOfPlayer() {
 		return myMapOfPlayers.size();

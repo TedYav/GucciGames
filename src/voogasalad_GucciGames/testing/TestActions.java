@@ -13,14 +13,12 @@ import voogasalad_GucciGames.gameEngine.gamePlayer.AllPlayers;
 import voogasalad_GucciGames.gameEngine.gamePlayer.GamePlayerPerson;
 import voogasalad_GucciGames.gameEngine.mapObject.MapObject;
 import voogasalad_GucciGames.gameEngine.mapObject.MapObjectType;
-import voogasalad_GucciGames.gameEngine.mapObject.MoveAction;
-import voogasalad_GucciGames.gameEngine.mapObject.WhereToAttackAction;
 import voogasalad_GucciGames.gameEngine.targetCoordinate.ATargetCoordinate;
 import voogasalad_GucciGames.gameEngine.targetCoordinate.TargetCoordinateMultiple;
 import voogasalad_GucciGames.gameEngine.targetCoordinate.TargetCoordinateSingle;
 
 public class TestActions {
-
+/*
 	private MapObjectType test;
 	private MapObject obj;
 	private AllPlayers players;
@@ -53,4 +51,5 @@ public class TestActions {
 		TargetCoordinateMultiple multi = (TargetCoordinateMultiple) where;
 		assertEquals("Should be (50,50): ",multi.getCoordinates().get(0), new TargetCoordinateSingle(50,50));
 	}
+	*/
 }

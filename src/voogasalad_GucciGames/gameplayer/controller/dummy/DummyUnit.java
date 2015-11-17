@@ -1,7 +1,10 @@
 package voogasalad_GucciGames.gameplayer.controller.dummy;
 
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import voogasalad_GucciGames.gameplayer.controller.PlayerMapObjectInterface;
 
@@ -23,18 +26,18 @@ import voogasalad_GucciGames.gameplayer.controller.PlayerMapObjectInterface;
 	@Override
 	public String getName() {
 		// TODO Auto-generated method stub
-		return "DUMMY";
+		return "Mario";
 	}
 
 	@Override
 	public String getImageURI() {
-		return ((myX+myY)%2 == 0)?"player/images/dummytexture.jpg":"player/images/dummytexture2.jpg";
+		return "player/images/mario.png";
 	}
 
 	@Override
 	public List<String> getActionNames() {
 		// TODO Auto-generated method stub
-		return Arrays.asList("Build", "Destroy", "Pwn", "Wingame");
+		return Arrays.asList("Attack", "Destroy", "Pwn", "Wingame");
 	}
 
 	@Override
@@ -43,26 +46,42 @@ import voogasalad_GucciGames.gameplayer.controller.PlayerMapObjectInterface;
 	}
 
 	@Override
-	public List<TargetCoordinate> getActionTarget() {
-		return null;
+	public List<TargetCoordinate> getActionTargets(String action) {
+		List<TargetCoordinate> myTargets = new ArrayList<>();
+		for(int i=-1; i<2; i++){
+			for(int j=-1; j<2; j++){
+				if(i==0 & j==0)
+					continue;
+				myTargets.add(new TargetCoordinate(myX+i, myY+j));
+			}
+		}
+		return myTargets;
 	}
 
 	@Override
-	public void performAction(String action, TargetCoordinate coordinate) {
-		// TODO Auto-generated method stub
-		
+	public List<PlayerMapObjectInterface> performAction(String action, TargetCoordinate coordinate) {
+		return new ArrayList<>();
 	}
 
 	@Override
 	public int getLayer() {
+		
 		// TODO Auto-generated method stub
-		return 0;
+		return 1;
 	}
 
 	@Override
-	public List<String> getAttributes() {
+	public Map<String, String> getAttributes() {
+		Map<String, String> attribs = new HashMap<>();
+		attribs.put("HP", "100");
+		attribs.put("Damage", "7-9");
+		return attribs;
+	}
+
+	@Override
+	public int getPlayerID() {
 		// TODO Auto-generated method stub
-		return null;
+		return (myX % 2);
 	}
 
 }*/
