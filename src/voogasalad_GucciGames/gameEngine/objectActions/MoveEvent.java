@@ -23,6 +23,7 @@ public class MoveEvent extends MapObjectEvent{
 		TargetCoordinateSingle target = moveParams.getNewLocation();
 		MapObject moving = params.getCalledMe();
 		moving.setCoordinate(target);
+		moveParams.getMovePerson().updateMoves();
 		return new EmptyParams();
 	}
 
