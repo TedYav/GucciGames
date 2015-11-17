@@ -28,10 +28,12 @@ import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Text;
+import javafx.stage.Screen;
 import voogasalad_GucciGames.gameplayer.controller.GameControllerInterface;
 import voogasalad_GucciGames.gameplayer.controller.GameEngineToGamePlayerInterface;
 import voogasalad_GucciGames.gameplayer.controller.PlayerMapObjectInterface;
 import voogasalad_GucciGames.gameplayer.controller.dummy.DummyUnit;
+import voogasalad_GucciGames.gameplayer.controller.dummy.TargetCoordinate;
 import voogasalad_GucciGames.gameplayer.datastructures.TwoWayMap;
 import voogasalad_GucciGames.gameplayer.windows.GameScene;
 import voogasalad_GucciGames.gameplayer.windows.WindowComponent;
@@ -62,7 +64,6 @@ public class MainMap extends WindowComponent implements MapInterface {
 	private int myCellsWide, myCellsTall;
 	private double myCellSize;
 	private double myBorderWidth;
-	private double myMoveDistance;
 	
 	// TODO: leftbar and rightbar communicate about individual selection
 	// TODO: later, convert to map by unit type
@@ -70,20 +71,19 @@ public class MainMap extends WindowComponent implements MapInterface {
 	
 	public MainMap(GameScene scene, GameControllerInterface controller) {
 		super(scene, controller);
+		initializePanes();
 		initializeVariables();
 		initializeMap();
-		initializePanes();
 		initializeMiniMap();
 		drawMap();
 	}
 	
 	
 	private void initializeVariables() {
-		myCellSize = Double.parseDouble(myConfig.getString("CellSize"));
+		myCellSize = Screen.getPrimary().getBounds().getWidth()/Double.parseDouble(myConfig.getString("NumCells"));
 		myCellsWide = 50;
 		myCellsTall = 50;
 		myBorderWidth = Double.parseDouble(myConfig.getString("BorderWidth"));
-		myMoveDistance = Double.parseDouble(myConfig.getString("MoveDistance"));
 		mySelectedUnits = FXCollections.observableArrayList();
 		myController.setMap(this);
 	}
@@ -190,9 +190,11 @@ public class MainMap extends WindowComponent implements MapInterface {
 	}
 
 	@Override
-	public void highlightCell(Point2D target) {
-		myCellMap.get(target).toggleHighlight(true);
-		myHighlightedCells.add(myCellMap.get(target));
+	public void highlightCells(List<TargetCoordinate> targets) {
+		targets.stream()
+			.map((t) -> new Point2D(t.getX(), t.getY()))
+			.map((c) -> myCellMap.get(c))
+			.forEach((c) -> { c.toggleHighlight(true); myHighlightedCells.add(c);} );
 	}
 	
 	@Override

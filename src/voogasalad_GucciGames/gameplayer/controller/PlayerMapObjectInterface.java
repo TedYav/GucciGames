@@ -15,16 +15,16 @@ public interface PlayerMapObjectInterface {
 	
 	//public int getVisibility();
 	
-	public default int getLayer(){
-		return 0;
-	}
+	public int getLayer();
 	
 	public MapObjectBasicType getBasicType();
 	
 	public List<String> getActionNames();
 	
-	public List<TargetCoordinate> getActionTarget();
+	public List<TargetCoordinate> getActionTargets(String action);
 	
 	public void performAction(String action, TargetCoordinate coordinate);
+	
+	public int getPlayerID();
 	
 }
