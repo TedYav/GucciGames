@@ -2,18 +2,24 @@ package voogasalad_GucciGames.gameplayer.controller;
 
 import java.util.List;
 import java.util.Map;
+
+import javafx.event.Event;
+import javafx.event.EventHandler;
+import javafx.event.EventType;
 import java.util.Observer;
 import javafx.scene.image.Image;
 import voogasalad_GucciGames.gameplayer.windows.mainwindow.map.MapInterface;
 import voogasalad_GucciGames.gameplayer.windows.mainwindow.map.cell.MapCell;
 import voogasalad_GucciGames.gameplayer.windows.mainwindow.map.cell.contents.CellUnit;
-import voogasalad_GucciGames.gameplayer.windows.mainwindow.map.cell.contents.PlayerMapObjectInterface;
+import voogasalad_GucciGames.gameplayer.windows.mainwindow.scenes.GameSceneInterface;
+import voogasalad_GucciGames.gameplayer.windows.mainwindow.scenes.MainGameScene;
+
 
 //TODO:
 // NEEDS WAY TO GET CURRENT PLAYER
 
 public interface GameControllerInterface{
-
+	
 	public void activateCell(MapCell cell);
 	public List<MapCell> getActiveCells();
 	
@@ -38,4 +44,12 @@ public interface GameControllerInterface{
 	public void endTurn();
 	
 	public Image requestImage(String imageURI);
+	
+	public boolean actionInProgress();
+	
+	public <T extends Event> void addEventHandler(EventType<T> eventType, EventHandler<T> eventHandler);
+	public <T extends Event> void addEventFilter(EventType<T> eventType, EventHandler<T> eventHandler);
+	
+	// TODO: refactor out
+	public void setScene(GameSceneInterface scene);
 }

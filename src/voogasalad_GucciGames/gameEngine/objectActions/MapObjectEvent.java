@@ -3,6 +3,7 @@ package voogasalad_GucciGames.gameEngine.objectActions;
 import java.util.Iterator;
 import java.util.List;
 
+import voogasalad_GucciGames.gameEngine.CommunicationParams.CommunicationParams;
 import voogasalad_GucciGames.gameEngine.gameRules.ActionToRuleMap;
 import voogasalad_GucciGames.gameEngine.gameRules.Rules;
 
@@ -11,22 +12,23 @@ import voogasalad_GucciGames.gameEngine.gameRules.Rules;
  * @author Sally Al class based on template method pattern.
  *
  */
-public abstract class Action {
+public abstract class MapObjectEvent {
 	private String myName;
 
-	public Action(String actionName) {
+	public MapObjectEvent(String actionName) {
 		myName = actionName;
 	}
 
-	public final void executeAction(ActionToRuleMap mapobj, int playerID) {
-		Boolean check = checkRules(mapobj, playerID);
+	// must keep executeAction() final
+	public final void executeAction(CommunicationParams params, int playerID) {
+		Boolean check = checkRules(params.getActionToRuleMap(), playerID);
 		if (check) {
-			execute();
+			execute(params);
 		}
 
 	}
 
-	protected Boolean checkRules(ActionToRuleMap mapobj, int playerID) {
+	private Boolean checkRules(ActionToRuleMap mapobj, int playerID) {
 		Boolean ruletest = false;
 		if (mapobj.contains(myName)) {
 			List<Rules> list = mapobj.getKey(myName);
@@ -34,6 +36,9 @@ public abstract class Action {
 				Iterator<Rules> ruleItr = list.iterator();
 				while (ruleItr.hasNext()) {
 					ruletest = ruleItr.next().executeRules(playerID);
+					if (ruletest == false) {
+						return ruletest;
+					}
 				}
 			}
 		}
@@ -41,6 +46,6 @@ public abstract class Action {
 		return ruletest;
 	}
 
-	protected abstract void execute();
+	protected abstract CommunicationParams execute(CommunicationParams params);
 
 }

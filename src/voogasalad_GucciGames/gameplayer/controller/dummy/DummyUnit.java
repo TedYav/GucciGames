@@ -1,11 +1,9 @@
-package voogasalad_GucciGames.gameplayer.windows.mainwindow.map.cell;
+package voogasalad_GucciGames.gameplayer.controller.dummy;
 
 import java.util.Arrays;
 import java.util.List;
 
-import voogasalad_GucciGames.gameplayer.windows.mainwindow.map.cell.contents.MapObjectBasicType;
-import voogasalad_GucciGames.gameplayer.windows.mainwindow.map.cell.contents.PlayerMapObjectInterface;
-import voogasalad_GucciGames.gameplayer.windows.mainwindow.map.cell.contents.TargetCoordinate;
+import voogasalad_GucciGames.gameplayer.controller.PlayerMapObjectInterface;
 
 
 /**
@@ -45,7 +43,7 @@ public class DummyUnit implements PlayerMapObjectInterface {
 	}
 
 	@Override
-	public List<TargetCoordinate> getActionTarget() {
+	public List<TargetCoordinate> getActionTargets(String action) {
 		return null;
 	}
 
@@ -57,6 +55,18 @@ public class DummyUnit implements PlayerMapObjectInterface {
 
 	@Override
 	public int getLayer() {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	@Override
+	public List<String> getAttributes() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public int getPlayerID() {
 		// TODO Auto-generated method stub
 		return 0;
 	}

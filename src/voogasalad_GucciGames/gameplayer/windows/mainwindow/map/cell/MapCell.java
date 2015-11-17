@@ -7,17 +7,21 @@ import java.util.Map;
 import java.util.ResourceBundle;
 import java.util.TreeMap;
 
+import javafx.event.EventHandler;
 import javafx.geometry.Point2D;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.StackPane;
+import javafx.scene.paint.Color;
 import javafx.scene.shape.Shape;
 import voogasalad_GucciGames.gameplayer.controller.GameControllerInterface;
+import voogasalad_GucciGames.gameplayer.controller.PlayerMapObjectInterface;
+import voogasalad_GucciGames.gameplayer.controller.dummy.MapObjectBasicType;
+import voogasalad_GucciGames.gameplayer.eventhandler.MapMouseHandler;
 import voogasalad_GucciGames.gameplayer.windows.mainwindow.map.MapInterface;
-import voogasalad_GucciGames.gameplayer.windows.mainwindow.map.cell.contents.MapObjectBasicType;
-import voogasalad_GucciGames.gameplayer.windows.mainwindow.map.cell.contents.PlayerMapObjectInterface;
 
 public abstract class MapCell implements MapCellInterface {
 
@@ -30,14 +34,14 @@ public abstract class MapCell implements MapCellInterface {
 	protected Map<Integer, GridPane> myLayerMap;
 	
 	private StackPane myOverlayLayer;
-	protected Shape mySelectedOverlay;
-	protected Shape myHighlightOverlay;
-	protected Shape myFogOverlay;
-	protected Shape myHoverOverlay;
+	protected Shape myOverlay;
+	
+	private boolean selected;
+	private boolean active;
 	
 	private GameControllerInterface myController;
 	
-	private double mySize;
+	protected double mySize;
 		
 	private Map<Integer, List<PlayerMapObjectInterface>> myObjects;
 	
@@ -45,16 +49,19 @@ public abstract class MapCell implements MapCellInterface {
 		initializeVariables(controller, myCellSize);
 		initializePanes();
 		initializeOverlays();
+		initializeHandlers();
 	}
 	
 	// dependent on shape
-	protected abstract void initializeOverlays();
+	protected abstract void initializeOverlayShapes();
 
 	private void initializeVariables(GameControllerInterface controller, double myCellSize){
 		myController = controller;
 		mySize = myCellSize;
 		myObjects = new HashMap<>();
 		myLayerMap = new TreeMap<>();
+		selected = false;
+		active = false;
 	}
 		
 	private void initializePanes() {
@@ -62,7 +69,15 @@ public abstract class MapCell implements MapCellInterface {
 		myObjectLayer = new StackPane();
 		myOverlayLayer = new StackPane();
 		myParent.getChildren().addAll(myObjectLayer, myOverlayLayer);
-		myParent.setMaxSize(mySize, mySize);
+		myParent.getStylesheets().add(myConfig.getString("StyleSheet"));
+	}
+	
+	private void initializeOverlays() {
+		initializeOverlayShapes();
+		myOverlayLayer.getChildren().add(myOverlay);
+	}
+	
+	private void initializeHandlers() {
 	}
 
 	public Parent getParent(){
@@ -84,13 +99,19 @@ public abstract class MapCell implements MapCellInterface {
 	
 	@Override
 	public void activate() {
-		
+		handleActionInProgress();
+	}
+
+	private void handleActionInProgress() {
+		if(myController.actionInProgress() && active){
+			
+		}
 	}
 
 	@Override
 	public void hover() {
-		// TODO Auto-generated method stub
-		
+		myOverlay.setFill(Color.YELLOW);
+		myOverlay.setOpacity(.5);
 	}
 
 	@Override
@@ -147,5 +168,10 @@ public abstract class MapCell implements MapCellInterface {
 	public void addTemporaryOverlay(Node overlay, double duration){
 		
 	}
+	
+	    @Override
+	    public Map<Integer, List<PlayerMapObjectInterface>> getUnits () {
+	        return myObjects;
+	    }
 	
 }

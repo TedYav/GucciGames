@@ -20,24 +20,28 @@ import javafx.scene.control.ScrollPane.ScrollBarPolicy;
 import javafx.scene.image.Image;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
+import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Text;
+import javafx.stage.Screen;
 import voogasalad_GucciGames.gameplayer.controller.GameControllerInterface;
 import voogasalad_GucciGames.gameplayer.controller.GameEngineToGamePlayerInterface;
+import voogasalad_GucciGames.gameplayer.controller.PlayerMapObjectInterface;
+import voogasalad_GucciGames.gameplayer.controller.dummy.DummyUnit;
+import voogasalad_GucciGames.gameplayer.controller.dummy.TargetCoordinate;
 import voogasalad_GucciGames.gameplayer.datastructures.TwoWayMap;
 import voogasalad_GucciGames.gameplayer.windows.GameScene;
 import voogasalad_GucciGames.gameplayer.windows.WindowComponent;
 import voogasalad_GucciGames.gameplayer.windows.mainwindow.map.MapInterface;
-import voogasalad_GucciGames.gameplayer.windows.mainwindow.map.cell.DummyUnit;
 import voogasalad_GucciGames.gameplayer.windows.mainwindow.map.cell.MapCell;
 import voogasalad_GucciGames.gameplayer.windows.mainwindow.map.cell.MapCellInterface;
 import voogasalad_GucciGames.gameplayer.windows.mainwindow.map.cell.SquareCell;
 import voogasalad_GucciGames.gameplayer.windows.mainwindow.map.cell.contents.CellUnit;
-import voogasalad_GucciGames.gameplayer.windows.mainwindow.map.cell.contents.PlayerMapObjectInterface;
 import voogasalad_GucciGames.gameplayer.windows.mainwindow.map.mini.MiniMap;
 
 public class MainMap extends WindowComponent implements MapInterface {
@@ -51,7 +55,7 @@ public class MainMap extends WindowComponent implements MapInterface {
 	private List<MapCell> myActiveCells;
 
 	
-	private StackPane myStackPane;
+	private StackPane myParent;
 	private ScrollPane myFirstLayer;
 	private GridPane myMap;
 	private Pane mySecondLayer;
@@ -60,7 +64,6 @@ public class MainMap extends WindowComponent implements MapInterface {
 	private int myCellsWide, myCellsTall;
 	private double myCellSize;
 	private double myBorderWidth;
-	private double myMoveDistance;
 	
 	// TODO: leftbar and rightbar communicate about individual selection
 	// TODO: later, convert to map by unit type
@@ -68,20 +71,19 @@ public class MainMap extends WindowComponent implements MapInterface {
 	
 	public MainMap(GameScene scene, GameControllerInterface controller) {
 		super(scene, controller);
+		initializePanes();
 		initializeVariables();
 		initializeMap();
-		initializePanes();
 		initializeMiniMap();
 		drawMap();
 	}
 	
 	
 	private void initializeVariables() {
-		myCellSize = Double.parseDouble(myConfig.getString("CellSize"));
+		myCellSize = Screen.getPrimary().getBounds().getWidth()/Double.parseDouble(myConfig.getString("NumCells"));
 		myCellsWide = 50;
 		myCellsTall = 50;
 		myBorderWidth = Double.parseDouble(myConfig.getString("BorderWidth"));
-		myMoveDistance = Double.parseDouble(myConfig.getString("MoveDistance"));
 		mySelectedUnits = FXCollections.observableArrayList();
 		myController.setMap(this);
 	}
@@ -96,15 +98,15 @@ public class MainMap extends WindowComponent implements MapInterface {
 	}
 	
 	private void initializePanes(){
-		myStackPane = new StackPane();
+		myParent = new StackPane();
 		myFirstLayer = new ScrollPane();
 		myMap = new GridPane();
 		mySecondLayer = new Pane();
 		
-		myStackPane.getChildren().add(myFirstLayer);
+		myParent.getChildren().add(myFirstLayer);
 		myFirstLayer.setContent(myMap);
-		myStackPane.getChildren().add(mySecondLayer);
-		
+//		myParent.getChildren().add(mySecondLayer);
+//		
 		myFirstLayer.setVbarPolicy(ScrollBarPolicy.NEVER);
 		myFirstLayer.setHbarPolicy(ScrollBarPolicy.NEVER);
 		myFirstLayer.setPannable(true);
@@ -131,45 +133,30 @@ public class MainMap extends WindowComponent implements MapInterface {
 		for(int i=0; i<myCellsWide; i++){
 			for(int j=0; j<myCellsTall; j++){
 				MapCell c = new SquareCell(myController, myCellSize);
+				c.getParent().setOnMouseClicked(e->{
+				    updateSelectedUnits(c);
+				});
 				c.addObject(new DummyUnit(i,j));
 				myCellMap.put(new Point2D(i,j), c);
 				myMap.add(c.getParent(), i, j);
 			}
 		}
-        myStackPane.getStyleClass().add(myConfig.getString("MainCSSClass"));
-        myStackPane.applyCss();
+        myParent.getStyleClass().add(myConfig.getString("MainCSSClass"));
+        myParent.applyCss();
         myMap.getStyleClass().add(myConfig.getString("MainCSSClass"));
         myMap.applyCss();
 	}
 	
+	private void updateSelectedUnits(MapCell cell) {
+	    mySelectedUnits.clear();
+	    System.out.println("sfdsaf");
+	    for (Integer i: cell.getUnits().keySet()) {
+	        mySelectedUnits.addAll(cell.getUnits().get(i));
+	    }
+	}
 	@Override
 	public Parent getParent() {
-		return myStackPane;
-	}
-
-	@Override
-	public void move(KeyCode direction) {
-		double translateX = convertCode(direction, KeyCode.LEFT, KeyCode.RIGHT);
-		double translateY = convertCode(direction, KeyCode.UP, KeyCode.DOWN);
-
-		if(allowMove(translateX, myMap.getTranslateX(), myMap.getLayoutBounds().getMaxX() - myFirstLayer.getLayoutBounds().getMaxX())){
-			myMap.setTranslateX(myMap.getTranslateX()+translateX);
-		}
-		
-		if(allowMove(translateY, myMap.getTranslateY(), myMap.getLayoutBounds().getMaxY() - myFirstLayer.getLayoutBounds().getMaxY())){
-			myMap.setTranslateY(myMap.getTranslateY()+translateY);
-		}	
-	}
-	
-	private boolean allowMove(double translate, double current, double max){
-		return (translate > 0)?(current < 0):(-(current))<(max-Math.abs(translate/2));
-	}
-	
-	private double convertCode(KeyCode direction, KeyCode negative, KeyCode positive){
-		if(direction == negative || direction == positive){
-			return ((direction == positive)?1:-1)*(myMoveDistance*myCellSize);
-		}
-		return 0;
+		return myParent;
 	}
 
 	private void fogCells() {
@@ -203,9 +190,11 @@ public class MainMap extends WindowComponent implements MapInterface {
 	}
 
 	@Override
-	public void highlightCell(Point2D target) {
-		myCellMap.get(target).toggleHighlight(true);
-		myHighlightedCells.add(myCellMap.get(target));
+	public void highlightCells(List<TargetCoordinate> targets) {
+		targets.stream()
+			.map((t) -> new Point2D(t.getX(), t.getY()))
+			.map((c) -> myCellMap.get(c))
+			.forEach((c) -> { c.toggleHighlight(true); myHighlightedCells.add(c);} );
 	}
 	
 	@Override
