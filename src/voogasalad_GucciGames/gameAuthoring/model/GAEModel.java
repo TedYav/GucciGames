@@ -1,16 +1,19 @@
 package voogasalad_GucciGames.gameAuthoring.model;
 
+
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+
 import javafx.collections.ListChangeListener;
-import voogasalad_GucciGames.GameEngineToGameAuthoringEnvironment;
 import voogasalad_GucciGames.gameAuthoring.IModelGaeController;
 import voogasalad_GucciGames.gameData.XMLGameData;
 import voogasalad_GucciGames.gameEngine.GameMap;
+import voogasalad_GucciGames.gameEngine.MainGameEngine;
+import voogasalad_GucciGames.gameEngine.gameConditions.defaultConditions.game.GlobalGameCondition;
+import voogasalad_GucciGames.gameEngine.gamePlayer.AllPlayers;
+import voogasalad_GucciGames.gameEngine.gamePlayer.GamePlayerPerson;
 import voogasalad_GucciGames.gameEngine.mapObject.DefaultMapObjectType;
-import voogasalad_GucciGames.gameEngine.mapObject.MapObject;
-import voogasalad_GucciGames.gameEngine.mapObject.MapObjectType;
-import voogasalad_GucciGames.gameData.XMLParser;
 import voogasalad_GucciGames.gameEngine.mapObject.MapObject;
 import voogasalad_GucciGames.gameEngine.mapObject.MapObjectType;
 
@@ -18,13 +21,17 @@ public class GAEModel implements IGAEModel{
     private GameSourceData data;
     private IModelGaeController myController;
     private XMLGameData xmlData;
-    private GameEngineToGameAuthoringEnvironment engine;
+    private XMLWriter writer;
+    //private GameEngineToGameAuthoringEnvironment engine;
+    private AllPlayers players;
+    private GlobalGameCondition conditions;
     private GameMap map;
+	private MainGameEngine engine;
     
     public GAEModel(IModelGaeController controller) {
-    	data = new GameSourceData();
     	myController = controller;
     	data = new GameSourceData();
+    	writer = new XMLWriter();
     }
 
     @Override
@@ -70,8 +77,19 @@ public class GAEModel implements IGAEModel{
 
     @Override
     public void saveToXML () {
+    	
+		Map<Integer, GamePlayerPerson> mapOfPlayers = new HashMap<Integer, GamePlayerPerson>();	
+//		List<GamePlayerPerson> listOfPlayers = new ArrayList<GamePlayerPerson>();	
+		AllPlayers myPlayers = new AllPlayers(mapOfPlayers);
+//		GameMap myMap = new GameMap(myPlayers);
+//		PlayerUnitCondition myRule = new PlayerUnitCondition(listOfPlayers, null); 
+//		OnlyOnePlayerHasUnitsCondition myRule = new OnlyOnePlayerHasUnitsCondition(myMap);
+		MainGameEngine engine = new MainGameEngine(myPlayers, null, null);
+		writer.write(engine);
+    	
         //xmlData.write();
     }
+    
     private boolean validate(){ //TODO
         return false;
     }
@@ -95,10 +113,6 @@ public class GAEModel implements IGAEModel{
 	public List<MapObjectType> getTileTypes() {
 		// TODO Auto-generated method stub
 		
-		
-		
-		
-		
 		return null;
 	}
 
@@ -120,5 +134,17 @@ public class GAEModel implements IGAEModel{
         validate();
         data.addToMap(mapObj);
     }
+    
+//	public static void main(String[] args){
+//		Map<Integer, GamePlayerPerson> mapOfPlayers = new HashMap<Integer, GamePlayerPerson>();	
+////		List<GamePlayerPerson> listOfPlayers = new ArrayList<GamePlayerPerson>();	
+//		AllPlayers myPlayers = new AllPlayers(mapOfPlayers);
+//		MainGameEngine engine = new MainGameEngine(myPlayers, null, null);
+//		System.out.println("made game engine");
+//		XMLWriter writer = new XMLWriter();
+//		writer.write(engine);
+//		
+//	}
+
 
 }
