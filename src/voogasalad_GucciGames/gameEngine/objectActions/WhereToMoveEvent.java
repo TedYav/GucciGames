@@ -1,6 +1,7 @@
 package voogasalad_GucciGames.gameEngine.objectActions;
 
-import voogasalad_GucciGames.gameEngine.CommunicationParams.CommunicationParams;
+import voogasalad_GucciGames.gameEngine.CommunicationParams.BasicParameters;
+import voogasalad_GucciGames.gameEngine.CommunicationParams.CommunicationParameters;
 import voogasalad_GucciGames.gameEngine.CommunicationParams.MainGameEngineCommunicationParams;
 import voogasalad_GucciGames.gameEngine.CommunicationParams.WhereToParams;
 import voogasalad_GucciGames.gameEngine.defaultCharacteristics.MovableCharacteristic;
@@ -20,12 +21,13 @@ public class WhereToMoveEvent extends MapObjectEvent{
 	}
 
 	@Override
-	protected CommunicationParams execute(CommunicationParams params) {
+	protected CommunicationParameters execute(CommunicationParameters params) {
 		// TODO Auto-generated method stub
-		AllPlayers players = params.getPlayers();
+		BasicParameters basic = (BasicParameters) params;
+		AllPlayers players = basic.getPlayers();
 		GamePlayerPerson player = players.getPlayerById(((MainGameEngineCommunicationParams) params).getTurn());
 		TargetCoordinateMultiple result = new TargetCoordinateMultiple();
-		MapObject calledMe = params.getCalledMe();
+		MapObject calledMe = basic.getCalledMe();
 
 		// getting the range
 		MovableCharacteristic mc = (MovableCharacteristic) calledMe.getObjectType().getCharacteristic("MovableCharacteristic");
@@ -44,7 +46,7 @@ public class WhereToMoveEvent extends MapObjectEvent{
 			}
 		});
 		
-		return new WhereToParams(params,result);
+		return new WhereToParams(result);
 	}
 
 

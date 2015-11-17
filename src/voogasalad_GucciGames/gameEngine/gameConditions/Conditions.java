@@ -3,7 +3,7 @@ package voogasalad_GucciGames.gameEngine.gameConditions;
 
 import java.util.List;
 
-import voogasalad_GucciGames.gameEngine.CommunicationParams.CommunicationParams;
+import voogasalad_GucciGames.gameEngine.CommunicationParams.BasicParameters;
 import voogasalad_GucciGames.gameEngine.gameConditions.oucomes.Outcome;
 import voogasalad_GucciGames.gameEngine.gamePlayer.GamePlayerPerson;
 
@@ -15,7 +15,7 @@ import voogasalad_GucciGames.gameEngine.gamePlayer.GamePlayerPerson;
 public abstract class Conditions {
 	private Outcome myOutcome;
 
-	public Conditions(List<GamePlayerPerson> players, CommunicationParams params) {
+	public Conditions(List<GamePlayerPerson> players, BasicParameters params) {
 		myOutcome = new Outcome(params.getPlayers());
 	}
 

@@ -2,8 +2,8 @@ package voogasalad_GucciGames.gameEngine.objectActions;
 
 import java.util.List;
 
-import voogasalad_GucciGames.gameEngine.CommunicationParams.CommunicationParams;
-import voogasalad_GucciGames.gameEngine.CommunicationParams.EmptyParams;
+import voogasalad_GucciGames.gameEngine.CommunicationParams.CommunicationParameters;
+import voogasalad_GucciGames.gameEngine.CommunicationParams.EmptyParameters;
 import voogasalad_GucciGames.gameEngine.CommunicationParams.LocationParams;
 import voogasalad_GucciGames.gameEngine.defaultCharacteristics.AttackCharacteristic;
 import voogasalad_GucciGames.gameEngine.defaultCharacteristics.HealthCharacteristic;
@@ -18,17 +18,17 @@ public class AttackEvent extends MapObjectEvent{
 	}
 
 	@Override
-	protected CommunicationParams execute(CommunicationParams params) {
+	protected CommunicationParameters execute(CommunicationParameters params) {
 		// TODO Auto-generated method stub
 		LocationParams moveParams = (LocationParams) params;
 		TargetCoordinateSingle target = moveParams.getNewLocation();
-		MapObject calledMe = params.getCalledMe();
+		MapObject calledMe = moveParams.getCalledMe();
 		double damage = ((AttackCharacteristic) calledMe.getObjectType().getCharacteristic("AttackCharacteristic")).getDamage();
 		
-		List<Integer> ids = params.getPlayers().getAllIds();
+		List<Integer> ids = moveParams.getPlayers().getAllIds();
 		
 		for(Integer id: ids){
-			for(MapObject mo: params.getPlayers().getPlayerById(id).getMapObjects()){
+			for(MapObject mo: moveParams.getPlayers().getPlayerById(id).getMapObjects()){
 				if(mo.getCoordinate().equals(target)){
 					HealthCharacteristic hc = (HealthCharacteristic) mo.getObjectType().getCharacteristic("HealthCharacteristic");
 					hc.changeHealth(damage);
@@ -36,7 +36,7 @@ public class AttackEvent extends MapObjectEvent{
 				}
 			}
 		}
-		return new EmptyParams();
+		return new EmptyParameters();
 	}
 
 }

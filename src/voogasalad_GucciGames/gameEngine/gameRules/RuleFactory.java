@@ -4,7 +4,7 @@ import java.lang.reflect.Constructor;
 import java.lang.reflect.InvocationTargetException;
 import java.util.ResourceBundle;
 
-import voogasalad_GucciGames.gameEngine.CommunicationParams.CommunicationParams;
+import voogasalad_GucciGames.gameEngine.CommunicationParams.BasicParameters;
 
 /**
  *
@@ -19,7 +19,7 @@ public class RuleFactory {
 
 	}
 
-	public CommunicationParams createRule(String actionName, CommunicationParams communicationParams) throws NoSuchMethodException, SecurityException, ClassNotFoundException, InstantiationException, IllegalAccessException, IllegalArgumentException, InvocationTargetException {
+	public BasicParameters createRule(String actionName, BasicParameters communicationParams) throws NoSuchMethodException, SecurityException, ClassNotFoundException, InstantiationException, IllegalAccessException, IllegalArgumentException, InvocationTargetException {
 		if(ruleBundle.containsKey(actionName)){
 			Class<Rules> condition = (Class<Rules>) Class.forName(ruleBundle.getString(actionName));
 			Constructor<Rules> condConstructor = condition.getDeclaredConstructor();

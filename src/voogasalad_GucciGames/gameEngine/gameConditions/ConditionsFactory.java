@@ -7,7 +7,7 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.ResourceBundle;
 
-import voogasalad_GucciGames.gameEngine.CommunicationParams.CommunicationParams;
+import voogasalad_GucciGames.gameEngine.CommunicationParams.BasicParameters;
 import voogasalad_GucciGames.gameEngine.gamePlayer.GamePlayerPerson;
 
 /**
@@ -30,7 +30,7 @@ public class ConditionsFactory {
 
 	}
 
-	public CommunicationParams createCondition(ConditionParams condParams, CommunicationParams params)
+	public BasicParameters createCondition(ConditionParams condParams, BasicParameters params)
 					throws InstantiationException, IllegalAccessException, ClassNotFoundException,
 					IllegalArgumentException, InvocationTargetException, NoSuchMethodException, SecurityException {
 		// 1. default vs custom rule
@@ -47,7 +47,7 @@ public class ConditionsFactory {
 				}
 				// thanks Efe!
 				Class<Conditions> condition = (Class<Conditions>) Class.forName(conditionBundle.getString(condParams.getName()));
-				Constructor<Conditions> condConstructor = condition.getDeclaredConstructor(List.class,CommunicationParams.class );
+				Constructor<Conditions> condConstructor = condition.getDeclaredConstructor(List.class,BasicParameters.class );
 				Conditions conditionInstance = condConstructor.newInstance(players, params);
 				//params.getcreatedConditons().addCondition(condParams.getName(), conditionInstance);
 			} else {

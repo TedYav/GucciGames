@@ -3,7 +3,8 @@ package voogasalad_GucciGames.usecases;
 import java.util.List;
 
 import voogasalad_GucciGames.gameEngine.mapObject.MapObject;
-import voogasalad_GucciGames.gameEngine.CommunicationParams.CommunicationParams;
+import voogasalad_GucciGames.gameEngine.CommunicationParams.BasicParameters;
+import voogasalad_GucciGames.gameEngine.CommunicationParams.CommunicationParameters;
 import voogasalad_GucciGames.gameEngine.mapObject.TheMap;
 import voogasalad_GucciGames.gameEngine.objectActions.MapObjectEvent;
 import voogasalad_GucciGames.gameEngine.targetCoordinate.ATargetCoordinate;
@@ -22,7 +23,7 @@ public class UseMovement extends MapObjectEvent{
 	}
 
 	@Override
-	protected CommunicationParams execute(CommunicationParams params) {
+	protected CommunicationParameters execute(CommunicationParameters params) {
 		// TODO Auto-generated method stub
 		return null;
 	}

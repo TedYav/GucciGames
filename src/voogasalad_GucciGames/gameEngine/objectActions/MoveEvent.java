@@ -1,7 +1,7 @@
 package voogasalad_GucciGames.gameEngine.objectActions;
 
-import voogasalad_GucciGames.gameEngine.CommunicationParams.CommunicationParams;
-import voogasalad_GucciGames.gameEngine.CommunicationParams.EmptyParams;
+import voogasalad_GucciGames.gameEngine.CommunicationParams.CommunicationParameters;
+import voogasalad_GucciGames.gameEngine.CommunicationParams.EmptyParameters;
 import voogasalad_GucciGames.gameEngine.CommunicationParams.LocationParams;
 import voogasalad_GucciGames.gameEngine.mapObject.MapObject;
 import voogasalad_GucciGames.gameEngine.targetCoordinate.TargetCoordinateSingle;
@@ -17,14 +17,14 @@ public class MoveEvent extends MapObjectEvent{
 	}
 
 	@Override
-	protected CommunicationParams execute(CommunicationParams params) {
+	protected CommunicationParameters execute(CommunicationParameters params) {
 		// TODO Auto-generated method stub
 		LocationParams moveParams = (LocationParams) params;
 		TargetCoordinateSingle target = moveParams.getNewLocation();
-		MapObject moving = params.getCalledMe();
+		MapObject moving = moveParams.getCalledMe();
 		moving.setCoordinate(target);
 		moveParams.getMovePerson().updateMoves();
-		return new EmptyParams();
+		return new EmptyParameters();
 	}
 
 }

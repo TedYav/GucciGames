@@ -2,7 +2,8 @@ package voogasalad_GucciGames.gameEngine.objectActions;
 
 import java.util.List;
 
-import voogasalad_GucciGames.gameEngine.CommunicationParams.CommunicationParams;
+import voogasalad_GucciGames.gameEngine.CommunicationParams.BasicParameters;
+import voogasalad_GucciGames.gameEngine.CommunicationParams.CommunicationParameters;
 import voogasalad_GucciGames.gameEngine.CommunicationParams.WhereToParams;
 import voogasalad_GucciGames.gameEngine.defaultCharacteristics.AttackCharacteristic;
 import voogasalad_GucciGames.gameEngine.gamePlayer.AllPlayers;
@@ -19,15 +20,16 @@ public class WhereToAttackEvent extends MapObjectEvent{
 	}
 
 	@Override
-	protected CommunicationParams execute(CommunicationParams params) {
+	protected CommunicationParameters execute(CommunicationParameters params) {
 		// TODO Auto-generated method stub
-		AllPlayers players = params.getPlayers();
+		BasicParameters basic = (BasicParameters) params;
+		AllPlayers players = basic.getPlayers();
 		List<Integer> ids = players.getAllIds();
 		
 		TargetCoordinateMultiple result = new TargetCoordinateMultiple();
 
 		// getting the range
-		MapObject calledMe = params.getCalledMe();
+		MapObject calledMe = basic.getCalledMe();
 		AttackCharacteristic ac = (AttackCharacteristic) calledMe.getObjectType().getCharacteristic("AttackCharacteristic");
 		double range = ac.getRange();
 		
@@ -46,7 +48,7 @@ public class WhereToAttackEvent extends MapObjectEvent{
 			
 		}
 		
-		return new WhereToParams(params,result);
+		return new WhereToParams(result);
 	}
 
 }
