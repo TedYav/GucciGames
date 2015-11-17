@@ -33,12 +33,6 @@ public class TileTab extends AbstractTab {
 		addAddButtonListener();
 		
 	}
-
-	@Override
-	public void update() {
-		// TODO Auto-generated method stub
-
-	}
 	
 	//TODO: create add button, pass saveCustomObj to dialog
 

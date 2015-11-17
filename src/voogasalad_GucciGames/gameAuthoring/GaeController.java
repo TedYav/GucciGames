@@ -47,21 +47,28 @@ public class GaeController implements IGuiGaeController, IModelGaeController{
         model.createCustomUnitType(m);
     }
     @Override
-    public List<MapObjectType> getImmutableTileTypes () {
+    public ObservableList<MapObjectType> getImmutableTileTypes () {
         return model.getImmutableTileTypes();
     }
-    public List<MapObjectType> getTileTypes () {
-        // TODO Auto-generated method stub
-        return (ObservableList<MapObjectType>) model.getTileTypes();
+    public ObservableList<MapObjectType> getTileTypes () {
+        return model.getTileTypes();
     }
     @Override
-    public List<MapObjectType> getImmutableUnitTypes () {
-        return (ObservableList<MapObjectType>) model.getImmutableUnitTypes();
+    public ObservableList<MapObjectType> getImmutableUnitTypes () {
+        return model.getImmutableUnitTypes();
     }
-    public List<MapObjectType> getUnitTypes () {
-        // TODO Auto-generated method stub
-        return null;
+    public ObservableList<MapObjectType> getUnitTypes () {
+        return model.getUnitTypes();
     }
+    
+    @Override
+	public ObservableList<MapObjectType> getImmutableStructureTypes() {
+		return model.getImmutableStructureTypes();
+	}
+	public ObservableList<MapObjectType> getStructureTypes() {
+		return model.getStructureTypes();
+	}
+	
     @Override
     public void saveToXML () {
         model.saveToXML();
@@ -111,4 +118,5 @@ public class GaeController implements IGuiGaeController, IModelGaeController{
 		p.printProperty();
 		
 	}
+
 }
