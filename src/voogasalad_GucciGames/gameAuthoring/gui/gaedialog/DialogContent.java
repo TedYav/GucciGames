@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Properties;
+
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
@@ -17,11 +18,12 @@ import javafx.scene.control.TextField;
 import javafx.scene.control.Toggle;
 import javafx.scene.control.ToggleGroup;
 import javafx.scene.layout.HBox;
+import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 import javafx.stage.FileChooser;
 import javafx.stage.FileChooser.ExtensionFilter;
 
-public class DialogContent {
+abstract class DialogContent {
 	protected HBox createElement(String name, Node n, String hboxId){
 		HBox hbox = new HBox();
 		Text key = new Text(name);
@@ -35,6 +37,8 @@ public class DialogContent {
 		List<String> propertiesList = Arrays.asList(items.split("\\s*,\\s*"));	
 		return propertiesList;		
 	}
+	
+	protected abstract VBox getContent();
 	
 //	protected ComboBox makeDropDownList(Properties prop, String itemsKey){
 //		List<String> propertiesList = parseStringToList(prop, itemsKey);

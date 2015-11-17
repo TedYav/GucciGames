@@ -37,6 +37,7 @@ abstract public class GaeDialog{
 	protected abstract VBox initializeDialog();
 	protected abstract VBox initializeDialog(VBox customProperties);
 	
+	/**/
 	protected HBox initializeControl(Properties prop, String keyStyleId, IDialogGaeController dialogGaeController, ObjectProperty property){
 		HBox controls = new HBox();
 		controls.setId("hbox-control");

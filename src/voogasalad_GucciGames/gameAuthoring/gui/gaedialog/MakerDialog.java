@@ -13,39 +13,35 @@ import javafx.scene.text.Text;
  *
  */
 
-public class MakerDialog extends DialogContent {
-	private VBox myContent;
-	
-	private ISaveObjProperty saveObjProp;
-	private ISaveGroovy saveGroovy;
-	private ISaveCustomObj saveCustomObj;
+public class MakerDialog {
+	private VBox content = new VBox();
 	private DialogElements dialogElements;
+	private DialogContent customContent;
+	private GroovyTabPane groovyTabPane;
+	private SaveField save;
 	
 	
-	public MakerDialog(DialogElements dialogElements, DialogContent customContent){
+	public MakerDialog(DialogElements dialogElements, DialogContent customContent, 
+			GroovyTabPane groovyTabPane, SaveField save ){
 		this.dialogElements = dialogElements;	
-		myContent = initContent();		
+		this.customContent = customContent;
+		this.groovyTabPane = groovyTabPane;
+		this.save = save;
+		initContent();		
 	}
 	
-	private VBox initContent(){
-		VBox vbox = new VBox();
-		Text titleTextElement = new Text(dialogElements.getDialogProperties().getProperty("title"));
-		 titleTextElement.setId("title");
-//		 TextField nameTextField = new TextField();	
-//		 nameTextField.textProperty().addListener((observable, oldValue, newValue)->{
-//			 System.out.println("changed");
-//			 saveObjProp.saveObjProperty("name", newValue);
-//		 });
-		 TextInputField name = new TextInputField(dialogElements, "name");
-//		 HBox nameElement = createElement(prop.getProperty("name"), 
-//				 nameTextField, "hbox-element");
-		 HBox imageElement = createElement(prop.getProperty("image"),
-				 makeBrowseElement(prop, "browse", "filechoosertitle", saveObjProp), "hbox-element");
-		return vbox;
+	private void initContent(){
+		Text title = new Text(dialogElements.getDialogProperties().getProperty("title"));
+		title.setId("title");
+		TextInputField name = new TextInputField(dialogElements, "name");
+		FileBrowserField fileBrowser = new FileBrowserField(dialogElements, "browse", "filechoosertitle");
+		content.getChildren().addAll(title, name.getContent(), fileBrowser.getContent(), customContent.getContent(), 
+				groovyTabPane.getContent(), save.getContent());
+		
 	}
 	
 	protected VBox getContent(){
-		return myContent;
+		return content;
 	}
 
 }
