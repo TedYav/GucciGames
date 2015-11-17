@@ -28,6 +28,22 @@ public class AllPlayers {
 	public int numberOfPlayer() {
 		return myListOfPlayers.size();
 	}
+	
+	/***
+	 * 
+	 * @param id
+	 * The neutral player with the game tiles (MapObject) has id -1.
+	 * @return
+	 */
+	
+	public GamePlayerPerson getPlayerById(int id){
+		for(GamePlayerPerson player: myListOfPlayers){
+			if(player.getMyPlayerId()==id){
+				return player;
+			}
+		}
+		return null;
+	}
 
 	public List<UnitCollection> getAllUnits() {
 
@@ -51,12 +67,9 @@ public class AllPlayers {
 
 	}
 
-	public GamePlayerPerson getActivePlayer(int index) {
-		return myListOfPlayers.get(index);
-	}
-
 	public int getCurrentTurn() {
-		return this.myCurrentTurnCounter.getCurrentTurn();
+		
+		return myListOfPlayers.get(this.myCurrentTurnCounter.getCurrentTurn()).getMyPlayerId();
 	}
 
 	public void removePlayer(int id) {

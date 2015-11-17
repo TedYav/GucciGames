@@ -13,8 +13,6 @@ import voogasalad_GucciGames.gameEngine.gamePlayer.AllPlayers;
 import voogasalad_GucciGames.gameEngine.gamePlayer.GamePlayerPerson;
 import voogasalad_GucciGames.gameEngine.mapObject.MapObject;
 import voogasalad_GucciGames.gameEngine.mapObject.MapObjectType;
-import voogasalad_GucciGames.gameEngine.mapObject.MoveAction;
-import voogasalad_GucciGames.gameEngine.mapObject.WhereToAttackAction;
 import voogasalad_GucciGames.gameEngine.targetCoordinate.ATargetCoordinate;
 import voogasalad_GucciGames.gameEngine.targetCoordinate.TargetCoordinateMultiple;
 import voogasalad_GucciGames.gameEngine.targetCoordinate.TargetCoordinateSingle;
