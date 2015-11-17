@@ -1,15 +1,8 @@
 package voogasalad_GucciGames.gameplayer.windows.mainwindow.map.main;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
-import java.util.Observable;
-import java.util.Observer;
 import java.util.ResourceBundle;
-
-import com.sun.javafx.scene.traversal.Direction;
-
 import javafx.collections.FXCollections;
 import javafx.collections.ListChangeListener;
 import javafx.collections.ObservableList;
@@ -17,20 +10,11 @@ import javafx.geometry.Point2D;
 import javafx.scene.Parent;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.control.ScrollPane.ScrollBarPolicy;
-import javafx.scene.image.Image;
-import javafx.scene.input.KeyCode;
-import javafx.scene.input.KeyEvent;
-import javafx.scene.input.MouseEvent;
-import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
-import javafx.scene.paint.Color;
-import javafx.scene.shape.Rectangle;
-import javafx.scene.text.Text;
 import javafx.stage.Screen;
 import voogasalad_GucciGames.gameplayer.controller.GameControllerInterface;
-import voogasalad_GucciGames.gameplayer.controller.GameEngineToGamePlayerInterface;
 import voogasalad_GucciGames.gameplayer.controller.PlayerMapObjectInterface;
 import voogasalad_GucciGames.gameplayer.controller.dummy.DummyTile;
 import voogasalad_GucciGames.gameplayer.controller.dummy.TargetCoordinate;
@@ -41,7 +25,6 @@ import voogasalad_GucciGames.gameplayer.windows.mainwindow.map.MapInterface;
 import voogasalad_GucciGames.gameplayer.windows.mainwindow.map.cell.MapCell;
 import voogasalad_GucciGames.gameplayer.windows.mainwindow.map.cell.MapCellInterface;
 import voogasalad_GucciGames.gameplayer.windows.mainwindow.map.cell.SquareCell;
-import voogasalad_GucciGames.gameplayer.windows.mainwindow.map.cell.contents.CellUnit;
 import voogasalad_GucciGames.gameplayer.windows.mainwindow.map.mini.MiniMap;
 
 public class MainMap extends WindowComponent implements MapInterface {
@@ -51,8 +34,8 @@ public class MainMap extends WindowComponent implements MapInterface {
 	private ResourceBundle myConfig = ResourceBundle.getBundle("voogasalad_GucciGames.gameplayer.config.components.Map");
 
 	private TwoWayMap<Point2D, MapCell> myCellMap;
-	private List<MapCell> myHighlightedCells;
-	private List<MapCell> myActiveCells;
+	private List<MapCellInterface> myHighlightedCells;
+	private List<MapCellInterface> mySelectedCells;
 
 	
 	private StackPane myParent;
@@ -91,7 +74,7 @@ public class MainMap extends WindowComponent implements MapInterface {
 	private void initializeMap() {
 		myCellMap = new TwoWayMap<>();
 		myHighlightedCells = new ArrayList<>();
-		myActiveCells = new ArrayList<>();
+		mySelectedCells = new ArrayList<>();
 		
 		// query width, size, etc
 		// myGame.etc etc etc
@@ -133,9 +116,6 @@ public class MainMap extends WindowComponent implements MapInterface {
 		for(int i=0; i<myCellsWide; i++){
 			for(int j=0; j<myCellsTall; j++){
 				MapCell c = new SquareCell(myController, myCellSize);
-				c.getParent().setOnMouseClicked(e->{
-				    updateSelectedUnits(c);
-				});
 				c.addObject(new DummyTile(i,j));
 				myCellMap.put(new Point2D(i,j), c);
 				myMap.add(c.getParent(), i, j);
@@ -147,13 +127,6 @@ public class MainMap extends WindowComponent implements MapInterface {
         myMap.applyCss();
 	}
 	
-	private void updateSelectedUnits(MapCell cell) {
-	    mySelectedUnits.clear();
-	    System.out.println("sfdsaf");
-	    for (Integer i: cell.getUnits().keySet()) {
-	        mySelectedUnits.addAll(cell.getUnits().get(i));
-	    }
-	}
 	@Override
 	public Parent getParent() {
 		return myParent;
@@ -204,22 +177,27 @@ public class MainMap extends WindowComponent implements MapInterface {
 
 
 	@Override
-	public void activateCell(MapCellInterface cell) {
-		// TODO Auto-generated method stub
-		
+	public void selectCell(MapCellInterface cell) {
+		System.out.println("SELECTING");
+		clearActiveCells();
+	    for (Integer i: cell.getUnits().keySet()) {
+	        mySelectedUnits.addAll(cell.getUnits().get(i));
+	    }
+	    mySelectedCells.add(cell);
 	}
 
 
 	@Override
-	public List<MapCellInterface> getActiveCells() {
-		// TODO Auto-generated method stub
-		return null;
+	public List<MapCellInterface> getSelectedCells() {
+		return mySelectedCells;
 	}
 
 
 	@Override
 	public void clearActiveCells() {
-		// TODO Auto-generated method stub
-		
+		System.out.println("CLEARING");
+		mySelectedCells.forEach(c -> c.deactivate());
+		mySelectedUnits.clear();
+		mySelectedCells.clear();
 	}
 }
