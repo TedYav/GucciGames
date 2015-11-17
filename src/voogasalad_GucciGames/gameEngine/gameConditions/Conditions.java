@@ -12,10 +12,18 @@ import voogasalad_GucciGames.gameEngine.gamePlayer.GamePlayerPerson;
  *
  */
 public abstract class Conditions {
-	
+	private Outcome myOutcome;
+
 	public Conditions(List<GamePlayerPerson> players, Outcome outcome) {
+		myOutcome=outcome;
 	}
 
 	public abstract void execute();
+
+	protected Outcome getMyOutcome() {
+		return myOutcome;
+	}
+
+
 
 }
