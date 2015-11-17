@@ -9,6 +9,10 @@ public class UnitMakerCustomContent extends DialogContent{
 	private DialogElements dialogElements;
 	
 	public UnitMakerCustomContent(){
+		
+	}
+	
+	protected void setDialogElements(DialogElements dialogElements){
 		this.dialogElements = dialogElements;
 	}
 	

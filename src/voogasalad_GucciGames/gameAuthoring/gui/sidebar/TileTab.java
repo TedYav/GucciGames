@@ -14,8 +14,9 @@ import javafx.scene.input.Dragboard;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.input.TransferMode;
 import voogasalad_GucciGames.gameAuthoring.IGuiGaeController;
-import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.TileMaker;
+import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.NewObjectMaker;
 import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.ISaveCustomObj;
+import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.TileMakerCustomContent;
 import voogasalad_GucciGames.gameEngine.mapObject.MapObjectType;
 
 
@@ -55,8 +56,8 @@ public class TileTab extends AbstractTab {
 		myAddButton.setOnAction(new EventHandler<ActionEvent>() {
 			@Override public void handle(ActionEvent e) {
 				//dialog
-				TileMaker addNewTileDialog = new TileMaker();
-				addNewTileDialog.showTileMakerDialog();
+				NewObjectMaker addNewTileDialog = new NewObjectMaker(new TileMakerCustomContent(), myController);
+				addNewTileDialog.showDialog();
 			}
 		});
 	}

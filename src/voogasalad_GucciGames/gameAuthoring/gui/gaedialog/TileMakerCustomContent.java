@@ -9,7 +9,11 @@ public class TileMakerCustomContent extends DialogContent{
 	private VBox content = new VBox();
 	private DialogElements dialogElements;
 	
-	public TileMakerCustomContent(DialogElements dialogElements){		
+	public TileMakerCustomContent(){		
+
+	}
+	
+	protected void setDialogElements(DialogElements dialogElements){
 		this.dialogElements = dialogElements;
 	}
 	

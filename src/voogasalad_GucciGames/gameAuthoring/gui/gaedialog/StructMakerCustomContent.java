@@ -8,6 +8,10 @@ public class StructMakerCustomContent extends DialogContent{
 	private DialogElements dialogElements;
 	
 	public StructMakerCustomContent(){
+		
+	}
+	
+	protected void setDialogElements(DialogElements dialogElements){
 		this.dialogElements = dialogElements;
 	}
 	
