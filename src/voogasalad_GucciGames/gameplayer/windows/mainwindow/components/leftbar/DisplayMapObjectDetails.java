@@ -64,7 +64,6 @@ public class DisplayMapObjectDetails  implements DisplayComponent, ListChangeLis
     }
     @Override
     public void update (Observable o, Object arg) {
-        System.out.println(arg);
         if (arg!=null) {
             System.out.println("ho");
             PlayerMapObjectInterface mapObj=(PlayerMapObjectInterface)arg;

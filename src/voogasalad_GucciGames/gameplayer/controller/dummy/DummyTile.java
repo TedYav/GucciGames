@@ -1,6 +1,5 @@
 package voogasalad_GucciGames.gameplayer.controller.dummy;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
@@ -14,11 +13,11 @@ import voogasalad_GucciGames.gameplayer.controller.PlayerMapObjectInterface;
  * @author Ted Yavuzkurt
  *
  */
-public class DummyUnit implements PlayerMapObjectInterface {
+public class DummyTile implements PlayerMapObjectInterface {
 	
 	private int myX, myY;
 	
-	public DummyUnit(int x, int y){
+	public DummyTile(int x, int y){
 		myX = x;
 		myY = y;
 	}
@@ -26,18 +25,18 @@ public class DummyUnit implements PlayerMapObjectInterface {
 	@Override
 	public String getName() {
 		// TODO Auto-generated method stub
-		return "Mario";
+		return "DUMMY";
 	}
 
 	@Override
 	public String getImageURI() {
-		return "player/images/mario.png";
+		return ((myX+myY)%2 == 0)?"player/images/dummytexture.jpg":"player/images/dummytexture2.jpg";
 	}
 
 	@Override
 	public List<String> getActionNames() {
 		// TODO Auto-generated method stub
-		return Arrays.asList("Attack", "Destroy", "Pwn", "Wingame");
+		return Arrays.asList("Build", "Destroy", "Pwn", "Wingame");
 	}
 
 	@Override
@@ -47,15 +46,7 @@ public class DummyUnit implements PlayerMapObjectInterface {
 
 	@Override
 	public List<TargetCoordinate> getActionTargets(String action) {
-		List<TargetCoordinate> myTargets = new ArrayList<>();
-		for(int i=-1; i<2; i++){
-			for(int j=-1; j<2; j++){
-				if(i==0 & j==0)
-					continue;
-				myTargets.add(new TargetCoordinate(myX+i, myY+j));
-			}
-		}
-		return myTargets;
+		return Arrays.asList(new TargetCoordinate(myX, myY));
 	}
 
 	@Override
@@ -68,21 +59,18 @@ public class DummyUnit implements PlayerMapObjectInterface {
 	public int getLayer() {
 		
 		// TODO Auto-generated method stub
-		return 1;
+		return 0;
 	}
 
 	@Override
 	public Map<String, String> getAttributes() {
-		Map<String, String> attribs = new HashMap<>();
-		attribs.put("HP", "100");
-		attribs.put("Damage", "7-9");
-		return attribs;
+		return new HashMap<>();
 	}
 
 	@Override
 	public int getPlayerID() {
 		// TODO Auto-generated method stub
-		return (myX % 2);
+		return 0;
 	}
 
 }
