@@ -24,7 +24,7 @@ public class MoveAction implements IMapObjectAction{
 
 		if(targetCoords instanceof TargetCoordinateSingle){
 
-			MapObject moving = communication.getMapObject();
+			MapObject moving = communication.getCalledMe();
 
 			TargetCoordinateSingle target = (TargetCoordinateSingle) targetCoords;
 			moving.setCoordinate(target);
