@@ -102,7 +102,7 @@ public class MainGameScene extends GameScene {
 	}
 	
 	private void enableObservers() {
-		
+		myMap.addUnitListener(myLeftBar.requestListener());
 	}
 	
 }

@@ -18,7 +18,7 @@ import javafx.scene.layout.VBox;
 import voogasalad_GucciGames.gameplayer.windows.mainwindow.map.MapInterface;
 
 public class DisplayMapObjectDetails  implements DisplayComponent, ListChangeListener<PlayerMapObjectInterface>, Observer{
-    private ListView<String> list;
+    private ListView<String> listView;
     private MapInterface myMap;
     private List<String> temp;
     private List<PlayerMapObjectInterface> mapObjectsOnCell;
@@ -28,13 +28,13 @@ public class DisplayMapObjectDetails  implements DisplayComponent, ListChangeLis
     public DisplayMapObjectDetails(MapInterface map, GameControllerInterface controller) {
         temp= new ArrayList<String>();
         temp.add("fasdf");
-        list=new ListView<String>(FXCollections.observableList(temp));
+        listView=new ListView<String>(FXCollections.observableList(temp));
         myController=controller;
         mapObjectsOnCell=new ArrayList<PlayerMapObjectInterface>();
         imageDisplay = new DisplayMapObjectImage(mapObjectsOnCell, myController);
         display = new VBox();
         display.getChildren().add(imageDisplay.getNodeToDraw());
-        display.getChildren().add(list);
+        display.getChildren().add(listView);
         
         myController.addMOObserver(this);
     }
@@ -57,6 +57,7 @@ public class DisplayMapObjectDetails  implements DisplayComponent, ListChangeLis
                 mapObjectsOnCell.add(o);
             }
             imageDisplay.updateImages();
+            listView.setItems(FXCollections.observableList(temp));
         }
     }
     @Override

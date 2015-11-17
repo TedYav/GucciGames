@@ -169,4 +169,9 @@ public abstract class MapCell implements MapCellInterface {
 		
 	}
 	
+	    @Override
+	    public Map<Integer, List<PlayerMapObjectInterface>> getUnits () {
+	        return myObjects;
+	    }
+	
 }
