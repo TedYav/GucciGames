@@ -9,14 +9,12 @@ public class TextInputField extends DialogComponent{
 	
 	private DialogElements dialogElements;
 	private String propKey;
-	private String itemsKey;
 	private HBox content = new HBox();
 	private TextField textField;
 	
-	public TextInputField(DialogElements dialogElements, String propKey, String itemsKey){
+	public TextInputField(DialogElements dialogElements, String propKey){
 		this.dialogElements = dialogElements;
 		this.propKey = propKey;
-		this.itemsKey = itemsKey;
 		makeTextInputField();
 		
 	}

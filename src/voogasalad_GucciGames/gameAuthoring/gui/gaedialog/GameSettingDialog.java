@@ -52,17 +52,18 @@ public class GameSettingDialog extends GaeDialog {
 		VBox content = new VBox();				
 		Text titleElement = new Text();
 		titleElement.setText(prop.getProperty("title"));
-		TextField nameTextField = new TextField();	
-		nameTextField.textProperty().addListener((observable, oldValue, newValue) -> {
-			saveObjProperty.saveObjProperty(prop.getProperty("title"), newValue);		
-		});
-		HBox nameElement = createElement(prop.getProperty("name"), nameTextField, "field-title-element");
+		TextInputField nameText = new TextInputField(dialogElements, "name");
+//		TextField nameTextField = new TextField();	
+//		nameTextField.textProperty().addListener((observable, oldValue, newValue) -> {
+//			saveObjProperty.saveObjProperty(prop.getProperty("title"), newValue);		
+//		});
+//		HBox nameElement = createElement(prop.getProperty("name"), nameTextField, "field-title-element");
 		DropDownMenuField mapSize = new DropDownMenuField(dialogElements, "mapsize", "mapsize_items");
 		DropDownMenuField fogOfWar = new DropDownMenuField(dialogElements, "fogofwar", "fogofwar_items");
 		RadioBtnField miniMap = new RadioBtnField(dialogElements, "minimap", "minimap_items");
 		RadioBtnField zoomable = new RadioBtnField(dialogElements, "zoomable", "zoomable_items");
 		ScrollBarField numPlayer = new ScrollBarField(dialogElements, "numplayer", "numplayer_items");		
-		content.getChildren().addAll(titleElement, nameElement, mapSize.getContent(), fogOfWar.getContent(),
+		content.getChildren().addAll(titleElement, nameText.getContent(), mapSize.getContent(), fogOfWar.getContent(),
 				miniMap.getContent(), zoomable.getContent(), numPlayer.getContent());
 		
 		content.getChildren().forEach(hbox->hbox.setId("hbox-element"));		
