@@ -25,19 +25,7 @@ public class ActionDisplay implements DisplayComponent, Observer {
 		myController = controller;
 		myController.addMOObserver(this);
     	
-        temp = new ArrayList<Button>();
-        
-        Button btn = new Button();
-        btn.setText("Say 'Hello World'");
-        btn.setOnAction(new EventHandler<ActionEvent>() {
-            @Override
-            public void handle(ActionEvent event) {
-                System.out.println("Hello World!");
-            }
-        });
-        
-        
-        temp.add(btn);
+        temp = new ArrayList<Button>();       
         buttons = new ListView<Button>(FXCollections.observableList(temp));
         
     }
@@ -61,7 +49,6 @@ public class ActionDisplay implements DisplayComponent, Observer {
     	activeMapObject.getActionNames().stream().
     		forEach(action -> updatedActions.add(makeButton(action)));
     	temp = updatedActions;
-    	System.out.println("buttons  " + temp.size());
         buttons.setItems(FXCollections.observableList(temp));
     }
     

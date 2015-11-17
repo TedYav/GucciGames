@@ -25,7 +25,7 @@ import voogasalad_GucciGames.gameplayer.windows.mainwindow.components.rightbar.R
 import voogasalad_GucciGames.gameplayer.windows.mainwindow.map.MapInterface;
 import voogasalad_GucciGames.gameplayer.windows.mainwindow.map.main.MainMap;
 import voogasalad_GucciGames.gameplayer.windows.mainwindow.menubar.FileMenu;
-import voogasalad_GucciGames.gameplayer.windows.mainwindow.menubar.GameMenu;
+import voogasalad_GucciGames.gameplayer.windows.mainwindow.menubar.MenuBarElement;
 import voogasalad_GucciGames.gameplayer.windows.mainwindow.menubar.GameMenuBar;
 
 public class MainGameScene extends GameScene {
@@ -37,7 +37,7 @@ public class MainGameScene extends GameScene {
 	
 	private LeftBar myLeftBar;
 	private RightBar myRightBar;
-	private GameMenuBar myMenuBar;
+	private TopMenuBar myMenuBar;
 	private MainMap myMap;
 	
 	private MapKeyHandler myKeyHandler;
@@ -91,11 +91,12 @@ public class MainGameScene extends GameScene {
 	    myRightBar = new RightBar(this, myController, myConfig);
 	    myPane.setRight(myRightBar.getParent());
 	    
-	    FileMenu file = new FileMenu(null); //TODO: create for properties file?
-	    List<GameMenu> listOfGameMenus = new ArrayList<GameMenu>();
-	    listOfGameMenus.add(file);
-	    myMenuBar = new GameMenuBar(listOfGameMenus);
-	    myPane.setTop(myMenuBar.returnToolbar());
+//	    FileMenu file = new FileMenu(null); //TODO: create for properties file?
+//	    List<MenuBarElement> listOfGameMenus = new ArrayList<MenuBarElement>();
+//	    listOfGameMenus.add(file);
+//	    myMenuBar = new GameMenuBar(listOfGameMenus);
+	    myMenuBar = new TopMenuBar(this, myController);
+	    myPane.setTop(myMenuBar.getParent());
 
 	    enableObservers();
 	       
