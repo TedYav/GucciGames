@@ -7,6 +7,8 @@ import java.util.Map;
 import java.util.ResourceBundle;
 import java.util.TreeMap;
 
+import javafx.animation.FadeTransition;
+import javafx.animation.Timeline;
 import javafx.event.EventHandler;
 import javafx.geometry.Point2D;
 import javafx.scene.Node;
@@ -17,6 +19,7 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Shape;
+import javafx.util.Duration;
 import voogasalad_GucciGames.gameplayer.controller.GameControllerInterface;
 import voogasalad_GucciGames.gameplayer.controller.PlayerMapObjectInterface;
 import voogasalad_GucciGames.gameplayer.controller.dummy.MapObjectBasicType;
@@ -44,6 +47,8 @@ public abstract class MapCell implements MapCellInterface {
 	protected double mySize;
 		
 	private Map<Integer, List<PlayerMapObjectInterface>> myObjects;
+	
+	private FadeTransition myBlinker;
 	
 	public MapCell(GameControllerInterface controller, double myCellSize){
 		initializeVariables(controller, myCellSize);
@@ -75,9 +80,15 @@ public abstract class MapCell implements MapCellInterface {
 	private void initializeOverlays() {
 		initializeOverlayShapes();
 		myOverlayLayer.getChildren().add(myOverlay);
+		myBlinker = new FadeTransition(Duration.millis(1000), myOverlay);
+		myBlinker.setFromValue(0.0);
+		myBlinker.setToValue(0.5);
+		myBlinker.setCycleCount(Timeline.INDEFINITE);
+		myBlinker.setAutoReverse(true);
 	}
 	
 	private void initializeHandlers() {
+		myParent.setOnMouseClicked(e-> activate() );
 	}
 
 	public Parent getParent(){
@@ -94,24 +105,34 @@ public abstract class MapCell implements MapCellInterface {
 	
 	public void removeObject(PlayerMapObjectInterface object){
 		myObjects.get(object.getLayer()).remove(object);
+		myLayerMap.get(object.getLayer()).getChildren().remove(object);
 		redrawLayer(object.getLayer());
 	}
 	
 	@Override
 	public void activate() {
-		handleActionInProgress();
+		if(myController.actionInProgress()){
+			handleActionInProgress();
+		}
+		else{
+			myController.cancelAction();
+			myController.getMap().selectCell(this);
+			active = true;
+			myOverlay.getStyleClass().clear();
+			myOverlay.getStyleClass().add("activecell");
+		}
+	}
+	
+	@Override
+	public void deactivate() {
+		active = false;
+		myOverlay.getStyleClass().clear();
+		myOverlay.getStyleClass().add("inactivecell");
+		blink(false);
 	}
 
 	private void handleActionInProgress() {
-		if(myController.actionInProgress() && active){
-			
-		}
-	}
-
-	@Override
-	public void hover() {
-		myOverlay.setFill(Color.YELLOW);
-		myOverlay.setOpacity(.5);
+		myController.performActionInProgress(myController.getMap().getCellCoordinate(this));
 	}
 
 	@Override
@@ -122,8 +143,18 @@ public abstract class MapCell implements MapCellInterface {
 
 	@Override
 	public void toggleHighlight(boolean highlight) {
-		// TODO Auto-generated method stub
-		
+		myOverlay.getStyleClass().clear();
+		myOverlay.getStyleClass().add( (highlight)?("highlightcell"):("inactivecell") );
+		blink(highlight);
+	}
+
+	private void blink(boolean on) {
+		if(on){
+			myBlinker.play();
+		}
+		else{
+			myBlinker.stop();
+		}
 	}
 
 	private void redraw(){
@@ -133,13 +164,13 @@ public abstract class MapCell implements MapCellInterface {
 	private void redrawLayer(int layer){
 		makeLayers(layer);
 		int count = myObjects.get(layer).size();
-		myLayerMap.get(layer).getChildren().removeAll();
+		myLayerMap.get(layer).getChildren().clear();
 		if(count > 0){
 			double countPerRow = Math.ceil(Math.sqrt(count));
 			for(int i=0, total=0; i<countPerRow; i++){
 				for(int j=0; j<countPerRow; j++, total++){
 					if(total==count) break;
-					myLayerMap.get(layer).getChildren().add(renderImage(myObjects.get(layer).get(total), (mySize/countPerRow)));
+					myLayerMap.get(layer).add(renderImage(myObjects.get(layer).get(total), (mySize/countPerRow)), j, i);
 				}
 			}
 		}
@@ -163,7 +194,6 @@ public abstract class MapCell implements MapCellInterface {
 			}
 		}
 	}
-	
 	
 	public void addTemporaryOverlay(Node overlay, double duration){
 		

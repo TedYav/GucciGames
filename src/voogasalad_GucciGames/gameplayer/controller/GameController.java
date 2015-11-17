@@ -7,8 +7,12 @@ import java.util.Map;
 import javafx.event.Event;
 import javafx.event.EventHandler;
 import javafx.event.EventType;
+import javafx.geometry.Point2D;
+
 import java.util.Observer;
 import javafx.scene.image.Image;
+import voogasalad_GucciGames.gameplayer.controller.dummy.ADummy;
+import voogasalad_GucciGames.gameplayer.datastructures.Coordinate;
 import voogasalad_GucciGames.gameplayer.datastructures.ImageDatabase;
 import voogasalad_GucciGames.gameplayer.windows.mainwindow.map.MapInterface;
 import voogasalad_GucciGames.gameplayer.windows.mainwindow.map.cell.MapCell;
@@ -21,6 +25,7 @@ public class GameController implements GameControllerInterface {
 	private MapInterface myMap;
 	private ImageDatabase myImageDatabase;
 	private GameSceneInterface myScene;
+	private PlayerMapObjectInterface myTargetUnit;
 	
 	// TODO: factor into component
 	private String myActionInProgress;
@@ -47,8 +52,9 @@ public class GameController implements GameControllerInterface {
 	}
 
 	@Override
-	public void setActionInProgress(String action) {
+	public void setActionInProgress(String action, PlayerMapObjectInterface unit) {
 		myActionInProgress = action;
+		myTargetUnit = unit;
 	}
 
 	@Override
@@ -59,6 +65,14 @@ public class GameController implements GameControllerInterface {
 	@Override
 	public void cancelAction() {
 		myActionInProgress = "";
+		myTargetUnit = null;
+	}
+	
+	@Override
+	public void performActionInProgress(Point2D target){
+		List<PlayerMapObjectInterface> result = ((ADummy)myTargetUnit).performAction(myActionInProgress, Coordinate.PointToCoordinate(target));
+		cancelAction();
+		myMap.update(result);
 	}
 	
 	@Override
@@ -128,4 +142,10 @@ public class GameController implements GameControllerInterface {
             o.update(null, activeMapObject);
         }
     }
+
+	@Override
+	public GameEngineToGamePlayerInterface getEngine() {
+		// TODO Auto-generated method stub
+		return myEngine;
+	}
 }

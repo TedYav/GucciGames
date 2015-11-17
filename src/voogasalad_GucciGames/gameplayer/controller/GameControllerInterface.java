@@ -6,6 +6,8 @@ import java.util.Map;
 import javafx.event.Event;
 import javafx.event.EventHandler;
 import javafx.event.EventType;
+import javafx.geometry.Point2D;
+
 import java.util.Observer;
 import javafx.scene.image.Image;
 import voogasalad_GucciGames.gameplayer.windows.mainwindow.map.MapInterface;
@@ -27,7 +29,7 @@ public interface GameControllerInterface{
 	public PlayerMapObjectInterface getActiveMapObject();
 	public void addMOObserver(Observer o);
 	
-	public void setActionInProgress(String action);
+	public void setActionInProgress(String action, PlayerMapObjectInterface unit);
 	public String getActionInProgress();
 	public void cancelAction();
 	
@@ -37,7 +39,7 @@ public interface GameControllerInterface{
 	public void setMap(MapInterface map);
 	
 //	public void setEngine(GameEngineToGamePlayerInterface engine);
-//	public GameEngineToGamePlayerInterface getEngine();
+	public GameEngineToGamePlayerInterface getEngine();
 	
 	public Map<String, CellUnit> getInitialState();
 	
@@ -52,4 +54,5 @@ public interface GameControllerInterface{
 	
 	// TODO: refactor out
 	public void setScene(GameSceneInterface scene);
+	void performActionInProgress(Point2D target);
 }

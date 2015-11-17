@@ -48,7 +48,7 @@ public class ActionDisplay implements DisplayComponent, Observer {
         button.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
-                myController.setActionInProgress(name);
+                myController.setActionInProgress(name, activeMapObject);
                 myController.getMap().highlightCells(activeMapObject.getActionTargets(name));
             }
         });
@@ -61,7 +61,7 @@ public class ActionDisplay implements DisplayComponent, Observer {
     	activeMapObject.getActionNames().stream().
     		forEach(action -> updatedActions.add(makeButton(action)));
     	temp = updatedActions;
-    	System.out.println("buttons  " + temp.size());
+    	//System.out.println("buttons  " + temp.size());
         buttons.setItems(FXCollections.observableList(temp));
     }
     

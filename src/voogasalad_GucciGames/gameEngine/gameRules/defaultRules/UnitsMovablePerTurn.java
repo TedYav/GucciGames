@@ -35,8 +35,9 @@ public class UnitsMovablePerTurn extends Rules {
 	@Override
 	public Boolean executeRules(int playerID) {
 
-		int unitsMovedCounter = myCommunicationParams.getPlayers().getActivePlayer(playerID).getUnitsMoved();
-		if (unitsMovedCounter < objMoves) {
+		int unitsMovedCounter = myCommunicationParams.getPlayers().getPlayerById(playerID).getUnitsMoved();
+		if (unitsMovedCounter < targetValue) {
+
 			return true;
 		} else
 			return false;

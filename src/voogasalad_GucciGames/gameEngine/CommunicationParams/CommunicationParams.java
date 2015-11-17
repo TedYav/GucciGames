@@ -1,5 +1,7 @@
 package voogasalad_GucciGames.gameEngine.CommunicationParams;
 
+import java.util.List;
+
 import voogasalad_GucciGames.gameEngine.GameMap;
 import voogasalad_GucciGames.gameEngine.gamePlayer.AllPlayers;
 import voogasalad_GucciGames.gameEngine.gameRules.ActionToRuleMap;
@@ -10,6 +12,10 @@ public class CommunicationParams {
 	// Classes which extend this will be used to share information between the front and back end
 	private AllPlayers myPlayers;
 	private GameMap myGameMap;
+	private List<MapObject> myLocations;
+	private MapObject myCurrentActiveMapObject;
+
+
 	private MapObject myCalledMe;
 	private ActionToRuleMap myActionToRuleMap;
 
