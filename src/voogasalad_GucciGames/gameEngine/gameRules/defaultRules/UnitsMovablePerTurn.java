@@ -11,33 +11,28 @@ import voogasalad_GucciGames.gameEngine.gameRules.Rules;
  */
 public class UnitsMovablePerTurn extends Rules {
 
-
-	public UnitsMovablePerTurn() {
-
-	}
-
 	@Override
 	public Boolean executeRules(CommunicationParams communicationParams, int playerID) {
 		GamePlayerPerson player = communicationParams.getPlayers().getPlayerById(playerID);
-		int objAllowedMovs = player.getUnitsMoved();
+		int objAllowedMoves = player.getUnitsMoved();
 		int playerAllowedMoves = player.getAllowedMovesPerTurn();
 		int objcurrentMoves = 0; // fix it;
 		int playerCurrentMoves = player.getTurnCounter();
-		if (playerAllowedMoves == -1 && objAllowedMovs == -1) {
+		if (playerAllowedMoves == -1 && objAllowedMoves == -1) {
 			return true;
-		} else if (playerAllowedMoves != -1 && objAllowedMovs == -1) {
+		} else if (playerAllowedMoves != -1 && objAllowedMoves == -1) {
 			return evalIf(playerAllowedMoves, playerCurrentMoves);
-		} else if (playerAllowedMoves == -1 && objAllowedMovs != -1) {
-			return evalIf(objAllowedMovs, objcurrentMoves);
-		} else if (playerAllowedMoves != -1 && objAllowedMovs != -1) {
-			if (objAllowedMovs < playerAllowedMoves) {
-				return evalIf(objAllowedMovs, objcurrentMoves);
+		} else if (playerAllowedMoves == -1 && objAllowedMoves != -1) {
+			return evalIf(objAllowedMoves, objcurrentMoves);
+		} else if (playerAllowedMoves != -1 && objAllowedMoves != -1) {
+			if (objAllowedMoves < playerAllowedMoves) {
+				return evalIf(objAllowedMoves, objcurrentMoves);
 
-			} else if (playerAllowedMoves < objAllowedMovs) {
+			} else if (playerAllowedMoves < objAllowedMoves) {
 				return evalIf(playerAllowedMoves, playerCurrentMoves);
 
 			} else {
-				if ((playerCurrentMoves < playerAllowedMoves) && (objcurrentMoves < objAllowedMovs)) {
+				if ((playerCurrentMoves < playerAllowedMoves) && (objcurrentMoves < objAllowedMoves)) {
 					return true;
 				} else
 					return false;

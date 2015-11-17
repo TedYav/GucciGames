@@ -26,8 +26,10 @@ public class ConditionsCreated {
 		return map.get(condName);
 	}
 
-	public void loop(){
-		for(String key : map.keySet()){
+	// can move this later to MaingameEngine.java and do the loop there.
+	// To do so, need this map to be stored in CommunicationParams.java
+	public void loop() {
+		for (String key : map.keySet()) {
 			map.get(key).execute();
 		}
 	}
