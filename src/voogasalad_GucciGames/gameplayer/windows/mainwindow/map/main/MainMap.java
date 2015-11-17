@@ -20,6 +20,8 @@ import javafx.scene.control.ScrollPane.ScrollBarPolicy;
 import javafx.scene.image.Image;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
+import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
@@ -28,16 +30,16 @@ import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Text;
 import voogasalad_GucciGames.gameplayer.controller.GameControllerInterface;
 import voogasalad_GucciGames.gameplayer.controller.GameEngineToGamePlayerInterface;
+import voogasalad_GucciGames.gameplayer.controller.PlayerMapObjectInterface;
+import voogasalad_GucciGames.gameplayer.controller.dummy.DummyUnit;
 import voogasalad_GucciGames.gameplayer.datastructures.TwoWayMap;
 import voogasalad_GucciGames.gameplayer.windows.GameScene;
 import voogasalad_GucciGames.gameplayer.windows.WindowComponent;
 import voogasalad_GucciGames.gameplayer.windows.mainwindow.map.MapInterface;
-import voogasalad_GucciGames.gameplayer.windows.mainwindow.map.cell.DummyUnit;
 import voogasalad_GucciGames.gameplayer.windows.mainwindow.map.cell.MapCell;
 import voogasalad_GucciGames.gameplayer.windows.mainwindow.map.cell.MapCellInterface;
 import voogasalad_GucciGames.gameplayer.windows.mainwindow.map.cell.SquareCell;
 import voogasalad_GucciGames.gameplayer.windows.mainwindow.map.cell.contents.CellUnit;
-import voogasalad_GucciGames.gameplayer.windows.mainwindow.map.cell.contents.PlayerMapObjectInterface;
 import voogasalad_GucciGames.gameplayer.windows.mainwindow.map.mini.MiniMap;
 
 public class MainMap extends WindowComponent implements MapInterface {
@@ -51,7 +53,7 @@ public class MainMap extends WindowComponent implements MapInterface {
 	private List<MapCell> myActiveCells;
 
 	
-	private StackPane myStackPane;
+	private StackPane myParent;
 	private ScrollPane myFirstLayer;
 	private GridPane myMap;
 	private Pane mySecondLayer;
@@ -96,15 +98,15 @@ public class MainMap extends WindowComponent implements MapInterface {
 	}
 	
 	private void initializePanes(){
-		myStackPane = new StackPane();
+		myParent = new StackPane();
 		myFirstLayer = new ScrollPane();
 		myMap = new GridPane();
 		mySecondLayer = new Pane();
 		
-		myStackPane.getChildren().add(myFirstLayer);
+		myParent.getChildren().add(myFirstLayer);
 		myFirstLayer.setContent(myMap);
-		myStackPane.getChildren().add(mySecondLayer);
-		
+//		myParent.getChildren().add(mySecondLayer);
+//		
 		myFirstLayer.setVbarPolicy(ScrollBarPolicy.NEVER);
 		myFirstLayer.setHbarPolicy(ScrollBarPolicy.NEVER);
 		myFirstLayer.setPannable(true);
@@ -136,40 +138,15 @@ public class MainMap extends WindowComponent implements MapInterface {
 				myMap.add(c.getParent(), i, j);
 			}
 		}
-        myStackPane.getStyleClass().add(myConfig.getString("MainCSSClass"));
-        myStackPane.applyCss();
+        myParent.getStyleClass().add(myConfig.getString("MainCSSClass"));
+        myParent.applyCss();
         myMap.getStyleClass().add(myConfig.getString("MainCSSClass"));
         myMap.applyCss();
 	}
 	
 	@Override
 	public Parent getParent() {
-		return myStackPane;
-	}
-
-	@Override
-	public void move(KeyCode direction) {
-		double translateX = convertCode(direction, KeyCode.LEFT, KeyCode.RIGHT);
-		double translateY = convertCode(direction, KeyCode.UP, KeyCode.DOWN);
-
-		if(allowMove(translateX, myMap.getTranslateX(), myMap.getLayoutBounds().getMaxX() - myFirstLayer.getLayoutBounds().getMaxX())){
-			myMap.setTranslateX(myMap.getTranslateX()+translateX);
-		}
-		
-		if(allowMove(translateY, myMap.getTranslateY(), myMap.getLayoutBounds().getMaxY() - myFirstLayer.getLayoutBounds().getMaxY())){
-			myMap.setTranslateY(myMap.getTranslateY()+translateY);
-		}	
-	}
-	
-	private boolean allowMove(double translate, double current, double max){
-		return (translate > 0)?(current < 0):(-(current))<(max-Math.abs(translate/2));
-	}
-	
-	private double convertCode(KeyCode direction, KeyCode negative, KeyCode positive){
-		if(direction == negative || direction == positive){
-			return ((direction == positive)?1:-1)*(myMoveDistance*myCellSize);
-		}
-		return 0;
+		return myParent;
 	}
 
 	private void fogCells() {

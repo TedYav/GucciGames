@@ -10,9 +10,9 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.layout.StackPane;
 import javafx.scene.shape.Shape;
 import voogasalad_GucciGames.gameplayer.controller.GameControllerInterface;
+import voogasalad_GucciGames.gameplayer.controller.PlayerMapObjectInterface;
+import voogasalad_GucciGames.gameplayer.controller.dummy.MapObjectBasicType;
 import voogasalad_GucciGames.gameplayer.windows.mainwindow.map.MapInterface;
-import voogasalad_GucciGames.gameplayer.windows.mainwindow.map.cell.contents.MapObjectBasicType;
-import voogasalad_GucciGames.gameplayer.windows.mainwindow.map.cell.contents.PlayerMapObjectInterface;
 
 public abstract class OldMapCell implements MapCellInterface {
 
