@@ -14,8 +14,6 @@ public class CommunicationParams {
 	private GameMap myGameMap;
 	private List<MapObject> myLocations;
 	private MapObject myCurrentActiveMapObject;
-
-
 	private MapObject myCalledMe;
 	private ActionToRuleMap myActionToRuleMap;
 

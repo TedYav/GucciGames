@@ -9,7 +9,6 @@ import voogasalad_GucciGames.gameEngine.CommunicationParams.CommunicationParams;
  *
  */
 public abstract class Rules {
-	//interface of map instead of class?
 	public Rules(){}
 	public abstract Boolean executeRules(CommunicationParams communicationParams, int playerID);
 
