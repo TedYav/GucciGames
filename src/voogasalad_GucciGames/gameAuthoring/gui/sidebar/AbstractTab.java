@@ -67,7 +67,6 @@ public abstract class AbstractTab extends Tab implements ITab{
 
 		myVBox.setPadding(new Insets(20, 20, 20, 20));
 		myVBox.getChildren().addAll(myGridPane, myAddButton);
-		
 		this.setContent(myVBox);
 	}
 
@@ -117,12 +116,48 @@ public abstract class AbstractTab extends Tab implements ITab{
 					MapObjectType currMapType = currMapTypeList.get(imageviewId);
 					myController.setMapObjectTypeToMap(currMapType);
 					myController.setCurrDraggedImage(imageview.getImage());
+					
+//					Image currImage = new Image(getClass().getClassLoader().getResourceAsStream(allImagePaths.get(imageviewId)));
+//					ImageView mouseImage = new ImageView(imageview.getImage());
+//					mouseImage.setFitHeight(30);
+//					mouseImage.setFitWidth(30);
+//					myVBox.getChildren().add(mouseImage);
+//					addImageUnderMouse(mouseImage);
+					
+					
 					event.consume();
 				}
 			});
+//			imageButton.setOnMousePressed(new EventHandler<MouseEvent>() {
+//				public void handle(MouseEvent event) {
+//					int imageviewId = allImageViews.indexOf(imageview);
+//					MapObjectType currMapType = currMapTypeList.get(imageviewId);
+//					myController.setMapObjectTypeToMap(currMapType);
+//					myController.setCurrDraggedImage(imageview.getImage());
+//					
+//					Image currImage = new Image(getClass().getClassLoader().getResourceAsStream(allImagePaths.get(imageviewId)));
+//					ImageView mouseImage = new ImageView(currImage);
+//					mouseImage.setFitHeight(30);
+//					mouseImage.setFitWidth(30);
+//					
+//					
+//					event.consume();
+//				}
+//			});
 
 		}
 	}
+	
+//	private void addImageUnderMouse(ImageView imgView){
+//		myVBox.setOnMouseMoved(new EventHandler<MouseEvent>() {
+//				public void handle(MouseEvent event) {
+//					System.out.println("hi");
+//					imgView.setX(event.getScreenX());
+//					imgView.setY(event.getScreenY());
+//					System.out.println(event.getScreenX()+" "+event.getSceneY());
+//				}
+//			});
+//	}
 	
 	protected abstract void addAddButtonListener();
 }
