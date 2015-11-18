@@ -23,10 +23,10 @@ public class PlayerUnitCondition extends PlayerConditions {
 		System.out.println("condition description: remove player with units = 0");
 		int myID = player.getMyPlayerId();
 		Outcome outcome = new Outcome(params.getPlayers());
-		if (player.getUnits() != null) {
-			if (player.getUnits().size() == 0) {
+		if (player.getMapObjects() != null) {
+			if (player.getMapObjects().size() == 0) {
 				player.setStatus(EndGameConditions.LOSE.toString());
-				outcome.removePlayer(myID);
+				outcome.removePlayer(myID);//this needs to move to another map
 				myParams.addRemoveIDs(myID);
 			}
 		}
