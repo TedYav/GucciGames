@@ -1,10 +1,14 @@
 package voogasalad_GucciGames.gameEngine.gameConditions;
 
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStream;
 import java.lang.reflect.Constructor;
 import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Properties;
 import java.util.ResourceBundle;
 
 import voogasalad_GucciGames.gameEngine.CommunicationParams.BasicParameters;
@@ -16,45 +20,49 @@ import voogasalad_GucciGames.gameEngine.gamePlayer.GamePlayerPerson;
  *
  */
 public class ConditionsFactory {
-	private static final String PATH_TO_CONDITIONS_PROPERTIES = "voogasalad_GucciGames.src.resources.conditions.conditionPath";
+	private static final String PATH_TO_CONDITIONS_PROPERTIES = "conditionPath.properties";
 			//"voogasalad_GucciGames.resources.conditions.conditionPath";
 	private static final String PATH_TO_OUTCOMES_PROPERTIES = "voogasalad_GucciGames.resources.gameOutcomes.outcomes";
-	private ResourceBundle conditionBundle;
+	//private ResourceBundle conditionBundle;
 	private ResourceBundle outcomeBundle;
+	private InputStream inputStream;
 
 	public ConditionsFactory() {
-		//InputStream conditionBundle = getClass().getResourceAsStream(PATH_TO_CONDITIONS_PROPERTIES);
-		conditionBundle = ResourceBundle.getBundle(PATH_TO_CONDITIONS_PROPERTIES);
-		outcomeBundle = ResourceBundle.getBundle(PATH_TO_OUTCOMES_PROPERTIES);
+		//conditionBundle = ResourceBundle.getBundle(PATH_TO_CONDITIONS_PROPERTIES);
+		//outcomeBundle = ResourceBundle.getBundle(PATH_TO_OUTCOMES_PROPERTIES);
 
 	}
 
 
-	public BasicParameters createCondition(ConditionParams condParams, BasicParameters params)
+	public Conditions createCondition(ConditionParams condParams, BasicParameters params)
 					throws InstantiationException, IllegalAccessException, ClassNotFoundException,
-					IllegalArgumentException, InvocationTargetException, NoSuchMethodException, SecurityException {
+					IllegalArgumentException, InvocationTargetException, NoSuchMethodException, SecurityException, IOException {
 
 		// 1. default vs custom rule
-		if (conditionBundle.containsKey(condParams.getName())) {
+		inputStream = getClass().getResourceAsStream(PATH_TO_CONDITIONS_PROPERTIES);
+		Properties prop = new Properties();
+		prop.load(inputStream);
+
+		if (prop.containsKey(condParams.getName().toString())) {
 			List<GamePlayerPerson> players = new ArrayList<GamePlayerPerson>();
 			if (condParams.getType().equals("player")) {
-				if (condParams.getArgs() != null) {
+
+					System.out.println(condParams.getPlayerID().size());
 					@SuppressWarnings("unchecked")
-					List<Integer> playerID = (List<Integer>) condParams.getArgs().get(0);
-					Iterator<Integer> idIterator = playerID.iterator();
+					Iterator<Integer> idIterator =  condParams.getPlayerID().iterator();
 					while (idIterator.hasNext()) {
 						players.add(params.getPlayers().getPlayerById(idIterator.next()));
-					}
+
 				}
+
 				// thanks Efe!
-				Class<Conditions> condition = (Class<Conditions>) Class.forName(conditionBundle.getString(condParams.getName()));
+				Class<Conditions> condition = (Class<Conditions>) Class.forName(prop.getProperty(condParams.getName()));
 
 				Constructor<Conditions> condConstructor = condition.getDeclaredConstructor(List.class,BasicParameters.class );
 
 				Conditions conditionInstance = condConstructor.newInstance(players, params);
 				return conditionInstance;
-				// params.getcreatedConditons().addCondition(condParams.getName(),
-				// conditionInstance);
+
 			} else {
 				System.out.println("cond for level");
 			}

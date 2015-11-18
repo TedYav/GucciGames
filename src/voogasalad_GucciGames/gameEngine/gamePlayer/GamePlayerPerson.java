@@ -6,7 +6,7 @@ import java.util.stream.Collectors;
 import voogasalad_GucciGames.gameEngine.mapObject.MapObject;
 
 public class GamePlayerPerson {
-	// myPlayerID is never initialized
+	// neither myPlayerID nor myMapObjects is initialized -> runtime errors
 	private int myPlayerId;
 	private PlayerResources myResources;
 	private List<MapObject> myMapObjects;

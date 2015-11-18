@@ -15,7 +15,7 @@ public class Main {
 		map.put(-1, p);
 		map.put(0, p0);
 		AllPlayers allPlayers = new AllPlayers(map);
-		MainGameEngine engine = new MainGameEngine(allPlayers,null,null);
+		MainGameEngine engine = new MainGameEngine(allPlayers);
 		engine.endTurn();
 
 	}
