@@ -14,9 +14,7 @@ import java.util.TreeMap;
 import com.thoughtworks.xstream.XStream;
 import com.thoughtworks.xstream.io.xml.DomDriver;
 
-import voogasalad_GucciGames.gameEngine.GameMap;
 import voogasalad_GucciGames.gameEngine.MainGameEngine;
-import voogasalad_GucciGames.gameEngine.gameConditions.defaultConditions.game.OnlyOnePlayerHasUnitsCondition;
 import voogasalad_GucciGames.gameEngine.gamePlayer.AllPlayers;
 import voogasalad_GucciGames.gameEngine.gamePlayer.GamePlayerPerson;
 import voogasalad_GucciGames.gameEngine.mapObject.MapObject;
@@ -61,10 +59,8 @@ public class XStreamGameEngine implements GameDataInterface{
             
             AllPlayers myPlayers = new AllPlayers(myMapOfPlayers);
 
-            GameMap myMap = new GameMap(myPlayers);
-            OnlyOnePlayerHasUnitsCondition myRule = new OnlyOnePlayerHasUnitsCondition(myMap); 
             
-            MainGameEngine engine = new MainGameEngine(myPlayers, myRule);
+            MainGameEngine engine = new MainGameEngine(myPlayers);
             
             
             
