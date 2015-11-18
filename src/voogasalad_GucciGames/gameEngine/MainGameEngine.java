@@ -1,8 +1,13 @@
 package voogasalad_GucciGames.gameEngine;
 
+import java.lang.reflect.InvocationTargetException;
 import java.util.List;
 
+import voogasalad_GucciGames.gameEngine.CommunicationParams.CommunicationParams;
 import voogasalad_GucciGames.gameEngine.gameConditions.ConditionHandler;
+import voogasalad_GucciGames.gameEngine.gameConditions.ConditionParams;
+import voogasalad_GucciGames.gameEngine.gameConditions.Conditions;
+import voogasalad_GucciGames.gameEngine.gameConditions.ConditionsFactory;
 import voogasalad_GucciGames.gameEngine.gameConditions.defaultConditions.game.GlobalGameCondition;
 import voogasalad_GucciGames.gameEngine.gamePlayer.ATurnDecider;
 import voogasalad_GucciGames.gameEngine.gamePlayer.AllPlayers;
@@ -27,11 +32,28 @@ public class MainGameEngine implements GameEngineToGamePlayerInterface {
 	}
 
 	public MainGameEngine(AllPlayers gamePlayers, GlobalGameCondition globalRule, GameMap gameMap) {
-
+		myConditionHandler= new ConditionHandler();
+		createTestCondition();
 		myGamePlayers = gamePlayers;
 		myGameMap = gameMap;
 		myCurrentTurnCounter = new TurnCounter();
 		myTurnDecider = new DefaultTurnDecider(gamePlayers.getNumberOfPlayers(), myCurrentTurnCounter);
+
+	}
+
+
+	private void createTestCondition() {
+
+		ConditionParams condParams = new ConditionParams("PlayerUnitCondition", "player",null);
+		ConditionsFactory factory = new ConditionsFactory();
+		CommunicationParams comParams= new CommunicationParams(myGamePlayers, myGameMap, null, null);
+		try {
+			Conditions condition = factory.createCondition(condParams, comParams);
+			myConditionHandler.addCondition("PlayerUnitCondition", condition);
+		} catch (InstantiationException | IllegalAccessException | ClassNotFoundException | IllegalArgumentException
+				| InvocationTargetException | NoSuchMethodException | SecurityException e) {
+			e.printStackTrace();
+		}
 
 	}
 

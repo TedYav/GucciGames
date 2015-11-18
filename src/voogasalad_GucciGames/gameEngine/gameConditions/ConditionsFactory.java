@@ -1,5 +1,6 @@
 package voogasalad_GucciGames.gameEngine.gameConditions;
 
+import java.io.InputStream;
 import java.lang.reflect.Constructor;
 import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
@@ -16,23 +17,22 @@ import voogasalad_GucciGames.gameEngine.gamePlayer.GamePlayerPerson;
  *
  */
 public class ConditionsFactory {
-	private static final String PATH_TO_CONDITIONS_PROPERTIES = "voogasalad_GucciGames.resources.gameConditions.conditionPath";
+	private static final String PATH_TO_CONDITIONS_PROPERTIES = "voogasalad_GucciGames.src.resources.conditions.conditionPath";
+			//"voogasalad_GucciGames.resources.conditions.conditionPath";
 	private static final String PATH_TO_OUTCOMES_PROPERTIES = "voogasalad_GucciGames.resources.gameOutcomes.outcomes";
-	private ResourceBundle conditionBundle;
+	//private ResourceBundle conditionBundle;
 	private ResourceBundle outcomeBundle;
 
-
-
 	public ConditionsFactory() {
-		conditionBundle = ResourceBundle.getBundle(PATH_TO_CONDITIONS_PROPERTIES);
+		InputStream conditionBundle = getClass().getResourceAsStream(PATH_TO_CONDITIONS_PROPERTIES);
+		//conditionBundle = ResourceBundle.getBundle(PATH_TO_CONDITIONS_PROPERTIES);
 		outcomeBundle = ResourceBundle.getBundle(PATH_TO_OUTCOMES_PROPERTIES);
-
 
 	}
 
-	public CommunicationParams createCondition(ConditionParams condParams, CommunicationParams params)
-					throws InstantiationException, IllegalAccessException, ClassNotFoundException,
-					IllegalArgumentException, InvocationTargetException, NoSuchMethodException, SecurityException {
+	public Conditions createCondition(ConditionParams condParams, CommunicationParams params)
+			throws InstantiationException, IllegalAccessException, ClassNotFoundException, IllegalArgumentException,
+			InvocationTargetException, NoSuchMethodException, SecurityException {
 		// 1. default vs custom rule
 		if (conditionBundle.containsKey(condParams.getName())) {
 			List<GamePlayerPerson> players = new ArrayList<GamePlayerPerson>();
@@ -47,16 +47,19 @@ public class ConditionsFactory {
 				}
 				// thanks Efe!
 				Class<Conditions> condition = (Class<Conditions>) Class.forName(conditionBundle.getString(condParams.getName()));
-				Constructor<Conditions> condConstructor = condition.getDeclaredConstructor(List.class,CommunicationParams.class );
+				Constructor<Conditions> condConstructor = condition.getDeclaredConstructor(List.class,
+						CommunicationParams.class);
 				Conditions conditionInstance = condConstructor.newInstance(players, params);
-				//params.getcreatedConditons().addCondition(condParams.getName(), conditionInstance);
+				return conditionInstance;
+				// params.getcreatedConditons().addCondition(condParams.getName(),
+				// conditionInstance);
 			} else {
 				System.out.println("cond for level");
 			}
 		} else {
 			System.out.println("not found");
 		}
-		return params;
+		return null;
 
 	}
 
