@@ -96,8 +96,6 @@ public class MainGameEngine implements GameEngineToGamePlayerInterface {
 	public GridCoordinateParameters getPossibleCoordinates(String action, PlayerMapObjectInterface myMapObject) {
 		return ((MapObject) myMapObject).performAction(action, new MainGameEngineCommunicationParameters(this));
 
-
-
 	}
 
 }
