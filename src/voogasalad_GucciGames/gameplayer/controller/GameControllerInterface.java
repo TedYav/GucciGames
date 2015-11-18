@@ -41,7 +41,7 @@ public interface GameControllerInterface{
 //	public void setEngine(GameEngineToGamePlayerInterface engine);
 	public GameEngineToGamePlayerInterface getEngine();
 	
-	public Map<String, CellUnit> getInitialState();
+	public List<PlayerMapObjectInterface> getInitialState();
 	
 	public void endTurn();
 	
@@ -49,9 +49,9 @@ public interface GameControllerInterface{
 	
 	public boolean actionInProgress();
 	
-	public <T extends Event> void addEventHandler(EventType<T> eventType, EventHandler<T> eventHandler);
-	public <T extends Event> void addEventFilter(EventType<T> eventType, EventHandler<T> eventHandler);
-	
+//	public <T extends Event> void addEventHandler(EventType<T> eventType, EventHandler<T> eventHandler);
+//	public <T extends Event> void addEventFilter(EventType<T> eventType, EventHandler<T> eventHandler);
+//	
 	// TODO: refactor out
 	public void setScene(GameSceneInterface scene);
 	void performActionInProgress(Point2D target);

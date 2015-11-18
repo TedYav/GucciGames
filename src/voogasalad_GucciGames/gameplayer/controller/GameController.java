@@ -91,9 +91,8 @@ public class GameController implements GameControllerInterface {
 	}
 
 	@Override
-	public Map<String, CellUnit> getInitialState() {
-		// TODO Auto-generated method stub
-		return null;
+	public List<PlayerMapObjectInterface> getInitialState() {
+		return myEngine.getInitialState();
 	}
 
 	@Override
@@ -107,15 +106,15 @@ public class GameController implements GameControllerInterface {
 		return myImageDatabase.request(imageURI);
 	}
 
-	@Override
-	public <T extends Event> void addEventHandler(EventType<T> eventType, EventHandler<T> eventHandler) {
-		myScene.addEventHandler(eventType, eventHandler);
-	}
-
-	@Override
-	public <T extends Event> void addEventFilter(EventType<T> eventType, EventHandler<T> eventHandler) {
-		myScene.addEventFilter(eventType, eventHandler);
-	}
+//	@Override
+//	public <T extends Event> void addEventHandler(EventType<T> eventType, EventHandler<T> eventHandler) {
+//		myScene.addEventHandler(eventType, eventHandler);
+//	}
+//
+//	@Override
+//	public <T extends Event> void addEventFilter(EventType<T> eventType, EventHandler<T> eventHandler) {
+//		myScene.addEventFilter(eventType, eventHandler);
+//	}
 
 	@Override
 	public void setScene(GameSceneInterface scene) {
