@@ -1,10 +1,7 @@
 
 package voogasalad_GucciGames.gameEngine.gameConditions;
 
-import java.util.List;
-
 import voogasalad_GucciGames.gameEngine.CommunicationParams.BasicParameters;
-import voogasalad_GucciGames.gameEngine.gamePlayer.GamePlayerPerson;
 
 /**
  *
@@ -12,8 +9,10 @@ import voogasalad_GucciGames.gameEngine.gamePlayer.GamePlayerPerson;
  *
  */
 public abstract class Conditions {
+	protected ConditionParams myParams;
 
-	public Conditions(List<GamePlayerPerson> players, BasicParameters params) {
+	public Conditions(ConditionParams condParams, BasicParameters params) {
+		myParams = condParams;
 	}
 
 	public abstract void execute(BasicParameters params);

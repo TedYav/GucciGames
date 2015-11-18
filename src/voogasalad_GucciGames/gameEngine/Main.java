@@ -17,7 +17,7 @@ public class Main {
 		AllPlayers allPlayers = new AllPlayers(map);
 		MainGameEngine engine = new MainGameEngine(allPlayers);
 		engine.endTurn();
-
+		engine.endTurn();
 	}
 }
 

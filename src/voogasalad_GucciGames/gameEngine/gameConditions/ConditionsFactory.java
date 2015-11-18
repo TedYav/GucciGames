@@ -27,15 +27,16 @@ public class ConditionsFactory {
 	private InputStream inputStream;
 
 	public ConditionsFactory() {
-		//conditionBundle = ResourceBundle.getBundle(PATH_TO_CONDITIONS_PROPERTIES);
-		//outcomeBundle = ResourceBundle.getBundle(PATH_TO_OUTCOMES_PROPERTIES);
+		// conditionBundle =
+		// ResourceBundle.getBundle(PATH_TO_CONDITIONS_PROPERTIES);
+		// outcomeBundle =
+		// ResourceBundle.getBundle(PATH_TO_OUTCOMES_PROPERTIES);
 
 	}
 
-
 	public Conditions createCondition(ConditionParams condParams, BasicParameters params)
-					throws InstantiationException, IllegalAccessException, ClassNotFoundException,
-					IllegalArgumentException, InvocationTargetException, NoSuchMethodException, SecurityException, IOException {
+			throws InstantiationException, IllegalAccessException, ClassNotFoundException, IllegalArgumentException,
+			InvocationTargetException, NoSuchMethodException, SecurityException, IOException {
 
 		// 1. default vs custom rule
 		inputStream = getClass().getResourceAsStream(PATH_TO_CONDITIONS_PROPERTIES);
@@ -45,19 +46,21 @@ public class ConditionsFactory {
 		if (prop.containsKey(condParams.getName().toString())) {
 			List<GamePlayerPerson> players = new ArrayList<GamePlayerPerson>();
 			if (condParams.getType().equals("player")) {
-					@SuppressWarnings("unchecked")
-					Iterator<Integer> idIterator =  condParams.getPlayerID().iterator();
-					while (idIterator.hasNext()) {
-						players.add(params.getPlayers().getPlayerById(idIterator.next()));
+				@SuppressWarnings("unchecked")
+				Iterator<Integer> idIterator = condParams.getPlayerID().iterator();
+				while (idIterator.hasNext()) {
+					players.add(params.getPlayers().getPlayerById(idIterator.next()));
 
 				}
+				condParams.setMyPlayers(players);
 
 				// thanks Efe!
 				Class<Conditions> condition = (Class<Conditions>) Class.forName(prop.getProperty(condParams.getName()));
 
-				Constructor<Conditions> condConstructor = condition.getDeclaredConstructor(List.class,BasicParameters.class );
+				Constructor<Conditions> condConstructor = condition.getDeclaredConstructor(ConditionParams.class,
+						BasicParameters.class);
 
-				Conditions conditionInstance = condConstructor.newInstance(players, params);
+				Conditions conditionInstance = condConstructor.newInstance(condParams, params);
 				return conditionInstance;
 
 			} else {

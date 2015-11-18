@@ -76,6 +76,7 @@ public class MainGameEngine implements GameEngineToGamePlayerInterface {
 		BasicParameters comParams= new BasicParameters(myGamePlayers, null, null);
 		myConditionHandler.evaluateAllConditions(comParams);
 		System.out.println("end of condition evaluation");
+		System.out.println("----");
 		myCurrentTurnCounter.update();
 
 	}
