@@ -78,7 +78,8 @@ public class AllPlayers {
 		ArrayList<PlayerMapObjectInterface> myInitObjects = new ArrayList<PlayerMapObjectInterface>();
 
 		for(GamePlayerPerson player : myMapOfPlayers.values()){
-			List<MapObject> myPlayerUnits = player.getMapObjects();
+                    System.out.println("add:"+player.getMapObjects().size());
+                    List<MapObject> myPlayerUnits = player.getMapObjects();
 			for(MapObject m : myPlayerUnits){
 				myInitObjects.add(m);
 			}

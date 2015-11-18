@@ -8,10 +8,8 @@ import java.util.Set;
 import javafx.beans.property.DoubleProperty;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.input.KeyCode;
-import javafx.scene.input.KeyEvent;
+import javafx.scene.input.MouseButton;
 import javafx.scene.input.MouseEvent;
-import javafx.scene.input.TransferMode;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
@@ -21,12 +19,10 @@ class Grid extends Pane {
 
 	private final ImageView myBackground;
 	private final DoubleProperty myCellSize;
-	private final Set<CellGUI> selectedCells = new HashSet<>();
-	private final Map<GridPoint, CellGUI> myCells = new HashMap<>();
+	private final Set<Cell> selectedCells = new HashSet<>();
+	private final Map<GridPoint, Cell> myCells = new HashMap<>();
 	private Rectangle myMouseBound;
 	private ImageView myMouseImg;
-	@SuppressWarnings("unused")
-	private GridSelector myGridSelector;
 	private IGuiGaeController myController;
 
 	public Grid(DoubleProperty cellSize, IGuiGaeController controller) {
@@ -42,8 +38,8 @@ class Grid extends Pane {
 		setOnDragOver(e -> trackMouseMove(e.getX(), e.getY()));
 		setOnMouseExited(e -> removeMouseBound());
 		setOnDragExited(e -> removeMouseBound());
-		myCellSize.addListener((c,o,n)->removeMouseBound());
-
+		myCellSize.addListener((c, o, n) -> removeMouseBound());
+		new GridSelector(this);
 	}
 
 	public void initGrid(int width, int height) {
@@ -51,20 +47,19 @@ class Grid extends Pane {
 		maxHeightProperty().bind(myCellSize.multiply(height));
 		minWidthProperty().bind(myCellSize.multiply(width));
 		minHeightProperty().bind(myCellSize.multiply(height));
-		Pane pane = new Pane();
-		getChildren().setAll(myBackground, pane);
-		pane.minWidthProperty().bind(widthProperty());
-		pane.maxWidthProperty().bind(widthProperty());
-		pane.minHeightProperty().bind(heightProperty());
-		pane.maxHeightProperty().bind(heightProperty());
-		pane.addEventFilter(MouseEvent.MOUSE_CLICKED, e -> placeObject(e));
+		// Pane pane = new Pane();
+		// getChildren().setAll(myBackground, pane);
+		// pane.minWidthProperty().bind(widthProperty());
+		// pane.maxWidthProperty().bind(widthProperty());
+		// pane.minHeightProperty().bind(heightProperty());
+		// pane.maxHeightProperty().bind(heightProperty());
+		addEventFilter(MouseEvent.MOUSE_CLICKED, e -> placeObjectOnMap(e));
 
 		for (int x = 0; x < width; x++) {
 			for (int y = 0; y < height; y++) {
-				new CellGUI(this, x, y);
+				new Cell(this, x, y);
 			}
 		}
-		myGridSelector = new GridSelector(this);
 	}
 
 	private void trackMouseMove(double x, double y) {
@@ -80,9 +75,9 @@ class Grid extends Pane {
 	}
 
 	private void addMouseBound(double x, double y, double size) {
-		if (myController.getCurrDraggedImage() != null
+		if (myController.getCurrSelectedImage() != null
 				&& !myCells.containsKey(new GridPoint((int) (x / size), (int) (y / size)))) {
-			myMouseImg = new ImageView(myController.getCurrDraggedImage());
+			myMouseImg = new ImageView(myController.getCurrSelectedImage());
 			myMouseImg.setFitWidth(size);
 			myMouseImg.setFitHeight(size);
 			myMouseImg.setX(x);
@@ -118,11 +113,11 @@ class Grid extends Pane {
 		return myCellSize;
 	}
 
-	public boolean selectCell(CellGUI cell) {
+	public boolean selectCell(Cell cell) {
 		return selectedCells.add(cell);
 	}
 
-	public boolean deselectCell(CellGUI cell) {
+	public boolean deselectCell(Cell cell) {
 		return selectedCells.remove(cell);
 	}
 
@@ -133,26 +128,26 @@ class Grid extends Pane {
 		selectedCells.clear();
 	}
 
-	private void placeObject(MouseEvent e) {
-		if (myController.getCurrDraggedImage() == null)
-			return;
-		int x = (int) Math.floor(e.getX() / myCellSize.get());
-		int y = (int) Math.floor(e.getY() / myCellSize.get());
-
-		CellGUI gui = new CellGUI(this, x, y);
-		gui.setImage(myController.getCurrDraggedImage());
+	private void placeObjectOnMap(MouseEvent e) {
+		if (e.getButton() == MouseButton.PRIMARY && myController.getCurrSelectedImage() != null) {
+			int x = (int) Math.floor(e.getX() / myCellSize.get());
+			int y = (int) Math.floor(e.getY() / myCellSize.get());
+			Cell gui = new Cell(this, x, y);
+			gui.setImage(myController.getCurrSelectedImage());
+			e.consume();
+		}
 	}
 
-	public CellGUI getCell(GridPoint pt) {
+	public Cell getCell(GridPoint pt) {
 		return myCells.get(pt);
 	}
 
-	public void remove(CellGUI cell) {
+	public void remove(Cell cell) {
 		getChildren().remove(cell.getMapView());
 		myCells.remove(cell.getPosition());
 	}
 
-	public void add(CellGUI cell) {
+	public void add(Cell cell) {
 		getChildren().add(cell.getMapView());
 		myCells.put(cell.getPosition(), cell);
 	}

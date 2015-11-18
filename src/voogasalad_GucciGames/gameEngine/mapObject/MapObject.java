@@ -13,12 +13,19 @@ import voogasalad_GucciGames.gameplayer.controller.PlayerMapObjectInterface;
 public class MapObject implements PlayerMapObjectInterface{
 	private MapObjectType myObjectType;
 	private ATargetCoordinate myCoordinate;
-	private int ownerID;
+	private int myOwnerID;
+	private int myLayer;
 
 	public MapObject(MapObjectType type, ATargetCoordinate coor, int ownerID){
 		this.myObjectType = type;
 		this.myCoordinate = coor;
+		this.myOwnerID=ownerID;
+		myLayer=0;
 	}
+	       public MapObject(MapObjectType type, ATargetCoordinate coor, int ownerID, int layer){
+	                this(type,coor,ownerID);
+	                myLayer=layer;
+	        }
 
 	public MapObjectType getObjectType(){
 		return myObjectType;
@@ -62,13 +69,13 @@ public class MapObject implements PlayerMapObjectInterface{
 	@Override
 	public int getPlayerID() {
 		// TODO Auto-generated method stub
-		return ownerID;
+		return myOwnerID;
 	}
 
 	@Override
 	public int getLayer() {
 		// TODO Auto-generated method stub
-		return 0;
+		return myLayer;
 	}
 
 
@@ -83,7 +90,7 @@ public class MapObject implements PlayerMapObjectInterface{
 	public GridCoordinateParameters performAction(String action,
 			MainGameEngineCommunicationParameters mainGameEngineCommunicationParams) {
 		// TODO Auto-generated method stub
-		return (GridCoordinateParameters) myObjectType.getAction(action).executeAction(mainGameEngineCommunicationParams, ownerID);
+		return (GridCoordinateParameters) myObjectType.getAction(action).executeAction(mainGameEngineCommunicationParams, myOwnerID);
 	}
 
 }

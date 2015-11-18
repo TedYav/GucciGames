@@ -15,9 +15,9 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 
-public class CellGUI {
+public class Cell {
 	private static Image myImage = new Image(
-			CellGUI.class.getClassLoader().getResourceAsStream("voogasalad_GucciGames/graphics/water.png"));
+			Cell.class.getClassLoader().getResourceAsStream("voogasalad_GucciGames/graphics/water.png"));
 	private ImageView myMapView;
 	private ImageView myMiniView;
 	private Rectangle myBoundBox;
@@ -27,7 +27,7 @@ public class CellGUI {
 	private boolean isSelected = false;
 	private GridPoint myPos;
 
-	public CellGUI(Grid map, int x, int y) {
+	public Cell(Grid map, int x, int y) {
 		myMap = map;
 		myMapView = new ImageView(myImage);
 		mySize = myMap.getCellSize();
