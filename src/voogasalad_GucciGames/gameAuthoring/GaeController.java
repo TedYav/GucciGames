@@ -19,6 +19,7 @@ public class GaeController implements IGuiGaeController, IModelGaeController{
     GAEGui gui;
     MapObjectType mapobjecttype;
     Image currDraggedImage;
+    private int numberOfPlayers;
     
     public GaeController(Stage stage){
     	System.out.println("called 1");
@@ -106,9 +107,20 @@ public class GaeController implements IGuiGaeController, IModelGaeController{
 	public void createCustomMapObject(ObjectProperty p) {
 		// TODO Auto-generated method stub
 		// Debug:
-		
 		System.out.println("saving");
 		p.printProperty();
 		
+	}
+
+	@Override
+	public void setNumberOfPlayers(int n) {
+		// TODO Auto-generated method stub
+		numberOfPlayers = n;
+	}
+
+	@Override
+	public int getNumberOfPlayers() {
+		// TODO Auto-generated method stub
+		return numberOfPlayers;
 	}
 }
