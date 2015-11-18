@@ -1,7 +1,7 @@
 package voogasalad_GucciGames.gameEngine.gameConditions.defaultConditions.player;
 import java.util.List;
 
-import voogasalad_GucciGames.gameEngine.CommunicationParams.CommunicationParams;
+import voogasalad_GucciGames.gameEngine.CommunicationParams.BasicParameters;
 import voogasalad_GucciGames.gameEngine.gameConditions.EndGameConditions;
 import voogasalad_GucciGames.gameEngine.gamePlayer.GamePlayerPerson;
 
@@ -13,7 +13,7 @@ import voogasalad_GucciGames.gameEngine.gamePlayer.GamePlayerPerson;
 public class PlayerUnitCondition extends PlayerConditions {
 
 
-	public PlayerUnitCondition(List<GamePlayerPerson> players, CommunicationParams params) {
+	public PlayerUnitCondition(List<GamePlayerPerson> players, BasicParameters params) {
 		super(players, params);
 
 	}

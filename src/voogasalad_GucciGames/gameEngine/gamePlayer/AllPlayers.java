@@ -1,6 +1,7 @@
 package voogasalad_GucciGames.gameEngine.gamePlayer;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
@@ -59,7 +60,20 @@ public class AllPlayers {
 			}
 		}
 	}
+	
+	public List<Integer> getAllIds(){
+		/*List<Integer> result = new ArrayList<>();
+		for(GamePlayerPerson player: this.myMapOfPlayers){
+			result.add(player.getMyPlayerId());
+		}
+		return result;
+		*/
+		List<Integer> result = new ArrayList<>(this.myMapOfPlayers.keySet());
+		Collections.sort(result);
+		return result;
+	}
 
+	// make the following collections unmodifiable
 	public List<PlayerMapObjectInterface> getInitialState() {
 		ArrayList<PlayerMapObjectInterface> myInitObjects = new ArrayList<PlayerMapObjectInterface>();
 		
@@ -70,7 +84,22 @@ public class AllPlayers {
 			}
 		}
 		
-		return null;
+		return myInitObjects;
+	}
+
+	public List<MapObject> getAllUnits() {
+		// TODO Auto-generated method stub
+		
+ArrayList<MapObject> myInitObjects = new ArrayList<MapObject>();
+		
+		for(GamePlayerPerson player : myMapOfPlayers.values()){
+			List<MapObject> myPlayerUnits = player.getMapObjects();
+			for(MapObject m : myPlayerUnits){
+				myInitObjects.add(m);
+			}
+		}		
+		
+		return myInitObjects;
 	}
 
 }

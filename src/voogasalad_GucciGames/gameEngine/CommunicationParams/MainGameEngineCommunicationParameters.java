@@ -1,18 +1,15 @@
 package voogasalad_GucciGames.gameEngine.CommunicationParams;
 
-import voogasalad_GucciGames.gameEngine.GameMap;
 import voogasalad_GucciGames.gameEngine.MainGameEngine;
 import voogasalad_GucciGames.gameEngine.gamePlayer.AllPlayers;
 import voogasalad_GucciGames.gameEngine.gameRules.ActionToRuleMap;
 import voogasalad_GucciGames.gameEngine.mapObject.MapObject;
 
-public class MainGameEngineCommunicationParams extends CommunicationParams{
+public class MainGameEngineCommunicationParameters extends CommunicationParameters{
 
 	private MainGameEngine myMainEngine;
 
-	public MainGameEngineCommunicationParams(AllPlayers players, GameMap gameMap, MapObject calledMe,
-			ActionToRuleMap actionToRuleMap, MainGameEngine myEngine) {
-		super(players, gameMap, calledMe, actionToRuleMap);
+	public MainGameEngineCommunicationParameters(MainGameEngine myEngine) {
 		
 		myMainEngine = myEngine;
 		
@@ -26,8 +23,6 @@ public class MainGameEngineCommunicationParams extends CommunicationParams{
 	public int getTurn() {
 		return myMainEngine.getTurn();
 	}
-	
 
-	
 	
 }
