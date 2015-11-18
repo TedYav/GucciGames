@@ -36,7 +36,7 @@ public class ScrollBarField extends DialogComponent {
 		scrollBar.setUnitIncrement(Integer.parseInt(params.get(2)));
 		addListenerToScrollBar();
 		content.getChildren().addAll(title, scrollBar, numSpriteText);
-		content.setId("hbox-content");
+		content.setId("hbox-element");
 	}
 	
 	private void addListenerToScrollBar(){

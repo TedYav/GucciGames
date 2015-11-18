@@ -103,6 +103,7 @@ public class GroovyTabPane extends DialogComponent{
 						 //updateTabTitle(tabPane);
 						 //TODO: Tab Pane title should be name of attribute
 						 addControlBtns();
+						 controlBtnBox.setId("hbox-element");
 					 }
 				 }
 			 }

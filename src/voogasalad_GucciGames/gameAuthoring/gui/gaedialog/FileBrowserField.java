@@ -33,7 +33,8 @@ public class FileBrowserField extends DialogComponent{
 		pathTextField = new TextField();
 		addListenerForPathTextField();
 
-		content.getChildren().addAll(label, pathTextField, browseBtn);	
+		content.getChildren().addAll(label, pathTextField, browseBtn);
+		content.setId("hbox-element");
 
 	}
 	

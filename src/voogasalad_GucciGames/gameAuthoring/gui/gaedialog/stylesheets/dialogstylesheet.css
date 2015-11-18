@@ -1,7 +1,11 @@
-
-#title{
+#title {
 	-fx-font: bold 20pt "Arial";	
 }
+
+#subtitle{
+	-fx-font: bold 16pt "Arial";	
+}
+
 
 #vbox-element{
 	-fx-background-radius: 5.0;

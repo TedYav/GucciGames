@@ -25,6 +25,7 @@ public class SaveField extends DialogComponent {
 		saveBtn = new Button(dialogElements.getDialogProperties().getProperty("savebtn"));
 		addListenerToSaveBtn();
 		content.getChildren().add(saveBtn);	
+		content.setId("hbox-element");
 	}
 	private void addListenerToSaveBtn(){
 		saveBtn.setOnAction(e -> dialogGaeController.createCustomMapObject(dialogElements.getObjectProperty()));

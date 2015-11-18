@@ -24,6 +24,7 @@ public class TextInputField extends DialogComponent{
 		textField = new TextField();	
 		addListenerToTextInputField();
 		content.getChildren().addAll(title,textField);
+		content.setId("hbox-element");
 	
 	}
 	
