@@ -13,12 +13,12 @@ import java.util.TreeMap;
 import com.thoughtworks.xstream.XStream;
 import com.thoughtworks.xstream.io.xml.DomDriver;
 
-import voogasalad_GucciGames.gameEngine.GameMap;
 import voogasalad_GucciGames.gameEngine.MainGameEngine;
-import voogasalad_GucciGames.gameEngine.gameConditions.defaultConditions.game.OnlyOnePlayerHasUnitsCondition;
 import voogasalad_GucciGames.gameEngine.gamePlayer.AllPlayers;
 import voogasalad_GucciGames.gameEngine.gamePlayer.GamePlayerPerson;
+import voogasalad_GucciGames.gameEngine.mapObject.MapObject;
 import voogasalad_GucciGames.gameEngine.mapObject.MapObjectType;
+import voogasalad_GucciGames.gameEngine.targetCoordinate.TargetCoordinateSingle;
 import voogasalad_GucciGames.gameplayer.controller.GameDataInterface;
 import voogasalad_GucciGames.gameplayer.controller.GameEngineToGamePlayerInterface;
 
@@ -34,18 +34,33 @@ public class XStreamGameEngine implements GameDataInterface{
         XStreamGameEngine xStream = new XStreamGameEngine();
         System.out.println("Creating and saving engine.");
         try {
-            Map<Integer,GamePlayerPerson> myMapOfPlayers = new TreeMap<Integer,GamePlayerPerson>();
+            
+            Map<Integer,GamePlayerPerson> myMapOfPlayers = new TreeMap<Integer,GamePlayerPerson>();	
             myMapOfPlayers.put(-1,new GamePlayerPerson()); //neutral player
-            MapObjectType soldier = new MapObjectType("soldier", null);
-            MapObjectType archer = new MapObjectType("archer" , null);
-            myMapOfPlayers.put(0,new GamePlayerPerson()); //player 1
+            myMapOfPlayers.put(0,new GamePlayerPerson()); //player 1 
+
             myMapOfPlayers.put(1,new GamePlayerPerson()); //player 2
+            
+            MapObjectType soldier = new MapObjectType("soldier", "player/images/mario.png");
+            MapObjectType archer = new MapObjectType("archer" , "player/images/leftbar-image-placeholder.jpg");
+            
+            MapObject soldier1 = new MapObject(soldier,new TargetCoordinateSingle(1,0),0);
+            
+            for (int i=0;i<10;i++) {
+                for (int j=0;j<10;j++) {
+                    if ((i+j)%2==0) {
+                        MapObject arch = new MapObject(archer,new TargetCoordinateSingle(i,j),1);
+                        myMapOfPlayers.get(1).getUnits().add(arch);
+                    }
+                }
+            }
+            
+            myMapOfPlayers.get(0).getUnits().add(soldier1);
+            
             AllPlayers myPlayers = new AllPlayers(myMapOfPlayers);
-
-            GameMap myMap = new GameMap(myPlayers);
-            OnlyOnePlayerHasUnitsCondition myRule = new OnlyOnePlayerHasUnitsCondition(myMap);
-
+            
             MainGameEngine engine = new MainGameEngine(myPlayers);
+            
 
             String engineXML = xStream.serializer.toXML(engine); // saved XML File should have current turn as 2
             File file = new File(xStream.defaultEngineLocation);
