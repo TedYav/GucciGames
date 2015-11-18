@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import voogasalad_GucciGames.gameEngine.CommunicationParams.BasicParameters;
+import voogasalad_GucciGames.gameEngine.CommunicationParams.MainGameEngineCommunicationParameters;
 import voogasalad_GucciGames.gameEngine.gameConditions.ConditionHandler;
 import voogasalad_GucciGames.gameEngine.gameConditions.ConditionParams;
 import voogasalad_GucciGames.gameEngine.gameConditions.Conditions;
@@ -53,7 +54,7 @@ public class MainGameEngine implements GameEngineToGamePlayerInterface {
 		pl.add(0);
 		ConditionParams condParams = new ConditionParams("PlayerUnitCondition", "player",pl,null);
 		ConditionsFactory factory = new ConditionsFactory();
-		BasicParameters comParams= new BasicParameters(myGamePlayers, null, null, null);
+		BasicParameters comParams= new BasicParameters(myGamePlayers, null, null); //,null);
 		try {
 			Conditions condition = factory.createCondition(condParams, comParams);
 			myConditionHandler.addCondition("PlayerUnitCondition", condition);
