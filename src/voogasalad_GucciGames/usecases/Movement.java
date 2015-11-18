@@ -2,7 +2,6 @@ package voogasalad_GucciGames.usecases;
 
 import java.util.List;
 
-import voogasalad_GucciGames.gameEngine.GameMap;
 import voogasalad_GucciGames.gameEngine.CommunicationParams.BasicParameters;
 import voogasalad_GucciGames.gameEngine.CommunicationParams.CommunicationParameters;
 import voogasalad_GucciGames.gameEngine.CommunicationParams.EmptyParameters;

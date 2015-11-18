@@ -5,7 +5,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.TreeMap;
 
-import voogasalad_GucciGames.gameEngine.CommunicationParams.MainGameEngineCommunicationParams;
+import voogasalad_GucciGames.gameEngine.CommunicationParams.MainGameEngineCommunicationParameters;
 import voogasalad_GucciGames.gameEngine.gameConditions.GridCoordinateParameters;
 import voogasalad_GucciGames.gameEngine.targetCoordinate.ATargetCoordinate;
 import voogasalad_GucciGames.gameplayer.controller.PlayerMapObjectInterface;
@@ -81,7 +81,7 @@ public class MapObject implements PlayerMapObjectInterface{
 	}
 
 	public GridCoordinateParameters performAction(String action,
-			MainGameEngineCommunicationParams mainGameEngineCommunicationParams) {
+			MainGameEngineCommunicationParameters mainGameEngineCommunicationParams) {
 		// TODO Auto-generated method stub
 		return (GridCoordinateParameters) myObjectType.getAction(action).executeAction(mainGameEngineCommunicationParams, ownerID);
 	}
