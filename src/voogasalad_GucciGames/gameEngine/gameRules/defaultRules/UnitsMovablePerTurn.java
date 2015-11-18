@@ -1,6 +1,6 @@
 package voogasalad_GucciGames.gameEngine.gameRules.defaultRules;
 
-import voogasalad_GucciGames.gameEngine.CommunicationParams.CommunicationParams;
+import voogasalad_GucciGames.gameEngine.CommunicationParams.BasicParameters;
 import voogasalad_GucciGames.gameEngine.gamePlayer.GamePlayerPerson;
 import voogasalad_GucciGames.gameEngine.gameRules.Rules;
 
@@ -12,7 +12,7 @@ import voogasalad_GucciGames.gameEngine.gameRules.Rules;
 public class UnitsMovablePerTurn extends Rules {
 
 	@Override
-	public Boolean executeRules(CommunicationParams communicationParams, int playerID) {
+	public Boolean executeRules(BasicParameters communicationParams, int playerID) {
 		GamePlayerPerson player = communicationParams.getPlayers().getPlayerById(playerID);
 		int objAllowedMoves = player.getUnitsMoved();
 		int playerAllowedMoves = player.getAllowedMovesPerTurn();

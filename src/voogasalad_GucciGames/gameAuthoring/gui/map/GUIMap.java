@@ -4,29 +4,19 @@ import javafx.beans.property.DoubleProperty;
 import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.SimpleDoubleProperty;
 import javafx.beans.property.SimpleIntegerProperty;
-import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.geometry.Point2D;
-import javafx.scene.Node;
-import javafx.scene.control.Button;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
-import javafx.scene.input.DragEvent;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
-import javafx.scene.input.MouseEvent;
 import javafx.scene.input.ZoomEvent;
-import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
-import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 import voogasalad_GucciGames.gameAuthoring.IGuiGaeController;
 
 /** Constructs a scene with a pannable Map background. */
-public class GUIMap extends Pane implements IMap {
+public class GUIMap extends Pane {
 	private IntegerProperty myGridSize = new SimpleIntegerProperty(20);
 
 	private IGuiGaeController myController;
@@ -121,18 +111,6 @@ public class GUIMap extends Pane implements IMap {
 
 	public void setBackground(Image background) {
 		myGrid.setBackground(background);
-	}
-
-	@Override
-	public void setMapObjectForPosition(CellGUI obj, Point2D pos) {
-		// TODO Auto-generated method stub
-
-	}
-
-	@Override
-	public void removeMapObjectAtPosition(CellGUI obj, Point2D pos) {
-		// TODO Auto-generated method stub
-
 	}
 
 	public ScrollPane getPane() {

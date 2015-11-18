@@ -19,7 +19,7 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.VBox;
 
-public abstract class AbstractTab extends Tab implements ITab{
+public abstract class AbstractTab extends Tab {
 	protected List<String> allImagePaths = new ArrayList<String>();
 	protected List<ImageView> allImageViews;
 	protected List<Button> allImageButtons;
