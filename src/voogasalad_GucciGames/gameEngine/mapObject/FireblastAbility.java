@@ -1,12 +1,8 @@
 package voogasalad_GucciGames.gameEngine.mapObject;
 
-import java.util.List;
-
-import voogasalad_GucciGames.gameEngine.GameMap;
-import voogasalad_GucciGames.gameEngine.CommunicationParams.CommunicationParams;
-import voogasalad_GucciGames.gameEngine.gamePlayer.AllPlayers;
+import voogasalad_GucciGames.gameEngine.CommunicationParams.BasicParameters;
+import voogasalad_GucciGames.gameEngine.CommunicationParams.CommunicationParameters;
 import voogasalad_GucciGames.gameEngine.objectActions.MapObjectEvent;
-import voogasalad_GucciGames.gameEngine.targetCoordinate.ATargetCoordinate;
 
 public class FireblastAbility extends MapObjectEvent{
 
@@ -16,7 +12,7 @@ public class FireblastAbility extends MapObjectEvent{
 	}
 
 	@Override
-	protected CommunicationParams execute(CommunicationParams params) {
+	protected CommunicationParameters execute(CommunicationParameters params) {
 		// TODO Auto-generated method stub
 		return null;
 	}

@@ -1,6 +1,7 @@
 package voogasalad_GucciGames.gameEngine.gamePlayer;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
@@ -58,6 +59,18 @@ public class AllPlayers {
 				return;
 			}
 		}
+	}
+	
+	public List<Integer> getAllIds(){
+		/*List<Integer> result = new ArrayList<>();
+		for(GamePlayerPerson player: this.myMapOfPlayers){
+			result.add(player.getMyPlayerId());
+		}
+		return result;
+		*/
+		List<Integer> result = new ArrayList<>(this.myMapOfPlayers.keySet());
+		Collections.sort(result);
+		return result;
 	}
 
 	public List<PlayerMapObjectInterface> getInitialState() {

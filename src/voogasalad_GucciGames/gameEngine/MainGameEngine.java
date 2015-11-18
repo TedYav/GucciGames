@@ -3,16 +3,23 @@ package voogasalad_GucciGames.gameEngine;
 import java.lang.reflect.InvocationTargetException;
 import java.util.List;
 
+<<<<<<< HEAD
 import voogasalad_GucciGames.gameEngine.CommunicationParams.CommunicationParams;
 import voogasalad_GucciGames.gameEngine.gameConditions.ConditionHandler;
 import voogasalad_GucciGames.gameEngine.gameConditions.ConditionParams;
 import voogasalad_GucciGames.gameEngine.gameConditions.Conditions;
 import voogasalad_GucciGames.gameEngine.gameConditions.ConditionsFactory;
+=======
+import voogasalad_GucciGames.gameEngine.CommunicationParams.MainGameEngineCommunicationParams;
+import voogasalad_GucciGames.gameEngine.gameConditions.ConditionHandler;
+import voogasalad_GucciGames.gameEngine.gameConditions.GridCoordinateParameters;
+>>>>>>> ac059b17fc3e30778fc1d7c4875de486cd64bed1
 import voogasalad_GucciGames.gameEngine.gameConditions.defaultConditions.game.GlobalGameCondition;
 import voogasalad_GucciGames.gameEngine.gamePlayer.ATurnDecider;
 import voogasalad_GucciGames.gameEngine.gamePlayer.AllPlayers;
 import voogasalad_GucciGames.gameEngine.gamePlayer.DefaultTurnDecider;
 import voogasalad_GucciGames.gameEngine.gamePlayer.TurnCounter;
+import voogasalad_GucciGames.gameEngine.mapObject.MapObject;
 import voogasalad_GucciGames.gameplayer.controller.GameEngineToGamePlayerInterface;
 import voogasalad_GucciGames.gameplayer.controller.PlayerMapObjectInterface;
 
@@ -23,22 +30,25 @@ public class MainGameEngine implements GameEngineToGamePlayerInterface {
 	private ATurnDecider myTurnDecider;
 
 	private ConditionHandler myConditionHandler;
-
+	
 	private String myName;
-	private GameMap myGameMap;
 
 	public String getName() {
 		return myName;
 	}
 
+<<<<<<< HEAD
 	public MainGameEngine(AllPlayers gamePlayers, GlobalGameCondition globalRule, GameMap gameMap) {
 		myConditionHandler= new ConditionHandler();
 		createTestCondition();
+=======
+	public MainGameEngine(AllPlayers gamePlayers, GlobalGameCondition globalRule) {
+
+>>>>>>> ac059b17fc3e30778fc1d7c4875de486cd64bed1
 		myGamePlayers = gamePlayers;
-		myGameMap = gameMap;
 		myCurrentTurnCounter = new TurnCounter();
 		myTurnDecider = new DefaultTurnDecider(gamePlayers.getNumberOfPlayers(), myCurrentTurnCounter);
-
+		myConditionHandler=new ConditionHandler();
 	}
 
 
@@ -84,6 +94,19 @@ public class MainGameEngine implements GameEngineToGamePlayerInterface {
 	@Override
 	public List<PlayerMapObjectInterface> getInitialState() {
 		return myGamePlayers.getInitialState();
+	}
+
+    @Override
+    public int getTurnPlayerID () {
+        // TODO Auto-generated method stub
+        return 0;
+    }
+	@Override
+	public GridCoordinateParameters getPossibleCoordinates(String action, PlayerMapObjectInterface myMapObject) {
+		return ((MapObject) myMapObject).performAction(action, new MainGameEngineCommunicationParams(myGamePlayers, null, ((MapObject) myMapObject), null, this));
+		
+		
+		
 	}
 
 }

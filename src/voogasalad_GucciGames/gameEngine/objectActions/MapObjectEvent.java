@@ -3,7 +3,9 @@ package voogasalad_GucciGames.gameEngine.objectActions;
 import java.util.Iterator;
 import java.util.List;
 
-import voogasalad_GucciGames.gameEngine.CommunicationParams.CommunicationParams;
+import voogasalad_GucciGames.gameEngine.CommunicationParams.BasicParameters;
+import voogasalad_GucciGames.gameEngine.CommunicationParams.CommunicationParameters;
+import voogasalad_GucciGames.gameEngine.CommunicationParams.EmptyParameters;
 import voogasalad_GucciGames.gameEngine.gameRules.ActionToRuleMap;
 import voogasalad_GucciGames.gameEngine.gameRules.Rules;
 
@@ -20,23 +22,25 @@ public abstract class MapObjectEvent {
 	}
 
 	// must keep executeAction() final
-	public final void executeAction(CommunicationParams params, int playerID) {
-		Boolean check = checkRules(playerID, params);
+	public final CommunicationParameters executeAction(CommunicationParameters params, int playerID) {
+		Boolean check = checkRules(playerID,params);
 		if (check) {
-			execute(params);
+			return execute(params);
 		}
-
+		return new EmptyParameters();
 	}
 
-	private Boolean checkRules(int playerID, CommunicationParams params) {
+
+	private Boolean checkRules(int playerID, CommunicationParameters params) {
 		Boolean ruletest = false;
-		ActionToRuleMap mapobj = params.getActionToRuleMap();
+		BasicParameters basic = (BasicParameters) params;
+		ActionToRuleMap mapobj = basic.getActionToRuleMap();
 		if (mapobj.contains(myName)) {
 			List<Rules> list = mapobj.getKey(myName);
 			if (list != null) {
 				Iterator<Rules> ruleItr = list.iterator();
 				while (ruleItr.hasNext()) {
-					ruletest = ruleItr.next().executeRules(params, playerID);
+					ruletest = ruleItr.next().executeRules((BasicParameters) params, playerID);
 					if (ruletest == false) {
 						return ruletest;
 					}
@@ -47,6 +51,6 @@ public abstract class MapObjectEvent {
 		return ruletest;
 	}
 
-	protected abstract CommunicationParams execute(CommunicationParams params);
+	protected abstract CommunicationParameters execute(CommunicationParameters params);
 
 }

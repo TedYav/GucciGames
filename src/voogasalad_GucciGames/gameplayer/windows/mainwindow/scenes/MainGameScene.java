@@ -91,7 +91,7 @@ public class MainGameScene extends GameScene {
 	    myRightBar = new RightBar(this, myController, myConfig);
 	    myPane.setRight(myRightBar.getParent());
 	    
-	    FileMenu file = new FileMenu(null); //TODO: create for properties file?
+	    FileMenu file = new FileMenu(null,myManager.getStage()); //TODO: create for properties file?
 	    List<GameMenu> listOfGameMenus = new ArrayList<GameMenu>();
 	    listOfGameMenus.add(file);
 	    myMenuBar = new GameMenuBar(listOfGameMenus);

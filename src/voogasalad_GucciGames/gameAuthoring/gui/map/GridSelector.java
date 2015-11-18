@@ -14,8 +14,7 @@ class GridSelector {
 
 	private Point2D _start = Point2D.ZERO;
 	private Point2D _end = Point2D.ZERO;
-	private double xMin = Double.MAX_VALUE, xMax = Double.MIN_VALUE;
-	private double yMin = Double.MAX_VALUE, yMax = Double.MIN_VALUE;
+	private Set<GridPoint> _prevSelection = new HashSet<>();
 
 	private Grid myGrid;
 
@@ -29,8 +28,9 @@ class GridSelector {
 		myGrid.addEventHandler(MouseDragEvent.DRAG_DETECTED, e -> dragStart(e));
 		myGrid.addEventHandler(MouseDragEvent.MOUSE_DRAG_OVER, e -> dragMoved(e));
 		myGrid.addEventHandler(MouseDragEvent.MOUSE_DRAG_RELEASED, e -> dragEnd(e));
-		myGrid.addEventHandler(MouseDragEvent.MOUSE_DRAG_EXITED, e -> dragEnd(e));
+		myGrid.addEventHandler(MouseDragEvent.MOUSE_DRAG_EXITED, e -> dragAbort(e));
 	}
+
 
 	/**
 	 * Update location of the rectangle proving two defining point (along the
@@ -39,20 +39,10 @@ class GridSelector {
 	private void update(Point2D start, Point2D end) {
 		_start = start;
 		_end = end;
-		updateBound(start);
-		updateBound(end);
 		_area.setX(Math.min(_start.getX(), _end.getX()));
 		_area.setY(Math.min(_start.getY(), _end.getY()));
 		_area.setWidth(Math.abs(_start.getX() - _end.getX()));
 		_area.setHeight(Math.abs(_start.getY() - _end.getY()));
-	}
-
-	private void updateBound(Point2D p) {
-		double x = p.getX(), y = p.getY();
-		xMin = x < xMin ? x : xMin;
-		xMax = x > xMax ? x : xMax;
-		yMin = y < yMin ? y : yMin;
-		yMax = y > yMax ? y : yMax;
 	}
 
 	// Define handling of mouse events
@@ -78,13 +68,20 @@ class GridSelector {
 		_area.setVisible(false);
 		e.consume();
 	}
+	
+	private void dragAbort(MouseDragEvent e) {
+		update(Point2D.ZERO, Point2D.ZERO);
+		select(_start, _end);
+		_area.setVisible(false);
+		e.consume();
+	}
 
 	private Set<GridPoint> getSelectedCells(Point2D start, Point2D end) {
 		double size = myGrid.getCellSize().get();
-		xMin = Math.min(start.getX(), end.getX());
-		xMax = Math.max(start.getX(), end.getX());
-		yMin = Math.min(start.getY(), end.getY());
-		yMax = Math.max(start.getY(), end.getY());
+		double xMin = Math.min(start.getX(), end.getX());
+		double xMax = Math.max(start.getX(), end.getX());
+		double yMin = Math.min(start.getY(), end.getY());
+		double yMax = Math.max(start.getY(), end.getY());
 		int x1 = (int) Math.floor(xMin / size), y1 = (int) Math.floor(yMin / size);
 		int x2 = (int) Math.ceil(xMax / size), y2 = (int) Math.ceil(yMax / size);
 		HashSet<GridPoint> set = new HashSet<>();
@@ -97,20 +94,25 @@ class GridSelector {
 	}
 
 	private void select(Point2D start, Point2D end) {
-		getSelectedCells(new Point2D(xMin, yMin), new Point2D(xMax, yMax)).stream().map(p -> myGrid.getCell(p))
+		Set<GridPoint> newSelection = getSelectedCells(start, end);
+		_prevSelection.stream().filter(p->!newSelection.contains(p))
+		.map(p -> myGrid.getCell(p))
+		.filter(cell -> cell != null).forEach(cell -> {
+			if (cell.isSelected())
+				cell.addBound();
+			else
+				cell.removeBound();
+		});
+		newSelection.stream().filter(p->!_prevSelection.contains(p))
+				.map(p -> myGrid.getCell(p))
 				.filter(cell -> cell != null).forEach(cell -> {
-					if (cell.isSelected())
+					if (!cell.isSelected())
 						cell.addBound();
 					else
 						cell.removeBound();
 				});
 
-		getSelectedCells(start, end).stream().map(p -> myGrid.getCell(p)).filter(cell -> cell != null).forEach(cell -> {
-			if (cell.isSelected())
-				cell.removeBound();
-			else
-				cell.addBound();
-		});
+		_prevSelection = newSelection;
 	}
 
 	private void selectFinalize(Point2D start, Point2D end) {

@@ -6,7 +6,7 @@ import voogasalad_GucciGames.gameEngine.gamePlayer.AllPlayers;
 import voogasalad_GucciGames.gameEngine.gameRules.ActionToRuleMap;
 import voogasalad_GucciGames.gameEngine.mapObject.MapObject;
 
-public class MainGameEngineCommunicationParams extends CommunicationParams{
+public class MainGameEngineCommunicationParams extends BasicParameters{
 
 	private MainGameEngine myMainEngine;
 
