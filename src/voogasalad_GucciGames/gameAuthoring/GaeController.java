@@ -96,7 +96,7 @@ public class GaeController implements IGuiGaeController, IModelGaeController{
 	}
 
 	@Override
-	public Image getCurrDraggedImage() {
+	public Image getCurrSelectedImage() {
 		return currDraggedImage;
 	}
 

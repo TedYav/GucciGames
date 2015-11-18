@@ -50,7 +50,7 @@ public interface IGuiGaeController extends IDialogGaeController {
 
 	public MapObjectType getMapObjectTypeToMap();
 	
-	public Image getCurrDraggedImage();
+	public Image getCurrSelectedImage();
 	
 	public void setCurrDraggedImage(Image draggedImage);
 }

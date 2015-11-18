@@ -12,6 +12,7 @@ import javafx.scene.layout.VBox;
 import javafx.stage.Screen;
 import javafx.stage.Stage;
 import voogasalad_GucciGames.gameAuthoring.IGuiGaeController;
+import voogasalad_GucciGames.gameAuthoring.gui.sidebar.SideBar;
 import voogasalad_GucciGames.gameAuthoring.gui.sidebar.StructureTab;
 import voogasalad_GucciGames.gameAuthoring.gui.sidebar.TileTab;
 import voogasalad_GucciGames.gameAuthoring.gui.sidebar.UnitTab;
@@ -33,46 +34,35 @@ public class GAEGui extends BorderPane {
 		Rectangle2D screenBounds = Screen.getPrimary().getVisualBounds();
 		stage.setWidth(screenBounds.getWidth());
 		stage.setHeight(screenBounds.getHeight());
-		stage.show();
-		
 		initLayout(stage);
 		initializeMap(100, 100);
-		
-	}
-	
-
-	private TabPane rightPane(Stage stage) {
-		TabPane rightTabPane = new TabPane();
-		//TODO: change argument
-    	TileTab tileTab = new TileTab(myController, null);
-    	UnitTab unitTab = new UnitTab(myController, null);
-    	StructureTab strucTab = new StructureTab(myController, null);
-    	
-    	setSize(tileTab,stage);
-    	setSize(unitTab,stage);
-    	setSize(strucTab,stage);
-    	
-    	rightTabPane.getTabs().addAll(tileTab, unitTab, strucTab);
-    	return rightTabPane;
+		stage.show();
 	}
 	
 	private void initLayout(Stage stage){
-		GAEMenuBar menuBar = null;
+		
+		// Add Menu Bar
 		try {
-			menuBar = new GAEMenuBar(myController);
+			GAEMenuBar menuBar = new GAEMenuBar(myController);
+			setTop(menuBar);
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		setTop(menuBar);
+		// Add Status Bar
 		StatusBar statusBar = new StatusBar(myController);
 		setBottom(statusBar);
-		setRight(rightPane(stage));
 		
+		// Add Side Bar
+		TabPane sideBar = (new SideBar(myController)).getPane();
+		sideBar.maxWidthProperty().bind(widthProperty().divide(4));
+		sideBar.minWidthProperty().bind(widthProperty().divide(4));
+		setRight(sideBar);
+		
+		// Add Map
 		myMap = new GUIMap(myController);
 		myMap.setOnMouseMoved(e->statusBar.update(e));
 		setCenter(myMap);
-
 		myMap.setBackground(new Image("http://www.narniaweb.com/wp-content/uploads/2009/08/NarniaMap.jpg"));
 	}
 
@@ -102,11 +92,5 @@ public class GAEGui extends BorderPane {
 		ISaveCustomObj save = (p) -> {this.myController.createCustomMapObject(p);};
 		return save;
 	}
-	
-	private void setSize(Tab tab, Stage stage){
-		VBox currBox = (VBox) tab.getContent();
-    	currBox.setMinWidth(stage.getWidth()/4);
-	}
-	
 	
 }

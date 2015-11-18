@@ -75,9 +75,9 @@ class Grid extends Pane {
 	}
 
 	private void addMouseBound(double x, double y, double size) {
-		if (myController.getCurrDraggedImage() != null
+		if (myController.getCurrSelectedImage() != null
 				&& !myCells.containsKey(new GridPoint((int) (x / size), (int) (y / size)))) {
-			myMouseImg = new ImageView(myController.getCurrDraggedImage());
+			myMouseImg = new ImageView(myController.getCurrSelectedImage());
 			myMouseImg.setFitWidth(size);
 			myMouseImg.setFitHeight(size);
 			myMouseImg.setX(x);
@@ -129,11 +129,11 @@ class Grid extends Pane {
 	}
 
 	private void placeObjectOnMap(MouseEvent e) {
-		if (e.getButton() == MouseButton.PRIMARY && myController.getCurrDraggedImage() != null) {
+		if (e.getButton() == MouseButton.PRIMARY && myController.getCurrSelectedImage() != null) {
 			int x = (int) Math.floor(e.getX() / myCellSize.get());
 			int y = (int) Math.floor(e.getY() / myCellSize.get());
 			Cell gui = new Cell(this, x, y);
-			gui.setImage(myController.getCurrDraggedImage());
+			gui.setImage(myController.getCurrSelectedImage());
 			e.consume();
 		}
 	}
