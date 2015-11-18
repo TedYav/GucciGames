@@ -6,6 +6,9 @@
 	-fx-font: bold 16pt "Arial";	
 }
 
+#light{
+	-fx-font: 8pt "Arial";
+}
 
 #vbox-element{
 	-fx-background-radius: 5.0;

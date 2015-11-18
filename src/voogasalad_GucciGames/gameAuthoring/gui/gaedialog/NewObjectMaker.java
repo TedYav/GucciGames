@@ -24,7 +24,7 @@ public class NewObjectMaker extends GaeDialog{
 	private ObjectProperty unitProperty = new ObjectProperty();
 	private ISaveGroovy saveGroovy;
 	private ISaveObjProperty saveObjProperty;
-	private ISaveCustomObj saveCustomObj;
+	private IDialogGaeController controller;
 	private DialogElements dialogElements;
 	private Scene scene;
 	private SaveField save;
@@ -34,8 +34,9 @@ public class NewObjectMaker extends GaeDialog{
 		super();
 		prop = loadProperties("dialogproperties/tiledialogproperties.properties");	
 		saveGroovy = setSaveGroovyFunctions(groovyBuffer, saveGroovy);
-		saveObjProperty = setSavePropertyFunction(unitProperty, saveObjProperty);		
-		dialogElements = new DialogElements(prop, unitProperty, saveObjProperty, saveGroovy, saveCustomObj);
+		saveObjProperty = setSavePropertyFunction(unitProperty, saveObjProperty);
+		this.controller = controller;
+		dialogElements = new DialogElements(prop, unitProperty, saveObjProperty, saveGroovy, controller);
 		groovyTabPane = new GroovyTabPane(dialogElements);
 		save = new SaveField(dialogElements, controller);
 		customContent.setDialogElements(dialogElements);

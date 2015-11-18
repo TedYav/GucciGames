@@ -45,6 +45,10 @@ public class ScrollBarField extends DialogComponent {
 			public void changed(ObservableValue<? extends Number> observable,
 					Number oldValue, Number newValue) {
 				// TODO Auto-generated method stub
+				//TODO: REFACTOR
+				if(propKey == "numplayer"){
+					dialogElements.getDialogGaeController().setNumberOfPlayers(newValue.intValue());
+				}
 				numSpriteText.setText(newValue.intValue()+"");
 				dialogElements.getSaveObjProperty().saveObjProperty(propKey, newValue.intValue()+"");				
 			}			

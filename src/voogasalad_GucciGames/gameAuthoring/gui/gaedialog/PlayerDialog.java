@@ -20,26 +20,20 @@ public class PlayerDialog extends GaeDialog  {
 	private IDialogGaeController controller;
 	
 	private Properties prop;
-	//private ObjectProperty playerProperty = new ObjectProperty();
 	private Map<Integer, ObjectProperty> playerProperties = new HashMap<Integer, ObjectProperty>();
 	private ISaveObjProperty saveObjProperty;
-	private ISaveCustomObj saveCustomObj;
 	private DialogElements dialogElements;
 	private Scene scene;
-	//private SaveField save;
 	private int numOfPlayers;
 
 	
-	public PlayerDialog(IDialogGaeController controller, int numberOfPlayers) {
-		
+	public PlayerDialog(IDialogGaeController controller, int numberOfPlayers) {		
 		super();
 		prop = loadProperties("dialogproperties/playerdialogproperties.properties");			
 		this.controller = controller;
 		this.numOfPlayers = numberOfPlayers;		
 		myContent = initializeDialog();
-		//myContent.getChildren().add(save.getContent());
-		setScene();
-	
+		setScene();	
 		
 	}
 	
@@ -58,11 +52,16 @@ public class PlayerDialog extends GaeDialog  {
 		title.setId("title");
 		vbox.getChildren().add(title);
 		int num = 1;
+		if (numOfPlayers == 0){
+			Text warning = new Text(prop.getProperty("noplayerwarning"));
+			warning.setId("light");
+			vbox.getChildren().add(warning);
+		}
 		while(numOfPlayers  >=  num) {
 			PlayerContent content = new PlayerContent(num);
 			ObjectProperty playerProperty = new ObjectProperty();
 			saveObjProperty = setSavePropertyFunction(playerProperty, saveObjProperty);		
-			dialogElements = new DialogElements(prop, playerProperty, saveObjProperty, null, saveCustomObj);
+			dialogElements = new DialogElements(prop, playerProperty, saveObjProperty, null,controller);
 			content.setDialogElements(dialogElements);
 			content.init();
 			vbox.getChildren().add(content.getContent());
