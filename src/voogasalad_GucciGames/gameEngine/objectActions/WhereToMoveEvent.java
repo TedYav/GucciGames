@@ -2,7 +2,6 @@ package voogasalad_GucciGames.gameEngine.objectActions;
 
 import voogasalad_GucciGames.gameEngine.CommunicationParams.BasicParameters;
 import voogasalad_GucciGames.gameEngine.CommunicationParams.CommunicationParameters;
-import voogasalad_GucciGames.gameEngine.CommunicationParams.MainGameEngineCommunicationParameters;
 import voogasalad_GucciGames.gameEngine.CommunicationParams.WhereToParams;
 import voogasalad_GucciGames.gameEngine.defaultCharacteristics.MovableCharacteristic;
 import voogasalad_GucciGames.gameEngine.gamePlayer.AllPlayers;
@@ -45,7 +44,7 @@ public class WhereToMoveEvent extends MapObjectEvent{
 				}
 			}
 		});
-		
+
 		return new WhereToParams(result);
 	}
 

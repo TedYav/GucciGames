@@ -20,12 +20,12 @@ public abstract class PlayerConditions extends DefaultConditions {
 	}
 
 	@Override
-	public void execute() {
+	public void execute(BasicParameters params) {
 		Iterator<GamePlayerPerson> playersIterator = myPlayerList.iterator();
 		while(playersIterator.hasNext()){
 			System.out.println("d");
-			apply(playersIterator.next());
+			apply(playersIterator.next(),  params);
 		}
 	}
-	protected abstract void apply(GamePlayerPerson player);
+	protected abstract void apply(GamePlayerPerson player , BasicParameters params);
 }

@@ -3,6 +3,7 @@ import java.util.List;
 
 import voogasalad_GucciGames.gameEngine.CommunicationParams.BasicParameters;
 import voogasalad_GucciGames.gameEngine.gameConditions.EndGameConditions;
+import voogasalad_GucciGames.gameEngine.gameConditions.oucomes.Outcome;
 import voogasalad_GucciGames.gameEngine.gamePlayer.GamePlayerPerson;
 
 /**
@@ -19,11 +20,13 @@ public class PlayerUnitCondition extends PlayerConditions {
 	}
 
 	@Override
-	protected void apply(GamePlayerPerson player) {
+	protected void apply(GamePlayerPerson player, BasicParameters params) {
+		Outcome outcome = new Outcome(params.getPlayers());
+
 		if (player.getUnits() != null) {
 			if (player.getUnits().size() == 0) {
 				player.setStatus(EndGameConditions.LOSE.toString());
-				getMyOutcome().removePlayer(player.getMyPlayerId());
+				outcome.removePlayer(player.getMyPlayerId());
 			}
 		}
 	}

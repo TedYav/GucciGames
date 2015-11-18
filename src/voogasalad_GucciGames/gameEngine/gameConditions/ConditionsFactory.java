@@ -21,9 +21,8 @@ import voogasalad_GucciGames.gameEngine.gamePlayer.GamePlayerPerson;
  */
 public class ConditionsFactory {
 	private static final String PATH_TO_CONDITIONS_PROPERTIES = "conditionPath.properties";
-			//"voogasalad_GucciGames.resources.conditions.conditionPath";
 	private static final String PATH_TO_OUTCOMES_PROPERTIES = "voogasalad_GucciGames.resources.gameOutcomes.outcomes";
-	//private ResourceBundle conditionBundle;
+
 	private ResourceBundle outcomeBundle;
 	private InputStream inputStream;
 
@@ -46,8 +45,6 @@ public class ConditionsFactory {
 		if (prop.containsKey(condParams.getName().toString())) {
 			List<GamePlayerPerson> players = new ArrayList<GamePlayerPerson>();
 			if (condParams.getType().equals("player")) {
-
-					System.out.println(condParams.getPlayerID().size());
 					@SuppressWarnings("unchecked")
 					Iterator<Integer> idIterator =  condParams.getPlayerID().iterator();
 					while (idIterator.hasNext()) {

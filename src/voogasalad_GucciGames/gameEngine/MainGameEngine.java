@@ -14,7 +14,6 @@ import voogasalad_GucciGames.gameEngine.gameConditions.GridCoordinateParameters;
 import voogasalad_GucciGames.gameEngine.gamePlayer.ATurnDecider;
 import voogasalad_GucciGames.gameEngine.gamePlayer.AllPlayers;
 import voogasalad_GucciGames.gameEngine.gamePlayer.DefaultTurnDecider;
-import voogasalad_GucciGames.gameEngine.gamePlayer.GamePlayerPerson;
 import voogasalad_GucciGames.gameEngine.gamePlayer.TurnCounter;
 import voogasalad_GucciGames.gameEngine.mapObject.MapObject;
 import voogasalad_GucciGames.gameplayer.controller.GameEngineToGamePlayerInterface;
@@ -48,12 +47,11 @@ public class MainGameEngine implements GameEngineToGamePlayerInterface {
 		return myName;
 	}
 	private void createTestCondition()  {
-		GamePlayerPerson person = myGamePlayers.getPlayerById(0);
 		List<Integer> pl = new ArrayList<Integer>();
 		pl.add(0);
 		ConditionParams condParams = new ConditionParams("PlayerUnitCondition", "player",pl,null);
 		ConditionsFactory factory = new ConditionsFactory();
-		BasicParameters comParams= new BasicParameters(myGamePlayers, null, null, null);
+		BasicParameters comParams= new BasicParameters(myGamePlayers, null, null);
 		try {
 			Conditions condition = factory.createCondition(condParams, comParams);
 			myConditionHandler.addCondition("PlayerUnitCondition", condition);
@@ -67,9 +65,9 @@ public class MainGameEngine implements GameEngineToGamePlayerInterface {
 	}
 	@Override
 	public void endTurn() {
-
-		myConditionHandler.evaluateAllConditions();
-
+		BasicParameters comParams= new BasicParameters(myGamePlayers, null, null);
+		myConditionHandler.evaluateAllConditions(comParams);
+		System.out.println("end of condition evaluation");
 		myCurrentTurnCounter.update();
 
 	}
