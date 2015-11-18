@@ -7,7 +7,6 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
-
 import voogasalad_GucciGames.gameEngine.mapObject.MapObject;
 import voogasalad_GucciGames.gameplayer.controller.PlayerMapObjectInterface;
 
@@ -15,7 +14,7 @@ public class AllPlayers {
 
 	private Map<Integer, GamePlayerPerson> myMapOfPlayers;
 	private List<PlayerMapObjectInterface> myListOfAllMapObjects; //perhaps change it to a set later
-	
+
 	public AllPlayers(Map<Integer, GamePlayerPerson> players) {
 
 		myMapOfPlayers = players;
@@ -24,16 +23,16 @@ public class AllPlayers {
 	public AllPlayers() {
 		myMapOfPlayers = new HashMap<Integer, GamePlayerPerson>();
 	}
-	
+
 	/***
-	 * 
+	 *
 	 * @param id
 	 * The neutral player with the game tiles (MapObject) has id -1.
 	 * @return
 	 */
-	
+
 	public GamePlayerPerson getPlayerById(int id){
-		
+
 		return myMapOfPlayers.get(id);
 	}
 
@@ -56,11 +55,12 @@ public class AllPlayers {
 		while (itr.hasNext()) {
 			if (itr.next().getMyPlayerId() == id) {
 				itr.remove();
+				System.out.println("remove player with id = " +id);
 				return;
 			}
 		}
 	}
-	
+
 	public List<Integer> getAllIds(){
 		/*List<Integer> result = new ArrayList<>();
 		for(GamePlayerPerson player: this.myMapOfPlayers){
@@ -76,29 +76,30 @@ public class AllPlayers {
 	// make the following collections unmodifiable
 	public List<PlayerMapObjectInterface> getInitialState() {
 		ArrayList<PlayerMapObjectInterface> myInitObjects = new ArrayList<PlayerMapObjectInterface>();
+
 		for(GamePlayerPerson player : myMapOfPlayers.values()){
                     System.out.println("add:"+player.getMapObjects().size());
                     List<MapObject> myPlayerUnits = player.getMapObjects();
 			for(MapObject m : myPlayerUnits){
-				myInitObjects.add((PlayerMapObjectInterface) m);
+				myInitObjects.add(m);
 			}
 		}
-		
+
 		return myInitObjects;
 	}
 
 	public List<MapObject> getAllUnits() {
 		// TODO Auto-generated method stub
-		
+
 ArrayList<MapObject> myInitObjects = new ArrayList<MapObject>();
-		
+
 		for(GamePlayerPerson player : myMapOfPlayers.values()){
 			List<MapObject> myPlayerUnits = player.getMapObjects();
 			for(MapObject m : myPlayerUnits){
 				myInitObjects.add(m);
 			}
-		}		
-		
+		}
+
 		return myInitObjects;
 	}
 
