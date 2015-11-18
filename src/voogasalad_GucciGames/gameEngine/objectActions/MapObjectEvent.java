@@ -6,7 +6,7 @@ import java.util.List;
 import voogasalad_GucciGames.gameEngine.CommunicationParams.BasicParameters;
 import voogasalad_GucciGames.gameEngine.CommunicationParams.CommunicationParameters;
 import voogasalad_GucciGames.gameEngine.CommunicationParams.EmptyParameters;
-import voogasalad_GucciGames.gameEngine.gameRules.ActionToRuleMap;
+import voogasalad_GucciGames.gameEngine.gameRules.ActionToRuleManager;
 import voogasalad_GucciGames.gameEngine.gameRules.Rules;
 
 /**
@@ -34,9 +34,9 @@ public abstract class MapObjectEvent {
 	private Boolean checkRules(int playerID, CommunicationParameters params) {
 		Boolean ruletest = false;
 		BasicParameters basic = (BasicParameters) params;
-		ActionToRuleMap mapobj = basic.getActionToRuleMap();
+		ActionToRuleManager mapobj = basic.getActionToRuleMap();
 		if (mapobj.contains(myName)) {
-			List<Rules> list = mapobj.getKey(myName);
+			List<Rules> list = mapobj.getRulesForAction(myName);
 			if (list != null) {
 				Iterator<Rules> ruleItr = list.iterator();
 				while (ruleItr.hasNext()) {

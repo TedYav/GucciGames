@@ -1,8 +1,10 @@
 package voogasalad_GucciGames.gameEngine.gameRules;
 
+import java.io.IOException;
+import java.io.InputStream;
 import java.lang.reflect.Constructor;
 import java.lang.reflect.InvocationTargetException;
-import java.util.ResourceBundle;
+import java.util.Properties;
 
 import voogasalad_GucciGames.gameEngine.CommunicationParams.BasicParameters;
 
@@ -12,23 +14,31 @@ import voogasalad_GucciGames.gameEngine.CommunicationParams.BasicParameters;
  *
  */
 public class RuleFactory {
-	private static final String PATH_TO_RULE_PROPERTIES = "voogasalad_GucciGames.resources.gameRules.rulePath";
-	private ResourceBundle ruleBundle;
-	public RuleFactory() {
-		ruleBundle = ResourceBundle.getBundle(PATH_TO_RULE_PROPERTIES);
+	private static final String PATH_TO_RULE_PROPERTIES = "rulePath.properties";
+	InputStream inputStream ;
+	private Properties prop;
 
+	public RuleFactory() {
+		inputStream = getClass().getResourceAsStream(PATH_TO_RULE_PROPERTIES);
+		prop = new Properties();
+		try {
+			prop.load(inputStream);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 	}
 
-	public BasicParameters createRule(String actionName, BasicParameters communicationParams) throws NoSuchMethodException, SecurityException, ClassNotFoundException, InstantiationException, IllegalAccessException, IllegalArgumentException, InvocationTargetException {
-		if(ruleBundle.containsKey(actionName)){
-			Class<Rules> condition = (Class<Rules>) Class.forName(ruleBundle.getString(actionName));
-			Constructor<Rules> condConstructor = condition.getDeclaredConstructor();
-			Rules ruleInstance = condConstructor.newInstance();
-			communicationParams.getActionToRuleMap().put(actionName, ruleInstance);
+	public BasicParameters createRule(RuleParams ruleParams, BasicParameters basicParams) throws NoSuchMethodException, SecurityException, ClassNotFoundException, InstantiationException, IllegalAccessException, IllegalArgumentException, InvocationTargetException {
+		String actionName=ruleParams.getActionName();
+		if(prop.containsKey(actionName)){
+			Class<Rules> rule = (Class<Rules>) Class.forName(prop.getProperty(actionName));
+			Constructor<Rules> ruleConstructor = rule.getDeclaredConstructor(RuleParams.class,BasicParameters.class);
+			Rules ruleInstance = ruleConstructor.newInstance(ruleParams,basicParams );
+			basicParams.getActionToRuleMap().put(actionName, ruleInstance);//may be map of an instance of an action instead of name of action
 
 		}
 		//need to add code for groovy
-		return communicationParams;
+		return basicParams;
 	}
 
 }
