@@ -5,6 +5,7 @@
         <int>-1</int>
         <voogasalad__GucciGames.gameEngine.gamePlayer.GamePlayerPerson>
           <myPlayerId>0</myPlayerId>
+          <myMapObjects/>
           <unitsMoved>0</unitsMoved>
           <unitsMaxMovedLimit>0</unitsMaxMovedLimit>
           <turnMoves>-1</turnMoves>
@@ -16,6 +17,7 @@
         <int>0</int>
         <voogasalad__GucciGames.gameEngine.gamePlayer.GamePlayerPerson>
           <myPlayerId>0</myPlayerId>
+          <myMapObjects/>
           <unitsMoved>0</unitsMoved>
           <unitsMaxMovedLimit>0</unitsMaxMovedLimit>
           <turnMoves>-1</turnMoves>
@@ -27,6 +29,7 @@
         <int>1</int>
         <voogasalad__GucciGames.gameEngine.gamePlayer.GamePlayerPerson>
           <myPlayerId>0</myPlayerId>
+          <myMapObjects/>
           <unitsMoved>0</unitsMoved>
           <unitsMaxMovedLimit>0</unitsMaxMovedLimit>
           <turnMoves>-1</turnMoves>

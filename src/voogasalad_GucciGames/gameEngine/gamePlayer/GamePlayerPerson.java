@@ -1,5 +1,6 @@
 package voogasalad_GucciGames.gameEngine.gamePlayer;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -16,6 +17,10 @@ public class GamePlayerPerson {
 	private int turnMoves = -1;//should move this away later
 	private int turnCounter = 0;//should move this away later
 	private String myStatus = "DRAW";
+	
+	public GamePlayerPerson() {
+	    myMapObjects = new ArrayList<MapObject>();
+	}
 
 	public List<MapObject> getMapObjects() {
 		return this.myMapObjects;
