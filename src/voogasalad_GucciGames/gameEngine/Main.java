@@ -9,16 +9,24 @@ import voogasalad_GucciGames.gameEngine.gamePlayer.GamePlayerPerson;
 public class Main {
 
 	public static void main(String[] args) {
+		// test conditions:
 		GamePlayerPerson p0 = new GamePlayerPerson();
 		GamePlayerPerson p = new GamePlayerPerson();
-		Map<Integer, GamePlayerPerson> map = new HashMap<Integer,GamePlayerPerson>();
+		Map<Integer, GamePlayerPerson> map = new HashMap<Integer, GamePlayerPerson>();
 		map.put(-1, p);
 		map.put(0, p0);
 		AllPlayers allPlayers = new AllPlayers(map);
-		MainGameEngine engine = new MainGameEngine(allPlayers);
-		engine.endTurn();
-		engine.endTurn();
+	MainGameEngine engine = new MainGameEngine(allPlayers);
+		//engine.createTestCondition();
+		//engine.endTurn();
+
+		// test rules:
+		engine.testRules();
+
 	}
+
+
+
 }
 
 /*

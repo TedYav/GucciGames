@@ -22,7 +22,7 @@ public class ActionToRuleManager {
 		return map.containsKey(actionName);
 	}
 
-	public List<Rules> getKey(String actionName) {
+	public List<Rules> getRulesForAction(String actionName) {
 		if (map != null) {
 			if (map.containsKey(actionName)) {
 				return map.get(actionName);

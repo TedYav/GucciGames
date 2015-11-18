@@ -2,7 +2,7 @@ package voogasalad_GucciGames.gameEngine.CommunicationParams;
 
 import voogasalad_GucciGames.gameEngine.MainGameEngine;
 import voogasalad_GucciGames.gameEngine.gamePlayer.AllPlayers;
-import voogasalad_GucciGames.gameEngine.gameRules.ActionToRuleMap;
+import voogasalad_GucciGames.gameEngine.gameRules.ActionToRuleManager;
 import voogasalad_GucciGames.gameEngine.mapObject.MapObject;
 
 public class MainGameEngineCommunicationParameters extends CommunicationParameters{
