@@ -23,6 +23,7 @@ public abstract class PlayerConditions extends DefaultConditions {
 	public void execute() {
 		Iterator<GamePlayerPerson> playersIterator = myPlayerList.iterator();
 		while(playersIterator.hasNext()){
+			System.out.println("d");
 			apply(playersIterator.next());
 		}
 	}

@@ -7,10 +7,9 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Map;
 import java.util.TreeMap;
+
 import com.thoughtworks.xstream.XStream;
 import com.thoughtworks.xstream.io.xml.DomDriver;
 
@@ -35,25 +34,25 @@ public class XStreamGameEngine implements GameDataInterface{
         XStreamGameEngine xStream = new XStreamGameEngine();
         System.out.println("Creating and saving engine.");
         try {
-            Map<Integer,GamePlayerPerson> myMapOfPlayers = new TreeMap<Integer,GamePlayerPerson>();	
+            Map<Integer,GamePlayerPerson> myMapOfPlayers = new TreeMap<Integer,GamePlayerPerson>();
             myMapOfPlayers.put(-1,new GamePlayerPerson()); //neutral player
             MapObjectType soldier = new MapObjectType("soldier", null);
             MapObjectType archer = new MapObjectType("archer" , null);
-            myMapOfPlayers.put(0,new GamePlayerPerson()); //player 1 
+            myMapOfPlayers.put(0,new GamePlayerPerson()); //player 1
             myMapOfPlayers.put(1,new GamePlayerPerson()); //player 2
             AllPlayers myPlayers = new AllPlayers(myMapOfPlayers);
 
             GameMap myMap = new GameMap(myPlayers);
-            OnlyOnePlayerHasUnitsCondition myRule = new OnlyOnePlayerHasUnitsCondition(myMap); 
-            
-            MainGameEngine engine = new MainGameEngine(myPlayers, myRule);
-            
+            OnlyOnePlayerHasUnitsCondition myRule = new OnlyOnePlayerHasUnitsCondition(myMap);
+
+            MainGameEngine engine = new MainGameEngine(myPlayers);
+
             String engineXML = xStream.serializer.toXML(engine); // saved XML File should have current turn as 2
             File file = new File(xStream.defaultEngineLocation);
             BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter(file));
             bufferedWriter.write(engineXML);
             bufferedWriter.close();
-        } 
+        }
         catch (IOException e) {
             e.printStackTrace();
         }
@@ -78,8 +77,8 @@ public class XStreamGameEngine implements GameDataInterface{
 
             // loaded XML File should have current turn as 2
             engine = (MainGameEngine) serializer.fromXML(engineXMLBuilder.toString());
-            
-        } 
+
+        }
         catch (FileNotFoundException e) {
             e.printStackTrace();
         }
