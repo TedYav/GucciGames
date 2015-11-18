@@ -17,5 +17,5 @@ public interface GameEngineToGamePlayerInterface {
 	
 	public int getTurnPlayerID();
 	
-	public GridCoordinateParameters getPossibleCoordinates(String action, PlayerMapObjectInterface myMapObject);
+	public GridCoordinateParameters getPossibleCoordinates(String action, PlayerMapObjectInterface mapObject);
 }

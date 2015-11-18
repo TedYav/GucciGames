@@ -54,7 +54,12 @@ public class MainGameEngine implements GameEngineToGamePlayerInterface {
 		pl.add(0);
 		ConditionParams condParams = new ConditionParams("PlayerUnitCondition", "player",pl,null);
 		ConditionsFactory factory = new ConditionsFactory();
-		BasicParameters comParams= new BasicParameters(myGamePlayers, null, null); //,null);
+		
+		// NOTE: this was this: 
+		//BasicParameters comParams= new BasicParameters(myGamePlayers, null, null, null);
+		// removed 3rd null to remove compile error
+		BasicParameters comParams= new BasicParameters(myGamePlayers, null, null);
+
 		try {
 			Conditions condition = factory.createCondition(condParams, comParams);
 			myConditionHandler.addCondition("PlayerUnitCondition", condition);
