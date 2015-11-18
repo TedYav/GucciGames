@@ -7,6 +7,7 @@ import java.util.Properties;
 import voogasalad_GucciGames.gameAuthoring.IDialogGaeController;
 import voogasalad_GucciGames.gameAuthoring.properties.ObjectProperty;
 import javafx.scene.Scene;
+import javafx.scene.control.ScrollPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
@@ -25,6 +26,7 @@ public class PlayerDialog extends GaeDialog  {
 	private DialogElements dialogElements;
 	private Scene scene;
 	private int numOfPlayers;
+	private ScrollPane scrollPane = new ScrollPane();
 
 	
 	public PlayerDialog(IDialogGaeController controller, int numberOfPlayers) {		
@@ -38,7 +40,9 @@ public class PlayerDialog extends GaeDialog  {
 	}
 	
 	private void setScene(){
-		scene = new Scene(myContent, WIDTH, HEIGHT);		
+		scrollPane.setContent(myContent);
+		scrollPane.setPrefSize(WIDTH, HEIGHT);
+		scene = new Scene(scrollPane, WIDTH, HEIGHT);		
 		scene.getStylesheets().add("voogasalad_GucciGames/gameAuthoring/gui/gaedialog/stylesheets/dialogstylesheet.css");
 		playerDialog.setScene(scene);	
 		
