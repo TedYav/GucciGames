@@ -7,15 +7,15 @@ import java.util.stream.Collectors;
 import voogasalad_GucciGames.gameEngine.mapObject.MapObject;
 
 public class GamePlayerPerson {
-
+	// neither myPlayerID nor myMapObjects is initialized -> runtime errors
 	private int myPlayerId;
 	private PlayerResources myResources;
 	private List<MapObject> myMapObjects;
 
-	private int unitsMoved=0;
+	private int unitsMoved = 0;
 	private int unitsMaxMovedLimit;
-	private int turnMoves = -1;//should move this away later
-	private int turnCounter = 0;//should move this away later
+	private int turnMoves = -1;// should move this away later
+	private int turnCounter = 0;// should move this away later
 	private String myStatus = "DRAW";
 	
 	public GamePlayerPerson() {
@@ -65,6 +65,5 @@ public class GamePlayerPerson {
 	public void setTurnCounter(int turnCounter) {
 		this.turnCounter = turnCounter;
 	}
-
 
 }

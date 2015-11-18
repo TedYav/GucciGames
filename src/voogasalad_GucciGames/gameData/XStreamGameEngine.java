@@ -7,10 +7,9 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Map;
 import java.util.TreeMap;
+
 import com.thoughtworks.xstream.XStream;
 import com.thoughtworks.xstream.io.xml.DomDriver;
 
@@ -39,6 +38,7 @@ public class XStreamGameEngine implements GameDataInterface{
             Map<Integer,GamePlayerPerson> myMapOfPlayers = new TreeMap<Integer,GamePlayerPerson>();	
             myMapOfPlayers.put(-1,new GamePlayerPerson()); //neutral player
             myMapOfPlayers.put(0,new GamePlayerPerson()); //player 1 
+
             myMapOfPlayers.put(1,new GamePlayerPerson()); //player 2
             
             MapObjectType soldier = new MapObjectType("soldier", "player/images/mario.png");
@@ -58,19 +58,16 @@ public class XStreamGameEngine implements GameDataInterface{
             myMapOfPlayers.get(0).getUnits().add(soldier1);
             
             AllPlayers myPlayers = new AllPlayers(myMapOfPlayers);
-
             
             MainGameEngine engine = new MainGameEngine(myPlayers);
             
-            
-            
-            
+
             String engineXML = xStream.serializer.toXML(engine); // saved XML File should have current turn as 2
             File file = new File(xStream.defaultEngineLocation);
             BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter(file));
             bufferedWriter.write(engineXML);
             bufferedWriter.close();
-        } 
+        }
         catch (IOException e) {
             e.printStackTrace();
         }
@@ -95,8 +92,8 @@ public class XStreamGameEngine implements GameDataInterface{
 
             // loaded XML File should have current turn as 2
             engine = (MainGameEngine) serializer.fromXML(engineXMLBuilder.toString());
-            
-        } 
+
+        }
         catch (FileNotFoundException e) {
             e.printStackTrace();
         }

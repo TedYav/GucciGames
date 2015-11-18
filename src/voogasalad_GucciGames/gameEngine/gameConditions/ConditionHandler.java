@@ -28,6 +28,7 @@ public class ConditionHandler {
 
 	public void evaluateAllConditions() {
 		for (String key : map.keySet()) {
+			System.out.println(key);
 			map.get(key).execute();
 		}
 	}
