@@ -38,7 +38,7 @@ public class MainGameEngine implements GameEngineToGamePlayerInterface {
 		myGamePlayers = gamePlayers;
 		myCurrentTurnCounter = new TurnCounter();
 		myTurnDecider = new DefaultTurnDecider(gamePlayers.getNumberOfPlayers(), myCurrentTurnCounter);
-		myConditionHandler=new ConditionHandler();
+		myConditionHandler = new ConditionHandler();
 		createTestCondition();
 	}
 
@@ -47,18 +47,18 @@ public class MainGameEngine implements GameEngineToGamePlayerInterface {
 
 		return myName;
 	}
-	private void createTestCondition()  {
+
+	private void createTestCondition() {
 		List<Integer> pl = new ArrayList<Integer>();
 		pl.add(0);
-		ConditionParams condParams = new ConditionParams("PlayerUnitCondition", "player",pl,null);
+		ConditionParams condParams = new ConditionParams("PlayerUnitCondition", "player", pl, null);
 		ConditionsFactory factory = new ConditionsFactory();
 		// NOTE: this was this:
-		//BasicParameters comParams= new BasicParameters(myGamePlayers, null, null, null);
+		// BasicParameters comParams= new BasicParameters(myGamePlayers, null,
+		// null, null);
 		// removed 3rd null to remove compile error
 
-		BasicParameters comParams= new BasicParameters(myGamePlayers, null, null);
-
-
+		BasicParameters comParams = new BasicParameters(myGamePlayers, null, null);
 
 		try {
 			Conditions condition = factory.createCondition(condParams, comParams);
@@ -71,9 +71,10 @@ public class MainGameEngine implements GameEngineToGamePlayerInterface {
 		}
 
 	}
+
 	@Override
 	public void endTurn() {
-		BasicParameters comParams= new BasicParameters(myGamePlayers, null, null);
+		BasicParameters comParams = new BasicParameters(myGamePlayers, null, null);
 		myConditionHandler.evaluateAllConditions(comParams);
 		System.out.println("end of condition evaluation");
 		System.out.println("----");
@@ -95,10 +96,11 @@ public class MainGameEngine implements GameEngineToGamePlayerInterface {
 		return myGamePlayers.getInitialState();
 	}
 
-    @Override
-    public int getTurnPlayerID () {
-        return 0;
-    }
+	@Override
+	public int getTurnPlayerID() {
+		return 0;
+	}
+
 	@Override
 	public GridCoordinateParameters getPossibleCoordinates(String action, PlayerMapObjectInterface myMapObject) {
 		return ((MapObject) myMapObject).performAction(action, new MainGameEngineCommunicationParameters(this));

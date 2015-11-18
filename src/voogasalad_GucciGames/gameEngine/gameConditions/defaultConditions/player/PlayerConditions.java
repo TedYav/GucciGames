@@ -16,22 +16,24 @@ import voogasalad_GucciGames.gameEngine.gamePlayer.GamePlayerPerson;
 public abstract class PlayerConditions extends DefaultConditions {
 	private List<GamePlayerPerson> myPlayerList;
 	private ConditionParams myCondParams;
+
 	public PlayerConditions(ConditionParams condParams, BasicParameters params) {
 		super(condParams, params);
-		myPlayerList=condParams.getMyPlayers();
+		myPlayerList = condParams.getMyPlayers();
 		myCondParams = condParams;
 	}
 
 	@Override
 	public void execute(BasicParameters params) {
-		System.out.println("number of players affected: "+myPlayerList.size());
+		System.out.println("number of players affected: " + myPlayerList.size());
 		Iterator<GamePlayerPerson> playersIterator = myPlayerList.iterator();
-		while(playersIterator.hasNext()){
-			apply(playersIterator.next(),  params);
+		while (playersIterator.hasNext()) {
+			apply(playersIterator.next(), params);
 		}
-		if(myCondParams.removeIDSize()>0){
+		if (myCondParams.removeIDSize() > 0) {
 			myCondParams.removePlayer();
 		}
 	}
-	protected abstract void apply(GamePlayerPerson player , BasicParameters params);
+
+	protected abstract void apply(GamePlayerPerson player, BasicParameters params);
 }
