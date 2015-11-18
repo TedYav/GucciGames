@@ -75,11 +75,11 @@ public class XStreamGameEngine implements GameDataInterface{
         xStream.loadEngine();
     }
     public GameEngineToGamePlayerInterface loadEngine() {
-        return loadEngine(null);
+        return loadEngine("");
     }
     public GameEngineToGamePlayerInterface loadEngine(String path) {
         String myPath = path;
-        if (path==null) {
+        if (path.isEmpty()) {
             myPath=defaultEngineLocation;
         }
         System.out.println("Loading engine.");

@@ -47,6 +47,21 @@
     <turnCounter reference="../../myCurrentTurnCounter"/>
   </myTurnDecider>
   <myConditionHandler>
-    <map/>
+    <map>
+      <entry>
+        <string>PlayerUnitCondition</string>
+        <voogasalad__GucciGames.gameEngine.gameConditions.defaultConditions.player.PlayerUnitCondition>
+          <myOutcome>
+            <myPlayers reference="../../../../../../myGamePlayers"/>
+            <removePlayer>
+              <myPlayers reference="../../../../../../../myGamePlayers"/>
+            </removePlayer>
+          </myOutcome>
+          <myPlayerList>
+            <voogasalad__GucciGames.gameEngine.gamePlayer.GamePlayerPerson reference="../../../../../../myGamePlayers/myMapOfPlayers/entry[2]/voogasalad__GucciGames.gameEngine.gamePlayer.GamePlayerPerson"/>
+          </myPlayerList>
+        </voogasalad__GucciGames.gameEngine.gameConditions.defaultConditions.player.PlayerUnitCondition>
+      </entry>
+    </map>
   </myConditionHandler>
 </voogasalad__GucciGames.gameEngine.MainGameEngine>
