@@ -7,6 +7,7 @@ import java.util.Map;
 import java.util.ResourceBundle;
 import java.util.TreeMap;
 
+import voogasalad_GucciGames.gameEngine.defaultCharacteristics.TileCharacteristic;
 import voogasalad_GucciGames.gameEngine.objectActions.MapObjectEvent;
 
 public class MapObjectType{
@@ -112,11 +113,9 @@ public class MapObjectType{
 //	}
 	
 
-//	public void initializeCharacteristicsMap(){
-//		myCharacteristics = new TreeMap<>();
-//		for (String key: myResourceBundle.keySet()){
-//			myCharacteristics.put(key, myCharacteristicHandler.getCharacteristic(key));
-//		}
-//	}
+	public boolean isTile(){
+		return myCharacteristics.containsKey("TileCharacteristic") || myName.equals("TileCharacteristic");
+	}
+	
 
 }
