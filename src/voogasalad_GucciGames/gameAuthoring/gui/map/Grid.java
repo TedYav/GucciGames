@@ -62,12 +62,12 @@ class Grid extends Pane {
 		// pane.maxHeightProperty().bind(heightProperty());
 		addEventFilter(MouseEvent.MOUSE_CLICKED, e -> placeObjectOnMap(e));
 
-		for (int x = 0; x < width; x++) {
-			for (int y = 0; y < height; y++) {
-				new Cell(this, x, y);
-				//TODO: update the MapObjects
-			}
-		}
+//		for (int x = 0; x < width; x++) {
+//			for (int y = 0; y < height; y++) {
+//				new Cell(this, x, y);
+//				//TODO: update the MapObjects
+//			}
+//		}
 	}
 
 	private void trackMouseMove(double x, double y) {
