@@ -27,6 +27,7 @@ public class GameSettingDialog extends GaeDialog {
 	
 	public GameSettingDialog(IDialogGaeController dialogGaeController){
 		this.dialogGaeController = dialogGaeController;
+		dialogElements.getDialogProperties().setProperty("type", "gamesetting");
 		prop = loadProperties("dialogproperties/gamedialog.properties");
 		this.initializeSaveObjProperty();
 		dialogElements = new DialogElements(prop, gameSettingsProperty, saveObjProperty, null, dialogGaeController);

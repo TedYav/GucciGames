@@ -14,6 +14,8 @@ public class UnitMakerCustomContent extends DialogContent{
 	
 	protected void setDialogElements(DialogElements dialogElements){
 		this.dialogElements = dialogElements;
+		dialogElements.getDialogProperties().setProperty("type", "unit");
+
 	}
 	
 	protected void initializeCustomContent() {
