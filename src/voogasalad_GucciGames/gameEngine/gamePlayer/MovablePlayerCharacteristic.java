@@ -1,6 +1,6 @@
 package voogasalad_GucciGames.gameEngine.gamePlayer;
 
-public class MovablePlayerCharacteristic extends GamePlayerPerson{
+public class MovablePlayerCharacteristic extends AGamePlayerPersonCharacteristic{
 	private int myNumberOfMoves =-1;
 	private int moveCount = 0;
 

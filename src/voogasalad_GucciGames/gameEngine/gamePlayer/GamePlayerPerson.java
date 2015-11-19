@@ -12,18 +12,20 @@ public class GamePlayerPerson {
 	private PlayerResources myResources;
 	private List<MapObject> myMapObjects;
 
-	private int unitsMoved = 0;
-	private int unitsMaxMovedLimit;
 	private int turnMoves = -1;// should move this away later
 	private int turnCounter = 0;// should move this away later
 	private String myStatus = "DRAW";
-	
+
 	public GamePlayerPerson() {
-	    myMapObjects = new ArrayList<MapObject>();
+		myMapObjects = new ArrayList<MapObject>();
 	}
 
 	public List<MapObject> getMapObjects() {
 		return this.myMapObjects;
+	}
+
+	public void addMapObject(MapObject object) {
+		myMapObjects.add(object);
 	}
 
 	public void endTurn() {
@@ -35,19 +37,14 @@ public class GamePlayerPerson {
 	}
 
 	public List<MapObject> getUnits() {
-
+		// isUnit is not implemented
 		return myMapObjects.stream().filter(e -> e.isUnit()).collect(Collectors.toList());
 
 	}
 
-	public void setStatus(String string) {
-		// TODO Auto-generated method stub
+	public void setStatus(String status) {
+		myStatus = status;
 
-	}
-
-	public int getUnitsMoved() {
-		// TODO Auto-generated method stub
-		return 0;
 	}
 
 	public int getAllowedMovesPerTurn() {

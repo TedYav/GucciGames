@@ -2,6 +2,8 @@ package voogasalad_GucciGames.gameEngine.objectActions;
 
 import voogasalad_GucciGames.gameEngine.CommunicationParams.BasicParameters;
 import voogasalad_GucciGames.gameEngine.CommunicationParams.CommunicationParameters;
+import voogasalad_GucciGames.gameEngine.CommunicationParams.GridCoordinateParameters;
+import voogasalad_GucciGames.gameEngine.CommunicationParams.MainGameEngineCommunicationParameters;
 import voogasalad_GucciGames.gameEngine.CommunicationParams.WhereToParams;
 import voogasalad_GucciGames.gameEngine.defaultCharacteristics.MovableCharacteristic;
 import voogasalad_GucciGames.gameEngine.gamePlayer.AllPlayers;
@@ -24,7 +26,7 @@ public class WhereToMoveEvent extends MapObjectEvent{
 		// TODO Auto-generated method stub
 		BasicParameters basic = (BasicParameters) params;
 		AllPlayers players = basic.getPlayers();
-		GamePlayerPerson player = players.getPlayerById(((MainGameEngineCommunicationParameters) params).getTurn());
+		GamePlayerPerson player = players.getPlayerById(((BasicParameters) params).getTurn());
 		TargetCoordinateMultiple result = new TargetCoordinateMultiple();
 		MapObject calledMe = basic.getCalledMe();
 
@@ -44,8 +46,10 @@ public class WhereToMoveEvent extends MapObjectEvent{
 				}
 			}
 		});
+		
+		//go through other players' units for me
 
-		return new WhereToParams(result);
+		return new GridCoordinateParameters(result);
 	}
 
 

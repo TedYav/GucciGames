@@ -2,8 +2,9 @@ package voogasalad_GucciGames.gameEngine.CommunicationParams;
 
 import java.util.List;
 
+import voogasalad_GucciGames.gameEngine.MainGameEngine;
 import voogasalad_GucciGames.gameEngine.gamePlayer.AllPlayers;
-import voogasalad_GucciGames.gameEngine.gameRules.ActionToRuleMap;
+import voogasalad_GucciGames.gameEngine.gameRules.ActionToRuleManager;
 import voogasalad_GucciGames.gameEngine.mapObject.MapObject;
 
 public class BasicParameters extends CommunicationParameters{
@@ -11,10 +12,11 @@ public class BasicParameters extends CommunicationParameters{
 	// Classes which extend this will be used to share information between the front and back end
 	private AllPlayers myPlayers;
 	private MapObject myCalledMe;
-	private ActionToRuleMap myActionToRuleMap;
-
+	private ActionToRuleManager myActionToRuleMap;
+	private MainGameEngine myEngine;
+	
 	public BasicParameters(AllPlayers players,
-		MapObject calledMe, ActionToRuleMap actionToRuleMap){
+		MapObject calledMe, ActionToRuleManager actionToRuleMap){
 		this.myPlayers = players;
 		this.myCalledMe = calledMe;
 		this.myActionToRuleMap = actionToRuleMap;
@@ -25,6 +27,15 @@ public class BasicParameters extends CommunicationParameters{
 		this(params.getPlayers(), params.getCalledMe(), params.getActionToRuleMap());
 	}
 
+	public BasicParameters(MainGameEngine mainGameEngine, MapObject calledMe) {
+		this(mainGameEngine.getPlayers(), calledMe, mainGameEngine.getActionToRuleManager());
+		myEngine = mainGameEngine;
+	}
+	
+	public int getTurn(){
+		return myEngine.getTurn();
+	}
+
 	public AllPlayers getPlayers() {
 		return myPlayers;
 	}
@@ -33,7 +44,7 @@ public class BasicParameters extends CommunicationParameters{
 		return myCalledMe;
 	}
 
-	public ActionToRuleMap getActionToRuleMap() {
+	public ActionToRuleManager getActionToRuleMap() {
 		return myActionToRuleMap;
 	}
 }
