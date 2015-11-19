@@ -7,7 +7,6 @@ import voogasalad_GucciGames.gameEngine.mapObject.MapObject;
 import voogasalad_GucciGames.gameEngine.mapObject.MapObjectType;
 
 public interface IGAEModel {
-    public void addComponent(MapObject mapObj);
     
     public void deleteComponent(MapObject mapObj);
     public void clearMap();

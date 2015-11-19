@@ -14,7 +14,7 @@ import voogasalad_GucciGames.gameAuthoring.properties.Property;
 import voogasalad_GucciGames.gameEngine.mapObject.MapObject;
 import voogasalad_GucciGames.gameEngine.mapObject.MapObjectType;
 
-public class GaeController implements IGuiGaeController, IModelGaeController{
+public class GaeController implements IGuiGaeController, IModelGaeController, IDialogGaeController {
     IGAEModel model;
     GAEGui gui;
     MapObjectType mapobjecttype;
@@ -24,11 +24,6 @@ public class GaeController implements IGuiGaeController, IModelGaeController{
     	System.out.println("called 1");
     	model = new GAEModel(this);
     	gui = new GAEGui(this,stage);	
-    }
-    
-    @Override
-    public void addComponent (MapObject mapObj) {
-        model.addComponent(mapObj);
     }
     @Override
     public void deleteComponent (MapObject mapObj) {

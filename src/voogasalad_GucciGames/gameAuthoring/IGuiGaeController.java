@@ -15,7 +15,6 @@ public interface IGuiGaeController extends IDialogGaeController {
 	 * Add Map Object
 	 * @param mapObj
 	 */
-    public void addComponent(MapObject mapObj); //validate in back end
     
     public void deleteComponent(MapObject mapObj);
     
