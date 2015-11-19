@@ -1,4 +1,4 @@
-package voogasalad_GucciGames.gameplayer.datastructures;
+package voogasalad_GucciGames.datastructures;
 
 import javafx.geometry.Point2D;
 import voogasalad_GucciGames.gameEngine.targetCoordinate.ATargetCoordinate;

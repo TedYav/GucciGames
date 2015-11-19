@@ -1,4 +1,4 @@
-package voogasalad_GucciGames.gameplayer.datastructures;
+package voogasalad_GucciGames.datastructures;
 
 import java.util.Collection;
 import java.util.HashMap;

@@ -83,8 +83,11 @@ public class MainGameScene extends GameScene {
 	
 	private void showGame(){
 		
+
+
 	    myMap = new MainMap(this, myController);
 	    myPane.setCenter(myMap.getParent());
+	    System.out.println(myPane.getCenter().getBoundsInParent());
 	
 	    myLeftBar = new LeftBar(this, myController, myConfig);
 	    myPane.setLeft(myLeftBar.getParent());

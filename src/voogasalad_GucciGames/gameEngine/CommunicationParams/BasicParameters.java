@@ -14,6 +14,7 @@ public class BasicParameters extends CommunicationParameters{
 	private MapObject myCalledMe;
 	private ActionToRuleManager myActionToRuleMap;
 	private MainGameEngine myEngine;
+	private CommunicationParameters myMethodParameters;
 	
 	public BasicParameters(AllPlayers players,
 		MapObject calledMe, ActionToRuleManager actionToRuleMap){
@@ -22,6 +23,8 @@ public class BasicParameters extends CommunicationParameters{
 		this.myActionToRuleMap = actionToRuleMap;
 
 	}
+	
+	
 
 	public BasicParameters(BasicParameters params){
 		this(params.getPlayers(), params.getCalledMe(), params.getActionToRuleMap());
@@ -46,5 +49,17 @@ public class BasicParameters extends CommunicationParameters{
 
 	public ActionToRuleManager getActionToRuleMap() {
 		return myActionToRuleMap;
+	}
+
+
+
+	public CommunicationParameters getMyMethodParameters() {
+		return myMethodParameters;
+	}
+
+
+
+	public void setMyMethodParameters(CommunicationParameters myMethodParameters) {
+		this.myMethodParameters = myMethodParameters;
 	}
 }

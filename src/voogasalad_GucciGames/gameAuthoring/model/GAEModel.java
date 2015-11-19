@@ -1,15 +1,18 @@
 package voogasalad_GucciGames.gameAuthoring.model;
 
+import java.util.List;
 import java.util.Map;
 
 import javafx.collections.ListChangeListener;
 import javafx.collections.ObservableList;
 import voogasalad_GucciGames.GameEngineToGameAuthoringEnvironment;
 import voogasalad_GucciGames.gameAuthoring.IModelGaeController;
+import voogasalad_GucciGames.gameAuthoring.gui.map.GridPoint;
 import voogasalad_GucciGames.gameData.XMLGameData;
 import voogasalad_GucciGames.gameEngine.mapObject.DefaultMapObjectType;
 import voogasalad_GucciGames.gameEngine.mapObject.MapObject;
 import voogasalad_GucciGames.gameEngine.mapObject.MapObjectType;
+import voogasalad_GucciGames.gameEngine.targetCoordinate.TargetCoordinateSingle;
 
 public class GAEModel implements IGAEModel{
     private GameSourceData data;
@@ -22,11 +25,29 @@ public class GAEModel implements IGAEModel{
     	myController = controller;
     	data = new GameSourceData();
     }
+    
+    @Override
+	public void addComponent(MapObject mapObj) {
+		data.addToMap(mapObj);		
+	}
 
     @Override
     public void deleteComponent (MapObject mapObj) {
         data.deleteFromMap(mapObj);
     }
+    
+    @Override
+    public MapObject addObject(GridPoint gridpoint, MapObjectType mapObjType, int ownerID) {
+    	TargetCoordinateSingle targCoordSingle = new TargetCoordinateSingle(gridpoint.getX(), gridpoint.getY());
+    	MapObject mapObject = new MapObject(mapObjType, targCoordSingle, ownerID);
+    	//Validate with engine, if failed, return null, else return this mapObject
+    	return mapObject;
+    }
+    
+    @Override
+	public List<MapObject> getMapObjects() {
+		return data.getMapObjects();
+	}
 
     @Override
     public void clearMap () {
@@ -114,13 +135,6 @@ public class GAEModel implements IGAEModel{
 	public ObservableList<MapObjectType> getStructureTypes() {
 		// TODO Auto-generated method stub
 		return null;
-	}
-
-	@Override
-	//implemet this
-	public void addComponent(MapObject mapObj) {
-		// TODO Auto-generated method stub
-		
 	}
 	
     public void addComponent (Map<String,String> objParams) {
