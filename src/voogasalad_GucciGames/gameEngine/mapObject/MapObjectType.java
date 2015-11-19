@@ -4,7 +4,10 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.ResourceBundle;
 import java.util.TreeMap;
+
+import voogasalad_GucciGames.gameEngine.defaultCharacteristics.CharacteristicHandler;
 import voogasalad_GucciGames.gameEngine.objectActions.MapObjectEvent;
 import voogasalad_GucciGames.gameEngine.targetCoordinate.ATargetCoordinate;
 
@@ -13,6 +16,8 @@ public class MapObjectType{
 
 	private String myName;
 	private String myImagePath;
+	private CharacteristicHandler myCharacteristicHandler;
+	private ResourceBundle myResourceBundle;
 	
 	//sizes
 	
@@ -23,9 +28,11 @@ public class MapObjectType{
 	public MapObjectType(String name, String imagePath){
 		myName = name;
 		myImagePath = imagePath;
+		myResourceBundle = ResourceBundle.getBundle(name);
 		
 		// TreeMap so alphabetized when giving to front end
 		myCharacteristics = new TreeMap<String,  AMapObjectCharacteristic>();
+		myCharacteristicHandler = new CharacteristicHandler();
 		myActions = new TreeMap<>();
 		myRequests = new TreeMap<>();
 		
@@ -67,8 +74,8 @@ public class MapObjectType{
 		this.myActions.put(name, action);
 	}
 	
-	public void addCharacteristic(String name, AMapObjectCharacteristic characteristic){
-		this.myCharacteristics.put(name, characteristic);
+	public void addCharacteristic(String name){
+		this.myCharacteristics.put(name, myCharacteristicHandler.getCharacteristic(name));
 	}
 	
 	public boolean hasCharacteristic(String name){
@@ -95,6 +102,13 @@ public class MapObjectType{
 		Map<String, String> map = new HashMap<String, String>();
 		map.put("hello", "hi"); //change this later
 		return map;
+	}
+	
+	public void initializeCharacteristicsMap(){
+		myCharacteristics = new TreeMap<>();
+		for (String key: myResourceBundle.keySet()){
+			myCharacteristics.put(key, myCharacteristicHandler.getCharacteristic(key));
+		}
 	}
 	
 }

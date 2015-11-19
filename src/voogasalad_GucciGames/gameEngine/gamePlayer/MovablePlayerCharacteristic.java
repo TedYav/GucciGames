@@ -22,5 +22,9 @@ public class MovablePlayerCharacteristic extends AGamePlayerPersonCharacteristic
 	public void updateMoves(){
 		moveCount++;
 	}
+	
+	public void reset(){
+		moveCount = 0;
+	}
 
 }

@@ -1,4 +1,4 @@
-package voogasalad_GucciGames.gameplayer.datastructures;
+package voogasalad_GucciGames.datastructures;
 
 import javafx.scene.image.Image;
 
