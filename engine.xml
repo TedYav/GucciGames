@@ -1,0 +1,12 @@
+<voogasalad__GucciGames.gameEngine.MainGameEngine>
+  <myGamePlayers>
+    <myMapOfPlayers/>
+  </myGamePlayers>
+  <myCurrentTurnCounter>
+    <currentTurn>0</currentTurn>
+  </myCurrentTurnCounter>
+  <myTurnDecider class="voogasalad_GucciGames.gameEngine.gamePlayer.DefaultTurnDecider">
+    <numPlayers>0</numPlayers>
+    <turnCounter reference="../../myCurrentTurnCounter"/>
+  </myTurnDecider>
+</voogasalad__GucciGames.gameEngine.MainGameEngine>

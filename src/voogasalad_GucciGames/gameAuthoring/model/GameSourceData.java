@@ -13,35 +13,16 @@ import voogasalad_GucciGames.gameEngine.mapObject.MapObjectType;
 
 public class GameSourceData {
 	private ObservableList<MapObjectType> tileTypes;
-	private ObservableList<MapObject> tiles;
 	private ObservableList<MapObjectType> unitTypes;
-	private ObservableList<MapObject> units; 
 	private ObservableList<MapObjectType> structureTypes;
-	private ObservableList<MapObject> structures;
+	private List<MapObject> onMap;
 
-
-	private ObservableList<MapObject> onMap;
-
-	GameSourceData(){
+	GameSourceData() {
 		tileTypes = FXCollections.observableArrayList();
-
-		MapObjectType objType = new MapObjectType("fire", "voogasalad_GucciGames/graphics/fire.png");
-		MapObjectType objType2 = new MapObjectType("hurricane", "voogasalad_GucciGames/graphics/hurricane.png");
+		MapObjectType objType = new MapObjectType("duvall", "player/images/duvall.png");
+		MapObjectType objType2 = new MapObjectType("student", "player/images/smile.png");
 		tileTypes.add(objType);
 		tileTypes.add(objType2);
-	}
-
-	public void addListener(ListChangeListener o) {
-		tileTypes.addListener(o);
-		tiles.addListener(o);
-		unitTypes.addListener(o);
-		units.addListener(o);
-		structureTypes.addListener(o);
-		structures.addListener(o);
-		onMap.addListener(o);
-
-
-
 	}
 
 	public void addToMap(MapObject obj) {
@@ -53,7 +34,7 @@ public class GameSourceData {
 	public void clearMap() {
 		onMap.clear();
 	}
-	public ObservableList<MapObject> getMapObjects(){
+	public List<MapObject> getMapObjects(){
 		return onMap;
 	}
 	public void addTileType(MapObjectType type) {
