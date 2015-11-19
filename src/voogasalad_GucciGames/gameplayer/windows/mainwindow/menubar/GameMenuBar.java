@@ -15,13 +15,15 @@ public class GameMenuBar {
 	 */
     private ToolBar menu;
     private ResourceBundle myBundle = ResourceBundle.getBundle("voogasalad_GucciGames.gameplayer.config.menubar.menubar");
+    private ResourceBundle myCssBundle = ResourceBundle.getBundle("voogasalad_GucciGames.gameplayer.config.scenes.CssClasses");
+
 
 	public GameMenuBar(List<GameMenu> menus){
 		menu=new ToolBar();
 		for (GameMenu m: menus) {
 		    menu.getItems().add(m.returnNodeToDraw());
 		}
-		menu.getStyleClass().add(myBundle.getString("menubarcssclass"));
+		menu.getStyleClass().add(myCssBundle.getString("menubarcssclass"));
 	}
 
 	public Node returnToolbar() {

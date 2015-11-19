@@ -15,14 +15,14 @@ import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
 import javafx.stage.Screen;
 import voogasalad.util.reflection.Reflection;
+import voogasalad_GucciGames.datastructures.Coordinate;
+import voogasalad_GucciGames.datastructures.TwoWayMap;
 import voogasalad_GucciGames.gameEngine.targetCoordinate.ATargetCoordinate;
 import voogasalad_GucciGames.gameEngine.targetCoordinate.TargetCoordinateSingle;
 import voogasalad_GucciGames.gameplayer.controller.GameControllerInterface;
 import voogasalad_GucciGames.gameplayer.controller.PlayerMapObjectInterface;
 import voogasalad_GucciGames.gameplayer.controller.dummy.DummyTile;
 import voogasalad_GucciGames.gameplayer.controller.dummy.DummyUnit;
-import voogasalad_GucciGames.gameplayer.datastructures.Coordinate;
-import voogasalad_GucciGames.gameplayer.datastructures.TwoWayMap;
 import voogasalad_GucciGames.gameplayer.windows.GameScene;
 import voogasalad_GucciGames.gameplayer.windows.WindowComponent;
 import voogasalad_GucciGames.gameplayer.windows.mainwindow.map.MapInterface;
@@ -36,7 +36,10 @@ public class MainMap extends WindowComponent implements MapInterface {
 	
 	private MiniMap myMiniMap;
 	
-	private ResourceBundle myConfig = ResourceBundle.getBundle("voogasalad_GucciGames.gameplayer.config.components.Map");
+        private ResourceBundle myConfig = ResourceBundle.getBundle("voogasalad_GucciGames.gameplayer.config.components.Map");
+        private ResourceBundle myCssBundle = ResourceBundle.getBundle("voogasalad_GucciGames.gameplayer.config.scenes.CssClasses");
+
+	
 
 	private TwoWayMap<Point2D, MapCellInterface> myCellMap;
 	private List<MapCellInterface> myHighlightedCells;
@@ -69,13 +72,21 @@ public class MainMap extends WindowComponent implements MapInterface {
 	
 	
 	private void initializeVariables() {
-		myCellSize = Screen.getPrimary().getBounds().getWidth()/Double.parseDouble(myConfig.getString("NumCells"));
-		myCellsWide = 50;
-		myCellsTall = 50;
+		myCellsWide = 8;
+		myCellsTall = 8;
+		myCellSize = calculateCellSize();
+		//myController.getEngine().getMapDimensions().get(0);
 		myBorderWidth = Double.parseDouble(myConfig.getString("BorderWidth"));
 		mySelectedUnits = FXCollections.observableArrayList();
 		myUnitMap = new TwoWayMap<>();
 		myController.setMap(this);
+	}
+
+
+	private double calculateCellSize() {
+		double size = Screen.getPrimary().getBounds().getWidth()/Double.parseDouble(myConfig.getString("NumCells"));
+		double stretchSize = (Screen.getPrimary().getBounds().getHeight()-Double.parseDouble(myConfig.getString("MapVBorder")))/myCellsTall;
+		return (size>stretchSize)?size:stretchSize;
 	}
 
 	private void initializeMap() {
@@ -113,10 +124,11 @@ public class MainMap extends WindowComponent implements MapInterface {
 		System.out.println(initialState);
 		initialState.stream()
 			.forEach(o->addToMap(o));
-        myParent.getStyleClass().add(myConfig.getString("MainCSSClass"));
-        myParent.applyCss();
-        myMap.getStyleClass().add(myConfig.getString("MainCSSClass"));
-        myMap.applyCss();
+        //myParent.getStyleClass().add(myConfig.getString("MainCSSClass"));
+        //myParent.applyCss();
+        //myMap.getStyleClass().add(myConfig.getString("MainCSSClass"));
+        //myMap.applyCss();
+		myParent.getStyleClass().add(myCssBundle.getString("mapstackpane"));
 	}
 	
 	private void addToMap(PlayerMapObjectInterface object) {

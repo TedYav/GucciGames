@@ -28,18 +28,14 @@ public class XStreamGameEngine implements GameDataInterface{
 
     XStream serializer = new XStream(new DomDriver());
     String currentTurn = "Current Turn: ";
-    String defaultEngineLocation = "./src/voogasalad_GucciGames/gameData/engine.xml";
+    private static String defaultEngineLocation = "./src/voogasalad_GucciGames/gameData/engine.xml";
 
-    public static void main(String[] args0){
-        XStreamGameEngine xStream = new XStreamGameEngine();
-        System.out.println("Creating and saving engine.");
-        try {
-            
-            MainGameEngine engine = xStream.createEngine();
-            
 
-            String engineXML = xStream.serializer.toXML(engine); // saved XML File should have current turn as 2
-            File file = new File(xStream.defaultEngineLocation);
+    
+	public void saveEngine(MainGameEngine engine, String filename) {
+		try {
+            String engineXML = serializer.toXML(engine); // saved XML File should have current turn as 2
+            File file = new File(filename);
             BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter(file));
             bufferedWriter.write(engineXML);
             bufferedWriter.close();
@@ -48,11 +44,12 @@ public class XStreamGameEngine implements GameDataInterface{
             e.printStackTrace();
         }
         System.out.println("Save Complete.");
-        xStream.loadEngine();
-    }
+	}
+	
     public GameEngineToGamePlayerInterface loadEngine() {
         return loadEngine("");
     }
+    
     public GameEngineToGamePlayerInterface loadEngine(String path) {
         String myPath = path;
         if (path.isEmpty()) {
@@ -77,38 +74,6 @@ public class XStreamGameEngine implements GameDataInterface{
         return engine;
     }
     
-    public GameEngineToGamePlayerInterface hardCodedLoadEngine() {
-        return createEngine();
-    }
-    
-    private MainGameEngine createEngine() {
-        Map<Integer,GamePlayerPerson> myMapOfPlayers = new TreeMap<Integer,GamePlayerPerson>();     
-        myMapOfPlayers.put(-1,new GamePlayerPerson()); //neutral player
-        myMapOfPlayers.put(0,new GamePlayerPerson()); //player 1 
-
-        myMapOfPlayers.put(1,new GamePlayerPerson()); //player 2
-        
-        MapObjectType soldier = new MapObjectType("soldier", "player/images/mario.png");
-        MapObjectType archer = new MapObjectType("archer" , "player/images/leftbar-image-placeholder.jpg");
-        
-        MapObject soldier1 = new MapObject(soldier,new TargetCoordinateSingle(1,0),0,1);
-        
-        for (int i=0;i<10;i++) {
-            for (int j=0;j<10;j++) {
-                if ((i+j)%2==0) {
-                    MapObject arch = new MapObject(archer,new TargetCoordinateSingle(i,j),1,1);
-                    myMapOfPlayers.get(1).getMapObjects().add(arch);
-                }
-            }
-        }
-        
-        myMapOfPlayers.get(0).getMapObjects().add(soldier1);
-        
-        AllPlayers myPlayers = new AllPlayers(myMapOfPlayers);
-        
-        MainGameEngine engine = new MainGameEngine(myPlayers);
-        return engine;
-    }
     @Override
     public void loadGames () {
 

@@ -6,8 +6,10 @@ import voogasalad_GucciGames.gameplayer.windows.mainwindow.components.DisplayCom
 import java.awt.event.MouseEvent;
 import java.util.List;
 import java.util.Map;
+import java.util.ResourceBundle;
 import javafx.event.Event;
 import javafx.event.EventHandler;
+import javafx.geometry.Pos;
 import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.image.Image;
@@ -21,9 +23,12 @@ public class DisplayMapObjectImage implements DisplayComponent{
     private GameControllerInterface myController;
     private Image buffer;
     private ImageView imgView;
+    private ResourceBundle myCssBundle = ResourceBundle.getBundle("voogasalad_GucciGames.gameplayer.config.scenes.CssClasses");
 
     public DisplayMapObjectImage (List<PlayerMapObjectInterface> imageUrls, GameControllerInterface controller) {
         display=new FlowPane();
+        display.getStyleClass().add(myCssBundle.getString("leftimageflowpane"));
+        //display.setAlignment(Pos.CENTER);
         mapObjectsOnCell=imageUrls;
         myController=controller;
         updateImages();
@@ -35,7 +40,6 @@ public class DisplayMapObjectImage implements DisplayComponent{
             }
             if (display.getChildren().size()==0) {
                 debugInitializeImage("player/images/leftbar-image-placeholder.jpg");
-                debugInitializeImage("player/images/leftbar-image-placeholder-2.gif");
             }
         }
         private void initializeImage(PlayerMapObjectInterface m) {

@@ -1,0 +1,54 @@
+
+.title{
+	-fx-font: bold 200pt "Arial";	
+}
+
+.root{
+	-fx-background-radius: 5.0;
+	-fx-padding: 0;
+	-fx-spacing: 15;
+	-fx-background: #9FA18D;
+}
+
+.sidevbox{
+	-fx-font: bold 20pt "Palatino Linotype";
+	-fx-background-color: #BFB79F;
+	-fx-spacing: 10;
+	-fx-padding: 5;
+}
+.vbox-chat{
+	-fx-font: 12pt "Palatino Linotype";
+	-fx-background-color: #BFB79F;
+}
+.listview-chat{
+	-fx-font: 12pt "Palatino Linotype";
+	-fx-background-color: #EEEEEE;
+}
+.textarea-chat{
+	-fx-font: 12pt "Palatino Linotype";
+	-fx-background-color: #BFB79F;
+}
+.left-image-flowpane{
+	-fx-alignment: center;
+	-fx-hgap: 2;
+	-fx-vgap: 2;
+}
+
+.mainmap{
+	-fx-stroke-width: 4;
+	-fx-stroke: #e7e7e7;
+}
+
+
+.menubar{
+	-fx-background-color: linear-gradient(to bottom, #9FA18D, #0F403F);
+}
+.dropdown{
+	-fx-font: bold 14pt "Palatino Linotype";
+}
+
+.map-stackpane{
+	-fx-border-color: #8F1010;
+	-fx-border-width: 5;
+	-fx-padding: 0;
+}
