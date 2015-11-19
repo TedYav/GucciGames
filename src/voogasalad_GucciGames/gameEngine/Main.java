@@ -5,6 +5,9 @@ import java.util.Map;
 
 import voogasalad_GucciGames.gameEngine.gamePlayer.AllPlayers;
 import voogasalad_GucciGames.gameEngine.gamePlayer.GamePlayerPerson;
+import voogasalad_GucciGames.gameEngine.mapObject.MapObject;
+import voogasalad_GucciGames.gameEngine.mapObject.MapObjectType;
+import voogasalad_GucciGames.gameEngine.targetCoordinate.TargetCoordinateSingle;
 
 public class Main {
 
@@ -13,11 +16,15 @@ public class Main {
 		GamePlayerPerson p0 = new GamePlayerPerson();
 		GamePlayerPerson p = new GamePlayerPerson();
 		Map<Integer, GamePlayerPerson> map = new HashMap<Integer, GamePlayerPerson>();
+		MapObjectType soldier = new MapObjectType("soldier", "./../");
+		MapObject sold1 = new MapObject(soldier, new TargetCoordinateSingle(0, 0),0);
+		p0.addMapObject(sold1);
 		map.put(-1, p);
 		map.put(0, p0);
 		AllPlayers allPlayers = new AllPlayers(map);
 	MainGameEngine engine = new MainGameEngine(allPlayers);
-		//engine.createTestCondition();
+		engine.createTestCondition();
+
 		//engine.endTurn();
 
 		// test rules:

@@ -107,6 +107,7 @@ public class MainGameEngine implements GameEngineToGamePlayerInterface {
 				e.printStackTrace();
 			}
 			endTurn();
+			endTurn();
 		}
 
 		public void testRules() {
