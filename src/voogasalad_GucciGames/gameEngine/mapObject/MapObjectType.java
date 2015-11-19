@@ -5,6 +5,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.TreeMap;
+
+import voogasalad_GucciGames.gameEngine.defaultCharacteristics.TileCharacteristic;
 import voogasalad_GucciGames.gameEngine.objectActions.MapObjectEvent;
 import voogasalad_GucciGames.gameEngine.targetCoordinate.ATargetCoordinate;
 
@@ -95,6 +97,10 @@ public class MapObjectType{
 		Map<String, String> map = new HashMap<String, String>();
 		map.put("hello", "hi"); //change this later
 		return map;
+	}
+	
+	public boolean isTile(){
+		return myCharacteristics.containsKey("TileCharacteristic") || myName.equals("TileCharacteristic");
 	}
 	
 }
