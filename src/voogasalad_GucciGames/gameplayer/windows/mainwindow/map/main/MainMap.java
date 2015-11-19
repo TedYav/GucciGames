@@ -69,13 +69,22 @@ public class MainMap extends WindowComponent implements MapInterface {
 	
 	
 	private void initializeVariables() {
-		myCellSize = Screen.getPrimary().getBounds().getWidth()/Double.parseDouble(myConfig.getString("NumCells"));
-		myCellsWide = 50;
-		myCellsTall = 50;
+		myCellsWide = 15;
+		myCellsTall = 15;
+		myCellSize = calculateCellSize();
+		//myController.getEngine().getMapDimensions().get(0);
 		myBorderWidth = Double.parseDouble(myConfig.getString("BorderWidth"));
 		mySelectedUnits = FXCollections.observableArrayList();
 		myUnitMap = new TwoWayMap<>();
 		myController.setMap(this);
+	}
+
+
+	private double calculateCellSize() {
+		double size = Screen.getPrimary().getBounds().getWidth()/Double.parseDouble(myConfig.getString("NumCells"));
+		double stretchSize = (Screen.getPrimary().getBounds().getWidth()-Double.parseDouble(myConfig.getString("MapBorder")))/myCellsWide;
+		//System.out.println(myParent.getParent().getBoundsInParent());
+		return (size>stretchSize)?size:stretchSize;
 	}
 
 	private void initializeMap() {

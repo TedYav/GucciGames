@@ -11,6 +11,8 @@ import javafx.event.EventHandler;
 import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.control.ListView;
+import voogasalad_GucciGames.gameEngine.targetCoordinate.ATargetCoordinate;
+import voogasalad_GucciGames.gameEngine.targetCoordinate.TargetCoordinateSingle;
 import voogasalad_GucciGames.gameplayer.controller.GameControllerInterface;
 import voogasalad_GucciGames.gameplayer.controller.PlayerMapObjectInterface;
 import voogasalad_GucciGames.gameplayer.windows.mainwindow.components.DisplayComponent;
@@ -27,17 +29,17 @@ public class ActionDisplay implements DisplayComponent, Observer {
     	
         temp = new ArrayList<Button>();
         
-        Button btn = new Button();
-        btn.setText("Say 'Hello World'");
-        btn.setOnAction(new EventHandler<ActionEvent>() {
-            @Override
-            public void handle(ActionEvent event) {
-                System.out.println("Hello World!");
-            }
-        });
-        
-        
-        temp.add(btn);
+////        Button btn = new Button();
+////        btn.setText("Say 'Hello World'");
+////        btn.setOnAction(new EventHandler<ActionEvent>() {
+////            @Override
+////            public void handle(ActionEvent event) {
+////                System.out.println("Hello World!");
+////            }
+////        });
+//        
+//        
+//        temp.add(btn);
         buttons = new ListView<Button>(FXCollections.observableList(temp));
         
     }
@@ -48,8 +50,8 @@ public class ActionDisplay implements DisplayComponent, Observer {
         button.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
-                myController.setActionInProgress(name, activeMapObject);
-                myController.getMap().highlightCells(myController.getEngine().getPossibleCoordinates(name, activeMapObject).getListOfCoordinates());
+                List<TargetCoordinateSingle> targets = myController.setActionInProgress(name, activeMapObject);
+                myController.getMap().highlightCells(targets);
             }
         });
         return button;
