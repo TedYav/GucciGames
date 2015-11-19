@@ -25,12 +25,14 @@ public class UnitSettingsDialog extends GaeDialog{
 	private DialogElements dialogElements;
 	private Scene scene;
 	
-	
+	private String name;
 	private int numAttack;
 	private int damage;
 	private int healthVal;
 	private int rangeMvt;
 	private int rangeAttack;
+	
+	private TextInputField nameInputField;
 	
 	private ScrollBarField numAttackField;
 	private ScrollBarField damageField;
@@ -68,12 +70,13 @@ public class UnitSettingsDialog extends GaeDialog{
 	private void initialize(){
 		Text title = new Text("Set Unit Properties");
 		title.setId("title");
+		nameInputField = new TextInputField(dialogElements, "name");
 		numAttackField = new ScrollBarField(dialogElements, "numattack", "numattack_items");
 		damageField = new ScrollBarField(dialogElements, "damage", "damage_items");
 		healthField = new ScrollBarField(dialogElements, "health", "health_items");
 		rangeMvtField = new ScrollBarField(dialogElements, "mvtrange", "mvtrange_items");
 		rangeAttackField = new ScrollBarField(dialogElements, "attackrange", "attackrange_items");
-		myContent.getChildren().addAll(title, numAttackField.getContent(), damageField.getContent(), 
+		myContent.getChildren().addAll(title, nameInputField.getContent(), numAttackField.getContent(), damageField.getContent(), 
 				healthField.getContent(), rangeMvtField.getContent(), rangeAttackField.getContent(), saveBtn);
 		myContent.setId("vbox-element");
 
@@ -82,19 +85,22 @@ public class UnitSettingsDialog extends GaeDialog{
 	
 	private void addActionToSave(){
 		saveBtn.setOnAction(e -> {
+			name = nameInputField.getTextInput();
 			numAttack = (int) numAttackField.getSelected();
 			damage = (int)damageField.getSelected();
 			healthVal = (int)healthField.getSelected();
 			rangeMvt = (int) rangeMvtField.getSelected();
 			rangeAttack = (int) rangeAttackField.getSelected();
 			
-			String s = "student";
-			if(numAttack > 5){
-				s = "duvall";
-			}
+
+//			String s = "student";
+//			if(numAttack > 5){
+//				s = "duvall";
+//			}
+//			
 			
-			
-			UnitParams unitParams = new UnitParams(s, numAttack, damage, healthVal, rangeMvt, rangeAttack);
+			//UnitParams unitParams = new UnitParams(s, numAttack, damage, healthVal, rangeMvt, rangeAttack);
+			UnitParams unitParams = new UnitParams(name, numAttack, damage, healthVal, rangeMvt, rangeAttack);
 			controller.setUnitParams(unitParams);
 			this.unitSettingDialog.close();
 			

@@ -54,5 +54,10 @@ public class AttackCharacteristic extends AMapObjectCharacteristic{
 		myDamage = values.get(1);
 		maxNumberOfAttacks = values.get(2);
 	}
+
+	@Override
+	public String toString() {
+		return "Range = " + myRange + "\n Damage = " + myDamage;
+	}
 	
 }

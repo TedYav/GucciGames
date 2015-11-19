@@ -26,7 +26,6 @@ public class ActionDisplay implements DisplayComponent, Observer {
     public ActionDisplay(GameControllerInterface controller) {
 		myController = controller;
 		myController.addMOObserver(this);
-    	
         temp = new ArrayList<Button>();
        
 ////        Button btn = new Button();
@@ -78,7 +77,6 @@ public class ActionDisplay implements DisplayComponent, Observer {
         	activeMapObject = (PlayerMapObjectInterface)arg;
         }
         updateButtons();
-
     }
 
 }

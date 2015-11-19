@@ -35,7 +35,7 @@ public class GAEGui extends BorderPane {
 		stage.setWidth(screenBounds.getWidth());
 		stage.setHeight(screenBounds.getHeight());
 		initLayout(stage);
-		initializeMap(20, 20);
+		initializeMap(8, 8);
 		stage.show();
 	}
 	

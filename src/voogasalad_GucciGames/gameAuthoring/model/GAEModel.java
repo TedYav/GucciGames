@@ -19,6 +19,7 @@ import voogasalad_GucciGames.gameEngine.defaultCharacteristics.MovableCharacteri
 import voogasalad_GucciGames.gameEngine.defaultCharacteristics.RealHealthCharacteristic;
 import voogasalad_GucciGames.gameEngine.gamePlayer.AllPlayers;
 import voogasalad_GucciGames.gameEngine.gamePlayer.GamePlayerPerson;
+import voogasalad_GucciGames.gameEngine.gamePlayer.MovablePlayerCharacteristic;
 import voogasalad_GucciGames.gameEngine.mapObject.DefaultMapObjectType;
 import voogasalad_GucciGames.gameEngine.mapObject.MapObject;
 import voogasalad_GucciGames.gameEngine.mapObject.MapObjectType;
@@ -42,7 +43,6 @@ public class GAEModel implements IGAEModel{
 		mapOfPlayers.put(-1, new GamePlayerPerson(-1));
 		mapOfPlayers.put(0, new GamePlayerPerson(0));
 		mapOfPlayers.put(1, new GamePlayerPerson(1));
-		mapOfPlayers.put(2, new GamePlayerPerson(2));
 		unitCharacteristicMap = new HashMap<>();
 
     	//writer = new XMLWriter();
@@ -59,17 +59,26 @@ public class GAEModel implements IGAEModel{
     public MapObject addObject(GridPoint gridpoint, MapObjectType mapObjType, int ownerID) {
     	TargetCoordinateSingle targCoordSingle = new TargetCoordinateSingle(gridpoint.getX(), gridpoint.getY());
     	int layer = mapObjType.isTile() ? 0 : 1;
+    	if(mapObjType.getName().equals("duvall")){
+ownerID = 0;
+    	}
+    	if(mapObjType.getName().equals("student")){
+    		ownerID = 1;
+    	}
+    	
     	MapObject mapObject = new MapObject(mapObjType, targCoordSingle, ownerID,layer);
     	System.out.println(mapObjType.getName());
-    	
     	// Goes in resource bundle
-    	UnitParams param = unitCharacteristicMap.get(mapObjType.getName());
-    	mapObject.addCharacteristic("AttackCharacteristic", new AttackCharacteristic(param.getRangeAttack(), 
-    			param.getDamage(), param.getNumberOfAttacks()));
-    	mapObject.addCharacteristic("RealHealthCharacteristic", new RealHealthCharacteristic(param.getHealth()));
-    	mapObject.addCharacteristic("MovableCharacteristic", new MovableCharacteristic(param.getRangeMvt(), 5));
-    	
+    	if (!mapObjType.isTile()) {
+    		UnitParams param = unitCharacteristicMap.get(mapObjType.getName());
+    		mapObject.addCharacteristic("AttackCharacteristic", new AttackCharacteristic(param.getRangeAttack(), 
+    				param.getDamage(), param.getNumberOfAttacks()));
+    		mapObject.addCharacteristic("RealHealthCharacteristic", new RealHealthCharacteristic(param.getHealth()));
+    		mapObject.addCharacteristic("MovableCharacteristic", new MovableCharacteristic(param.getRangeMvt(), 5));
+    	}
     	//mapObject.addCharacteristic("Attack", new AttackCharacteristic());
+    	
+    	
     	mapOfPlayers.get(ownerID).addMapObject(mapObject);
     	//Validate with engine, if failed, return null, else return this mapObject
     	return mapObject;
@@ -128,6 +137,10 @@ public class GAEModel implements IGAEModel{
     	 * Don't instantiate these
     	 * Change to instance variables
     	 */
+    	for(int i : mapOfPlayers.keySet()){
+    		mapOfPlayers.get(i).setMyMovable(new MovablePlayerCharacteristic(3));
+    	}
+    	
     	XStreamGameEngine saver = new XStreamGameEngine();
 		AllPlayers myPlayers = new AllPlayers(mapOfPlayers);
 		MainGameEngine engine = new MainGameEngine(myPlayers);
