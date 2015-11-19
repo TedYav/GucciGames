@@ -1,5 +1,7 @@
 package voogasalad_GucciGames.gameAuthoring;
 
+import java.util.Collection;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
 import javafx.collections.ObservableList;
@@ -21,7 +23,6 @@ public class GaeController extends AGuiGaeController implements IModelGaeControl
     private Map<Integer, String> allPlayers = new HashMap<Integer, String>();
     
     public GaeController(Stage stage){
-    	System.out.println("called 1");
     	model = new GAEModel(this);
     	gui = new GAEGui(this,stage);	
     }
@@ -111,7 +112,7 @@ public class GaeController extends AGuiGaeController implements IModelGaeControl
 	 * Access type via type key
 	 */
 	public void createCustomMapObject(ObjectProperty p) {
-		// TODO Auto-generated method stub
+		//TODO do something
 		// Debug:
 		System.out.println("saving");
 		p.printProperty();
@@ -120,27 +121,23 @@ public class GaeController extends AGuiGaeController implements IModelGaeControl
 
 	@Override
 	public void setNumberOfPlayers(int n) {
-		// TODO Auto-generated method stub
 		numberOfPlayers = n;
 	}
 
 	@Override
 	public int getNumberOfPlayers() {
-		// TODO Auto-generated method stub
 		return numberOfPlayers;
 	}
 
 	@Override
 	public Map<Integer, String> getAllPlayersId() {
-		// TODO Auto-generated method stub
-		return allPlayers;
+		return Collections.unmodifiableMap(allPlayers);
 	}
 
 	@Override
 	public void addPlayerToList(String name, int id) {
-		// TODO Auto-generated method stub
 		allPlayers.put(id, name);
-		//DEBUG:
+		//TODO DEBUG:
 		allPlayers.forEach((k, v) -> System.out.println("k: " + k + " " + " v: " + v));
 		
 	}
