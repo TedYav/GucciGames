@@ -37,6 +37,7 @@ public class MapObjectType{
 		
 		myActions = new TreeMap<>();
 		myRequests = new TreeMap<>();
+		myDefaultCharacteristics = new TreeMap<>();
 
 	}
 	

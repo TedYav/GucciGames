@@ -32,7 +32,7 @@ public class DemoMaker extends Application{
 		XStreamGameEngine xStream = new XStreamGameEngine();
         System.out.println("Creating and saving engine.");
         xStream.saveEngine(createEngine(), defaultEngineLocation);
-        xStream.loadEngine();
+        xStream.loadEngine(defaultEngineLocation);
 
 		GameWindowManager windowmanager = new GameWindowManager();
 	}

@@ -42,6 +42,7 @@ public class GameController implements GameControllerInterface {
 		myImageDatabase = new ImageDatabase();
 		myActionInProgress = "";
 		activeMOObservers=new ArrayList<Observer>();
+		possibleMoves = new ArrayList<TargetCoordinateSingle>();
 	}
 	
 	@Override
@@ -69,7 +70,8 @@ public class GameController implements GameControllerInterface {
 			return new ArrayList<TargetCoordinateSingle>();
 		}
 		else{
-			return myEngine.getPossibleCoordinates(action, unit).getListOfCoordinates();
+			possibleMoves= myEngine.getPossibleCoordinates(action, unit).getListOfCoordinates();
+			return possibleMoves;
 		}
 	}
 
@@ -86,8 +88,8 @@ public class GameController implements GameControllerInterface {
 	
 	@Override
 	public void performActionInProgress(Point2D target){
-		ActionToGamePlayerParameters params = myEngine.performAction(myActionInProgress, activeMapObject, Coordinate.PointToCoordinate(target));
-		cancelAction();
+		ActionToGamePlayerParameters params;// = myEngine.performAction(myActionInProgress, activeMapObject, Coordinate.PointToCoordinate(target));
+		//cancelAction();
 		
 		
 		//// SORRY FOR THE TIME BEING

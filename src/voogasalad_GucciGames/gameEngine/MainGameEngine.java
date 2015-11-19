@@ -6,6 +6,7 @@ import java.util.List;
 
 import voogasalad_GucciGames.gameEngine.CommunicationParams.ActionToGamePlayerParameters;
 import voogasalad_GucciGames.gameEngine.CommunicationParams.BasicParameters;
+import voogasalad_GucciGames.gameEngine.CommunicationParams.GameParams;
 import voogasalad_GucciGames.gameEngine.CommunicationParams.GridCoordinateParameters;
 import voogasalad_GucciGames.gameEngine.CommunicationParams.LocationParams;
 import voogasalad_GucciGames.gameEngine.gameConditions.ConditionHandler;
@@ -24,7 +25,9 @@ import voogasalad_GucciGames.gameEngine.mapObject.MapObject;
 import voogasalad_GucciGames.gameEngine.targetCoordinate.ATargetCoordinate;
 import voogasalad_GucciGames.gameEngine.targetCoordinate.TargetCoordinateMultiple;
 import voogasalad_GucciGames.gameplayer.controller.GameEngineToGamePlayerInterface;
+import voogasalad_GucciGames.gameplayer.controller.GameParametersInterface;
 import voogasalad_GucciGames.gameplayer.controller.PlayerMapObjectInterface;
+
 public class MainGameEngine implements GameEngineToGamePlayerInterface {
 	private AllPlayers myGamePlayers;
 	private TurnCounter myCurrentTurnCounter;
@@ -147,4 +150,23 @@ public class MainGameEngine implements GameEngineToGamePlayerInterface {
 		}
 		
 }
+	@Override
+	public double getMapWidth() {
+		// TODO Auto-generated method stub
+		return mapDimensions;
+	}
+	@Override
+	public double getMapHeight() {
+		// TODO Auto-generated method stub
+		return mapDimensions;
+	}
+	@Override
+	public GameParametersInterface getGameParams() {
+		// TODO Auto-generated method stub
+		GameParams pp= new GameParams();
+		pp.setGameWon(false);
+		
+		
+		return (GameParametersInterface) pp;
+	}
 }

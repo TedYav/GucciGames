@@ -22,4 +22,8 @@ public interface PlayerMapObjectInterface {
 	public ATargetCoordinate getCoordinate();
 	
 	public boolean isDead();
+
+	public List<ATargetCoordinate> getActionTargets(String name);
+	
+	public boolean isRemoved();
 }

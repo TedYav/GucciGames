@@ -117,7 +117,9 @@ public class MapObject implements PlayerMapObjectInterface{
 	public ActionToGamePlayerParameters performAction(String action,
 			BasicParameters basicParameters) {
 		// TODO Auto-generated method stub
-	
+		
+		System.out.println(myObjectType);
+		System.out.println("action"+myObjectType.getAction(action));
 		return (ActionToGamePlayerParameters) myObjectType.getAction(action).executeAction(basicParameters, myOwnerID);
 
 	}
@@ -138,6 +140,18 @@ public class MapObject implements PlayerMapObjectInterface{
 	public boolean isDead() {
 		// TODO Auto-generated method stub
 		return ((HealthCharacteristic) getCharacteristic("HealthCharacteristic")).getCurrentHealth() < 0;
+	}
+
+	@Override
+	public List<ATargetCoordinate> getActionTargets(String name) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public boolean isRemoved() {
+		// TODO Auto-generated method stub
+		return isDead();
 	}
 
 

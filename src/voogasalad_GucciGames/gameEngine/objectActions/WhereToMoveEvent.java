@@ -46,15 +46,27 @@ public class WhereToMoveEvent extends MapObjectEvent{
 				double delta = Math.abs(single.getCenterX()-caller.getCenterX())+Math.abs(single.getCenterY()-caller.getCenterY());
 				boolean flag=true;
 				// check to see if can move
-
-				if (delta <= range){
-					result.addTargetCoordinateSingle(mo.getCoordinate());
-				}
 				//System.out.println(range);
+
+				if (delta <= range){	
+
+					//hi joy, take this out cause it doesn't work
+					Iterator<MapObject> idIterator = players.getPlayerById(1).getMapObjects().iterator();	
+					System.out.println(players.getPlayerById(1).getMapObjects().size());
+					while (idIterator.hasNext()) {
+						MapObject next = idIterator.next();
+						if (next.getCoordinate().equals(mo.getCoordinate())){
+							flag=false;
+						}
+					}
+					if(flag) {
+						result.addTargetCoordinateSingle(mo.getCoordinate());
+					}
 
 			}
 
-		});
+		}
+	});
 
 		//go through other players' units for me
 		System.out.println(result);

@@ -5,8 +5,6 @@ import java.util.List;
 
 import javafx.geometry.Point2D;
 import voogasalad_GucciGames.gameplayer.controller.PlayerMapObjectInterface;
-import voogasalad_GucciGames.gameplayer.controller.dummy.DummyTile;
-import voogasalad_GucciGames.gameplayer.controller.dummy.DummyUnit;
 import voogasalad_GucciGames.gameplayer.windows.mainwindow.map.cell.MapCell;
 import voogasalad_GucciGames.gameplayer.windows.mainwindow.map.cell.SquareCell;
 
@@ -32,9 +30,9 @@ public class TestPlayer {
 		ArrayList<PlayerMapObjectInterface> dummyMap = new ArrayList<>();
 		for(int i=0; i<size; i++){
 			for(int j=0; j<size; j++){
-				dummyMap.add(new DummyTile(i,j));
+			//	dummyMap.add(new DummyTile(i,j));
 				if((i+j)%15 == 0){
-					dummyMap.add(new DummyUnit(i,j));
+		//			dummyMap.add(new DummyUnit(i,j));
 				}
 			}
 		}

@@ -10,6 +10,7 @@
               <myObjectType>
                 <myName>TileCharacteristics</myName>
                 <myImagePath>player/images/dummytexture2.jpg</myImagePath>
+                <myDefaultCharacteristics class="tree-map"/>
                 <myActions class="tree-map"/>
                 <myRequests class="tree-map"/>
               </myObjectType>
@@ -25,6 +26,7 @@
               <myObjectType>
                 <myName>TileCharacteristics</myName>
                 <myImagePath>player/images/dummytexture.jpg</myImagePath>
+                <myDefaultCharacteristics class="tree-map"/>
                 <myActions class="tree-map"/>
                 <myRequests class="tree-map"/>
               </myObjectType>
@@ -673,9 +675,9 @@
               <myObjectType>
                 <myName>Duvall</myName>
                 <myImagePath>player/images/duvall.png</myImagePath>
+                <myDefaultCharacteristics class="tree-map"/>
                 <myActions class="tree-map">
                   <entry>
-<<<<<<< HEAD
                     <string>Attack</string>
                     <voogasalad__GucciGames.gameEngine.objectActions.AttackEvent>
                       <myName>Attack</myName>
@@ -685,13 +687,6 @@
                         </voogasalad__GucciGames.gameEngine.gameRules.defaultRules.AttacksPerTurn>
                       </myRuleList>
                     </voogasalad__GucciGames.gameEngine.objectActions.AttackEvent>
-=======
-                    <string>MovableCharacteristic</string>
-                    <voogasalad__GucciGames.gameEngine.defaultCharacteristics.MovableCharacteristic>
-                      <myNumberOfMoves>3</myNumberOfMoves>
-                      <myRange>1.0</myRange>
-                    </voogasalad__GucciGames.gameEngine.defaultCharacteristics.MovableCharacteristic>
->>>>>>> 4363893332551506830c7480cfdbabc6d7a7575e
                   </entry>
                   <entry>
                     <string>Move</string>
@@ -748,8 +743,8 @@
                 <entry>
                   <string>MovableCharacteristic</string>
                   <voogasalad__GucciGames.gameEngine.defaultCharacteristics.MovableCharacteristic>
-                    <myNumberOfMoves>1</myNumberOfMoves>
-                    <myRange>3.0</myRange>
+                    <myNumberOfMoves>3</myNumberOfMoves>
+                    <myRange>1.0</myRange>
                   </voogasalad__GucciGames.gameEngine.defaultCharacteristics.MovableCharacteristic>
                 </entry>
               </myCharacteristics>
@@ -771,6 +766,7 @@
               <myObjectType>
                 <myName>Student</myName>
                 <myImagePath>player/images/smile.png</myImagePath>
+                <myDefaultCharacteristics class="tree-map"/>
                 <myActions class="tree-map"/>
                 <myRequests class="tree-map"/>
               </myObjectType>

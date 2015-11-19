@@ -28,7 +28,7 @@ public class XStreamGameEngine implements GameDataInterface{
 
     XStream serializer = new XStream(new DomDriver());
     String currentTurn = "Current Turn: ";
-    private static String defaultEngineLocation = "./src/voogasalad_GucciGames/gameData/gaeengine.xml";
+    private static String defaultEngineLocation = "./src/voogasalad_GucciGames/gameData/engine.xml";
 
 
     
