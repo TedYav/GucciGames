@@ -4,9 +4,9 @@ import java.util.Map;
 import voogasalad_GucciGames.gameEngine.gameConditions.EndGameConditions;
 
 public interface GameResultInterface {
-    public Map<Integer,EndGameConditions> getEachPlayersCondition();
+    public Map<Integer,EndGameConditions> getEachPlayerConditions();
     
-    public Map<String,Double> getFinalScore();
+    public Map<String,Integer> getFinalScores();
     
     public int whoWon();
 }

@@ -8,5 +8,6 @@ public interface GameSceneInterface {
 	
 	public <T extends Event> void addEventHandler(EventType<T> eventType, EventHandler<T> eventHandler);
 	public <T extends Event> void addEventFilter(EventType<T> eventType, EventHandler<T> eventHandler);
+	public void update();
 
 }

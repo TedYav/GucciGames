@@ -32,7 +32,7 @@ public class DemoMaker extends Application{
 		XStreamGameEngine xStream = new XStreamGameEngine();
         System.out.println("Creating and saving engine.");
         xStream.saveEngine(createEngine(), defaultEngineLocation);
-        xStream.loadEngine(defaultEngineLocation);
+        //xStream.loadEngine(defaultEngineLocation);
 
 		GameWindowManager windowmanager = new GameWindowManager();
 	}
@@ -85,7 +85,7 @@ public class DemoMaker extends Application{
             for (int j=0;j<8;j++) {
             	MapObject newObj = new MapObject(((i+j)%2==0)?water:ground, new TargetCoordinateSingle(i,j),-1,0);
             	myMapOfPlayers.get(-1).getMapObjects().add(newObj);
-                if ((i+j)%3==0) {
+                if ((i+j)%9==0) {
                     MapObject arch = new MapObject(archer,new TargetCoordinateSingle(i,j),1,1);
                     arch.addCharacteristic("HealthCharacteristic", new RealHealthCharacteristic(10));
                     arch.addCharacteristic("AttackCharacteristic", new AttackCharacteristic(3,5,2));

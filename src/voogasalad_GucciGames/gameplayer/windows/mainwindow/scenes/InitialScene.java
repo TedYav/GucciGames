@@ -33,4 +33,10 @@ public class InitialScene extends GameScene {
 		myScene.addEventHandler(KeyEvent.KEY_PRESSED, (e)->myManager.sceneFinished());
 		loadScene(myScene);
 	}
+
+    @Override
+    public void update () {
+        // TODO Auto-generated method stub
+        
+    }
 }

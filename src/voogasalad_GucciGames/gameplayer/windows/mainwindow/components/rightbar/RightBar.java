@@ -18,17 +18,23 @@ public class RightBar extends WindowComponent implements Observer {
     private VBox container;
     private double spacing = 5;
     ResourceBundle myBundle;
+    private GameControllerInterface myController;
+    
+    private GameStatsDisplay gameStats;
+    
     private ResourceBundle myCssBundle = ResourceBundle.getBundle("voogasalad_GucciGames.gameplayer.config.scenes.CssClasses");
 	public RightBar(GameScene scene, GameControllerInterface controller, ResourceBundle bundle) {
 		super(scene, controller);
         container = new VBox(spacing);
         myBundle=bundle;
+        myController=controller;
         initializeData();
+        
 	}
 
 	private void initializeData() {
 		myController.addMOObserver(this);
-        GameStatsDisplay gameStats = new GameStatsDisplay();
+        gameStats = new GameStatsDisplay(myController);
         ActionDisplay actions = new ActionDisplay(myController);
         container.getChildren().add(actions.getNodeToDraw());
         container.getChildren().add(gameStats.getNodeToDraw());
@@ -38,7 +44,7 @@ public class RightBar extends WindowComponent implements Observer {
         Button endTurn = new Button("End turn");
         endTurn.setOnMouseClicked(e->{
             System.out.println(myController.getEngine());
-            myController.getEngine().endTurn();
+            myController.endTurn();
             });
         container.getChildren().add(endTurn);
 	}
@@ -53,9 +59,11 @@ public class RightBar extends WindowComponent implements Observer {
 	public void update(Observable o, Object arg) {
         if (arg!=null && arg.getClass().equals(PlayerMapObjectInterface.class)) {
         	activeMapObject = (PlayerMapObjectInterface)arg;
-        	
         }
-        
+       
+        }
+        public void updateStats() {
+            gameStats.update();
 	}
 
 }
