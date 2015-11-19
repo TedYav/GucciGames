@@ -22,11 +22,21 @@ public class GAEModel implements IGAEModel{
     	myController = controller;
     	data = new GameSourceData();
     }
+    
+    @Override
+	public void addComponent(MapObject mapObj) {
+		data.addToMap(mapObj);		
+	}
 
     @Override
     public void deleteComponent (MapObject mapObj) {
         data.deleteFromMap(mapObj);
     }
+    
+    @Override
+	public ObservableList<MapObject> getMapObjects() {
+		return data.getMapObjects();
+	}
 
     @Override
     public void clearMap () {
@@ -114,13 +124,6 @@ public class GAEModel implements IGAEModel{
 	public ObservableList<MapObjectType> getStructureTypes() {
 		// TODO Auto-generated method stub
 		return null;
-	}
-
-	@Override
-	//implemet this
-	public void addComponent(MapObject mapObj) {
-		// TODO Auto-generated method stub
-		
 	}
 	
     public void addComponent (Map<String,String> objParams) {

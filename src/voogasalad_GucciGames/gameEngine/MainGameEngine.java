@@ -8,6 +8,7 @@ import java.util.List;
 import voogasalad_GucciGames.gameEngine.CommunicationParams.ActionToGamePlayerParameters;
 import voogasalad_GucciGames.gameEngine.CommunicationParams.BasicParameters;
 import voogasalad_GucciGames.gameEngine.CommunicationParams.GridCoordinateParameters;
+import voogasalad_GucciGames.gameEngine.CommunicationParams.LocationParams;
 import voogasalad_GucciGames.gameEngine.CommunicationParams.MainGameEngineCommunicationParameters;
 import voogasalad_GucciGames.gameEngine.gameConditions.ConditionHandler;
 import voogasalad_GucciGames.gameEngine.gameConditions.ConditionParams;
@@ -32,7 +33,6 @@ public class MainGameEngine implements GameEngineToGamePlayerInterface {
 	private TurnCounter myCurrentTurnCounter;
 	private ATurnDecider myTurnDecider;
 	private ConditionHandler myConditionHandler;
-
 
 	private ActionToRuleManager myRuleManager;
 	private int mapDimensions;
@@ -112,6 +112,7 @@ public class MainGameEngine implements GameEngineToGamePlayerInterface {
 		ConditionParams condParams = new ConditionParams("PlayerUnitCondition", "player", pl, null);
 		ConditionsFactory factory = new ConditionsFactory();
 		BasicParameters comParams = new BasicParameters(myGamePlayers, null, null);
+<<<<<<< HEAD
 
 		try {
 			Conditions condition = factory.createCondition(condParams, comParams);
@@ -138,9 +139,23 @@ public class MainGameEngine implements GameEngineToGamePlayerInterface {
 			factory.createRule(params, comParams);
 		} catch (NoSuchMethodException | SecurityException | ClassNotFoundException | InstantiationException
 				| IllegalAccessException | IllegalArgumentException | InvocationTargetException e) {
+=======
+
+		try {
+			Conditions condition = factory.createCondition(condParams, comParams);
+			myConditionHandler.addCondition("PlayerUnitCondition", condition);
+		} catch (InstantiationException | IllegalAccessException | ClassNotFoundException | IllegalArgumentException
+				| InvocationTargetException | NoSuchMethodException | SecurityException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+>>>>>>> 0ee55f4d763408a03995623859c915c0e6435ba5
 			e.printStackTrace();
 		}
+		endTurn();
+		endTurn();
+	}
 
+<<<<<<< HEAD
 		// execute rule:
 		System.out.println("test rules");
 		List<Rules> rules = manager.getRulesForAction("move");
@@ -174,4 +189,51 @@ public class MainGameEngine implements GameEngineToGamePlayerInterface {
 		return null;
 	}
 
+=======
+	public void testRules() {
+		System.out.println("create rules");
+		RuleFactory factory = new RuleFactory();
+		RuleParams params = new RuleParams("move", null, null);
+		ActionToRuleManager manager = new ActionToRuleManager();
+		BasicParameters comParams = new BasicParameters(myGamePlayers, null, manager);
+		try {
+			factory.createRule(params, comParams);
+		} catch (NoSuchMethodException | SecurityException | ClassNotFoundException | InstantiationException
+				| IllegalAccessException | IllegalArgumentException | InvocationTargetException e) {
+			e.printStackTrace();
+		}
+
+		// execute rule:
+		System.out.println("test rules");
+		List<Rules> rules = manager.getRulesForAction("move");
+		for (int i = 0; i < rules.size(); i++) {
+			rules.get(i).executeRules(comParams, 0);
+		}
+
+	}
+
+	public AllPlayers getPlayers() {
+		// TODO Auto-generated method stub
+		return myGamePlayers;
+	}
+
+	public ActionToRuleManager getActionToRuleManager() {
+		// TODO Auto-generated method stub
+		return this.myRuleManager;
+	}
+
+	public int getMapDimensions() {
+		return this.mapDimensions;
+	}
+
+	@Override
+	public ActionToGamePlayerParameters performAction(String action, PlayerMapObjectInterface mapObject,
+			ATargetCoordinate target) {
+		// TODO Auto-generated method stub
+		return ((MapObject) mapObject).performAction(action,
+				new LocationParams(new BasicParameters(this, ((MapObject) mapObject)),
+						target.getListOfCoordinates().get(0),
+						this.getPlayers().getPlayerById(((MapObject) mapObject).getPlayerID()).getMyMovable()));
+	}
+>>>>>>> 0ee55f4d763408a03995623859c915c0e6435ba5
 }

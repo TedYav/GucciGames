@@ -12,6 +12,7 @@ import voogasalad_GucciGames.gameEngine.defaultCharacteristics.MovableCharacteri
 import voogasalad_GucciGames.gameEngine.defaultCharacteristics.RealHealthCharacteristic;
 import voogasalad_GucciGames.gameEngine.gamePlayer.AllPlayers;
 import voogasalad_GucciGames.gameEngine.gamePlayer.GamePlayerPerson;
+import voogasalad_GucciGames.gameEngine.gamePlayer.MovablePlayerCharacteristic;
 import voogasalad_GucciGames.gameEngine.mapObject.MapObject;
 import voogasalad_GucciGames.gameEngine.mapObject.MapObjectType;
 import voogasalad_GucciGames.gameEngine.objectActions.MoveEvent;
@@ -52,6 +53,11 @@ public class DemoMaker extends Application{
         MapObject soldier1 = new MapObject(soldier,new TargetCoordinateSingle(1,0),0,1);
 
 
+
+
+        myMapOfPlayers.get(-1).setMyMovable(new MovablePlayerCharacteristic());
+        myMapOfPlayers.get(0).setMyMovable(new MovablePlayerCharacteristic());
+        myMapOfPlayers.get(1).setMyMovable(new MovablePlayerCharacteristic());
 
 		MovableCharacteristic myMovableCharacteristic = new MovableCharacteristic(1, 3);
 		HealthCharacteristic myHealthCharacteristic = new RealHealthCharacteristic(5);

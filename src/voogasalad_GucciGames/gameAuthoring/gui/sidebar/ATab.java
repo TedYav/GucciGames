@@ -20,7 +20,10 @@ import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 import voogasalad_GucciGames.datastructures.TwoWayMap;
+import voogasalad_GucciGames.datastructures.TwoWayMap;
 import voogasalad_GucciGames.gameAuthoring.AGuiGaeController;
+import voogasalad_GucciGames.gameAuthoring.AGuiGaeController;
+import voogasalad_GucciGames.gameEngine.mapObject.MapObjectType;
 import voogasalad_GucciGames.gameEngine.mapObject.MapObjectType;
 
 public abstract class ATab extends Tab {

@@ -10,8 +10,8 @@ import voogasalad_GucciGames.gameEngine.mapObject.MapObjectType;
 
 public interface IGAEModel {
     public void addComponent(MapObject mapObj);
-    
     public void deleteComponent(MapObject mapObj);
+    public ObservableList<MapObject> getMapObjects();
     public void clearMap();
     
     public void createCustomTileType(Map<String,String> m);

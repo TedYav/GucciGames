@@ -23,7 +23,7 @@ public class Cell {
 	private Rectangle myBoundBox;
 	private Grid myMap;
 	private DoubleProperty mySize;
-	private ContextMenu myMenu;
+	private PopupMenu myMenu;
 	private boolean isSelected = false;
 	private GridPoint myPos;
 
@@ -36,47 +36,12 @@ public class Cell {
 		myMapView.xProperty().bind(mySize.multiply(x));
 		myMapView.yProperty().bind(mySize.multiply(y));
 		myMapView.setOnMouseClicked(e -> mouseClickEvent(e));
-		createMenu();
 		myPos = new GridPoint(x, y);
 		myMap.add(this);
 	}
 
 	public void setImage(Image img) {
 		myMapView.setImage(img);
-	}
-
-	private void createMenu() {
-		MenuItem item1 = new MenuItem("Edit");
-		item1.setOnAction(new EventHandler<ActionEvent>() {
-			public void handle(ActionEvent e) {
-				System.out.println("Edit");
-			}
-		});
-		MenuItem item2 = new MenuItem("Remove");
-		item2.setOnAction(e -> removeFromMap());
-
-		Menu item3 = new Menu("Owner");
-		ToggleGroup group = new ToggleGroup();
-		RadioMenuItem on = new RadioMenuItem("Player1");
-		on.setUserData(1);
-		on.setToggleGroup(group);
-
-		RadioMenuItem off = new RadioMenuItem("Player2");
-		off.setUserData(2);
-		off.setToggleGroup(group);
-
-		on.setSelected(true);
-		item3.getItems().addAll(on, off);
-		group.selectedToggleProperty().addListener((ob, oldV, newV) -> {
-			if (group.getSelectedToggle() != null) {
-				// TODO
-				// myGui.myCellType = (String)newV.getUserData();
-				// myGui.reset();
-			}
-		});
-
-		myMenu = new ContextMenu(item1, item2, item3);
-
 	}
 
 	private void mouseClickEvent(MouseEvent e) {
@@ -138,6 +103,10 @@ public class Cell {
 	}
 
 	private void showMenu(MouseEvent e) {
+		System.out.println("Clicked");
+		if(myMenu==null)
+			myMenu = new PopupMenu(myMap.getController(), this);
+		myMenu.update();
 		myMenu.show(myMapView, e.getScreenX(), e.getScreenY());
 	}
 
