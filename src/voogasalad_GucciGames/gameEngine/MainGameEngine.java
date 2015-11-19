@@ -5,13 +5,14 @@ import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
 import java.util.List;
 
+import voogasalad_GucciGames.gameEngine.CommunicationParams.ActionToGamePlayerParameters;
 import voogasalad_GucciGames.gameEngine.CommunicationParams.BasicParameters;
+import voogasalad_GucciGames.gameEngine.CommunicationParams.GridCoordinateParameters;
 import voogasalad_GucciGames.gameEngine.CommunicationParams.MainGameEngineCommunicationParameters;
 import voogasalad_GucciGames.gameEngine.gameConditions.ConditionHandler;
 import voogasalad_GucciGames.gameEngine.gameConditions.ConditionParams;
 import voogasalad_GucciGames.gameEngine.gameConditions.Conditions;
 import voogasalad_GucciGames.gameEngine.gameConditions.ConditionsFactory;
-import voogasalad_GucciGames.gameEngine.gameConditions.GridCoordinateParameters;
 import voogasalad_GucciGames.gameEngine.gamePlayer.ATurnDecider;
 import voogasalad_GucciGames.gameEngine.gamePlayer.AllPlayers;
 import voogasalad_GucciGames.gameEngine.gamePlayer.DefaultTurnDecider;
@@ -21,6 +22,7 @@ import voogasalad_GucciGames.gameEngine.gameRules.RuleFactory;
 import voogasalad_GucciGames.gameEngine.gameRules.RuleParams;
 import voogasalad_GucciGames.gameEngine.gameRules.Rules;
 import voogasalad_GucciGames.gameEngine.mapObject.MapObject;
+import voogasalad_GucciGames.gameEngine.targetCoordinate.ATargetCoordinate;
 import voogasalad_GucciGames.gameplayer.controller.GameEngineToGamePlayerInterface;
 import voogasalad_GucciGames.gameplayer.controller.PlayerMapObjectInterface;
 
@@ -130,5 +132,12 @@ public class MainGameEngine implements GameEngineToGamePlayerInterface {
 				rules.get(i).executeRules(comParams, 0);
 			}
 
+		}
+
+		@Override
+		public ActionToGamePlayerParameters performAction(String action,
+				PlayerMapObjectInterface mapObject, ATargetCoordinate target) {
+			// TODO Auto-generated method stub
+			return null;
 		}
 }

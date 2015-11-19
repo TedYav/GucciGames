@@ -3,8 +3,8 @@ package voogasalad_GucciGames.gameEngine.defaultCharacteristics;
 import voogasalad_GucciGames.gameEngine.mapObject.AMapObjectCharacteristic;
 
 public class MovableCharacteristic extends AMapObjectCharacteristic{
-	private int myNumberOfMoves;
-	private double myRange;
+	private int myNumberOfMoves = 1;
+	private double myRange = 1;
 	
 	public MovableCharacteristic(int moves, double range){
 		myNumberOfMoves = moves;
@@ -18,5 +18,6 @@ public class MovableCharacteristic extends AMapObjectCharacteristic{
 	public double getRange() {
 		return myRange;
 	}
+
 
 }

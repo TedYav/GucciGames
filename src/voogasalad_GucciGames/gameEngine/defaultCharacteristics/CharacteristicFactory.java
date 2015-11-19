@@ -1,7 +1,10 @@
 package voogasalad_GucciGames.gameEngine.defaultCharacteristics;
 
+import java.io.IOException;
+import java.io.InputStream;
 import java.lang.reflect.Constructor;
 import java.util.Map;
+import java.util.Properties;
 import java.util.ResourceBundle;
 import java.util.TreeMap;
 
@@ -14,16 +17,25 @@ public class CharacteristicFactory {
 	
 	private Map<String, AMapObjectCharacteristic> objectCharacteristics;
 	private String CHARACTERISTIC_PROPERTIES_PATH = "MapObjectCharacteristics.properties";
-	private ResourceBundle resources = ResourceBundle.getBundle(CHARACTERISTIC_PROPERTIES_PATH);
+//	private ResourceBundle resources = ResourceBundle.getBundle(CHARACTERISTIC_PROPERTIES_PATH);
+	private InputStream inputStream;
 	
 	public CharacteristicFactory(){
-		initializeCharacteristics();
+		
 	}
 	
 	private void initializeCharacteristics(){		
+		inputStream = getClass().getResourceAsStream(CHARACTERISTIC_PROPERTIES_PATH);
+		Properties prop = new Properties();
+		try {
+			prop.load(inputStream);
+		} catch (IOException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
 		objectCharacteristics = new TreeMap<>();
-		for (String name: resources.keySet()){
-			String key = resources.getString(name);
+		for (Object name: prop.keySet()){
+			String key = prop.getProperty((String) name);
 			Class<AMapObjectCharacteristic> characteristic;
 			try {
 				characteristic = (Class<AMapObjectCharacteristic>) Class.forName(key);
