@@ -35,6 +35,10 @@ public class GaeController implements IGuiGaeController, IModelGaeController{
         model.deleteComponent(mapObj);
     }
     @Override
+    public ObservableList<MapObject> getMapObjects() {
+        return model.getMapObjects();
+    }
+    @Override
     public void clearMap () {
         model.clearMap();
     }

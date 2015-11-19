@@ -19,6 +19,8 @@ public interface IGuiGaeController extends IDialogGaeController {
     
     public void deleteComponent(MapObject mapObj);
     
+    public ObservableList<MapObject> getMapObjects();
+    
     public void clearMap();
     
     public void createCustomTileType(Map<String,String> m);
