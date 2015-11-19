@@ -134,6 +134,7 @@ class Grid extends Pane {
 			int y = (int) Math.floor(e.getY() / myCellSize.get());
 			Cell gui = new Cell(this, x, y);
 			gui.setImage(myController.getCurrSelectedImage());
+			
 			e.consume();
 		}
 	}
