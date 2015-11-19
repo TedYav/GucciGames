@@ -47,9 +47,11 @@ public class WhereToMoveEvent extends MapObjectEvent{
 				System.out.println(range);
 
 				if (delta <= range){
+					//hi joy, take this out cause it doesn't work
 					Iterator<MapObject> idIterator = players.getPlayerById(1).getMapObjects().iterator();
 					while (idIterator.hasNext()) {
 						if (!mo.getCoordinate().equals(idIterator.next().getCoordinate())){
+							//all the way to here
 								result.addTargetCoodinateSingle(mo.getCoordinate());
 						}
 					}
