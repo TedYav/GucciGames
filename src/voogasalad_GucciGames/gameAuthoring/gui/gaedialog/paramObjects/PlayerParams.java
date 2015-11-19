@@ -11,7 +11,7 @@ package voogasalad_GucciGames.gameAuthoring.gui.gaedialog.paramObjects;
  * @author yingqi
  *
  */
-public class PlayerParams {
+public class PlayerParams extends AParamsObject{
 	
 	private int id;
 	private String name;

@@ -54,5 +54,12 @@ public class DropDownMenuField  extends DialogComponent{
 		// TODO Auto-generated method stub
 		dropDown.getSelectionModel().select(s);
 	}
+	
+	protected String getSelected(){
+		if(dropDown.getSelectionModel().getSelectedItem() == null){
+			return "";
+		}
+		return dropDown.getSelectionModel().getSelectedItem().toString();
+	}
 
 }
