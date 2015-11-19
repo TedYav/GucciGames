@@ -27,4 +27,5 @@ public class LocationParams extends BasicParameters{
 	public MovablePlayerCharacteristic getMovePerson(){
 		return this.myMovable;
 	}
+	
 }
