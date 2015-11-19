@@ -56,7 +56,7 @@ public class ScrollBarField extends DialogComponent {
 	}
 
 	@Override
-	protected HBox getContent() {
+	public HBox getContent() {
 		// TODO Auto-generated method stub
 		return content;
 	}

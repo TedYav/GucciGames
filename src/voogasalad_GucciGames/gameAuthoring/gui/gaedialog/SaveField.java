@@ -41,7 +41,7 @@ public class SaveField extends DialogComponent {
 			});
 	}
 	
-	protected Button getSaveBtn(){
+	public Button getSaveBtn(){
 		return saveBtn;
 	}
 
