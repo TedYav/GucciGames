@@ -1,6 +1,6 @@
 package voogasalad_GucciGames.gameAuthoring.gui.gaedialog.paramObjects;
 
-public class GameSettingParams {
+public class GameSettingParams extends AParamsObject{
 	
 	private String name;
 	private String mapSize;

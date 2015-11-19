@@ -1,6 +1,6 @@
 package voogasalad_GucciGames.gameAuthoring.gui.gaedialog.paramObjects;
 
-public class UnitParams {
+public class UnitParams extends AParamsObject {
 	private String unitName;
 	private int numberOfAttacks;
 	private int health;
@@ -8,7 +8,7 @@ public class UnitParams {
 	private int rangeAttack;
 	
 	public UnitParams(String unitName, int numberOfAttacks, int health, int rangeMvt, int rangeAttack){
-		this.unitName = unitName;
+		this.setName(unitName);
 		this.numberOfAttacks = numberOfAttacks;
 		this.health = health;
 		this.rangeMvt = rangeMvt;
@@ -45,6 +45,14 @@ public class UnitParams {
 
 	public void setRangeAttack(int rangeAttack) {
 		this.rangeAttack = rangeAttack;
+	}
+
+	public String getName() {
+		return unitName;
+	}
+
+	public void setName(String unitName) {
+		this.unitName = unitName;
 	}
 
 }
