@@ -50,6 +50,9 @@ public class GAEModel implements IGAEModel{
     @Override
     public MapObject addObject(GridPoint gridpoint, MapObjectType mapObjType, int ownerID) {
     	TargetCoordinateSingle targCoordSingle = new TargetCoordinateSingle(gridpoint.getX(), gridpoint.getY());
+    	if(mapObjType==null)
+    		System.out.println("Nulllll");
+    	//int layer = mapObjType.isTile() ? 0 : 1;
     	MapObject mapObject = new MapObject(mapObjType, targCoordSingle, ownerID);
     	mapOfPlayers.get(ownerID).addMapObject(mapObject);
     	//Validate with engine, if failed, return null, else return this mapObject
