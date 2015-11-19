@@ -66,5 +66,9 @@ public class ScrollBarField extends DialogComponent {
 		// TODO Auto-generated method stub
 		scrollBar.setValue(Double.parseDouble(s));
 	}
+	
+	public double getSelected(){
+		return scrollBar.getValue();
+	}
 
 }

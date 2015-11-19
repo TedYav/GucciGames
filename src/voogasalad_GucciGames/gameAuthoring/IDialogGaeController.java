@@ -2,6 +2,7 @@ package voogasalad_GucciGames.gameAuthoring;
 
 import java.util.Map;
 
+import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.paramObjects.GameSettingParams;
 import voogasalad_GucciGames.gameAuthoring.properties.ObjectProperty;
 
 public interface IDialogGaeController {
@@ -17,6 +18,6 @@ public interface IDialogGaeController {
 	
 	public void savePlayer();
 	
-	public void saveGameSetting();
+	public void saveGameSetting(GameSettingParams gameSettingParams);
 
 }
