@@ -160,5 +160,9 @@ class Grid extends Pane {
 		getChildren().add(cell.getMapView());
 		myCells.put(cell.getPosition(), cell);
 	}
+	
+	public AGuiGaeController getController(){
+		return myController;
+	}
 
 }
