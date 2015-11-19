@@ -21,8 +21,8 @@ public class GameSourceData {
 	GameSourceData() {
 		tileTypes = FXCollections.observableArrayList();
 		// Hard coded for testing purposes:
-		MapObjectType objType = new MapObjectType("duvall", "player/images/dummytexture.jpg");
-		MapObjectType objType2 = new MapObjectType("student", "player/images/dummytexture2.jpg");
+		MapObjectType objType = new MapObjectType("Grass", "player/images/dummytexture.jpg");
+		MapObjectType objType2 = new MapObjectType("Water", "player/images/dummytexture2.jpg");
 		objType.addCharacteristic("TileCharacteristic", new TileCharacteristic());
 		objType.addCharacteristic("TileCharacteristic", new TileCharacteristic());
 		tileTypes.add(objType);
