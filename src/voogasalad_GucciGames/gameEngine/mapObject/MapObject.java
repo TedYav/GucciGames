@@ -5,8 +5,9 @@ import java.util.List;
 import java.util.Map;
 import java.util.TreeMap;
 
+import voogasalad_GucciGames.gameEngine.CommunicationParams.BasicParameters;
+import voogasalad_GucciGames.gameEngine.CommunicationParams.GridCoordinateParameters;
 import voogasalad_GucciGames.gameEngine.CommunicationParams.MainGameEngineCommunicationParameters;
-import voogasalad_GucciGames.gameEngine.gameConditions.GridCoordinateParameters;
 import voogasalad_GucciGames.gameEngine.targetCoordinate.ATargetCoordinate;
 import voogasalad_GucciGames.gameplayer.controller.PlayerMapObjectInterface;
 
@@ -79,18 +80,26 @@ public class MapObject implements PlayerMapObjectInterface{
 	}
 
 
-	//FIX THIS!!! ERROR WAS CAUSED FROM ActionDisplay.java line 52 
-	// myController.getMap().highlightCells(activeMapObject.getActionTargets(name));
-	@Override
-	public List<ATargetCoordinate> getActionTargets(String name) {
-		// TODO Auto-generated method stub
-		return new ArrayList<>();
-	}
 
 	public GridCoordinateParameters performAction(String action,
 			MainGameEngineCommunicationParameters mainGameEngineCommunicationParams) {
 		// TODO Auto-generated method stub
-		return (GridCoordinateParameters) myObjectType.getAction(action).executeAction(mainGameEngineCommunicationParams, myOwnerID);
+	
+		return null;
+
+	}
+	@Override
+	public List<ATargetCoordinate> getActionTargets(String name) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+	public GridCoordinateParameters performRequest(String action,
+			BasicParameters basicParameters) {
+		// TODO Auto-generated method stub
+		
+		return (GridCoordinateParameters) myObjectType.getRequest("WhereTo" + action).executeAction(basicParameters, myOwnerID);
+
+		
 	}
 
 }

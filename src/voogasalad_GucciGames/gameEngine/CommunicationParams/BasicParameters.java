@@ -2,6 +2,7 @@ package voogasalad_GucciGames.gameEngine.CommunicationParams;
 
 import java.util.List;
 
+import voogasalad_GucciGames.gameEngine.MainGameEngine;
 import voogasalad_GucciGames.gameEngine.gamePlayer.AllPlayers;
 import voogasalad_GucciGames.gameEngine.gameRules.ActionToRuleManager;
 import voogasalad_GucciGames.gameEngine.mapObject.MapObject;
@@ -12,7 +13,8 @@ public class BasicParameters extends CommunicationParameters{
 	private AllPlayers myPlayers;
 	private MapObject myCalledMe;
 	private ActionToRuleManager myActionToRuleMap;
-
+	private MainGameEngine myEngine;
+	
 	public BasicParameters(AllPlayers players,
 		MapObject calledMe, ActionToRuleManager actionToRuleMap){
 		this.myPlayers = players;
@@ -23,6 +25,15 @@ public class BasicParameters extends CommunicationParameters{
 
 	public BasicParameters(BasicParameters params){
 		this(params.getPlayers(), params.getCalledMe(), params.getActionToRuleMap());
+	}
+
+	public BasicParameters(MainGameEngine mainGameEngine, MapObject calledMe) {
+		this(mainGameEngine.getPlayers(), calledMe, mainGameEngine.getActionToRuleManager());
+		myEngine = mainGameEngine;
+	}
+	
+	public int getTurn(){
+		return myEngine.getTurn();
 	}
 
 	public AllPlayers getPlayers() {

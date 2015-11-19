@@ -35,6 +35,11 @@ public abstract class MapObjectEvent {
 		Boolean ruletest = false;
 		BasicParameters basic = (BasicParameters) params;
 		ActionToRuleManager mapobj = basic.getActionToRuleMap();
+		
+		if(mapobj == null){
+			return true;
+		}
+		
 		if (mapobj.contains(myName)) {
 			List<Rules> list = mapobj.getRulesForAction(myName);
 			if (list != null) {
