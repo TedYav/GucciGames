@@ -3,7 +3,7 @@ package voogasalad_GucciGames.gameAuthoring.gui.sidebar;
 import java.util.ArrayList;
 import java.util.List;
 
-import voogasalad_GucciGames.gameAuthoring.IGuiGaeController;
+import voogasalad_GucciGames.gameAuthoring.AGuiGaeController;
 import voogasalad_GucciGames.gameEngine.mapObject.MapObjectType;
 import voogasalad_GucciGames.gameplayer.datastructures.TwoWayMap;
 import javafx.collections.ListChangeListener;
@@ -32,7 +32,7 @@ public abstract class ATab extends Tab {
 	protected List<ImageView> myImageViews = new ArrayList<>();
 	protected Button myAddButton = new Button("Add Custom");
 	protected ContextMenu myContextMenu;
-	protected IGuiGaeController myController;
+	protected AGuiGaeController myController;
 	private SideBar mySideBar;
 	private Rectangle myBoundBox;
 	private ImageView myTrace;

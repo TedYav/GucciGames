@@ -4,11 +4,11 @@ import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.control.ContextMenu;
 import javafx.scene.control.MenuItem;
-import voogasalad_GucciGames.gameAuthoring.IGuiGaeController;
+import voogasalad_GucciGames.gameAuthoring.AGuiGaeController;
 
 class SideBarMenu extends ContextMenu {
-	private IGuiGaeController myController;
-	SideBarMenu(IGuiGaeController controller){
+	private AGuiGaeController myController;
+	SideBarMenu(AGuiGaeController controller){
 		myController = controller;
 		MenuItem item1 = new MenuItem("Edit");
 		item1.setOnAction(new EventHandler<ActionEvent>() {

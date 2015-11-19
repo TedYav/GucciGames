@@ -1,6 +1,5 @@
 package voogasalad_GucciGames.gameAuthoring.model;
 
-import java.util.List;
 import java.util.Map;
 
 import javafx.collections.ListChangeListener;
@@ -9,9 +8,6 @@ import voogasalad_GucciGames.GameEngineToGameAuthoringEnvironment;
 import voogasalad_GucciGames.gameAuthoring.IModelGaeController;
 import voogasalad_GucciGames.gameData.XMLGameData;
 import voogasalad_GucciGames.gameEngine.mapObject.DefaultMapObjectType;
-import voogasalad_GucciGames.gameEngine.mapObject.MapObject;
-import voogasalad_GucciGames.gameEngine.mapObject.MapObjectType;
-import voogasalad_GucciGames.gameData.XMLParser;
 import voogasalad_GucciGames.gameEngine.mapObject.MapObject;
 import voogasalad_GucciGames.gameEngine.mapObject.MapObjectType;
 

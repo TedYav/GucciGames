@@ -13,15 +13,15 @@ import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import javafx.util.Duration;
-import voogasalad_GucciGames.gameAuthoring.IGuiGaeController;
+import voogasalad_GucciGames.gameAuthoring.AGuiGaeController;
 
 public class StatusBar extends HBox{
 	
-	private IGuiGaeController myController;
+	private AGuiGaeController myController;
 	private Text myText;
 	private Transition myTextTransition;
 	
-	public StatusBar(IGuiGaeController controller){
+	public StatusBar(AGuiGaeController controller){
 		myController = controller;
 		setPrefHeight(30);
 		
