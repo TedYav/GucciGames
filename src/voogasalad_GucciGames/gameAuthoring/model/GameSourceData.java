@@ -19,10 +19,18 @@ public class GameSourceData {
 
 	GameSourceData() {
 		tileTypes = FXCollections.observableArrayList();
-		MapObjectType objType = new MapObjectType("duvall", "player/images/duvall.png");
-		MapObjectType objType2 = new MapObjectType("student", "player/images/smile.png");
+		MapObjectType objType = new MapObjectType("duvall", "player/images/dummytexture.jpg");
+		MapObjectType objType2 = new MapObjectType("student", "player/images/dummytexture2.jpg");
 		tileTypes.add(objType);
 		tileTypes.add(objType2);
+		
+		unitTypes = FXCollections.observableArrayList();
+		MapObjectType unitType1 = new MapObjectType("duvall", "player/images/duvall.png");
+		MapObjectType unitType2 = new MapObjectType("student", "player/images/smile.png");
+		MapObjectType unitType3 = new MapObjectType("student", "player/images/mario.png");
+		unitTypes.add(unitType1);
+		unitTypes.add(unitType2);
+		unitTypes.add(unitType3);
 	}
 
 	public void addToMap(MapObject obj) {
