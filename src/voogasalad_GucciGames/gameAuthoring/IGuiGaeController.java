@@ -53,4 +53,6 @@ public interface IGuiGaeController{
 
 	public MapObject addObject(GridPoint gridpoint, MapObjectType mapObjType,
 			int ownerID);
+	
+	public void changeOwner(MapObject mapObject, int playerID);
 }
