@@ -23,11 +23,11 @@ class Grid extends Pane {
 	private final ImageView myBackground;
 	private final DoubleProperty myCellSize;
 	private final Set<Cell> selectedCells = new HashSet<>();
-	private final Map<GridPoint, Cell> myCells = new HashMap<>();
+	private final Map<GridPoint, Set<Cell>> myCells = new HashMap<>();
 	private Rectangle myMouseBound;
 	private ImageView myMouseImg;
 	private AGuiGaeController myController;
-	
+
 	private List<MapObject> myMapObjects;
 
 	public Grid(DoubleProperty cellSize, AGuiGaeController controller) {
@@ -45,7 +45,7 @@ class Grid extends Pane {
 		setOnDragExited(e -> removeMouseBound());
 		myCellSize.addListener((c, o, n) -> removeMouseBound());
 		new GridSelector(this);
-		
+
 		myMapObjects = controller.getMapObjects();
 	}
 
@@ -62,12 +62,12 @@ class Grid extends Pane {
 		// pane.maxHeightProperty().bind(heightProperty());
 		addEventFilter(MouseEvent.MOUSE_CLICKED, e -> placeObjectOnMap(e));
 
-//		for (int x = 0; x < width; x++) {
-//			for (int y = 0; y < height; y++) {
-//				new Cell(this, x, y);
-//				//TODO: update the MapObjects
-//			}
-//		}
+		// for (int x = 0; x < width; x++) {
+		// for (int y = 0; y < height; y++) {
+		// new Cell(this, x, y);
+		// //TODO: update the MapObjects
+		// }
+		// }
 	}
 
 	private void trackMouseMove(double x, double y) {
@@ -140,15 +140,26 @@ class Grid extends Pane {
 		if (e.getButton() == MouseButton.PRIMARY && myController.getCurrSelectedImage() != null) {
 			int x = (int) Math.floor(e.getX() / myCellSize.get());
 			int y = (int) Math.floor(e.getY() / myCellSize.get());
+			if (myController.getMapObjectTypeToMap().isTile()) {
+				Set<Cell> set = getCell(new GridPoint(x, y));
+				if (set != null) {
+					for (Cell c : set) {
+						if (c.getObject().getObjectType().isTile())
+							return;
+
+					}
+				}
+
+			}
 			Cell gui = new Cell(this, x, y);
 			gui.setImage(myController.getCurrSelectedImage());
-			//TODO: finish up MapObject and fix Cell
-//			getMapObjectListPosAtPoint(myMapObjects, );
+			// TODO: finish up MapObject and fix Cell
+			// getMapObjectListPosAtPoint(myMapObjects, );
 			e.consume();
 		}
 	}
 
-	public Cell getCell(GridPoint pt) {
+	public Set<Cell> getCell(GridPoint pt) {
 		return myCells.get(pt);
 	}
 
@@ -160,14 +171,16 @@ class Grid extends Pane {
 
 	public void add(Cell cell) {
 		MapObject obj = myController.addObject(cell.getPosition(), myController.getMapObjectTypeToMap());
-		if(obj!=null){
+		if (obj != null) {
 			getChildren().add(cell.getMapView());
-			myCells.put(cell.getPosition(), cell);
+			if (!myCells.containsKey(cell.getPosition()))
+				myCells.put(cell.getPosition(), new HashSet<>());
+			myCells.get(cell.getPosition()).add(cell);
 			cell.setObject(obj);
 		}
 	}
-	
-	public AGuiGaeController getController(){
+
+	public AGuiGaeController getController() {
 		return myController;
 	}
 
