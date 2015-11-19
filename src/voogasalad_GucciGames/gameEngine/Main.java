@@ -42,13 +42,13 @@ public class Main {
 		MoveEvent myMoveEvent = new MoveEvent("Move");
 		WhereToMoveEvent myMoveLocationEvent = new WhereToMoveEvent("WhereToMove");
 		
-		soldier.addCharacteristic("MovableCharacteristic", myMovableCharacteristic);
-		soldier.addCharacteristic("HealthCharacteristic", myHealthCharacteristic);
+//		soldier.addCharacteristic("MovableCharacteristic", myMovableCharacteristic);
+//		soldier.addCharacteristic("HealthCharacteristic", myHealthCharacteristic);
 		soldier.addAction("Move", myMoveEvent);
 		soldier.addRequest("WhereToMove", myMoveLocationEvent);
 		
 		
-		engine.getPossibleCoordinates("Move", (PlayerMapObjectInterface) sold1);
+//		engine.getPossibleCoordinates("Move", (PlayerMapObjectInterface) sold1);
 
 		
 		//engine.endTurn();

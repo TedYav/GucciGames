@@ -24,7 +24,21 @@ public class MovablePlayerCharacteristic extends AGamePlayerPersonCharacteristic
 	}
 
 	public void updateMoves(){
-		moveCount++;
+
+		setMoveCount(getMoveCount() + 1);
+	}
+	
+	public void reset(){
+		System.out.println("updating moves");
+		setMoveCount(0);
+	}
+
+	public int getMoveCount() {
+		return moveCount;
+	}
+
+	public void setMoveCount(int moveCount) {
+		this.moveCount = moveCount;
 	}
 
 }

@@ -9,6 +9,7 @@ import voogasalad_GucciGames.gameEngine.CommunicationParams.ActionToGamePlayerPa
 import voogasalad_GucciGames.gameEngine.CommunicationParams.BasicParameters;
 import voogasalad_GucciGames.gameEngine.CommunicationParams.GridCoordinateParameters;
 import voogasalad_GucciGames.gameEngine.CommunicationParams.MainGameEngineCommunicationParameters;
+import voogasalad_GucciGames.gameEngine.defaultCharacteristics.AttackCharacteristic;
 import voogasalad_GucciGames.gameEngine.targetCoordinate.ATargetCoordinate;
 import voogasalad_GucciGames.gameplayer.controller.PlayerMapObjectInterface;
 
@@ -17,18 +18,48 @@ public class MapObject implements PlayerMapObjectInterface{
 	private ATargetCoordinate myCoordinate;
 	private int myOwnerID;
 	private int myLayer;
-
+	//sizes
+	private  Map<String, AMapObjectCharacteristic> myCharacteristics; //test
+	
 	public MapObject(MapObjectType type, ATargetCoordinate coor, int ownerID){
 		this.myObjectType = type;
 		this.myCoordinate = coor;
 		this.myOwnerID=ownerID;
 		myLayer=0;
-	}
-	       public MapObject(MapObjectType type, ATargetCoordinate coor, int ownerID, int layer){
-	                this(type,coor,ownerID);
-	                myLayer=layer;
-	        }
+		
+		myCharacteristics = new TreeMap<String,  AMapObjectCharacteristic>();
 
+		
+	}
+	
+    public MapObject(MapObjectType type, ATargetCoordinate coor, int ownerID, int layer){
+        this(type,coor,ownerID);
+        myLayer=layer;
+}
+
+	
+	
+	public AMapObjectCharacteristic getCharacteristic(String name){
+		return this.myCharacteristics.get(name);
+	}
+
+	public void addCharacteristic(String name, AMapObjectCharacteristic characteristic){
+		this.myCharacteristics.put(name, characteristic);
+	}
+
+	public boolean hasCharacteristic(String name){
+		return this.myCharacteristics.containsKey(name);
+	}
+
+	public List<String> getCharacteristicStrings(){
+		return new ArrayList<String>(this.myCharacteristics.keySet());
+	}
+	
+	public boolean isTile(){
+		return myCharacteristics.containsKey("TileCharacteristic") || this.getObjectType().getName().equals("TileCharacteristic");
+	}
+	
+	  
 	public MapObjectType getObjectType(){
 		return myObjectType;
 	}
@@ -43,7 +74,7 @@ public class MapObject implements PlayerMapObjectInterface{
 	}
 
 	public boolean isUnit() {
-		return myObjectType.hasCharacteristic("unit");
+		return this.hasCharacteristic("unit");
 	}
 
 	@Override
@@ -98,5 +129,7 @@ public class MapObject implements PlayerMapObjectInterface{
 
 		
 	}
+
+
 
 }

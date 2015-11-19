@@ -10,6 +10,7 @@ import voogasalad_GucciGames.gameEngine.CommunicationParams.BasicParameters;
  */
 public abstract class Rules {
 	public Rules(RuleParams myParams, BasicParameters params){}
-	public abstract Boolean executeRules(BasicParameters communicationParams, int playerID);
 	public Rules(){};
+	public abstract Boolean executeRules(BasicParameters communicationParams);
+
 }

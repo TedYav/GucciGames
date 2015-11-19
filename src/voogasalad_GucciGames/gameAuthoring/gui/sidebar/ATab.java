@@ -3,10 +3,6 @@ package voogasalad_GucciGames.gameAuthoring.gui.sidebar;
 import java.util.ArrayList;
 import java.util.List;
 
-import voogasalad_GucciGames.datastructures.TwoWayMap;
-import voogasalad_GucciGames.gameAuthoring.IGuiGaeController;
-import voogasalad_GucciGames.gameAuthoring.AGuiGaeController;
-import voogasalad_GucciGames.gameEngine.mapObject.MapObjectType;
 import javafx.collections.ListChangeListener;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -23,6 +19,12 @@ import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
+import voogasalad_GucciGames.datastructures.TwoWayMap;
+import voogasalad_GucciGames.datastructures.TwoWayMap;
+import voogasalad_GucciGames.gameAuthoring.AGuiGaeController;
+import voogasalad_GucciGames.gameAuthoring.AGuiGaeController;
+import voogasalad_GucciGames.gameEngine.mapObject.MapObjectType;
+import voogasalad_GucciGames.gameEngine.mapObject.MapObjectType;
 
 public abstract class ATab extends Tab {
 	private static final int WIDTH = 4;
@@ -106,7 +108,7 @@ public abstract class ATab extends Tab {
 	}
 
 	protected abstract void addNewTypeDialog(ActionEvent e);
-	
+
 	private void mouseClicked(ImageView source, MouseEvent e){
 		if(e.getButton()==MouseButton.PRIMARY){
 			select(source);
@@ -142,9 +144,9 @@ public abstract class ATab extends Tab {
 			myGrid.getChildren().remove(myBoundBox);
 			myBoundBox = null;
 			myTrace.setImage(null);
-		}	
+		}
 	}
-	
+
 	private void trackMouse(MouseEvent e){
 		if(myController.getCurrSelectedImage()==null){
 			if(myTrace.isVisible()){

@@ -8,6 +8,7 @@ import voogasalad_GucciGames.gameEngine.CommunicationParams.WhereToParams;
 import voogasalad_GucciGames.gameEngine.defaultCharacteristics.MovableCharacteristic;
 import voogasalad_GucciGames.gameEngine.gamePlayer.AllPlayers;
 import voogasalad_GucciGames.gameEngine.gamePlayer.GamePlayerPerson;
+import voogasalad_GucciGames.gameEngine.gameRules.defaultRules.UnitsMovablePerTurn;
 import voogasalad_GucciGames.gameEngine.mapObject.MapObject;
 import voogasalad_GucciGames.gameEngine.targetCoordinate.TargetCoordinateMultiple;
 import voogasalad_GucciGames.gameEngine.targetCoordinate.TargetCoordinateSingle;
@@ -18,6 +19,7 @@ public class WhereToMoveEvent extends MapObjectEvent{
 
 	public WhereToMoveEvent(String actionName) {
 		super(actionName);
+		getRuleList().add(new UnitsMovablePerTurn());
 		// TODO Auto-generated constructor stub
 	}
 
@@ -31,7 +33,7 @@ public class WhereToMoveEvent extends MapObjectEvent{
 		MapObject calledMe = basic.getCalledMe();
 
 		// getting the range
-		MovableCharacteristic mc = (MovableCharacteristic) calledMe.getObjectType().getCharacteristic("MovableCharacteristic");
+		MovableCharacteristic mc = (MovableCharacteristic) calledMe.getCharacteristic("MovableCharacteristic");
 		double range = mc.getRange();
 		// going through neutral player
 		TargetCoordinateSingle caller = (TargetCoordinateSingle) calledMe.getCoordinate();
@@ -42,7 +44,7 @@ public class WhereToMoveEvent extends MapObjectEvent{
 				// check to see if can move
 
 				if (delta <= range){
-					result.addTargetCoodinateSingle(mo.getCoordinate());
+					result.addTargetCoordinateSingle(mo.getCoordinate());
 				}
 			}
 		});

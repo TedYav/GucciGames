@@ -4,6 +4,7 @@ import java.util.List;
 
 import voogasalad_GucciGames.gameEngine.CommunicationParams.BasicParameters;
 import voogasalad_GucciGames.gameEngine.CommunicationParams.CommunicationParameters;
+import voogasalad_GucciGames.gameEngine.CommunicationParams.GridCoordinateParameters;
 import voogasalad_GucciGames.gameEngine.CommunicationParams.WhereToParams;
 import voogasalad_GucciGames.gameEngine.defaultCharacteristics.AttackCharacteristic;
 import voogasalad_GucciGames.gameEngine.gamePlayer.AllPlayers;
@@ -30,25 +31,29 @@ public class WhereToAttackEvent extends MapObjectEvent{
 
 		// getting the range
 		MapObject calledMe = basic.getCalledMe();
-		AttackCharacteristic ac = (AttackCharacteristic) calledMe.getObjectType().getCharacteristic("AttackCharacteristic");
+		AttackCharacteristic ac = (AttackCharacteristic) calledMe.getCharacteristic("AttackCharacteristic");
 		double range = ac.getRange();
 		
 		TargetCoordinateSingle caller = (TargetCoordinateSingle) calledMe.getCoordinate();
 		for(int i = 0; i < ids.size(); i++){
 			GamePlayerPerson other = players.getPlayerById(ids.get(i));
 			for(MapObject mo: other.getMapObjects()){
-				if(mo.getObjectType().hasCharacteristic("HealthCharacteristic")){
+				int j = 0;
+				if(mo.hasCharacteristic("HealthCharacteristic")){
 					TargetCoordinateSingle single = (TargetCoordinateSingle) mo.getCoordinate();
 					double delta = Math.abs(single.getCenterX()-caller.getCenterX())+Math.abs(single.getCenterY()-caller.getCenterY());
 					if(delta <= range){
-						result.addCoordinate(single);
+						result.addTargetCoordinateSingle(single);
 					}
 				}
 			}
 			
 		}
 		
-		return new WhereToParams(result);
+		
+		
+		
+		return new GridCoordinateParameters(result);
 	}
 
 }

@@ -14,6 +14,7 @@ import javafx.scene.image.Image;
 import voogasalad_GucciGames.datastructures.Coordinate;
 import voogasalad_GucciGames.datastructures.ImageDatabase;
 import voogasalad_GucciGames.gameEngine.CommunicationParams.ActionToGamePlayerParameters;
+import voogasalad_GucciGames.gameEngine.CommunicationParams.GridCoordinateParameters;
 import voogasalad_GucciGames.gameEngine.targetCoordinate.ATargetCoordinate;
 import voogasalad_GucciGames.gameEngine.targetCoordinate.TargetCoordinateSingle;
 import voogasalad_GucciGames.gameplayer.controller.dummy.ADummy;
@@ -59,7 +60,16 @@ public class GameController implements GameControllerInterface {
 		myActionInProgress = action;
 		myTargetUnit = unit;
 		
-		return myEngine.getPossibleCoordinates(action, unit).getListOfCoordinates();
+		GridCoordinateParameters myParameters= myEngine.getPossibleCoordinates(action, unit);
+		
+		
+		//SORRY FOR THE TIME BEING: THIS WILL BE FIXED IN THE FUTURE
+		if(myParameters == null){
+			return new ArrayList<TargetCoordinateSingle>();
+		}
+		else{
+			return myEngine.getPossibleCoordinates(action, unit).getListOfCoordinates();
+		}
 	}
 
 	@Override
@@ -77,7 +87,16 @@ public class GameController implements GameControllerInterface {
 	public void performActionInProgress(Point2D target){
 		ActionToGamePlayerParameters params = myEngine.performAction(myActionInProgress, activeMapObject, Coordinate.PointToCoordinate(target));
 		cancelAction();
-		List<PlayerMapObjectInterface> result = params.getChangedUnits();
+		List<PlayerMapObjectInterface> result;
+		
+		
+		//// SORRY FOR THE TIME BEING
+		if(params != null){
+		result = params.getChangedUnits();
+		}
+		else{
+		result = new ArrayList<PlayerMapObjectInterface>();
+		}
 		myMap.update(result);
 	}
 	

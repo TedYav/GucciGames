@@ -3,6 +3,7 @@ package voogasalad_GucciGames.gameAuthoring;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import javafx.collections.ObservableList;
@@ -18,44 +19,51 @@ import voogasalad_GucciGames.gameEngine.mapObject.MapObjectType;
 import voogasalad_GucciGames.gameEngine.targetCoordinate.ATargetCoordinate;
 import voogasalad_GucciGames.gameEngine.targetCoordinate.TargetCoordinateSingle;
 
+
+
 public class GaeController extends AGuiGaeController implements IModelGaeController{
-    IGAEModel model;
+
+	IGAEModel model;
     GAEGui gui;
     MapObjectType mapobjecttype;
     Image currDraggedImage;
     private int numberOfPlayers;
+    private int defaultOwnerID = -1;
     private Map<Integer, String> allPlayers = new HashMap<Integer, String>();
     
     public GaeController(Stage stage){
     	model = new GAEModel(this);
     	gui = new GAEGui(this,stage);	
     }
-    
-    @Override
-    public void addComponent (MapObject mapObj) {
-        model.addComponent(mapObj);
-    }
     @Override
     public void deleteComponent (MapObject mapObj) {
         model.deleteComponent(mapObj);
     }
     @Override
-    public ObservableList<MapObject> getMapObjects() {
-        return model.getMapObjects();
+    public MapObject addObject(GridPoint gridpoint, MapObjectType mapObjType){
+    	return model.addObject(gridpoint, mapObjType, defaultOwnerID);
     }
     @Override
-    public int getMapObjectListPosAtPoint(ObservableList<MapObject> mapObjectList, GridPoint gridPoint) {
-    	for(int i=0; i<mapObjectList.size(); i++){
-    		MapObject currMapObj= mapObjectList.get(i);
-    		ATargetCoordinate targCoordinate = currMapObj.getCoordinate();
-    		for(TargetCoordinateSingle targCoorSingle : targCoordinate.getListOfCoordinates()){
-	    		if (gridPoint.getX() == targCoorSingle.getCenterX() && gridPoint.getY() == targCoorSingle.getCenterY()){
-	    			return i;
-	    		}
-    		}
-    	}
-        return -1;
+    public MapObject addObject(GridPoint gridpoint, MapObjectType mapObjType, int ownerID){
+    	return model.addObject(gridpoint, mapObjType, ownerID);
     }
+    @Override
+    public List<MapObject> getMapObjects() {
+        return model.getMapObjects();
+    }
+//    @Override
+//    public int getMapObjectListPosAtPoint(ObservableList<MapObject> mapObjectList, GridPoint gridPoint) {
+//    	for(int i=0; i<mapObjectList.size(); i++){
+//    		MapObject currMapObj= mapObjectList.get(i);
+//    		ATargetCoordinate targCoordinate = currMapObj.getCoordinate();
+//    		for(TargetCoordinateSingle targCoorSingle : targCoordinate.getListOfCoordinates()){
+//	    		if (gridPoint.getX() == targCoorSingle.getCenterX() && gridPoint.getY() == targCoorSingle.getCenterY()){
+//	    			return i;
+//	    		}
+//    		}
+//    	}
+//        return -1;
+//    }
     @Override
     public void clearMap () {
         model.clearMap();
@@ -72,32 +80,24 @@ public class GaeController extends AGuiGaeController implements IModelGaeControl
     public ObservableList<MapObjectType> getImmutableTileTypes () {
         return model.getImmutableTileTypes();
     }
-    public ObservableList<MapObjectType> getTileTypes () {
-        return model.getTileTypes();
-    }
+
     @Override
     public ObservableList<MapObjectType> getImmutableUnitTypes () {
         return model.getImmutableUnitTypes();
     }
-    public ObservableList<MapObjectType> getUnitTypes () {
-        return model.getUnitTypes();
-    }
+
     
     @Override
 	public ObservableList<MapObjectType> getImmutableStructureTypes() {
 		return model.getImmutableStructureTypes();
 	}
-	public ObservableList<MapObjectType> getStructureTypes() {
-		return model.getStructureTypes();
-	}
 	
     @Override
-    public void saveToXML () {
-        model.saveToXML();
+    public void saveToXML (String filepath) {
+        model.saveToXML(filepath);
     }
-    public void addListeners() {
-       // model.addObserver(gui);
-    }
+
+    
     @Override
     public void setMapWidth (double x) {
         model.setMapWidth(x);

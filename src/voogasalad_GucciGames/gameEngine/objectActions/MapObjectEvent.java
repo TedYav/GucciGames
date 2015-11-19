@@ -34,25 +34,19 @@ public abstract class MapObjectEvent {
 		if (check) {
 			return execute(params);
 		}
-		return new EmptyParameters();
+		return null;
 	}
 
 
 	private Boolean checkRules(int playerID, CommunicationParameters params) {
-		Boolean ruletest = false;
+		Boolean ruletest = true;
 		BasicParameters basic = (BasicParameters) params;
-	//	ActionToRuleManager mapobj = basic.getActionToRuleMap();
-		
-	/*	if(mapobj == null){
-			return true;
-		}
-		
-		if (mapobj.contains(myName)) { */
-			
+
+
 			if (myRuleList != null) {
 				Iterator<Rules> ruleItr = myRuleList.iterator();
 				while (ruleItr.hasNext()) {
-					ruletest = ruleItr.next().executeRules((BasicParameters) params, playerID);
+					ruletest = ruleItr.next().executeRules((BasicParameters) params);
 					if (ruletest == false) {
 						return ruletest;
 					}

@@ -21,11 +21,11 @@ public class TargetCoordinateMultiple extends ATargetCoordinate {
 	}
 
 
-	public void addTargetCoodinateSingle(ATargetCoordinate coord){
+	public void addTargetCoordinateSingle(ATargetCoordinate coord){
 		myCoordinates.add((TargetCoordinateSingle) coord);
 	}
 
-	public void addTargetCoodinateMultiple(ATargetCoordinate coord){
+	public void addTargetCoordinateMultiple(ATargetCoordinate coord){
 		TargetCoordinateMultiple multCoord = (TargetCoordinateMultiple) coord; 
 		myCoordinates.addAll(multCoord.myCoordinates);
 	}
@@ -36,7 +36,7 @@ public class TargetCoordinateMultiple extends ATargetCoordinate {
 		Method m;
 		try {
 			m = Class.forName(this.getClass().getName()).getMethod("add" + coord.getClass().getSimpleName(),ATargetCoordinate.class);
-			m.invoke(coord);
+			m.invoke(((ATargetCoordinate) coord));
 
 		} catch (Exception e){
 			e.printStackTrace();
