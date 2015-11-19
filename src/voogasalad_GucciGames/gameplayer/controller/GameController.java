@@ -110,6 +110,9 @@ public class GameController implements GameControllerInterface {
 	                 break;
 	            }
 	        } 
+	        //workaround for canceling action by clicking outside of action range (increments action i think?)
+	        cancelAction();
+	        myMap.update(new ArrayList<PlayerMapObjectInterface>());
 	}
 	
 	@Override
