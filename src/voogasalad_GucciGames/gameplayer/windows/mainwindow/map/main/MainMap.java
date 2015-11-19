@@ -218,18 +218,26 @@ public class MainMap extends WindowComponent implements MapInterface {
 
 	@Override
 	public void update(List<PlayerMapObjectInterface> result) {
-		result.stream().forEach(u -> redrawUnit(u));
+            result.stream().forEach(u -> redrawUnit(u));
+            result.stream().forEach(u ->  {
+                if (u.isDead()) {
+                    removeUnitFromMap(u);
+                }
+            });
 		update();
 	}
 
 
 	private void redrawUnit(PlayerMapObjectInterface unit) {
-		if(myUnitMap.containsValue(unit)){
-			myUnitMap.getKey(unit).removeObject(unit);
-			myUnitMap.remove(unit);
-			myUnitMap.removeKey(unit);
-		}
+		removeUnitFromMap(unit);
 		addToMap(unit);
+	}
+	private void removeUnitFromMap(PlayerMapObjectInterface unit) {
+	    if(myUnitMap.containsValue(unit)){
+                myUnitMap.getKey(unit).removeObject(unit);
+                myUnitMap.remove(unit);
+                myUnitMap.removeKey(unit);
+        }
 	}
 
 
