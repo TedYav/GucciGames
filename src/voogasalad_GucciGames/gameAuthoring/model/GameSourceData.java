@@ -22,9 +22,8 @@ public class GameSourceData {
 
 	private ObservableList<MapObject> onMap;
 
-	GameSourceData(){
+	GameSourceData() {
 		tileTypes = FXCollections.observableArrayList();
-
 		MapObjectType objType = new MapObjectType("fire", "voogasalad_GucciGames/graphics/fire.png");
 		MapObjectType objType2 = new MapObjectType("hurricane", "voogasalad_GucciGames/graphics/hurricane.png");
 		tileTypes.add(objType);

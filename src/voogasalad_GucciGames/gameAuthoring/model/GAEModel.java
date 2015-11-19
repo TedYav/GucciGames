@@ -21,6 +21,7 @@ public class GAEModel implements IGAEModel{
     private XMLGameData xmlData;
     private XMLWriter writer;
     //private GameEngineToGameAuthoringEnvironment engine;
+	private Map<Integer, GamePlayerPerson> mapOfPlayers;	
     private AllPlayers players;
 	private MainGameEngine engine;
     
@@ -29,6 +30,7 @@ public class GAEModel implements IGAEModel{
     	data = new GameSourceData();
     	writer = new XMLWriter();
     }
+    
 
     @Override
     public void deleteComponent (MapObject mapObj) {
@@ -78,18 +80,16 @@ public class GAEModel implements IGAEModel{
     } */
 
     @Override
-    public void saveToXML () {
-    	
+    public void saveToXML () {    	
+    	/*
+    	 * Don't instantiate these
+    	 * Change to instance variables
+    	 */
 		Map<Integer, GamePlayerPerson> mapOfPlayers = new HashMap<Integer, GamePlayerPerson>();	
-//		List<GamePlayerPerson> listOfPlayers = new ArrayList<GamePlayerPerson>();	
 		AllPlayers myPlayers = new AllPlayers(mapOfPlayers);
-//		GameMap myMap = new GameMap(myPlayers);
-//		PlayerUnitCondition myRule = new PlayerUnitCondition(listOfPlayers, null); 
-//		OnlyOnePlayerHasUnitsCondition myRule = new OnlyOnePlayerHasUnitsCondition(myMap);
+		
 		MainGameEngine engine = new MainGameEngine(myPlayers);
 		writer.write(engine);
-    	
-        //xmlData.write();
     }
     
     private boolean validate(){ //TODO
@@ -114,7 +114,6 @@ public class GAEModel implements IGAEModel{
 	@Override
 	public ObservableList<MapObjectType> getTileTypes() {
 		// TODO Auto-generated method stub
-		
 		return null;
 	}
 
