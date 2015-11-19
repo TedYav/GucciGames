@@ -66,8 +66,8 @@ public class DemoMaker extends Application{
 		WhereToMoveEvent myMoveLocationEvent = new WhereToMoveEvent("WhereToMove");
 
 
-		soldier.addCharacteristic("MovableCharacteristic");
-		soldier.addCharacteristic("HealthCharacteristic");
+		soldier.addCharacteristic("MovableCharacteristic", myMovableCharacteristic);
+		soldier.addCharacteristic("HealthCharacteristic", myHealthCharacteristic);
 		soldier.addAction("Move", myMoveEvent);
 		soldier.addRequest("WhereToMove", myMoveLocationEvent);
 
