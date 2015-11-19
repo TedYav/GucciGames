@@ -10,8 +10,6 @@ import javafx.scene.shape.Rectangle;
 import voogasalad_GucciGames.gameEngine.mapObject.MapObject;
 
 public class Cell {
-	private static Image myImage = new Image(
-			Cell.class.getClassLoader().getResourceAsStream("voogasalad_GucciGames/graphics/water.png"));
 	private ImageView myMapView;
 	private ImageView myMiniView;
 	private Rectangle myBoundBox;
@@ -24,7 +22,7 @@ public class Cell {
 
 	public Cell(Grid map, int x, int y) {
 		myMap = map;
-		myMapView = new ImageView(myImage);
+		myMapView = new ImageView();
 		mySize = myMap.getCellSize();
 		myMapView.fitWidthProperty().bind(mySize);
 		myMapView.fitHeightProperty().bind(mySize);
