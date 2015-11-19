@@ -48,7 +48,7 @@ public class WhereToMoveEvent extends MapObjectEvent{
 					//added code to check if unit is already there
 					for (MapObject unit: players.getAllUnits())
 						if (mo.getCoordinate() != unit.getCoordinate())
-							//end of added code
+							//end of added code, if code doesn't work
 							result.addTargetCoodinateSingle(mo.getCoordinate());
 				}
 			}
