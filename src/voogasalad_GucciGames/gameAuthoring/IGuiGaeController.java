@@ -11,7 +11,7 @@ import javafx.scene.image.Image;
 import voogasalad_GucciGames.gameEngine.mapObject.MapObject;
 import voogasalad_GucciGames.gameEngine.mapObject.MapObjectType;
 
-public interface IGuiGaeController extends IDialogGaeController {
+public interface IGuiGaeController{
 	/**
 	 * Add Map Object
 	 * @param mapObj
@@ -31,9 +31,6 @@ public interface IGuiGaeController extends IDialogGaeController {
     public void createCustomTileType(Map<String,String> m);
     
     public void createCustomUnitType(Map<String,String> m);
-    
-    @Override
-    public void createCustomMapObject(ObjectProperty p);
 
     public ObservableList<MapObjectType> getImmutableTileTypes();
 

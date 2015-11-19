@@ -39,6 +39,7 @@ public class PopupMenu extends ContextMenu {
 			item.setToggleGroup(group);
 			myOwnerMenu.getItems().add(item);
 		});
+		myOwnerMenu.setDisable(myOwnerMenu.getItems().size()==0);
 		
 		group.selectedToggleProperty().addListener((ob, oldV, newV) -> {
 			if (group.getSelectedToggle() != null) {
