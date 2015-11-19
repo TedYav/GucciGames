@@ -18,11 +18,15 @@ public class UnitsMovablePerTurn extends Rules {
 		myParams = ruleParams;
 	}
 
+	public UnitsMovablePerTurn() {
+		// TODO Auto-generated constructor stub
+	}
+
 	@Override
 	public Boolean executeRules(BasicParameters communicationParams) {
 		GamePlayerPerson player = communicationParams.getPlayers().getPlayerById(communicationParams.getCalledMe().getPlayerID());
 		int playerAllowedMoves = player.getAllowedMovesPerTurn();
-		int playerCurrentMoves = player.getTurnCounter();
+		int playerCurrentMoves = player.getMovesDoneThisTurn();
 		if (playerAllowedMoves == -1) {
 			return true;
 		} else {

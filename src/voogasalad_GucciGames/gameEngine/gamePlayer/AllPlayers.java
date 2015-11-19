@@ -31,7 +31,7 @@ public class AllPlayers {
 		for (Integer i : myMapOfPlayers.keySet()) {
 			GamePlayerPerson person = myMapOfPlayers.get(i);
 			person.resetObjects();
-			person.setTurnCounter(0);
+			person.getMyMovable().reset();
 
 		}
 	}
@@ -47,10 +47,6 @@ public class AllPlayers {
 	public GamePlayerPerson getPlayerById(int id) {
 
 		return myMapOfPlayers.get(id);
-	}
-
-	public int numberOfPlayer() {
-		return myMapOfPlayers.size();
 	}
 
 	// right now includes the neutral player
@@ -102,7 +98,7 @@ public class AllPlayers {
 	public List<MapObject> getAllUnits() {
 		// TODO Auto-generated method stub
 
-		ArrayList<MapObject> myInitObjects = new ArrayList<MapObject>();
+		List<MapObject> myInitObjects = new ArrayList<MapObject>();
 
 		for (GamePlayerPerson player : myMapOfPlayers.values()) {
 			List<MapObject> myPlayerUnits = player.getMapObjects();
@@ -112,6 +108,16 @@ public class AllPlayers {
 		}
 
 		return myInitObjects;
+	}
+	
+	public List<MapObject> getNonNeutralMapObjects(){
+		List<MapObject> result = new ArrayList<MapObject>();
+		this.myMapOfPlayers.keySet().stream().forEach(key -> {
+			if(key != -1){
+				result.addAll(this.myMapOfPlayers.get(key).getMapObjects());
+			}
+		});
+		return result;
 	}
 
 }

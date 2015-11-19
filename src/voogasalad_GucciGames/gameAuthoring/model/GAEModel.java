@@ -33,10 +33,10 @@ public class GAEModel implements IGAEModel{
     	data = new GameSourceData();
     	mapOfPlayers = new HashMap<>();
     	// Probs need to change this
-		mapOfPlayers.put(-1, new GamePlayerPerson());
-		mapOfPlayers.put(0, new GamePlayerPerson());
-		mapOfPlayers.put(1, new GamePlayerPerson());
-		mapOfPlayers.put(2, new GamePlayerPerson());
+		mapOfPlayers.put(-1, new GamePlayerPerson(-1));
+		mapOfPlayers.put(0, new GamePlayerPerson(0));
+		mapOfPlayers.put(1, new GamePlayerPerson(1));
+		mapOfPlayers.put(2, new GamePlayerPerson(2));
 		
     	//writer = new XMLWriter();
     }
@@ -44,13 +44,15 @@ public class GAEModel implements IGAEModel{
 
     @Override
     public void deleteComponent (MapObject mapObj) {
-        data.deleteFromMap(mapObj);
+        int owner = mapObj.getPlayerID();
+        mapOfPlayers.get(owner).getMapObjects().remove(mapObj);
     }
     
     @Override
     public MapObject addObject(GridPoint gridpoint, MapObjectType mapObjType, int ownerID) {
     	TargetCoordinateSingle targCoordSingle = new TargetCoordinateSingle(gridpoint.getX(), gridpoint.getY());
-    	MapObject mapObject = new MapObject(mapObjType, targCoordSingle, ownerID);
+    	int layer = mapObjType.isTile() ? 0 : 1;
+    	MapObject mapObject = new MapObject(mapObjType, targCoordSingle, ownerID,layer);
     	mapOfPlayers.get(ownerID).addMapObject(mapObject);
     	//Validate with engine, if failed, return null, else return this mapObject
     	return mapObject;

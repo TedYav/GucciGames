@@ -22,4 +22,9 @@ public interface GameEngineToGamePlayerInterface {
 	public GridCoordinateParameters getPossibleCoordinates(String action, PlayerMapObjectInterface mapObject);
 	
 	public ActionToGamePlayerParameters performAction(String action, PlayerMapObjectInterface mapObject, ATargetCoordinate target);
+	
+	public double getMapWidth();
+	public double getMapHeight();
+
+	public GameParametersInterface getGameParams();
 }

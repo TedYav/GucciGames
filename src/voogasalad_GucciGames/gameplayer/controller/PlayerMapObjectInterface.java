@@ -20,6 +20,10 @@ public interface PlayerMapObjectInterface {
 	public int getPlayerID();
 
 	public ATargetCoordinate getCoordinate();
+	
+	public boolean isDead();
 
 	public List<ATargetCoordinate> getActionTargets(String name);
+	
+	public boolean isRemoved();
 }

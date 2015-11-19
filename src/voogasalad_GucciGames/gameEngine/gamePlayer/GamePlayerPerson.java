@@ -13,14 +13,13 @@ public class GamePlayerPerson {
 	private PlayerResources myResources;
 	private List<MapObject> myMapObjects;
 
-	private int turnMoves = -1;// should move this away later
-	private int turnCounter = 0;// should move this away later
 	private String myStatus = "DRAW";
 	private MovablePlayerCharacteristic myMovable;
 	
 	
-	public GamePlayerPerson() {
+	public GamePlayerPerson(int id) {
 		myMapObjects = new ArrayList<MapObject>();
+		myPlayerId = id;
 	}
 
 	public List<MapObject> getMapObjects() {
@@ -51,24 +50,19 @@ public class GamePlayerPerson {
 	}
 
 	public int getAllowedMovesPerTurn() {
-		return turnMoves;
+		return myMovable.getMyNumberOfMoves();
 	}
 
-	public void setAllowedMovesPerTurn(int turnMoves) {
-		this.turnMoves = turnMoves;
+
+
+	public int getMovesDoneThisTurn() {
+		return myMovable.getMoveCount();
 	}
 
-	public int getTurnCounter() {
-		return turnCounter;
-	}
-
-	public void setTurnCounter(int turnCounter) {
-		this.turnCounter = turnCounter;
-	}
 	public void resetObjects(){
 		for(MapObject object: myMapObjects){
-			if(object.getObjectType().hasCharacteristic("AttackCharacteristic")){
-				AttackCharacteristic attachChar =(AttackCharacteristic) object.getObjectType().getCharacteristic("AttackCharacteristic");
+			if(object.hasCharacteristic("AttackCharacteristic")){
+				AttackCharacteristic attachChar =(AttackCharacteristic) object.getCharacteristic("AttackCharacteristic");
 				attachChar.reset();
 			}
 

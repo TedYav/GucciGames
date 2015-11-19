@@ -14,6 +14,7 @@ import javafx.scene.image.Image;
 import voogasalad_GucciGames.datastructures.Coordinate;
 import voogasalad_GucciGames.datastructures.ImageDatabase;
 import voogasalad_GucciGames.gameEngine.CommunicationParams.ActionToGamePlayerParameters;
+import voogasalad_GucciGames.gameEngine.CommunicationParams.GridCoordinateParameters;
 import voogasalad_GucciGames.gameEngine.targetCoordinate.ATargetCoordinate;
 import voogasalad_GucciGames.gameEngine.targetCoordinate.TargetCoordinateSingle;
 import voogasalad_GucciGames.gameplayer.controller.dummy.ADummy;
@@ -41,6 +42,7 @@ public class GameController implements GameControllerInterface {
 		myImageDatabase = new ImageDatabase();
 		myActionInProgress = "";
 		activeMOObservers=new ArrayList<Observer>();
+		possibleMoves = new ArrayList<TargetCoordinateSingle>();
 	}
 	
 	@Override
@@ -59,8 +61,18 @@ public class GameController implements GameControllerInterface {
 	public List<TargetCoordinateSingle> setActionInProgress(String action, PlayerMapObjectInterface unit) {
 		myActionInProgress = action;
 		myTargetUnit = unit;
-		possibleMoves=myEngine.getPossibleCoordinates(action, unit).getListOfCoordinates();
-		return possibleMoves;
+		
+		GridCoordinateParameters myParameters= myEngine.getPossibleCoordinates(action, unit);
+		
+		
+		//SORRY FOR THE TIME BEING: THIS WILL BE FIXED IN THE FUTURE
+		if(myParameters == null){
+			return new ArrayList<TargetCoordinateSingle>();
+		}
+		else{
+			possibleMoves= myEngine.getPossibleCoordinates(action, unit).getListOfCoordinates();
+			return possibleMoves;
+		}
 	}
 
 	@Override
@@ -76,16 +88,31 @@ public class GameController implements GameControllerInterface {
 	
 	@Override
 	public void performActionInProgress(Point2D target){
-	    ActionToGamePlayerParameters params;
+		ActionToGamePlayerParameters params;// = myEngine.performAction(myActionInProgress, activeMapObject, Coordinate.PointToCoordinate(target));
+		//cancelAction();
+		
+		
+		//// SORRY FOR THE TIME BEING
+	
 	        for (TargetCoordinateSingle coord: possibleMoves) {
 	            if (target.getX()==coord.getCenterX() && target.getY()==coord.getCenterY()) {
 	                 params= myEngine.performAction(myActionInProgress, activeMapObject, Coordinate.PointToCoordinate(target));
 	                 cancelAction();
-	                 List<PlayerMapObjectInterface> result = params.getChangedUnits();
+	                 List<PlayerMapObjectInterface> result;
+	             	if(params != null){
+	            		result = params.getChangedUnits();
+	            		}
+	            		else{
+	            		result = new ArrayList<PlayerMapObjectInterface>();
+	            		}
+	                 
 	                 myMap.update(result);
 	                 break;
 	            }
-	        }
+	        } 
+	        //workaround for canceling action by clicking outside of action range (increments action i think?)
+	        cancelAction();
+	        myMap.update(new ArrayList<PlayerMapObjectInterface>());
 	}
 	
 	@Override

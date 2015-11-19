@@ -7,6 +7,7 @@ import java.util.List;
 import javafx.collections.FXCollections;
 import javafx.collections.ListChangeListener;
 import javafx.collections.ObservableList;
+import voogasalad_GucciGames.gameEngine.defaultCharacteristics.TileCharacteristic;
 import voogasalad_GucciGames.gameEngine.mapObject.DefaultMapObjectType;
 import voogasalad_GucciGames.gameEngine.mapObject.MapObject;
 import voogasalad_GucciGames.gameEngine.mapObject.MapObjectType;
@@ -19,8 +20,11 @@ public class GameSourceData {
 
 	GameSourceData() {
 		tileTypes = FXCollections.observableArrayList();
-		MapObjectType objType = new MapObjectType("duvall", "player/images/dummytexture.jpg");
-		MapObjectType objType2 = new MapObjectType("student", "player/images/dummytexture2.jpg");
+		// Hard coded for testing purposes:
+		MapObjectType objType = new MapObjectType("Grass", "player/images/dummytexture.jpg");
+		MapObjectType objType2 = new MapObjectType("Water", "player/images/dummytexture2.jpg");
+		objType.addDefaultCharacteristic("TileCharacteristic", new TileCharacteristic());
+		objType.addDefaultCharacteristic("TileCharacteristic", new TileCharacteristic());
 		tileTypes.add(objType);
 		tileTypes.add(objType2);
 		
@@ -36,9 +40,9 @@ public class GameSourceData {
 	public void addToMap(MapObject obj) {
 		onMap.add(obj);
 	}
-	public void deleteFromMap(MapObject obj) {
-		onMap.remove(obj);
-	}
+//	public void deleteFromMap(MapObject obj) {
+//		onMap.remove(obj);
+//	}
 	public void clearMap() {
 		onMap.clear();
 	}

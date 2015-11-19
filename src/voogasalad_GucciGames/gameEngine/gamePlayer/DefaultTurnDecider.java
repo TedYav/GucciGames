@@ -4,6 +4,8 @@ public class DefaultTurnDecider extends ATurnDecider {
 
 	private int numPlayers;
 	private TurnCounter turnCounter;
+	private AllPlayers myPlayers;
+	private GamePlayerPerson myActivePlayer;
 
 	/**
 	 * 
@@ -12,19 +14,35 @@ public class DefaultTurnDecider extends ATurnDecider {
 	 *            player)
 	 * @param currTurn
 	 */
-	public DefaultTurnDecider(int numberPlayers, TurnCounter turnCoun) {
-		numPlayers = numberPlayers;
+	public DefaultTurnDecider(AllPlayers players, TurnCounter turnCoun) {
 		turnCounter = turnCoun;
-
+		myPlayers = players;
+		updateActivePlayer();
 	}
+
+
+	@Override
+	public GamePlayerPerson getActivePlayer() {
+		return myActivePlayer;
+	}
+	
+	public void updateActivePlayer(){
+		System.out.println("Current Turn Player ID is : " + decideTurn());
+		myActivePlayer = myPlayers.getPlayerById(decideTurn());
+	}
+
+	public void setCurrentTurnPlayer(GamePlayerPerson myPlayer) {
+		myActivePlayer = myPlayer;
+	}
+	
+	public void setCurrentTurnPlayer(int id){
+		myActivePlayer = myPlayers.getPlayerById(id);
+	}
+
 
 	@Override
 	public int decideTurn() {
-
-		// (-1 is there in the mod operation because player at index 0 doesn't
-		// take a turn (neutral) and +1 is just for math to work out
-		return (turnCounter.getCurrentTurn() % (numPlayers - 1));
-
+		return myPlayers.getAllIds().get((turnCounter.getCurrentTurn() % (myPlayers.getNumberOfPlayers() - 1)) + 1);
 	}
 
 }

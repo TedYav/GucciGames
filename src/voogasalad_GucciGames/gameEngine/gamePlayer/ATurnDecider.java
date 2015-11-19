@@ -4,8 +4,13 @@ public abstract class ATurnDecider {
 
 	
 	/**
-	 * Returns the ID of the player who is going to take a turn
-	 * @return 
+	 * Return the player who is going to take a turn
+	 * @return
 	 */
-	public abstract int decideTurn();	
+	public abstract GamePlayerPerson getActivePlayer();
+
+	public abstract int decideTurn();
+	
+	public abstract void updateActivePlayer();
+	
 }

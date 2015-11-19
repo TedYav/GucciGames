@@ -21,13 +21,16 @@ public class TargetCoordinateMultiple extends ATargetCoordinate {
 	}
 
 
-	public void addTargetCoodinateSingle(ATargetCoordinate coord){
-		myCoordinates.add((TargetCoordinateSingle) coord);
+	
+	public void addTargetCoordinateSingle(ATargetCoordinate coord){
+		if(!this.myCoordinates.contains(coord)){
+			myCoordinates.add((TargetCoordinateSingle) coord);
+		}
 	}
 
-	public void addTargetCoodinateMultiple(ATargetCoordinate coord){
-		TargetCoordinateMultiple multCoord = (TargetCoordinateMultiple) coord; 
-		myCoordinates.addAll(multCoord.myCoordinates);
+	public void addTargetCoordinateMultiple(ATargetCoordinate coord){
+		TargetCoordinateMultiple multCoord = (TargetCoordinateMultiple) coord;
+		multCoord.getListOfCoordinates().stream().forEach(coor -> this.addTargetCoordinateSingle(coor));
 	}
 
 	// NOT ACTUALLY ADDING TO LIST! FIX THIS!
@@ -36,7 +39,7 @@ public class TargetCoordinateMultiple extends ATargetCoordinate {
 		Method m;
 		try {
 			m = Class.forName(this.getClass().getName()).getMethod("add" + coord.getClass().getSimpleName(),ATargetCoordinate.class);
-			m.invoke(coord);
+			m.invoke(((ATargetCoordinate) coord));
 
 		} catch (Exception e){
 			e.printStackTrace();
@@ -65,6 +68,31 @@ public class TargetCoordinateMultiple extends ATargetCoordinate {
 	public List<TargetCoordinateSingle> getListOfCoordinates() {
 		// TODO Auto-generated method stub
 		return myCoordinates;
+	}
+
+	@Override
+	public boolean equals(Object o) {
+		// TODO Auto-generated method stub
+		TargetCoordinateMultiple other = (TargetCoordinateMultiple) o;
+		if(this.myCoordinates.size() != other.myCoordinates.size()){
+			return false;
+		}
+		for(int i = 0; i < this.myCoordinates.size(); i++){
+			if(!this.myCoordinates.get(i).equals(other.myCoordinates.get(i))){
+				return false;
+			}
+		}
+		return true;
+	}
+
+	@Override
+	public int hashCode() {
+		// TODO Auto-generated method stub
+		int num = 0;
+		for(TargetCoordinateSingle coor: this.myCoordinates){
+			num += coor.hashCode();
+		}
+		return num;
 	}
 
 }

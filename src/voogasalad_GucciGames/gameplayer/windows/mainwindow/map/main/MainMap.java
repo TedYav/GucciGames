@@ -21,8 +21,6 @@ import voogasalad_GucciGames.gameEngine.targetCoordinate.ATargetCoordinate;
 import voogasalad_GucciGames.gameEngine.targetCoordinate.TargetCoordinateSingle;
 import voogasalad_GucciGames.gameplayer.controller.GameControllerInterface;
 import voogasalad_GucciGames.gameplayer.controller.PlayerMapObjectInterface;
-import voogasalad_GucciGames.gameplayer.controller.dummy.DummyTile;
-import voogasalad_GucciGames.gameplayer.controller.dummy.DummyUnit;
 import voogasalad_GucciGames.gameplayer.windows.GameScene;
 import voogasalad_GucciGames.gameplayer.windows.WindowComponent;
 import voogasalad_GucciGames.gameplayer.windows.mainwindow.map.MapInterface;
@@ -220,18 +218,26 @@ public class MainMap extends WindowComponent implements MapInterface {
 
 	@Override
 	public void update(List<PlayerMapObjectInterface> result) {
-		result.stream().forEach(u -> redrawUnit(u));
+            result.stream().forEach(u -> redrawUnit(u));
+            result.stream().forEach(u ->  {
+                if (u.isDead()) {
+                    removeUnitFromMap(u);
+                }
+            });
 		update();
 	}
 
 
 	private void redrawUnit(PlayerMapObjectInterface unit) {
-		if(myUnitMap.containsValue(unit)){
-			myUnitMap.getKey(unit).removeObject(unit);
-			myUnitMap.remove(unit);
-			myUnitMap.removeKey(unit);
-		}
+		removeUnitFromMap(unit);
 		addToMap(unit);
+	}
+	private void removeUnitFromMap(PlayerMapObjectInterface unit) {
+	    if(myUnitMap.containsValue(unit)){
+                myUnitMap.getKey(unit).removeObject(unit);
+                myUnitMap.remove(unit);
+                myUnitMap.removeKey(unit);
+        }
 	}
 
 
