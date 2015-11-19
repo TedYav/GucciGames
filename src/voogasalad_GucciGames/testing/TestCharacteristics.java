@@ -14,7 +14,7 @@ import voogasalad_GucciGames.gameEngine.defaultCharacteristics.MovableCharacteri
 import voogasalad_GucciGames.gameEngine.mapObject.AMapObjectCharacteristic;
 
 public class TestCharacteristics {
-
+/*
 	@Test
 	public void test() {
 		CharacteristicFactory cf = new CharacteristicFactory();
@@ -25,5 +25,6 @@ public class TestCharacteristics {
 		assertEquals(answer, cf.tempCharacteristic());
 		fail("Not yet implemented");
 	}
+	*/
 
 }

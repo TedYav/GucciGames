@@ -3,6 +3,7 @@ package voogasalad_GucciGames.gameEngine.defaultCharacteristics;
 import java.io.IOException;
 import java.io.InputStream;
 import java.lang.reflect.Constructor;
+import java.lang.reflect.InvocationTargetException;
 import java.util.Map;
 import java.util.Properties;
 import java.util.ResourceBundle;
@@ -24,12 +25,12 @@ public class CharacteristicFactory {
 		
 	}
 	
-	public static void main(String[] args){
-		CharacteristicFactory cf = new CharacteristicFactory();
-		cf.initializeCharacteristics();
-	}
+//	public static void main(String[] args){
+//		CharacteristicFactory cf = new CharacteristicFactory();
+//		cf.initializeCharacteristics();
+//	}
 	
-	public Map<String, AMapObjectCharacteristic> initializeCharacteristics(){		
+	public Map<String, AMapObjectCharacteristic> initializeCharacteristics(CharacteristicParams charParams){		
 		objectCharacteristics = new TreeMap<>();
 		for (String name: resources.keySet()){
 			System.out.println(name);
@@ -37,8 +38,9 @@ public class CharacteristicFactory {
 			Class<AMapObjectCharacteristic> characteristic;
 			try {
 				characteristic = (Class<AMapObjectCharacteristic>) Class.forName(path);
-				objectCharacteristics.put(name, characteristic.newInstance());
-			} catch (ClassNotFoundException | InstantiationException | IllegalAccessException e) {
+				Constructor<AMapObjectCharacteristic> moConstructor = characteristic.getDeclaredConstructor(CharacteristicParams.class);
+				objectCharacteristics.put(name, moConstructor.newInstance(charParams));
+			} catch (ClassNotFoundException | InstantiationException | IllegalAccessException | NoSuchMethodException | SecurityException | IllegalArgumentException | InvocationTargetException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}

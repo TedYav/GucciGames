@@ -72,8 +72,12 @@ public class MapObjectType{
 		this.myActions.put(name, action);
 	}
 	
-	public void addCharacteristic(String name, List<Integer> values){
-		this.myCharacteristics.put(name, myCharacteristicHandler.getCharacteristic(name, values));
+//	public void addCharacteristic(String name, List<Integer> values){
+//		this.myCharacteristics.put(name, myCharacteristicHandler.getCharacteristic(name, values));
+//	}
+	
+	public void addCharacteristic(String name, AMapObjectCharacteristic characteristic){
+		this.myCharacteristics.put(name, characteristic);
 	}
 	
 	public boolean hasCharacteristic(String name){
@@ -102,11 +106,11 @@ public class MapObjectType{
 		return map;
 	}
 	
-	public void initializeCharacteristicsMap(Map<String,List<Integer>> characteristics){
-		myCharacteristics = new TreeMap<>();
-		for (String key: characteristics.keySet()){
-			myCharacteristics.put(key, myCharacteristicHandler.getCharacteristic(key, characteristics.get(key)));
-		}
-	}
+//	public void initializeCharacteristicsMap(Map<String,List<Integer>> characteristics){
+//		myCharacteristics = new TreeMap<>();
+//		for (String key: characteristics.keySet()){
+//			myCharacteristics.put(key, myCharacteristicHandler.getCharacteristic(key, characteristics.get(key)));
+//		}
+//	}
 	
 }

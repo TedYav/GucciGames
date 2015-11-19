@@ -5,7 +5,9 @@ public class RealHealthCharacteristic extends HealthCharacteristic{
 	private double myCurrentHealth;
 	private double myMaxHealth;
 
-	public RealHealthCharacteristic(double myMaxHP) {
+	public RealHealthCharacteristic(CharacteristicParams charParams) {
+		super(charParams);
+		double myMaxHP = (double) charParams.getMyMaxNumberOf();
 		defineHealthValue(myMaxHP);
 	}
 	
