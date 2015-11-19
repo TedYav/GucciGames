@@ -134,6 +134,15 @@ public class GAEModel implements IGAEModel{
         validate();
         data.addToMap(mapObj);
     }
+
+
+	@Override
+	public void changeOwner(MapObject mapObject, int playerID) {
+		int oldID = mapObject.getPlayerID(); 
+		mapOfPlayers.get(oldID).getMapObjects().remove(mapObject);
+		mapObject.setOwnerID(playerID);
+		mapOfPlayers.get(playerID).addMapObject(mapObject);
+	}
     
 //	public static void main(String[] args){
 //		Map<Integer, GamePlayerPerson> mapOfPlayers = new HashMap<Integer, GamePlayerPerson>();	
