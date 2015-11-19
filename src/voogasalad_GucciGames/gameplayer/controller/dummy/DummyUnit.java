@@ -19,10 +19,12 @@ import voogasalad_GucciGames.gameplayer.controller.PlayerMapObjectInterface;
 public class DummyUnit extends ADummy implements PlayerMapObjectInterface {
 	
 	private int myX, myY;
+	private boolean removed;
 	
 	public DummyUnit(int x, int y){
 		myX = x;
 		myY = y;
+		removed=false;
 	}
 	
 	@Override
@@ -87,5 +89,11 @@ public class DummyUnit extends ADummy implements PlayerMapObjectInterface {
 	public ATargetCoordinate getCoordinate() {
 		return new TargetCoordinateSingle(myX, myY);
 	}
+
+    @Override
+    public boolean isRemoved () {
+        // TODO Auto-generated method stub
+        return removed;
+    }
 
 }
