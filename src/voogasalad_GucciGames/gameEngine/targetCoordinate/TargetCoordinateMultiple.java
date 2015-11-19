@@ -45,16 +45,16 @@ public class TargetCoordinateMultiple extends ATargetCoordinate {
 
 	}
 
-	public List<TargetCoordinateSingle> getCoordinates(){
-		return this.myCoordinates;
-	}
+	//public List<ATargetCoordinate> getCoordinates(){
+	//	return this.myCoordinates;
+	//}
 
 	@Override
 	public ATargetCoordinate clone() {
 		// TODO Auto-generated method stub
 		List<ATargetCoordinate> myList = new ArrayList<ATargetCoordinate>();
 
-		for(TargetCoordinateSingle coord : this.myCoordinates){
+		for(ATargetCoordinate coord : this.myCoordinates){
 			myList.add((ATargetCoordinate) coord);
 		}
 

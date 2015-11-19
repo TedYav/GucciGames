@@ -14,15 +14,9 @@ public class MovableCharacteristic extends AMapObjectCharacteristic{
 	public int getNumberOfMoves() {
 		return myNumberOfMoves;
 	}
-	public void setNumberOfMoves(int numberOfMoves) {
-		this.myNumberOfMoves = numberOfMoves;
-	}
 	
 	public double getRange() {
 		return myRange;
-	}
-	public void setRange(double range) {
-		this.myRange = range;
 	}
 
 }
