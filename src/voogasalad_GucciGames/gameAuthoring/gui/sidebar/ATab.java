@@ -130,16 +130,17 @@ public abstract class ATab extends Tab {
 			myGrid.add(myBoundBox, myGrid.getColumnIndex(source), myGrid.getRowIndex(source));
 		}else{
 			mySideBar.setCurrSelection(this,null);
-			myController.setMapObjectTypeToMap(null);
-			myController.setCurrDraggedImage(null);
 			deselect();
 		}
 	}
 
 	protected void deselect() {
 		if(myBoundBox!=null){
+			myController.setMapObjectTypeToMap(null);
+			myController.setCurrDraggedImage(null);
 			myGrid.getChildren().remove(myBoundBox);
 			myBoundBox = null;
+			myTrace.setImage(null);
 		}	
 	}
 	
@@ -152,7 +153,6 @@ public abstract class ATab extends Tab {
 			return;
 		}
 		if(myTrace.getImage()!=myController.getCurrSelectedImage()){
-			System.out.println("Changed");
 			myTrace.setImage(myController.getCurrSelectedImage());
 			myTrace.setVisible(true);
 		}
