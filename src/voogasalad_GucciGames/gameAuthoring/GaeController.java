@@ -145,4 +145,16 @@ public class GaeController extends AGuiGaeController implements IModelGaeControl
 		
 	}
 
+	@Override
+	public void savePlayer() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void saveGameSetting() {
+		// TODO Auto-generated method stub
+		
+	}
+
 }
