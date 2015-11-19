@@ -767,8 +767,26 @@
                 <myName>Student</myName>
                 <myImagePath>player/images/smile.png</myImagePath>
                 <myDefaultCharacteristics class="tree-map"/>
-                <myActions class="tree-map"/>
-                <myRequests class="tree-map"/>
+                <myActions class="tree-map">
+                  <entry>
+                    <string>Attack</string>
+                    <voogasalad__GucciGames.gameEngine.objectActions.AttackEvent reference="../../../../../../../../entry[2]/voogasalad__GucciGames.gameEngine.gamePlayer.GamePlayerPerson/myMapObjects/voogasalad__GucciGames.gameEngine.mapObject.MapObject/myObjectType/myActions/entry/voogasalad__GucciGames.gameEngine.objectActions.AttackEvent"/>
+                  </entry>
+                  <entry>
+                    <string>Move</string>
+                    <voogasalad__GucciGames.gameEngine.objectActions.MoveEvent reference="../../../../../../../../entry[2]/voogasalad__GucciGames.gameEngine.gamePlayer.GamePlayerPerson/myMapObjects/voogasalad__GucciGames.gameEngine.mapObject.MapObject/myObjectType/myActions/entry[2]/voogasalad__GucciGames.gameEngine.objectActions.MoveEvent"/>
+                  </entry>
+                </myActions>
+                <myRequests class="tree-map">
+                  <entry>
+                    <string>WhereToAttack</string>
+                    <voogasalad__GucciGames.gameEngine.objectActions.WhereToAttackEvent reference="../../../../../../../../entry[2]/voogasalad__GucciGames.gameEngine.gamePlayer.GamePlayerPerson/myMapObjects/voogasalad__GucciGames.gameEngine.mapObject.MapObject/myObjectType/myRequests/entry/voogasalad__GucciGames.gameEngine.objectActions.WhereToAttackEvent"/>
+                  </entry>
+                  <entry>
+                    <string>WhereToMove</string>
+                    <voogasalad__GucciGames.gameEngine.objectActions.WhereToMoveEvent reference="../../../../../../../../entry[2]/voogasalad__GucciGames.gameEngine.gamePlayer.GamePlayerPerson/myMapObjects/voogasalad__GucciGames.gameEngine.mapObject.MapObject/myObjectType/myRequests/entry[2]/voogasalad__GucciGames.gameEngine.objectActions.WhereToMoveEvent"/>
+                  </entry>
+                </myRequests>
               </myObjectType>
               <myCoordinate class="voogasalad_GucciGames.gameEngine.targetCoordinate.TargetCoordinateSingle">
                 <myCenterX>0.0</myCenterX>
@@ -778,11 +796,27 @@
               <myLayer>1</myLayer>
               <myCharacteristics class="tree-map">
                 <entry>
+                  <string>AttackCharacteristic</string>
+                  <voogasalad__GucciGames.gameEngine.defaultCharacteristics.AttackCharacteristic>
+                    <myRange>3.0</myRange>
+                    <myDamage>5.0</myDamage>
+                    <maxNumberOfAttacks>2</maxNumberOfAttacks>
+                    <currentNumberOfAttacks>0</currentNumberOfAttacks>
+                  </voogasalad__GucciGames.gameEngine.defaultCharacteristics.AttackCharacteristic>
+                </entry>
+                <entry>
                   <string>HealthCharacteristic</string>
                   <voogasalad__GucciGames.gameEngine.defaultCharacteristics.RealHealthCharacteristic>
                     <myCurrentHealth>10.0</myCurrentHealth>
                     <myMaxHealth>10.0</myMaxHealth>
                   </voogasalad__GucciGames.gameEngine.defaultCharacteristics.RealHealthCharacteristic>
+                </entry>
+                <entry>
+                  <string>MovableCharacteristic</string>
+                  <voogasalad__GucciGames.gameEngine.defaultCharacteristics.MovableCharacteristic>
+                    <myNumberOfMoves>1</myNumberOfMoves>
+                    <myRange>5.0</myRange>
+                  </voogasalad__GucciGames.gameEngine.defaultCharacteristics.MovableCharacteristic>
                 </entry>
               </myCharacteristics>
             </voogasalad__GucciGames.gameEngine.mapObject.MapObject>
@@ -796,11 +830,27 @@
               <myLayer>1</myLayer>
               <myCharacteristics class="tree-map">
                 <entry>
+                  <string>AttackCharacteristic</string>
+                  <voogasalad__GucciGames.gameEngine.defaultCharacteristics.AttackCharacteristic>
+                    <myRange>3.0</myRange>
+                    <myDamage>5.0</myDamage>
+                    <maxNumberOfAttacks>2</maxNumberOfAttacks>
+                    <currentNumberOfAttacks>0</currentNumberOfAttacks>
+                  </voogasalad__GucciGames.gameEngine.defaultCharacteristics.AttackCharacteristic>
+                </entry>
+                <entry>
                   <string>HealthCharacteristic</string>
                   <voogasalad__GucciGames.gameEngine.defaultCharacteristics.RealHealthCharacteristic>
                     <myCurrentHealth>10.0</myCurrentHealth>
                     <myMaxHealth>10.0</myMaxHealth>
                   </voogasalad__GucciGames.gameEngine.defaultCharacteristics.RealHealthCharacteristic>
+                </entry>
+                <entry>
+                  <string>MovableCharacteristic</string>
+                  <voogasalad__GucciGames.gameEngine.defaultCharacteristics.MovableCharacteristic>
+                    <myNumberOfMoves>1</myNumberOfMoves>
+                    <myRange>5.0</myRange>
+                  </voogasalad__GucciGames.gameEngine.defaultCharacteristics.MovableCharacteristic>
                 </entry>
               </myCharacteristics>
             </voogasalad__GucciGames.gameEngine.mapObject.MapObject>
@@ -814,11 +864,27 @@
               <myLayer>1</myLayer>
               <myCharacteristics class="tree-map">
                 <entry>
+                  <string>AttackCharacteristic</string>
+                  <voogasalad__GucciGames.gameEngine.defaultCharacteristics.AttackCharacteristic>
+                    <myRange>3.0</myRange>
+                    <myDamage>5.0</myDamage>
+                    <maxNumberOfAttacks>2</maxNumberOfAttacks>
+                    <currentNumberOfAttacks>0</currentNumberOfAttacks>
+                  </voogasalad__GucciGames.gameEngine.defaultCharacteristics.AttackCharacteristic>
+                </entry>
+                <entry>
                   <string>HealthCharacteristic</string>
                   <voogasalad__GucciGames.gameEngine.defaultCharacteristics.RealHealthCharacteristic>
                     <myCurrentHealth>10.0</myCurrentHealth>
                     <myMaxHealth>10.0</myMaxHealth>
                   </voogasalad__GucciGames.gameEngine.defaultCharacteristics.RealHealthCharacteristic>
+                </entry>
+                <entry>
+                  <string>MovableCharacteristic</string>
+                  <voogasalad__GucciGames.gameEngine.defaultCharacteristics.MovableCharacteristic>
+                    <myNumberOfMoves>1</myNumberOfMoves>
+                    <myRange>5.0</myRange>
+                  </voogasalad__GucciGames.gameEngine.defaultCharacteristics.MovableCharacteristic>
                 </entry>
               </myCharacteristics>
             </voogasalad__GucciGames.gameEngine.mapObject.MapObject>
@@ -832,11 +898,27 @@
               <myLayer>1</myLayer>
               <myCharacteristics class="tree-map">
                 <entry>
+                  <string>AttackCharacteristic</string>
+                  <voogasalad__GucciGames.gameEngine.defaultCharacteristics.AttackCharacteristic>
+                    <myRange>3.0</myRange>
+                    <myDamage>5.0</myDamage>
+                    <maxNumberOfAttacks>2</maxNumberOfAttacks>
+                    <currentNumberOfAttacks>0</currentNumberOfAttacks>
+                  </voogasalad__GucciGames.gameEngine.defaultCharacteristics.AttackCharacteristic>
+                </entry>
+                <entry>
                   <string>HealthCharacteristic</string>
                   <voogasalad__GucciGames.gameEngine.defaultCharacteristics.RealHealthCharacteristic>
                     <myCurrentHealth>10.0</myCurrentHealth>
                     <myMaxHealth>10.0</myMaxHealth>
                   </voogasalad__GucciGames.gameEngine.defaultCharacteristics.RealHealthCharacteristic>
+                </entry>
+                <entry>
+                  <string>MovableCharacteristic</string>
+                  <voogasalad__GucciGames.gameEngine.defaultCharacteristics.MovableCharacteristic>
+                    <myNumberOfMoves>1</myNumberOfMoves>
+                    <myRange>5.0</myRange>
+                  </voogasalad__GucciGames.gameEngine.defaultCharacteristics.MovableCharacteristic>
                 </entry>
               </myCharacteristics>
             </voogasalad__GucciGames.gameEngine.mapObject.MapObject>
@@ -850,11 +932,27 @@
               <myLayer>1</myLayer>
               <myCharacteristics class="tree-map">
                 <entry>
+                  <string>AttackCharacteristic</string>
+                  <voogasalad__GucciGames.gameEngine.defaultCharacteristics.AttackCharacteristic>
+                    <myRange>3.0</myRange>
+                    <myDamage>5.0</myDamage>
+                    <maxNumberOfAttacks>2</maxNumberOfAttacks>
+                    <currentNumberOfAttacks>0</currentNumberOfAttacks>
+                  </voogasalad__GucciGames.gameEngine.defaultCharacteristics.AttackCharacteristic>
+                </entry>
+                <entry>
                   <string>HealthCharacteristic</string>
                   <voogasalad__GucciGames.gameEngine.defaultCharacteristics.RealHealthCharacteristic>
                     <myCurrentHealth>10.0</myCurrentHealth>
                     <myMaxHealth>10.0</myMaxHealth>
                   </voogasalad__GucciGames.gameEngine.defaultCharacteristics.RealHealthCharacteristic>
+                </entry>
+                <entry>
+                  <string>MovableCharacteristic</string>
+                  <voogasalad__GucciGames.gameEngine.defaultCharacteristics.MovableCharacteristic>
+                    <myNumberOfMoves>1</myNumberOfMoves>
+                    <myRange>5.0</myRange>
+                  </voogasalad__GucciGames.gameEngine.defaultCharacteristics.MovableCharacteristic>
                 </entry>
               </myCharacteristics>
             </voogasalad__GucciGames.gameEngine.mapObject.MapObject>
@@ -868,11 +966,27 @@
               <myLayer>1</myLayer>
               <myCharacteristics class="tree-map">
                 <entry>
+                  <string>AttackCharacteristic</string>
+                  <voogasalad__GucciGames.gameEngine.defaultCharacteristics.AttackCharacteristic>
+                    <myRange>3.0</myRange>
+                    <myDamage>5.0</myDamage>
+                    <maxNumberOfAttacks>2</maxNumberOfAttacks>
+                    <currentNumberOfAttacks>0</currentNumberOfAttacks>
+                  </voogasalad__GucciGames.gameEngine.defaultCharacteristics.AttackCharacteristic>
+                </entry>
+                <entry>
                   <string>HealthCharacteristic</string>
                   <voogasalad__GucciGames.gameEngine.defaultCharacteristics.RealHealthCharacteristic>
                     <myCurrentHealth>10.0</myCurrentHealth>
                     <myMaxHealth>10.0</myMaxHealth>
                   </voogasalad__GucciGames.gameEngine.defaultCharacteristics.RealHealthCharacteristic>
+                </entry>
+                <entry>
+                  <string>MovableCharacteristic</string>
+                  <voogasalad__GucciGames.gameEngine.defaultCharacteristics.MovableCharacteristic>
+                    <myNumberOfMoves>1</myNumberOfMoves>
+                    <myRange>5.0</myRange>
+                  </voogasalad__GucciGames.gameEngine.defaultCharacteristics.MovableCharacteristic>
                 </entry>
               </myCharacteristics>
             </voogasalad__GucciGames.gameEngine.mapObject.MapObject>
@@ -886,11 +1000,27 @@
               <myLayer>1</myLayer>
               <myCharacteristics class="tree-map">
                 <entry>
+                  <string>AttackCharacteristic</string>
+                  <voogasalad__GucciGames.gameEngine.defaultCharacteristics.AttackCharacteristic>
+                    <myRange>3.0</myRange>
+                    <myDamage>5.0</myDamage>
+                    <maxNumberOfAttacks>2</maxNumberOfAttacks>
+                    <currentNumberOfAttacks>0</currentNumberOfAttacks>
+                  </voogasalad__GucciGames.gameEngine.defaultCharacteristics.AttackCharacteristic>
+                </entry>
+                <entry>
                   <string>HealthCharacteristic</string>
                   <voogasalad__GucciGames.gameEngine.defaultCharacteristics.RealHealthCharacteristic>
                     <myCurrentHealth>10.0</myCurrentHealth>
                     <myMaxHealth>10.0</myMaxHealth>
                   </voogasalad__GucciGames.gameEngine.defaultCharacteristics.RealHealthCharacteristic>
+                </entry>
+                <entry>
+                  <string>MovableCharacteristic</string>
+                  <voogasalad__GucciGames.gameEngine.defaultCharacteristics.MovableCharacteristic>
+                    <myNumberOfMoves>1</myNumberOfMoves>
+                    <myRange>5.0</myRange>
+                  </voogasalad__GucciGames.gameEngine.defaultCharacteristics.MovableCharacteristic>
                 </entry>
               </myCharacteristics>
             </voogasalad__GucciGames.gameEngine.mapObject.MapObject>
@@ -904,11 +1034,27 @@
               <myLayer>1</myLayer>
               <myCharacteristics class="tree-map">
                 <entry>
+                  <string>AttackCharacteristic</string>
+                  <voogasalad__GucciGames.gameEngine.defaultCharacteristics.AttackCharacteristic>
+                    <myRange>3.0</myRange>
+                    <myDamage>5.0</myDamage>
+                    <maxNumberOfAttacks>2</maxNumberOfAttacks>
+                    <currentNumberOfAttacks>0</currentNumberOfAttacks>
+                  </voogasalad__GucciGames.gameEngine.defaultCharacteristics.AttackCharacteristic>
+                </entry>
+                <entry>
                   <string>HealthCharacteristic</string>
                   <voogasalad__GucciGames.gameEngine.defaultCharacteristics.RealHealthCharacteristic>
                     <myCurrentHealth>10.0</myCurrentHealth>
                     <myMaxHealth>10.0</myMaxHealth>
                   </voogasalad__GucciGames.gameEngine.defaultCharacteristics.RealHealthCharacteristic>
+                </entry>
+                <entry>
+                  <string>MovableCharacteristic</string>
+                  <voogasalad__GucciGames.gameEngine.defaultCharacteristics.MovableCharacteristic>
+                    <myNumberOfMoves>1</myNumberOfMoves>
+                    <myRange>5.0</myRange>
+                  </voogasalad__GucciGames.gameEngine.defaultCharacteristics.MovableCharacteristic>
                 </entry>
               </myCharacteristics>
             </voogasalad__GucciGames.gameEngine.mapObject.MapObject>
@@ -922,11 +1068,27 @@
               <myLayer>1</myLayer>
               <myCharacteristics class="tree-map">
                 <entry>
+                  <string>AttackCharacteristic</string>
+                  <voogasalad__GucciGames.gameEngine.defaultCharacteristics.AttackCharacteristic>
+                    <myRange>3.0</myRange>
+                    <myDamage>5.0</myDamage>
+                    <maxNumberOfAttacks>2</maxNumberOfAttacks>
+                    <currentNumberOfAttacks>0</currentNumberOfAttacks>
+                  </voogasalad__GucciGames.gameEngine.defaultCharacteristics.AttackCharacteristic>
+                </entry>
+                <entry>
                   <string>HealthCharacteristic</string>
                   <voogasalad__GucciGames.gameEngine.defaultCharacteristics.RealHealthCharacteristic>
                     <myCurrentHealth>10.0</myCurrentHealth>
                     <myMaxHealth>10.0</myMaxHealth>
                   </voogasalad__GucciGames.gameEngine.defaultCharacteristics.RealHealthCharacteristic>
+                </entry>
+                <entry>
+                  <string>MovableCharacteristic</string>
+                  <voogasalad__GucciGames.gameEngine.defaultCharacteristics.MovableCharacteristic>
+                    <myNumberOfMoves>1</myNumberOfMoves>
+                    <myRange>5.0</myRange>
+                  </voogasalad__GucciGames.gameEngine.defaultCharacteristics.MovableCharacteristic>
                 </entry>
               </myCharacteristics>
             </voogasalad__GucciGames.gameEngine.mapObject.MapObject>
@@ -940,11 +1102,27 @@
               <myLayer>1</myLayer>
               <myCharacteristics class="tree-map">
                 <entry>
+                  <string>AttackCharacteristic</string>
+                  <voogasalad__GucciGames.gameEngine.defaultCharacteristics.AttackCharacteristic>
+                    <myRange>3.0</myRange>
+                    <myDamage>5.0</myDamage>
+                    <maxNumberOfAttacks>2</maxNumberOfAttacks>
+                    <currentNumberOfAttacks>0</currentNumberOfAttacks>
+                  </voogasalad__GucciGames.gameEngine.defaultCharacteristics.AttackCharacteristic>
+                </entry>
+                <entry>
                   <string>HealthCharacteristic</string>
                   <voogasalad__GucciGames.gameEngine.defaultCharacteristics.RealHealthCharacteristic>
                     <myCurrentHealth>10.0</myCurrentHealth>
                     <myMaxHealth>10.0</myMaxHealth>
                   </voogasalad__GucciGames.gameEngine.defaultCharacteristics.RealHealthCharacteristic>
+                </entry>
+                <entry>
+                  <string>MovableCharacteristic</string>
+                  <voogasalad__GucciGames.gameEngine.defaultCharacteristics.MovableCharacteristic>
+                    <myNumberOfMoves>1</myNumberOfMoves>
+                    <myRange>5.0</myRange>
+                  </voogasalad__GucciGames.gameEngine.defaultCharacteristics.MovableCharacteristic>
                 </entry>
               </myCharacteristics>
             </voogasalad__GucciGames.gameEngine.mapObject.MapObject>
@@ -958,11 +1136,27 @@
               <myLayer>1</myLayer>
               <myCharacteristics class="tree-map">
                 <entry>
+                  <string>AttackCharacteristic</string>
+                  <voogasalad__GucciGames.gameEngine.defaultCharacteristics.AttackCharacteristic>
+                    <myRange>3.0</myRange>
+                    <myDamage>5.0</myDamage>
+                    <maxNumberOfAttacks>2</maxNumberOfAttacks>
+                    <currentNumberOfAttacks>0</currentNumberOfAttacks>
+                  </voogasalad__GucciGames.gameEngine.defaultCharacteristics.AttackCharacteristic>
+                </entry>
+                <entry>
                   <string>HealthCharacteristic</string>
                   <voogasalad__GucciGames.gameEngine.defaultCharacteristics.RealHealthCharacteristic>
                     <myCurrentHealth>10.0</myCurrentHealth>
                     <myMaxHealth>10.0</myMaxHealth>
                   </voogasalad__GucciGames.gameEngine.defaultCharacteristics.RealHealthCharacteristic>
+                </entry>
+                <entry>
+                  <string>MovableCharacteristic</string>
+                  <voogasalad__GucciGames.gameEngine.defaultCharacteristics.MovableCharacteristic>
+                    <myNumberOfMoves>1</myNumberOfMoves>
+                    <myRange>5.0</myRange>
+                  </voogasalad__GucciGames.gameEngine.defaultCharacteristics.MovableCharacteristic>
                 </entry>
               </myCharacteristics>
             </voogasalad__GucciGames.gameEngine.mapObject.MapObject>
@@ -976,11 +1170,27 @@
               <myLayer>1</myLayer>
               <myCharacteristics class="tree-map">
                 <entry>
+                  <string>AttackCharacteristic</string>
+                  <voogasalad__GucciGames.gameEngine.defaultCharacteristics.AttackCharacteristic>
+                    <myRange>3.0</myRange>
+                    <myDamage>5.0</myDamage>
+                    <maxNumberOfAttacks>2</maxNumberOfAttacks>
+                    <currentNumberOfAttacks>0</currentNumberOfAttacks>
+                  </voogasalad__GucciGames.gameEngine.defaultCharacteristics.AttackCharacteristic>
+                </entry>
+                <entry>
                   <string>HealthCharacteristic</string>
                   <voogasalad__GucciGames.gameEngine.defaultCharacteristics.RealHealthCharacteristic>
                     <myCurrentHealth>10.0</myCurrentHealth>
                     <myMaxHealth>10.0</myMaxHealth>
                   </voogasalad__GucciGames.gameEngine.defaultCharacteristics.RealHealthCharacteristic>
+                </entry>
+                <entry>
+                  <string>MovableCharacteristic</string>
+                  <voogasalad__GucciGames.gameEngine.defaultCharacteristics.MovableCharacteristic>
+                    <myNumberOfMoves>1</myNumberOfMoves>
+                    <myRange>5.0</myRange>
+                  </voogasalad__GucciGames.gameEngine.defaultCharacteristics.MovableCharacteristic>
                 </entry>
               </myCharacteristics>
             </voogasalad__GucciGames.gameEngine.mapObject.MapObject>
@@ -994,11 +1204,27 @@
               <myLayer>1</myLayer>
               <myCharacteristics class="tree-map">
                 <entry>
+                  <string>AttackCharacteristic</string>
+                  <voogasalad__GucciGames.gameEngine.defaultCharacteristics.AttackCharacteristic>
+                    <myRange>3.0</myRange>
+                    <myDamage>5.0</myDamage>
+                    <maxNumberOfAttacks>2</maxNumberOfAttacks>
+                    <currentNumberOfAttacks>0</currentNumberOfAttacks>
+                  </voogasalad__GucciGames.gameEngine.defaultCharacteristics.AttackCharacteristic>
+                </entry>
+                <entry>
                   <string>HealthCharacteristic</string>
                   <voogasalad__GucciGames.gameEngine.defaultCharacteristics.RealHealthCharacteristic>
                     <myCurrentHealth>10.0</myCurrentHealth>
                     <myMaxHealth>10.0</myMaxHealth>
                   </voogasalad__GucciGames.gameEngine.defaultCharacteristics.RealHealthCharacteristic>
+                </entry>
+                <entry>
+                  <string>MovableCharacteristic</string>
+                  <voogasalad__GucciGames.gameEngine.defaultCharacteristics.MovableCharacteristic>
+                    <myNumberOfMoves>1</myNumberOfMoves>
+                    <myRange>5.0</myRange>
+                  </voogasalad__GucciGames.gameEngine.defaultCharacteristics.MovableCharacteristic>
                 </entry>
               </myCharacteristics>
             </voogasalad__GucciGames.gameEngine.mapObject.MapObject>
@@ -1012,11 +1238,27 @@
               <myLayer>1</myLayer>
               <myCharacteristics class="tree-map">
                 <entry>
+                  <string>AttackCharacteristic</string>
+                  <voogasalad__GucciGames.gameEngine.defaultCharacteristics.AttackCharacteristic>
+                    <myRange>3.0</myRange>
+                    <myDamage>5.0</myDamage>
+                    <maxNumberOfAttacks>2</maxNumberOfAttacks>
+                    <currentNumberOfAttacks>0</currentNumberOfAttacks>
+                  </voogasalad__GucciGames.gameEngine.defaultCharacteristics.AttackCharacteristic>
+                </entry>
+                <entry>
                   <string>HealthCharacteristic</string>
                   <voogasalad__GucciGames.gameEngine.defaultCharacteristics.RealHealthCharacteristic>
                     <myCurrentHealth>10.0</myCurrentHealth>
                     <myMaxHealth>10.0</myMaxHealth>
                   </voogasalad__GucciGames.gameEngine.defaultCharacteristics.RealHealthCharacteristic>
+                </entry>
+                <entry>
+                  <string>MovableCharacteristic</string>
+                  <voogasalad__GucciGames.gameEngine.defaultCharacteristics.MovableCharacteristic>
+                    <myNumberOfMoves>1</myNumberOfMoves>
+                    <myRange>5.0</myRange>
+                  </voogasalad__GucciGames.gameEngine.defaultCharacteristics.MovableCharacteristic>
                 </entry>
               </myCharacteristics>
             </voogasalad__GucciGames.gameEngine.mapObject.MapObject>
@@ -1030,11 +1272,27 @@
               <myLayer>1</myLayer>
               <myCharacteristics class="tree-map">
                 <entry>
+                  <string>AttackCharacteristic</string>
+                  <voogasalad__GucciGames.gameEngine.defaultCharacteristics.AttackCharacteristic>
+                    <myRange>3.0</myRange>
+                    <myDamage>5.0</myDamage>
+                    <maxNumberOfAttacks>2</maxNumberOfAttacks>
+                    <currentNumberOfAttacks>0</currentNumberOfAttacks>
+                  </voogasalad__GucciGames.gameEngine.defaultCharacteristics.AttackCharacteristic>
+                </entry>
+                <entry>
                   <string>HealthCharacteristic</string>
                   <voogasalad__GucciGames.gameEngine.defaultCharacteristics.RealHealthCharacteristic>
                     <myCurrentHealth>10.0</myCurrentHealth>
                     <myMaxHealth>10.0</myMaxHealth>
                   </voogasalad__GucciGames.gameEngine.defaultCharacteristics.RealHealthCharacteristic>
+                </entry>
+                <entry>
+                  <string>MovableCharacteristic</string>
+                  <voogasalad__GucciGames.gameEngine.defaultCharacteristics.MovableCharacteristic>
+                    <myNumberOfMoves>1</myNumberOfMoves>
+                    <myRange>5.0</myRange>
+                  </voogasalad__GucciGames.gameEngine.defaultCharacteristics.MovableCharacteristic>
                 </entry>
               </myCharacteristics>
             </voogasalad__GucciGames.gameEngine.mapObject.MapObject>
@@ -1048,11 +1306,27 @@
               <myLayer>1</myLayer>
               <myCharacteristics class="tree-map">
                 <entry>
+                  <string>AttackCharacteristic</string>
+                  <voogasalad__GucciGames.gameEngine.defaultCharacteristics.AttackCharacteristic>
+                    <myRange>3.0</myRange>
+                    <myDamage>5.0</myDamage>
+                    <maxNumberOfAttacks>2</maxNumberOfAttacks>
+                    <currentNumberOfAttacks>0</currentNumberOfAttacks>
+                  </voogasalad__GucciGames.gameEngine.defaultCharacteristics.AttackCharacteristic>
+                </entry>
+                <entry>
                   <string>HealthCharacteristic</string>
                   <voogasalad__GucciGames.gameEngine.defaultCharacteristics.RealHealthCharacteristic>
                     <myCurrentHealth>10.0</myCurrentHealth>
                     <myMaxHealth>10.0</myMaxHealth>
                   </voogasalad__GucciGames.gameEngine.defaultCharacteristics.RealHealthCharacteristic>
+                </entry>
+                <entry>
+                  <string>MovableCharacteristic</string>
+                  <voogasalad__GucciGames.gameEngine.defaultCharacteristics.MovableCharacteristic>
+                    <myNumberOfMoves>1</myNumberOfMoves>
+                    <myRange>5.0</myRange>
+                  </voogasalad__GucciGames.gameEngine.defaultCharacteristics.MovableCharacteristic>
                 </entry>
               </myCharacteristics>
             </voogasalad__GucciGames.gameEngine.mapObject.MapObject>
@@ -1066,11 +1340,27 @@
               <myLayer>1</myLayer>
               <myCharacteristics class="tree-map">
                 <entry>
+                  <string>AttackCharacteristic</string>
+                  <voogasalad__GucciGames.gameEngine.defaultCharacteristics.AttackCharacteristic>
+                    <myRange>3.0</myRange>
+                    <myDamage>5.0</myDamage>
+                    <maxNumberOfAttacks>2</maxNumberOfAttacks>
+                    <currentNumberOfAttacks>0</currentNumberOfAttacks>
+                  </voogasalad__GucciGames.gameEngine.defaultCharacteristics.AttackCharacteristic>
+                </entry>
+                <entry>
                   <string>HealthCharacteristic</string>
                   <voogasalad__GucciGames.gameEngine.defaultCharacteristics.RealHealthCharacteristic>
                     <myCurrentHealth>10.0</myCurrentHealth>
                     <myMaxHealth>10.0</myMaxHealth>
                   </voogasalad__GucciGames.gameEngine.defaultCharacteristics.RealHealthCharacteristic>
+                </entry>
+                <entry>
+                  <string>MovableCharacteristic</string>
+                  <voogasalad__GucciGames.gameEngine.defaultCharacteristics.MovableCharacteristic>
+                    <myNumberOfMoves>1</myNumberOfMoves>
+                    <myRange>5.0</myRange>
+                  </voogasalad__GucciGames.gameEngine.defaultCharacteristics.MovableCharacteristic>
                 </entry>
               </myCharacteristics>
             </voogasalad__GucciGames.gameEngine.mapObject.MapObject>
@@ -1084,11 +1374,27 @@
               <myLayer>1</myLayer>
               <myCharacteristics class="tree-map">
                 <entry>
+                  <string>AttackCharacteristic</string>
+                  <voogasalad__GucciGames.gameEngine.defaultCharacteristics.AttackCharacteristic>
+                    <myRange>3.0</myRange>
+                    <myDamage>5.0</myDamage>
+                    <maxNumberOfAttacks>2</maxNumberOfAttacks>
+                    <currentNumberOfAttacks>0</currentNumberOfAttacks>
+                  </voogasalad__GucciGames.gameEngine.defaultCharacteristics.AttackCharacteristic>
+                </entry>
+                <entry>
                   <string>HealthCharacteristic</string>
                   <voogasalad__GucciGames.gameEngine.defaultCharacteristics.RealHealthCharacteristic>
                     <myCurrentHealth>10.0</myCurrentHealth>
                     <myMaxHealth>10.0</myMaxHealth>
                   </voogasalad__GucciGames.gameEngine.defaultCharacteristics.RealHealthCharacteristic>
+                </entry>
+                <entry>
+                  <string>MovableCharacteristic</string>
+                  <voogasalad__GucciGames.gameEngine.defaultCharacteristics.MovableCharacteristic>
+                    <myNumberOfMoves>1</myNumberOfMoves>
+                    <myRange>5.0</myRange>
+                  </voogasalad__GucciGames.gameEngine.defaultCharacteristics.MovableCharacteristic>
                 </entry>
               </myCharacteristics>
             </voogasalad__GucciGames.gameEngine.mapObject.MapObject>
@@ -1102,11 +1408,27 @@
               <myLayer>1</myLayer>
               <myCharacteristics class="tree-map">
                 <entry>
+                  <string>AttackCharacteristic</string>
+                  <voogasalad__GucciGames.gameEngine.defaultCharacteristics.AttackCharacteristic>
+                    <myRange>3.0</myRange>
+                    <myDamage>5.0</myDamage>
+                    <maxNumberOfAttacks>2</maxNumberOfAttacks>
+                    <currentNumberOfAttacks>0</currentNumberOfAttacks>
+                  </voogasalad__GucciGames.gameEngine.defaultCharacteristics.AttackCharacteristic>
+                </entry>
+                <entry>
                   <string>HealthCharacteristic</string>
                   <voogasalad__GucciGames.gameEngine.defaultCharacteristics.RealHealthCharacteristic>
                     <myCurrentHealth>10.0</myCurrentHealth>
                     <myMaxHealth>10.0</myMaxHealth>
                   </voogasalad__GucciGames.gameEngine.defaultCharacteristics.RealHealthCharacteristic>
+                </entry>
+                <entry>
+                  <string>MovableCharacteristic</string>
+                  <voogasalad__GucciGames.gameEngine.defaultCharacteristics.MovableCharacteristic>
+                    <myNumberOfMoves>1</myNumberOfMoves>
+                    <myRange>5.0</myRange>
+                  </voogasalad__GucciGames.gameEngine.defaultCharacteristics.MovableCharacteristic>
                 </entry>
               </myCharacteristics>
             </voogasalad__GucciGames.gameEngine.mapObject.MapObject>
@@ -1120,11 +1442,27 @@
               <myLayer>1</myLayer>
               <myCharacteristics class="tree-map">
                 <entry>
+                  <string>AttackCharacteristic</string>
+                  <voogasalad__GucciGames.gameEngine.defaultCharacteristics.AttackCharacteristic>
+                    <myRange>3.0</myRange>
+                    <myDamage>5.0</myDamage>
+                    <maxNumberOfAttacks>2</maxNumberOfAttacks>
+                    <currentNumberOfAttacks>0</currentNumberOfAttacks>
+                  </voogasalad__GucciGames.gameEngine.defaultCharacteristics.AttackCharacteristic>
+                </entry>
+                <entry>
                   <string>HealthCharacteristic</string>
                   <voogasalad__GucciGames.gameEngine.defaultCharacteristics.RealHealthCharacteristic>
                     <myCurrentHealth>10.0</myCurrentHealth>
                     <myMaxHealth>10.0</myMaxHealth>
                   </voogasalad__GucciGames.gameEngine.defaultCharacteristics.RealHealthCharacteristic>
+                </entry>
+                <entry>
+                  <string>MovableCharacteristic</string>
+                  <voogasalad__GucciGames.gameEngine.defaultCharacteristics.MovableCharacteristic>
+                    <myNumberOfMoves>1</myNumberOfMoves>
+                    <myRange>5.0</myRange>
+                  </voogasalad__GucciGames.gameEngine.defaultCharacteristics.MovableCharacteristic>
                 </entry>
               </myCharacteristics>
             </voogasalad__GucciGames.gameEngine.mapObject.MapObject>
@@ -1138,11 +1476,27 @@
               <myLayer>1</myLayer>
               <myCharacteristics class="tree-map">
                 <entry>
+                  <string>AttackCharacteristic</string>
+                  <voogasalad__GucciGames.gameEngine.defaultCharacteristics.AttackCharacteristic>
+                    <myRange>3.0</myRange>
+                    <myDamage>5.0</myDamage>
+                    <maxNumberOfAttacks>2</maxNumberOfAttacks>
+                    <currentNumberOfAttacks>0</currentNumberOfAttacks>
+                  </voogasalad__GucciGames.gameEngine.defaultCharacteristics.AttackCharacteristic>
+                </entry>
+                <entry>
                   <string>HealthCharacteristic</string>
                   <voogasalad__GucciGames.gameEngine.defaultCharacteristics.RealHealthCharacteristic>
                     <myCurrentHealth>10.0</myCurrentHealth>
                     <myMaxHealth>10.0</myMaxHealth>
                   </voogasalad__GucciGames.gameEngine.defaultCharacteristics.RealHealthCharacteristic>
+                </entry>
+                <entry>
+                  <string>MovableCharacteristic</string>
+                  <voogasalad__GucciGames.gameEngine.defaultCharacteristics.MovableCharacteristic>
+                    <myNumberOfMoves>1</myNumberOfMoves>
+                    <myRange>5.0</myRange>
+                  </voogasalad__GucciGames.gameEngine.defaultCharacteristics.MovableCharacteristic>
                 </entry>
               </myCharacteristics>
             </voogasalad__GucciGames.gameEngine.mapObject.MapObject>
@@ -1166,7 +1520,27 @@
     <myActivePlayer reference="../../myGamePlayers/myMapOfPlayers/entry[2]/voogasalad__GucciGames.gameEngine.gamePlayer.GamePlayerPerson"/>
   </myTurnDecider>
   <myConditionHandler>
-    <map/>
+    <map>
+      <entry>
+        <string>PlayerUnitCondition</string>
+        <voogasalad__GucciGames.gameEngine.gameConditions.defaultConditions.player.PlayerUnitCondition>
+          <myParams>
+            <myPlayersID>
+              <int>-1</int>
+              <int>0</int>
+              <int>1</int>
+            </myPlayersID>
+            <myPlayers>
+              <voogasalad__GucciGames.gameEngine.gamePlayer.GamePlayerPerson reference="../../../../../../../myGamePlayers/myMapOfPlayers/entry[2]/voogasalad__GucciGames.gameEngine.gamePlayer.GamePlayerPerson"/>
+              <voogasalad__GucciGames.gameEngine.gamePlayer.GamePlayerPerson reference="../../../../../../../myGamePlayers/myMapOfPlayers/entry[3]/voogasalad__GucciGames.gameEngine.gamePlayer.GamePlayerPerson"/>
+            </myPlayers>
+            <removeIDs/>
+          </myParams>
+          <myPlayerList reference="../myParams/myPlayers"/>
+          <myCondParams reference="../myParams"/>
+        </voogasalad__GucciGames.gameEngine.gameConditions.defaultConditions.player.PlayerUnitCondition>
+      </entry>
+    </map>
   </myConditionHandler>
   <mapDimensions>0</mapDimensions>
 </voogasalad__GucciGames.gameEngine.MainGameEngine>

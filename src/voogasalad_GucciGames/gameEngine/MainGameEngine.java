@@ -13,6 +13,7 @@ import voogasalad_GucciGames.gameEngine.gameConditions.ConditionHandler;
 import voogasalad_GucciGames.gameEngine.gameConditions.ConditionParams;
 import voogasalad_GucciGames.gameEngine.gameConditions.Conditions;
 import voogasalad_GucciGames.gameEngine.gameConditions.ConditionsFactory;
+import voogasalad_GucciGames.gameEngine.gameConditions.defaultConditions.player.PlayerUnitCondition;
 import voogasalad_GucciGames.gameEngine.gamePlayer.ATurnDecider;
 import voogasalad_GucciGames.gameEngine.gamePlayer.AllPlayers;
 import voogasalad_GucciGames.gameEngine.gamePlayer.DefaultTurnDecider;
@@ -44,6 +45,8 @@ public class MainGameEngine implements GameEngineToGamePlayerInterface {
 		myCurrentTurnCounter = new TurnCounter();
 		myTurnDecider = new DefaultTurnDecider(myGamePlayers, myCurrentTurnCounter);
 		myConditionHandler = new ConditionHandler();
+		
+		myConditionHandler.addCondition("PlayerUnitCondition", new PlayerUnitCondition(new ConditionParams(this), null));
 	}
 	@Override
 	public String getGameName() {
@@ -51,7 +54,7 @@ public class MainGameEngine implements GameEngineToGamePlayerInterface {
 	}
 	@Override
 	public void endTurn() {
-		BasicParameters comParams = new BasicParameters(myGamePlayers, null, null);
+		BasicParameters comParams = new BasicParameters(this, null); 
 		myConditionHandler.evaluateAllConditions(comParams);
 		System.out.println("end of condition evaluation");
 		System.out.println("----");

@@ -88,6 +88,14 @@ public class DemoMaker extends Application{
                 if ((i+j)%3==0) {
                     MapObject arch = new MapObject(archer,new TargetCoordinateSingle(i,j),1,1);
                     arch.addCharacteristic("HealthCharacteristic", new RealHealthCharacteristic(10));
+                    arch.addCharacteristic("AttackCharacteristic", new AttackCharacteristic(3,5,2));
+                    arch.addCharacteristic("MovableCharacteristic", new MovableCharacteristic(5,1));
+                    archer.addAction("Move", myMoveEvent);
+                    archer.addRequest("WhereToMove", myMoveLocationEvent);
+                    
+                    archer.addAction("Attack", myAttackEvent);
+                    archer.addRequest("WhereToAttack", myAttackLocationEvent);
+                    
                     myMapOfPlayers.get(1).getMapObjects().add(arch);
                 }
             }
