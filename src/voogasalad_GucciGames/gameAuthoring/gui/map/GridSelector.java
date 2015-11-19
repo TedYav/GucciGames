@@ -31,7 +31,6 @@ class GridSelector {
 		myGrid.addEventHandler(MouseDragEvent.MOUSE_DRAG_EXITED, e -> dragAbort(e));
 	}
 
-
 	/**
 	 * Update location of the rectangle proving two defining point (along the
 	 * diameter)
@@ -68,7 +67,7 @@ class GridSelector {
 		_area.setVisible(false);
 		e.consume();
 	}
-	
+
 	private void dragAbort(MouseDragEvent e) {
 		update(Point2D.ZERO, Point2D.ZERO);
 		select(_start, _end);
@@ -95,33 +94,32 @@ class GridSelector {
 
 	private void select(Point2D start, Point2D end) {
 		Set<GridPoint> newSelection = getSelectedCells(start, end);
-		_prevSelection.stream().filter(p->!newSelection.contains(p))
-		.map(p -> myGrid.getCell(p))
-		.filter(cell -> cell != null).forEach(cell -> {
-			if (cell.isSelected())
-				cell.addBound();
-			else
-				cell.removeBound();
-		});
-		newSelection.stream().filter(p->!_prevSelection.contains(p))
-				.map(p -> myGrid.getCell(p))
-				.filter(cell -> cell != null).forEach(cell -> {
+		_prevSelection.stream().filter(p -> !newSelection.contains(p)).map(p -> myGrid.getCell(p))
+				.filter(cell -> cell != null).forEach(c -> c.forEach(cell -> {
+					if (cell.isSelected())
+						cell.addBound();
+					else
+						cell.removeBound();
+				}));
+		newSelection.stream().filter(p -> !_prevSelection.contains(p)).map(p -> myGrid.getCell(p))
+				.filter(cell -> cell != null).forEach(c -> c.forEach(cell -> {
 					if (!cell.isSelected())
 						cell.addBound();
 					else
 						cell.removeBound();
-				});
+				}));
 
 		_prevSelection = newSelection;
 	}
 
 	private void selectFinalize(Point2D start, Point2D end) {
-		getSelectedCells(start, end).stream().map(p -> myGrid.getCell(p)).filter(cell -> cell != null).forEach(cell -> {
-			if (cell.isSelected())
-				cell.deselect();
-			else
-				cell.select();
-		});
+		getSelectedCells(start, end).stream().map(p -> myGrid.getCell(p)).filter(cell -> cell != null)
+				.forEach(c -> c.forEach(cell -> {
+					if (cell.isSelected())
+						cell.deselect();
+					else
+						cell.select();
+				}));
 	}
 
 }

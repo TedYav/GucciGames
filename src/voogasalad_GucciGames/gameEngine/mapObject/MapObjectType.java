@@ -102,7 +102,7 @@ public class MapObjectType{
 	}
 
 	public boolean isTile() {
-		return myDefaultCharacteristics.containsKey("TileCharacteristics") || myName.equals("TileCharacteristics");
+		return myDefaultCharacteristics.containsKey("TileCharacteristic") || myName.equals("TileCharacteristics");
 	}
 	
 	public void addDefaultCharacteristic(String name, AMapObjectCharacteristic func){

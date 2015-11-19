@@ -24,7 +24,7 @@ public class GameSourceData {
 		MapObjectType objType = new MapObjectType("Grass", "player/images/dummytexture.jpg");
 		MapObjectType objType2 = new MapObjectType("Water", "player/images/dummytexture2.jpg");
 		objType.addDefaultCharacteristic("TileCharacteristic", new TileCharacteristic());
-		objType.addDefaultCharacteristic("TileCharacteristic", new TileCharacteristic());
+		objType2.addDefaultCharacteristic("TileCharacteristic", new TileCharacteristic());
 		tileTypes.add(objType);
 		tileTypes.add(objType2);
 		
