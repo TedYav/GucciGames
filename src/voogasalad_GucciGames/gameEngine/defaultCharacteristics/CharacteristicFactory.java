@@ -27,7 +27,8 @@ public class CharacteristicFactory {
 	
 //	public static void main(String[] args){
 //		CharacteristicFactory cf = new CharacteristicFactory();
-//		cf.initializeCharacteristics();
+//		CharacteristicParams cp = new CharacteristicParams("AttackCharacteristic", 0, 0, 0, false);
+//		cf.initializeCharacteristics(cp);
 //	}
 	
 	public Map<String, AMapObjectCharacteristic> initializeCharacteristics(CharacteristicParams charParams){		
@@ -38,6 +39,7 @@ public class CharacteristicFactory {
 			Class<AMapObjectCharacteristic> characteristic;
 			try {
 				characteristic = (Class<AMapObjectCharacteristic>) Class.forName(path);
+				charParams.setMyName(path);
 				Constructor<AMapObjectCharacteristic> moConstructor = characteristic.getDeclaredConstructor(CharacteristicParams.class);
 				objectCharacteristics.put(name, moConstructor.newInstance(charParams));
 			} catch (ClassNotFoundException | InstantiationException | IllegalAccessException | NoSuchMethodException | SecurityException | IllegalArgumentException | InvocationTargetException e) {
