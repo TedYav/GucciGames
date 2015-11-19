@@ -178,6 +178,7 @@ public class GaeController extends AGuiGaeController implements IModelGaeControl
 		// TODO Auto-generated method stub
 		//TODO: DEBUG
 		System.out.println("params: " + playerParams.getNumMoves());
+		model.addPlayer(playerParams);
 		
 	}
 
@@ -197,6 +198,7 @@ public class GaeController extends AGuiGaeController implements IModelGaeControl
 	public void setUnitParams(UnitParams params) {
 		// TODO Auto-generated method stub
 		//TODO: DEBUG
+		model.setUnitCharacteristics(params);
 				System.out.println("params: " + params.getDamage());
 		
 		

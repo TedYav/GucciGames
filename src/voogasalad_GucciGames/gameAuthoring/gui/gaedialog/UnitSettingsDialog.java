@@ -88,7 +88,13 @@ public class UnitSettingsDialog extends GaeDialog{
 			rangeMvt = (int) rangeMvtField.getSelected();
 			rangeAttack = (int) rangeAttackField.getSelected();
 			
-			UnitParams unitParams = new UnitParams(null, numAttack, damage, healthVal, rangeMvt, rangeAttack);
+			String s = "student";
+			if(numAttack > 5){
+				s = "duvall";
+			}
+			
+			
+			UnitParams unitParams = new UnitParams(s, numAttack, damage, healthVal, rangeMvt, rangeAttack);
 			controller.setUnitParams(unitParams);
 			this.unitSettingDialog.close();
 			

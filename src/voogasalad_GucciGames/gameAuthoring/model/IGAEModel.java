@@ -5,6 +5,8 @@ import java.util.Map;
 
 import javafx.collections.ListChangeListener;
 import javafx.collections.ObservableList;
+import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.paramObjects.PlayerParams;
+import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.paramObjects.UnitParams;
 import voogasalad_GucciGames.gameAuthoring.gui.map.GridPoint;
 import voogasalad_GucciGames.gameEngine.mapObject.MapObject;
 import voogasalad_GucciGames.gameEngine.mapObject.MapObjectType;
@@ -29,5 +31,7 @@ public interface IGAEModel {
     public void setMapWidth(double x);
     public void setMapHeight(double y);
 	public void changeOwner(MapObject mapObject, int playerID);
+	public void addPlayer(PlayerParams playerParams);
+	public void setUnitCharacteristics(UnitParams params);
     
 }

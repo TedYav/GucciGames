@@ -8,10 +8,15 @@ import java.util.Map;
 import javafx.collections.ListChangeListener;
 import javafx.collections.ObservableList;
 import voogasalad_GucciGames.gameAuthoring.IModelGaeController;
+import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.paramObjects.PlayerParams;
+import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.paramObjects.UnitParams;
 import voogasalad_GucciGames.gameAuthoring.gui.map.GridPoint;
 //import voogasalad_GucciGames.gameData.XMLWriter;
 import voogasalad_GucciGames.gameData.XStreamGameEngine;
 import voogasalad_GucciGames.gameEngine.MainGameEngine;
+import voogasalad_GucciGames.gameEngine.defaultCharacteristics.AttackCharacteristic;
+import voogasalad_GucciGames.gameEngine.defaultCharacteristics.MovableCharacteristic;
+import voogasalad_GucciGames.gameEngine.defaultCharacteristics.RealHealthCharacteristic;
 import voogasalad_GucciGames.gameEngine.gamePlayer.AllPlayers;
 import voogasalad_GucciGames.gameEngine.gamePlayer.GamePlayerPerson;
 import voogasalad_GucciGames.gameEngine.mapObject.DefaultMapObjectType;
@@ -24,7 +29,8 @@ public class GAEModel implements IGAEModel{
     private IModelGaeController myController;
     //private XMLWriter writer;
     //private GameEngineToGameAuthoringEnvironment engine;
-	private Map<Integer, GamePlayerPerson> mapOfPlayers;	
+	private Map<Integer, GamePlayerPerson> mapOfPlayers;
+	private Map<String, UnitParams> unitCharacteristicMap;
     private AllPlayers players;
 	private MainGameEngine engine;
     
@@ -37,7 +43,8 @@ public class GAEModel implements IGAEModel{
 		mapOfPlayers.put(0, new GamePlayerPerson(0));
 		mapOfPlayers.put(1, new GamePlayerPerson(1));
 		mapOfPlayers.put(2, new GamePlayerPerson(2));
-		
+		unitCharacteristicMap = new HashMap<>();
+
     	//writer = new XMLWriter();
     }
     
@@ -53,6 +60,16 @@ public class GAEModel implements IGAEModel{
     	TargetCoordinateSingle targCoordSingle = new TargetCoordinateSingle(gridpoint.getX(), gridpoint.getY());
     	int layer = mapObjType.isTile() ? 0 : 1;
     	MapObject mapObject = new MapObject(mapObjType, targCoordSingle, ownerID,layer);
+    	System.out.println(mapObjType.getName());
+    	
+    	// Goes in resource bundle
+    	UnitParams param = unitCharacteristicMap.get(mapObjType.getName());
+    	mapObject.addCharacteristic("AttackCharacteristic", new AttackCharacteristic(param.getRangeAttack(), 
+    			param.getDamage(), param.getNumberOfAttacks()));
+    	mapObject.addCharacteristic("RealHealthCharacteristic", new RealHealthCharacteristic(param.getHealth()));
+    	mapObject.addCharacteristic("MovableCharacteristic", new MovableCharacteristic(param.getRangeMvt(), 5));
+    	
+    	//mapObject.addCharacteristic("Attack", new AttackCharacteristic());
     	mapOfPlayers.get(ownerID).addMapObject(mapObject);
     	//Validate with engine, if failed, return null, else return this mapObject
     	return mapObject;
@@ -145,6 +162,20 @@ public class GAEModel implements IGAEModel{
 		mapOfPlayers.get(oldID).getMapObjects().remove(mapObject);
 		mapObject.setOwnerID(playerID);
 		mapOfPlayers.get(playerID).addMapObject(mapObject);
+	}
+
+
+	@Override
+	public void addPlayer(PlayerParams playerParams) {
+		// TODO: instantiate additional player properties
+		mapOfPlayers.put(playerParams.getId(), new GamePlayerPerson(playerParams.getId()));
+	}
+
+
+	@Override
+	public void setUnitCharacteristics(UnitParams param) {
+		System.out.println(param.getName().length());
+		unitCharacteristicMap.put(param.getName(), param);
 	}
     
 //	public static void main(String[] args){
