@@ -10,6 +10,5 @@ import voogasalad_GucciGames.gameEngine.gamePlayer.AllPlayers;
 public class SomeData {
 
 	private AllPlayers storedPlayers;
-	private GameMap currentMap;
 	
 }

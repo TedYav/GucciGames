@@ -20,11 +20,6 @@ public class MapObjectType{
 	private Map<String, MapObjectEvent> myActions; //test
 	private Map<String, MapObjectEvent> myRequests;
 	
-	private Map<String, Integer> allowableMoves;
-	private Map<String, Integer> movesDoneSoFar;
-	
-	
-
 	public MapObjectType(String name, String imagePath){
 		myName = name;
 		myImagePath = imagePath;

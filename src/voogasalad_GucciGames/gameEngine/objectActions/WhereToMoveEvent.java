@@ -1,12 +1,14 @@
 package voogasalad_GucciGames.gameEngine.objectActions;
 
-import voogasalad_GucciGames.gameEngine.CommunicationParams.CommunicationParams;
-import voogasalad_GucciGames.gameEngine.CommunicationParams.MainGameEngineCommunicationParams;
+import voogasalad_GucciGames.gameEngine.CommunicationParams.BasicParameters;
+import voogasalad_GucciGames.gameEngine.CommunicationParams.CommunicationParameters;
+import voogasalad_GucciGames.gameEngine.CommunicationParams.GridCoordinateParameters;
+import voogasalad_GucciGames.gameEngine.CommunicationParams.MainGameEngineCommunicationParameters;
 import voogasalad_GucciGames.gameEngine.CommunicationParams.WhereToParams;
+import voogasalad_GucciGames.gameEngine.defaultCharacteristics.MovableCharacteristic;
 import voogasalad_GucciGames.gameEngine.gamePlayer.AllPlayers;
 import voogasalad_GucciGames.gameEngine.gamePlayer.GamePlayerPerson;
 import voogasalad_GucciGames.gameEngine.mapObject.MapObject;
-import voogasalad_GucciGames.gameEngine.targetCoordinate.ATargetCoordinate;
 import voogasalad_GucciGames.gameEngine.targetCoordinate.TargetCoordinateMultiple;
 import voogasalad_GucciGames.gameEngine.targetCoordinate.TargetCoordinateSingle;
 
@@ -14,29 +16,29 @@ import voogasalad_GucciGames.gameEngine.targetCoordinate.TargetCoordinateSingle;
 
 public class WhereToMoveEvent extends MapObjectEvent{
 
-
-
 	public WhereToMoveEvent(String actionName) {
 		super(actionName);
 		// TODO Auto-generated constructor stub
 	}
 
 	@Override
-	protected CommunicationParams execute(CommunicationParams params) {
+	protected CommunicationParameters execute(CommunicationParameters params) {
 		// TODO Auto-generated method stub
-		AllPlayers players = params.getPlayers();
-		GamePlayerPerson player = players.getPlayerById(((MainGameEngineCommunicationParams) params).getTurn());
+		BasicParameters basic = (BasicParameters) params;
+		AllPlayers players = basic.getPlayers();
+		GamePlayerPerson player = players.getPlayerById(((BasicParameters) params).getTurn());
 		TargetCoordinateMultiple result = new TargetCoordinateMultiple();
-		MapObject calledMe = params.getCalledMe();
+		MapObject calledMe = basic.getCalledMe();
 
-		//calledMe.getObjectType().getCharacteristic("Moveable").getRange();
-		double range = 1;
+		// getting the range
+		MovableCharacteristic mc = (MovableCharacteristic) calledMe.getObjectType().getCharacteristic("MovableCharacteristic");
+		double range = mc.getRange();
 
 		// going through neutral player
+		TargetCoordinateSingle caller = (TargetCoordinateSingle) calledMe.getCoordinate();
 		players.getPlayerById(-1).getMapObjects().stream().forEach(mo -> {
-			if(mo.getObjectType().getName().equals("Tile")){
+			if(mo.getObjectType().getName().equals("TileCharacteristics")){
 				TargetCoordinateSingle single = (TargetCoordinateSingle) mo.getCoordinate();
-				TargetCoordinateSingle caller = (TargetCoordinateSingle) calledMe.getCoordinate();
 				double delta = Math.abs(single.getCenterX()-caller.getCenterX())+Math.abs(single.getCenterY()-caller.getCenterY());
 				// check to see if can move
 				if (delta <= range){
@@ -45,7 +47,9 @@ public class WhereToMoveEvent extends MapObjectEvent{
 			}
 		});
 		
-		return new WhereToParams(params,result);
+		//go through other players' units for me
+
+		return new GridCoordinateParameters(result);
 	}
 
 

@@ -64,7 +64,7 @@ public class MainMap extends WindowComponent implements MapInterface {
 		initializeVariables();
 		initializeMap();
 		initializeMiniMap();
-		drawMap(TestPlayer.getDummyMap(50));
+		drawMap(myController.getInitialState());
 	}
 	
 	
@@ -110,6 +110,7 @@ public class MainMap extends WindowComponent implements MapInterface {
 	//TODO: add loading bar
 	
 	private void drawMap(List<PlayerMapObjectInterface> initialState){
+		System.out.println(initialState);
 		initialState.stream()
 			.forEach(o->addToMap(o));
         myParent.getStyleClass().add(myConfig.getString("MainCSSClass"));
@@ -123,7 +124,7 @@ public class MainMap extends WindowComponent implements MapInterface {
 		if(!myCellMap.containsKey(key)){
 			MapCell newCell = (MapCell)Reflection.createInstance(myConfig.getString("CellClass"), myController, myCellSize);
 			myCellMap.put(key, newCell);
-			myMap.add(newCell.getParent(), ((Double)object.getCoordinate().getListOfCoordinates().get(0).getCenterX()).intValue(), ((Double)object.getCoordinate().getListOfCoordinates().get(0).getCenterY()).intValue());
+			myMap.add(newCell.getParent(), ((Double)object.getCoordinate().getListOfCoordinates().get(0).getCenterX()).intValue(), ((Double)object.getCoordinate().getListOfCoordinates().get(0).getCenterY()).intValue()); //TODO: get non-zero
 		}
 		MapCellInterface target = myCellMap.get(key);
 		target.addObject(object);
@@ -168,7 +169,7 @@ public class MainMap extends WindowComponent implements MapInterface {
 	@Override
 	public void highlightCells(List<TargetCoordinateSingle> targets) {
 		targets.stream()
-			.map((t) -> new Point2D(t.getListOfCoordinates().get(0).getCenterX(), t.getListOfCoordinates().get(0).getCenterY()))
+			.map((t) -> new Point2D(t.getListOfCoordinates().get(0).getCenterX(), t.getListOfCoordinates().get(0).getCenterY())) //TODO: get non-zero
 			.map((c) -> myCellMap.get(c))
 			.filter((c) -> c!=null)
 			.forEach((c) -> { c.toggleHighlight(true); myHighlightedCells.add(c);} );

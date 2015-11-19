@@ -8,7 +8,6 @@ import javafx.collections.ObservableList;
 import voogasalad_GucciGames.GameEngineToGameAuthoringEnvironment;
 import voogasalad_GucciGames.gameAuthoring.IModelGaeController;
 import voogasalad_GucciGames.gameData.XMLGameData;
-import voogasalad_GucciGames.gameEngine.GameMap;
 import voogasalad_GucciGames.gameEngine.mapObject.DefaultMapObjectType;
 import voogasalad_GucciGames.gameEngine.mapObject.MapObject;
 import voogasalad_GucciGames.gameEngine.mapObject.MapObjectType;
@@ -21,7 +20,6 @@ public class GAEModel implements IGAEModel{
     private IModelGaeController myController;
     private XMLGameData xmlData;
     private GameEngineToGameAuthoringEnvironment engine;
-    private GameMap map;
     
     public GAEModel(IModelGaeController controller) {
     	data = new GameSourceData();
