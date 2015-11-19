@@ -11,7 +11,7 @@ import javafx.scene.image.Image;
 import voogasalad_GucciGames.gameEngine.mapObject.MapObject;
 import voogasalad_GucciGames.gameEngine.mapObject.MapObjectType;
 
-public interface IGuiGaeController extends IDialogGaeController {
+public interface IGuiGaeController{
 	/**
 	 * Add Map Object
 	 * @param mapObj
@@ -20,7 +20,9 @@ public interface IGuiGaeController extends IDialogGaeController {
     
     public void deleteComponent(MapObject mapObj);
     
-    public ObservableList<MapObject> getMapObjects();
+    public MapObject addObject(GridPoint gridpoint, MapObjectType mapObjType);
+    
+    public List<MapObject> getMapObjects();
     
     public int getMapObjectListPosAtPoint(ObservableList<MapObject> mapObjectList, GridPoint gridPoint);
     
@@ -29,9 +31,6 @@ public interface IGuiGaeController extends IDialogGaeController {
     public void createCustomTileType(Map<String,String> m);
     
     public void createCustomUnitType(Map<String,String> m);
-    
-    @Override
-    public void createCustomMapObject(ObjectProperty p);
 
     public ObservableList<MapObjectType> getImmutableTileTypes();
 
@@ -58,4 +57,7 @@ public interface IGuiGaeController extends IDialogGaeController {
 	public Image getCurrSelectedImage();
 	
 	public void setCurrDraggedImage(Image draggedImage);
+
+	public MapObject addObject(GridPoint gridpoint, MapObjectType mapObjType,
+			int ownerID);
 }

@@ -1,15 +1,18 @@
 package voogasalad_GucciGames.gameAuthoring.model;
 
+import java.util.List;
 import java.util.Map;
 
 import javafx.collections.ListChangeListener;
 import javafx.collections.ObservableList;
 import voogasalad_GucciGames.GameEngineToGameAuthoringEnvironment;
 import voogasalad_GucciGames.gameAuthoring.IModelGaeController;
+import voogasalad_GucciGames.gameAuthoring.gui.map.GridPoint;
 import voogasalad_GucciGames.gameData.XMLGameData;
 import voogasalad_GucciGames.gameEngine.mapObject.DefaultMapObjectType;
 import voogasalad_GucciGames.gameEngine.mapObject.MapObject;
 import voogasalad_GucciGames.gameEngine.mapObject.MapObjectType;
+import voogasalad_GucciGames.gameEngine.targetCoordinate.TargetCoordinateSingle;
 
 public class GAEModel implements IGAEModel{
     private GameSourceData data;
@@ -34,7 +37,15 @@ public class GAEModel implements IGAEModel{
     }
     
     @Override
-	public ObservableList<MapObject> getMapObjects() {
+    public MapObject addObject(GridPoint gridpoint, MapObjectType mapObjType, int ownerID) {
+    	TargetCoordinateSingle targCoordSingle = new TargetCoordinateSingle(gridpoint.getX(), gridpoint.getY());
+    	MapObject mapObject = new MapObject(mapObjType, targCoordSingle, ownerID);
+    	//Validate with engine, if failed, return null, else return this mapObject
+    	return mapObject;
+    }
+    
+    @Override
+	public List<MapObject> getMapObjects() {
 		return data.getMapObjects();
 	}
 
