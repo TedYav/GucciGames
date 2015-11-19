@@ -142,7 +142,7 @@ class Grid extends Pane {
 			Cell gui = new Cell(this, x, y);
 			gui.setImage(myController.getCurrSelectedImage());
 			//TODO: finish up MapObject and fix Cell
-			getMapObjectListPosAtPoint(myMapObjects, );
+//			getMapObjectListPosAtPoint(myMapObjects, );
 			e.consume();
 		}
 	}
