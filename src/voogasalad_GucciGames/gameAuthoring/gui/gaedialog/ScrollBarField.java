@@ -56,7 +56,7 @@ public class ScrollBarField extends DialogComponent {
 	}
 
 	@Override
-	protected HBox getContent() {
+	public HBox getContent() {
 		// TODO Auto-generated method stub
 		return content;
 	}
@@ -65,6 +65,10 @@ public class ScrollBarField extends DialogComponent {
 	public void setSelected(String s) {
 		// TODO Auto-generated method stub
 		scrollBar.setValue(Double.parseDouble(s));
+	}
+	
+	public double getSelected(){
+		return scrollBar.getValue();
 	}
 
 }

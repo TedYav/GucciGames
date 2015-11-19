@@ -36,7 +36,7 @@ public class TextInputField extends DialogComponent{
 		
 	}
 	
-	protected String getTextInput(){
+	public String getTextInput(){
 		return getTextField().getText();
 	}
 
@@ -45,7 +45,7 @@ public class TextInputField extends DialogComponent{
 		return textField;
 	}
 	@Override
-	HBox getContent() {
+	public HBox getContent() {
 		// TODO Auto-generated method stub
 		return content;
 	}

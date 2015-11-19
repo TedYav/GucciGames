@@ -1,6 +1,8 @@
 package voogasalad_GucciGames.gameAuthoring.gui.gaedialog;
 import voogasalad_GucciGames.gameAuthoring.properties.Property;
+
 import java.util.Properties;
+
 import javafx.scene.control.TextField;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
