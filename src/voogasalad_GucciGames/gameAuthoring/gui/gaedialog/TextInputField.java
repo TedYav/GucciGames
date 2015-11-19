@@ -24,6 +24,7 @@ public class TextInputField extends DialogComponent{
 		textField = new TextField();	
 		addListenerToTextInputField();
 		content.getChildren().addAll(title,textField);
+		content.setId("hbox-element");
 	
 	}
 	
@@ -34,7 +35,15 @@ public class TextInputField extends DialogComponent{
 		});
 		
 	}
+	
+	protected String getTextInput(){
+		return getTextField().getText();
+	}
 
+	
+	protected TextField getTextField(){
+		return textField;
+	}
 	@Override
 	HBox getContent() {
 		// TODO Auto-generated method stub
@@ -42,7 +51,7 @@ public class TextInputField extends DialogComponent{
 	}
 
 	@Override
-	void setSelected(String s) {
+	public void setSelected(String s) {
 		// TODO Auto-generated method stub
 		textField.setText(s);
 		

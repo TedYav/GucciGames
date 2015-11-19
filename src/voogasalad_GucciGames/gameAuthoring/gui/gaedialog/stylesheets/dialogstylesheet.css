@@ -1,6 +1,13 @@
-
-#title{
+#title {
 	-fx-font: bold 20pt "Arial";	
+}
+
+#subtitle{
+	-fx-font: bold 16pt "Arial";	
+}
+
+#light{
+	-fx-font: 8pt "Arial";
 }
 
 #vbox-element{
