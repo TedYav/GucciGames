@@ -3,6 +3,7 @@ package voogasalad_GucciGames.gameAuthoring;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import javafx.collections.ObservableList;
@@ -24,6 +25,7 @@ public class GaeController extends AGuiGaeController implements IModelGaeControl
     MapObjectType mapobjecttype;
     Image currDraggedImage;
     private int numberOfPlayers;
+    private int defaultOwnerID = -1;
     private Map<Integer, String> allPlayers = new HashMap<Integer, String>();
     
     public GaeController(Stage stage){
@@ -40,7 +42,15 @@ public class GaeController extends AGuiGaeController implements IModelGaeControl
         model.deleteComponent(mapObj);
     }
     @Override
-    public ObservableList<MapObject> getMapObjects() {
+    public MapObject addObject(GridPoint gridpoint, MapObjectType mapObjType){
+    	return model.addObject(gridpoint, mapObjType, defaultOwnerID);
+    }
+    @Override
+    public MapObject addObject(GridPoint gridpoint, MapObjectType mapObjType, int ownerID){
+    	return model.addObject(gridpoint, mapObjType, ownerID);
+    }
+    @Override
+    public List<MapObject> getMapObjects() {
         return model.getMapObjects();
     }
     @Override

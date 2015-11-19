@@ -5,13 +5,15 @@ import java.util.Map;
 
 import javafx.collections.ListChangeListener;
 import javafx.collections.ObservableList;
+import voogasalad_GucciGames.gameAuthoring.gui.map.GridPoint;
 import voogasalad_GucciGames.gameEngine.mapObject.MapObject;
 import voogasalad_GucciGames.gameEngine.mapObject.MapObjectType;
 
 public interface IGAEModel {
     public void addComponent(MapObject mapObj);
     public void deleteComponent(MapObject mapObj);
-    public ObservableList<MapObject> getMapObjects();
+    public List<MapObject> getMapObjects();
+    public MapObject addObject(GridPoint gridpoint, MapObjectType mapObjType, int ownerID);
     public void clearMap();
     
     public void createCustomTileType(Map<String,String> m);

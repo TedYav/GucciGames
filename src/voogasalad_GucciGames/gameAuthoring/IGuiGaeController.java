@@ -20,7 +20,9 @@ public interface IGuiGaeController extends IDialogGaeController {
     
     public void deleteComponent(MapObject mapObj);
     
-    public ObservableList<MapObject> getMapObjects();
+    public MapObject addObject(GridPoint gridpoint, MapObjectType mapObjType);
+    
+    public List<MapObject> getMapObjects();
     
     public int getMapObjectListPosAtPoint(ObservableList<MapObject> mapObjectList, GridPoint gridPoint);
     
@@ -58,4 +60,7 @@ public interface IGuiGaeController extends IDialogGaeController {
 	public Image getCurrSelectedImage();
 	
 	public void setCurrDraggedImage(Image draggedImage);
+
+	public MapObject addObject(GridPoint gridpoint, MapObjectType mapObjType,
+			int ownerID);
 }
