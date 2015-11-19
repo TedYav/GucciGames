@@ -20,8 +20,6 @@ public class TargetCoordinateMultiple extends ATargetCoordinate {
 		}
 	}
 
-
-	
 	public void addTargetCoordinateSingle(ATargetCoordinate coord){
 		if(!this.myCoordinates.contains(coord)){
 			myCoordinates.add((TargetCoordinateSingle) coord);
