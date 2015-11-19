@@ -34,6 +34,7 @@ public class GameController implements GameControllerInterface {
 	private String myActionInProgress;
 	private PlayerMapObjectInterface activeMapObject;
 	private List<Observer> activeMOObservers;
+	private List<TargetCoordinateSingle> possibleMoves;
 
 	public GameController(GameEngineToGamePlayerInterface engine){
 		myEngine = engine;
@@ -58,8 +59,8 @@ public class GameController implements GameControllerInterface {
 	public List<TargetCoordinateSingle> setActionInProgress(String action, PlayerMapObjectInterface unit) {
 		myActionInProgress = action;
 		myTargetUnit = unit;
-		
-		return myEngine.getPossibleCoordinates(action, unit).getListOfCoordinates();
+		possibleMoves=myEngine.getPossibleCoordinates(action, unit).getListOfCoordinates();
+		return possibleMoves;
 	}
 
 	@Override
@@ -75,10 +76,16 @@ public class GameController implements GameControllerInterface {
 	
 	@Override
 	public void performActionInProgress(Point2D target){
-		ActionToGamePlayerParameters params = myEngine.performAction(myActionInProgress, activeMapObject, Coordinate.PointToCoordinate(target));
-		cancelAction();
-		List<PlayerMapObjectInterface> result = params.getChangedUnits();
-		myMap.update(result);
+	    ActionToGamePlayerParameters params;
+	        for (TargetCoordinateSingle coord: possibleMoves) {
+	            if (target.getX()==coord.getCenterX() && target.getY()==coord.getCenterY()) {
+	                 params= myEngine.performAction(myActionInProgress, activeMapObject, Coordinate.PointToCoordinate(target));
+	                 cancelAction();
+	                 List<PlayerMapObjectInterface> result = params.getChangedUnits();
+	                 myMap.update(result);
+	                 break;
+	            }
+	        }
 	}
 	
 	@Override
