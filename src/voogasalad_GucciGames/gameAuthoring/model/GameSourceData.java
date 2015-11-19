@@ -19,8 +19,8 @@ public class GameSourceData {
 
 	GameSourceData() {
 		tileTypes = FXCollections.observableArrayList();
-		MapObjectType objType = new MapObjectType("duvall", "player/images/dummytexture.jpg");
-		MapObjectType objType2 = new MapObjectType("student", "player/images/dummytexture2.jpg");
+		MapObjectType objType = new MapObjectType("Grass", "player/images/dummytexture.jpg");
+		MapObjectType objType2 = new MapObjectType("Water", "player/images/dummytexture2.jpg");
 		tileTypes.add(objType);
 		tileTypes.add(objType2);
 		
