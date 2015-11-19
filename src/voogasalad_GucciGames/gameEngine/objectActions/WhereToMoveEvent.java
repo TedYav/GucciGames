@@ -1,10 +1,13 @@
 package voogasalad_GucciGames.gameEngine.objectActions;
 
+import java.util.Iterator;
+
 import voogasalad_GucciGames.gameEngine.CommunicationParams.BasicParameters;
 import voogasalad_GucciGames.gameEngine.CommunicationParams.CommunicationParameters;
 import voogasalad_GucciGames.gameEngine.CommunicationParams.GridCoordinateParameters;
 import voogasalad_GucciGames.gameEngine.CommunicationParams.MainGameEngineCommunicationParameters;
 import voogasalad_GucciGames.gameEngine.CommunicationParams.WhereToParams;
+import voogasalad_GucciGames.gameEngine.defaultCharacteristics.CharacteristicFactory;
 import voogasalad_GucciGames.gameEngine.defaultCharacteristics.MovableCharacteristic;
 import voogasalad_GucciGames.gameEngine.gamePlayer.AllPlayers;
 import voogasalad_GucciGames.gameEngine.gamePlayer.GamePlayerPerson;
@@ -44,7 +47,15 @@ public class WhereToMoveEvent extends MapObjectEvent{
 				System.out.println(range);
 
 				if (delta <= range){
-					result.addTargetCoodinateSingle(mo.getCoordinate());
+					//hi joy, take this out cause it doesn't work
+					Iterator<MapObject> idIterator = players.getPlayerById(1).getMapObjects().iterator();
+					while (idIterator.hasNext()) {
+						if (!mo.getCoordinate().equals(idIterator.next().getCoordinate())){
+							//all the way to here
+								result.addTargetCoodinateSingle(mo.getCoordinate());
+						}
+					}
+					
 				}
 			}
 		});
