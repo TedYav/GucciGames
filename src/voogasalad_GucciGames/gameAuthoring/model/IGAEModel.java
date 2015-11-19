@@ -24,7 +24,7 @@ public interface IGAEModel {
     public ObservableList<MapObjectType> getImmutableStructureTypes();
 
     
-    public void saveToXML();
+    public void saveToXML(String filename);
     
     public void setMapWidth(double x);
     public void setMapHeight(double y);
