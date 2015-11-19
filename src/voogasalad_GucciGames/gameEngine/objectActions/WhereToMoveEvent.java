@@ -1,10 +1,13 @@
 package voogasalad_GucciGames.gameEngine.objectActions;
 
+import java.util.Iterator;
+
 import voogasalad_GucciGames.gameEngine.CommunicationParams.BasicParameters;
 import voogasalad_GucciGames.gameEngine.CommunicationParams.CommunicationParameters;
 import voogasalad_GucciGames.gameEngine.CommunicationParams.GridCoordinateParameters;
 import voogasalad_GucciGames.gameEngine.CommunicationParams.MainGameEngineCommunicationParameters;
 import voogasalad_GucciGames.gameEngine.CommunicationParams.WhereToParams;
+import voogasalad_GucciGames.gameEngine.defaultCharacteristics.CharacteristicFactory;
 import voogasalad_GucciGames.gameEngine.defaultCharacteristics.MovableCharacteristic;
 import voogasalad_GucciGames.gameEngine.gamePlayer.AllPlayers;
 import voogasalad_GucciGames.gameEngine.gamePlayer.GamePlayerPerson;
@@ -41,18 +44,22 @@ public class WhereToMoveEvent extends MapObjectEvent{
 			if(mo.getObjectType().getName().equals("TileCharacteristics")){
 				TargetCoordinateSingle single = (TargetCoordinateSingle) mo.getCoordinate();
 				double delta = Math.abs(single.getCenterX()-caller.getCenterX())+Math.abs(single.getCenterY()-caller.getCenterY());
+				boolean flag=true;
 				// check to see if can move
 
 				if (delta <= range){
 					result.addTargetCoordinateSingle(mo.getCoordinate());
 				}
-			}
-		});
-		
-		//go through other players' units for me
+				//System.out.println(range);
 
+			}
+
+		});
+
+		//go through other players' units for me
+		System.out.println(result);
 		return new GridCoordinateParameters(result);
-	}
+}
 
 
 }

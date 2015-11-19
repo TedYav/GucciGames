@@ -130,6 +130,9 @@ public class MapObject implements PlayerMapObjectInterface{
 
 		
 	}
+	public void setOwnerID(int playerID) {
+		myOwnerID = playerID;
+	}
 
 	@Override
 	public boolean isDead() {

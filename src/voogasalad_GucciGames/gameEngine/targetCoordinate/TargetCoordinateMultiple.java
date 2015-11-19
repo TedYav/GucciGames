@@ -24,6 +24,12 @@ public class TargetCoordinateMultiple extends ATargetCoordinate {
 	public void addTargetCoordinateSingle(ATargetCoordinate coord){
 		myCoordinates.add((TargetCoordinateSingle) coord);
 	}
+	
+		public void addTargetCoodinateSingle(ATargetCoordinate coord){
+		if(!myCoordinates.contains(coord)){
+			myCoordinates.add((TargetCoordinateSingle) coord);
+		}
+	}
 
 	public void addTargetCoordinateMultiple(ATargetCoordinate coord){
 		TargetCoordinateMultiple multCoord = (TargetCoordinateMultiple) coord; 

@@ -18,26 +18,28 @@ public class MapObjectType{
 //	private CharacteristicHandler myCharacteristicHandler;
 	private ResourceBundle myResourceBundle;
 
+	
+	private Map<String, AMapObjectCharacteristic> myDefaultCharacteristics;
+	
 	//sizes
 
 	private Map<String, MapObjectEvent> myActions; //test
 	private Map<String, MapObjectEvent> myRequests;
 	//sizes
 	
-
+	//add common characteristics
 
 	
 	public MapObjectType(String name, String imagePath){
 		myName = name;
 		myImagePath = imagePath;
-
 		// TreeMap so alphabetized when giving to front end
 		
 		myActions = new TreeMap<>();
 		myRequests = new TreeMap<>();
 
 	}
-
+	
 	//public void changeHealth(double healthDiff){
 	//	myHealthCharacteristic.changeHealth(healthDiff);
 	//}
@@ -67,6 +69,10 @@ public class MapObjectType{
 	public List<String> getActionStrings(){
 		return new ArrayList<String>(this.myActions.keySet());
 	}
+//	public void addCharacteristic(String name, List<Integer> values){
+//		this.myCharacteristics.put(name, myCharacteristicHandler.getCharacteristic(name, values));
+//	}
+	
 		public boolean hasAction(String name){
 		return this.myActions.containsKey(name);
 	}
@@ -89,4 +95,28 @@ public class MapObjectType{
 		return map;
 	}
 	
+	public boolean hasDefaultCharacteristic(String name){
+		return myDefaultCharacteristics.containsKey(name);
+		
+	}
+
+	public boolean isTile() {
+		return myDefaultCharacteristics.containsKey("TileCharacteristic");
+	}
+	
+	public void addDefaultCharacteristic(String name, AMapObjectCharacteristic func){
+		this.myDefaultCharacteristics.put(name, func);
+	}
+
+	
+	
+	
+//	public void initializeCharacteristicsMap(Map<String,List<Integer>> characteristics){
+//		myCharacteristics = new TreeMap<>();
+//		for (String key: characteristics.keySet()){
+//			myCharacteristics.put(key, myCharacteristicHandler.getCharacteristic(key, characteristics.get(key)));
+//		}
+//	}
+	
+
 }

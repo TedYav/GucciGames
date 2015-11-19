@@ -35,6 +35,7 @@ public class GameController implements GameControllerInterface {
 	private String myActionInProgress;
 	private PlayerMapObjectInterface activeMapObject;
 	private List<Observer> activeMOObservers;
+	private List<TargetCoordinateSingle> possibleMoves;
 
 	public GameController(GameEngineToGamePlayerInterface engine){
 		myEngine = engine;
@@ -87,17 +88,26 @@ public class GameController implements GameControllerInterface {
 	public void performActionInProgress(Point2D target){
 		ActionToGamePlayerParameters params = myEngine.performAction(myActionInProgress, activeMapObject, Coordinate.PointToCoordinate(target));
 		cancelAction();
-		List<PlayerMapObjectInterface> result;
 		
 		
 		//// SORRY FOR THE TIME BEING
-		if(params != null){
-		result = params.getChangedUnits();
-		}
-		else{
-		result = new ArrayList<PlayerMapObjectInterface>();
-		}
-		myMap.update(result);
+	
+	        for (TargetCoordinateSingle coord: possibleMoves) {
+	            if (target.getX()==coord.getCenterX() && target.getY()==coord.getCenterY()) {
+	                 params= myEngine.performAction(myActionInProgress, activeMapObject, Coordinate.PointToCoordinate(target));
+	                 cancelAction();
+	                 List<PlayerMapObjectInterface> result;
+	             	if(params != null){
+	            		result = params.getChangedUnits();
+	            		}
+	            		else{
+	            		result = new ArrayList<PlayerMapObjectInterface>();
+	            		}
+	                 
+	                 myMap.update(result);
+	                 break;
+	            }
+	        } 
 	}
 	
 	@Override

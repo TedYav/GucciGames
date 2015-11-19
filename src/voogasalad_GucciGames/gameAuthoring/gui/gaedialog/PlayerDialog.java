@@ -92,6 +92,8 @@ public class PlayerDialog extends GaeDialog  {
 				String name = c.getPlayerName();
 				int id = c.getPlayerId();
 				controller.addPlayerToList(name, id);
+				// Save Player
+				controller.savePlayer();
 				this.playerDialog.close();
 			}
 

@@ -43,13 +43,15 @@ public class GAEModel implements IGAEModel{
 
     @Override
     public void deleteComponent (MapObject mapObj) {
-        data.deleteFromMap(mapObj);
+        int owner = mapObj.getPlayerID();
+        mapOfPlayers.get(owner).getMapObjects().remove(mapObj);
     }
     
     @Override
     public MapObject addObject(GridPoint gridpoint, MapObjectType mapObjType, int ownerID) {
     	TargetCoordinateSingle targCoordSingle = new TargetCoordinateSingle(gridpoint.getX(), gridpoint.getY());
-    	MapObject mapObject = new MapObject(mapObjType, targCoordSingle, ownerID);
+    	int layer = mapObjType.isTile() ? 0 : 1;
+    	MapObject mapObject = new MapObject(mapObjType, targCoordSingle, ownerID,layer);
     	mapOfPlayers.get(ownerID).addMapObject(mapObject);
     	//Validate with engine, if failed, return null, else return this mapObject
     	return mapObject;
@@ -134,6 +136,15 @@ public class GAEModel implements IGAEModel{
         validate();
         data.addToMap(mapObj);
     }
+
+
+	@Override
+	public void changeOwner(MapObject mapObject, int playerID) {
+		int oldID = mapObject.getPlayerID(); 
+		mapOfPlayers.get(oldID).getMapObjects().remove(mapObject);
+		mapObject.setOwnerID(playerID);
+		mapOfPlayers.get(playerID).addMapObject(mapObject);
+	}
     
 //	public static void main(String[] args){
 //		Map<Integer, GamePlayerPerson> mapOfPlayers = new HashMap<Integer, GamePlayerPerson>();	

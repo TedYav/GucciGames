@@ -14,5 +14,9 @@ public interface IDialogGaeController {
 	public Map<Integer, String> getAllPlayersId();
 	
 	public void addPlayerToList(String name, int id);
+	
+	public void savePlayer();
+	
+	public void saveGameSetting();
 
 }

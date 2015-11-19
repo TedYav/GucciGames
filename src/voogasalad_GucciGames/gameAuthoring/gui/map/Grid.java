@@ -62,12 +62,12 @@ class Grid extends Pane {
 		// pane.maxHeightProperty().bind(heightProperty());
 		addEventFilter(MouseEvent.MOUSE_CLICKED, e -> placeObjectOnMap(e));
 
-		for (int x = 0; x < width; x++) {
-			for (int y = 0; y < height; y++) {
-				new Cell(this, x, y);
-				//TODO: update the MapObjects
-			}
-		}
+//		for (int x = 0; x < width; x++) {
+//			for (int y = 0; y < height; y++) {
+//				new Cell(this, x, y);
+//				//TODO: update the MapObjects
+//			}
+//		}
 	}
 
 	private void trackMouseMove(double x, double y) {
@@ -153,13 +153,18 @@ class Grid extends Pane {
 	}
 
 	public void remove(Cell cell) {
+		myController.deleteComponent(cell.getObject());
 		getChildren().remove(cell.getMapView());
 		myCells.remove(cell.getPosition());
 	}
 
 	public void add(Cell cell) {
-		getChildren().add(cell.getMapView());
-		myCells.put(cell.getPosition(), cell);
+		MapObject obj = myController.addObject(cell.getPosition(), myController.getMapObjectTypeToMap());
+		if(obj!=null){
+			getChildren().add(cell.getMapView());
+			myCells.put(cell.getPosition(), cell);
+			cell.setObject(obj);
+		}
 	}
 	
 	public AGuiGaeController getController(){
