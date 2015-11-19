@@ -56,6 +56,9 @@ public class DropDownMenuField  extends DialogComponent{
 	}
 	
 	protected String getSelected(){
+		if(dropDown.getSelectionModel().getSelectedItem() == null){
+			return "";
+		}
 		return dropDown.getSelectionModel().getSelectedItem().toString();
 	}
 

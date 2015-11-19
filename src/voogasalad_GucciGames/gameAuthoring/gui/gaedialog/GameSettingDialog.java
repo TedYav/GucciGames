@@ -52,7 +52,6 @@ public class GameSettingDialog extends GaeDialog {
 	
 			});
 			
-		dialogGaeController.saveGameSetting(gameSettingParams);
 		
 		myContent.getChildren().addAll(this.initializeDialog(), saveField.getContent());
 		Scene gameSettingDialogScene = new Scene(myContent, 500, 500);
