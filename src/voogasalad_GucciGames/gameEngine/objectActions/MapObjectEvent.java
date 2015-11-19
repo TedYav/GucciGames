@@ -57,5 +57,9 @@ public abstract class MapObjectEvent {
 	}
 
 	protected abstract CommunicationParameters execute(CommunicationParameters params);
+	
+	protected boolean checkNeighborhood(double dx, double dy, double range){
+		return (dx <= range) && (dy <=range);
+	}
 
 }
