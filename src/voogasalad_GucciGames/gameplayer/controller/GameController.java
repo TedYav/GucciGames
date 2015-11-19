@@ -11,9 +11,12 @@ import javafx.geometry.Point2D;
 
 import java.util.Observer;
 import javafx.scene.image.Image;
+import voogasalad_GucciGames.datastructures.Coordinate;
+import voogasalad_GucciGames.datastructures.ImageDatabase;
+import voogasalad_GucciGames.gameEngine.CommunicationParams.ActionToGamePlayerParameters;
+import voogasalad_GucciGames.gameEngine.targetCoordinate.ATargetCoordinate;
+import voogasalad_GucciGames.gameEngine.targetCoordinate.TargetCoordinateSingle;
 import voogasalad_GucciGames.gameplayer.controller.dummy.ADummy;
-import voogasalad_GucciGames.gameplayer.datastructures.Coordinate;
-import voogasalad_GucciGames.gameplayer.datastructures.ImageDatabase;
 import voogasalad_GucciGames.gameplayer.windows.mainwindow.map.MapInterface;
 import voogasalad_GucciGames.gameplayer.windows.mainwindow.map.cell.MapCell;
 import voogasalad_GucciGames.gameplayer.windows.mainwindow.map.cell.contents.CellUnit;
@@ -52,9 +55,11 @@ public class GameController implements GameControllerInterface {
 	}
 
 	@Override
-	public void setActionInProgress(String action, PlayerMapObjectInterface unit) {
+	public List<TargetCoordinateSingle> setActionInProgress(String action, PlayerMapObjectInterface unit) {
 		myActionInProgress = action;
 		myTargetUnit = unit;
+		
+		return myEngine.getPossibleCoordinates(action, unit).getListOfCoordinates();
 	}
 
 	@Override
@@ -70,8 +75,9 @@ public class GameController implements GameControllerInterface {
 	
 	@Override
 	public void performActionInProgress(Point2D target){
-		List<PlayerMapObjectInterface> result = ((ADummy)myTargetUnit).performAction(myActionInProgress, Coordinate.PointToCoordinate(target));
+		ActionToGamePlayerParameters params = myEngine.performAction(myActionInProgress, activeMapObject, Coordinate.PointToCoordinate(target));
 		cancelAction();
+		List<PlayerMapObjectInterface> result = params.getChangedUnits();
 		myMap.update(result);
 	}
 	
