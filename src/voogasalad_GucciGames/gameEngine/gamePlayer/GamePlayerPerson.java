@@ -62,5 +62,10 @@ public class GamePlayerPerson {
 	public void setTurnCounter(int turnCounter) {
 		this.turnCounter = turnCounter;
 	}
+	public void resetObjects(){
+		for(MapObject object: myMapObjects){
+
+		}
+	}
 
 }

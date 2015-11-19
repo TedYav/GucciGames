@@ -35,17 +35,16 @@ public abstract class MapObjectEvent {
 		Boolean ruletest = false;
 		BasicParameters basic = (BasicParameters) params;
 		ActionToRuleManager mapobj = basic.getActionToRuleMap();
-		
 		if(mapobj == null){
 			return true;
 		}
-		
+
 		if (mapobj.contains(myName)) {
 			List<Rules> list = mapobj.getRulesForAction(myName);
 			if (list != null) {
 				Iterator<Rules> ruleItr = list.iterator();
 				while (ruleItr.hasNext()) {
-					ruletest = ruleItr.next().executeRules((BasicParameters) params, playerID);
+					ruletest = ruleItr.next().executeRules((BasicParameters) params);
 					if (ruletest == false) {
 						return ruletest;
 					}

@@ -27,8 +27,13 @@ public class AllPlayers {
 		myMapOfPlayers = new HashMap<Integer, GamePlayerPerson>();
 	}
 
-	public int size() {
-		return myMapOfPlayers.size();
+	public void reset() {
+		for (Integer i : myMapOfPlayers.keySet()) {
+			GamePlayerPerson person = myMapOfPlayers.get(i);
+			person.resetObjects();
+			person.setTurnCounter(0);
+
+		}
 	}
 
 	/***
