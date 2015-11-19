@@ -1,8 +1,7 @@
-package voogasalad_GucciGames.gameEngine.gameConditions;
+package voogasalad_GucciGames.gameEngine.CommunicationParams;
 
 import java.util.List;
 
-import voogasalad_GucciGames.gameEngine.CommunicationParams.CommunicationParameters;
 import voogasalad_GucciGames.gameEngine.targetCoordinate.ATargetCoordinate;
 import voogasalad_GucciGames.gameEngine.targetCoordinate.TargetCoordinateSingle;
 

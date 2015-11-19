@@ -5,7 +5,7 @@ import java.util.List;
 import javafx.collections.ListChangeListener;
 import javafx.collections.MapChangeListener;
 import javafx.collections.ObservableList;
-import voogasalad_GucciGames.gameEngine.gameConditions.GridCoordinateParameters;
+import voogasalad_GucciGames.gameEngine.CommunicationParams.GridCoordinateParameters;
 
 public interface GameEngineToGamePlayerInterface {
 
