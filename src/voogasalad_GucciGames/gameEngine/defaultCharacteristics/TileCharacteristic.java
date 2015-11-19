@@ -9,5 +9,9 @@ public class TileCharacteristic extends AMapObjectCharacteristic{
 		super(charParams);
 		this.myCanMove = charParams.isAbleTo();
 	}
+	
+	public TileCharacteristic(){
+		super(null);
+	}
 
 }
