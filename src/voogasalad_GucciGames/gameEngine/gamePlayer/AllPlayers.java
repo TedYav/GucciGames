@@ -31,7 +31,7 @@ public class AllPlayers {
 		for (Integer i : myMapOfPlayers.keySet()) {
 			GamePlayerPerson person = myMapOfPlayers.get(i);
 			person.resetObjects();
-			person.setTurnCounter(0);
+			person.getMyMovable().reset();
 
 		}
 	}
@@ -47,10 +47,6 @@ public class AllPlayers {
 	public GamePlayerPerson getPlayerById(int id) {
 
 		return myMapOfPlayers.get(id);
-	}
-
-	public int numberOfPlayer() {
-		return myMapOfPlayers.size();
 	}
 
 	// right now includes the neutral player

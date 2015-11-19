@@ -22,14 +22,14 @@ public class Main {
 
 	public static void main(String[] args) {
 		// test conditions:
+		GamePlayerPerson p0 = new GamePlayerPerson(0);
+		GamePlayerPerson p = new GamePlayerPerson(-1);
 //		Map<String, List<Integer>> dummyCharacteristicMap = new TreeMap<>();
 //		List<Integer> temp = new ArrayList<Integer>();
 //		temp.add(1);
 //		temp.add(3);
 //		dummyCharacteristicMap.put("MovableCharacteristic", temp);
 		
-		GamePlayerPerson p0 = new GamePlayerPerson();
-		GamePlayerPerson p = new GamePlayerPerson();
 		Map<Integer, GamePlayerPerson> map = new HashMap<Integer, GamePlayerPerson>();
 
 		map.put(-1, p);
@@ -54,8 +54,8 @@ public class Main {
 		MoveEvent myMoveEvent = new MoveEvent("Move");
 		WhereToMoveEvent myMoveLocationEvent = new WhereToMoveEvent("WhereToMove");
 		
-		soldier.addCharacteristic("MovableCharacteristic", myMovableCharacteristic);
-		soldier.addCharacteristic("HealthCharacteristic", myHealthCharacteristic);
+		sold1.addCharacteristic("MovableCharacteristic", myMovableCharacteristic);
+		sold1.addCharacteristic("HealthCharacteristic", myHealthCharacteristic);
 		soldier.addAction("Move", myMoveEvent);
 		soldier.addRequest("WhereToMove", myMoveLocationEvent);
 		

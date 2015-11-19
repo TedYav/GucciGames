@@ -21,15 +21,16 @@ public class TargetCoordinateMultiple extends ATargetCoordinate {
 	}
 
 
-	public void addTargetCoodinateSingle(ATargetCoordinate coord){
+	
+	public void addTargetCoordinateSingle(ATargetCoordinate coord){
 		if(!this.myCoordinates.contains(coord)){
 			myCoordinates.add((TargetCoordinateSingle) coord);
 		}
 	}
 
-	public void addTargetCoodinateMultiple(ATargetCoordinate coord){
+	public void addTargetCoordinateMultiple(ATargetCoordinate coord){
 		TargetCoordinateMultiple multCoord = (TargetCoordinateMultiple) coord;
-		multCoord.getListOfCoordinates().stream().forEach(coor -> this.addTargetCoodinateSingle(coor));
+		multCoord.getListOfCoordinates().stream().forEach(coor -> this.addTargetCoordinateSingle(coor));
 	}
 
 	// NOT ACTUALLY ADDING TO LIST! FIX THIS!
@@ -38,7 +39,7 @@ public class TargetCoordinateMultiple extends ATargetCoordinate {
 		Method m;
 		try {
 			m = Class.forName(this.getClass().getName()).getMethod("add" + coord.getClass().getSimpleName(),ATargetCoordinate.class);
-			m.invoke(coord);
+			m.invoke(((ATargetCoordinate) coord));
 
 		} catch (Exception e){
 			e.printStackTrace();

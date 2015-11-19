@@ -26,5 +26,5 @@ public interface GameEngineToGamePlayerInterface {
 	public double getMapWidth();
 	public double getMapHeight();
 
-	public GameParamsInterface getGameParams();
+	public GameParametersInterface getGameParams();
 }

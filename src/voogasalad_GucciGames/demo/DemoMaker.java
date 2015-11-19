@@ -7,6 +7,7 @@ import javafx.application.Application;
 import javafx.stage.Stage;
 import voogasalad_GucciGames.gameData.XStreamGameEngine;
 import voogasalad_GucciGames.gameEngine.MainGameEngine;
+import voogasalad_GucciGames.gameEngine.defaultCharacteristics.AttackCharacteristic;
 import voogasalad_GucciGames.gameEngine.defaultCharacteristics.HealthCharacteristic;
 import voogasalad_GucciGames.gameEngine.defaultCharacteristics.MovableCharacteristic;
 import voogasalad_GucciGames.gameEngine.defaultCharacteristics.RealHealthCharacteristic;
@@ -15,7 +16,9 @@ import voogasalad_GucciGames.gameEngine.gamePlayer.GamePlayerPerson;
 import voogasalad_GucciGames.gameEngine.gamePlayer.MovablePlayerCharacteristic;
 import voogasalad_GucciGames.gameEngine.mapObject.MapObject;
 import voogasalad_GucciGames.gameEngine.mapObject.MapObjectType;
+import voogasalad_GucciGames.gameEngine.objectActions.AttackEvent;
 import voogasalad_GucciGames.gameEngine.objectActions.MoveEvent;
+import voogasalad_GucciGames.gameEngine.objectActions.WhereToAttackEvent;
 import voogasalad_GucciGames.gameEngine.objectActions.WhereToMoveEvent;
 import voogasalad_GucciGames.gameEngine.targetCoordinate.TargetCoordinateSingle;
 import voogasalad_GucciGames.gameplayer.windows.GameWindowManager;
@@ -29,7 +32,7 @@ public class DemoMaker extends Application{
 		XStreamGameEngine xStream = new XStreamGameEngine();
         System.out.println("Creating and saving engine.");
         xStream.saveEngine(createEngine(), defaultEngineLocation);
-        xStream.loadEngine();
+        xStream.loadEngine(defaultEngineLocation);
 
 		GameWindowManager windowmanager = new GameWindowManager();
 	}
@@ -39,39 +42,43 @@ public class DemoMaker extends Application{
     }
 
     private static MainGameEngine createEngine() {
-        Map<Integer,GamePlayerPerson> myMapOfPlayers = new TreeMap<Integer,GamePlayerPerson>();
-        myMapOfPlayers.put(-1,new GamePlayerPerson()); //neutral player
-        myMapOfPlayers.put(0,new GamePlayerPerson()); //player 1
+        Map<Integer,GamePlayerPerson> myMapOfPlayers = new TreeMap<Integer,GamePlayerPerson>();     
+        myMapOfPlayers.put(-1,new GamePlayerPerson(-1)); //neutral player
+        myMapOfPlayers.put(0,new GamePlayerPerson(0)); //player 1 
 
-        myMapOfPlayers.put(1,new GamePlayerPerson()); //player 2
-
+        myMapOfPlayers.put(1,new GamePlayerPerson(1)); //player 2
+        
         MapObjectType soldier = new MapObjectType("Duvall", "player/images/duvall.png");
         MapObjectType archer = new MapObjectType("Student" , "player/images/smile.png");
         MapObjectType ground = new MapObjectType("TileCharacteristics", "player/images/dummytexture.jpg");
         MapObjectType water = new MapObjectType("TileCharacteristics", "player/images/dummytexture2.jpg");
 
         MapObject soldier1 = new MapObject(soldier,new TargetCoordinateSingle(1,0),0,1);
-
-
-
-
-        myMapOfPlayers.get(-1).setMyMovable(new MovablePlayerCharacteristic());
-        myMapOfPlayers.get(0).setMyMovable(new MovablePlayerCharacteristic());
-        myMapOfPlayers.get(1).setMyMovable(new MovablePlayerCharacteristic());
-
+        
+        
+        myMapOfPlayers.get(-1).setMyMovable(new MovablePlayerCharacteristic(2));
+        myMapOfPlayers.get(0).setMyMovable(new MovablePlayerCharacteristic(2));
+        myMapOfPlayers.get(1).setMyMovable(new MovablePlayerCharacteristic(2));
+        
 		MovableCharacteristic myMovableCharacteristic = new MovableCharacteristic(1, 3);
 		HealthCharacteristic myHealthCharacteristic = new RealHealthCharacteristic(5);
 
 		MoveEvent myMoveEvent = new MoveEvent("Move");
 		WhereToMoveEvent myMoveLocationEvent = new WhereToMoveEvent("WhereToMove");
-
-
-		soldier.addCharacteristic("MovableCharacteristic", myMovableCharacteristic);
-		soldier.addCharacteristic("HealthCharacteristic", myHealthCharacteristic);
 		soldier.addAction("Move", myMoveEvent);
 		soldier.addRequest("WhereToMove", myMoveLocationEvent);
 
+		AttackEvent myAttackEvent = new AttackEvent("Attack");
+		WhereToAttackEvent myAttackLocationEvent = new WhereToAttackEvent("WhereToAttack");
+		AttackCharacteristic myAttackCharacteristic = new AttackCharacteristic(3, 100, 2);
+		
+		
+		soldier1.addCharacteristic("MovableCharacteristic", myMovableCharacteristic);
+		soldier1.addCharacteristic("HealthCharacteristic", myHealthCharacteristic);
+		soldier1.addCharacteristic("AttackCharacteristic", myAttackCharacteristic);
 
+		soldier.addAction("Attack", myAttackEvent);
+		soldier.addRequest("WhereToAttack", myAttackLocationEvent);
 
 
         for (int i=0;i<8;i++) {
@@ -80,6 +87,7 @@ public class DemoMaker extends Application{
             	myMapOfPlayers.get(-1).getMapObjects().add(newObj);
                 if ((i+j)%3==0) {
                     MapObject arch = new MapObject(archer,new TargetCoordinateSingle(i,j),1,1);
+                    arch.addCharacteristic("HealthCharacteristic", new RealHealthCharacteristic(10));
                     myMapOfPlayers.get(1).getMapObjects().add(arch);
                 }
             }

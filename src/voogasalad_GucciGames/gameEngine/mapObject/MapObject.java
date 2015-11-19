@@ -9,6 +9,8 @@ import voogasalad_GucciGames.gameEngine.CommunicationParams.ActionToGamePlayerPa
 import voogasalad_GucciGames.gameEngine.CommunicationParams.BasicParameters;
 import voogasalad_GucciGames.gameEngine.CommunicationParams.GridCoordinateParameters;
 import voogasalad_GucciGames.gameEngine.CommunicationParams.MainGameEngineCommunicationParameters;
+import voogasalad_GucciGames.gameEngine.defaultCharacteristics.AttackCharacteristic;
+import voogasalad_GucciGames.gameEngine.defaultCharacteristics.HealthCharacteristic;
 import voogasalad_GucciGames.gameEngine.targetCoordinate.ATargetCoordinate;
 import voogasalad_GucciGames.gameplayer.controller.PlayerMapObjectInterface;
 
@@ -17,18 +19,48 @@ public class MapObject implements PlayerMapObjectInterface{
 	private ATargetCoordinate myCoordinate;
 	private int myOwnerID;
 	private int myLayer;
-
+	//sizes
+	private  Map<String, AMapObjectCharacteristic> myCharacteristics; //test
+	
 	public MapObject(MapObjectType type, ATargetCoordinate coor, int ownerID){
 		this.myObjectType = type;
 		this.myCoordinate = coor;
 		this.myOwnerID=ownerID;
 		myLayer=0;
-	}
-	       public MapObject(MapObjectType type, ATargetCoordinate coor, int ownerID, int layer){
-	                this(type,coor,ownerID);
-	                myLayer=layer;
-	        }
+		
+		myCharacteristics = new TreeMap<String,  AMapObjectCharacteristic>();
 
+		
+	}
+	
+    public MapObject(MapObjectType type, ATargetCoordinate coor, int ownerID, int layer){
+        this(type,coor,ownerID);
+        myLayer=layer;
+}
+
+	
+	
+	public AMapObjectCharacteristic getCharacteristic(String name){
+		return this.myCharacteristics.get(name);
+	}
+
+	public void addCharacteristic(String name, AMapObjectCharacteristic characteristic){
+		this.myCharacteristics.put(name, characteristic);
+	}
+
+	public boolean hasCharacteristic(String name){
+		return this.myCharacteristics.containsKey(name);
+	}
+
+	public List<String> getCharacteristicStrings(){
+		return new ArrayList<String>(this.myCharacteristics.keySet());
+	}
+	
+	public boolean isTile(){
+		return myCharacteristics.containsKey("TileCharacteristic") || this.getObjectType().getName().equals("TileCharacteristic");
+	}
+	
+	  
 	public MapObjectType getObjectType(){
 		return myObjectType;
 	}
@@ -43,7 +75,7 @@ public class MapObject implements PlayerMapObjectInterface{
 	}
 
 	public boolean isUnit() {
-		return myObjectType.hasCharacteristic("unit");
+		return this.hasCharacteristic("unit");
 	}
 
 	@Override
@@ -85,15 +117,13 @@ public class MapObject implements PlayerMapObjectInterface{
 	public ActionToGamePlayerParameters performAction(String action,
 			BasicParameters basicParameters) {
 		// TODO Auto-generated method stub
-	
+		
+		System.out.println(myObjectType);
+		System.out.println("action"+myObjectType.getAction(action));
 		return (ActionToGamePlayerParameters) myObjectType.getAction(action).executeAction(basicParameters, myOwnerID);
 
 	}
-	@Override
-	public List<ATargetCoordinate> getActionTargets(String name) {
-		// TODO Auto-generated method stub
-		return null;
-	}
+	
 	public GridCoordinateParameters performRequest(String action,
 			BasicParameters basicParameters) {
 		// TODO Auto-generated method stub
@@ -105,5 +135,25 @@ public class MapObject implements PlayerMapObjectInterface{
 	public void setOwnerID(int playerID) {
 		myOwnerID = playerID;
 	}
+
+	@Override
+	public boolean isDead() {
+		// TODO Auto-generated method stub
+		return ((HealthCharacteristic) getCharacteristic("HealthCharacteristic")).getCurrentHealth() < 0;
+	}
+
+	@Override
+	public List<ATargetCoordinate> getActionTargets(String name) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public boolean isRemoved() {
+		// TODO Auto-generated method stub
+		return isDead();
+	}
+
+
 
 }

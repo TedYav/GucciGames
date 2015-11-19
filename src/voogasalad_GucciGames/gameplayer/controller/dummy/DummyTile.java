@@ -16,7 +16,8 @@ import voogasalad_GucciGames.gameplayer.controller.PlayerMapObjectInterface;
  * @author Ted Yavuzkurt
  *
  */
-public class DummyTile extends ADummy implements PlayerMapObjectInterface {
+
+/*public class DummyTile extends ADummy implements PlayerMapObjectInterface {
 	
 	private int myX, myY;
 	private boolean removed;
@@ -76,10 +77,18 @@ public class DummyTile extends ADummy implements PlayerMapObjectInterface {
 		return new ArrayList<PlayerMapObjectInterface>();
 	}
 
+<<<<<<< HEAD
+	@Override
+	public boolean isDead() {
+		// TODO Auto-generated method stub
+		return false;
+	}
+=======
     @Override
     public boolean isRemoved () {
         // TODO Auto-generated method stub
         return removed;
     }
+>>>>>>> 8a55936e502047e5563778700f8ceb4612a4ef17
 
-}
+}*/

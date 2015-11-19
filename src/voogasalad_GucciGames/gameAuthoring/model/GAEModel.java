@@ -32,10 +32,10 @@ public class GAEModel implements IGAEModel{
     	data = new GameSourceData();
     	mapOfPlayers = new HashMap<>();
     	// Probs need to change this
-		mapOfPlayers.put(-1, new GamePlayerPerson());
-		mapOfPlayers.put(0, new GamePlayerPerson());
-		mapOfPlayers.put(1, new GamePlayerPerson());
-		mapOfPlayers.put(2, new GamePlayerPerson());
+		mapOfPlayers.put(-1, new GamePlayerPerson(-1));
+		mapOfPlayers.put(0, new GamePlayerPerson(0));
+		mapOfPlayers.put(1, new GamePlayerPerson(1));
+		mapOfPlayers.put(2, new GamePlayerPerson(2));
 		
     	writer = new XMLWriter();
     }

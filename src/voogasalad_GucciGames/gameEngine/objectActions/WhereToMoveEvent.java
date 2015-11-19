@@ -1,14 +1,17 @@
 package voogasalad_GucciGames.gameEngine.objectActions;
 
-import java.util.HashSet;
-import java.util.Set;
+import java.util.Iterator;
 
 import voogasalad_GucciGames.gameEngine.CommunicationParams.BasicParameters;
 import voogasalad_GucciGames.gameEngine.CommunicationParams.CommunicationParameters;
 import voogasalad_GucciGames.gameEngine.CommunicationParams.GridCoordinateParameters;
+import voogasalad_GucciGames.gameEngine.CommunicationParams.MainGameEngineCommunicationParameters;
+import voogasalad_GucciGames.gameEngine.CommunicationParams.WhereToParams;
+import voogasalad_GucciGames.gameEngine.defaultCharacteristics.CharacteristicFactory;
 import voogasalad_GucciGames.gameEngine.defaultCharacteristics.MovableCharacteristic;
 import voogasalad_GucciGames.gameEngine.gamePlayer.AllPlayers;
 import voogasalad_GucciGames.gameEngine.gamePlayer.GamePlayerPerson;
+import voogasalad_GucciGames.gameEngine.gameRules.defaultRules.UnitsMovablePerTurn;
 import voogasalad_GucciGames.gameEngine.mapObject.MapObject;
 import voogasalad_GucciGames.gameEngine.targetCoordinate.TargetCoordinateMultiple;
 import voogasalad_GucciGames.gameEngine.targetCoordinate.TargetCoordinateSingle;
@@ -19,6 +22,7 @@ public class WhereToMoveEvent extends MapObjectEvent{
 
 	public WhereToMoveEvent(String actionName) {
 		super(actionName);
+		getRuleList().add(new UnitsMovablePerTurn());
 		// TODO Auto-generated constructor stub
 	}
 
@@ -27,37 +31,47 @@ public class WhereToMoveEvent extends MapObjectEvent{
 		// TODO Auto-generated method stub
 		BasicParameters basic = (BasicParameters) params;
 		AllPlayers players = basic.getPlayers();
+		GamePlayerPerson player = players.getPlayerById(((BasicParameters) params).getTurn());
 		TargetCoordinateMultiple result = new TargetCoordinateMultiple();
 		MapObject calledMe = basic.getCalledMe();
 
 		// getting the range
-		MovableCharacteristic mc = (MovableCharacteristic) calledMe.getObjectType().getCharacteristic("MovableCharacteristic");
+		MovableCharacteristic mc = (MovableCharacteristic) calledMe.getCharacteristic("MovableCharacteristic");
 		double range = mc.getRange();
-		//System.out.println(range);
 		// going through neutral player
 		TargetCoordinateSingle caller = (TargetCoordinateSingle) calledMe.getCoordinate();
-
-		Set<TargetCoordinateSingle> otherCoor = new HashSet<>();
-		players.getNonNeutralMapObjects().stream().forEach(obj -> {
-			otherCoor.add((TargetCoordinateSingle) obj.getCoordinate());
-		});
-		players.getActivePlayer(-1).getMapObjects().stream().forEach(mo -> {
-			if(mo.getObjectType().isTile()){
+		players.getPlayerById(-1).getMapObjects().stream().forEach(mo -> {
+			if(mo.getObjectType().getName().equals("TileCharacteristics")){
 				TargetCoordinateSingle single = (TargetCoordinateSingle) mo.getCoordinate();
-				double dx = Math.abs(single.getCenterX()-caller.getCenterX());
-				double dy = Math.abs(single.getCenterY()-caller.getCenterY());
+				double delta = Math.abs(single.getCenterX()-caller.getCenterX())+Math.abs(single.getCenterY()-caller.getCenterY());
+				boolean flag=true;
+				// check to see if can move
+				//System.out.println(range);
 
-				if (check(dx,dy,range) && !otherCoor.contains(mo.getCoordinate())){
-					result.addTargetCoodinateSingle(mo.getCoordinate());
-				}
+				if (delta <= range){	
+
+					//hi joy, take this out cause it doesn't work
+					Iterator<MapObject> idIterator = players.getPlayerById(1).getMapObjects().iterator();	
+					System.out.println(players.getPlayerById(1).getMapObjects().size());
+					while (idIterator.hasNext()) {
+						MapObject next = idIterator.next();
+						if (next.getCoordinate().equals(mo.getCoordinate())){
+							flag=false;
+						}
+					}
+					if(flag) {
+						result.addTargetCoordinateSingle(mo.getCoordinate());
+					}
+
 			}
-		});
+
+		}
+	});
+
+		//go through other players' units for me
+		System.out.println(result);
 		return new GridCoordinateParameters(result);
 }
-
-	private boolean check(double dx, double dy, double range){
-		return (dx <= range) && (dy <=range);
-	}
 
 
 }

@@ -4,6 +4,7 @@ import voogasalad_GucciGames.gameEngine.CommunicationParams.ActionToGamePlayerPa
 import voogasalad_GucciGames.gameEngine.CommunicationParams.CommunicationParameters;
 import voogasalad_GucciGames.gameEngine.CommunicationParams.EmptyParameters;
 import voogasalad_GucciGames.gameEngine.CommunicationParams.LocationParams;
+import voogasalad_GucciGames.gameEngine.gameRules.defaultRules.UnitsMovablePerTurn;
 import voogasalad_GucciGames.gameEngine.mapObject.MapObject;
 import voogasalad_GucciGames.gameEngine.targetCoordinate.TargetCoordinateSingle;
 
@@ -14,6 +15,7 @@ public class MoveEvent extends MapObjectEvent{
 
 	public MoveEvent(String actionName) {
 		super(actionName);
+		getRuleList().add(new UnitsMovablePerTurn());
 		// TODO Auto-generated constructor stub
 	}
 

@@ -1,5 +1,6 @@
 package voogasalad_GucciGames.gameEngine.objectActions;
 
+import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
@@ -16,9 +17,15 @@ import voogasalad_GucciGames.gameEngine.gameRules.Rules;
  */
 public abstract class MapObjectEvent {
 	private String myName;
+	private List<Rules> myRuleList;
 
 	public MapObjectEvent(String actionName) {
 		myName = actionName;
+		myRuleList = new ArrayList<Rules>();
+	}
+	
+	protected List<Rules> getRuleList(){
+		return myRuleList;
 	}
 
 	// must keep executeAction() final
@@ -27,22 +34,17 @@ public abstract class MapObjectEvent {
 		if (check) {
 			return execute(params);
 		}
-		return new EmptyParameters();
+		return null;
 	}
 
 
 	private Boolean checkRules(int playerID, CommunicationParameters params) {
-		Boolean ruletest = false;
+		Boolean ruletest = true;
 		BasicParameters basic = (BasicParameters) params;
-		ActionToRuleManager mapobj = basic.getActionToRuleMap();
-		if(mapobj == null){
-			return true;
-		}
 
-		if (mapobj.contains(myName)) {
-			List<Rules> list = mapobj.getRulesForAction(myName);
-			if (list != null) {
-				Iterator<Rules> ruleItr = list.iterator();
+
+			if (myRuleList != null) {
+				Iterator<Rules> ruleItr = myRuleList.iterator();
 				while (ruleItr.hasNext()) {
 					ruletest = ruleItr.next().executeRules((BasicParameters) params);
 					if (ruletest == false) {
@@ -50,7 +52,6 @@ public abstract class MapObjectEvent {
 					}
 				}
 			}
-		}
 
 		return ruletest;
 	}
