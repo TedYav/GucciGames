@@ -153,13 +153,18 @@ class Grid extends Pane {
 	}
 
 	public void remove(Cell cell) {
+		myController.deleteComponent(cell.getObject());
 		getChildren().remove(cell.getMapView());
 		myCells.remove(cell.getPosition());
 	}
 
 	public void add(Cell cell) {
-		getChildren().add(cell.getMapView());
-		myCells.put(cell.getPosition(), cell);
+		MapObject obj = myController.addObject(cell.getPosition(), myController.getMapObjectTypeToMap());
+		if(obj!=null){
+			getChildren().add(cell.getMapView());
+			myCells.put(cell.getPosition(), cell);
+			cell.setObject(obj);
+		}
 	}
 	
 	public AGuiGaeController getController(){

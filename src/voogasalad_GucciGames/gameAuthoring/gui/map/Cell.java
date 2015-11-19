@@ -7,6 +7,7 @@ import javafx.scene.input.MouseButton;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
+import voogasalad_GucciGames.gameEngine.mapObject.MapObject;
 
 public class Cell {
 	private static Image myImage = new Image(
@@ -19,6 +20,7 @@ public class Cell {
 	private PopupMenu myMenu;
 	private boolean isSelected = false;
 	private GridPoint myPos;
+	private MapObject myMapObject;
 
 	public Cell(Grid map, int x, int y) {
 		myMap = map;
@@ -117,6 +119,14 @@ public class Cell {
 	
 	public ImageView getMapView(){
 		return myMapView;
+	}
+	
+	public void setObject(MapObject obj){
+		myMapObject = obj;
+	}
+	
+	public MapObject getObject(){
+		return myMapObject;
 	}
 
 }
