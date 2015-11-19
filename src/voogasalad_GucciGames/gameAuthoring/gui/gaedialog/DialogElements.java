@@ -28,23 +28,23 @@ public class DialogElements {
 		this.dialogGaeController = dialogGaeController;
 	}
 	
-	protected Properties getDialogProperties(){
+	public Properties getDialogProperties(){
 		return prop;
 	}
 	
-	protected ObjectProperty getObjectProperty(){
+	public ObjectProperty getObjectProperty(){
 		return objProp;
 	}
 	
-	protected ISaveObjProperty getSaveObjProperty(){
+	public ISaveObjProperty getSaveObjProperty(){
 		return saveObjProp;
 	}
 	
-	protected ISaveGroovy getSaveGroovy(){
+	public ISaveGroovy getSaveGroovy(){
 		return saveGroovy;
 	}
 	
-	protected IDialogGaeController getDialogGaeController(){
+	public IDialogGaeController getDialogGaeController(){
 		return dialogGaeController;
 	}
 	

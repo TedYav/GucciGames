@@ -9,6 +9,7 @@ import javafx.collections.ListChangeListener;
 import javafx.collections.ObservableList;
 import voogasalad_GucciGames.gameAuthoring.IModelGaeController;
 import voogasalad_GucciGames.gameAuthoring.gui.map.GridPoint;
+//import voogasalad_GucciGames.gameData.XMLWriter;
 import voogasalad_GucciGames.gameData.XStreamGameEngine;
 import voogasalad_GucciGames.gameEngine.MainGameEngine;
 import voogasalad_GucciGames.gameEngine.gamePlayer.AllPlayers;
@@ -21,7 +22,7 @@ import voogasalad_GucciGames.gameEngine.targetCoordinate.TargetCoordinateSingle;
 public class GAEModel implements IGAEModel{
     private GameSourceData data;
     private IModelGaeController myController;
-    private XMLWriter writer;
+    //private XMLWriter writer;
     //private GameEngineToGameAuthoringEnvironment engine;
 	private Map<Integer, GamePlayerPerson> mapOfPlayers;	
     private AllPlayers players;
@@ -37,7 +38,7 @@ public class GAEModel implements IGAEModel{
 		mapOfPlayers.put(1, new GamePlayerPerson(1));
 		mapOfPlayers.put(2, new GamePlayerPerson(2));
 		
-    	writer = new XMLWriter();
+    	//writer = new XMLWriter();
     }
     
 
