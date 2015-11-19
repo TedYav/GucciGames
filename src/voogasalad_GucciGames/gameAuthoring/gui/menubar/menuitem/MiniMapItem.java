@@ -3,10 +3,10 @@ package voogasalad_GucciGames.gameAuthoring.gui.menubar.menuitem;
 import javafx.scene.control.Menu;
 import javafx.scene.control.RadioMenuItem;
 import javafx.scene.control.ToggleGroup;
-import voogasalad_GucciGames.gameAuthoring.IGuiGaeController;
+import voogasalad_GucciGames.gameAuthoring.AGuiGaeController;
 
 public class MiniMapItem extends Menu{
-	MiniMapItem(String name, IGuiGaeController controller) {
+	MiniMapItem(String name, AGuiGaeController controller) {
 		super(name);
 		ToggleGroup group = new ToggleGroup();
 		RadioMenuItem on = new RadioMenuItem("On");

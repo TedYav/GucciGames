@@ -1,8 +1,7 @@
 package voogasalad_GucciGames.gameAuthoring;
 
-import java.util.List;
+import java.util.HashMap;
 import java.util.Map;
-
 import javafx.collections.ObservableList;
 import javafx.scene.image.Image;
 import javafx.stage.Stage;
@@ -10,15 +9,19 @@ import voogasalad_GucciGames.gameAuthoring.gui.GAEGui;
 import voogasalad_GucciGames.gameAuthoring.model.GAEModel;
 import voogasalad_GucciGames.gameAuthoring.model.IGAEModel;
 import voogasalad_GucciGames.gameAuthoring.properties.ObjectProperty;
-import voogasalad_GucciGames.gameAuthoring.properties.Property;
 import voogasalad_GucciGames.gameEngine.mapObject.MapObject;
 import voogasalad_GucciGames.gameEngine.mapObject.MapObjectType;
 
-public class GaeController implements IGuiGaeController, IModelGaeController, IDialogGaeController {
-    IGAEModel model;
+
+
+public class GaeController extends AGuiGaeController implements IModelGaeController{
+
+	IGAEModel model;
     GAEGui gui;
     MapObjectType mapobjecttype;
     Image currDraggedImage;
+    private int numberOfPlayers;
+    private Map<Integer, String> allPlayers = new HashMap<Integer, String>();
     
     public GaeController(Stage stage){
     	System.out.println("called 1");
@@ -42,21 +45,28 @@ public class GaeController implements IGuiGaeController, IModelGaeController, ID
         model.createCustomUnitType(m);
     }
     @Override
-    public List<MapObjectType> getImmutableTileTypes () {
+    public ObservableList<MapObjectType> getImmutableTileTypes () {
         return model.getImmutableTileTypes();
     }
-    public List<MapObjectType> getTileTypes () {
-        // TODO Auto-generated method stub
-        return (ObservableList<MapObjectType>) model.getTileTypes();
+    public ObservableList<MapObjectType> getTileTypes () {
+        return model.getTileTypes();
     }
     @Override
-    public List<MapObjectType> getImmutableUnitTypes () {
-        return (ObservableList<MapObjectType>) model.getImmutableUnitTypes();
+    public ObservableList<MapObjectType> getImmutableUnitTypes () {
+        return model.getImmutableUnitTypes();
     }
-    public List<MapObjectType> getUnitTypes () {
-        // TODO Auto-generated method stub
-        return null;
+    public ObservableList<MapObjectType> getUnitTypes () {
+        return model.getUnitTypes();
     }
+    
+    @Override
+	public ObservableList<MapObjectType> getImmutableStructureTypes() {
+		return model.getImmutableStructureTypes();
+	}
+	public ObservableList<MapObjectType> getStructureTypes() {
+		return model.getStructureTypes();
+	}
+	
     @Override
     public void saveToXML () {
         model.saveToXML();
@@ -84,7 +94,7 @@ public class GaeController implements IGuiGaeController, IModelGaeController, ID
 	}
 
 	@Override
-	public Image getCurrDraggedImage() {
+	public Image getCurrSelectedImage() {
 		return currDraggedImage;
 	}
 
@@ -101,9 +111,36 @@ public class GaeController implements IGuiGaeController, IModelGaeController, ID
 	public void createCustomMapObject(ObjectProperty p) {
 		// TODO Auto-generated method stub
 		// Debug:
-		
 		System.out.println("saving");
 		p.printProperty();
 		
 	}
+
+	@Override
+	public void setNumberOfPlayers(int n) {
+		// TODO Auto-generated method stub
+		numberOfPlayers = n;
+	}
+
+	@Override
+	public int getNumberOfPlayers() {
+		// TODO Auto-generated method stub
+		return numberOfPlayers;
+	}
+
+	@Override
+	public Map<Integer, String> getAllPlayersId() {
+		// TODO Auto-generated method stub
+		return allPlayers;
+	}
+
+	@Override
+	public void addPlayerToList(String name, int id) {
+		// TODO Auto-generated method stub
+		allPlayers.put(id, name);
+		//DEBUG:
+		allPlayers.forEach((k, v) -> System.out.println("k: " + k + " " + " v: " + v));
+		
+	}
+
 }

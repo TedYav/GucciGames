@@ -15,9 +15,9 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 
-public class CellGUI {
+public class Cell {
 	private static Image myImage = new Image(
-			CellGUI.class.getClassLoader().getResourceAsStream("voogasalad_GucciGames/graphics/water.png"));
+			Cell.class.getClassLoader().getResourceAsStream("voogasalad_GucciGames/graphics/water.png"));
 	private ImageView myMapView;
 	private ImageView myMiniView;
 	private Rectangle myBoundBox;
@@ -27,7 +27,7 @@ public class CellGUI {
 	private boolean isSelected = false;
 	private GridPoint myPos;
 
-	public CellGUI(Grid map, int x, int y) {
+	public Cell(Grid map, int x, int y) {
 		myMap = map;
 		myMapView = new ImageView(myImage);
 		mySize = myMap.getCellSize();
@@ -100,7 +100,12 @@ public class CellGUI {
 
 	public void addBound() {
 		if (myBoundBox == null) {
-			myBoundBox = new Rectangle(myMapView.getX(), myMapView.getY(), mySize.get(), mySize.get());
+			//myBoundBox = new Rectangle(myMapView.getX(), myMapView.getY(), mySize.get(), mySize.get());
+			myBoundBox = new Rectangle();
+			myBoundBox.widthProperty().bind(mySize);
+			myBoundBox.heightProperty().bind(mySize);
+			myBoundBox.xProperty().bind(myMapView.xProperty());
+			myBoundBox.yProperty().bind(myMapView.yProperty());
 			myBoundBox.setStroke(Color.YELLOW);
 			myBoundBox.setFill(Color.rgb(0, 255, 255, 0.2));
 			myBoundBox.setStrokeWidth(2);
@@ -120,6 +125,10 @@ public class CellGUI {
 	public void removeBound() {
 		if (myBoundBox != null) {
 			myMap.getChildren().remove(myBoundBox);
+			myBoundBox.xProperty().unbind();
+			myBoundBox.yProperty().unbind();
+			myBoundBox.widthProperty().unbind();
+			myBoundBox.heightProperty().unbind();
 			myBoundBox = null;
 		}
 	}
@@ -133,11 +142,11 @@ public class CellGUI {
 	}
 
 	public void removeFromMap() {
-		if (myBoundBox != null) {
-			myMap.getChildren().remove(myBoundBox);
-			myBoundBox = null;
-		}
-		myMap.getChildren().remove(myMapView);
+		removeBound();
+		myMapView.xProperty().unbind();
+		myMapView.yProperty().unbind();
+		myMapView.fitWidthProperty().unbind();
+		myMapView.fitHeightProperty().unbind();
 		myMap.remove(this);
 	}
 	

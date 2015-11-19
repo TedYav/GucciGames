@@ -2,15 +2,13 @@ package voogasalad_GucciGames.gameAuthoring.model;
 
 
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 import javafx.collections.ListChangeListener;
+import javafx.collections.ObservableList;
 import voogasalad_GucciGames.gameAuthoring.IModelGaeController;
 import voogasalad_GucciGames.gameData.XMLGameData;
-import voogasalad_GucciGames.gameEngine.GameMap;
 import voogasalad_GucciGames.gameEngine.MainGameEngine;
-import voogasalad_GucciGames.gameEngine.gameConditions.defaultConditions.game.GlobalGameCondition;
 import voogasalad_GucciGames.gameEngine.gamePlayer.AllPlayers;
 import voogasalad_GucciGames.gameEngine.gamePlayer.GamePlayerPerson;
 import voogasalad_GucciGames.gameEngine.mapObject.DefaultMapObjectType;
@@ -24,8 +22,6 @@ public class GAEModel implements IGAEModel{
     private XMLWriter writer;
     //private GameEngineToGameAuthoringEnvironment engine;
     private AllPlayers players;
-    private GlobalGameCondition conditions;
-    private GameMap map;
 	private MainGameEngine engine;
     
     public GAEModel(IModelGaeController controller) {
@@ -57,21 +53,27 @@ public class GAEModel implements IGAEModel{
     }
 
     @Override
-    public List<MapObjectType> getImmutableTileTypes () {
+    public ObservableList<MapObjectType> getImmutableTileTypes () {
         return data.getImmutableTileTypes();
     }
 
     @Override
-    public List<MapObjectType> getImmutableUnitTypes () {
+    public ObservableList<MapObjectType> getImmutableUnitTypes () {
         return data.getImmutableUnitTypes();
     }
+    
+    @Override
+	public ObservableList<MapObjectType> getImmutableStructureTypes() {
+		return data.getImmutableStructureTypes();
+	}
+    
   /*  @Override
-    public List<TileType> getTileTypes () {
+    public ObservableList<TileType> getTileTypes () {
         return null;
     }
 
     @Override
-    public List<GameUnitType> getUnitTypes () {
+    public ObservableList<GameUnitType> getUnitTypes () {
         return null;
     } */
 
@@ -84,7 +86,7 @@ public class GAEModel implements IGAEModel{
 //		GameMap myMap = new GameMap(myPlayers);
 //		PlayerUnitCondition myRule = new PlayerUnitCondition(listOfPlayers, null); 
 //		OnlyOnePlayerHasUnitsCondition myRule = new OnlyOnePlayerHasUnitsCondition(myMap);
-		MainGameEngine engine = new MainGameEngine(myPlayers, null, null);
+		MainGameEngine engine = new MainGameEngine(myPlayers);
 		writer.write(engine);
     	
         //xmlData.write();
@@ -110,14 +112,20 @@ public class GAEModel implements IGAEModel{
     }
 
 	@Override
-	public List<MapObjectType> getTileTypes() {
+	public ObservableList<MapObjectType> getTileTypes() {
 		// TODO Auto-generated method stub
 		
 		return null;
 	}
 
 	@Override
-	public List<MapObjectType> getUnitTypes() {
+	public ObservableList<MapObjectType> getUnitTypes() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+	
+	@Override
+	public ObservableList<MapObjectType> getStructureTypes() {
 		// TODO Auto-generated method stub
 		return null;
 	}

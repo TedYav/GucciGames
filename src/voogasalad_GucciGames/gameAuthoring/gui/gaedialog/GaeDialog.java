@@ -6,9 +6,11 @@ import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Map;
 import java.util.Properties;
 
 import voogasalad_GucciGames.gameAuthoring.IDialogGaeController;
+import voogasalad_GucciGames.gameAuthoring.guiexceptions.InvalidInputException;
 import voogasalad_GucciGames.gameAuthoring.properties.ObjectProperty;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
@@ -56,6 +58,34 @@ abstract public class GaeDialog{
 		stage.show();
 	}
 
+	
+	 protected ISaveGroovy setSaveGroovyFunctions(Map<String, String> groovyBuffer2, ISaveGroovy saveGroovy){		 
+			saveGroovy = (str, strName) -> {
+				groovyBuffer2.put(strName, str);
+				//debug
+				groovyBuffer2.forEach((k, v) -> System.out.println(" " + k + " " + v));
+				System.out.println("---------");
+			};	
+			return saveGroovy;
+		 
+	 }
+	 
+	 protected ISaveObjProperty setSavePropertyFunction(ObjectProperty property, ISaveObjProperty saveObjProperty){
+			saveObjProperty = (propName, prop) -> {
+				try {
+					property.addPropertyElement(propName, prop);
+				} catch (InvalidInputException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			};
+			return saveObjProperty;
+	 }
+	 
+	 protected ISaveCustomObj setSaveCustomObj(ISaveCustomObj saveCustomObject){
+		 saveCustomObject = p -> {System.out.println("here");};
+		 return saveCustomObject;
+	 }
 	
 
 }

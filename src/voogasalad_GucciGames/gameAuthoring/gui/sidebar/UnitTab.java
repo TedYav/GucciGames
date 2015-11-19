@@ -1,44 +1,25 @@
 package voogasalad_GucciGames.gameAuthoring.gui.sidebar;
 
-import java.util.Arrays;
-
 import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
-import voogasalad_GucciGames.gameAuthoring.IGuiGaeController;
+import voogasalad_GucciGames.gameAuthoring.AGuiGaeController;
 import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.NewObjectMaker;
-import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.UnitMaker;
 import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.ISaveCustomObj;
 import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.UnitMakerCustomContent;
 
-
-
-public class UnitTab extends AbstractTab {
+public class UnitTab extends ATab {
 	private ISaveCustomObj saveCustomObj;
 	
-	public UnitTab(IGuiGaeController controller, ISaveCustomObj saveCustomObj) {
-		super(controller);
+	public UnitTab(SideBar bar, ISaveCustomObj saveCustomObj) {
+		super(bar);
 		this.saveCustomObj = saveCustomObj;
 		setText("Units");
-		allImagePaths = Arrays.asList("voogasalad_GucciGames/graphics/fire.png", "voogasalad_GucciGames/graphics/water.png");
-		addImages();
-		addImageHandler();
-		addAddButtonListener();
+		//init(myController.getImmutableUnitTypes());
 	}
 
 	@Override
-	public void update() {
-		// TODO Auto-generated method stub
-	}
-
-	@Override
-	protected void addAddButtonListener() {
-		// TODO Auto-generated method stub
-		myAddButton.setOnAction(new EventHandler<ActionEvent>() {
-			@Override public void handle(ActionEvent e) {
-				NewObjectMaker unitMaker = new NewObjectMaker(new UnitMakerCustomContent(), myController);
-				unitMaker.showDialog();
-			}
-		});
+	protected void addNewTypeDialog(ActionEvent e) {
+		NewObjectMaker unitMaker = new NewObjectMaker(new UnitMakerCustomContent(), myController);
+		unitMaker.showDialog();
 	}
 
 }

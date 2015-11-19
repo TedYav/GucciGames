@@ -1,8 +1,6 @@
 package voogasalad_GucciGames.usecases;
 
-import voogasalad_GucciGames.gameEngine.GameMap;
 import voogasalad_GucciGames.gameEngine.SomeData;
-import voogasalad_GucciGames.gameEngine.gameConditions.defaultConditions.game.GlobalGameCondition;
 import voogasalad_GucciGames.gameEngine.gamePlayer.AllPlayers;
 
 public class UseMainGameEngine {
