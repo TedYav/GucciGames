@@ -35,6 +35,8 @@ public class GAEModel implements IGAEModel{
 		mapOfPlayers.put(-1, new GamePlayerPerson());
 		mapOfPlayers.put(0, new GamePlayerPerson());
 		mapOfPlayers.put(1, new GamePlayerPerson());
+		mapOfPlayers.put(2, new GamePlayerPerson());
+		
     	writer = new XMLWriter();
     }
     
@@ -101,7 +103,7 @@ public class GAEModel implements IGAEModel{
     } */
 
     @Override
-    public void saveToXML () {    	
+    public void saveToXML (String filename) {    	
     	/*
     	 * Don't instantiate these
     	 * Change to instance variables
@@ -109,7 +111,7 @@ public class GAEModel implements IGAEModel{
     	XStreamGameEngine saver = new XStreamGameEngine();
 		AllPlayers myPlayers = new AllPlayers(mapOfPlayers);
 		MainGameEngine engine = new MainGameEngine(myPlayers);
-		saver.saveEngine(engine, "./src/voogasalad_GucciGames/gameData/gaeengine.xml");
+		saver.saveEngine(engine, filename);
     }
     
     private boolean validate(){ //TODO

@@ -1,0 +1,57 @@
+<voogasalad__GucciGames.gameEngine.MainGameEngine>
+  <myGamePlayers>
+    <myMapOfPlayers>
+      <entry>
+        <int>-1</int>
+        <voogasalad__GucciGames.gameEngine.gamePlayer.GamePlayerPerson>
+          <myPlayerId>0</myPlayerId>
+          <myMapObjects/>
+          <turnMoves>-1</turnMoves>
+          <turnCounter>0</turnCounter>
+          <myStatus>DRAW</myStatus>
+        </voogasalad__GucciGames.gameEngine.gamePlayer.GamePlayerPerson>
+      </entry>
+      <entry>
+        <int>0</int>
+        <voogasalad__GucciGames.gameEngine.gamePlayer.GamePlayerPerson>
+          <myPlayerId>0</myPlayerId>
+          <myMapObjects/>
+          <turnMoves>-1</turnMoves>
+          <turnCounter>0</turnCounter>
+          <myStatus>DRAW</myStatus>
+        </voogasalad__GucciGames.gameEngine.gamePlayer.GamePlayerPerson>
+      </entry>
+      <entry>
+        <int>1</int>
+        <voogasalad__GucciGames.gameEngine.gamePlayer.GamePlayerPerson>
+          <myPlayerId>0</myPlayerId>
+          <myMapObjects/>
+          <turnMoves>-1</turnMoves>
+          <turnCounter>0</turnCounter>
+          <myStatus>DRAW</myStatus>
+        </voogasalad__GucciGames.gameEngine.gamePlayer.GamePlayerPerson>
+      </entry>
+      <entry>
+        <int>2</int>
+        <voogasalad__GucciGames.gameEngine.gamePlayer.GamePlayerPerson>
+          <myPlayerId>0</myPlayerId>
+          <myMapObjects/>
+          <turnMoves>-1</turnMoves>
+          <turnCounter>0</turnCounter>
+          <myStatus>DRAW</myStatus>
+        </voogasalad__GucciGames.gameEngine.gamePlayer.GamePlayerPerson>
+      </entry>
+    </myMapOfPlayers>
+  </myGamePlayers>
+  <myCurrentTurnCounter>
+    <currentTurn>0</currentTurn>
+  </myCurrentTurnCounter>
+  <myTurnDecider class="voogasalad_GucciGames.gameEngine.gamePlayer.DefaultTurnDecider">
+    <numPlayers>4</numPlayers>
+    <turnCounter reference="../../myCurrentTurnCounter"/>
+  </myTurnDecider>
+  <myConditionHandler>
+    <map/>
+  </myConditionHandler>
+  <mapDimensions>0</mapDimensions>
+</voogasalad__GucciGames.gameEngine.MainGameEngine>

@@ -93,8 +93,8 @@ public class GaeController extends AGuiGaeController implements IModelGaeControl
 	}
 	
     @Override
-    public void saveToXML () {
-        model.saveToXML();
+    public void saveToXML (String filepath) {
+        model.saveToXML(filepath);
     }
 
     
