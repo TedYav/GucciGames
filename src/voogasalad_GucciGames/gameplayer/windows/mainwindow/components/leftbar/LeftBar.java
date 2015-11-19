@@ -23,6 +23,7 @@ public class LeftBar extends WindowComponent implements DisplayComponent{
 
     private DisplayMapObjectDetails objectDetails;
     private DisplayChat chatDisplay;
+    private ResourceBundle myCssBundle = ResourceBundle.getBundle("voogasalad_GucciGames.gameplayer.config.scenes.CssClasses");
 
     public LeftBar (GameScene scene, GameControllerInterface controller, ResourceBundle bundle) {
         super(scene, controller);
@@ -37,8 +38,8 @@ public class LeftBar extends WindowComponent implements DisplayComponent{
         chatDisplay = new DisplayChat();
         container.getChildren().add(objectDetails.getNodeToDraw());
         container.getChildren().add(chatDisplay.getNodeToDraw());
-        container.getStyleClass().add(myBundle.getString("LeftVBox"));
-        container.setPrefWidth(Double.parseDouble(myBundle.getString("leftprefwidth")));
+        container.getStyleClass().add(myCssBundle.getString("LeftVBox"));
+        container.setPrefWidth(Double.parseDouble(myCssBundle.getString("leftprefwidth")));
     }
 
     @Override

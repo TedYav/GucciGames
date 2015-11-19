@@ -37,7 +37,7 @@ public class ActionDisplay implements DisplayComponent, Observer {
         });
         
         
-        temp.add(btn);
+        //temp.add(btn);
         buttons = new ListView<Button>(FXCollections.observableList(temp));
         
     }

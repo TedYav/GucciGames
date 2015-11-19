@@ -27,7 +27,7 @@ public class DisplayMapObjectDetails  implements DisplayComponent, ListChangeLis
     private GameControllerInterface myController;
     public DisplayMapObjectDetails(MapInterface map, GameControllerInterface controller) {
         temp= new ArrayList<String>();
-        temp.add("fasdf");
+        temp.add("(Select a cell)");
         listView=new ListView<String>(FXCollections.observableList(temp));
         myController=controller;
         mapObjectsOnCell=new ArrayList<PlayerMapObjectInterface>();
@@ -49,14 +49,6 @@ public class DisplayMapObjectDetails  implements DisplayComponent, ListChangeLis
             temp.clear();
             mapObjectsOnCell.clear();
             for (PlayerMapObjectInterface o: list){
-                
-                //temp.add(o.getName()));
-//                contents=o.getAttributes();
-//                if (contents!=null) {
-//                    for (String s: contents) {
-//                        temp.add(s);
-//                    }
-//                }
                 mapObjectsOnCell.add(o);
             }
             imageDisplay.updateImages();
