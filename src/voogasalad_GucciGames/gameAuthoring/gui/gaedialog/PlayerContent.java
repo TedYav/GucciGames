@@ -17,7 +17,6 @@ public class PlayerContent extends DialogContent{
 	
 	private IDialogGaeController controller;
 	
-	private Button saveBtn; 
 	
 	public PlayerContent(int playerNumber, IDialogGaeController controller){
 		this.playerNumber = playerNumber;
@@ -33,18 +32,22 @@ public class PlayerContent extends DialogContent{
 		browserField = new FileBrowserField(dialogElements,"image", "browse", "filechoosertitle");
 		
 		content.getChildren().addAll(title, textInputField.getContent(), browserField.getContent());
-		initializeSaveBtn();
 		content.setId("vbox-element");
 	}
 	
-	private void initializeSaveBtn(){
-		saveBtn = new Button(dialogElements.getDialogProperties().getProperty("savebtn"));
-		saveBtn.setOnAction(e -> {
-			controller.addPlayerToList(textInputField.getTextInput(), playerNumber);		
-		});
-		content.getChildren().add(saveBtn);
-		
+	protected String getPlayerName(){
+		return textInputField.getTextInput();
 	}
+	
+	protected int getPlayerId(){
+		return playerNumber;
+	}
+	
+	protected String getPlayerImagePath(){
+		return browserField.getPath();
+	}
+	
+	
 
 	@Override
 	protected VBox getContent() {

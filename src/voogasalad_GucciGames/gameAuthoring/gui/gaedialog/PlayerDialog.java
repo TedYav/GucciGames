@@ -1,6 +1,8 @@
 package voogasalad_GucciGames.gameAuthoring.gui.gaedialog;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.Properties;
 
@@ -20,13 +22,13 @@ public class PlayerDialog extends GaeDialog  {
 	private VBox myContent = new VBox();	
 	private Stage playerDialog = new Stage();
 	private IDialogGaeController controller;
-	
+	private List<PlayerContent> contentList = new ArrayList<PlayerContent>();
 	private Properties prop;
 	private ISaveObjProperty saveObjProperty;
 	private DialogElements dialogElements;
 	private Scene scene;
 	private int numOfPlayers;
-	private Button saveBtn;
+	private Button saveBtn = new Button("Save");
 	private ScrollPane scrollPane = new ScrollPane();
 
 	
@@ -35,7 +37,7 @@ public class PlayerDialog extends GaeDialog  {
 		prop = loadProperties("dialogproperties/playerdialogproperties.properties");			
 		this.controller = controller;
 		this.numOfPlayers = numberOfPlayers;		
-		myContent = initializeDialog();
+		initialize();
 		setScene();	
 		
 	}
@@ -49,37 +51,58 @@ public class PlayerDialog extends GaeDialog  {
 		
 	}
 
-	@Override
-	protected VBox initializeDialog() {
+	protected void initialize() {
 		// TODO Auto-generated method stub
-		VBox vbox = new VBox();
+		
 		Text title = new Text(prop.getProperty("title"));
 		title.setId("title");
-		vbox.getChildren().add(title);
+		myContent.getChildren().add(title);
 		int num = 1;
 		if (numOfPlayers == 0){
 			Text warning = new Text(prop.getProperty("noplayerwarning"));
 			warning.setId("light");
-			vbox.getChildren().add(warning);
+			myContent.getChildren().add(warning);
 		}
 		while(numOfPlayers  >=  num) {
 			PlayerContent content = new PlayerContent(num, controller);
+			contentList.add(content);
 			ObjectProperty playerProperty = new ObjectProperty();
 			saveObjProperty = setSavePropertyFunction(playerProperty, saveObjProperty);		
 			dialogElements = new DialogElements(prop, playerProperty, saveObjProperty, null,controller);
 			dialogElements.getSaveObjProperty().saveObjProperty("type", "playersetting");
 			content.setDialogElements(dialogElements);
 			content.init();
-			vbox.getChildren().add(content.getContent());
+			myContent.getChildren().add(content.getContent());
 			num++;
 		}
-		vbox.setId("vbox-element");
-		return vbox;
+		
+		initSaveBtn();
+		myContent.setId("vbox-element");
+
+	}
+	
+	private void initSaveBtn(){
+		
+		saveBtn.setOnAction(e -> {
+			for(PlayerContent c: contentList){
+				String name = c.getPlayerName();
+				int id = c.getPlayerId();
+				controller.addPlayerToList(name, id);
+			}
+			
+		});
+		this.myContent.getChildren().add(saveBtn);
 	}
 	
 	
 	public void showDialog(){
 		super.showDialog(playerDialog);
+	}
+
+	@Override
+	protected VBox initializeDialog() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }
