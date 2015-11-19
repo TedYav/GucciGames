@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import voogasalad_GucciGames.gameEngine.defaultCharacteristics.AttackCharacteristic;
 import voogasalad_GucciGames.gameEngine.mapObject.MapObject;
 
 public class GamePlayerPerson {
@@ -63,6 +64,15 @@ public class GamePlayerPerson {
 
 	public void setTurnCounter(int turnCounter) {
 		this.turnCounter = turnCounter;
+	}
+	public void resetObjects(){
+		for(MapObject object: myMapObjects){
+			if(object.getObjectType().hasCharacteristic("AttackCharacteristic")){
+				AttackCharacteristic attachChar =(AttackCharacteristic) object.getObjectType().getCharacteristic("AttackCharacteristic");
+				attachChar.reset();
+			}
+
+		}
 	}
 
 	public MovablePlayerCharacteristic getMyMovable() {

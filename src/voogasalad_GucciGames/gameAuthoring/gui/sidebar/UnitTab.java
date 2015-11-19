@@ -13,7 +13,7 @@ public class UnitTab extends ATab {
 		super(bar);
 		this.saveCustomObj = saveCustomObj;
 		setText("Units");
-		//init(myController.getImmutableUnitTypes());
+		init(myController.getImmutableUnitTypes());
 	}
 
 	@Override

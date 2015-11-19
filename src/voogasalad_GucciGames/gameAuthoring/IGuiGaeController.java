@@ -16,7 +16,6 @@ public interface IGuiGaeController{
 	 * Add Map Object
 	 * @param mapObj
 	 */
-    public void addComponent(MapObject mapObj); //validate in back end
     
     public void deleteComponent(MapObject mapObj);
     
@@ -24,7 +23,7 @@ public interface IGuiGaeController{
     
     public List<MapObject> getMapObjects();
     
-    public int getMapObjectListPosAtPoint(ObservableList<MapObject> mapObjectList, GridPoint gridPoint);
+//    public int getMapObjectListPosAtPoint(ObservableList<MapObject> mapObjectList, GridPoint gridPoint);
     
     public void clearMap();
     
@@ -37,12 +36,6 @@ public interface IGuiGaeController{
     public ObservableList<MapObjectType> getImmutableUnitTypes();
     
     public ObservableList<MapObjectType> getImmutableStructureTypes();
-
-    public ObservableList<MapObjectType> getTileTypes();
-
-    public ObservableList<MapObjectType> getUnitTypes();
-    
-    public ObservableList<MapObjectType> getStructureTypes();
 
     public void saveToXML();
     
