@@ -9,7 +9,7 @@ import javafx.collections.ListChangeListener;
 import javafx.collections.ObservableList;
 import voogasalad_GucciGames.gameAuthoring.IModelGaeController;
 import voogasalad_GucciGames.gameAuthoring.gui.map.GridPoint;
-import voogasalad_GucciGames.gameData.XMLGameData;
+import voogasalad_GucciGames.gameData.XStreamGameEngine;
 import voogasalad_GucciGames.gameEngine.MainGameEngine;
 import voogasalad_GucciGames.gameEngine.gamePlayer.AllPlayers;
 import voogasalad_GucciGames.gameEngine.gamePlayer.GamePlayerPerson;
@@ -21,7 +21,6 @@ import voogasalad_GucciGames.gameEngine.targetCoordinate.TargetCoordinateSingle;
 public class GAEModel implements IGAEModel{
     private GameSourceData data;
     private IModelGaeController myController;
-    private XMLGameData xmlData;
     private XMLWriter writer;
     //private GameEngineToGameAuthoringEnvironment engine;
 	private Map<Integer, GamePlayerPerson> mapOfPlayers;	
@@ -34,11 +33,6 @@ public class GAEModel implements IGAEModel{
     	writer = new XMLWriter();
     }
     
-
-    @Override
-	public void addComponent(MapObject mapObj) {
-		data.addToMap(mapObj);		
-	}
 
     @Override
     public void deleteComponent (MapObject mapObj) {
@@ -106,11 +100,11 @@ public class GAEModel implements IGAEModel{
     	 * Don't instantiate these
     	 * Change to instance variables
     	 */
+    	XStreamGameEngine saver = new XStreamGameEngine();
 		Map<Integer, GamePlayerPerson> mapOfPlayers = new HashMap<Integer, GamePlayerPerson>();	
 		AllPlayers myPlayers = new AllPlayers(mapOfPlayers);
-		
 		MainGameEngine engine = new MainGameEngine(myPlayers);
-		writer.write(engine);
+		saver.saveEngine(engine, "./src/voogasalad_GucciGames/gameData/gaeengine.xml");
     }
     
     private boolean validate(){ //TODO
@@ -126,29 +120,6 @@ public class GAEModel implements IGAEModel{
     public void setMapHeight (double y) {
         //map.setHeight(y);
     }
-
-    @Override
-    public void addObserver (ListChangeListener o) {
-        data.addListener(o);
-    }
-
-	@Override
-	public ObservableList<MapObjectType> getTileTypes() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public ObservableList<MapObjectType> getUnitTypes() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-	
-	@Override
-	public ObservableList<MapObjectType> getStructureTypes() {
-		// TODO Auto-generated method stub
-		return null;
-	}
 
 
     public void addComponent (Map<String,String> objParams) {
