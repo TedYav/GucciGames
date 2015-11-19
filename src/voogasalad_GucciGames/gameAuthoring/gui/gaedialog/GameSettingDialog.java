@@ -31,7 +31,7 @@ public class GameSettingDialog extends GaeDialog {
 		this.initializeSaveObjProperty();
 		dialogElements = new DialogElements(prop, gameSettingsProperty, saveObjProperty, null, dialogGaeController);
 		dialogElements.getSaveObjProperty().saveObjProperty("type", "gamesetting");
-		SaveField saveField = new SaveField(dialogElements, dialogGaeController);
+		SaveField saveField = new SaveField(dialogElements, dialogGaeController, gameSettingDialog);
 		myContent.getChildren().addAll(this.initializeDialog(), saveField.getContent());
 		Scene gameSettingDialogScene = new Scene(myContent, 500, 500);
 		gameSettingDialogScene.getStylesheets().add("voogasalad_GucciGames/gameAuthoring/gui/gaedialog/stylesheets/dialogstylesheet.css");

@@ -4,6 +4,7 @@ import java.util.Properties;
 
 import javafx.scene.control.Button;
 import javafx.scene.layout.HBox;
+import javafx.stage.Stage;
 import voogasalad_GucciGames.gameAuthoring.IDialogGaeController;
 import voogasalad_GucciGames.gameAuthoring.properties.ObjectProperty;
 
@@ -13,10 +14,12 @@ public class SaveField extends DialogComponent {
 	private IDialogGaeController dialogGaeController;
 	private HBox content = new HBox();
 	private Button saveBtn;
+	private Stage stage;
 	
-	public SaveField(DialogElements dialogElements, IDialogGaeController dialogGaeController ){
+	public SaveField(DialogElements dialogElements, IDialogGaeController dialogGaeController, Stage s ){
 		this.dialogElements = dialogElements;
 		this.dialogGaeController = dialogGaeController;
+		stage = s;
 		initializeControl();
 	}
 	
@@ -28,7 +31,10 @@ public class SaveField extends DialogComponent {
 		content.setId("hbox-element");
 	}
 	private void addListenerToSaveBtn(){
-		saveBtn.setOnAction(e -> dialogGaeController.createCustomMapObject(dialogElements.getObjectProperty()));
+		saveBtn.setOnAction(e ->  {
+			dialogGaeController.createCustomMapObject(dialogElements.getObjectProperty());
+			stage.close();
+			});
 	}
 
 	@Override
