@@ -58,16 +58,20 @@ public class FileBrowserField extends DialogComponent{
 	}
 
 	@Override
-	HBox getContent() {
+	protected HBox getContent() {
 		// TODO Auto-generated method stub
 		return content;
 	}
 
 	@Override
-	void setSelected(String s) {
+	protected void setSelected(String s) {
 		// TODO Auto-generated method stub
 		pathTextField.setText(s);
 		
+	}
+	
+	protected String getPath(){
+		return pathTextField.getText();
 	}
 
 }

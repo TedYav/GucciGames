@@ -1,6 +1,6 @@
 package voogasalad_GucciGames.gameAuthoring.gui.gaedialog;
-
-import javafx.scene.layout.HBox;
+import voogasalad_GucciGames.gameAuthoring.IDialogGaeController;
+import javafx.scene.control.Button;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 
@@ -15,8 +15,13 @@ public class PlayerContent extends DialogContent{
 	
 	private int playerNumber;
 	
-	public PlayerContent(int playerNumber){
+	private IDialogGaeController controller;
+	
+	private Button saveBtn; 
+	
+	public PlayerContent(int playerNumber, IDialogGaeController controller){
 		this.playerNumber = playerNumber;
+		this.controller = controller;
 		//init();
 	}
 	
@@ -26,8 +31,19 @@ public class PlayerContent extends DialogContent{
 		textInputField = new TextInputField(dialogElements, 
 				"player"+playerNumber);
 		browserField = new FileBrowserField(dialogElements,"image", "browse", "filechoosertitle");
+		
 		content.getChildren().addAll(title, textInputField.getContent(), browserField.getContent());
+		initializeSaveBtn();
 		content.setId("vbox-element");
+	}
+	
+	private void initializeSaveBtn(){
+		saveBtn = new Button(dialogElements.getDialogProperties().getProperty("savebtn"));
+		saveBtn.setOnAction(e -> {
+			controller.addPlayerToList(textInputField.getTextInput(), playerNumber);		
+		});
+		content.getChildren().add(saveBtn);
+		
 	}
 
 	@Override

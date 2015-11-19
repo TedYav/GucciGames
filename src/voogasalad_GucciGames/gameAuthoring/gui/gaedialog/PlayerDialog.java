@@ -7,6 +7,7 @@ import java.util.Properties;
 import voogasalad_GucciGames.gameAuthoring.IDialogGaeController;
 import voogasalad_GucciGames.gameAuthoring.properties.ObjectProperty;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
@@ -21,11 +22,11 @@ public class PlayerDialog extends GaeDialog  {
 	private IDialogGaeController controller;
 	
 	private Properties prop;
-	private Map<Integer, ObjectProperty> playerProperties = new HashMap<Integer, ObjectProperty>();
 	private ISaveObjProperty saveObjProperty;
 	private DialogElements dialogElements;
 	private Scene scene;
 	private int numOfPlayers;
+	private Button saveBtn;
 	private ScrollPane scrollPane = new ScrollPane();
 
 	
@@ -62,7 +63,7 @@ public class PlayerDialog extends GaeDialog  {
 			vbox.getChildren().add(warning);
 		}
 		while(numOfPlayers  >=  num) {
-			PlayerContent content = new PlayerContent(num);
+			PlayerContent content = new PlayerContent(num, controller);
 			ObjectProperty playerProperty = new ObjectProperty();
 			saveObjProperty = setSavePropertyFunction(playerProperty, saveObjProperty);		
 			dialogElements = new DialogElements(prop, playerProperty, saveObjProperty, null,controller);
@@ -70,13 +71,12 @@ public class PlayerDialog extends GaeDialog  {
 			content.setDialogElements(dialogElements);
 			content.init();
 			vbox.getChildren().add(content.getContent());
-			SaveField save = new SaveField(dialogElements, controller);
-			vbox.getChildren().add(save.getContent());
 			num++;
 		}
 		vbox.setId("vbox-element");
 		return vbox;
 	}
+	
 	
 	public void showDialog(){
 		super.showDialog(playerDialog);

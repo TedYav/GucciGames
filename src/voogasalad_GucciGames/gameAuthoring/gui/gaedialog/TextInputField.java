@@ -35,6 +35,10 @@ public class TextInputField extends DialogComponent{
 		});
 		
 	}
+	
+	protected String getTextInput(){
+		return getTextField().getText();
+	}
 
 	
 	protected TextField getTextField(){

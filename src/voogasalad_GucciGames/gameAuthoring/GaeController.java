@@ -1,5 +1,6 @@
 package voogasalad_GucciGames.gameAuthoring;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -20,6 +21,7 @@ public class GaeController implements IGuiGaeController, IModelGaeController{
     MapObjectType mapobjecttype;
     Image currDraggedImage;
     private int numberOfPlayers;
+    private Map<Integer, String> allPlayers = new HashMap<Integer, String>();
     
     public GaeController(Stage stage){
     	System.out.println("called 1");
@@ -122,5 +124,20 @@ public class GaeController implements IGuiGaeController, IModelGaeController{
 	public int getNumberOfPlayers() {
 		// TODO Auto-generated method stub
 		return numberOfPlayers;
+	}
+
+	@Override
+	public Map<Integer, String> getAllPlayersId() {
+		// TODO Auto-generated method stub
+		return allPlayers;
+	}
+
+	@Override
+	public void addPlayerToList(String name, int id) {
+		// TODO Auto-generated method stub
+		allPlayers.put(id, name);
+		//DEBUG:
+		allPlayers.forEach((k, v) -> System.out.println("k: " + k + " " + " v: " + v));
+		
 	}
 }
