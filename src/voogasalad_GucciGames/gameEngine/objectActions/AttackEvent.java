@@ -3,6 +3,7 @@ package voogasalad_GucciGames.gameEngine.objectActions;
 import java.util.ArrayList;
 import java.util.List;
 
+import voogasalad_GucciGames.gameEngine.CommunicationParams.ActionToGamePlayerParameters;
 import voogasalad_GucciGames.gameEngine.CommunicationParams.CommunicationParameters;
 import voogasalad_GucciGames.gameEngine.CommunicationParams.EmptyParameters;
 import voogasalad_GucciGames.gameEngine.CommunicationParams.LocationParams;
@@ -11,6 +12,7 @@ import voogasalad_GucciGames.gameEngine.defaultCharacteristics.HealthCharacteris
 import voogasalad_GucciGames.gameEngine.gameRules.defaultRules.AttacksPerTurn;
 import voogasalad_GucciGames.gameEngine.mapObject.MapObject;
 import voogasalad_GucciGames.gameEngine.targetCoordinate.TargetCoordinateSingle;
+import voogasalad_GucciGames.gameplayer.controller.PlayerMapObjectInterface;
 
 public class AttackEvent extends MapObjectEvent{
 
@@ -36,6 +38,8 @@ public class AttackEvent extends MapObjectEvent{
 			ids.add(ids1.get(i));
 		}
 		
+		ActionToGamePlayerParameters parameters = new ActionToGamePlayerParameters();
+		
 		for(Integer id: ids){
 			for(MapObject mo: moveParams.getPlayers().getPlayerById(id).getMapObjects()){
 				if(mo.getCoordinate().equals(target)){
@@ -46,6 +50,7 @@ public class AttackEvent extends MapObjectEvent{
 					hc.changeHealth(damage);
 					if(hc.getCurrentHealth() < 0){
 						moveParams.getPlayers().getActivePlayer(mo.getPlayerID()).getMapObjects().remove(mo);
+						parameters.addUnit((PlayerMapObjectInterface) mo);
 					}
 					break; //can only attack one
 				}
@@ -55,7 +60,7 @@ public class AttackEvent extends MapObjectEvent{
 		((AttackCharacteristic) calledMe.getCharacteristic("AttackCharacteristic")).updateAttackCount();
 
 		
-		return null; //return the dead units
+		return parameters; //return the dead units
 	}
 
 }

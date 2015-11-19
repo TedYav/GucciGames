@@ -88,4 +88,10 @@ public class DummyUnit extends ADummy implements PlayerMapObjectInterface {
 		return new TargetCoordinateSingle(myX, myY);
 	}
 
+	@Override
+	public boolean isDead() {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
 }

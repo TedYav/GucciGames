@@ -74,4 +74,10 @@ public class DummyTile extends ADummy implements PlayerMapObjectInterface {
 		return new ArrayList<PlayerMapObjectInterface>();
 	}
 
+	@Override
+	public boolean isDead() {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
 }

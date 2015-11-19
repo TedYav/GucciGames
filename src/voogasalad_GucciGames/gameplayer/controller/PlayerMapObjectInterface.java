@@ -20,4 +20,6 @@ public interface PlayerMapObjectInterface {
 	public int getPlayerID();
 
 	public ATargetCoordinate getCoordinate();
+	
+	public boolean isDead();
 }

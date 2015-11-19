@@ -10,6 +10,7 @@ import voogasalad_GucciGames.gameEngine.CommunicationParams.BasicParameters;
 import voogasalad_GucciGames.gameEngine.CommunicationParams.GridCoordinateParameters;
 import voogasalad_GucciGames.gameEngine.CommunicationParams.MainGameEngineCommunicationParameters;
 import voogasalad_GucciGames.gameEngine.defaultCharacteristics.AttackCharacteristic;
+import voogasalad_GucciGames.gameEngine.defaultCharacteristics.HealthCharacteristic;
 import voogasalad_GucciGames.gameEngine.targetCoordinate.ATargetCoordinate;
 import voogasalad_GucciGames.gameplayer.controller.PlayerMapObjectInterface;
 
@@ -128,6 +129,12 @@ public class MapObject implements PlayerMapObjectInterface{
 		return (GridCoordinateParameters) myObjectType.getRequest("WhereTo" + action).executeAction(basicParameters, myOwnerID);
 
 		
+	}
+
+	@Override
+	public boolean isDead() {
+		// TODO Auto-generated method stub
+		return ((HealthCharacteristic) getCharacteristic("HealthCharacteristic")).getCurrentHealth() < 0;
 	}
 
 
