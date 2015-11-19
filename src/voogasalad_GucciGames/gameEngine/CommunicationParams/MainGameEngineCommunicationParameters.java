@@ -17,7 +17,7 @@ public class MainGameEngineCommunicationParameters extends CommunicationParamete
 	}
 	
 	public int getActivePlayer(){
-		return myMainEngine.getActivePlayer();
+		return myMainEngine.getActivePlayerNumber();
 	}
 
 	public int getTurn() {

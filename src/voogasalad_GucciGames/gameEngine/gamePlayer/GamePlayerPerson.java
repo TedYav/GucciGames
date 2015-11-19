@@ -18,8 +18,9 @@ public class GamePlayerPerson {
 	private MovablePlayerCharacteristic myMovable;
 	
 	
-	public GamePlayerPerson() {
+	public GamePlayerPerson(int id) {
 		myMapObjects = new ArrayList<MapObject>();
+		myPlayerId = id;
 	}
 
 	public List<MapObject> getMapObjects() {

@@ -19,8 +19,8 @@ public class Main {
 
 	public static void main(String[] args) {
 		// test conditions:
-		GamePlayerPerson p0 = new GamePlayerPerson();
-		GamePlayerPerson p = new GamePlayerPerson();
+		GamePlayerPerson p0 = new GamePlayerPerson(0);
+		GamePlayerPerson p = new GamePlayerPerson(-1);
 		Map<Integer, GamePlayerPerson> map = new HashMap<Integer, GamePlayerPerson>();
 
 		map.put(-1, p);

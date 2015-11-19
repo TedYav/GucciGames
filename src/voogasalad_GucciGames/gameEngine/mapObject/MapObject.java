@@ -89,11 +89,7 @@ public class MapObject implements PlayerMapObjectInterface{
 		return (ActionToGamePlayerParameters) myObjectType.getAction(action).executeAction(basicParameters, myOwnerID);
 
 	}
-	@Override
-	public List<ATargetCoordinate> getActionTargets(String name) {
-		// TODO Auto-generated method stub
-		return null;
-	}
+	
 	public GridCoordinateParameters performRequest(String action,
 			BasicParameters basicParameters) {
 		// TODO Auto-generated method stub

@@ -33,7 +33,6 @@ public class WhereToMoveEvent extends MapObjectEvent{
 		// getting the range
 		MovableCharacteristic mc = (MovableCharacteristic) calledMe.getObjectType().getCharacteristic("MovableCharacteristic");
 		double range = mc.getRange();
-		System.out.println(range);
 		// going through neutral player
 		TargetCoordinateSingle caller = (TargetCoordinateSingle) calledMe.getCoordinate();
 		players.getPlayerById(-1).getMapObjects().stream().forEach(mo -> {
@@ -41,7 +40,6 @@ public class WhereToMoveEvent extends MapObjectEvent{
 				TargetCoordinateSingle single = (TargetCoordinateSingle) mo.getCoordinate();
 				double delta = Math.abs(single.getCenterX()-caller.getCenterX())+Math.abs(single.getCenterY()-caller.getCenterY());
 				// check to see if can move
-				System.out.println(range);
 
 				if (delta <= range){
 					result.addTargetCoodinateSingle(mo.getCoordinate());

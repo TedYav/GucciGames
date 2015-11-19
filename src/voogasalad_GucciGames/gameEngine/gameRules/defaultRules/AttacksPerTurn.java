@@ -15,6 +15,10 @@ public class AttacksPerTurn extends Rules{
 		super(myParams, params);
 	}
 
+	public AttacksPerTurn() {
+		// TODO Auto-generated constructor stub
+	}
+
 	@Override
 	public Boolean executeRules(BasicParameters communicationParams, int playerID) {
 		return null;

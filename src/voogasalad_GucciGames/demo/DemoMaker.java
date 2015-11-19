@@ -40,10 +40,10 @@ public class DemoMaker extends Application{
 	
     private static MainGameEngine createEngine() {
         Map<Integer,GamePlayerPerson> myMapOfPlayers = new TreeMap<Integer,GamePlayerPerson>();     
-        myMapOfPlayers.put(-1,new GamePlayerPerson()); //neutral player
-        myMapOfPlayers.put(0,new GamePlayerPerson()); //player 1 
+        myMapOfPlayers.put(-1,new GamePlayerPerson(-1)); //neutral player
+        myMapOfPlayers.put(0,new GamePlayerPerson(0)); //player 1 
 
-        myMapOfPlayers.put(1,new GamePlayerPerson()); //player 2
+        myMapOfPlayers.put(1,new GamePlayerPerson(1)); //player 2
         
         MapObjectType soldier = new MapObjectType("Duvall", "player/images/duvall.png");
         MapObjectType archer = new MapObjectType("Student" , "player/images/smile.png");
@@ -52,9 +52,9 @@ public class DemoMaker extends Application{
         
         MapObject soldier1 = new MapObject(soldier,new TargetCoordinateSingle(1,0),0,1);
         
-        myMapOfPlayers.get(-1).setMyMovable(new MovablePlayerCharacteristic());
-        myMapOfPlayers.get(0).setMyMovable(new MovablePlayerCharacteristic());
-        myMapOfPlayers.get(1).setMyMovable(new MovablePlayerCharacteristic());
+        myMapOfPlayers.get(-1).setMyMovable(new MovablePlayerCharacteristic(2));
+        myMapOfPlayers.get(0).setMyMovable(new MovablePlayerCharacteristic(2));
+        myMapOfPlayers.get(1).setMyMovable(new MovablePlayerCharacteristic(2));
         
 		MovableCharacteristic myMovableCharacteristic = new MovableCharacteristic(1, 3);
 		HealthCharacteristic myHealthCharacteristic = new RealHealthCharacteristic(5);

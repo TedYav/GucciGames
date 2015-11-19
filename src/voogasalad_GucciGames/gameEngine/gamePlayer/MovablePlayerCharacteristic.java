@@ -5,6 +5,10 @@ public class MovablePlayerCharacteristic extends AGamePlayerPersonCharacteristic
 	private int moveCount = 0;
 
 
+	public MovablePlayerCharacteristic(int numMoves){
+		myNumberOfMoves = numMoves;
+	}
+	
 	/*public MovablePlayerCharacteristic(UnitCollection units, int playerId) {
 		super(units, playerId);
 		myNumberOfMoves = -1;

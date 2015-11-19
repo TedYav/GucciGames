@@ -36,17 +36,9 @@ public class AllPlayers {
 		return myMapOfPlayers.get(id);
 	}
 
-	public int numberOfPlayer() {
-		return myMapOfPlayers.size();
-	}
-
 	// right now includes the neutral player
 	public int getNumberOfPlayers() {
 		return myMapOfPlayers.size();
-	}
-
-	public GamePlayerPerson getActivePlayer(int index) {
-		return myMapOfPlayers.get(index);
 	}
 
 

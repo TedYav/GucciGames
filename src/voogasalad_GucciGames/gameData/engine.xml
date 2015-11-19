@@ -4,7 +4,7 @@
       <entry>
         <int>-1</int>
         <voogasalad__GucciGames.gameEngine.gamePlayer.GamePlayerPerson>
-          <myPlayerId>0</myPlayerId>
+          <myPlayerId>-1</myPlayerId>
           <myMapObjects>
             <voogasalad__GucciGames.gameEngine.mapObject.MapObject>
               <myObjectType>
@@ -666,7 +666,7 @@
       <entry>
         <int>1</int>
         <voogasalad__GucciGames.gameEngine.gamePlayer.GamePlayerPerson>
-          <myPlayerId>0</myPlayerId>
+          <myPlayerId>1</myPlayerId>
           <myMapObjects>
             <voogasalad__GucciGames.gameEngine.mapObject.MapObject>
               <myObjectType>
@@ -879,8 +879,10 @@
     <currentTurn>0</currentTurn>
   </myCurrentTurnCounter>
   <myTurnDecider class="voogasalad_GucciGames.gameEngine.gamePlayer.DefaultTurnDecider">
-    <numPlayers>3</numPlayers>
+    <numPlayers>0</numPlayers>
     <turnCounter reference="../../myCurrentTurnCounter"/>
+    <myPlayers reference="../../myGamePlayers"/>
+    <myActivePlayer reference="../../myGamePlayers/myMapOfPlayers/entry[2]/voogasalad__GucciGames.gameEngine.gamePlayer.GamePlayerPerson"/>
   </myTurnDecider>
   <myConditionHandler>
     <map/>
