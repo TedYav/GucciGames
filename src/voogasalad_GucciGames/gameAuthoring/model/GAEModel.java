@@ -30,6 +30,11 @@ public class GAEModel implements IGAEModel{
     public GAEModel(IModelGaeController controller) {
     	myController = controller;
     	data = new GameSourceData();
+    	mapOfPlayers = new HashMap<>();
+    	// Probs need to change this
+		mapOfPlayers.put(-1, new GamePlayerPerson());
+		mapOfPlayers.put(0, new GamePlayerPerson());
+		mapOfPlayers.put(1, new GamePlayerPerson());
     	writer = new XMLWriter();
     }
     
@@ -43,6 +48,7 @@ public class GAEModel implements IGAEModel{
     public MapObject addObject(GridPoint gridpoint, MapObjectType mapObjType, int ownerID) {
     	TargetCoordinateSingle targCoordSingle = new TargetCoordinateSingle(gridpoint.getX(), gridpoint.getY());
     	MapObject mapObject = new MapObject(mapObjType, targCoordSingle, ownerID);
+    	mapOfPlayers.get(ownerID).addMapObject(mapObject);
     	//Validate with engine, if failed, return null, else return this mapObject
     	return mapObject;
     }
@@ -101,7 +107,6 @@ public class GAEModel implements IGAEModel{
     	 * Change to instance variables
     	 */
     	XStreamGameEngine saver = new XStreamGameEngine();
-		Map<Integer, GamePlayerPerson> mapOfPlayers = new HashMap<Integer, GamePlayerPerson>();	
 		AllPlayers myPlayers = new AllPlayers(mapOfPlayers);
 		MainGameEngine engine = new MainGameEngine(myPlayers);
 		saver.saveEngine(engine, "./src/voogasalad_GucciGames/gameData/gaeengine.xml");
