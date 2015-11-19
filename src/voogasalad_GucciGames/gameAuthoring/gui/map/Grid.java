@@ -2,6 +2,7 @@ package voogasalad_GucciGames.gameAuthoring.gui.map;
 
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
@@ -27,7 +28,7 @@ class Grid extends Pane {
 	private ImageView myMouseImg;
 	private AGuiGaeController myController;
 	
-	private ObservableList<MapObject> myMapObjects;
+	private List<MapObject> myMapObjects;
 
 	public Grid(DoubleProperty cellSize, AGuiGaeController controller) {
 		myController = controller;
