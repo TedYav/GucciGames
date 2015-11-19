@@ -25,7 +25,7 @@
 
 #hbox-element{
 	-fx-background-radius: 5.0; 
-    -fx-padding: 0;
+    -fx-padding: 10;
     -fx-spacing: 15;
 	
 }
