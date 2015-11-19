@@ -1,13 +1,11 @@
 package voogasalad_GucciGames.gameEngine.objectActions;
 
-import java.util.Iterator;
+import java.util.HashSet;
+import java.util.Set;
 
 import voogasalad_GucciGames.gameEngine.CommunicationParams.BasicParameters;
 import voogasalad_GucciGames.gameEngine.CommunicationParams.CommunicationParameters;
 import voogasalad_GucciGames.gameEngine.CommunicationParams.GridCoordinateParameters;
-import voogasalad_GucciGames.gameEngine.CommunicationParams.MainGameEngineCommunicationParameters;
-import voogasalad_GucciGames.gameEngine.CommunicationParams.WhereToParams;
-import voogasalad_GucciGames.gameEngine.defaultCharacteristics.CharacteristicFactory;
 import voogasalad_GucciGames.gameEngine.defaultCharacteristics.MovableCharacteristic;
 import voogasalad_GucciGames.gameEngine.gamePlayer.AllPlayers;
 import voogasalad_GucciGames.gameEngine.gamePlayer.GamePlayerPerson;
@@ -39,30 +37,30 @@ public class WhereToMoveEvent extends MapObjectEvent{
 		System.out.println(range);
 		// going through neutral player
 		TargetCoordinateSingle caller = (TargetCoordinateSingle) calledMe.getCoordinate();
-		players.getPlayerById(-1).getMapObjects().stream().forEach(mo -> {
-			if(mo.getObjectType().getName().equals("TileCharacteristics")){
-				TargetCoordinateSingle single = (TargetCoordinateSingle) mo.getCoordinate();
-				double delta = Math.abs(single.getCenterX()-caller.getCenterX())+Math.abs(single.getCenterY()-caller.getCenterY());
-				// check to see if can move
-				System.out.println(range);
 
-				if (delta <= range){
-					//hi joy, take this out cause it doesn't work
-					Iterator<MapObject> idIterator = players.getPlayerById(1).getMapObjects().iterator();
-					while (idIterator.hasNext()) {
-						if (!mo.getCoordinate().equals(idIterator.next().getCoordinate())){
-							//all the way to here
-								result.addTargetCoodinateSingle(mo.getCoordinate());
-						}
-					}
-					
+		Set<TargetCoordinateSingle> otherCoor = new HashSet<>();
+		players.getNonNeutralMapObjects().stream().forEach(obj -> {
+			otherCoor.add((TargetCoordinateSingle) obj.getCoordinate());
+		});
+		players.getActivePlayer(-1).getMapObjects().stream().forEach(mo -> {
+			if(mo.getObjectType().isTile()){
+				TargetCoordinateSingle single = (TargetCoordinateSingle) mo.getCoordinate();
+				double dx = Math.abs(single.getCenterX()-caller.getCenterX());
+				double dy = Math.abs(single.getCenterY()-caller.getCenterY());
+
+				if (check(dx,dy,range) && !otherCoor.contains(mo.getCoordinate())){
+					result.addTargetCoodinateSingle(mo.getCoordinate());
 				}
 			}
 		});
-		
+
 		//go through other players' units for me
 
 		return new GridCoordinateParameters(result);
+	}
+
+	private boolean check(double dx, double dy, double range){
+		return (dx <= range) && (dy <=range);
 	}
 
 

@@ -114,7 +114,7 @@ public class MapObjectType{
 	
 
 	public boolean isTile(){
-		return myCharacteristics.containsKey("TileCharacteristic") || myName.equals("TileCharacteristic");
+		return myCharacteristics.containsKey("TileCharacteristics") || myName.equals("TileCharacteristics");
 	}
 	
 
