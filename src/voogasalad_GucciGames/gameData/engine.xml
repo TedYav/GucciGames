@@ -624,8 +624,8 @@
                   <entry>
                     <string>MovableCharacteristic</string>
                     <voogasalad__GucciGames.gameEngine.defaultCharacteristics.MovableCharacteristic>
-                      <myNumberOfMoves>1</myNumberOfMoves>
-                      <myRange>3.0</myRange>
+                      <myNumberOfMoves>3</myNumberOfMoves>
+                      <myRange>1.0</myRange>
                     </voogasalad__GucciGames.gameEngine.defaultCharacteristics.MovableCharacteristic>
                   </entry>
                 </myCharacteristics>

@@ -2,6 +2,11 @@ package voogasalad_GucciGames.gameEngine.defaultCharacteristics;
 
 public class NullHealthCharacteristic extends HealthCharacteristic {
 
+	public NullHealthCharacteristic(CharacteristicParams charParams) {
+		super(charParams);
+		// TODO Auto-generated constructor stub
+	}
+
 	@Override
 	public void changeHealth(double healthDiff) {
 		// do nothing

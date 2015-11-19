@@ -1,10 +1,13 @@
 package voogasalad_GucciGames.gameEngine.objectActions;
 
+import java.util.Iterator;
+
 import voogasalad_GucciGames.gameEngine.CommunicationParams.BasicParameters;
 import voogasalad_GucciGames.gameEngine.CommunicationParams.CommunicationParameters;
 import voogasalad_GucciGames.gameEngine.CommunicationParams.GridCoordinateParameters;
 import voogasalad_GucciGames.gameEngine.CommunicationParams.MainGameEngineCommunicationParameters;
 import voogasalad_GucciGames.gameEngine.CommunicationParams.WhereToParams;
+import voogasalad_GucciGames.gameEngine.defaultCharacteristics.CharacteristicFactory;
 import voogasalad_GucciGames.gameEngine.defaultCharacteristics.MovableCharacteristic;
 import voogasalad_GucciGames.gameEngine.gamePlayer.AllPlayers;
 import voogasalad_GucciGames.gameEngine.gamePlayer.GamePlayerPerson;
@@ -33,26 +36,44 @@ public class WhereToMoveEvent extends MapObjectEvent{
 		// getting the range
 		MovableCharacteristic mc = (MovableCharacteristic) calledMe.getObjectType().getCharacteristic("MovableCharacteristic");
 		double range = mc.getRange();
-		System.out.println(range);
+		//System.out.println(range);
 		// going through neutral player
 		TargetCoordinateSingle caller = (TargetCoordinateSingle) calledMe.getCoordinate();
 		players.getPlayerById(-1).getMapObjects().stream().forEach(mo -> {
 			if(mo.getObjectType().getName().equals("TileCharacteristics")){
 				TargetCoordinateSingle single = (TargetCoordinateSingle) mo.getCoordinate();
 				double delta = Math.abs(single.getCenterX()-caller.getCenterX())+Math.abs(single.getCenterY()-caller.getCenterY());
+				boolean flag=true;
 				// check to see if can move
-				System.out.println(range);
+				//System.out.println(range);
 
-				if (delta <= range){
-					result.addTargetCoodinateSingle(mo.getCoordinate());
-				}
+				if (delta <= range){	
+
+					//hi joy, take this out cause it doesn't work
+					Iterator<MapObject> idIterator = players.getPlayerById(1).getMapObjects().iterator();	
+					System.out.println(players.getPlayerById(1).getMapObjects().size());
+					while (idIterator.hasNext()) {
+						MapObject next = idIterator.next();
+						if (next.getCoordinate().equals(mo.getCoordinate())){
+							flag=false;
+						}
+					}
+					if(flag) {
+						result.addTargetCoodinateSingle(mo.getCoordinate());
+					}
+
+
+				
+
 			}
-		});
-		
-		//go through other players' units for me
 
+		}
+	});
+
+		//go through other players' units for me
+		System.out.println(result);
 		return new GridCoordinateParameters(result);
-	}
+}
 
 
 }
