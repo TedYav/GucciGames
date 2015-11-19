@@ -53,6 +53,9 @@ public class GameSourceData {
 	public void clearMap() {
 		onMap.clear();
 	}
+	public ObservableList<MapObject> getMapObjects(){
+		return onMap;
+	}
 	public void addTileType(MapObjectType type) {
 		tileTypes.add(type);
 	}

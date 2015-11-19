@@ -11,7 +11,7 @@ import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Screen;
 import javafx.stage.Stage;
-import voogasalad_GucciGames.gameAuthoring.IGuiGaeController;
+import voogasalad_GucciGames.gameAuthoring.AGuiGaeController;
 import voogasalad_GucciGames.gameAuthoring.gui.sidebar.SideBar;
 import voogasalad_GucciGames.gameAuthoring.gui.sidebar.StructureTab;
 import voogasalad_GucciGames.gameAuthoring.gui.sidebar.TileTab;
@@ -23,11 +23,11 @@ import voogasalad_GucciGames.gameAuthoring.gui.menubar.GAEMenuBar;
 
 public class GAEGui extends BorderPane {
 
-	private IGuiGaeController myController;
+	private AGuiGaeController myController;
 	private GUIMap myMap;
 	//private ISaveCustomObj saveCustomObj;
 
-	public GAEGui(IGuiGaeController controller, Stage stage) {
+	public GAEGui(AGuiGaeController controller, Stage stage) {
 		myController = controller;
 		stage.setScene(new Scene(this));
 		
@@ -84,7 +84,7 @@ public class GAEGui extends BorderPane {
 		return null;
 	}
 
-	public IGuiGaeController getController() {
+	public AGuiGaeController getController() {
 		return myController;
 	}
 	

@@ -6,6 +6,7 @@ import java.util.Map;
 import java.util.Set;
 
 import javafx.beans.property.DoubleProperty;
+import javafx.collections.ObservableList;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseButton;
@@ -13,7 +14,8 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
-import voogasalad_GucciGames.gameAuthoring.IGuiGaeController;
+import voogasalad_GucciGames.gameAuthoring.AGuiGaeController;
+import voogasalad_GucciGames.gameEngine.mapObject.MapObject;
 
 class Grid extends Pane {
 
@@ -23,9 +25,11 @@ class Grid extends Pane {
 	private final Map<GridPoint, Cell> myCells = new HashMap<>();
 	private Rectangle myMouseBound;
 	private ImageView myMouseImg;
-	private IGuiGaeController myController;
+	private AGuiGaeController myController;
+	
+	private ObservableList<MapObject> myMapObjects;
 
-	public Grid(DoubleProperty cellSize, IGuiGaeController controller) {
+	public Grid(DoubleProperty cellSize, AGuiGaeController controller) {
 		myController = controller;
 		myBackground = new ImageView();
 		getChildren().setAll(myBackground);
@@ -40,6 +44,8 @@ class Grid extends Pane {
 		setOnDragExited(e -> removeMouseBound());
 		myCellSize.addListener((c, o, n) -> removeMouseBound());
 		new GridSelector(this);
+		
+		myMapObjects = controller.getMapObjects();
 	}
 
 	public void initGrid(int width, int height) {
@@ -58,6 +64,7 @@ class Grid extends Pane {
 		for (int x = 0; x < width; x++) {
 			for (int y = 0; y < height; y++) {
 				new Cell(this, x, y);
+				//TODO: update the MapObjects
 			}
 		}
 	}
@@ -134,6 +141,8 @@ class Grid extends Pane {
 			int y = (int) Math.floor(e.getY() / myCellSize.get());
 			Cell gui = new Cell(this, x, y);
 			gui.setImage(myController.getCurrSelectedImage());
+			//TODO: finish up MapObject and fix Cell
+//			getMapObjectListPosAtPoint(myMapObjects, );
 			e.consume();
 		}
 	}
@@ -150,6 +159,10 @@ class Grid extends Pane {
 	public void add(Cell cell) {
 		getChildren().add(cell.getMapView());
 		myCells.put(cell.getPosition(), cell);
+	}
+	
+	public AGuiGaeController getController(){
+		return myController;
 	}
 
 }

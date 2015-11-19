@@ -33,6 +33,7 @@ public class DropDownMenuField  extends DialogComponent{
 		dropDown.setItems(options);	
 		addListenerToDropDown();
 		content.getChildren().addAll(label, dropDown);
+		content.setId("hbox-element");
 	}
 	
 	private void addListenerToDropDown(){
