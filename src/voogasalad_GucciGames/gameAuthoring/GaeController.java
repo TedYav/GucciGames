@@ -162,6 +162,11 @@ public class GaeController extends AGuiGaeController implements IModelGaeControl
 		allPlayers.forEach((k, v) -> System.out.println("k: " + k + " " + " v: " + v));
 		
 	}
+	@Override
+	public void changeOwner(MapObject mapObject, int playerID) {
+		model.changeOwner(mapObject, playerID);
+		
+	}
 
 	@Override
 	public void savePlayer() {
