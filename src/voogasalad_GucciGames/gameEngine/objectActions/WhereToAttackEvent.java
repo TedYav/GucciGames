@@ -25,7 +25,6 @@ public class WhereToAttackEvent extends MapObjectEvent{
 		// TODO Auto-generated method stub
 		BasicParameters basic = (BasicParameters) params;
 		AllPlayers players = basic.getPlayers();
-		List<Integer> ids = players.getAllIds();
 		
 		TargetCoordinateMultiple result = new TargetCoordinateMultiple();
 
@@ -35,23 +34,19 @@ public class WhereToAttackEvent extends MapObjectEvent{
 		double range = ac.getRange();
 		
 		TargetCoordinateSingle caller = (TargetCoordinateSingle) calledMe.getCoordinate();
-		for(int i = 0; i < ids.size(); i++){
-			GamePlayerPerson other = players.getPlayerById(ids.get(i));
-			for(MapObject mo: other.getMapObjects()){
-				int j = 0;
+		
+		players.getAllIds().stream().forEach(id ->{
+			players.getPlayerById(id).getMapObjects().stream().forEach(mo -> {
 				if(mo.hasCharacteristic("HealthCharacteristic")){
 					TargetCoordinateSingle single = (TargetCoordinateSingle) mo.getCoordinate();
-					double delta = Math.abs(single.getCenterX()-caller.getCenterX())+Math.abs(single.getCenterY()-caller.getCenterY());
-					if(delta <= range){
+					double dx = Math.abs(single.getCenterX()-caller.getCenterX());
+					double dy = Math.abs(single.getCenterY()-caller.getCenterY());
+					if(checkNeighborhood(dx,dy,range)){
 						result.addTargetCoordinateSingle(single);
 					}
 				}
-			}
-			
-		}
-		
-		
-		
+			});
+		});
 		
 		return new GridCoordinateParameters(result);
 	}
