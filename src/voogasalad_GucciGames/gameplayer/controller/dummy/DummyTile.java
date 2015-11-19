@@ -19,10 +19,12 @@ import voogasalad_GucciGames.gameplayer.controller.PlayerMapObjectInterface;
 public class DummyTile extends ADummy implements PlayerMapObjectInterface {
 	
 	private int myX, myY;
+	private boolean removed;
 	
 	public DummyTile(int x, int y){
 		myX = x;
 		myY = y;
+		removed=false;
 	}
 	
 	@Override
@@ -73,5 +75,11 @@ public class DummyTile extends ADummy implements PlayerMapObjectInterface {
 	public List<PlayerMapObjectInterface> performAction(String action, ATargetCoordinate target) {
 		return new ArrayList<PlayerMapObjectInterface>();
 	}
+
+    @Override
+    public boolean isRemoved () {
+        // TODO Auto-generated method stub
+        return removed;
+    }
 
 }
