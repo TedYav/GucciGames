@@ -1,13 +1,6 @@
 package voogasalad_GucciGames.gameAuthoring.gui.map;
 
 import javafx.beans.property.DoubleProperty;
-import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
-import javafx.scene.control.ContextMenu;
-import javafx.scene.control.Menu;
-import javafx.scene.control.MenuItem;
-import javafx.scene.control.RadioMenuItem;
-import javafx.scene.control.ToggleGroup;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseButton;
@@ -103,7 +96,6 @@ public class Cell {
 	}
 
 	private void showMenu(MouseEvent e) {
-		System.out.println("Clicked");
 		if(myMenu==null)
 			myMenu = new PopupMenu(myMap.getController(), this);
 		myMenu.update();

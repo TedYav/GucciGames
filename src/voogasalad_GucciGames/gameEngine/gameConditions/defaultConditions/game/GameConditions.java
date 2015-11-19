@@ -1,19 +1,18 @@
 package voogasalad_GucciGames.gameEngine.gameConditions.defaultConditions.game;
 
-public abstract class GameConditions {
+import voogasalad_GucciGames.gameEngine.CommunicationParams.BasicParameters;
+import voogasalad_GucciGames.gameEngine.gameConditions.ConditionParams;
+import voogasalad_GucciGames.gameEngine.gameConditions.defaultConditions.DefaultConditions;
 
-	
-	//give access to units (treasure)
-	
-	//check how to do groovy
-	
-	
-	public boolean hasGameEnded() {
-		
-		return false;
+public abstract class GameConditions  extends DefaultConditions {
+
+
+	public GameConditions(ConditionParams condparams, BasicParameters params) {
+		super(condparams, params);
 	}
-	
-	
-	
-	
+
+
+
+
+
 }

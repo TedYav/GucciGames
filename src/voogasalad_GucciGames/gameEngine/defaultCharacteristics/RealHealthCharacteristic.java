@@ -11,6 +11,11 @@ public class RealHealthCharacteristic extends HealthCharacteristic{
 		defineHealthValue(myMaxHP);
 	}
 	
+	public RealHealthCharacteristic(double maxHP){
+		super(null);
+		defineHealthValue(maxHP);
+	}
+	
 	@Override
 	public void changeHealth(double healthDiff){
 		myCurrentHealth -= healthDiff;

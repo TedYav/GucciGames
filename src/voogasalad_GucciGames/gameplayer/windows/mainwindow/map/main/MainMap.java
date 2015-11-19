@@ -36,7 +36,10 @@ public class MainMap extends WindowComponent implements MapInterface {
 	
 	private MiniMap myMiniMap;
 	
-	private ResourceBundle myConfig = ResourceBundle.getBundle("voogasalad_GucciGames.gameplayer.config.components.Map");
+        private ResourceBundle myConfig = ResourceBundle.getBundle("voogasalad_GucciGames.gameplayer.config.components.Map");
+        private ResourceBundle myCssBundle = ResourceBundle.getBundle("voogasalad_GucciGames.gameplayer.config.scenes.CssClasses");
+
+	
 
 	private TwoWayMap<Point2D, MapCellInterface> myCellMap;
 	private List<MapCellInterface> myHighlightedCells;
@@ -121,10 +124,11 @@ public class MainMap extends WindowComponent implements MapInterface {
 		System.out.println(initialState);
 		initialState.stream()
 			.forEach(o->addToMap(o));
-        myParent.getStyleClass().add(myConfig.getString("MainCSSClass"));
-        myParent.applyCss();
-        myMap.getStyleClass().add(myConfig.getString("MainCSSClass"));
-        myMap.applyCss();
+        //myParent.getStyleClass().add(myConfig.getString("MainCSSClass"));
+        //myParent.applyCss();
+        //myMap.getStyleClass().add(myConfig.getString("MainCSSClass"));
+        //myMap.applyCss();
+		myParent.getStyleClass().add(myCssBundle.getString("mapstackpane"));
 	}
 	
 	private void addToMap(PlayerMapObjectInterface object) {

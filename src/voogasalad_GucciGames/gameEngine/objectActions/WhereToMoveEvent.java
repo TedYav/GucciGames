@@ -1,5 +1,7 @@
 package voogasalad_GucciGames.gameEngine.objectActions;
 
+import java.util.Iterator;
+
 import voogasalad_GucciGames.gameEngine.CommunicationParams.BasicParameters;
 import voogasalad_GucciGames.gameEngine.CommunicationParams.CommunicationParameters;
 import voogasalad_GucciGames.gameEngine.CommunicationParams.GridCoordinateParameters;
@@ -45,11 +47,13 @@ public class WhereToMoveEvent extends MapObjectEvent{
 				System.out.println(range);
 
 				if (delta <= range){
-					//added code to check if unit is already there
-					for (MapObject unit: players.getAllUnits())
-						if (mo.getCoordinate() != unit.getCoordinate())
-							//end of added code, if code doesn't work
-							result.addTargetCoodinateSingle(mo.getCoordinate());
+					Iterator<MapObject> idIterator = players.getPlayerById(1).getMapObjects().iterator();
+					while (idIterator.hasNext()) {
+						if (!mo.getCoordinate().equals(idIterator.next().getCoordinate())){
+								result.addTargetCoodinateSingle(mo.getCoordinate());
+						}
+					}
+					
 				}
 			}
 		});

@@ -22,11 +22,11 @@ public class Main {
 
 	public static void main(String[] args) {
 		// test conditions:
-		Map<String, List<Integer>> dummyCharacteristicMap = new TreeMap<>();
-		List<Integer> temp = new ArrayList<Integer>();
-		temp.add(1);
-		temp.add(3);
-		dummyCharacteristicMap.put("MovableCharacteristic", temp);
+//		Map<String, List<Integer>> dummyCharacteristicMap = new TreeMap<>();
+//		List<Integer> temp = new ArrayList<Integer>();
+//		temp.add(1);
+//		temp.add(3);
+//		dummyCharacteristicMap.put("MovableCharacteristic", temp);
 		
 		GamePlayerPerson p0 = new GamePlayerPerson();
 		GamePlayerPerson p = new GamePlayerPerson();

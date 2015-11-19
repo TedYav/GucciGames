@@ -12,10 +12,16 @@ public class MovableCharacteristic extends AMapObjectCharacteristic{
 		myRange = charParams.getMyRange();
 	}
 	
+	public MovableCharacteristic(double range, int maxNumOfMoves){
+		super(null);
+		myRange = range;
+		myNumberOfMoves = maxNumOfMoves;
+	}
+
 	public int getNumberOfMoves() {
 		return myNumberOfMoves;
 	}
-	
+
 	public double getRange() {
 		return myRange;
 	}

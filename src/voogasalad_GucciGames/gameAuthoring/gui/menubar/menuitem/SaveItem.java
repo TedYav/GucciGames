@@ -9,7 +9,7 @@ class SaveItem extends MenuItem {
 		super(name);
 		setAccelerator(KeyCombination.keyCombination("Ctrl+S"));
 		setOnAction(e -> {
-			controller.saveToXML();
+			controller.saveToXML("./src/voogasalad_GucciGames/gameData/gaeengine.xml");
 		});
 	}
 }
