@@ -2,11 +2,13 @@ package voogasalad_GucciGames.gameAuthoring.model;
 
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import javafx.collections.ListChangeListener;
 import javafx.collections.ObservableList;
 import voogasalad_GucciGames.gameAuthoring.IModelGaeController;
+import voogasalad_GucciGames.gameAuthoring.gui.map.GridPoint;
 import voogasalad_GucciGames.gameData.XMLGameData;
 import voogasalad_GucciGames.gameEngine.MainGameEngine;
 import voogasalad_GucciGames.gameEngine.gamePlayer.AllPlayers;
@@ -14,6 +16,7 @@ import voogasalad_GucciGames.gameEngine.gamePlayer.GamePlayerPerson;
 import voogasalad_GucciGames.gameEngine.mapObject.DefaultMapObjectType;
 import voogasalad_GucciGames.gameEngine.mapObject.MapObject;
 import voogasalad_GucciGames.gameEngine.mapObject.MapObjectType;
+import voogasalad_GucciGames.gameEngine.targetCoordinate.TargetCoordinateSingle;
 
 public class GAEModel implements IGAEModel{
     private GameSourceData data;
@@ -31,11 +34,31 @@ public class GAEModel implements IGAEModel{
     	writer = new XMLWriter();
     }
     
+<<<<<<< HEAD
+=======
+    @Override
+	public void addComponent(MapObject mapObj) {
+		data.addToMap(mapObj);		
+	}
+>>>>>>> 99d18f8047232953de4fb79b9387837a3483af7b
 
     @Override
     public void deleteComponent (MapObject mapObj) {
         data.deleteFromMap(mapObj);
     }
+    
+    @Override
+    public MapObject addObject(GridPoint gridpoint, MapObjectType mapObjType, int ownerID) {
+    	TargetCoordinateSingle targCoordSingle = new TargetCoordinateSingle(gridpoint.getX(), gridpoint.getY());
+    	MapObject mapObject = new MapObject(mapObjType, targCoordSingle, ownerID);
+    	//Validate with engine, if failed, return null, else return this mapObject
+    	return mapObject;
+    }
+    
+    @Override
+	public List<MapObject> getMapObjects() {
+		return data.getMapObjects();
+	}
 
     @Override
     public void clearMap () {
@@ -128,7 +151,10 @@ public class GAEModel implements IGAEModel{
 		// TODO Auto-generated method stub
 		return null;
 	}
+<<<<<<< HEAD
 
+=======
+>>>>>>> 99d18f8047232953de4fb79b9387837a3483af7b
 	
     public void addComponent (Map<String,String> objParams) {
         MapObject mapObj = new MapObject(null,null, 0);// TODO:MapObject(objParams);

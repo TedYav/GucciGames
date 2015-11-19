@@ -1,5 +1,6 @@
 package voogasalad_GucciGames.gameEngine.objectActions;
 
+import voogasalad_GucciGames.gameEngine.CommunicationParams.ActionToGamePlayerParameters;
 import voogasalad_GucciGames.gameEngine.CommunicationParams.CommunicationParameters;
 import voogasalad_GucciGames.gameEngine.CommunicationParams.EmptyParameters;
 import voogasalad_GucciGames.gameEngine.CommunicationParams.LocationParams;
@@ -24,7 +25,12 @@ public class MoveEvent extends MapObjectEvent{
 		MapObject moving = moveParams.getCalledMe();
 		moving.setCoordinate(target);
 		moveParams.getMovePerson().updateMoves();
-		return new EmptyParameters();
+		
+		ActionToGamePlayerParameters myParameters  = new ActionToGamePlayerParameters();
+		
+		myParameters.addUnit(moving);
+		
+		return myParameters;
 	}
 
 }

@@ -15,7 +15,9 @@ public class GamePlayerPerson {
 	private int turnMoves = -1;// should move this away later
 	private int turnCounter = 0;// should move this away later
 	private String myStatus = "DRAW";
-
+	private MovablePlayerCharacteristic myMovable;
+	
+	
 	public GamePlayerPerson() {
 		myMapObjects = new ArrayList<MapObject>();
 	}
@@ -61,6 +63,14 @@ public class GamePlayerPerson {
 
 	public void setTurnCounter(int turnCounter) {
 		this.turnCounter = turnCounter;
+	}
+
+	public MovablePlayerCharacteristic getMyMovable() {
+		return myMovable;
+	}
+
+	public void setMyMovable(MovablePlayerCharacteristic myMovable) {
+		this.myMovable = myMovable;
 	}
 
 }
