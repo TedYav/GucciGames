@@ -34,13 +34,11 @@ public class GAEModel implements IGAEModel{
     	writer = new XMLWriter();
     }
     
-<<<<<<< HEAD
-=======
+
     @Override
 	public void addComponent(MapObject mapObj) {
 		data.addToMap(mapObj);		
 	}
->>>>>>> 99d18f8047232953de4fb79b9387837a3483af7b
 
     @Override
     public void deleteComponent (MapObject mapObj) {
@@ -151,11 +149,8 @@ public class GAEModel implements IGAEModel{
 		// TODO Auto-generated method stub
 		return null;
 	}
-<<<<<<< HEAD
 
-=======
->>>>>>> 99d18f8047232953de4fb79b9387837a3483af7b
-	
+
     public void addComponent (Map<String,String> objParams) {
         MapObject mapObj = new MapObject(null,null, 0);// TODO:MapObject(objParams);
         validate();
