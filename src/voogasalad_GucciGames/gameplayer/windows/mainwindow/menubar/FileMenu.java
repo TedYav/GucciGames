@@ -14,7 +14,8 @@ public class FileMenu implements GameMenu {
 
 	
 	private ComboBox<String> myDropdown;
-	
+        private ResourceBundle myCssBundle = ResourceBundle.getBundle("voogasalad_GucciGames.gameplayer.config.scenes.CssClasses");
+
 	public FileMenu(GameDataInterface myLoader, Stage stage){
 		myDropdown = new ComboBox<String>();
 		myDropdown.setValue(myBundle.getString("file"));
@@ -24,7 +25,7 @@ public class FileMenu implements GameMenu {
 			
 		}
 		});
-		myDropdown.getStyleClass().add(myBundle.getString("dropdowncssclass"));
+		myDropdown.getStyleClass().add(myCssBundle.getString("dropdowncssclass"));
 	}
 	
 	@Override

@@ -28,7 +28,7 @@ public class ActionDisplay implements DisplayComponent, Observer {
 		myController.addMOObserver(this);
     	
         temp = new ArrayList<Button>();
-        
+       
 ////        Button btn = new Button();
 ////        btn.setText("Say 'Hello World'");
 ////        btn.setOnAction(new EventHandler<ActionEvent>() {

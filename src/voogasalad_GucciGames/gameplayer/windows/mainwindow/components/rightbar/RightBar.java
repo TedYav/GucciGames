@@ -18,6 +18,7 @@ public class RightBar extends WindowComponent implements Observer {
     private VBox container;
     private double spacing = 5;
     ResourceBundle myBundle;
+    private ResourceBundle myCssBundle = ResourceBundle.getBundle("voogasalad_GucciGames.gameplayer.config.scenes.CssClasses");
 	public RightBar(GameScene scene, GameControllerInterface controller, ResourceBundle bundle) {
 		super(scene, controller);
         container = new VBox(spacing);
@@ -31,7 +32,8 @@ public class RightBar extends WindowComponent implements Observer {
         ActionDisplay actions = new ActionDisplay(myController);
         container.getChildren().add(actions.getNodeToDraw());
         container.getChildren().add(gameStats.getNodeToDraw());
-        container.getStyleClass().add(myBundle.getString("RightVBox"));
+        container.getStyleClass().add(myCssBundle.getString("RightVBox"));
+        container.setPrefWidth(Double.parseDouble(myCssBundle.getString("rightprefwidth")));
         
         container.setPrefWidth(Double.parseDouble(myBundle.getString("rightprefwidth")));
         
