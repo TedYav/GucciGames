@@ -11,6 +11,10 @@ import voogasalad_GucciGames.gameEngine.defaultCharacteristics.TileCharacteristi
 import voogasalad_GucciGames.gameEngine.mapObject.DefaultMapObjectType;
 import voogasalad_GucciGames.gameEngine.mapObject.MapObject;
 import voogasalad_GucciGames.gameEngine.mapObject.MapObjectType;
+import voogasalad_GucciGames.gameEngine.objectActions.AttackEvent;
+import voogasalad_GucciGames.gameEngine.objectActions.MoveEvent;
+import voogasalad_GucciGames.gameEngine.objectActions.WhereToAttackEvent;
+import voogasalad_GucciGames.gameEngine.objectActions.WhereToMoveEvent;
 
 public class GameSourceData {
 	private ObservableList<MapObjectType> tileTypes;
@@ -30,7 +34,30 @@ public class GameSourceData {
 		
 		unitTypes = FXCollections.observableArrayList();
 		MapObjectType unitType1 = new MapObjectType("duvall", "player/images/duvall.png");
+		
+		MoveEvent myMoveEvent = new MoveEvent("Move");
+		WhereToMoveEvent myMoveLocationEvent = new WhereToMoveEvent("WhereToMove");
+		AttackEvent myAttackEvent = new AttackEvent("Attack");
+		WhereToAttackEvent myAttackLocationEvent = new WhereToAttackEvent("WhereToAttack");
+		
+		unitType1.addAction("Move", myMoveEvent);
+		unitType1.addRequest("WhereToMove", myMoveLocationEvent);
+
+		unitType1.addAction("Attack", myAttackEvent);
+		unitType1.addRequest("WhereToAttack", myAttackLocationEvent);
+
+		
 		MapObjectType unitType2 = new MapObjectType("student", "player/images/smile.png");
+		
+		
+		unitType2.addAction("Move", myMoveEvent);
+		unitType2.addRequest("WhereToMove", myMoveLocationEvent);
+
+		unitType2.addAction("Attack", myAttackEvent);
+		unitType2.addRequest("WhereToAttack", myAttackLocationEvent);
+
+		
+		
 		MapObjectType unitType3 = new MapObjectType("student", "player/images/mario.png");
 		unitTypes.add(unitType1);
 		unitTypes.add(unitType2);

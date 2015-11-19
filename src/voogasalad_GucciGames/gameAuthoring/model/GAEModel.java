@@ -67,6 +67,8 @@ ownerID = 0;
     	}
     	
     	MapObject mapObject = new MapObject(mapObjType, targCoordSingle, ownerID,layer);
+    	
+    	
     	System.out.println(mapObjType.getName());
     	// Goes in resource bundle
     	if (!mapObjType.isTile()) {
