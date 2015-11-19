@@ -2,15 +2,19 @@ package voogasalad_GucciGames.gameAuthoring;
 
 import java.util.HashMap;
 import java.util.Map;
+
 import javafx.collections.ObservableList;
 import javafx.scene.image.Image;
 import javafx.stage.Stage;
 import voogasalad_GucciGames.gameAuthoring.gui.GAEGui;
+import voogasalad_GucciGames.gameAuthoring.gui.map.GridPoint;
 import voogasalad_GucciGames.gameAuthoring.model.GAEModel;
 import voogasalad_GucciGames.gameAuthoring.model.IGAEModel;
 import voogasalad_GucciGames.gameAuthoring.properties.ObjectProperty;
 import voogasalad_GucciGames.gameEngine.mapObject.MapObject;
 import voogasalad_GucciGames.gameEngine.mapObject.MapObjectType;
+import voogasalad_GucciGames.gameEngine.targetCoordinate.ATargetCoordinate;
+import voogasalad_GucciGames.gameEngine.targetCoordinate.TargetCoordinateSingle;
 
 public class GaeController extends AGuiGaeController implements IModelGaeController{
     IGAEModel model;
@@ -37,6 +41,19 @@ public class GaeController extends AGuiGaeController implements IModelGaeControl
     @Override
     public ObservableList<MapObject> getMapObjects() {
         return model.getMapObjects();
+    }
+    @Override
+    public int getMapObjectListPosAtPoint(ObservableList<MapObject> mapObjectList, GridPoint gridPoint) {
+    	for(int i=0; i<mapObjectList.size(); i++){
+    		MapObject currMapObj= mapObjectList.get(i);
+    		ATargetCoordinate targCoordinate = currMapObj.getCoordinate();
+    		for(TargetCoordinateSingle targCoorSingle : targCoordinate.getListOfCoordinates()){
+	    		if (gridPoint.getX() == targCoorSingle.getCenterX() && gridPoint.getY() == targCoorSingle.getCenterY()){
+	    			return i;
+	    		}
+    		}
+    	}
+        return -1;
     }
     @Override
     public void clearMap () {
