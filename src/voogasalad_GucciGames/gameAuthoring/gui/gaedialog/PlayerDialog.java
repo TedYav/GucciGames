@@ -7,6 +7,7 @@ import java.util.Map;
 import java.util.Properties;
 
 import voogasalad_GucciGames.gameAuthoring.IDialogGaeController;
+import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.paramObjects.PlayerParams;
 import voogasalad_GucciGames.gameAuthoring.properties.ObjectProperty;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -91,9 +92,11 @@ public class PlayerDialog extends GaeDialog  {
 			for(PlayerContent c: contentList){
 				String name = c.getPlayerName();
 				int id = c.getPlayerId();
+				int numMoves = c.getNumMoves();
 				controller.addPlayerToList(name, id);
 				// Save Player
-				controller.savePlayer();
+				PlayerParams params = new PlayerParams(id, name, numMoves);
+				controller.savePlayer(params);
 				this.playerDialog.close();
 			}
 

@@ -11,6 +11,10 @@ import javafx.scene.image.Image;
 import javafx.stage.Stage;
 import voogasalad_GucciGames.gameAuthoring.gui.GAEGui;
 import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.paramObjects.GameSettingParams;
+import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.paramObjects.PlayerParams;
+import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.paramObjects.StructureParams;
+import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.paramObjects.TileParams;
+import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.paramObjects.UnitParams;
 import voogasalad_GucciGames.gameAuthoring.gui.map.GridPoint;
 import voogasalad_GucciGames.gameAuthoring.model.GAEModel;
 import voogasalad_GucciGames.gameAuthoring.model.IGAEModel;
@@ -165,13 +169,32 @@ public class GaeController extends AGuiGaeController implements IModelGaeControl
 	}
 
 	@Override
-	public void savePlayer() {
+	public void savePlayer(PlayerParams playerParams) {
 		// TODO Auto-generated method stub
+		//TODO: DEBUG
+		System.out.println("params: " + playerParams.getNumMoves());
 		
 	}
 
 	@Override
 	public void saveGameSetting(GameSettingParams gameSettingParams) {
+		// TODO Auto-generated method stub
+		//TODO: DEBUG
+		System.out.println("params: " + gameSettingParams.getMapSize());
+		
+	}
+	@Override
+	public void setTileParams(TileParams params) {
+		// TODO Auto-generated method stub
+		
+	}
+	@Override
+	public void setUnitParams(UnitParams params) {
+		// TODO Auto-generated method stub
+		
+	}
+	@Override
+	public void setStructureParams(StructureParams params) {
 		// TODO Auto-generated method stub
 		
 	}

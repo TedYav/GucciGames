@@ -15,6 +15,8 @@ public class PlayerContent extends DialogContent{
 	
 	private int playerNumber;
 	
+	private ScrollBarField scrollBarField;
+	
 	private IDialogGaeController controller;
 	
 	
@@ -30,8 +32,9 @@ public class PlayerContent extends DialogContent{
 		textInputField = new TextInputField(dialogElements, 
 				"player"+playerNumber);
 		browserField = new FileBrowserField(dialogElements,"image", "browse", "filechoosertitle");
+		scrollBarField = new ScrollBarField(dialogElements, "nummoves", "nummoves_items");
 		
-		content.getChildren().addAll(title, textInputField.getContent(), browserField.getContent());
+		content.getChildren().addAll(title, textInputField.getContent(), browserField.getContent(), scrollBarField.getContent());
 		content.setId("vbox-element");
 	}
 	
@@ -47,6 +50,9 @@ public class PlayerContent extends DialogContent{
 		return browserField.getPath();
 	}
 	
+	protected int getNumMoves(){
+		 return (int) scrollBarField.getSelected();
+	}
 	
 
 	@Override
