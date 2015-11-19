@@ -75,7 +75,7 @@ ownerID = 0;
     		UnitParams param = unitCharacteristicMap.get(mapObjType.getName());
     		mapObject.addCharacteristic("AttackCharacteristic", new AttackCharacteristic(param.getRangeAttack(), 
     				param.getDamage(), param.getNumberOfAttacks()));
-    		mapObject.addCharacteristic("RealHealthCharacteristic", new RealHealthCharacteristic(param.getHealth()));
+    		mapObject.addCharacteristic("HealthCharacteristic", new RealHealthCharacteristic(param.getHealth()));
     		mapObject.addCharacteristic("MovableCharacteristic", new MovableCharacteristic(param.getRangeMvt(), 5));
     	}
     	//mapObject.addCharacteristic("Attack", new AttackCharacteristic());
