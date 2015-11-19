@@ -10,6 +10,7 @@ public class GameParams extends CommunicationParameters{
     private int currentTurnPlayer;
     private boolean gameWon;
     private GameResult gameResult;
+    
     public double getMapWidth () {
         return mapWidth;
     }

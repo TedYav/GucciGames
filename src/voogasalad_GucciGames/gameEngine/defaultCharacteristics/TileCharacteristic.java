@@ -18,4 +18,10 @@ public class TileCharacteristic extends AMapObjectCharacteristic{
 		super(null);
 	}
 
+	@Override
+	public String toString() {
+		// TODO Auto-generated method stub
+		return "";
+	}
+
 }

@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 import voogasalad_GucciGames.gameEngine.defaultCharacteristics.AttackCharacteristic;
+import voogasalad_GucciGames.gameEngine.gameConditions.EndGameConditions;
 import voogasalad_GucciGames.gameEngine.mapObject.MapObject;
 
 public class GamePlayerPerson {
@@ -75,6 +76,19 @@ public class GamePlayerPerson {
 
 	public void setMyMovable(MovablePlayerCharacteristic myMovable) {
 		this.myMovable = myMovable;
+	}
+
+	public EndGameConditions getStatusCondition() {
+		
+		if(myStatus.equals("WIN")){
+			return EndGameConditions.WIN;
+		}
+		if(myStatus.equals("LOSE")){
+			return EndGameConditions.LOSE;
+		}
+		else{
+			return EndGameConditions.DRAW;
+		}
 	}
 
 }

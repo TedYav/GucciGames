@@ -26,5 +26,11 @@ public class MovableCharacteristic extends AMapObjectCharacteristic{
 		return myRange;
 	}
 
+	@Override
+	public String toString() {
+		// TODO Auto-generated method stub
+		return "Range = " + myRange;
+	}
+
 
 }
