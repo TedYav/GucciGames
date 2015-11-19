@@ -66,6 +66,7 @@ public class ConditionParams {
 				}
 			}
 		}
+		removeIDs.clear();
 
 		}
 	}

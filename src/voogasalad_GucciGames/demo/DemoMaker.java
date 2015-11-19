@@ -7,10 +7,15 @@ import javafx.application.Application;
 import javafx.stage.Stage;
 import voogasalad_GucciGames.gameData.XStreamGameEngine;
 import voogasalad_GucciGames.gameEngine.MainGameEngine;
+import voogasalad_GucciGames.gameEngine.defaultCharacteristics.HealthCharacteristic;
+import voogasalad_GucciGames.gameEngine.defaultCharacteristics.MovableCharacteristic;
+import voogasalad_GucciGames.gameEngine.defaultCharacteristics.RealHealthCharacteristic;
 import voogasalad_GucciGames.gameEngine.gamePlayer.AllPlayers;
 import voogasalad_GucciGames.gameEngine.gamePlayer.GamePlayerPerson;
 import voogasalad_GucciGames.gameEngine.mapObject.MapObject;
 import voogasalad_GucciGames.gameEngine.mapObject.MapObjectType;
+import voogasalad_GucciGames.gameEngine.objectActions.MoveEvent;
+import voogasalad_GucciGames.gameEngine.objectActions.WhereToMoveEvent;
 import voogasalad_GucciGames.gameEngine.targetCoordinate.TargetCoordinateSingle;
 import voogasalad_GucciGames.gameplayer.windows.GameWindowManager;
 
@@ -41,13 +46,30 @@ public class DemoMaker extends Application{
         
         MapObjectType soldier = new MapObjectType("Duvall", "player/images/duvall.png");
         MapObjectType archer = new MapObjectType("Student" , "player/images/smile.png");
-        MapObjectType ground = new MapObjectType("grass", "player/images/dummytexture.jpg");
-        MapObjectType water = new MapObjectType("water", "player/images/dummytexture2.jpg");
+        MapObjectType ground = new MapObjectType("TileCharacteristics", "player/images/dummytexture.jpg");
+        MapObjectType water = new MapObjectType("TileCharacteristics", "player/images/dummytexture2.jpg");
         
         MapObject soldier1 = new MapObject(soldier,new TargetCoordinateSingle(1,0),0,1);
         
-        for (int i=0;i<15;i++) {
-            for (int j=0;j<15;j++) {
+        
+
+		MovableCharacteristic myMovableCharacteristic = new MovableCharacteristic(1, 3);
+		HealthCharacteristic myHealthCharacteristic = new RealHealthCharacteristic(5);
+		
+		MoveEvent myMoveEvent = new MoveEvent("Move");
+		WhereToMoveEvent myMoveLocationEvent = new WhereToMoveEvent("WhereToMove");
+		
+
+		soldier.addCharacteristic("MovableCharacteristic", myMovableCharacteristic);
+		soldier.addCharacteristic("HealthCharacteristic", myHealthCharacteristic);
+		soldier.addAction("Move", myMoveEvent);
+		soldier.addRequest("WhereToMove", myMoveLocationEvent);
+		
+		
+        
+        
+        for (int i=0;i<8;i++) {
+            for (int j=0;j<8;j++) {
             	MapObject newObj = new MapObject(((i+j)%2==0)?water:ground, new TargetCoordinateSingle(i,j),-1,0);
             	myMapOfPlayers.get(-1).getMapObjects().add(newObj);
                 if ((i+j)%3==0) {

@@ -3,9 +3,9 @@ package voogasalad_GucciGames.gameAuthoring.gui.sidebar;
 import java.util.ArrayList;
 import java.util.List;
 
+import voogasalad_GucciGames.datastructures.TwoWayMap;
 import voogasalad_GucciGames.gameAuthoring.IGuiGaeController;
 import voogasalad_GucciGames.gameEngine.mapObject.MapObjectType;
-import voogasalad_GucciGames.gameplayer.datastructures.TwoWayMap;
 import javafx.collections.ListChangeListener;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;

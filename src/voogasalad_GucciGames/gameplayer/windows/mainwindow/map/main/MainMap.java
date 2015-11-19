@@ -15,14 +15,14 @@ import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
 import javafx.stage.Screen;
 import voogasalad.util.reflection.Reflection;
+import voogasalad_GucciGames.datastructures.Coordinate;
+import voogasalad_GucciGames.datastructures.TwoWayMap;
 import voogasalad_GucciGames.gameEngine.targetCoordinate.ATargetCoordinate;
 import voogasalad_GucciGames.gameEngine.targetCoordinate.TargetCoordinateSingle;
 import voogasalad_GucciGames.gameplayer.controller.GameControllerInterface;
 import voogasalad_GucciGames.gameplayer.controller.PlayerMapObjectInterface;
 import voogasalad_GucciGames.gameplayer.controller.dummy.DummyTile;
 import voogasalad_GucciGames.gameplayer.controller.dummy.DummyUnit;
-import voogasalad_GucciGames.gameplayer.datastructures.Coordinate;
-import voogasalad_GucciGames.gameplayer.datastructures.TwoWayMap;
 import voogasalad_GucciGames.gameplayer.windows.GameScene;
 import voogasalad_GucciGames.gameplayer.windows.WindowComponent;
 import voogasalad_GucciGames.gameplayer.windows.mainwindow.map.MapInterface;
@@ -69,8 +69,8 @@ public class MainMap extends WindowComponent implements MapInterface {
 	
 	
 	private void initializeVariables() {
-		myCellsWide = 15;
-		myCellsTall = 15;
+		myCellsWide = 8;
+		myCellsTall = 8;
 		myCellSize = calculateCellSize();
 		//myController.getEngine().getMapDimensions().get(0);
 		myBorderWidth = Double.parseDouble(myConfig.getString("BorderWidth"));
@@ -82,8 +82,7 @@ public class MainMap extends WindowComponent implements MapInterface {
 
 	private double calculateCellSize() {
 		double size = Screen.getPrimary().getBounds().getWidth()/Double.parseDouble(myConfig.getString("NumCells"));
-		double stretchSize = (Screen.getPrimary().getBounds().getWidth()-Double.parseDouble(myConfig.getString("MapBorder")))/myCellsWide;
-		//System.out.println(myParent.getParent().getBoundsInParent());
+		double stretchSize = (Screen.getPrimary().getBounds().getHeight()-Double.parseDouble(myConfig.getString("MapVBorder")))/myCellsTall;
 		return (size>stretchSize)?size:stretchSize;
 	}
 

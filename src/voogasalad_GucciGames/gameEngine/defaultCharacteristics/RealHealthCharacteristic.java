@@ -5,6 +5,10 @@ public class RealHealthCharacteristic extends HealthCharacteristic{
 	private double myCurrentHealth;
 	private double myMaxHealth;
 
+	public RealHealthCharacteristic(double myMaxHP) {
+		defineHealthValue(myMaxHP);
+	}
+	
 	@Override
 	public void changeHealth(double healthDiff){
 		myCurrentHealth -= healthDiff;
@@ -26,6 +30,10 @@ public class RealHealthCharacteristic extends HealthCharacteristic{
 		myMaxHealth=healthValue;
 		myCurrentHealth= healthValue;
 
+	}
+	
+	public boolean isDead(){
+		return myCurrentHealth <= 0;
 	}
 
 }

@@ -2,6 +2,7 @@ package voogasalad_GucciGames.gameEngine.objectActions;
 
 import voogasalad_GucciGames.gameEngine.CommunicationParams.BasicParameters;
 import voogasalad_GucciGames.gameEngine.CommunicationParams.CommunicationParameters;
+import voogasalad_GucciGames.gameEngine.CommunicationParams.GridCoordinateParameters;
 import voogasalad_GucciGames.gameEngine.CommunicationParams.MainGameEngineCommunicationParameters;
 import voogasalad_GucciGames.gameEngine.CommunicationParams.WhereToParams;
 import voogasalad_GucciGames.gameEngine.defaultCharacteristics.MovableCharacteristic;
@@ -25,14 +26,14 @@ public class WhereToMoveEvent extends MapObjectEvent{
 		// TODO Auto-generated method stub
 		BasicParameters basic = (BasicParameters) params;
 		AllPlayers players = basic.getPlayers();
-		GamePlayerPerson player = players.getPlayerById(((MainGameEngineCommunicationParameters) params).getTurn());
+		GamePlayerPerson player = players.getPlayerById(((BasicParameters) params).getTurn());
 		TargetCoordinateMultiple result = new TargetCoordinateMultiple();
 		MapObject calledMe = basic.getCalledMe();
 
 		// getting the range
 		MovableCharacteristic mc = (MovableCharacteristic) calledMe.getObjectType().getCharacteristic("MovableCharacteristic");
 		double range = mc.getRange();
-
+		System.out.println(range);
 		// going through neutral player
 		TargetCoordinateSingle caller = (TargetCoordinateSingle) calledMe.getCoordinate();
 		players.getPlayerById(-1).getMapObjects().stream().forEach(mo -> {
@@ -40,13 +41,17 @@ public class WhereToMoveEvent extends MapObjectEvent{
 				TargetCoordinateSingle single = (TargetCoordinateSingle) mo.getCoordinate();
 				double delta = Math.abs(single.getCenterX()-caller.getCenterX())+Math.abs(single.getCenterY()-caller.getCenterY());
 				// check to see if can move
+				System.out.println(range);
+
 				if (delta <= range){
 					result.addTargetCoodinateSingle(mo.getCoordinate());
 				}
 			}
 		});
+		
+		//go through other players' units for me
 
-		return new WhereToParams(result);
+		return new GridCoordinateParameters(result);
 	}
 
 
