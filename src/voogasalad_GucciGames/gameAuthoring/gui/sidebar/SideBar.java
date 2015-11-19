@@ -2,16 +2,16 @@ package voogasalad_GucciGames.gameAuthoring.gui.sidebar;
 
 import javafx.scene.control.Tab;
 import javafx.scene.control.TabPane;
-import voogasalad_GucciGames.gameAuthoring.IGuiGaeController;
+import voogasalad_GucciGames.gameAuthoring.AGuiGaeController;
 import voogasalad_GucciGames.gameEngine.mapObject.MapObjectType;
 
 public class SideBar{
 	private MapObjectType myCurrSelection;
-	private IGuiGaeController myController;
+	private AGuiGaeController myController;
 	private TabPane myTabPane;
 	private ATab mySelectSource;
 	
-	public SideBar(IGuiGaeController controller){
+	public SideBar(AGuiGaeController controller){
 		myController = controller;
 		Tab tileTab = new TileTab(this, null);
     	Tab unitTab = new UnitTab(this, null);
@@ -23,7 +23,7 @@ public class SideBar{
 		return myTabPane;
 	}
 	
-	protected IGuiGaeController getController(){
+	protected AGuiGaeController getController(){
 		return myController;
 	}
 	

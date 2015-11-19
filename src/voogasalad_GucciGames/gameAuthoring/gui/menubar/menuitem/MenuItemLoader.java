@@ -8,14 +8,14 @@ import java.util.Scanner;
 
 import javafx.scene.control.Menu;
 import javafx.scene.control.MenuItem;
-import voogasalad_GucciGames.gameAuthoring.IGuiGaeController;
+import voogasalad_GucciGames.gameAuthoring.AGuiGaeController;
 
 public class MenuItemLoader {
 
 	private static final String PREFIX = MenuItemLoader.class.getPackage().getName();
 	private static final String PATH = PREFIX.replace(".", "/") + "/menu.properties";
 
-	public List<Menu> load(IGuiGaeController controller) throws Exception{
+	public List<Menu> load(AGuiGaeController controller) throws Exception{
 		List<String> nameList = new ArrayList<>();
 		Map<String, Menu> map = new HashMap<>();
 		Scanner scanner = new Scanner(getClass().getClassLoader().getResourceAsStream(PATH));
@@ -38,9 +38,9 @@ public class MenuItemLoader {
 		return list;
 	}
 
-	private MenuItem getItem(String className, String itemName, IGuiGaeController controller) throws Exception {
+	private MenuItem getItem(String className, String itemName, AGuiGaeController controller) throws Exception {
 		return (MenuItem) Class.forName(PREFIX + "." + className)
-				.getDeclaredConstructor(new Class[] { String.class, IGuiGaeController.class })
+				.getDeclaredConstructor(new Class[] { String.class, AGuiGaeController.class })
 				.newInstance(itemName, controller);
 	}
 
