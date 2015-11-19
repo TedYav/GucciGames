@@ -13,7 +13,7 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
-import voogasalad_GucciGames.gameAuthoring.IGuiGaeController;
+import voogasalad_GucciGames.gameAuthoring.AGuiGaeController;
 
 class Grid extends Pane {
 
@@ -23,9 +23,9 @@ class Grid extends Pane {
 	private final Map<GridPoint, Cell> myCells = new HashMap<>();
 	private Rectangle myMouseBound;
 	private ImageView myMouseImg;
-	private IGuiGaeController myController;
+	private AGuiGaeController myController;
 
-	public Grid(DoubleProperty cellSize, IGuiGaeController controller) {
+	public Grid(DoubleProperty cellSize, AGuiGaeController controller) {
 		myController = controller;
 		myBackground = new ImageView();
 		getChildren().setAll(myBackground);

@@ -13,17 +13,17 @@ import javafx.scene.input.ZoomEvent;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
-import voogasalad_GucciGames.gameAuthoring.IGuiGaeController;
+import voogasalad_GucciGames.gameAuthoring.AGuiGaeController;
 
 /** Constructs a scene with a pannable Map background. */
 public class GUIMap extends Pane {
 	private IntegerProperty myGridSize = new SimpleIntegerProperty(20);
 
-	private IGuiGaeController myController;
+	private AGuiGaeController myController;
 	private Grid myGrid;
 	private ScrollPane myGridViewer;
 
-	public GUIMap(IGuiGaeController controller) {
+	public GUIMap(AGuiGaeController controller) {
 		myController = controller;
 		myGridViewer = new ScrollPane();
 		DoubleProperty cellSize = new SimpleDoubleProperty();

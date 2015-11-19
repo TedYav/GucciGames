@@ -12,7 +12,7 @@ import voogasalad_GucciGames.gameAuthoring.properties.ObjectProperty;
 import voogasalad_GucciGames.gameEngine.mapObject.MapObject;
 import voogasalad_GucciGames.gameEngine.mapObject.MapObjectType;
 
-public class GaeController implements IGuiGaeController, IModelGaeController{
+public class GaeController extends AGuiGaeController implements IModelGaeController{
     IGAEModel model;
     GAEGui gui;
     MapObjectType mapobjecttype;
