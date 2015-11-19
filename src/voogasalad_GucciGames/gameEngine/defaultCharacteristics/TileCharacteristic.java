@@ -14,4 +14,8 @@ public class TileCharacteristic extends AMapObjectCharacteristic{
 		return this.myCanMove;
 	}
 
+	public TileCharacteristic(){
+		super(null);
+	}
+
 }

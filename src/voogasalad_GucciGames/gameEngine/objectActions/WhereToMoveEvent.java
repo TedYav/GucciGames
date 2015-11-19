@@ -27,14 +27,13 @@ public class WhereToMoveEvent extends MapObjectEvent{
 		// TODO Auto-generated method stub
 		BasicParameters basic = (BasicParameters) params;
 		AllPlayers players = basic.getPlayers();
-		GamePlayerPerson player = players.getPlayerById(((BasicParameters) params).getTurn());
 		TargetCoordinateMultiple result = new TargetCoordinateMultiple();
 		MapObject calledMe = basic.getCalledMe();
 
 		// getting the range
 		MovableCharacteristic mc = (MovableCharacteristic) calledMe.getObjectType().getCharacteristic("MovableCharacteristic");
 		double range = mc.getRange();
-		System.out.println(range);
+		//System.out.println(range);
 		// going through neutral player
 		TargetCoordinateSingle caller = (TargetCoordinateSingle) calledMe.getCoordinate();
 
@@ -53,11 +52,8 @@ public class WhereToMoveEvent extends MapObjectEvent{
 				}
 			}
 		});
-
-		//go through other players' units for me
-
 		return new GridCoordinateParameters(result);
-	}
+}
 
 	private boolean check(double dx, double dy, double range){
 		return (dx <= range) && (dy <=range);
