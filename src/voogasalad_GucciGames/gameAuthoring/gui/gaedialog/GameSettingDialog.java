@@ -48,6 +48,7 @@ public class GameSettingDialog extends GaeDialog {
 			gameSettingParams.setFogOfWar(fogOfWar.getSelected().toString() == "Yes" ? true: false);
 			gameSettingParams.setNumberOfPlayers(numPlayer.getSelected());
 			dialogGaeController.saveGameSetting(gameSettingParams);
+			this.gameSettingDialog.close();
 			
 	
 			});
