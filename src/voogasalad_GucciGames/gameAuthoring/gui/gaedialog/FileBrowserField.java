@@ -33,7 +33,8 @@ public class FileBrowserField extends DialogComponent{
 		pathTextField = new TextField();
 		addListenerForPathTextField();
 
-		content.getChildren().addAll(label, pathTextField, browseBtn);	
+		content.getChildren().addAll(label, pathTextField, browseBtn);
+		content.setId("hbox-element");
 
 	}
 	
@@ -57,16 +58,20 @@ public class FileBrowserField extends DialogComponent{
 	}
 
 	@Override
-	HBox getContent() {
+	protected HBox getContent() {
 		// TODO Auto-generated method stub
 		return content;
 	}
 
 	@Override
-	void setSelected(String s) {
+	protected void setSelected(String s) {
 		// TODO Auto-generated method stub
 		pathTextField.setText(s);
 		
+	}
+	
+	protected String getPath(){
+		return pathTextField.getText();
 	}
 
 }

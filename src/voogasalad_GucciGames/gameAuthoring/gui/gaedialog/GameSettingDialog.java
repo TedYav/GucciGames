@@ -29,8 +29,9 @@ public class GameSettingDialog extends GaeDialog {
 		this.dialogGaeController = dialogGaeController;
 		prop = loadProperties("dialogproperties/gamedialog.properties");
 		this.initializeSaveObjProperty();
-		dialogElements = new DialogElements(prop, gameSettingsProperty, saveObjProperty, null, null);
-		SaveField saveField = new SaveField(dialogElements, dialogGaeController);
+		dialogElements = new DialogElements(prop, gameSettingsProperty, saveObjProperty, null, dialogGaeController);
+		dialogElements.getSaveObjProperty().saveObjProperty("type", "gamesetting");
+		SaveField saveField = new SaveField(dialogElements, dialogGaeController, gameSettingDialog);
 		myContent.getChildren().addAll(this.initializeDialog(), saveField.getContent());
 		Scene gameSettingDialogScene = new Scene(myContent, 500, 500);
 		gameSettingDialogScene.getStylesheets().add("voogasalad_GucciGames/gameAuthoring/gui/gaedialog/stylesheets/dialogstylesheet.css");
@@ -58,7 +59,8 @@ public class GameSettingDialog extends GaeDialog {
 		DropDownMenuField fogOfWar = new DropDownMenuField(dialogElements, "fogofwar", "fogofwar_items");
 		RadioBtnField miniMap = new RadioBtnField(dialogElements, "minimap", "minimap_items");
 		RadioBtnField zoomable = new RadioBtnField(dialogElements, "zoomable", "zoomable_items");
-		ScrollBarField numPlayer = new ScrollBarField(dialogElements, "numplayer", "numplayer_items");		
+		ScrollBarField numPlayer = new ScrollBarField(dialogElements, "numplayer", "numplayer_items");	
+		
 		content.getChildren().addAll(titleElement, nameText.getContent(), mapSize.getContent(), fogOfWar.getContent(),
 				miniMap.getContent(), zoomable.getContent(), numPlayer.getContent());		
 		content.getChildren().forEach(hbox->hbox.setId("hbox-element"));		
