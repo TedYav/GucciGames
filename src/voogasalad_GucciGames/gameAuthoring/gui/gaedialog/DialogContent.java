@@ -30,5 +30,9 @@ abstract class DialogContent {
 	
 	protected abstract void setDialogElements(DialogElements dialogElements);
 	
+	
+	// set, initialize
+	protected abstract void initializeCustomContent() ;
+	
 
 }

@@ -42,6 +42,7 @@ public class RadioBtnField extends DialogComponent {
 		addListenerToToggleGroup();
 		content.getChildren().add(label);
 		content.getChildren().addAll( checkBoxList);
+		content.setId("hbox-element");
 	}
 	
 	private void addListenerToToggleGroup() {

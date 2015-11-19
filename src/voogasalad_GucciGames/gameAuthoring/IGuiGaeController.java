@@ -1,4 +1,5 @@
 package voogasalad_GucciGames.gameAuthoring;
+import voogasalad_GucciGames.gameAuthoring.gui.map.GridPoint;
 import voogasalad_GucciGames.gameAuthoring.properties.ObjectProperty;
 import voogasalad_GucciGames.gameAuthoring.properties.Property;
 
@@ -18,6 +19,10 @@ public interface IGuiGaeController extends IDialogGaeController {
     public void addComponent(MapObject mapObj); //validate in back end
     
     public void deleteComponent(MapObject mapObj);
+    
+    public ObservableList<MapObject> getMapObjects();
+    
+    public int getMapObjectListPosAtPoint(ObservableList<MapObject> mapObjectList, GridPoint gridPoint);
     
     public void clearMap();
     

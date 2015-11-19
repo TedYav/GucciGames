@@ -5,6 +5,7 @@ import voogasalad_GucciGames.gameEngine.CommunicationParams.CommunicationParamet
 import voogasalad_GucciGames.gameEngine.CommunicationParams.GridCoordinateParameters;
 import voogasalad_GucciGames.gameEngine.CommunicationParams.MainGameEngineCommunicationParameters;
 import voogasalad_GucciGames.gameEngine.CommunicationParams.WhereToParams;
+import voogasalad_GucciGames.gameEngine.defaultCharacteristics.CharacteristicFactory;
 import voogasalad_GucciGames.gameEngine.defaultCharacteristics.MovableCharacteristic;
 import voogasalad_GucciGames.gameEngine.gamePlayer.AllPlayers;
 import voogasalad_GucciGames.gameEngine.gamePlayer.GamePlayerPerson;
@@ -44,7 +45,11 @@ public class WhereToMoveEvent extends MapObjectEvent{
 				System.out.println(range);
 
 				if (delta <= range){
-					result.addTargetCoodinateSingle(mo.getCoordinate());
+					//added code to check if unit is already there
+					for (MapObject unit: players.getAllUnits())
+						if (mo.getCoordinate() != unit.getCoordinate())
+							//end of added code
+							result.addTargetCoodinateSingle(mo.getCoordinate());
 				}
 			}
 		});

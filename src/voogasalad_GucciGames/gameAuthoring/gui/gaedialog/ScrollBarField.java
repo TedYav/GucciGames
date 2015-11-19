@@ -36,7 +36,7 @@ public class ScrollBarField extends DialogComponent {
 		scrollBar.setUnitIncrement(Integer.parseInt(params.get(2)));
 		addListenerToScrollBar();
 		content.getChildren().addAll(title, scrollBar, numSpriteText);
-		content.setId("hbox-content");
+		content.setId("hbox-element");
 	}
 	
 	private void addListenerToScrollBar(){
@@ -45,6 +45,10 @@ public class ScrollBarField extends DialogComponent {
 			public void changed(ObservableValue<? extends Number> observable,
 					Number oldValue, Number newValue) {
 				// TODO Auto-generated method stub
+				//TODO: REFACTOR
+				if(propKey == "numplayer"){
+					dialogElements.getDialogGaeController().setNumberOfPlayers(newValue.intValue());
+				}
 				numSpriteText.setText(newValue.intValue()+"");
 				dialogElements.getSaveObjProperty().saveObjProperty(propKey, newValue.intValue()+"");				
 			}			

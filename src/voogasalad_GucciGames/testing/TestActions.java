@@ -2,6 +2,7 @@ package voogasalad_GucciGames.testing;
 
 import static org.junit.Assert.assertEquals;
 
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -18,7 +19,7 @@ import voogasalad_GucciGames.gameEngine.targetCoordinate.TargetCoordinateMultipl
 import voogasalad_GucciGames.gameEngine.targetCoordinate.TargetCoordinateSingle;
 
 public class TestActions {
-/*
+
 	private MapObjectType test;
 	private MapObject obj;
 	private AllPlayers players;
@@ -45,11 +46,11 @@ public class TestActions {
 	
 	@Test
 	public void testWhereMove(){
-		CommunicationParams params = new CommunicationParams(players,null,null,obj);
+		CommunicationParameters params = new CommunicationParameters(players,null,null,obj);
 		obj.getObjectType().addActionTarget("WhereToAttackAction",new WhereToAttackAction());
 		ATargetCoordinate where = obj.getObjectType().getActionTarget("WhereToAttackAction").coordinatesToAct(params);
 		TargetCoordinateMultiple multi = (TargetCoordinateMultiple) where;
 		assertEquals("Should be (50,50): ",multi.getCoordinates().get(0), new TargetCoordinateSingle(50,50));
 	}
-	*/
+
 }

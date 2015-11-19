@@ -5,8 +5,8 @@ import java.util.List;
 import voogasalad_GucciGames.gameEngine.mapObject.AMapObjectCharacteristic;
 
 public class AttackCharacteristic extends AMapObjectCharacteristic{
-	private double myRange;
-	private double myDamage;
+	private double myRange = 1;
+	private double myDamage = 1;
 	private int maxNumberOfAttacks = 1;
 	private int currentNumberOfAttacks = 0;
 	

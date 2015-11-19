@@ -1,5 +1,8 @@
 package voogasalad_GucciGames.gameAuthoring.gui.gaedialog;
 
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Optional;
 import java.util.Properties;
 
 import javafx.beans.value.ChangeListener;
@@ -10,68 +13,77 @@ import javafx.scene.control.ListView;
 import javafx.scene.control.Tab;
 import javafx.scene.control.TabPane;
 import javafx.scene.control.TextArea;
+import javafx.scene.control.TextField;
+import javafx.scene.control.TextInputDialog;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 
-public class GroovyTabPane {
+public class GroovyTabPane extends DialogComponent{
 	
 	private VBox contentVBox = new VBox();
 	private TabPane tabPane = new TabPane();
 	private Tab selectedTab = new Tab();
-	private Properties prop;
-	private ISaveGroovy saveGroovy;
+	private Button saveBtn;
+	private Button editBtn;
+	private DialogElements dialogElements;
+	private Map<String, GroovyTab> attributeMap = new HashMap<String, GroovyTab>();
+	private HBox controlBtnBox = new HBox();
+
 	
-	public GroovyTabPane(Properties prop, ISaveGroovy saveGroovy){
-		this.prop = prop;
-		this.saveGroovy = saveGroovy;
-		addGroovyTab();
-		setSelectedTab(tabPane.getTabs().get(0));
-		contentVBox = createTabPaneElements(tabPane, prop, "vbox-element", "hbox-element");			
+	public GroovyTabPane(DialogElements dialogElements){
+		this.dialogElements = dialogElements;
+		contentVBox = createTabPaneElements(tabPane, this.dialogElements.getDialogProperties(), "vbox-element", "hbox-element");			
 		setTabProperties(tabPane);
 	}	
 	 protected VBox createTabPaneElements(TabPane tabPane, Properties prop, String vboxStyleId, String hboxStyleId){
 		 VBox vbox = new VBox();
-		 HBox hbox = new HBox();
-		 Button saveBtn = new Button(prop.getProperty("savebtn"));
-		 Button editBtn = new Button(prop.getProperty("editbtn"));
-		 hbox.getChildren().addAll(editBtn, saveBtn);
-		 hbox.setId(hboxStyleId);
-		 saveBtn.setOnAction(e -> {
-			 String groovy = getTextAreaForTab(getSelectedTab()).getText();
-			 saveGroovy.saveGroovyTextArea(groovy, getIdForTab(getSelectedTab()));
-			 getTextAreaForTab(getSelectedTab()).setDisable(true);			 
-		 });
-		 editBtn.setOnAction(e -> {
-			 getTextAreaForTab(getSelectedTab()).setDisable(false);			
-		 });
+		 controlBtnBox = new HBox();
 		 Button addBtn = createAddButton(prop, "addbtn", "groovytitle");
-		 vbox.getChildren().addAll(tabPane, hbox, addBtn);
+		 vbox.getChildren().addAll(tabPane, controlBtnBox, addBtn);
 		 vbox.setId(vboxStyleId);
 		 return vbox;
 	 }
 	 
+	 private void addEditBtnListener(){
+		 editBtn.setOnAction(e -> {
+			 getTextAreaForTab(getSelectedTab().getText()).setDisable(false);			
+		 });		 
+	 }
+	 
+	 private void addSaveBtnListener(){
+		 saveBtn.setOnAction(e -> {
+			 String groovy = getTextAreaForTab(getSelectedTab().getText()).getText();
+			 String name = getSelectedTab().getText();
+			 dialogElements.getSaveGroovy().
+			 saveGroovyTextArea(groovy, getIdForTab(getSelectedTab()));
+			 try {
+				 dialogElements.getObjectProperty().addPropertyElement(name + "_groovy", groovy);
+			 } catch (Exception e1) {
+				 e1.printStackTrace();
+			 }
+			 getTextAreaForTab(getSelectedTab().getText()).setDisable(true);			 
+		 });
+	 }
+
+	 
 	 protected Button createAddButton(Properties prop, String btnKey, String headerKey){
 		 Button addBtn = new Button(prop.getProperty(btnKey));
 		 addBtn.setOnAction(e -> {
-			 addGroovyTab();
+			 openAddNewDialog();
 			 
 		 });
 		 return addBtn;		 
 	 }
 	  
-	 protected void addGroovyTab( ){
-		 Tab tab = new Tab();
-		 VBox content = new VBox();
-		 Text title = new Text(prop.getProperty("groovytitle"));
-		 TextArea textArea = new TextArea();
-		 content.getChildren().addAll(title, textArea);
-		 tab.setContent(content);
-		 tabPane.getTabs().add(tab); 
+	 protected void addGroovyTab(String tabName ){
+		 GroovyTab tab = new GroovyTab(dialogElements, tabName);
+		 attributeMap.put(tabName, tab);
+		 tabPane.getTabs().add(tab.getTab()); 
 	 }
 	 
 	 private void setTabProperties(TabPane tabPane){
-		 updateTabTitle(tabPane);
+		 //updateTabTitle(tabPane);
 		 addTabPaneChangeListener(tabPane);
 		 addTabSelectionListener(tabPane);
 	 }
@@ -87,18 +99,24 @@ public class GroovyTabPane {
 					 javafx.collections.ListChangeListener.Change<? extends Tab> c) {
 				 // TODO Auto-generated method stub
 				 while(c.next()){
-					 if(c.wasRemoved() || c.wasAdded()){					 
-						 updateTabTitle(tabPane);
+					 if(/*c.wasRemoved() || */c.wasAdded() && c.getList().size() == 1){					 
+						 //updateTabTitle(tabPane);
+						 //TODO: Tab Pane title should be name of attribute
+						 addControlBtns();
+						 controlBtnBox.setId("hbox-element");
 					 }
 				 }
 			 }
 		 });
 	 }
 	 
-	 private void updateTabTitle(TabPane tabPane){
-		 for(int i = 0; i < tabPane.getTabs().size(); i++){
-			 tabPane.getTabs().get(i).setText("Attribute " + i);
-		 }
+	 private void addControlBtns(){
+		 saveBtn = new Button(dialogElements.getDialogProperties().getProperty("savebtn"));
+		 addSaveBtnListener();
+		 editBtn = new Button(dialogElements.getDialogProperties().getProperty("editbtn"));
+		 addEditBtnListener();
+		 this.controlBtnBox.getChildren().addAll(editBtn, saveBtn);
+		 
 	 }
 	 
 	 private void addTabSelectionListener(TabPane tabPane){
@@ -112,13 +130,23 @@ public class GroovyTabPane {
 		 });
 	 }
 	 
-	 private TextArea getTextAreaForTab(Tab t){
-		 return (TextArea) (((VBox) t.getContent()).getChildren().get(1));
+	 private TextArea getTextAreaForTab(String tabName){
+		 return this.attributeMap.get(tabName).getTextArea();
 	 }
 	 
-	 protected int getIdForTab(Tab t){
-		 return Integer.parseInt(t.getText().split("\\s+")[1]);
+	 private void openAddNewDialog() {
+		 TextInputDialog dialog = new TextInputDialog();
+		 dialog.setTitle("Create Custom Attribute");
+		 dialog.setHeaderText("Enter custom attribute name");
+		 dialog.setContentText("new attribute name:");
+		 Optional<String> result = dialog.showAndWait();
+		 result.ifPresent(name -> this.addGroovyTab(name));
 	 }
+	 
+	 private String getIdForTab(Tab t){
+		 return t.getText();
+	 }
+	 
 	 
 	 private void setSelectedTab(Tab t){
 		 selectedTab = t;
@@ -127,10 +155,22 @@ public class GroovyTabPane {
 	 public Tab getSelectedTab(){
 		 return selectedTab;
 	 }
-	 public VBox getContent(){
-		 return contentVBox;
+	 public HBox getContent(){
+		 HBox hbox = new HBox();
+		 hbox.getChildren().add(contentVBox);
+		 return hbox;
 	 }
-	
-	
 
+	@Override
+	public void setSelected(String s) {
+		// TODO Auto-generated method stub
+		
+	}
+	
+	public void setValueForTab(Map<String, String> map){
+		map.forEach((k, v) -> {
+			this.addGroovyTab(k);
+			attributeMap.get(k).getTextArea().setText(v);		
+		});		
+	}
 }

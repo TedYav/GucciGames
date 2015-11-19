@@ -16,35 +16,35 @@ import voogasalad_GucciGames.gameEngine.mapObject.AMapObjectCharacteristic;
 public class CharacteristicFactory {
 	
 	private Map<String, AMapObjectCharacteristic> objectCharacteristics;
-	private String CHARACTERISTIC_PROPERTIES_PATH = "MapObjectCharacteristics.properties";
-//	private ResourceBundle resources = ResourceBundle.getBundle(CHARACTERISTIC_PROPERTIES_PATH);
+	private static String CHARACTERISTIC_PROPERTIES_PATH = "voogasalad_GucciGames.gameEngine.defaultCharacteristics.MapObjectCharacteristics";
+	private ResourceBundle resources = ResourceBundle.getBundle(CHARACTERISTIC_PROPERTIES_PATH);
 	private InputStream inputStream;
 	
 	public CharacteristicFactory(){
 		
 	}
 	
-	private void initializeCharacteristics(){		
-		inputStream = getClass().getResourceAsStream(CHARACTERISTIC_PROPERTIES_PATH);
-		Properties prop = new Properties();
-		try {
-			prop.load(inputStream);
-		} catch (IOException e1) {
-			// TODO Auto-generated catch block
-			e1.printStackTrace();
-		}
+	public static void main(String[] args){
+		CharacteristicFactory cf = new CharacteristicFactory();
+		cf.initializeCharacteristics();
+	}
+	
+	public Map<String, AMapObjectCharacteristic> initializeCharacteristics(){		
 		objectCharacteristics = new TreeMap<>();
-		for (Object name: prop.keySet()){
-			String key = prop.getProperty((String) name);
+		for (String name: resources.keySet()){
+			System.out.println(name);
+			String path = resources.getString(name);
 			Class<AMapObjectCharacteristic> characteristic;
 			try {
-				characteristic = (Class<AMapObjectCharacteristic>) Class.forName(key);
-				objectCharacteristics.put(key, characteristic.newInstance());
+				characteristic = (Class<AMapObjectCharacteristic>) Class.forName(path);
+				objectCharacteristics.put(name, characteristic.newInstance());
 			} catch (ClassNotFoundException | InstantiationException | IllegalAccessException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 		}
+		System.out.println(objectCharacteristics);
+		return objectCharacteristics;
 	}
 	
 //	private Map<String,AMapObjectCharacteristic> addCharacteristic(CharacteristicParams characterParams){

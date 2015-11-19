@@ -598,6 +598,10 @@
           <turnMoves>-1</turnMoves>
           <turnCounter>0</turnCounter>
           <myStatus>DRAW</myStatus>
+          <myMovable>
+            <myNumberOfMoves>-1</myNumberOfMoves>
+            <moveCount>0</moveCount>
+          </myMovable>
         </voogasalad__GucciGames.gameEngine.gamePlayer.GamePlayerPerson>
       </entry>
       <entry>
@@ -653,6 +657,10 @@
           <turnMoves>-1</turnMoves>
           <turnCounter>0</turnCounter>
           <myStatus>DRAW</myStatus>
+          <myMovable>
+            <myNumberOfMoves>-1</myNumberOfMoves>
+            <moveCount>0</moveCount>
+          </myMovable>
         </voogasalad__GucciGames.gameEngine.gamePlayer.GamePlayerPerson>
       </entry>
       <entry>
@@ -859,6 +867,10 @@
           <turnMoves>-1</turnMoves>
           <turnCounter>0</turnCounter>
           <myStatus>DRAW</myStatus>
+          <myMovable>
+            <myNumberOfMoves>-1</myNumberOfMoves>
+            <moveCount>0</moveCount>
+          </myMovable>
         </voogasalad__GucciGames.gameEngine.gamePlayer.GamePlayerPerson>
       </entry>
     </myMapOfPlayers>
