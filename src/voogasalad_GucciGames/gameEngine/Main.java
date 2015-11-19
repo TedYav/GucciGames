@@ -22,14 +22,19 @@ public class Main {
 		GamePlayerPerson p0 = new GamePlayerPerson();
 		GamePlayerPerson p = new GamePlayerPerson();
 		Map<Integer, GamePlayerPerson> map = new HashMap<Integer, GamePlayerPerson>();
-		MapObjectType soldier = new MapObjectType("soldier", "./../");
-		MapObject sold1 = new MapObject(soldier, new TargetCoordinateSingle(0, 0),0);
-		p0.addMapObject(sold1);
+
 		map.put(-1, p);
 		map.put(0, p0);
+		
+
 		AllPlayers allPlayers = new AllPlayers(map);
 		MainGameEngine engine = new MainGameEngine(allPlayers);
-		engine.createTestCondition();
+		
+		MapObjectType soldier = new MapObjectType("soldier", "./../");
+		
+		MapObject sold1 = new MapObject(soldier, new TargetCoordinateSingle(0, 0),0);
+		
+		p0.addMapObject(sold1);
 		
 		MovableCharacteristic myMovableCharacteristic = new MovableCharacteristic(1, 3);
 		HealthCharacteristic myHealthCharacteristic = new RealHealthCharacteristic(5);
@@ -37,13 +42,13 @@ public class Main {
 		MoveEvent myMoveEvent = new MoveEvent("Move");
 		WhereToMoveEvent myMoveLocationEvent = new WhereToMoveEvent("WhereToMove");
 		
-		soldier.addCharacteristic("MovableCharacteristic", myMovableCharacteristic);
-		soldier.addCharacteristic("HealthCharacteristic", myHealthCharacteristic);
+//		soldier.addCharacteristic("MovableCharacteristic", myMovableCharacteristic);
+//		soldier.addCharacteristic("HealthCharacteristic", myHealthCharacteristic);
 		soldier.addAction("Move", myMoveEvent);
 		soldier.addRequest("WhereToMove", myMoveLocationEvent);
 		
 		
-		engine.getPossibleCoordinates("Move", (PlayerMapObjectInterface) sold1);
+//		engine.getPossibleCoordinates("Move", (PlayerMapObjectInterface) sold1);
 
 		
 		//engine.endTurn();

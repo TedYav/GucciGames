@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import voogasalad_GucciGames.gameEngine.defaultCharacteristics.AttackCharacteristic;
 import voogasalad_GucciGames.gameEngine.mapObject.MapObject;
 
 public class GamePlayerPerson {
@@ -15,7 +16,9 @@ public class GamePlayerPerson {
 	private int turnMoves = -1;// should move this away later
 	private int turnCounter = 0;// should move this away later
 	private String myStatus = "DRAW";
-
+	private MovablePlayerCharacteristic myMovable;
+	
+	
 	public GamePlayerPerson() {
 		myMapObjects = new ArrayList<MapObject>();
 	}
@@ -61,6 +64,23 @@ public class GamePlayerPerson {
 
 	public void setTurnCounter(int turnCounter) {
 		this.turnCounter = turnCounter;
+	}
+	public void resetObjects(){
+		for(MapObject object: myMapObjects){
+			if(object.getObjectType().hasCharacteristic("AttackCharacteristic")){
+				AttackCharacteristic attachChar =(AttackCharacteristic) object.getObjectType().getCharacteristic("AttackCharacteristic");
+				attachChar.reset();
+			}
+
+		}
+	}
+
+	public MovablePlayerCharacteristic getMyMovable() {
+		return myMovable;
+	}
+
+	public void setMyMovable(MovablePlayerCharacteristic myMovable) {
+		this.myMovable = myMovable;
 	}
 
 }

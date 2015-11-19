@@ -41,6 +41,7 @@ public class MainGameScene extends GameScene {
 	private MainMap myMap;
 	
 	private MapKeyHandler myKeyHandler;
+        private ResourceBundle myCssBundle = ResourceBundle.getBundle("voogasalad_GucciGames.gameplayer.config.scenes.CssClasses");
 	
 	public MainGameScene(GameSceneManager manager, GameWindowInterface window, String config) {
 		super(manager, window, config);
@@ -73,7 +74,7 @@ public class MainGameScene extends GameScene {
 	private void initializePane(){
         myPane = new BorderPane();
         myScene = new Scene(myPane);
-        myScene.getStylesheets().add(myConfig.getString("CssFile"));
+        myScene.getStylesheets().add(myCssBundle.getString("CssFile"));
 	}
 	
 	private void showSplash(){
@@ -82,8 +83,11 @@ public class MainGameScene extends GameScene {
 	
 	private void showGame(){
 		
+
+
 	    myMap = new MainMap(this, myController);
 	    myPane.setCenter(myMap.getParent());
+	    System.out.println(myPane.getCenter().getBoundsInParent());
 	
 	    myLeftBar = new LeftBar(this, myController, myConfig);
 	    myPane.setLeft(myLeftBar.getParent());
