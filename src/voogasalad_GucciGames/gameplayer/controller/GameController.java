@@ -64,7 +64,7 @@ public class GameController implements GameControllerInterface {
 		
 		GridCoordinateParameters myParameters= myEngine.getPossibleCoordinates(action, unit);
 		
-		
+
 		//SORRY FOR THE TIME BEING: THIS WILL BE FIXED IN THE FUTURE
 		if(myParameters == null){
 			return new ArrayList<TargetCoordinateSingle>();
@@ -73,6 +73,7 @@ public class GameController implements GameControllerInterface {
 			possibleMoves= myEngine.getPossibleCoordinates(action, unit).getListOfCoordinates();
 			return possibleMoves;
 		}
+		
 	}
 
 	@Override
@@ -138,7 +139,8 @@ public class GameController implements GameControllerInterface {
 	@Override
 	public void endTurn() {
 		// TODO Auto-generated method stub
-
+	    myEngine.endTurn();
+	           myScene.update();
 	}
 
 	@Override

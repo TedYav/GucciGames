@@ -18,4 +18,6 @@ public abstract class AMapObjectCharacteristic {
 		// TODO Auto-generated method stub
 		
 	};
+	
+	public abstract String toString();
 }

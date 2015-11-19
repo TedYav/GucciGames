@@ -25,6 +25,13 @@ public abstract class PlayerConditions extends DefaultConditions {
 	@Override
 	public void execute(BasicParameters params) {
 		System.out.println("number of players affected: "+myPlayerList.size());
+		System.out.println(myPlayerList);
+		
+		for(int i = 0; i < myPlayerList.size(); i++){
+			apply(myPlayerList.get(i),  params);
+		}
+		
+		
 		Iterator<GamePlayerPerson> playersIterator = myPlayerList.iterator();
 		while(playersIterator.hasNext()){
 			apply(playersIterator.next(),  params);

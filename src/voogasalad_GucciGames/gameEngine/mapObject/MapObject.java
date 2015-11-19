@@ -81,6 +81,12 @@ public class MapObject implements PlayerMapObjectInterface{
 	@Override
 	public Map<String, String> getAttributes() {
 		//return myObjectType.getCharacteristic();
+		
+		Map<String, String> myAttrMap = new TreeMap<String, String>();
+		for(String s : myCharacteristics.keySet()){
+			myAttrMap.put(s, myCharacteristics.get(s).toString());
+		}
+		
 		return new TreeMap<>();
 	}
 

@@ -39,6 +39,7 @@ public class GameSceneManager implements SceneManager{
 	public void sceneFinished(){
 		myCurrentScene = myScenes.get(myCurrentScene.getNext());
 		myCurrentScene.load();
+		myLoader.reinitializeController(myCurrentScene);
 	}
 	public Stage getStage() {
 	    return myWindow.getStage();
