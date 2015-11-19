@@ -34,9 +34,7 @@ public class RightBar extends WindowComponent implements Observer {
         container.getChildren().add(gameStats.getNodeToDraw());
         container.getStyleClass().add(myCssBundle.getString("RightVBox"));
         container.setPrefWidth(Double.parseDouble(myCssBundle.getString("rightprefwidth")));
-        
-        container.setPrefWidth(Double.parseDouble(myBundle.getString("rightprefwidth")));
-        
+               
         Button endTurn = new Button("End turn");
         endTurn.setOnMouseClicked(e->{
             System.out.println(myController.getEngine());
