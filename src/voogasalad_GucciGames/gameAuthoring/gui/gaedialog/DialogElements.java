@@ -2,6 +2,7 @@ package voogasalad_GucciGames.gameAuthoring.gui.gaedialog;
 
 import java.util.Properties;
 
+import voogasalad_GucciGames.gameAuthoring.IDialogGaeController;
 import voogasalad_GucciGames.gameAuthoring.properties.ObjectProperty;
 import voogasalad_GucciGames.gameAuthoring.properties.Property;
 /**
@@ -16,15 +17,15 @@ public class DialogElements {
 	private ObjectProperty objProp;	
 	private ISaveObjProperty saveObjProp;
 	private ISaveGroovy saveGroovy;
-	private ISaveCustomObj saveCustomObj;
+	private IDialogGaeController dialogGaeController;
 	
 	public DialogElements(Properties prop, ObjectProperty objProp, 
-			ISaveObjProperty saveObjProp, ISaveGroovy saveGroovy, ISaveCustomObj saveCustomObj){
+			ISaveObjProperty saveObjProp, ISaveGroovy saveGroovy,IDialogGaeController dialogGaeController ){
 		this.prop = prop;
 		this.objProp = objProp;		
 		this.saveObjProp = saveObjProp;	
 		this.saveGroovy = saveGroovy;
-		this.saveCustomObj = saveCustomObj;		
+		this.dialogGaeController = dialogGaeController;
 	}
 	
 	protected Properties getDialogProperties(){
@@ -43,8 +44,8 @@ public class DialogElements {
 		return saveGroovy;
 	}
 	
-	protected ISaveCustomObj getSaveCustomObj(){
-		return saveCustomObj;
+	protected IDialogGaeController getDialogGaeController(){
+		return dialogGaeController;
 	}
 	
 	
