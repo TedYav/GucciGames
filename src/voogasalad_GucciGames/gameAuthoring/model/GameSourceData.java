@@ -36,9 +36,9 @@ public class GameSourceData {
 	public void addToMap(MapObject obj) {
 		onMap.add(obj);
 	}
-	public void deleteFromMap(MapObject obj) {
-		onMap.remove(obj);
-	}
+//	public void deleteFromMap(MapObject obj) {
+//		onMap.remove(obj);
+//	}
 	public void clearMap() {
 		onMap.clear();
 	}

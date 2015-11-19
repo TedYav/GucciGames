@@ -1,7 +1,10 @@
 package voogasalad_GucciGames.gameEngine;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
+import java.util.TreeMap;
 
 import voogasalad_GucciGames.gameEngine.defaultCharacteristics.HealthCharacteristic;
 import voogasalad_GucciGames.gameEngine.defaultCharacteristics.MovableCharacteristic;
@@ -19,6 +22,12 @@ public class Main {
 
 	public static void main(String[] args) {
 		// test conditions:
+//		Map<String, List<Integer>> dummyCharacteristicMap = new TreeMap<>();
+//		List<Integer> temp = new ArrayList<Integer>();
+//		temp.add(1);
+//		temp.add(3);
+//		dummyCharacteristicMap.put("MovableCharacteristic", temp);
+		
 		GamePlayerPerson p0 = new GamePlayerPerson();
 		GamePlayerPerson p = new GamePlayerPerson();
 		Map<Integer, GamePlayerPerson> map = new HashMap<Integer, GamePlayerPerson>();
@@ -29,6 +38,10 @@ public class Main {
 
 		AllPlayers allPlayers = new AllPlayers(map);
 		MainGameEngine engine = new MainGameEngine(allPlayers);
+		engine.createTestCondition();
+		
+		MovableCharacteristic myMovableCharacteristic = new MovableCharacteristic(1, 3);
+		HealthCharacteristic myHealthCharacteristic = new RealHealthCharacteristic(5);
 		
 		MapObjectType soldier = new MapObjectType("soldier", "./../");
 		
@@ -36,14 +49,13 @@ public class Main {
 		
 		p0.addMapObject(sold1);
 		
-		MovableCharacteristic myMovableCharacteristic = new MovableCharacteristic(1, 3);
-		HealthCharacteristic myHealthCharacteristic = new RealHealthCharacteristic(5);
+//		soldier.initializeCharacteristicsMap(dummyCharacteristicMap);
 		
 		MoveEvent myMoveEvent = new MoveEvent("Move");
 		WhereToMoveEvent myMoveLocationEvent = new WhereToMoveEvent("WhereToMove");
 		
-//		soldier.addCharacteristic("MovableCharacteristic", myMovableCharacteristic);
-//		soldier.addCharacteristic("HealthCharacteristic", myHealthCharacteristic);
+		soldier.addCharacteristic("MovableCharacteristic", myMovableCharacteristic);
+		soldier.addCharacteristic("HealthCharacteristic", myHealthCharacteristic);
 		soldier.addAction("Move", myMoveEvent);
 		soldier.addRequest("WhereToMove", myMoveLocationEvent);
 		

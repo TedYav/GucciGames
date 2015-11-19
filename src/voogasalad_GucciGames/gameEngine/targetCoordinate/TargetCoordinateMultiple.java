@@ -22,7 +22,9 @@ public class TargetCoordinateMultiple extends ATargetCoordinate {
 
 
 	public void addTargetCoodinateSingle(ATargetCoordinate coord){
-		myCoordinates.add((TargetCoordinateSingle) coord);
+		if(!myCoordinates.contains(coord)){
+			myCoordinates.add((TargetCoordinateSingle) coord);
+		}
 	}
 
 	public void addTargetCoodinateMultiple(ATargetCoordinate coord){

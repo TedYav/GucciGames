@@ -5,7 +5,275 @@
         <int>-1</int>
         <voogasalad__GucciGames.gameEngine.gamePlayer.GamePlayerPerson>
           <myPlayerId>0</myPlayerId>
-          <myMapObjects/>
+          <myMapObjects>
+            <voogasalad__GucciGames.gameEngine.mapObject.MapObject>
+              <myObjectType>
+                <myName>duvall</myName>
+                <myImagePath>player/images/dummytexture.jpg</myImagePath>
+                <myCharacteristics class="tree-map"/>
+                <myActions class="tree-map"/>
+                <myRequests class="tree-map"/>
+              </myObjectType>
+              <myCoordinate class="voogasalad_GucciGames.gameEngine.targetCoordinate.TargetCoordinateSingle">
+                <myCenterX>37.0</myCenterX>
+                <myCenterY>42.0</myCenterY>
+              </myCoordinate>
+              <myOwnerID>-1</myOwnerID>
+              <myLayer>0</myLayer>
+            </voogasalad__GucciGames.gameEngine.mapObject.MapObject>
+            <voogasalad__GucciGames.gameEngine.mapObject.MapObject>
+              <myObjectType reference="../../voogasalad__GucciGames.gameEngine.mapObject.MapObject/myObjectType"/>
+              <myCoordinate class="voogasalad_GucciGames.gameEngine.targetCoordinate.TargetCoordinateSingle">
+                <myCenterX>38.0</myCenterX>
+                <myCenterY>42.0</myCenterY>
+              </myCoordinate>
+              <myOwnerID>-1</myOwnerID>
+              <myLayer>0</myLayer>
+            </voogasalad__GucciGames.gameEngine.mapObject.MapObject>
+            <voogasalad__GucciGames.gameEngine.mapObject.MapObject>
+              <myObjectType reference="../../voogasalad__GucciGames.gameEngine.mapObject.MapObject/myObjectType"/>
+              <myCoordinate class="voogasalad_GucciGames.gameEngine.targetCoordinate.TargetCoordinateSingle">
+                <myCenterX>40.0</myCenterX>
+                <myCenterY>42.0</myCenterY>
+              </myCoordinate>
+              <myOwnerID>-1</myOwnerID>
+              <myLayer>0</myLayer>
+            </voogasalad__GucciGames.gameEngine.mapObject.MapObject>
+            <voogasalad__GucciGames.gameEngine.mapObject.MapObject>
+              <myObjectType reference="../../voogasalad__GucciGames.gameEngine.mapObject.MapObject/myObjectType"/>
+              <myCoordinate class="voogasalad_GucciGames.gameEngine.targetCoordinate.TargetCoordinateSingle">
+                <myCenterX>39.0</myCenterX>
+                <myCenterY>42.0</myCenterY>
+              </myCoordinate>
+              <myOwnerID>-1</myOwnerID>
+              <myLayer>0</myLayer>
+            </voogasalad__GucciGames.gameEngine.mapObject.MapObject>
+            <voogasalad__GucciGames.gameEngine.mapObject.MapObject>
+              <myObjectType reference="../../voogasalad__GucciGames.gameEngine.mapObject.MapObject/myObjectType"/>
+              <myCoordinate class="voogasalad_GucciGames.gameEngine.targetCoordinate.TargetCoordinateSingle">
+                <myCenterX>38.0</myCenterX>
+                <myCenterY>43.0</myCenterY>
+              </myCoordinate>
+              <myOwnerID>-1</myOwnerID>
+              <myLayer>0</myLayer>
+            </voogasalad__GucciGames.gameEngine.mapObject.MapObject>
+            <voogasalad__GucciGames.gameEngine.mapObject.MapObject>
+              <myObjectType reference="../../voogasalad__GucciGames.gameEngine.mapObject.MapObject/myObjectType"/>
+              <myCoordinate class="voogasalad_GucciGames.gameEngine.targetCoordinate.TargetCoordinateSingle">
+                <myCenterX>37.0</myCenterX>
+                <myCenterY>43.0</myCenterY>
+              </myCoordinate>
+              <myOwnerID>-1</myOwnerID>
+              <myLayer>0</myLayer>
+            </voogasalad__GucciGames.gameEngine.mapObject.MapObject>
+            <voogasalad__GucciGames.gameEngine.mapObject.MapObject>
+              <myObjectType reference="../../voogasalad__GucciGames.gameEngine.mapObject.MapObject/myObjectType"/>
+              <myCoordinate class="voogasalad_GucciGames.gameEngine.targetCoordinate.TargetCoordinateSingle">
+                <myCenterX>39.0</myCenterX>
+                <myCenterY>43.0</myCenterY>
+              </myCoordinate>
+              <myOwnerID>-1</myOwnerID>
+              <myLayer>0</myLayer>
+            </voogasalad__GucciGames.gameEngine.mapObject.MapObject>
+            <voogasalad__GucciGames.gameEngine.mapObject.MapObject>
+              <myObjectType reference="../../voogasalad__GucciGames.gameEngine.mapObject.MapObject/myObjectType"/>
+              <myCoordinate class="voogasalad_GucciGames.gameEngine.targetCoordinate.TargetCoordinateSingle">
+                <myCenterX>40.0</myCenterX>
+                <myCenterY>43.0</myCenterY>
+              </myCoordinate>
+              <myOwnerID>-1</myOwnerID>
+              <myLayer>0</myLayer>
+            </voogasalad__GucciGames.gameEngine.mapObject.MapObject>
+            <voogasalad__GucciGames.gameEngine.mapObject.MapObject>
+              <myObjectType reference="../../voogasalad__GucciGames.gameEngine.mapObject.MapObject/myObjectType"/>
+              <myCoordinate class="voogasalad_GucciGames.gameEngine.targetCoordinate.TargetCoordinateSingle">
+                <myCenterX>40.0</myCenterX>
+                <myCenterY>44.0</myCenterY>
+              </myCoordinate>
+              <myOwnerID>-1</myOwnerID>
+              <myLayer>0</myLayer>
+            </voogasalad__GucciGames.gameEngine.mapObject.MapObject>
+            <voogasalad__GucciGames.gameEngine.mapObject.MapObject>
+              <myObjectType reference="../../voogasalad__GucciGames.gameEngine.mapObject.MapObject/myObjectType"/>
+              <myCoordinate class="voogasalad_GucciGames.gameEngine.targetCoordinate.TargetCoordinateSingle">
+                <myCenterX>39.0</myCenterX>
+                <myCenterY>44.0</myCenterY>
+              </myCoordinate>
+              <myOwnerID>-1</myOwnerID>
+              <myLayer>0</myLayer>
+            </voogasalad__GucciGames.gameEngine.mapObject.MapObject>
+            <voogasalad__GucciGames.gameEngine.mapObject.MapObject>
+              <myObjectType reference="../../voogasalad__GucciGames.gameEngine.mapObject.MapObject/myObjectType"/>
+              <myCoordinate class="voogasalad_GucciGames.gameEngine.targetCoordinate.TargetCoordinateSingle">
+                <myCenterX>38.0</myCenterX>
+                <myCenterY>44.0</myCenterY>
+              </myCoordinate>
+              <myOwnerID>-1</myOwnerID>
+              <myLayer>0</myLayer>
+            </voogasalad__GucciGames.gameEngine.mapObject.MapObject>
+            <voogasalad__GucciGames.gameEngine.mapObject.MapObject>
+              <myObjectType reference="../../voogasalad__GucciGames.gameEngine.mapObject.MapObject/myObjectType"/>
+              <myCoordinate class="voogasalad_GucciGames.gameEngine.targetCoordinate.TargetCoordinateSingle">
+                <myCenterX>37.0</myCenterX>
+                <myCenterY>44.0</myCenterY>
+              </myCoordinate>
+              <myOwnerID>-1</myOwnerID>
+              <myLayer>0</myLayer>
+            </voogasalad__GucciGames.gameEngine.mapObject.MapObject>
+            <voogasalad__GucciGames.gameEngine.mapObject.MapObject>
+              <myObjectType reference="../../voogasalad__GucciGames.gameEngine.mapObject.MapObject/myObjectType"/>
+              <myCoordinate class="voogasalad_GucciGames.gameEngine.targetCoordinate.TargetCoordinateSingle">
+                <myCenterX>37.0</myCenterX>
+                <myCenterY>45.0</myCenterY>
+              </myCoordinate>
+              <myOwnerID>-1</myOwnerID>
+              <myLayer>0</myLayer>
+            </voogasalad__GucciGames.gameEngine.mapObject.MapObject>
+            <voogasalad__GucciGames.gameEngine.mapObject.MapObject>
+              <myObjectType reference="../../voogasalad__GucciGames.gameEngine.mapObject.MapObject/myObjectType"/>
+              <myCoordinate class="voogasalad_GucciGames.gameEngine.targetCoordinate.TargetCoordinateSingle">
+                <myCenterX>37.0</myCenterX>
+                <myCenterY>45.0</myCenterY>
+              </myCoordinate>
+              <myOwnerID>-1</myOwnerID>
+              <myLayer>0</myLayer>
+            </voogasalad__GucciGames.gameEngine.mapObject.MapObject>
+            <voogasalad__GucciGames.gameEngine.mapObject.MapObject>
+              <myObjectType reference="../../voogasalad__GucciGames.gameEngine.mapObject.MapObject/myObjectType"/>
+              <myCoordinate class="voogasalad_GucciGames.gameEngine.targetCoordinate.TargetCoordinateSingle">
+                <myCenterX>38.0</myCenterX>
+                <myCenterY>45.0</myCenterY>
+              </myCoordinate>
+              <myOwnerID>-1</myOwnerID>
+              <myLayer>0</myLayer>
+            </voogasalad__GucciGames.gameEngine.mapObject.MapObject>
+            <voogasalad__GucciGames.gameEngine.mapObject.MapObject>
+              <myObjectType reference="../../voogasalad__GucciGames.gameEngine.mapObject.MapObject/myObjectType"/>
+              <myCoordinate class="voogasalad_GucciGames.gameEngine.targetCoordinate.TargetCoordinateSingle">
+                <myCenterX>39.0</myCenterX>
+                <myCenterY>45.0</myCenterY>
+              </myCoordinate>
+              <myOwnerID>-1</myOwnerID>
+              <myLayer>0</myLayer>
+            </voogasalad__GucciGames.gameEngine.mapObject.MapObject>
+            <voogasalad__GucciGames.gameEngine.mapObject.MapObject>
+              <myObjectType reference="../../voogasalad__GucciGames.gameEngine.mapObject.MapObject/myObjectType"/>
+              <myCoordinate class="voogasalad_GucciGames.gameEngine.targetCoordinate.TargetCoordinateSingle">
+                <myCenterX>40.0</myCenterX>
+                <myCenterY>45.0</myCenterY>
+              </myCoordinate>
+              <myOwnerID>-1</myOwnerID>
+              <myLayer>0</myLayer>
+            </voogasalad__GucciGames.gameEngine.mapObject.MapObject>
+            <voogasalad__GucciGames.gameEngine.mapObject.MapObject>
+              <myObjectType reference="../../voogasalad__GucciGames.gameEngine.mapObject.MapObject/myObjectType"/>
+              <myCoordinate class="voogasalad_GucciGames.gameEngine.targetCoordinate.TargetCoordinateSingle">
+                <myCenterX>41.0</myCenterX>
+                <myCenterY>45.0</myCenterY>
+              </myCoordinate>
+              <myOwnerID>-1</myOwnerID>
+              <myLayer>0</myLayer>
+            </voogasalad__GucciGames.gameEngine.mapObject.MapObject>
+            <voogasalad__GucciGames.gameEngine.mapObject.MapObject>
+              <myObjectType reference="../../voogasalad__GucciGames.gameEngine.mapObject.MapObject/myObjectType"/>
+              <myCoordinate class="voogasalad_GucciGames.gameEngine.targetCoordinate.TargetCoordinateSingle">
+                <myCenterX>41.0</myCenterX>
+                <myCenterY>44.0</myCenterY>
+              </myCoordinate>
+              <myOwnerID>-1</myOwnerID>
+              <myLayer>0</myLayer>
+            </voogasalad__GucciGames.gameEngine.mapObject.MapObject>
+            <voogasalad__GucciGames.gameEngine.mapObject.MapObject>
+              <myObjectType reference="../../voogasalad__GucciGames.gameEngine.mapObject.MapObject/myObjectType"/>
+              <myCoordinate class="voogasalad_GucciGames.gameEngine.targetCoordinate.TargetCoordinateSingle">
+                <myCenterX>41.0</myCenterX>
+                <myCenterY>43.0</myCenterY>
+              </myCoordinate>
+              <myOwnerID>-1</myOwnerID>
+              <myLayer>0</myLayer>
+            </voogasalad__GucciGames.gameEngine.mapObject.MapObject>
+            <voogasalad__GucciGames.gameEngine.mapObject.MapObject>
+              <myObjectType reference="../../voogasalad__GucciGames.gameEngine.mapObject.MapObject/myObjectType"/>
+              <myCoordinate class="voogasalad_GucciGames.gameEngine.targetCoordinate.TargetCoordinateSingle">
+                <myCenterX>41.0</myCenterX>
+                <myCenterY>42.0</myCenterY>
+              </myCoordinate>
+              <myOwnerID>-1</myOwnerID>
+              <myLayer>0</myLayer>
+            </voogasalad__GucciGames.gameEngine.mapObject.MapObject>
+            <voogasalad__GucciGames.gameEngine.mapObject.MapObject>
+              <myObjectType>
+                <myName>duvall</myName>
+                <myImagePath>player/images/duvall.png</myImagePath>
+                <myCharacteristics class="tree-map"/>
+                <myActions class="tree-map"/>
+                <myRequests class="tree-map"/>
+              </myObjectType>
+              <myCoordinate class="voogasalad_GucciGames.gameEngine.targetCoordinate.TargetCoordinateSingle">
+                <myCenterX>40.0</myCenterX>
+                <myCenterY>43.0</myCenterY>
+              </myCoordinate>
+              <myOwnerID>-1</myOwnerID>
+              <myLayer>0</myLayer>
+            </voogasalad__GucciGames.gameEngine.mapObject.MapObject>
+            <voogasalad__GucciGames.gameEngine.mapObject.MapObject>
+              <myObjectType reference="../../voogasalad__GucciGames.gameEngine.mapObject.MapObject[22]/myObjectType"/>
+              <myCoordinate class="voogasalad_GucciGames.gameEngine.targetCoordinate.TargetCoordinateSingle">
+                <myCenterX>40.0</myCenterX>
+                <myCenterY>42.0</myCenterY>
+              </myCoordinate>
+              <myOwnerID>-1</myOwnerID>
+              <myLayer>0</myLayer>
+            </voogasalad__GucciGames.gameEngine.mapObject.MapObject>
+            <voogasalad__GucciGames.gameEngine.mapObject.MapObject>
+              <myObjectType reference="../../voogasalad__GucciGames.gameEngine.mapObject.MapObject[22]/myObjectType"/>
+              <myCoordinate class="voogasalad_GucciGames.gameEngine.targetCoordinate.TargetCoordinateSingle">
+                <myCenterX>39.0</myCenterX>
+                <myCenterY>43.0</myCenterY>
+              </myCoordinate>
+              <myOwnerID>-1</myOwnerID>
+              <myLayer>0</myLayer>
+            </voogasalad__GucciGames.gameEngine.mapObject.MapObject>
+            <voogasalad__GucciGames.gameEngine.mapObject.MapObject>
+              <myObjectType>
+                <myName>student</myName>
+                <myImagePath>player/images/smile.png</myImagePath>
+                <myCharacteristics class="tree-map"/>
+                <myActions class="tree-map"/>
+                <myRequests class="tree-map"/>
+              </myObjectType>
+              <myCoordinate class="voogasalad_GucciGames.gameEngine.targetCoordinate.TargetCoordinateSingle">
+                <myCenterX>38.0</myCenterX>
+                <myCenterY>44.0</myCenterY>
+              </myCoordinate>
+              <myOwnerID>-1</myOwnerID>
+              <myLayer>0</myLayer>
+            </voogasalad__GucciGames.gameEngine.mapObject.MapObject>
+            <voogasalad__GucciGames.gameEngine.mapObject.MapObject>
+              <myObjectType reference="../../voogasalad__GucciGames.gameEngine.mapObject.MapObject[25]/myObjectType"/>
+              <myCoordinate class="voogasalad_GucciGames.gameEngine.targetCoordinate.TargetCoordinateSingle">
+                <myCenterX>39.0</myCenterX>
+                <myCenterY>44.0</myCenterY>
+              </myCoordinate>
+              <myOwnerID>-1</myOwnerID>
+              <myLayer>0</myLayer>
+            </voogasalad__GucciGames.gameEngine.mapObject.MapObject>
+            <voogasalad__GucciGames.gameEngine.mapObject.MapObject>
+              <myObjectType>
+                <myName>student</myName>
+                <myImagePath>player/images/mario.png</myImagePath>
+                <myCharacteristics class="tree-map"/>
+                <myActions class="tree-map"/>
+                <myRequests class="tree-map"/>
+              </myObjectType>
+              <myCoordinate class="voogasalad_GucciGames.gameEngine.targetCoordinate.TargetCoordinateSingle">
+                <myCenterX>37.0</myCenterX>
+                <myCenterY>42.0</myCenterY>
+              </myCoordinate>
+              <myOwnerID>-1</myOwnerID>
+              <myLayer>0</myLayer>
+            </voogasalad__GucciGames.gameEngine.mapObject.MapObject>
+          </myMapObjects>
           <turnMoves>-1</turnMoves>
           <turnCounter>0</turnCounter>
           <myStatus>DRAW</myStatus>

@@ -7,6 +7,7 @@ import java.util.Map;
 import java.util.ResourceBundle;
 import java.util.TreeMap;
 
+import voogasalad_GucciGames.gameEngine.defaultCharacteristics.TileCharacteristic;
 import voogasalad_GucciGames.gameEngine.objectActions.MapObjectEvent;
 
 public class MapObjectType{
@@ -26,7 +27,6 @@ public class MapObjectType{
 	public MapObjectType(String name, String imagePath){
 		myName = name;
 		myImagePath = imagePath;
-
 		// TreeMap so alphabetized when giving to front end
 		myCharacteristics = new TreeMap<String,  AMapObjectCharacteristic>();
 		myActions = new TreeMap<>();
@@ -70,7 +70,11 @@ public class MapObjectType{
 	public void addAction(String name, MapObjectEvent action){
 		this.myActions.put(name, action);
 	}
-
+	
+//	public void addCharacteristic(String name, List<Integer> values){
+//		this.myCharacteristics.put(name, myCharacteristicHandler.getCharacteristic(name, values));
+//	}
+	
 	public void addCharacteristic(String name, AMapObjectCharacteristic characteristic){
 		this.myCharacteristics.put(name, characteristic);
 	}
@@ -100,14 +104,18 @@ public class MapObjectType{
 		map.put("hello", "hi"); //change this later
 		return map;
 	}
-
-//	public void initializeCharacteristicsMap(){
+	
+//	public void initializeCharacteristicsMap(Map<String,List<Integer>> characteristics){
 //		myCharacteristics = new TreeMap<>();
-//		for (String key: myResourceBundle.keySet()){
-//			myCharacteristics.put(key, myCharacteristicHandler.getCharacteristic(key));
+//		for (String key: characteristics.keySet()){
+//			myCharacteristics.put(key, myCharacteristicHandler.getCharacteristic(key, characteristics.get(key)));
 //		}
 //	}
+	
 
-
+	public boolean isTile(){
+		return myCharacteristics.containsKey("TileCharacteristic") || myName.equals("TileCharacteristic");
+	}
+	
 
 }
