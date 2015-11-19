@@ -15,7 +15,7 @@ public class TileMakerCustomContent extends DialogContent{
 	
 	protected void setDialogElements(DialogElements dialogElements){
 		this.dialogElements = dialogElements;
-		dialogElements.getDialogProperties().setProperty("type", "tile");
+		dialogElements.getSaveObjProperty().saveObjProperty("type", "tile");
 	}
 	
 	protected void initializeCustomContent(){

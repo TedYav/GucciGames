@@ -66,8 +66,7 @@ public class PlayerDialog extends GaeDialog  {
 			ObjectProperty playerProperty = new ObjectProperty();
 			saveObjProperty = setSavePropertyFunction(playerProperty, saveObjProperty);		
 			dialogElements = new DialogElements(prop, playerProperty, saveObjProperty, null,controller);
-			dialogElements.getDialogProperties().setProperty("type", "playersettings");
-
+			dialogElements.getSaveObjProperty().saveObjProperty("type", "playersetting");
 			content.setDialogElements(dialogElements);
 			content.init();
 			vbox.getChildren().add(content.getContent());
