@@ -23,7 +23,7 @@ public class DefaultTurnDecider extends ATurnDecider {
 
 		// (-1 is there in the mod operation because player at index 0 doesn't
 		// take a turn (neutral) and +1 is just for math to work out
-		return (turnCounter.getCurrentTurn() % (numPlayers - 1)) + 1;
+		return (turnCounter.getCurrentTurn() % (numPlayers - 1));
 
 	}
 

@@ -3,11 +3,17 @@ package voogasalad_GucciGames.gameEngine;
 import java.util.HashMap;
 import java.util.Map;
 
+import voogasalad_GucciGames.gameEngine.defaultCharacteristics.HealthCharacteristic;
+import voogasalad_GucciGames.gameEngine.defaultCharacteristics.MovableCharacteristic;
+import voogasalad_GucciGames.gameEngine.defaultCharacteristics.RealHealthCharacteristic;
 import voogasalad_GucciGames.gameEngine.gamePlayer.AllPlayers;
 import voogasalad_GucciGames.gameEngine.gamePlayer.GamePlayerPerson;
 import voogasalad_GucciGames.gameEngine.mapObject.MapObject;
 import voogasalad_GucciGames.gameEngine.mapObject.MapObjectType;
+import voogasalad_GucciGames.gameEngine.objectActions.MoveEvent;
+import voogasalad_GucciGames.gameEngine.objectActions.WhereToMoveEvent;
 import voogasalad_GucciGames.gameEngine.targetCoordinate.TargetCoordinateSingle;
+import voogasalad_GucciGames.gameplayer.controller.PlayerMapObjectInterface;
 
 public class Main {
 
@@ -22,9 +28,24 @@ public class Main {
 		map.put(-1, p);
 		map.put(0, p0);
 		AllPlayers allPlayers = new AllPlayers(map);
-	MainGameEngine engine = new MainGameEngine(allPlayers);
+		MainGameEngine engine = new MainGameEngine(allPlayers);
 		engine.createTestCondition();
+		
+		MovableCharacteristic myMovableCharacteristic = new MovableCharacteristic(1, 3);
+		HealthCharacteristic myHealthCharacteristic = new RealHealthCharacteristic(5);
+		
+		MoveEvent myMoveEvent = new MoveEvent("Move");
+		WhereToMoveEvent myMoveLocationEvent = new WhereToMoveEvent("WhereToMove");
+		
+		soldier.addCharacteristic("MovableCharacteristic", myMovableCharacteristic);
+		soldier.addCharacteristic("HealthCharacteristic", myHealthCharacteristic);
+		soldier.addAction("Move", myMoveEvent);
+		soldier.addRequest("WhereToMove", myMoveLocationEvent);
+		
+		
+		engine.getPossibleCoordinates("Move", (PlayerMapObjectInterface) sold1);
 
+		
 		//engine.endTurn();
 
 		// test rules:
