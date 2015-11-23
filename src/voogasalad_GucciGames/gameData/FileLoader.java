@@ -77,7 +77,7 @@ public class FileLoader {
 
 	private byte[] crypto(int cipherMode, byte[] input) throws Exception {
 		myCipher.init(cipherMode, myKey);
-		return myCipher.doFinal(input);
-		//return input;
+		//return myCipher.doFinal(input);
+		return input;
 	}
 }
