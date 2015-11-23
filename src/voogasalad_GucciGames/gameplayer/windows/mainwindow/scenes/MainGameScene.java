@@ -108,5 +108,10 @@ public class MainGameScene extends GameScene {
 	private void enableObservers() {
 		myMap.addUnitListener(myLeftBar.requestListener());
 	}
+
+    @Override
+    public void update () {
+        myRightBar.updateStats();
+    }
 	
 }

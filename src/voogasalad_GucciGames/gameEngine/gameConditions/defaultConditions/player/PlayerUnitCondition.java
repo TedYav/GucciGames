@@ -21,6 +21,8 @@ public class PlayerUnitCondition extends PlayerConditions {
 	@Override
 	protected void apply(GamePlayerPerson player, BasicParameters params) {
 		System.out.println("condition description: remove player with units = 0");
+		System.out.println(player == null);
+		if(player != null){
 		int myID = player.getMyPlayerId();
 		Outcome outcome = new Outcome(params.getPlayers());
 		if (player.getMapObjects() != null) {
@@ -30,5 +32,6 @@ public class PlayerUnitCondition extends PlayerConditions {
 				myParams.addRemoveIDs(myID);
 			}
 		}
+	}
 	}
 }

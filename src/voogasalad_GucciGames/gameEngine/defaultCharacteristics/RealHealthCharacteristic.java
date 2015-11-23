@@ -43,4 +43,10 @@ public class RealHealthCharacteristic extends HealthCharacteristic{
 		return myCurrentHealth <= 0;
 	}
 
+	@Override
+	public String toString() {
+		// TODO Auto-generated method stub
+		return "Current Health = " + myCurrentHealth;
+	}
+
 }

@@ -2,10 +2,12 @@
 package voogasalad_GucciGames.gameEngine.gameConditions;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
+import voogasalad_GucciGames.gameEngine.MainGameEngine;
 import voogasalad_GucciGames.gameEngine.gamePlayer.GamePlayerPerson;
 
 /**
@@ -29,6 +31,17 @@ public class ConditionParams {
 		myPlayersID = players;
 		removeIDs = new ArrayList<Integer>();
 
+	}
+	
+	public ConditionParams(MainGameEngine myEngine){
+		myPlayersID = myEngine.getPlayers().getAllIds();
+		Collections.sort(myPlayersID);
+		myPlayers = new ArrayList<GamePlayerPerson>();
+		removeIDs = new ArrayList<Integer>();
+
+		for(int i = 1; i < myPlayersID.size(); i++){
+		myPlayers.add(myEngine.getPlayers().getActivePlayer(myPlayersID.get(i)));
+		}
 	}
 
 	protected String getName() {
