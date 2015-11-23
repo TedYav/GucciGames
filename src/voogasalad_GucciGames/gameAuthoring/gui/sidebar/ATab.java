@@ -7,6 +7,7 @@ import javafx.collections.ListChangeListener;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.geometry.Insets;
+import javafx.geometry.Rectangle2D;
 import javafx.scene.control.Button;
 import javafx.scene.control.ContextMenu;
 import javafx.scene.control.Tab;
@@ -85,8 +86,19 @@ public abstract class ATab extends Tab {
 	private void addType(MapObjectType type) {
 		Image image = new Image(getClass().getClassLoader().getResourceAsStream(type.getImagePath()));
 		ImageView imageView = new ImageView(image);
-		imageView.setFitHeight(30);
-		imageView.setFitWidth(30);
+		
+		double width = type.getWidth();
+		double height = type.getHeight();
+		
+		double myX1 = type.getX()*width;
+		double myY1 = type.getY()*height;
+		
+		Rectangle2D rect = new Rectangle2D(myX1, myY1, width, height);
+		imageView.setViewport(rect);
+		
+		imageView.setFitHeight(height);
+		imageView.setFitWidth(width);
+		
 		imageView.setOnMouseClicked(e->mouseClicked(imageView, e));
 		myMap.put(type, imageView);
 		myImageViews.add(imageView);
