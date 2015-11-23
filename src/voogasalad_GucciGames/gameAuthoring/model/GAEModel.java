@@ -20,25 +20,23 @@ import voogasalad_GucciGames.gameEngine.mapObject.MapObjectType;
 import voogasalad_GucciGames.gameEngine.targetCoordinate.TargetCoordinateSingle;
 
 public class GAEModel implements IGAEModel{
-    private GameSourceData data;
+    private TypeData typeData;
+    private MapData mapData;
     private IModelGaeController myController;
-    //private XMLWriter writer;
-    //private GameEngineToGameAuthoringEnvironment engine;
 	private Map<Integer, GamePlayerPerson> mapOfPlayers;	
     private AllPlayers players;
 	private MainGameEngine engine;
     
     public GAEModel(IModelGaeController controller) {
     	myController = controller;
-    	data = new GameSourceData();
+    	typeData = new TypeData();
     	mapOfPlayers = new HashMap<>();
     	// Probs need to change this
 		mapOfPlayers.put(-1, new GamePlayerPerson(-1));
 		mapOfPlayers.put(0, new GamePlayerPerson(0));
 		mapOfPlayers.put(1, new GamePlayerPerson(1));
 		mapOfPlayers.put(2, new GamePlayerPerson(2));
-		
-    	//writer = new XMLWriter();
+
     }
     
 
@@ -60,57 +58,43 @@ public class GAEModel implements IGAEModel{
     
     @Override
 	public List<MapObject> getMapObjects() {
-		return data.getMapObjects();
+		return mapData.getMapObjects();
 	}
 
     @Override
     public void clearMap () {
-        data.clearMap();
+        mapData.clearMap();
     }
 
     @Override
     public void createCustomTileType (Map<String, String> m) {
         MapObjectType objType = new DefaultMapObjectType(m.get("name"), m.get("imagePath"));//TODO: properties file
-        data.addTileType(objType);
+        typeData.addTileType(objType);
     }
 
     @Override
     public void createCustomUnitType (Map<String, String> m) {  
         MapObjectType objType = new DefaultMapObjectType(m.get("name"), m.get("imagePath"));//TODO: properties file
-        data.addUnitType(objType);
+        typeData.addUnitType(objType);
     }
 
     @Override
     public ObservableList<MapObjectType> getImmutableTileTypes () {
-        return data.getImmutableTileTypes();
+        return typeData.getImmutableTileTypes();
     }
 
     @Override
     public ObservableList<MapObjectType> getImmutableUnitTypes () {
-        return data.getImmutableUnitTypes();
+        return typeData.getImmutableUnitTypes();
     }
     
     @Override
 	public ObservableList<MapObjectType> getImmutableStructureTypes() {
-		return data.getImmutableStructureTypes();
+		return typeData.getImmutableStructureTypes();
 	}
-    
-  /*  @Override
-    public ObservableList<TileType> getTileTypes () {
-        return null;
-    }
-
-    @Override
-    public ObservableList<GameUnitType> getUnitTypes () {
-        return null;
-    } */
 
     @Override
     public void saveToXML (String filename) {    	
-    	/*
-    	 * Don't instantiate these
-    	 * Change to instance variables
-    	 */
     	XStreamGameEngine saver = new XStreamGameEngine();
 		AllPlayers myPlayers = new AllPlayers(mapOfPlayers);
 		MainGameEngine engine = new MainGameEngine(myPlayers);
@@ -135,7 +119,7 @@ public class GAEModel implements IGAEModel{
     public void addComponent (Map<String,String> objParams) {
         MapObject mapObj = new MapObject(null,null, 0);// TODO:MapObject(objParams);
         validate();
-        data.addToMap(mapObj);
+        mapData.addToMap(mapObj);
     }
 
 

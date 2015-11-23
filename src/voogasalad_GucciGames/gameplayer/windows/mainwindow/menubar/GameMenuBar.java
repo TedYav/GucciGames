@@ -19,7 +19,7 @@ public class GameMenuBar {
 
 
 	public GameMenuBar(List<GameMenu> menus){
-		menu=new ToolBar();
+		menu = new ToolBar();
 		for (GameMenu m: menus) {
 		    menu.getItems().add(m.returnNodeToDraw());
 		}
