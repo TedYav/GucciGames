@@ -1,5 +1,6 @@
 package voogasalad_GucciGames.gameAuthoring.model;
 
+import java.io.File;
 import java.util.List;
 import java.util.Map;
 
@@ -24,7 +25,7 @@ public interface IGAEModel {
     public ObservableList<MapObjectType> getImmutableStructureTypes();
 
     
-    public void saveToXML(String filename);
+    public void saveToXML(File file);
     
     public void setMapWidth(double x);
     public void setMapHeight(double y);

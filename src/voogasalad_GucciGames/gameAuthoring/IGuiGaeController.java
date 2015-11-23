@@ -3,11 +3,13 @@ import voogasalad_GucciGames.gameAuthoring.gui.map.GridPoint;
 import voogasalad_GucciGames.gameAuthoring.properties.ObjectProperty;
 import voogasalad_GucciGames.gameAuthoring.properties.Property;
 
+import java.io.File;
 import java.util.List;
 import java.util.Map;
 
 import javafx.collections.ObservableList;
 import javafx.scene.image.Image;
+import javafx.stage.Stage;
 import voogasalad_GucciGames.gameEngine.mapObject.MapObject;
 import voogasalad_GucciGames.gameEngine.mapObject.MapObjectType;
 
@@ -37,7 +39,7 @@ public interface IGuiGaeController{
     
     public ObservableList<MapObjectType> getImmutableStructureTypes();
 
-    public void saveToXML(String filename);
+    public void saveToXML(File file);
     
     public void setMapWidth(double x);
     
@@ -55,4 +57,6 @@ public interface IGuiGaeController{
 			int ownerID);
 	
 	public void changeOwner(MapObject mapObject, int playerID);
+	
+	public Stage getStage();
 }
