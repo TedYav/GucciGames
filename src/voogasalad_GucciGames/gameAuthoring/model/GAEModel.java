@@ -30,6 +30,7 @@ public class GAEModel implements IGAEModel{
     public GAEModel(IModelGaeController controller) {
     	myController = controller;
     	typeData = new TypeData();
+    	mapData = new MapData();
     	mapOfPlayers = new HashMap<>();
     	// Probs need to change this
 		mapOfPlayers.put(-1, new GamePlayerPerson(-1));
