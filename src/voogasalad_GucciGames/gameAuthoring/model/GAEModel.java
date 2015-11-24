@@ -1,6 +1,7 @@
 package voogasalad_GucciGames.gameAuthoring.model;
 
 
+import java.io.File;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -95,11 +96,16 @@ public class GAEModel implements IGAEModel{
 	}
 
     @Override
-    public void saveToXML (String filename) {    	
+
+    public void saveToXML (File file) {    	
+    	/*
+    	 * Don't instantiate these
+    	 * Change to instance variables
+    	 */
     	XStreamGameEngine saver = new XStreamGameEngine();
 		AllPlayers myPlayers = new AllPlayers(mapOfPlayers);
 		MainGameEngine engine = new MainGameEngine(myPlayers);
-		saver.saveEngine(engine, filename);
+		saver.saveEngine(engine, file);
     }
     
     private boolean validate(){ //TODO

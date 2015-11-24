@@ -1,5 +1,6 @@
 package voogasalad_GucciGames.gameAuthoring;
 
+import java.io.File;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.HashMap;
@@ -28,15 +29,17 @@ import voogasalad_GucciGames.gameEngine.targetCoordinate.TargetCoordinateSingle;
 
 public class GaeController extends AGuiGaeController implements IModelGaeController{
 
-	IGAEModel model;
-    GAEGui gui;
-    MapObjectType mapobjecttype;
-    Image currDraggedImage;
+	private IGAEModel model;
+	private GAEGui gui;
+	private MapObjectType mapobjecttype;
+	private Image currDraggedImage;
+	private Stage myStage;
     private int numberOfPlayers;
     private int defaultOwnerID = -1;
     private Map<Integer, String> allPlayers = new HashMap<Integer, String>();
     
     public GaeController(Stage stage){
+    	myStage = stage;
     	model = new GAEModel(this);
     	gui = new GAEGui(this,stage);	
     }
@@ -98,8 +101,8 @@ public class GaeController extends AGuiGaeController implements IModelGaeControl
 	}
 	
     @Override
-    public void saveToXML (String filepath) {
-        model.saveToXML(filepath);
+    public void saveToXML (File file) {
+        model.saveToXML(file);
     }
 
     
@@ -204,6 +207,11 @@ public class GaeController extends AGuiGaeController implements IModelGaeControl
 	@Override
 	public void setStructureParams(StructureParams params) {
 		// TODO Auto-generated method stub
+		
+	}
+	@Override
+	public Stage getStage() {
+		return myStage;
 		
 	}
 
