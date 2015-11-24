@@ -50,7 +50,7 @@ public class ScrollBarField extends DialogComponent {
 					dialogElements.getDialogGaeController().setNumberOfPlayers(newValue.intValue());
 				}
 				numSpriteText.setText(newValue.intValue()+"");
-				dialogElements.getSaveObjProperty().saveObjProperty(propKey, newValue.intValue()+"");				
+				//dialogElements.getSaveObjProperty().saveObjProperty(propKey, newValue.intValue()+"");				
 			}			
 		});
 	}

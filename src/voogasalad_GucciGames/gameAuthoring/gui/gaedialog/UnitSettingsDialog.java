@@ -21,7 +21,6 @@ public class UnitSettingsDialog extends GaeDialog{
 	private ObjectProperty objProp= new ObjectProperty();
 	private IDialogGaeController controller;
 	private Properties prop;
-	private ISaveObjProperty saveObjProperty;
 	private DialogElements dialogElements;
 	private Scene scene;
 	
@@ -50,10 +49,9 @@ public class UnitSettingsDialog extends GaeDialog{
 		
 		this.controller = controller;
 		objProp = new ObjectProperty();
-		this.saveObjProperty = setSavePropertyFunction(objProp, saveObjProperty);		
 
-		this.dialogElements = new DialogElements(prop, objProp, saveObjProperty, null, controller);
-		dialogElements.getSaveObjProperty().saveObjProperty("type", "playersetting");
+		this.dialogElements = new DialogElements(prop, null, controller);
+		//dialogElements.getSaveObjProperty().saveObjProperty("type", "playersetting");
 		initialize();
 		addActionToSave();
 		setScene();	

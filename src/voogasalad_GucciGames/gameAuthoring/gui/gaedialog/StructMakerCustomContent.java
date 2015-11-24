@@ -13,7 +13,7 @@ public class StructMakerCustomContent extends DialogContent{
 	
 	protected void setDialogElements(DialogElements dialogElements){
 		this.dialogElements = dialogElements;
-		dialogElements.getSaveObjProperty().saveObjProperty("type", "structure");
+		//dialogElements.getSaveObjProperty().saveObjProperty("type", "structure");
 	}
 	
 	protected void initializeCustomContent() {

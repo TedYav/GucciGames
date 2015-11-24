@@ -35,7 +35,7 @@ public class SaveField extends DialogComponent {
 	}
 	private void addListenerToSaveBtn(){
 		saveBtn.setOnAction(e ->  {
-			dialogGaeController.createCustomMapObject(dialogElements.getObjectProperty());
+			//dialogGaeController.createCustomMapObject(dialogElements.getObjectProperty());
 			//dialogGaeController.saveGameSetting(gameParams);
 			stage.close();
 			});

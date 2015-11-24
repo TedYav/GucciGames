@@ -71,8 +71,8 @@ public class PlayerDialog extends GaeDialog  {
 				contentList.add(content);
 				ObjectProperty playerProperty = new ObjectProperty();
 				saveObjProperty = setSavePropertyFunction(playerProperty, saveObjProperty);		
-				dialogElements = new DialogElements(prop, playerProperty, saveObjProperty, null,controller);
-				dialogElements.getSaveObjProperty().saveObjProperty("type", "playersetting");
+				dialogElements = new DialogElements(prop, null,controller);
+				//dialogElements.getSaveObjProperty().saveObjProperty("type", "playersetting");
 				content.setDialogElements(dialogElements);
 				content.init();
 				myContent.getChildren().add(content.getContent());

@@ -31,19 +31,19 @@ public class FileBrowserField extends DialogComponent{
 		browseBtn = new Button(dialogElements.getDialogProperties().getProperty(browseBtnKey));
 		addActionHandlerForBrowseBtn();
 		pathTextField = new TextField();
-		addListenerForPathTextField();
+		//addListenerForPathTextField();
 
 		content.getChildren().addAll(label, pathTextField, browseBtn);
 		content.setId("hbox-element");
 
 	}
 	
-	private void addListenerForPathTextField(){
-		pathTextField.textProperty().addListener((observable, oldValue, newValue)->{
-			 dialogElements.getSaveObjProperty().saveObjProperty("imagepath", newValue);
-		 });
-		
-	}
+//	private void addListenerForPathTextField(){
+//		pathTextField.textProperty().addListener((observable, oldValue, newValue)->{
+//			
+//		 });
+//		
+//	}
 	
 	private void addActionHandlerForBrowseBtn(){
 		browseBtn.setOnAction(e -> {

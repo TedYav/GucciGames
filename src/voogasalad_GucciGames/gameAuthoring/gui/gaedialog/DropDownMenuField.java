@@ -39,7 +39,6 @@ public class DropDownMenuField  extends DialogComponent{
 	private void addListenerToDropDown(){
 		dropDown.setOnAction(e -> {
 			String s = dropDown.getSelectionModel().getSelectedItem().toString();
-			dialogElements.getSaveObjProperty().saveObjProperty(propKey, s);		
 		});		
 	}
 

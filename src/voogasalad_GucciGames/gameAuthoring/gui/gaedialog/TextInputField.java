@@ -22,19 +22,19 @@ public class TextInputField extends DialogComponent{
 	private void makeTextInputField(){
 		Text title = new Text(dialogElements.getDialogProperties().getProperty(propKey));		
 		textField = new TextField();	
-		addListenerToTextInputField();
+		//addListenerToTextInputField();
 		content.getChildren().addAll(title,textField);
 		content.setId("hbox-element");
 	
 	}
 	
-	private void addListenerToTextInputField(){
-		textField.textProperty().addListener((observable, oldValue, newValue) -> {
-			dialogElements.getSaveObjProperty().
-			saveObjProperty(dialogElements.getDialogProperties().getProperty(propKey), newValue);		
-		});
-		
-	}
+//	private void addListenerToTextInputField(){
+//		textField.textProperty().addListener((observable, oldValue, newValue) -> {
+//			//dialogElements.getSaveObjProperty().
+//			//saveObjProperty(dialogElements.getDialogProperties().getProperty(propKey), newValue);		
+//		});
+//		
+//	}
 	
 	public String getTextInput(){
 		return getTextField().getText();

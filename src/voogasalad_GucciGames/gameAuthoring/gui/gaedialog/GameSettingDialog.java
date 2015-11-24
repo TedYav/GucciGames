@@ -38,8 +38,8 @@ public class GameSettingDialog extends GaeDialog {
 		this.dialogGaeController = dialogGaeController;
 		prop = loadProperties("dialogproperties/gamedialog.properties");
 		this.initializeSaveObjProperty();
-		dialogElements = new DialogElements(prop, gameSettingsProperty, saveObjProperty, null, dialogGaeController);
-		dialogElements.getSaveObjProperty().saveObjProperty("type", "gamesetting");
+		dialogElements = new DialogElements(prop, null, dialogGaeController);
+		//dialogElements.getSaveObjProperty().saveObjProperty("type", "gamesetting");
 		SaveField saveField = new SaveField(dialogElements, dialogGaeController, gameSettingDialog);
 		
 		saveField.getSaveBtn().setOnAction(e -> {

@@ -50,6 +50,12 @@ public class GameSettingParams extends AParamsObject{
 	public void setNumberOfPlayers(double d) {
 		this.numberOfPlayers = d;
 	}
+
+	@Override
+	public void print() {
+		// TODO Auto-generated method stub
+		
+	}
 	
 
 

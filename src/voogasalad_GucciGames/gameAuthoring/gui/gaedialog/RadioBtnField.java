@@ -39,26 +39,26 @@ public class RadioBtnField extends DialogComponent {
 		checkBoxList.forEach(radioBtn->{
 			radioBtn.setToggleGroup(group);
 			radioBtn.setUserData(radioBtn.getText());});		
-		addListenerToToggleGroup();
+		//addListenerToToggleGroup();
 		content.getChildren().add(label);
 		content.getChildren().addAll( checkBoxList);
 		content.setId("hbox-element");
 	}
 	
-	private void addListenerToToggleGroup() {
-		group.selectedToggleProperty().addListener(new ChangeListener<Toggle>(){
-			@Override
-			public void changed(ObservableValue<? extends Toggle> observable,
-					Toggle oldValue, Toggle newValue) {
-				// TODO Auto-generated method stub
-				if(group.getSelectedToggle() != null){
-					dialogElements.getSaveObjProperty()
-					.saveObjProperty(propKey, group.getSelectedToggle().getUserData().toString());
-					
-				}			
-			}
-		});
-	}
+//	private void addListenerToToggleGroup() {
+//		group.selectedToggleProperty().addListener(new ChangeListener<Toggle>(){
+//			@Override
+//			public void changed(ObservableValue<? extends Toggle> observable,
+//					Toggle oldValue, Toggle newValue) {
+//				// TODO Auto-generated method stub
+//				if(group.getSelectedToggle() != null){
+//					dialogElements.getSaveObjProperty()
+//					.saveObjProperty(propKey, group.getSelectedToggle().getUserData().toString());
+//					
+//				}			
+//			}
+//		});
+//	}
 	
 	@Override
 	protected HBox getContent(){
@@ -72,6 +72,10 @@ public class RadioBtnField extends DialogComponent {
 				group.selectToggle(t);
 			}
 		}
+	}
+	
+	public String getSelected(){
+		return group.getSelectedToggle().getUserData().toString();
 	}
 
 

@@ -36,7 +36,7 @@ public class NewObjectMaker extends GaeDialog{
 		saveGroovy = setSaveGroovyFunctions(groovyBuffer, saveGroovy);
 		saveObjProperty = setSavePropertyFunction(unitProperty, saveObjProperty);
 		this.controller = controller;
-		dialogElements = new DialogElements(prop, unitProperty, saveObjProperty, saveGroovy, controller);
+		dialogElements = new DialogElements(prop, saveGroovy, controller);
 		groovyTabPane = new GroovyTabPane(dialogElements);
 		save = new SaveField(dialogElements, controller, makerDialog);
 		customContent.setDialogElements(dialogElements);

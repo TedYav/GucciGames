@@ -200,7 +200,8 @@ public class GaeController extends AGuiGaeController implements IModelGaeControl
 	public void setUnitParams(UnitParams params) {
 		// TODO Auto-generated method stub
 		//TODO: DEBUG
-				System.out.println("params: " + params.getName());
+		System.out.println("set");
+		params.print();
 		
 		
 	}

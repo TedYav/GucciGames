@@ -58,7 +58,7 @@ public class GroovyTabPane extends DialogComponent{
 			 dialogElements.getSaveGroovy().
 			 saveGroovyTextArea(groovy, getIdForTab(getSelectedTab()));
 			 try {
-				 dialogElements.getObjectProperty().addPropertyElement(name + "_groovy", groovy);
+				 dialogElements.getSaveGroovy().saveGroovyTextArea(name, groovy);
 			 } catch (Exception e1) {
 				 e1.printStackTrace();
 			 }
