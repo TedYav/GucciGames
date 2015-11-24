@@ -1,15 +1,11 @@
 package voogasalad_GucciGames.gameplayer.windows.mainwindow.components.leftbar;
 
-import java.util.HashMap;
-import java.util.Map;
 import java.util.ResourceBundle;
 import javafx.collections.ListChangeListener;
 import javafx.scene.Node;
 import javafx.scene.Parent;
-import javafx.scene.image.ImageView;
 import javafx.scene.layout.VBox;
 import voogasalad_GucciGames.gameplayer.controller.GameControllerInterface;
-import voogasalad_GucciGames.gameplayer.controller.GameEngineToGamePlayerInterface;
 import voogasalad_GucciGames.gameplayer.windows.GameScene;
 import voogasalad_GucciGames.gameplayer.windows.WindowComponent;
 import voogasalad_GucciGames.gameplayer.windows.mainwindow.map.MapInterface;
@@ -32,9 +28,9 @@ public class LeftBar extends WindowComponent implements DisplayComponent{
         initializeData();
         myMap=myController.getMap();
     }
-    
+
     private void initializeData() {
-        objectDetails = new DisplayMapObjectDetails(myMap,myController);//TODO: create in properties file?
+        objectDetails = new DisplayMapObjectDetails(myController);//TODO: create in properties file?
         chatDisplay = new DisplayChat();
         container.getChildren().add(objectDetails.getNodeToDraw());
         container.getChildren().add(chatDisplay.getNodeToDraw());
@@ -46,7 +42,7 @@ public class LeftBar extends WindowComponent implements DisplayComponent{
     public Parent getParent () {
         return container;
     }
-    
+
     public Node getNodeToDraw() {
         return container;
     }

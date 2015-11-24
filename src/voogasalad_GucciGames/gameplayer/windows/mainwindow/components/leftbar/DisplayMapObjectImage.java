@@ -3,19 +3,12 @@ package voogasalad_GucciGames.gameplayer.windows.mainwindow.components.leftbar;
 import voogasalad_GucciGames.gameplayer.controller.GameControllerInterface;
 import voogasalad_GucciGames.gameplayer.controller.PlayerMapObjectInterface;
 import voogasalad_GucciGames.gameplayer.windows.mainwindow.components.DisplayComponent;
-import java.awt.event.MouseEvent;
 import java.util.List;
-import java.util.Map;
 import java.util.ResourceBundle;
-import javafx.event.Event;
-import javafx.event.EventHandler;
-import javafx.geometry.Pos;
 import javafx.scene.Node;
-import javafx.scene.control.Button;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.FlowPane;
-import javafx.scene.layout.HBox;
 
 public class DisplayMapObjectImage implements DisplayComponent{
     private List<PlayerMapObjectInterface> mapObjectsOnCell;

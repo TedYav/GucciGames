@@ -1,4 +1,4 @@
-‡–T‘,—¼±~ú”Œ*©E¢UİˆÜç‰é…Õ¦‡ƒ<voogasalad__GucciGames.gameEngine.MainGameEngine>
+ÍõòÔ"ÚAëÈ¶¤Ç´F|4‡Zg­œ‡şÈ<voogasalad__GucciGames.gameEngine.MainGameEngine>
   <myGamePlayers>
     <myMapOfPlayers class="tree-map">
       <entry>
@@ -10,6 +10,10 @@
               <myObjectType>
                 <myName>TileCharacteristics</myName>
                 <myImagePath>player/images/dummytexture2.jpg</myImagePath>
+                <myX>0</myX>
+                <myY>0</myY>
+                <myWidth>0.0</myWidth>
+                <myHeight>0.0</myHeight>
                 <myDefaultCharacteristics class="tree-map"/>
                 <myActions class="tree-map"/>
                 <myRequests class="tree-map"/>
@@ -25,7 +29,11 @@
             <voogasalad__GucciGames.gameEngine.mapObject.MapObject>
               <myObjectType>
                 <myName>TileCharacteristics</myName>
-                <myImagePath>player/images/dummytexture.jpg</myImagePath>
+                <myImagePath>player/images/dummytexture3.jpg</myImagePath>
+                <myX>0</myX>
+                <myY>0</myY>
+                <myWidth>0.0</myWidth>
+                <myHeight>0.0</myHeight>
                 <myDefaultCharacteristics class="tree-map"/>
                 <myActions class="tree-map"/>
                 <myRequests class="tree-map"/>
@@ -675,6 +683,10 @@
               <myObjectType>
                 <myName>Duvall</myName>
                 <myImagePath>player/images/duvall.png</myImagePath>
+                <myX>0</myX>
+                <myY>0</myY>
+                <myWidth>0.0</myWidth>
+                <myHeight>0.0</myHeight>
                 <myDefaultCharacteristics class="tree-map"/>
                 <myActions class="tree-map">
                   <entry>
@@ -766,6 +778,10 @@
               <myObjectType>
                 <myName>Student</myName>
                 <myImagePath>player/images/smile.png</myImagePath>
+                <myX>0</myX>
+                <myY>0</myY>
+                <myWidth>0.0</myWidth>
+                <myHeight>0.0</myHeight>
                 <myDefaultCharacteristics class="tree-map"/>
                 <myActions class="tree-map">
                   <entry>

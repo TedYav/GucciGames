@@ -11,7 +11,6 @@ import javafx.event.EventHandler;
 import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.control.ListView;
-import voogasalad_GucciGames.gameEngine.targetCoordinate.ATargetCoordinate;
 import voogasalad_GucciGames.gameEngine.targetCoordinate.TargetCoordinateSingle;
 import voogasalad_GucciGames.gameplayer.controller.GameControllerInterface;
 import voogasalad_GucciGames.gameplayer.controller.PlayerMapObjectInterface;
@@ -21,28 +20,15 @@ public class ActionDisplay implements DisplayComponent, Observer {
     private GameControllerInterface myController;
     private PlayerMapObjectInterface activeMapObject;
     private ListView<Button> buttons;
-	private List<Button> temp;
-    
+    private List<Button> temp;
+
     public ActionDisplay(GameControllerInterface controller) {
-		myController = controller;
-		myController.addMOObserver(this);
+        myController = controller;
+        myController.addMOObserver(this);
         temp = new ArrayList<Button>();
-       
-////        Button btn = new Button();
-////        btn.setText("Say 'Hello World'");
-////        btn.setOnAction(new EventHandler<ActionEvent>() {
-////            @Override
-////            public void handle(ActionEvent event) {
-////                System.out.println("Hello World!");
-////            }
-////        });
-//        
-//        
-//        temp.add(btn);
         buttons = new ListView<Button>(FXCollections.observableList(temp));
-        
     }
-    
+
     private Button makeButton(String name) {
         Button button = new Button();
         button.setText(name);
@@ -54,18 +40,17 @@ public class ActionDisplay implements DisplayComponent, Observer {
             }
         });
         return button;
-    	
+
     }
-    
+
     private void updateButtons() {
-    	List<Button> updatedActions = new ArrayList<>();
-    	activeMapObject.getActionNames().stream().
-    		forEach(action -> updatedActions.add(makeButton(action)));
-    	temp = updatedActions;
-    	//System.out.println("buttons  " + temp.size());
+        List<Button> updatedActions = new ArrayList<>();
+        activeMapObject.getActionNames().stream().
+        forEach(action -> updatedActions.add(makeButton(action)));
+        temp = updatedActions;
         buttons.setItems(FXCollections.observableList(temp));
     }
-    
+
     @Override
     public Node getNodeToDraw() {
         return buttons;
@@ -74,7 +59,7 @@ public class ActionDisplay implements DisplayComponent, Observer {
     @Override
     public void update (Observable o, Object arg) {
         if (arg!=null) {
-        	activeMapObject = (PlayerMapObjectInterface)arg;
+            activeMapObject = (PlayerMapObjectInterface)arg;
         }
         updateButtons();
     }

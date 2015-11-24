@@ -50,7 +50,7 @@ public class DemoMaker extends Application{
 
         MapObjectType soldier = new MapObjectType("Duvall", "player/images/duvall.png");
         MapObjectType archer = new MapObjectType("Student" , "player/images/smile.png");
-        MapObjectType ground = new MapObjectType("TileCharacteristics", "player/images/dummytexture.jpg");
+        MapObjectType ground = new MapObjectType("TileCharacteristics", "player/images/dummytexture3.jpg");
         MapObjectType water = new MapObjectType("TileCharacteristics", "player/images/dummytexture2.jpg");
 
         MapObject soldier1 = new MapObject(soldier,new TargetCoordinateSingle(1,0),0,1);
