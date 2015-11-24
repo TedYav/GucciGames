@@ -45,6 +45,7 @@ public class FileMenu implements GameMenu {
 	        File selectedFile = fileChooser.showOpenDialog(stage);
 	        if (selectedFile != null) {
 	            try {
+	            	
 	            }
 	            catch (Exception e) {
 	            }

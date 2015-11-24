@@ -12,13 +12,13 @@ import voogasalad_GucciGames.gameEngine.mapObject.DefaultMapObjectType;
 import voogasalad_GucciGames.gameEngine.mapObject.MapObject;
 import voogasalad_GucciGames.gameEngine.mapObject.MapObjectType;
 
-public class GameSourceData {
+public class TypeData {
 	private ObservableList<MapObjectType> tileTypes;
 	private ObservableList<MapObjectType> unitTypes;
 	private ObservableList<MapObjectType> structureTypes;
-	private List<MapObject> onMap;
+//	private List<MapObject> onMap;
 
-	GameSourceData() {
+	TypeData() {
 		tileTypes = FXCollections.observableArrayList();
 		// Hard coded for testing purposes:
 //		MapObjectType objType = new MapObjectType("Grass", "player/images/dummytexture.jpg");
@@ -31,6 +31,10 @@ public class GameSourceData {
 		objType2.addDefaultCharacteristic("TileCharacteristic", new TileCharacteristic());
 		tileTypes.add(objType);
 		tileTypes.add(objType2);
+//		objType.addDefaultCharacteristic("TileCharacteristic", new TileCharacteristic());
+//		objType2.addDefaultCharacteristic("TileCharacteristic", new TileCharacteristic());
+//		tileTypes.add(objType);
+//		tileTypes.add(objType2);
 		
 		unitTypes = FXCollections.observableArrayList();
 //		MapObjectType unitType1 = new MapObjectType("duvall", "player/images/duvall.png");
@@ -41,18 +45,18 @@ public class GameSourceData {
 //		unitTypes.add(unitType3);
 	}
 
-	public void addToMap(MapObject obj) {
-		onMap.add(obj);
-	}
+//	public void addToMap(MapObject obj) {
+//		onMap.add(obj);
+//	}
 //	public void deleteFromMap(MapObject obj) {
 //		onMap.remove(obj);
 //	}
-	public void clearMap() {
-		onMap.clear();
-	}
-	public List<MapObject> getMapObjects(){
-		return onMap;
-	}
+//	public void clearMap() {
+//		onMap.clear();
+//	}
+//	public List<MapObject> getMapObjects(){
+//		return onMap;
+//	}
 	public void addTileType(MapObjectType type) {
 		tileTypes.add(type);
 	}
