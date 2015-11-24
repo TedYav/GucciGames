@@ -96,16 +96,23 @@ public class GAEModel implements IGAEModel{
 	}
 
     @Override
+<<<<<<< HEAD
 
     public void saveToXML (File file) {    	
     	/*
     	 * Don't instantiate these
     	 * Change to instance variables
     	 */
+=======
+    public void saveToXML (File file) {    	
+>>>>>>> dc0b272f4e422d353cc7597fb5ade2c3c753600e
     	XStreamGameEngine saver = new XStreamGameEngine();
 		AllPlayers myPlayers = new AllPlayers(mapOfPlayers);
 		MainGameEngine engine = new MainGameEngine(myPlayers);
 		saver.saveEngine(engine, file);
+    }
+    public void saveToXML(String filePath) {
+        
     }
     
     private boolean validate(){ //TODO
