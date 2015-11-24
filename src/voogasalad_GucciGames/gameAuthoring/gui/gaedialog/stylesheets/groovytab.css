@@ -1,0 +1,21 @@
+#groovy-tab-content{
+	-fx-padding: 10;
+	-fx-spacing: 15;
+	-fx-background-color: #B8B8B8;
+	-fx-alignment: CENTER;
+    -fx-text-fill: #828282;
+    -fx-font-size: 12px;
+    -fx-font-weight: bold;	
+}
+
+#groovy-title {
+	-fx-fill: #96b946;	
+}
+
+#groovy-tab-selected-content{
+	-fx-padding: 10;
+	-fx-spacing: 15;
+	-fx-background-color: #3c3c3c;	
+	-fx-alignment: CENTER;
+    -fx-text-fill: #96b946;
+}

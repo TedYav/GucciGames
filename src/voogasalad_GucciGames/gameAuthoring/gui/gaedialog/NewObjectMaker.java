@@ -21,9 +21,7 @@ public class NewObjectMaker extends GaeDialog{
 	private Stage makerDialog = new Stage();
 	private Map<String, String> groovyBuffer = new HashMap<String, String>();
 	private Properties prop;
-	private ObjectProperty unitProperty = new ObjectProperty();
 	private ISaveGroovy saveGroovy;
-	private ISaveObjProperty saveObjProperty;
 	private IDialogGaeController controller;
 	private DialogElements dialogElements;
 	private Scene scene;
@@ -34,7 +32,6 @@ public class NewObjectMaker extends GaeDialog{
 		super();
 		prop = loadProperties("dialogproperties/tiledialogproperties.properties");	
 		saveGroovy = setSaveGroovyFunctions(groovyBuffer, saveGroovy);
-		saveObjProperty = setSavePropertyFunction(unitProperty, saveObjProperty);
 		this.controller = controller;
 		dialogElements = new DialogElements(prop, saveGroovy, controller);
 		groovyTabPane = new GroovyTabPane(dialogElements);
@@ -49,6 +46,8 @@ public class NewObjectMaker extends GaeDialog{
 		scene = new Scene(myContent, WIDTH, HEIGHT);
 		
 		scene.getStylesheets().add("voogasalad_GucciGames/gameAuthoring/gui/gaedialog/stylesheets/dialogstylesheet.css");
+		scene.getStylesheets().add("voogasalad_GucciGames/gameAuthoring/gui/gaedialog/stylesheets/tab.css");
+		scene.getStylesheets().add("voogasalad_GucciGames/gameAuthoring/gui/gaedialog/stylesheets/groovytab.css");
 		makerDialog.setScene(scene);		
 		 
 	 }	

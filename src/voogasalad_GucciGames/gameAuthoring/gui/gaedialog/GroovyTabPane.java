@@ -40,6 +40,7 @@ public class GroovyTabPane extends DialogComponent{
 		 VBox vbox = new VBox();
 		 controlBtnBox = new HBox();
 		 Button addBtn = createAddButton(prop, "addbtn", "groovytitle");
+		 tabPane.setVisible(false);
 		 vbox.getChildren().addAll(tabPane, controlBtnBox, addBtn);
 		 vbox.setId(vboxStyleId);
 		 return vbox;
@@ -70,6 +71,9 @@ public class GroovyTabPane extends DialogComponent{
 	 protected Button createAddButton(Properties prop, String btnKey, String headerKey){
 		 Button addBtn = new Button(prop.getProperty(btnKey));
 		 addBtn.setOnAction(e -> {
+			 if(tabPane.getTabs().size() == 0){
+				 tabPane.setVisible(true);
+			 }
 			 openAddNewDialog();
 			 
 		 });
@@ -150,6 +154,7 @@ public class GroovyTabPane extends DialogComponent{
 	 
 	 private void setSelectedTab(Tab t){
 		 selectedTab = t;
+		 attributeMap.get(t.getText()).setSelected();
 	 }
 	 
 	 public Tab getSelectedTab(){
