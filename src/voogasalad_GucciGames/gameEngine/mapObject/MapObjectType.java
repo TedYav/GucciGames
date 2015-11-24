@@ -15,6 +15,12 @@ public class MapObjectType{
 
 	private String myName;
 	private String myImagePath;
+	
+	private int myX;
+	private int myY;
+	
+	private double myWidth;
+	private double myHeight;
 //	private CharacteristicHandler myCharacteristicHandler;
 	private ResourceBundle myResourceBundle;
 
@@ -30,9 +36,25 @@ public class MapObjectType{
 	//add common characteristics
 
 	
+	public MapObjectType(String name, String imagePath, int x, int y, double width, double height){
+		myName = name;
+		myImagePath = imagePath;
+		myX = x;
+		myY = y;
+		myWidth = width;
+		myHeight = height;
+		// TreeMap so alphabetized when giving to front end
+		
+		myActions = new TreeMap<>();
+		myRequests = new TreeMap<>();
+		myDefaultCharacteristics = new TreeMap<>();
+
+	}
+	
 	public MapObjectType(String name, String imagePath){
 		myName = name;
 		myImagePath = imagePath;
+
 		// TreeMap so alphabetized when giving to front end
 		
 		myActions = new TreeMap<>();
@@ -110,6 +132,21 @@ public class MapObjectType{
 	}
 
 	
+	public double getWidth(){
+		return myWidth;
+	}
+	
+	public double getHeight(){
+		return myHeight;
+	}
+	
+	public int getX(){
+		return myX;
+	}
+	
+	public int getY(){
+		return myY;
+	}
 	
 	
 //	public void initializeCharacteristicsMap(Map<String,List<Integer>> characteristics){

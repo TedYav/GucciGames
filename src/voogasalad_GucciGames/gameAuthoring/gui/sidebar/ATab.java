@@ -7,6 +7,7 @@ import javafx.collections.ListChangeListener;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.geometry.Insets;
+import javafx.geometry.Rectangle2D;
 import javafx.scene.control.Button;
 import javafx.scene.control.ContextMenu;
 import javafx.scene.control.Tab;
@@ -28,7 +29,7 @@ import voogasalad_GucciGames.gameEngine.mapObject.MapObjectType;
 public abstract class ATab extends Tab {
 	private static final int WIDTH = 4;
 	protected final Pane myPane = new Pane();
-	protected final GridPane myGrid = new GridPane();
+	protected final GridPane myGridPane = new GridPane();
 	protected ObservableList<MapObjectType> myTypeList;
 	protected TwoWayMap<MapObjectType, ImageView> myMap = new TwoWayMap<>();
 	protected List<ImageView> myImageViews = new ArrayList<>();
@@ -49,11 +50,11 @@ public abstract class ATab extends Tab {
 	}
 
 	private void setLayout() {
-		myGrid.setVgap(20);
-		myGrid.setHgap(20);
+		myGridPane.setVgap(20);
+		myGridPane.setHgap(20);
 		Insets padding = new Insets(20, 20, 20, 20);
-		myGrid.setPadding(padding);
-		VBox container = new VBox(myGrid, myAddButton);
+		myGridPane.setPadding(padding);
+		VBox container = new VBox(myGridPane, myAddButton);
 		container.setPadding(padding);
 		myPane.getChildren().add(container);
 		container.maxWidthProperty().bind(myPane.widthProperty());
@@ -85,24 +86,35 @@ public abstract class ATab extends Tab {
 	private void addType(MapObjectType type) {
 		Image image = new Image(getClass().getClassLoader().getResourceAsStream(type.getImagePath()));
 		ImageView imageView = new ImageView(image);
-		imageView.setFitHeight(30);
-		imageView.setFitWidth(30);
+		
+		double width = type.getWidth();
+		double height = type.getHeight();
+		
+		double myX1 = type.getX()*width;
+		double myY1 = type.getY()*height;
+		
+		Rectangle2D rect = new Rectangle2D(myX1, myY1, width, height);
+		imageView.setViewport(rect);
+		
+		imageView.setFitHeight(height);
+		imageView.setFitWidth(width);
+		
 		imageView.setOnMouseClicked(e->mouseClicked(imageView, e));
 		myMap.put(type, imageView);
 		myImageViews.add(imageView);
 		int index = myImageViews.size() - 1;
-		myGrid.add(imageView, index % WIDTH, index / WIDTH);
+		myGridPane.add(imageView, index % WIDTH, index / WIDTH);
 	}
 
 	@SuppressWarnings("static-access")
 	private void deleteType(MapObjectType type) {
 		ImageView imageView = myMap.remove(type);
 		int index = myImageViews.indexOf(imageView);
-		myGrid.getChildren().remove(imageView);
+		myGridPane.getChildren().remove(imageView);
 		myImageViews.remove(index);
 		for(int i=index;i<myImageViews.size();i++){
-			myGrid.setColumnIndex(myImageViews.get(i), index % WIDTH);
-			myGrid.setRowIndex(myImageViews.get(i), index / WIDTH);
+			myGridPane.setColumnIndex(myImageViews.get(i), index % WIDTH);
+			myGridPane.setRowIndex(myImageViews.get(i), index / WIDTH);
 		}
 	}
 
@@ -129,7 +141,7 @@ public abstract class ATab extends Tab {
 			myBoundBox.setStrokeWidth(2);
 			myBoundBox.setFill(Color.TRANSPARENT);
 			myBoundBox.setMouseTransparent(true);
-			myGrid.add(myBoundBox, myGrid.getColumnIndex(source), myGrid.getRowIndex(source));
+			myGridPane.add(myBoundBox, myGridPane.getColumnIndex(source), myGridPane.getRowIndex(source));
 		}else{
 			mySideBar.setCurrSelection(this,null);
 			deselect();
@@ -140,7 +152,7 @@ public abstract class ATab extends Tab {
 		if(myBoundBox!=null){
 			myController.setMapObjectTypeToMap(null);
 			myController.setCurrDraggedImage(null);
-			myGrid.getChildren().remove(myBoundBox);
+			myGridPane.getChildren().remove(myBoundBox);
 			myBoundBox = null;
 			myTrace.setImage(null);
 		}
