@@ -8,6 +8,7 @@ import java.util.Set;
 
 import javafx.beans.property.DoubleProperty;
 import javafx.collections.ObservableList;
+import javafx.geometry.Rectangle2D;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseButton;
@@ -17,6 +18,7 @@ import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 import voogasalad_GucciGames.gameAuthoring.AGuiGaeController;
 import voogasalad_GucciGames.gameEngine.mapObject.MapObject;
+import voogasalad_GucciGames.gameEngine.mapObject.MapObjectType;
 
 class Grid extends Pane {
 
@@ -85,7 +87,19 @@ class Grid extends Pane {
 	private void addMouseBound(double x, double y, double size) {
 		if (myController.getCurrSelectedImage() != null
 				&& !myCells.containsKey(new GridPoint((int) (x / size), (int) (y / size)))) {
+			
+			MapObjectType mapType = myController.getMapObjectTypeToMap();
+			double width = mapType.getWidth();
+			double height = mapType.getHeight();
+			
+			double myX1 = mapType.getX()*width;
+			double myY1 = mapType.getY()*height;
+			
+			Rectangle2D rect = new Rectangle2D(myX1, myY1, width, height);
+			
 			myMouseImg = new ImageView(myController.getCurrSelectedImage());
+			myMouseImg.setViewport(rect);
+			
 			myMouseImg.setFitWidth(size);
 			myMouseImg.setFitHeight(size);
 			myMouseImg.setX(x);
@@ -152,7 +166,7 @@ class Grid extends Pane {
 
 			}
 			Cell gui = new Cell(this, x, y);
-			gui.setImage(myController.getCurrSelectedImage());
+			gui.setImage(myController.getCurrSelectedImage(), myController.getMapObjectTypeToMap());
 			// TODO: finish up MapObject and fix Cell
 			// getMapObjectListPosAtPoint(myMapObjects, );
 			e.consume();

@@ -24,13 +24,13 @@ public class GameSourceData {
 //		MapObjectType objType = new MapObjectType("Grass", "player/images/dummytexture.jpg");
 //		MapObjectType objType2 = new MapObjectType("Water", "player/images/dummytexture2.jpg");
 	
-//		MapObjectType objType = new MapObjectType("AllTiles", "player/images/allTiles.jpg", 0, 0, 40.0, 40.0);
-//		MapObjectType objType2 = new MapObjectType("AllTiles2", "player/images/allTiles.jpg", 1, 0, 40.0, 40.0);
-//		
-//		objType.addDefaultCharacteristic("TileCharacteristic", new TileCharacteristic());
-//		objType.addDefaultCharacteristic("TileCharacteristic", new TileCharacteristic());
-//		tileTypes.add(objType);
-//		tileTypes.add(objType2);
+		MapObjectType objType = new MapObjectType("AllTiles", "player/images/allTiles.jpg", 0, 0, 100.0, 100.0);
+		MapObjectType objType2 = new MapObjectType("AllTiles2", "player/images/allTiles.jpg", 1, 0, 100.0, 100.0);
+		
+		objType.addDefaultCharacteristic("TileCharacteristic", new TileCharacteristic());
+		objType2.addDefaultCharacteristic("TileCharacteristic", new TileCharacteristic());
+		tileTypes.add(objType);
+		tileTypes.add(objType2);
 		
 		unitTypes = FXCollections.observableArrayList();
 //		MapObjectType unitType1 = new MapObjectType("duvall", "player/images/duvall.png");

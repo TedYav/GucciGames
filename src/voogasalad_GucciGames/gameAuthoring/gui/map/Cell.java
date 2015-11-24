@@ -1,6 +1,7 @@
 package voogasalad_GucciGames.gameAuthoring.gui.map;
 
 import javafx.beans.property.DoubleProperty;
+import javafx.geometry.Rectangle2D;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseButton;
@@ -8,6 +9,7 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 import voogasalad_GucciGames.gameEngine.mapObject.MapObject;
+import voogasalad_GucciGames.gameEngine.mapObject.MapObjectType;
 
 public class Cell {
 	private ImageView myMapView;
@@ -33,8 +35,15 @@ public class Cell {
 		myMap.add(this);
 	}
 
-	public void setImage(Image img) {
+	public void setImage(Image img, MapObjectType mapType) {
 		myMapView.setImage(img);
+		
+		double width = mapType.getWidth();
+		double height = mapType.getHeight();
+		double myX1 = mapType.getX()*width;
+		double myY1 = mapType.getY()*height;
+		Rectangle2D rect = new Rectangle2D(myX1, myY1, width, height);
+		myMapView.setViewport(rect);
 	}
 
 	private void mouseClickEvent(MouseEvent e) {
