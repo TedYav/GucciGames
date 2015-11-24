@@ -28,28 +28,36 @@ public class XStreamGameEngine implements GameDataInterface{
 
     XStream serializer = new XStream(new DomDriver());
     String currentTurn = "Current Turn: ";
-    private static String defaultEngineLocation = "./src/voogasalad_GucciGames/gameData/gaeengine.xml";
+    private static String defaultEngineLocation = "./src/voogasalad_GucciGames/gameData/engine.xml";
     private static FileLoader myLoader = new FileLoader();
 
-    
-	public void saveEngine(MainGameEngine engine, File file) {
-		try {
-            String engineXML = serializer.toXML(engine); // saved XML File should have current turn as 2
-//            BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter(file));
-//            bufferedWriter.write(engineXML);
-//            bufferedWriter.close();
+
+    public void saveEngine(MainGameEngine engine, File file) {
+        try {
+            String engineXML = serializer.toXML(engine);
             myLoader.save(file, engineXML);
         }
         catch (Exception e) {
             e.printStackTrace();
         }
-        System.out.println("Save Complete.");
-	}
-	
+    }
+    public void saveEngine(MainGameEngine engine, String filePath) {
+        try {
+            String engineXML = serializer.toXML(engine);
+            File file = new File(filePath);
+            BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter(file));
+            bufferedWriter.write(engineXML);
+            bufferedWriter.close();
+        }
+        catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
     public GameEngineToGamePlayerInterface loadEngine() {
         return loadEngine("");
     }
-    
+
     public GameEngineToGamePlayerInterface loadEngine(String path) {
         String myPath = path;
         if (path.isEmpty()) {
@@ -59,14 +67,13 @@ public class XStreamGameEngine implements GameDataInterface{
         MainGameEngine engine=null;
         try {
             File file = new File(myPath);
-//            BufferedReader bufferedReader = new BufferedReader(new FileReader(file));
-//            StringBuilder engineXMLBuilder = new StringBuilder();
-//            bufferedReader.lines().forEach(line->engineXMLBuilder.append(line));
+            //            BufferedReader bufferedReader = new BufferedReader(new FileReader(file));
+            //            StringBuilder engineXMLBuilder = new StringBuilder();
+            //            bufferedReader.lines().forEach(line->engineXMLBuilder.append(line));
             String engineXML = myLoader.read(file);
 
             // loaded XML File should have current turn as 2
             engine = (MainGameEngine) serializer.fromXML(engineXML);
-
         }
         catch (Exception e) {
             e.printStackTrace();
@@ -74,7 +81,7 @@ public class XStreamGameEngine implements GameDataInterface{
         System.out.println("Load complete.");
         return engine;
     }
-    
+
     @Override
     public void loadGames () {
 
