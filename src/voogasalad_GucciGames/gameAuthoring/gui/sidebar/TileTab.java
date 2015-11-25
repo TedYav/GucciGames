@@ -1,20 +1,17 @@
 package voogasalad_GucciGames.gameAuthoring.gui.sidebar;
 
 import javafx.event.ActionEvent;
-import voogasalad_GucciGames.gameAuthoring.AGuiGaeController;
 import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.NewObjectMaker;
-import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.ISaveCustomObj;
 import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.TileMakerCustomContent;
-import voogasalad_GucciGames.gameEngine.mapObject.MapObjectType;
+
 
 
 public class TileTab extends ATab {
 
-	private ISaveCustomObj saveCustomObj;
 	
-	public TileTab(SideBar bar, ISaveCustomObj saveCustomObj){
+	public TileTab(SideBar bar){
 		super(bar);
-		this.saveCustomObj = saveCustomObj;
+
 		setText("Tiles");
 		
 		init(myController.getImmutableTileTypes());

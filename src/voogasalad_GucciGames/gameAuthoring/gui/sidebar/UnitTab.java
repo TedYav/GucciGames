@@ -1,17 +1,13 @@
 package voogasalad_GucciGames.gameAuthoring.gui.sidebar;
 
 import javafx.event.ActionEvent;
-import voogasalad_GucciGames.gameAuthoring.AGuiGaeController;
 import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.NewObjectMaker;
-import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.ISaveCustomObj;
 import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.UnitMakerCustomContent;
 
 public class UnitTab extends ATab {
-	private ISaveCustomObj saveCustomObj;
 	
-	public UnitTab(SideBar bar, ISaveCustomObj saveCustomObj) {
+	public UnitTab(SideBar bar) {
 		super(bar);
-		this.saveCustomObj = saveCustomObj;
 		setText("Units");
 		init(myController.getImmutableUnitTypes());
 	}

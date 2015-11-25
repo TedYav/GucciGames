@@ -82,10 +82,6 @@ abstract public class GaeDialog{
 			return saveObjProperty;
 	 }
 	 
-	 protected ISaveCustomObj setSaveCustomObj(ISaveCustomObj saveCustomObject){
-		 saveCustomObject = p -> {System.out.println("here");};
-		 return saveCustomObject;
-	 }
 	
 
 }
