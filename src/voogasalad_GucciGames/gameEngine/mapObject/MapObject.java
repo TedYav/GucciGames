@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.TreeMap;
 
+import voogasalad_GucciGames.gameEngine.PlayerMapObjectInterface;
 import voogasalad_GucciGames.gameEngine.CommunicationParams.ActionToGamePlayerParameters;
 import voogasalad_GucciGames.gameEngine.CommunicationParams.BasicParameters;
 import voogasalad_GucciGames.gameEngine.CommunicationParams.GridCoordinateParameters;
@@ -12,7 +13,6 @@ import voogasalad_GucciGames.gameEngine.CommunicationParams.MainGameEngineCommun
 import voogasalad_GucciGames.gameEngine.defaultCharacteristics.AttackCharacteristic;
 import voogasalad_GucciGames.gameEngine.defaultCharacteristics.HealthCharacteristic;
 import voogasalad_GucciGames.gameEngine.targetCoordinate.ATargetCoordinate;
-import voogasalad_GucciGames.gameplayer.controller.PlayerMapObjectInterface;
 
 public class MapObject implements PlayerMapObjectInterface{
 	private MapObjectType myObjectType;
@@ -79,7 +79,7 @@ public class MapObject implements PlayerMapObjectInterface{
 	}
 
 	@Override
-	public Map<String, String> getAttributes() {
+	public Map<String, String> getAttributeStrings() {
 		//return myObjectType.getCharacteristic();
 		
 		Map<String, String> myAttrMap = new TreeMap<String, String>();

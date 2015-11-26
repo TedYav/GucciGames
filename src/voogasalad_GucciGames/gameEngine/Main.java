@@ -16,7 +16,6 @@ import voogasalad_GucciGames.gameEngine.mapObject.MapObjectType;
 import voogasalad_GucciGames.gameEngine.objectActions.MoveEvent;
 import voogasalad_GucciGames.gameEngine.objectActions.WhereToMoveEvent;
 import voogasalad_GucciGames.gameEngine.targetCoordinate.TargetCoordinateSingle;
-import voogasalad_GucciGames.gameplayer.controller.PlayerMapObjectInterface;
 
 public class Main {
 

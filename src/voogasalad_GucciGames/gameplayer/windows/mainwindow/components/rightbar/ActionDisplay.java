@@ -11,10 +11,10 @@ import javafx.event.EventHandler;
 import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.control.ListView;
+import voogasalad_GucciGames.gameEngine.PlayerMapObjectInterface;
 import voogasalad_GucciGames.gameEngine.targetCoordinate.ATargetCoordinate;
 import voogasalad_GucciGames.gameEngine.targetCoordinate.TargetCoordinateSingle;
 import voogasalad_GucciGames.gameplayer.controller.GameControllerInterface;
-import voogasalad_GucciGames.gameplayer.controller.PlayerMapObjectInterface;
 import voogasalad_GucciGames.gameplayer.windows.mainwindow.components.DisplayComponent;
 
 public class ActionDisplay implements DisplayComponent, Observer {

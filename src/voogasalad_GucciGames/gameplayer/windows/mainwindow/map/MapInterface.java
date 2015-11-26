@@ -5,9 +5,9 @@ import java.util.List;
 import javafx.geometry.Point2D;
 import javafx.scene.image.Image;
 import javafx.scene.input.KeyCode;
+import voogasalad_GucciGames.gameEngine.PlayerMapObjectInterface;
 import voogasalad_GucciGames.gameEngine.targetCoordinate.ATargetCoordinate;
 import voogasalad_GucciGames.gameEngine.targetCoordinate.TargetCoordinateSingle;
-import voogasalad_GucciGames.gameplayer.controller.PlayerMapObjectInterface;
 import voogasalad_GucciGames.gameplayer.windows.mainwindow.map.cell.MapCellInterface;
 
 public interface MapInterface {

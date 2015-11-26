@@ -7,8 +7,8 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
+import voogasalad_GucciGames.gameEngine.PlayerMapObjectInterface;
 import voogasalad_GucciGames.gameEngine.mapObject.MapObject;
-import voogasalad_GucciGames.gameplayer.controller.PlayerMapObjectInterface;
 
 public class AllPlayers {
 

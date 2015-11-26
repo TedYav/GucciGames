@@ -1,8 +1,8 @@
 package voogasalad_GucciGames.gameplayer.windows;
 
 import javafx.scene.Parent;
+import voogasalad_GucciGames.gameEngine.GameEngineToGamePlayerInterface;
 import voogasalad_GucciGames.gameplayer.controller.GameControllerInterface;
-import voogasalad_GucciGames.gameplayer.controller.GameEngineToGamePlayerInterface;
 
 public abstract class WindowComponent {
 

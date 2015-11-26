@@ -15,7 +15,7 @@ import voogasalad_GucciGames.gameEngine.gameRules.Rules;
  * @author Sally Al class based on template method pattern.
  *
  */
-public abstract class MapObjectEvent {
+public abstract class MapObjectEvent implements IGamePlayerMapObjectAction{
 	private String myName;
 	private List<Rules> myRuleList;
 

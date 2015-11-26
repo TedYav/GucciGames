@@ -14,7 +14,7 @@ public class GameResult implements GameResultInterface{
     public void setPlayerConditions (Map<Integer,EndGameConditions> playerConditions) {
         this.playerConditions = playerConditions;
     }
-    public Map<String,Integer> getFinalScores () {
+    public Map<String,Integer> getPlayerScores () {
         return finalScores;
     }
     public void setFinalScores (Map<String,Integer> finalScores) {
