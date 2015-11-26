@@ -7,7 +7,7 @@ import java.util.TreeMap;
 
 import voogasalad_GucciGames.gameEngine.CommunicationParams.BasicParameters;
 import voogasalad_GucciGames.gameEngine.CommunicationParams.CommunicationParameters;
-import voogasalad_GucciGames.gameEngine.CommunicationParams.LocationParams;
+import voogasalad_GucciGames.gameEngine.CommunicationParams.LocationParameters;
 import voogasalad_GucciGames.gameEngine.mapObject.MapObject;
 import voogasalad_GucciGames.gameEngine.targetCoordinate.TargetCoordinateSingle;
 
@@ -31,7 +31,7 @@ public class MapObjectEventHandler {
 	
 	public CommunicationParameters executeAction(String name, MapObject obj, 
 			TargetCoordinateSingle coor){
-		return this.myEvents.get(name).executeAction(new LocationParams(myBasic,obj,coor),obj.getPlayerID());
+		return this.myEvents.get(name).executeAction(new LocationParameters(myBasic,obj,coor),obj.getPlayerID());
 	}
 	
 	public CommunicationParameters executeRequest(String name, MapObject obj){

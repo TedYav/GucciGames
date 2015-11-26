@@ -7,7 +7,7 @@ import java.util.List;
 import voogasalad_GucciGames.gameEngine.CommunicationParams.BasicParameters;
 import voogasalad_GucciGames.gameEngine.CommunicationParams.CommunicationParameters;
 import voogasalad_GucciGames.gameEngine.CommunicationParams.EmptyParameters;
-import voogasalad_GucciGames.gameEngine.CommunicationParams.LocationParams;
+import voogasalad_GucciGames.gameEngine.CommunicationParams.LocationParameters;
 import voogasalad_GucciGames.gameEngine.gameRules.Rules;
 
 /**
@@ -52,13 +52,13 @@ public abstract class MapObjectEvent implements IGamePlayerMapObjectAction{
 	
 	// Must keep final
 	public final CommunicationParameters executeAction(CommunicationParameters params, int playerID) {
-		if(!(params instanceof LocationParams)){
+		if(!(params instanceof LocationParameters)){
 			return new EmptyParameters();
 		}
-		return checkRules(playerID,params) ? executeAction((LocationParams) params) : new EmptyParameters();
+		return checkRules(playerID,params) ? executeAction((LocationParameters) params) : new EmptyParameters();
 	}
 	
-	protected abstract CommunicationParameters executeAction(LocationParams params);
+	protected abstract CommunicationParameters executeAction(LocationParameters params);
 	
 	public final CommunicationParameters executeRequest(CommunicationParameters params, int playerID){
 		if(!(params instanceof BasicParameters)){

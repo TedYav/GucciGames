@@ -9,10 +9,10 @@ import java.util.Map;
 
 import voogasalad_GucciGames.gameEngine.CommunicationParams.ActionToGamePlayerParameters;
 import voogasalad_GucciGames.gameEngine.CommunicationParams.BasicParameters;
-import voogasalad_GucciGames.gameEngine.CommunicationParams.GameParams;
+import voogasalad_GucciGames.gameEngine.CommunicationParams.GameParameters;
 import voogasalad_GucciGames.gameEngine.CommunicationParams.GameResult;
 import voogasalad_GucciGames.gameEngine.CommunicationParams.GridCoordinateParameters;
-import voogasalad_GucciGames.gameEngine.CommunicationParams.LocationParams;
+import voogasalad_GucciGames.gameEngine.CommunicationParams.LocationParameters;
 import voogasalad_GucciGames.gameEngine.gameConditions.ConditionHandler;
 import voogasalad_GucciGames.gameEngine.gameConditions.ConditionParams;
 import voogasalad_GucciGames.gameEngine.gameConditions.Conditions;
@@ -184,7 +184,7 @@ public class MainGameEngine implements GameEngineToGamePlayerInterface {
 	@Override
 	public GameParametersInterface getGameParameters() {
 		// TODO Auto-generated method stub
-		GameParams pp= new GameParams();
+		GameParameters pp= new GameParameters();
 		if(myGamePlayers.getNumberOfPlayers() != 2){
 			pp.setGameWon(false);
 		}
