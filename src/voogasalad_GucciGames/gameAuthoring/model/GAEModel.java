@@ -6,7 +6,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import javafx.collections.ListChangeListener;
 import javafx.collections.ObservableList;
 import voogasalad_GucciGames.gameAuthoring.IModelGaeController;
 import voogasalad_GucciGames.gameAuthoring.gui.map.GridPoint;
@@ -15,9 +14,8 @@ import voogasalad_GucciGames.gameData.XStreamGameEngine;
 import voogasalad_GucciGames.gameEngine.MainGameEngine;
 import voogasalad_GucciGames.gameEngine.gamePlayer.AllPlayers;
 import voogasalad_GucciGames.gameEngine.gamePlayer.GamePlayerPerson;
-import voogasalad_GucciGames.gameEngine.mapObject.DefaultMapObjectType;
+import voogasalad_GucciGames.gameEngine.mapObject.DefaultMapObject;
 import voogasalad_GucciGames.gameEngine.mapObject.MapObject;
-import voogasalad_GucciGames.gameEngine.mapObject.MapObjectType;
 import voogasalad_GucciGames.gameEngine.targetCoordinate.TargetCoordinateSingle;
 
 public class GAEModel implements IGAEModel{
@@ -38,7 +36,6 @@ public class GAEModel implements IGAEModel{
 		mapOfPlayers.put(0, new GamePlayerPerson(0));
 		mapOfPlayers.put(1, new GamePlayerPerson(1));
 		mapOfPlayers.put(2, new GamePlayerPerson(2));
-
     }
     
 
@@ -49,7 +46,7 @@ public class GAEModel implements IGAEModel{
     }
     
     @Override
-    public MapObject addObject(GridPoint gridpoint, MapObjectType mapObjType, int ownerID) {
+    public MapObject addObject(GridPoint gridpoint, MapObject mapObjType, int ownerID) {
     	TargetCoordinateSingle targCoordSingle = new TargetCoordinateSingle(gridpoint.getX(), gridpoint.getY());
     	int layer = mapObjType.isTile() ? 0 : 1;
     	MapObject mapObject = new MapObject(mapObjType, targCoordSingle, ownerID,layer);
@@ -70,28 +67,28 @@ public class GAEModel implements IGAEModel{
 
     @Override
     public void createCustomTileType (Map<String, String> m) {
-        MapObjectType objType = new DefaultMapObjectType(m.get("name"), m.get("imagePath"));//TODO: properties file
+        MapObject objType = new DefaultMapObject(m.get("name"), m.get("imagePath"));//TODO: properties file
         typeData.addTileType(objType);
     }
 
     @Override
     public void createCustomUnitType (Map<String, String> m) {  
-        MapObjectType objType = new DefaultMapObjectType(m.get("name"), m.get("imagePath"));//TODO: properties file
+        MapObject objType = new DefaultMapObject(m.get("name"), m.get("imagePath"));//TODO: properties file
         typeData.addUnitType(objType);
     }
 
     @Override
-    public ObservableList<MapObjectType> getImmutableTileTypes () {
+    public ObservableList<MapObject> getImmutableTileTypes () {
         return typeData.getImmutableTileTypes();
     }
 
     @Override
-    public ObservableList<MapObjectType> getImmutableUnitTypes () {
+    public ObservableList<MapObject> getImmutableUnitTypes () {
         return typeData.getImmutableUnitTypes();
     }
     
     @Override
-	public ObservableList<MapObjectType> getImmutableStructureTypes() {
+	public ObservableList<MapObject> getImmutableStructureTypes() {
 		return typeData.getImmutableStructureTypes();
 	}
 
@@ -122,7 +119,7 @@ public class GAEModel implements IGAEModel{
 
 
     public void addComponent (Map<String,String> objParams) {
-        MapObject mapObj = new MapObject(null,null, 0);// TODO:MapObject(objParams);
+        MapObject mapObj = new MapObject(null, 0);// TODO:MapObject(objParams);
         validate();
         mapData.addToMap(mapObj);
     }
