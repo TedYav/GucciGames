@@ -42,8 +42,8 @@ public class MainGameEngine implements GameEngineToGamePlayerInterface {
 	private ActionToRuleManager myRuleManager;
 	private int mapDimensions;
 	private String myName;
-	
-	
+
+
 	public String getName() {
 		return myName;
 	}
@@ -52,7 +52,7 @@ public class MainGameEngine implements GameEngineToGamePlayerInterface {
 		myCurrentTurnCounter = new TurnCounter();
 		myTurnDecider = new DefaultTurnDecider(myGamePlayers, myCurrentTurnCounter);
 		myConditionHandler = new ConditionHandler();
-		
+
 		myConditionHandler.addCondition("PlayerUnitCondition", new PlayerUnitCondition(new ConditionParams(this), null));
 	}
 	@Override
@@ -61,15 +61,13 @@ public class MainGameEngine implements GameEngineToGamePlayerInterface {
 	}
 	@Override
 	public void endTurn() {
-		BasicParameters comParams = new BasicParameters(this, null); 
+		BasicParameters comParams = new BasicParameters(null,this.myRuleManager,this); 
 		myConditionHandler.evaluateAllConditions(comParams);
 		System.out.println("end of condition evaluation");
 		System.out.println("----");
-		
+
 		GameParams myParams = new GameParams();
-		
-		
-		
+
 		myCurrentTurnCounter.update();
 		System.out.println("current turn: " + myCurrentTurnCounter.getCurrentTurn());
 		myTurnDecider.updateActivePlayer();
@@ -79,24 +77,29 @@ public class MainGameEngine implements GameEngineToGamePlayerInterface {
 	public int getActivePlayer() {
 		return myTurnDecider.decideTurn();
 	}
+	
 	public int getTurn() {
 		return myCurrentTurnCounter.getCurrentTurn();
 	}
+	
 	@Override
 	public List<PlayerMapObjectInterface> getInitialState() {
 		return myGamePlayers.getInitialState();
 	}
+	
 	@Override
 	public int getTurnPlayerID() {
 		return myTurnDecider.decideTurn();
 	}
+	
 	@Override
 	public GridCoordinateParameters getPossibleCoordinates(String action, PlayerMapObjectInterface myMapObject) {
 		if(((MapObject) myMapObject).getPlayerID() == myTurnDecider.getActivePlayer().getMyPlayerId()){
-		return ((MapObject) myMapObject).performRequest(action, new BasicParameters(this, ((MapObject) myMapObject)));
+			return ((MapObject) myMapObject).performRequest(action);
+			//return ((MapObject) myMapObject).performRequest(action, new BasicParameters(this, ((MapObject) myMapObject)));
 		}
 		else{
-		return new GridCoordinateParameters(new TargetCoordinateMultiple());	
+			return new GridCoordinateParameters(new TargetCoordinateMultiple());	
 		}
 
 	}
@@ -106,7 +109,8 @@ public class MainGameEngine implements GameEngineToGamePlayerInterface {
 		pl.add(0);
 		ConditionParams condParams = new ConditionParams("PlayerUnitCondition", "player", pl, null);
 		ConditionsFactory factory = new ConditionsFactory();
-		BasicParameters comParams = new BasicParameters(myGamePlayers, null, null);
+		//BasicParameters comParams = new BasicParameters(myGamePlayers, null, null);
+		BasicParameters comParams = new BasicParameters(null,this.myRuleManager,this);
 		try {
 			Conditions condition = factory.createCondition(condParams, comParams);
 			myConditionHandler.addCondition("PlayerUnitCondition", condition);
@@ -124,7 +128,8 @@ public class MainGameEngine implements GameEngineToGamePlayerInterface {
 		RuleFactory factory = new RuleFactory();
 		RuleParams params = new RuleParams("move", null, null);
 		ActionToRuleManager manager = new ActionToRuleManager();
-		BasicParameters comParams = new BasicParameters(myGamePlayers, null, manager);
+		//BasicParameters comParams = new BasicParameters(myGamePlayers, null, manager);
+		BasicParameters comParams = new BasicParameters(null,manager,this);
 		try {
 			factory.createRule(params, comParams);
 		} catch (NoSuchMethodException | SecurityException | ClassNotFoundException | InstantiationException
@@ -154,17 +159,19 @@ public class MainGameEngine implements GameEngineToGamePlayerInterface {
 			ATargetCoordinate target) {
 		// TODO Auto-generated method stub
 		if(((MapObject) mapObject).getPlayerID() == myTurnDecider.getActivePlayer().getMyPlayerId()){
-	
-		return ((MapObject) mapObject).performAction(action,
-				new LocationParams(new BasicParameters(this, ((MapObject) mapObject)),
-						target.getListOfCoordinates().get(0),
-						this.getPlayers().getPlayerById(((MapObject) mapObject).getPlayerID()).getMyMovable()));
-	}
+			return ((MapObject) mapObject).performAction(action, target.getListOfCoordinates().get(0));
+			/*
+			return ((MapObject) mapObject).performAction(action,
+					new LocationParams(new BasicParameters(this, ((MapObject) mapObject)),
+							target.getListOfCoordinates().get(0),
+							this.getPlayers().getPlayerById(((MapObject) mapObject).getPlayerID()).getMovable()));
+			 */
+		}
 		else{
 			return new ActionToGamePlayerParameters();
 		}
-		
-}
+
+	}
 	@Override
 	public double getMapWidth() {
 		// TODO Auto-generated method stub
@@ -180,54 +187,54 @@ public class MainGameEngine implements GameEngineToGamePlayerInterface {
 		// TODO Auto-generated method stub
 		GameParams pp= new GameParams();
 		if(myGamePlayers.getNumberOfPlayers() != 2){
-		pp.setGameWon(false);
+			pp.setGameWon(false);
 		}
 		else{
-		pp.setGameWon(true);
+			pp.setGameWon(true);
 		}
-		
+
 		pp.setCurrentTurnPlayer(getTurnPlayerID());
 		pp.setGameName(myName);
-		
+
 		//change it before demo
 		pp.setMapHeight(8);
 		pp.setMapWidth(8);
-		
+
 		Map<String, Double> score = new HashMap<String, Double>();
 		Map<String, Integer> scoreID = new HashMap<String, Integer>();
-		
+
 		List<Integer> myIDs = myGamePlayers.getAllIds();
 		Collections.sort(myIDs);
-		
+
 		for(int i = 1; i < myIDs.size(); i++){
 			score.put("Player" + myIDs.get(i), myGamePlayers.getActivePlayer(myIDs.get(i)).getMapObjects().size() * 500.0);
 			scoreID.put("Player" + myIDs.get(i), myGamePlayers.getActivePlayer(myIDs.get(i)).getMapObjects().size() * 500);		}
 
-		
+
 		pp.setScore(score);
-		
+
 		GameResult game = new GameResult();
-		
-		
+
+
 		Map<Integer, EndGameConditions> myConds = new HashMap<Integer, EndGameConditions>();
 		for(int i = 1; i < myIDs.size(); i++){
 			myConds.put(myIDs.get(i), myGamePlayers.getActivePlayer(myIDs.get(i)).getStatusCondition());
 		}
-		
-		
+
+
 		game.setPlayerConditions(myConds);
 		game.setFinalScores(scoreID);
-		
+
 		for(int i = 1; i < myIDs.size(); i++){
 			if(myConds.get(myIDs.get(i)).equals(EndGameConditions.WIN)){
 				game.setWinner(myIDs.get(i));
 
 			}
 		}
-		
-		
+
+
 		pp.setGameResult(game);
-		
+
 		return (GameParametersInterface) pp;
 	}
 }
