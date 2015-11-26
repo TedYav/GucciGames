@@ -5,7 +5,7 @@ import java.util.List;
 import voogasalad_GucciGames.gameEngine.CommunicationParams.BasicParameters;
 import voogasalad_GucciGames.gameEngine.CommunicationParams.CommunicationParameters;
 import voogasalad_GucciGames.gameEngine.CommunicationParams.EmptyParameters;
-import voogasalad_GucciGames.gameEngine.CommunicationParams.LocationParams;
+import voogasalad_GucciGames.gameEngine.CommunicationParams.LocationParameters;
 import voogasalad_GucciGames.gameEngine.gamePlayer.AllPlayers;
 import voogasalad_GucciGames.gameEngine.mapObject.MapObject;
 import voogasalad_GucciGames.gameEngine.mapObject.TheMap;
@@ -34,7 +34,7 @@ public class Movement extends MapObjectEvent{
 	*/
 
 	@Override
-	protected CommunicationParameters executeAction(LocationParams params) {
+	protected CommunicationParameters executeAction(LocationParameters params) {
 		// TODO Auto-generated method stub
 		return null;
 	}

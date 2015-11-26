@@ -124,7 +124,6 @@ public class MapObject implements PlayerMapObjectInterface{
 		return getEventStrings();
 	}
 
-	@Override
 	public int getPlayerID() {
 		// TODO Auto-generated method stub
 		return myOwnerID;
@@ -227,7 +226,6 @@ public class MapObject implements PlayerMapObjectInterface{
 		this.myEventHandler.setBasicParameters(basic);
 	}
 
-	@Override
 	public IGamePlayerMapObjectAction getAction(String name) {
 		// TODO Auto-generated method stub
 		return null;

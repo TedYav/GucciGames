@@ -9,7 +9,7 @@ import voogasalad_GucciGames.gameEngine.CommunicationParams.BasicParameters;
 import voogasalad_GucciGames.gameEngine.CommunicationParams.CommunicationParameters;
 import voogasalad_GucciGames.gameEngine.CommunicationParams.EmptyParameters;
 import voogasalad_GucciGames.gameEngine.CommunicationParams.GridCoordinateParameters;
-import voogasalad_GucciGames.gameEngine.CommunicationParams.LocationParams;
+import voogasalad_GucciGames.gameEngine.CommunicationParams.LocationParameters;
 import voogasalad_GucciGames.gameEngine.defaultCharacteristics.AttackCharacteristic;
 import voogasalad_GucciGames.gameEngine.defaultCharacteristics.HealthCharacteristic;
 import voogasalad_GucciGames.gameEngine.gamePlayer.AllPlayers;
@@ -27,7 +27,7 @@ public class AttackEvent extends MapObjectEvent{
 	}
 
 	@Override
-	protected CommunicationParameters executeAction(LocationParams params) {
+	protected CommunicationParameters executeAction(LocationParameters params) {
 		// TODO Auto-generated method stub
 		System.out.println("Attack Action");
 		TargetCoordinateSingle target = params.getNewLocation();
