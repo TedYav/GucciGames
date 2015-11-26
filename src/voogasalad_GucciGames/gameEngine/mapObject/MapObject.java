@@ -5,15 +5,16 @@ import java.util.List;
 import java.util.Map;
 import java.util.TreeMap;
 
+import voogasalad_GucciGames.gameEngine.PlayerMapObjectInterface;
 import voogasalad_GucciGames.gameEngine.CommunicationParams.ActionToGamePlayerParameters;
 import voogasalad_GucciGames.gameEngine.CommunicationParams.BasicParameters;
 import voogasalad_GucciGames.gameEngine.CommunicationParams.GridCoordinateParameters;
 import voogasalad_GucciGames.gameEngine.defaultCharacteristics.HealthCharacteristic;
+import voogasalad_GucciGames.gameEngine.objectActions.IGamePlayerMapObjectAction;
 import voogasalad_GucciGames.gameEngine.objectActions.MapObjectEvent;
 import voogasalad_GucciGames.gameEngine.objectActions.MapObjectEventHandler;
 import voogasalad_GucciGames.gameEngine.targetCoordinate.ATargetCoordinate;
 import voogasalad_GucciGames.gameEngine.targetCoordinate.TargetCoordinateSingle;
-import voogasalad_GucciGames.gameplayer.controller.PlayerMapObjectInterface;
 
 public class MapObject implements PlayerMapObjectInterface{
 	private ATargetCoordinate myCoordinate;
@@ -103,7 +104,7 @@ public class MapObject implements PlayerMapObjectInterface{
 	}
 
 	@Override
-	public Map<String, String> getAttributes() {
+	public Map<String, String> getAttributeStrings() {
 		//return myObjectType.getCharacteristic();
 		Map<String, String> myAttrMap = new TreeMap<String, String>();
 		for(String s : myCharacteristics.keySet()){
@@ -224,6 +225,24 @@ public class MapObject implements PlayerMapObjectInterface{
 	
 	public void setBasicParameters(BasicParameters basic){
 		this.myEventHandler.setBasicParameters(basic);
+	}
+
+	@Override
+	public IGamePlayerMapObjectAction getAction(String name) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public int getOwnerID() {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	@Override
+	public List<String> getAllCharacteristicNames() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 	
 	/*

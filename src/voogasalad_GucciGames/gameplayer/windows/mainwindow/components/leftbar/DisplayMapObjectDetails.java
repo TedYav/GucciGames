@@ -5,7 +5,8 @@ import java.util.List;
 import java.util.Map;
 import java.util.Observable;
 import java.util.Observer;
-import voogasalad_GucciGames.gameplayer.controller.PlayerMapObjectInterface;
+
+import voogasalad_GucciGames.gameEngine.PlayerMapObjectInterface;
 import voogasalad_GucciGames.gameplayer.controller.GameControllerInterface;
 import voogasalad_GucciGames.gameplayer.windows.mainwindow.components.DisplayComponent;
 import javafx.collections.FXCollections;
@@ -62,7 +63,7 @@ public class DisplayMapObjectDetails  implements DisplayComponent, ListChangeLis
     public void update (Observable o, Object arg) {
     	 if (arg!=null) {
              PlayerMapObjectInterface mapObj=(PlayerMapObjectInterface)arg;
-             Map<String,String> map = mapObj.getAttributes();
+             Map<String,String> map = mapObj.getAttributeStrings();
              temp.clear();
              temp.add(mapObj.getName());
              for (String s: map.keySet()) {

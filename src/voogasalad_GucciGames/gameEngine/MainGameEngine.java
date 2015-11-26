@@ -30,11 +30,10 @@ import voogasalad_GucciGames.gameEngine.gameRules.Rules;
 import voogasalad_GucciGames.gameEngine.mapObject.MapObject;
 import voogasalad_GucciGames.gameEngine.targetCoordinate.ATargetCoordinate;
 import voogasalad_GucciGames.gameEngine.targetCoordinate.TargetCoordinateMultiple;
-import voogasalad_GucciGames.gameplayer.controller.GameEngineToGamePlayerInterface;
 import voogasalad_GucciGames.gameplayer.controller.GameParametersInterface;
-import voogasalad_GucciGames.gameplayer.controller.PlayerMapObjectInterface;
 
 public class MainGameEngine implements GameEngineToGamePlayerInterface {
+	
 	private AllPlayers myGamePlayers;
 	private TurnCounter myCurrentTurnCounter;
 	private ATurnDecider myTurnDecider;
@@ -60,18 +59,18 @@ public class MainGameEngine implements GameEngineToGamePlayerInterface {
 		return myName;
 	}
 	@Override
-	public void endTurn() {
+	public GameParametersInterface endTurn() {
 		BasicParameters comParams = new BasicParameters(null,this.myRuleManager,this); 
 		myConditionHandler.evaluateAllConditions(comParams);
 		System.out.println("end of condition evaluation");
 		System.out.println("----");
 
-		GameParams myParams = new GameParams();
 
 		myCurrentTurnCounter.update();
 		System.out.println("current turn: " + myCurrentTurnCounter.getCurrentTurn());
 		myTurnDecider.updateActivePlayer();
 		myGamePlayers.reset();
+		return getGameParameters();
 	}
 
 	public int getActivePlayer() {
@@ -183,7 +182,7 @@ public class MainGameEngine implements GameEngineToGamePlayerInterface {
 		return mapDimensions;
 	}
 	@Override
-	public GameParametersInterface getGameParams() {
+	public GameParametersInterface getGameParameters() {
 		// TODO Auto-generated method stub
 		GameParams pp= new GameParams();
 		if(myGamePlayers.getNumberOfPlayers() != 2){

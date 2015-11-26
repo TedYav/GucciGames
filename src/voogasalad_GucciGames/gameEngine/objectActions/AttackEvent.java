@@ -3,6 +3,7 @@ package voogasalad_GucciGames.gameEngine.objectActions;
 import java.util.ArrayList;
 import java.util.List;
 
+import voogasalad_GucciGames.gameEngine.PlayerMapObjectInterface;
 import voogasalad_GucciGames.gameEngine.CommunicationParams.ActionToGamePlayerParameters;
 import voogasalad_GucciGames.gameEngine.CommunicationParams.BasicParameters;
 import voogasalad_GucciGames.gameEngine.CommunicationParams.CommunicationParameters;
@@ -16,7 +17,6 @@ import voogasalad_GucciGames.gameEngine.gameRules.defaultRules.AttacksPerTurn;
 import voogasalad_GucciGames.gameEngine.mapObject.MapObject;
 import voogasalad_GucciGames.gameEngine.targetCoordinate.TargetCoordinateMultiple;
 import voogasalad_GucciGames.gameEngine.targetCoordinate.TargetCoordinateSingle;
-import voogasalad_GucciGames.gameplayer.controller.PlayerMapObjectInterface;
 
 public class AttackEvent extends MapObjectEvent{
 

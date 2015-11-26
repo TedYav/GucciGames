@@ -3,7 +3,7 @@ package voogasalad_GucciGames.gameplayer.windows.mainwindow.map.cell;
 import java.util.List;
 import java.util.Map;
 import javafx.geometry.Point2D;
-import voogasalad_GucciGames.gameplayer.controller.PlayerMapObjectInterface;
+import voogasalad_GucciGames.gameEngine.PlayerMapObjectInterface;
 
 public interface MapCellInterface {
 

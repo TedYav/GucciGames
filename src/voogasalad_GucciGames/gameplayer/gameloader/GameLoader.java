@@ -1,9 +1,9 @@
 package voogasalad_GucciGames.gameplayer.gameloader;
 
+import voogasalad_GucciGames.gameEngine.GameEngineToGamePlayerInterface;
 import voogasalad_GucciGames.gameplayer.controller.GameController;
 import voogasalad_GucciGames.gameplayer.controller.GameControllerInterface;
 import voogasalad_GucciGames.gameplayer.controller.GameDataInterface;
-import voogasalad_GucciGames.gameplayer.controller.GameEngineToGamePlayerInterface;
 import voogasalad_GucciGames.gameplayer.windows.mainwindow.scenes.GameSceneInterface;
 
 public class GameLoader {
