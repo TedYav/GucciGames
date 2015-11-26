@@ -1,34 +1,27 @@
 package voogasalad_GucciGames.gameAuthoring.model;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
-
 import javafx.collections.FXCollections;
-import javafx.collections.ListChangeListener;
 import javafx.collections.ObservableList;
 import voogasalad_GucciGames.gameEngine.defaultCharacteristics.TileCharacteristic;
-import voogasalad_GucciGames.gameEngine.mapObject.DefaultMapObjectType;
 import voogasalad_GucciGames.gameEngine.mapObject.MapObject;
-import voogasalad_GucciGames.gameEngine.mapObject.MapObjectType;
 
 public class TypeData {
-	private ObservableList<MapObjectType> tileTypes;
-	private ObservableList<MapObjectType> unitTypes;
-	private ObservableList<MapObjectType> structureTypes;
+	private ObservableList<MapObject> tileTypes;
+	private ObservableList<MapObject> unitTypes;
+	private ObservableList<MapObject> structureTypes;
 //	private List<MapObject> onMap;
 
-	TypeData() {
+	public TypeData() {
 		tileTypes = FXCollections.observableArrayList();
 		// Hard coded for testing purposes:
 //		MapObjectType objType = new MapObjectType("Grass", "player/images/dummytexture.jpg");
 //		MapObjectType objType2 = new MapObjectType("Water", "player/images/dummytexture2.jpg");
 	
-		MapObjectType objType = new MapObjectType("AllTiles", "player/images/allTiles.jpg", 0, 0, 100.0, 100.0);
-		MapObjectType objType2 = new MapObjectType("AllTiles2", "player/images/allTiles.jpg", 1, 0, 100.0, 100.0);
+		MapObject objType = new MapObject("AllTiles", "player/images/allTiles.jpg", 0, 0, 100.0, 100.0);
+		MapObject objType2 = new MapObject("AllTiles2", "player/images/allTiles.jpg", 1, 0, 100.0, 100.0);
 		
-		objType.addDefaultCharacteristic("TileCharacteristic", new TileCharacteristic());
-		objType2.addDefaultCharacteristic("TileCharacteristic", new TileCharacteristic());
+		objType.addCharacteristic("TileCharacteristic", new TileCharacteristic());
+		objType2.addCharacteristic("TileCharacteristic", new TileCharacteristic());
 		tileTypes.add(objType);
 		tileTypes.add(objType2);
 //		objType.addDefaultCharacteristic("TileCharacteristic", new TileCharacteristic());
@@ -57,22 +50,22 @@ public class TypeData {
 //	public List<MapObject> getMapObjects(){
 //		return onMap;
 //	}
-	public void addTileType(MapObjectType type) {
+	public void addTileType(MapObject type) {
 		tileTypes.add(type);
 	}
-	public void addUnitType(MapObjectType type) {
+	public void addUnitType(MapObject type) {
 		unitTypes.add(type);
 	}
-	public void addStructureType(MapObjectType type) {
+	public void addStructureType(MapObject type) {
 		structureTypes.add(type);
 	}
-	public ObservableList<MapObjectType> getImmutableTileTypes() {
+	public ObservableList<MapObject> getImmutableTileTypes() {
 		return FXCollections.unmodifiableObservableList(tileTypes);
 	}
-	public ObservableList<MapObjectType> getImmutableUnitTypes() {
+	public ObservableList<MapObject> getImmutableUnitTypes() {
 		return FXCollections.unmodifiableObservableList(unitTypes);
 	}
-	public ObservableList<MapObjectType> getImmutableStructureTypes() {
+	public ObservableList<MapObject> getImmutableStructureTypes() {
 		return FXCollections.unmodifiableObservableList(structureTypes);
 	}
 }

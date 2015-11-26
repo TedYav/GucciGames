@@ -22,16 +22,14 @@ import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 import voogasalad_GucciGames.datastructures.TwoWayMap;
 import voogasalad_GucciGames.gameAuthoring.AGuiGaeController;
-import voogasalad_GucciGames.gameAuthoring.AGuiGaeController;
-import voogasalad_GucciGames.gameEngine.mapObject.MapObjectType;
-import voogasalad_GucciGames.gameEngine.mapObject.MapObjectType;
+import voogasalad_GucciGames.gameEngine.mapObject.MapObject;
 
 public abstract class ATab extends Tab {
 	private static final int WIDTH = 4;
 	protected final Pane myPane = new Pane();
 	protected final GridPane myGridPane = new GridPane();
-	protected ObservableList<MapObjectType> myTypeList;
-	protected TwoWayMap<MapObjectType, ImageView> myMap = new TwoWayMap<>();
+	protected ObservableList<MapObject> myTypeList;
+	protected TwoWayMap<MapObject, ImageView> myMap = new TwoWayMap<>();
 	protected List<ImageView> myImageViews = new ArrayList<>();
 	protected Button myAddButton = new Button("Add Custom");
 	protected ContextMenu myContextMenu;
@@ -73,17 +71,17 @@ public abstract class ATab extends Tab {
 		myPane.getChildren().add(myTrace);
 	}
 
-	protected void init(ObservableList<MapObjectType> list) {
+	protected void init(ObservableList<MapObject> list) {
 		myTypeList = list;
 		list.forEach(e -> addType(e));
-		list.addListener((ListChangeListener.Change<? extends MapObjectType> change) -> {
+		list.addListener((ListChangeListener.Change<? extends MapObject> change) -> {
 			change.next();
 			change.getAddedSubList().forEach(e->addType(e));
 			change.getRemoved().forEach(e->deleteType(e));
 		});
 	}
 
-	private void addType(MapObjectType type) {
+	private void addType(MapObject type) {
 		Image image = new Image(getClass().getClassLoader().getResourceAsStream(type.getImagePath()));
 		ImageView imageView = new ImageView(image);
 		
@@ -107,7 +105,7 @@ public abstract class ATab extends Tab {
 	}
 
 	@SuppressWarnings("static-access")
-	private void deleteType(MapObjectType type) {
+	private void deleteType(MapObject type) {
 		ImageView imageView = myMap.remove(type);
 		int index = myImageViews.indexOf(imageView);
 		myGridPane.getChildren().remove(imageView);
@@ -131,7 +129,7 @@ public abstract class ATab extends Tab {
 
 	@SuppressWarnings("static-access")
 	private void select(ImageView source) {
-		MapObjectType curr = myMap.getKey(source);
+		MapObject curr = myMap.getKey(source);
 		if(curr!=mySideBar.getCurrSelection()){
 			mySideBar.setCurrSelection(this,curr);
 			myController.setMapObjectTypeToMap(curr);

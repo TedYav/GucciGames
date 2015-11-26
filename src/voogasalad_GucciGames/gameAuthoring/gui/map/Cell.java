@@ -9,7 +9,6 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 import voogasalad_GucciGames.gameEngine.mapObject.MapObject;
-import voogasalad_GucciGames.gameEngine.mapObject.MapObjectType;
 
 public class Cell {
 	private ImageView myMapView;
@@ -35,7 +34,7 @@ public class Cell {
 		myMap.add(this);
 	}
 
-	public void setImage(Image img, MapObjectType mapType) {
+	public void setImage(Image img, MapObject mapType) {
 		myMapView.setImage(img);
 		
 		double width = mapType.getWidth();

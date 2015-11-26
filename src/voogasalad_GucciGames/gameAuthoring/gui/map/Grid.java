@@ -7,7 +7,6 @@ import java.util.Map;
 import java.util.Set;
 
 import javafx.beans.property.DoubleProperty;
-import javafx.collections.ObservableList;
 import javafx.geometry.Rectangle2D;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -18,7 +17,6 @@ import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 import voogasalad_GucciGames.gameAuthoring.AGuiGaeController;
 import voogasalad_GucciGames.gameEngine.mapObject.MapObject;
-import voogasalad_GucciGames.gameEngine.mapObject.MapObjectType;
 
 class Grid extends Pane {
 
@@ -88,7 +86,7 @@ class Grid extends Pane {
 		if (myController.getCurrSelectedImage() != null
 				&& !myCells.containsKey(new GridPoint((int) (x / size), (int) (y / size)))) {
 			
-			MapObjectType mapType = myController.getMapObjectTypeToMap();
+			MapObject mapType = myController.getMapObjectTypeToMap();
 			double width = mapType.getWidth();
 			double height = mapType.getHeight();
 			
@@ -158,7 +156,7 @@ class Grid extends Pane {
 				Set<Cell> set = getCell(new GridPoint(x, y));
 				if (set != null) {
 					for (Cell c : set) {
-						if (c.getObject().getObjectType().isTile())
+						if (c.getObject().isTile())
 							return;
 
 					}

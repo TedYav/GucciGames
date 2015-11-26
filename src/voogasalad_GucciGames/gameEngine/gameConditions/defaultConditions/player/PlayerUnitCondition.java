@@ -24,7 +24,7 @@ public class PlayerUnitCondition extends PlayerConditions {
 		System.out.println(player == null);
 		if(player != null){
 		int myID = player.getMyPlayerId();
-		Outcome outcome = new Outcome(params.getPlayers());
+		Outcome outcome = new Outcome(params.getEngine().getPlayers());
 		if (player.getMapObjects() != null) {
 			if (player.getMapObjects().size() == 0) {
 				player.setStatus(EndGameConditions.LOSE.toString());

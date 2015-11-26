@@ -58,11 +58,6 @@ public interface PlayerMapObjectInterface {
 	 */
 	public List<String> getActionNames();
 
-	/**
-	 * 
-	 * @return
-	 */
-	public IGamePlayerMapObjectAction getAction(String name);
 
 	/**
 	 * This method returns the owner id of the current map object.
@@ -92,10 +87,13 @@ public interface PlayerMapObjectInterface {
 	 * characteristic.
 	 * 
 	 * Note that for custom characteristics, the standard name will be the class
-	 * name without the .java extension; so you can access the characteristic
-	 * directly by type-casting to the name.
+	 * name without an appended Characteristic.java extension; so you can access
+	 * the characteristic directly by type-casting to the name. (So a custom
+	 * characteristic called Poisonous would map "Poisonous" to a class called
+	 * PoisonousCharacteristic.java)
 	 * 
-	 * @param name name of the characteristic
+	 * @param name
+	 *            name of the characteristic
 	 * @return the characteristic corresponding to it
 	 */
 	public AMapObjectCharacteristic getCharacteristic(String name);

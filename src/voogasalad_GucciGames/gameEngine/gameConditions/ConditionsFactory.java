@@ -49,7 +49,7 @@ public class ConditionsFactory {
 				@SuppressWarnings("unchecked")
 				Iterator<Integer> idIterator = condParams.getPlayerID().iterator();
 				while (idIterator.hasNext()) {
-					players.add(params.getPlayers().getPlayerById(idIterator.next()));
+					players.add(params.getEngine().getPlayers().getPlayerById(idIterator.next()));
 
 				}
 				condParams.setMyPlayers(players);

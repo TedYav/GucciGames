@@ -7,7 +7,7 @@ import java.util.List;
 import voogasalad_GucciGames.gameEngine.CommunicationParams.BasicParameters;
 import voogasalad_GucciGames.gameEngine.CommunicationParams.CommunicationParameters;
 import voogasalad_GucciGames.gameEngine.CommunicationParams.EmptyParameters;
-import voogasalad_GucciGames.gameEngine.gameRules.ActionToRuleManager;
+import voogasalad_GucciGames.gameEngine.CommunicationParams.LocationParams;
 import voogasalad_GucciGames.gameEngine.gameRules.Rules;
 
 /**
@@ -27,17 +27,7 @@ public abstract class MapObjectEvent implements IGamePlayerMapObjectAction{
 	protected List<Rules> getRuleList(){
 		return myRuleList;
 	}
-
-	// must keep executeAction() final
-	public final CommunicationParameters executeAction(CommunicationParameters params, int playerID) {
-		Boolean check = checkRules(playerID,params);
-		if (check) {
-			return execute(params);
-		}
-		return null;
-	}
-
-
+	
 	private Boolean checkRules(int playerID, CommunicationParameters params) {
 		Boolean ruletest = true;
 		BasicParameters basic = (BasicParameters) params;
@@ -55,11 +45,28 @@ public abstract class MapObjectEvent implements IGamePlayerMapObjectAction{
 
 		return ruletest;
 	}
-
-	protected abstract CommunicationParameters execute(CommunicationParameters params);
 	
 	protected boolean checkNeighborhood(double dx, double dy, double range){
 		return (dx <= range) && (dy <=range);
 	}
+	
+	// Must keep final
+	public final CommunicationParameters executeAction(CommunicationParameters params, int playerID) {
+		if(!(params instanceof LocationParams)){
+			return new EmptyParameters();
+		}
+		return checkRules(playerID,params) ? executeAction((LocationParams) params) : new EmptyParameters();
+	}
+	
+	protected abstract CommunicationParameters executeAction(LocationParams params);
+	
+	public final CommunicationParameters executeRequest(CommunicationParameters params, int playerID){
+		if(!(params instanceof BasicParameters)){
+			return new EmptyParameters();
+		}
+		return checkRules(playerID,params) ? executeRequest((BasicParameters) params) : new EmptyParameters();
+	}
+	
+	protected abstract CommunicationParameters executeRequest(BasicParameters params);
 
 }

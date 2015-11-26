@@ -31,7 +31,7 @@ public class AllPlayers {
 		for (Integer i : myMapOfPlayers.keySet()) {
 			GamePlayerPerson person = myMapOfPlayers.get(i);
 			person.resetObjects();
-			person.getMyMovable().reset();
+			person.getMovable().reset();
 
 		}
 	}
