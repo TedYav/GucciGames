@@ -12,33 +12,29 @@ import voogasalad_GucciGames.gameEngine.CommunicationParams.BasicParameters;
 import voogasalad_GucciGames.gameEngine.CommunicationParams.GameParameters;
 import voogasalad_GucciGames.gameEngine.CommunicationParams.GameResult;
 import voogasalad_GucciGames.gameEngine.CommunicationParams.GridCoordinateParameters;
-import voogasalad_GucciGames.gameEngine.CommunicationParams.LocationParameters;
 import voogasalad_GucciGames.gameEngine.gameConditions.ConditionHandler;
 import voogasalad_GucciGames.gameEngine.gameConditions.ConditionParams;
 import voogasalad_GucciGames.gameEngine.gameConditions.Conditions;
 import voogasalad_GucciGames.gameEngine.gameConditions.ConditionsFactory;
 import voogasalad_GucciGames.gameEngine.gameConditions.EndGameConditions;
-import voogasalad_GucciGames.gameEngine.gameConditions.defaultConditions.player.PlayerUnitCondition;
+import voogasalad_GucciGames.gameEngine.gameConditions.defaultConditions.CheckPlayerObjects;
 import voogasalad_GucciGames.gameEngine.gamePlayer.ATurnDecider;
 import voogasalad_GucciGames.gameEngine.gamePlayer.AllPlayers;
 import voogasalad_GucciGames.gameEngine.gamePlayer.DefaultTurnDecider;
 import voogasalad_GucciGames.gameEngine.gamePlayer.TurnCounter;
-import voogasalad_GucciGames.gameEngine.gameRules.ActionToRuleManager;
 import voogasalad_GucciGames.gameEngine.gameRules.RuleFactory;
 import voogasalad_GucciGames.gameEngine.gameRules.RuleParams;
-import voogasalad_GucciGames.gameEngine.gameRules.Rules;
 import voogasalad_GucciGames.gameEngine.mapObject.MapObject;
 import voogasalad_GucciGames.gameEngine.targetCoordinate.ATargetCoordinate;
 import voogasalad_GucciGames.gameEngine.targetCoordinate.TargetCoordinateMultiple;
 import voogasalad_GucciGames.gameplayer.controller.GameParametersInterface;
 
 public class MainGameEngine implements GameEngineToGamePlayerInterface {
-	
+
 	private AllPlayers myGamePlayers;
 	private TurnCounter myCurrentTurnCounter;
 	private ATurnDecider myTurnDecider;
 	private ConditionHandler myConditionHandler;
-	private ActionToRuleManager myRuleManager;
 	private int mapDimensions;
 	private String myName;
 
@@ -52,7 +48,7 @@ public class MainGameEngine implements GameEngineToGamePlayerInterface {
 		myTurnDecider = new DefaultTurnDecider(myGamePlayers, myCurrentTurnCounter);
 		myConditionHandler = new ConditionHandler();
 
-		myConditionHandler.addCondition("PlayerUnitCondition", new PlayerUnitCondition(new ConditionParams(this), null));
+		myConditionHandler.addCondition("PlayerUnitCondition", new CheckPlayerObjects(new ConditionParams(this)));
 	}
 	@Override
 	public String getGameName() {
@@ -60,14 +56,8 @@ public class MainGameEngine implements GameEngineToGamePlayerInterface {
 	}
 	@Override
 	public GameParametersInterface endTurn() {
-		BasicParameters comParams = new BasicParameters(null,this.myRuleManager,this); 
-		myConditionHandler.evaluateAllConditions(comParams);
-		System.out.println("end of condition evaluation");
-		System.out.println("----");
-
-
+		//check game conditions
 		myCurrentTurnCounter.update();
-		System.out.println("current turn: " + myCurrentTurnCounter.getCurrentTurn());
 		myTurnDecider.updateActivePlayer();
 		myGamePlayers.reset();
 		return getGameParameters();
@@ -76,21 +66,21 @@ public class MainGameEngine implements GameEngineToGamePlayerInterface {
 	public int getActivePlayer() {
 		return myTurnDecider.decideTurn();
 	}
-	
+
 	public int getTurn() {
 		return myCurrentTurnCounter.getCurrentTurn();
 	}
-	
+
 	@Override
 	public List<PlayerMapObjectInterface> getInitialState() {
 		return myGamePlayers.getInitialState();
 	}
-	
+
 	@Override
 	public int getTurnPlayerID() {
 		return myTurnDecider.decideTurn();
 	}
-	
+
 	@Override
 	public GridCoordinateParameters getPossibleCoordinates(String action, PlayerMapObjectInterface myMapObject) {
 		if(((MapObject) myMapObject).getPlayerID() == myTurnDecider.getActivePlayer().getMyPlayerId()){
@@ -98,7 +88,7 @@ public class MainGameEngine implements GameEngineToGamePlayerInterface {
 			//return ((MapObject) myMapObject).performRequest(action, new BasicParameters(this, ((MapObject) myMapObject)));
 		}
 		else{
-			return new GridCoordinateParameters(new TargetCoordinateMultiple());	
+			return new GridCoordinateParameters(new TargetCoordinateMultiple());
 		}
 
 	}
@@ -109,7 +99,7 @@ public class MainGameEngine implements GameEngineToGamePlayerInterface {
 		ConditionParams condParams = new ConditionParams("PlayerUnitCondition", "player", pl, null);
 		ConditionsFactory factory = new ConditionsFactory();
 		//BasicParameters comParams = new BasicParameters(myGamePlayers, null, null);
-		BasicParameters comParams = new BasicParameters(null,this.myRuleManager,this);
+		BasicParameters comParams = new BasicParameters(null,this);
 		try {
 			Conditions condition = factory.createCondition(condParams, comParams);
 			myConditionHandler.addCondition("PlayerUnitCondition", condition);
@@ -126,30 +116,21 @@ public class MainGameEngine implements GameEngineToGamePlayerInterface {
 		System.out.println("create rules");
 		RuleFactory factory = new RuleFactory();
 		RuleParams params = new RuleParams("move", null, null);
-		ActionToRuleManager manager = new ActionToRuleManager();
 		//BasicParameters comParams = new BasicParameters(myGamePlayers, null, manager);
-		BasicParameters comParams = new BasicParameters(null,manager,this);
+		BasicParameters comParams = new BasicParameters(null,this);
 		try {
 			factory.createRule(params, comParams);
 		} catch (NoSuchMethodException | SecurityException | ClassNotFoundException | InstantiationException
 				| IllegalAccessException | IllegalArgumentException | InvocationTargetException e) {
 			e.printStackTrace();
 		}
-		// execute rule:
-		System.out.println("test rules");
-		List<Rules> rules = manager.getRulesForAction("move");
-		for (int i = 0; i < rules.size(); i++) {
-			rules.get(i).executeRules(comParams);
-		}
+
 	}
 	public AllPlayers getPlayers() {
 		// TODO Auto-generated method stub
 		return myGamePlayers;
 	}
-	public ActionToRuleManager getActionToRuleManager() {
-		// TODO Auto-generated method stub
-		return this.myRuleManager;
-	}
+
 	public int getMapDimensions() {
 		return this.mapDimensions;
 	}
@@ -234,6 +215,6 @@ public class MainGameEngine implements GameEngineToGamePlayerInterface {
 
 		pp.setGameResult(game);
 
-		return (GameParametersInterface) pp;
+		return pp;
 	}
 }
