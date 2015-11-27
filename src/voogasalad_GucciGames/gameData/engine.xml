@@ -1,4 +1,4 @@
-2ñÅ‘Z»ùfZÛ”?¤Q—C”½7ñy¹Ò³8<ok•<voogasalad__GucciGames.gameEngine.MainGameEngine>
++f4½»	pUñ K4`ÛÅ/ùóyëæ87'üÊbÉ(<voogasalad__GucciGames.gameEngine.MainGameEngine>
   <myGamePlayers>
     <myMapOfPlayers class="tree-map">
       <entry>
@@ -1843,7 +1843,7 @@
     <map>
       <entry>
         <string>PlayerUnitCondition</string>
-        <voogasalad__GucciGames.gameEngine.gameConditions.defaultConditions.player.PlayerUnitCondition>
+        <voogasalad__GucciGames.gameEngine.gameConditions.defaultConditions.PlayerUnitCondition>
           <myParams>
             <myPlayersID>
               <int>-1</int>
@@ -1856,9 +1856,7 @@
             </myPlayers>
             <removeIDs/>
           </myParams>
-          <myPlayerList reference="../myParams/myPlayers"/>
-          <myCondParams reference="../myParams"/>
-        </voogasalad__GucciGames.gameEngine.gameConditions.defaultConditions.player.PlayerUnitCondition>
+        </voogasalad__GucciGames.gameEngine.gameConditions.defaultConditions.PlayerUnitCondition>
       </entry>
     </map>
   </myConditionHandler>

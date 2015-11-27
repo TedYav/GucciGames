@@ -6,7 +6,7 @@ package voogasalad_GucciGames.gameEngine.gameConditions;
 import java.util.HashMap;
 import java.util.Map;
 
-import voogasalad_GucciGames.gameEngine.CommunicationParams.BasicParameters;
+import voogasalad_GucciGames.gameEngine.gamePlayer.GamePlayerPerson;
 
 /**
  *
@@ -28,10 +28,10 @@ public class ConditionHandler {
 		return map.get(condName);
 	}
 
-	public void evaluateAllConditions( BasicParameters params) {
+	public void evaluateAllConditions(GamePlayerPerson player) {
 		for (String key : map.keySet()) {
 			System.out.println("condition: "+key);
-			map.get(key).execute( params);
+			map.get(key).execute( player);
 		}
 	}
 

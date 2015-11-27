@@ -1,21 +1,28 @@
+/**
+ *
+ */
 package voogasalad_GucciGames.gameEngine.gameConditions.oucomes;
 
-import voogasalad_GucciGames.gameEngine.gamePlayer.AllPlayers;
+import java.util.List;
+
+import voogasalad_GucciGames.gameEngine.CommunicationParams.AllPlayersCommunicationParameters;
+import voogasalad_GucciGames.gameEngine.gameConditions.Conditions;
 
 /**
  *
  * @author Sally Al
  *
  */
-public class RemovePlayer {
-	AllPlayers myPlayers;
+public class RemovePlayer extends Outcome{
 
-	public RemovePlayer(AllPlayers players) {
-		myPlayers = players;
+
+	public RemovePlayer(List<Conditions> conditions) {
+		super(conditions);
 	}
+	@Override
+	void applyOutcome(AllPlayersCommunicationParameters params, int id) {
+		params.removePlayerByID(id);
 
-	protected void removePlayer(int id){
-		myPlayers.removePlayer(id);
 	}
 
 }
