@@ -70,17 +70,17 @@ abstract public class GaeDialog{
 		 
 	 }
 	 
-	 protected ISaveObjProperty setSavePropertyFunction(ObjectProperty property, ISaveObjProperty saveObjProperty){
-			saveObjProperty = (propName, prop) -> {
-				try {
-					property.addPropertyElement(propName, prop);
-				} catch (InvalidInputException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
-			};
-			return saveObjProperty;
-	 }
+//	 protected ISaveObjProperty setSavePropertyFunction(ObjectProperty property, ISaveObjProperty saveObjProperty){
+//			saveObjProperty = (propName, prop) -> {
+//				try {
+//					property.addPropertyElement(propName, prop);
+//				} catch (InvalidInputException e) {
+//					// TODO Auto-generated catch block
+//					e.printStackTrace();
+//				}
+//			};
+//			return saveObjProperty;
+//	 }
 	 
 	
 
