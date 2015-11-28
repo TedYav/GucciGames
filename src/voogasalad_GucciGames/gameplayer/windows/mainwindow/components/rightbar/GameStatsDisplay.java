@@ -15,7 +15,7 @@ public class GameStatsDisplay implements DisplayComponent {
     private List<String> temp;
     private ObservableList<String> oTemp;
     private GameControllerInterface myController;
-    
+
     public GameStatsDisplay(GameControllerInterface controller) {
         temp = new ArrayList<String>();
         oTemp = FXCollections.observableList(temp);
@@ -24,7 +24,7 @@ public class GameStatsDisplay implements DisplayComponent {
         myController=controller;
         update();
     }
-    
+
     public void update() {
         oTemp.clear();
         oTemp.add("Game won: "+myController.getEngine().getGameParams().gameWon());
@@ -32,7 +32,7 @@ public class GameStatsDisplay implements DisplayComponent {
         //list=new ListView<String>(oTemp);
         System.out.println(oTemp.get(0));
     }
-    
+
     @Override
     public Node getNodeToDraw() {
         return list;
