@@ -27,8 +27,8 @@ public class GameStatsDisplay implements DisplayComponent {
     
     public void update() {
         oTemp.clear();
-        oTemp.add("Game won: "+myController.getEngine().getGameParams().gameWon());
-        oTemp.add("Whose turn: "+myController.getEngine().getGameParams().whoseTurn());
+        oTemp.add("Game won: "+myController.getEngine().getGameParameters().gameWon());
+        oTemp.add("Whose turn: "+myController.getEngine().getGameParameters().whoseTurn());
         //list=new ListView<String>(oTemp);
         System.out.println(oTemp.get(0));
     }

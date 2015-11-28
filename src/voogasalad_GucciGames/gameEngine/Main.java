@@ -1,10 +1,7 @@
 package voogasalad_GucciGames.gameEngine;
 
-import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
-import java.util.TreeMap;
 
 import voogasalad_GucciGames.gameEngine.defaultCharacteristics.HealthCharacteristic;
 import voogasalad_GucciGames.gameEngine.defaultCharacteristics.MovableCharacteristic;
@@ -12,11 +9,8 @@ import voogasalad_GucciGames.gameEngine.defaultCharacteristics.RealHealthCharact
 import voogasalad_GucciGames.gameEngine.gamePlayer.AllPlayers;
 import voogasalad_GucciGames.gameEngine.gamePlayer.GamePlayerPerson;
 import voogasalad_GucciGames.gameEngine.mapObject.MapObject;
-import voogasalad_GucciGames.gameEngine.mapObject.MapObjectType;
 import voogasalad_GucciGames.gameEngine.objectActions.MoveEvent;
-import voogasalad_GucciGames.gameEngine.objectActions.WhereToMoveEvent;
 import voogasalad_GucciGames.gameEngine.targetCoordinate.TargetCoordinateSingle;
-import voogasalad_GucciGames.gameplayer.controller.PlayerMapObjectInterface;
 
 public class Main {
 
@@ -43,7 +37,7 @@ public class Main {
 		MovableCharacteristic myMovableCharacteristic = new MovableCharacteristic(1, 3);
 		HealthCharacteristic myHealthCharacteristic = new RealHealthCharacteristic(5);
 		
-		MapObjectType soldier = new MapObjectType("soldier", "./../");
+		MapObject soldier = new MapObject("soldier", "./../");
 		
 		MapObject sold1 = new MapObject(soldier, new TargetCoordinateSingle(0, 0),0);
 		
@@ -52,12 +46,12 @@ public class Main {
 //		soldier.initializeCharacteristicsMap(dummyCharacteristicMap);
 		
 		MoveEvent myMoveEvent = new MoveEvent("Move");
-		WhereToMoveEvent myMoveLocationEvent = new WhereToMoveEvent("WhereToMove");
+		//WhereToMoveEvent myMoveLocationEvent = new WhereToMoveEvent("WhereToMove");
 		
 		sold1.addCharacteristic("MovableCharacteristic", myMovableCharacteristic);
 		sold1.addCharacteristic("HealthCharacteristic", myHealthCharacteristic);
-		soldier.addAction("Move", myMoveEvent);
-		soldier.addRequest("WhereToMove", myMoveLocationEvent);
+		soldier.addEvent("Move", myMoveEvent);
+		//soldier.addRequest("WhereToMove", myMoveLocationEvent);
 		
 		
 //		engine.getPossibleCoordinates("Move", (PlayerMapObjectInterface) sold1);

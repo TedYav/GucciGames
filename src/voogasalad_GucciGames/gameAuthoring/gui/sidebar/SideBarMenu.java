@@ -5,7 +5,7 @@ import javafx.event.EventHandler;
 import javafx.scene.control.ContextMenu;
 import javafx.scene.control.MenuItem;
 import voogasalad_GucciGames.gameAuthoring.AGuiGaeController;
-import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.UnitSettingsDialog;
+import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.maindialogs.UnitSettingsDialog;
 
 class SideBarMenu extends ContextMenu {
 	private AGuiGaeController myController;

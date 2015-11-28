@@ -11,7 +11,7 @@ public class GameSettingParams extends AParamsObject{
 		
 	}
 	
-	public GameSettingParams(String name, String mapSize, boolean fogOfWar, int numberOfPlayers){
+	public GameSettingParams(String name, String mapSize, boolean fogOfWar, double numberOfPlayers){
 		this.setName(name);
 		this.setMapSize(mapSize);
 		this.setFogOfWar(fogOfWar);

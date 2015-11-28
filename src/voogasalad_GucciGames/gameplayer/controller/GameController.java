@@ -13,6 +13,8 @@ import java.util.Observer;
 import javafx.scene.image.Image;
 import voogasalad_GucciGames.datastructures.Coordinate;
 import voogasalad_GucciGames.datastructures.ImageDatabase;
+import voogasalad_GucciGames.gameEngine.GameEngineToGamePlayerInterface;
+import voogasalad_GucciGames.gameEngine.PlayerMapObjectInterface;
 import voogasalad_GucciGames.gameEngine.CommunicationParams.ActionToGamePlayerParameters;
 import voogasalad_GucciGames.gameEngine.CommunicationParams.GridCoordinateParameters;
 import voogasalad_GucciGames.gameEngine.targetCoordinate.ATargetCoordinate;
@@ -62,7 +64,7 @@ public class GameController implements GameControllerInterface {
 		myActionInProgress = action;
 		myTargetUnit = unit;
 		
-		GridCoordinateParameters myParameters= myEngine.getPossibleCoordinates(action, unit);
+		GridCoordinateParameters myParameters = myEngine.getPossibleCoordinates(action, unit);
 		
 
 		//SORRY FOR THE TIME BEING: THIS WILL BE FIXED IN THE FUTURE
@@ -70,7 +72,8 @@ public class GameController implements GameControllerInterface {
 			return new ArrayList<TargetCoordinateSingle>();
 		}
 		else{
-			possibleMoves= myEngine.getPossibleCoordinates(action, unit).getListOfCoordinates();
+			//possibleMoves = myEngine.getPossibleCoordinates(action, unit).getListOfCoordinates();
+			possibleMoves = myParameters.getListOfCoordinates();
 			return possibleMoves;
 		}
 		
@@ -97,7 +100,7 @@ public class GameController implements GameControllerInterface {
 	
 	        for (TargetCoordinateSingle coord: possibleMoves) {
 	            if (target.getX()==coord.getCenterX() && target.getY()==coord.getCenterY()) {
-	                 params= myEngine.performAction(myActionInProgress, activeMapObject, Coordinate.PointToCoordinate(target));
+	                 params = myEngine.performAction(myActionInProgress, activeMapObject, Coordinate.PointToCoordinate(target));
 	                 cancelAction();
 	                 List<PlayerMapObjectInterface> result;
 	             	if(params != null){

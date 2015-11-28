@@ -5,6 +5,7 @@ import java.util.List;
 import voogasalad_GucciGames.gameEngine.mapObject.MapObject;
 import voogasalad_GucciGames.gameEngine.CommunicationParams.BasicParameters;
 import voogasalad_GucciGames.gameEngine.CommunicationParams.CommunicationParameters;
+import voogasalad_GucciGames.gameEngine.CommunicationParams.LocationParameters;
 import voogasalad_GucciGames.gameEngine.mapObject.TheMap;
 import voogasalad_GucciGames.gameEngine.objectActions.MapObjectEvent;
 import voogasalad_GucciGames.gameEngine.targetCoordinate.ATargetCoordinate;
@@ -22,8 +23,22 @@ public class UseMovement extends MapObjectEvent{
 		// TODO Auto-generated constructor stub
 	}
 
+	/*
 	@Override
 	protected CommunicationParameters execute(CommunicationParameters params) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+	*/
+
+	@Override
+	protected CommunicationParameters executeAction(LocationParameters params) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	protected CommunicationParameters executeRequest(BasicParameters params) {
 		// TODO Auto-generated method stub
 		return null;
 	}

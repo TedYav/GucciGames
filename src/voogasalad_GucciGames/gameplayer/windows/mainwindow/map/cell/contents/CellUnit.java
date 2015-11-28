@@ -3,7 +3,7 @@ package voogasalad_GucciGames.gameplayer.windows.mainwindow.map.cell.contents;
 import java.util.Observable;
 import java.util.Observer;
 
-import voogasalad_GucciGames.gameplayer.controller.PlayerMapObjectInterface;
+import voogasalad_GucciGames.gameEngine.PlayerMapObjectInterface;
 import voogasalad_GucciGames.gameplayer.windows.mainwindow.map.MapInterface;
 import voogasalad_GucciGames.gameplayer.windows.mainwindow.map.cell.MapCellInterface;
 

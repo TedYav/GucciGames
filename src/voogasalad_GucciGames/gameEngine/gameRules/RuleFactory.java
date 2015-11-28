@@ -34,7 +34,6 @@ public class RuleFactory {
 			Class<Rules> rule = (Class<Rules>) Class.forName(prop.getProperty(actionName));
 			Constructor<Rules> ruleConstructor = rule.getDeclaredConstructor(RuleParams.class,BasicParameters.class);
 			Rules ruleInstance = ruleConstructor.newInstance(ruleParams,basicParams );
-			basicParams.getActionToRuleMap().put(actionName, ruleInstance);//may be map of an instance of an action instead of name of action
 
 		}
 		//need to add code for groovy

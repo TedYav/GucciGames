@@ -11,7 +11,6 @@ import javafx.collections.ObservableList;
 import javafx.scene.image.Image;
 import javafx.stage.Stage;
 import voogasalad_GucciGames.gameEngine.mapObject.MapObject;
-import voogasalad_GucciGames.gameEngine.mapObject.MapObjectType;
 
 public interface IGuiGaeController{
 	/**
@@ -21,7 +20,7 @@ public interface IGuiGaeController{
     
     public void deleteComponent(MapObject mapObj);
     
-    public MapObject addObject(GridPoint gridpoint, MapObjectType mapObjType);
+    public MapObject addObject(GridPoint gridpoint, MapObject mapObjType);
     
     public List<MapObject> getMapObjects();
     
@@ -33,11 +32,11 @@ public interface IGuiGaeController{
     
     public void createCustomUnitType(Map<String,String> m);
 
-    public ObservableList<MapObjectType> getImmutableTileTypes();
+    public ObservableList<MapObject> getImmutableTileTypes();
 
-    public ObservableList<MapObjectType> getImmutableUnitTypes();
+    public ObservableList<MapObject> getImmutableUnitTypes();
     
-    public ObservableList<MapObjectType> getImmutableStructureTypes();
+    public ObservableList<MapObject> getImmutableStructureTypes();
 
     public void saveToXML(File file);
     
@@ -45,15 +44,15 @@ public interface IGuiGaeController{
     
     public void setMapHeight(double y);
     
-    public void setMapObjectTypeToMap(MapObjectType mapType);
+    public void setMapObjectTypeToMap(MapObject mapType);
 
-	public MapObjectType getMapObjectTypeToMap();
+	public MapObject getMapObjectTypeToMap();
 	
 	public Image getCurrSelectedImage();
 	
 	public void setCurrDraggedImage(Image draggedImage);
 
-	public MapObject addObject(GridPoint gridpoint, MapObjectType mapObjType,
+	public MapObject addObject(GridPoint gridpoint, MapObject mapObjType,
 			int ownerID);
 	
 	public void changeOwner(MapObject mapObject, int playerID);
