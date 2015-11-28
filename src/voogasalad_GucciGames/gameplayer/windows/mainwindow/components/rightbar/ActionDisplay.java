@@ -12,7 +12,6 @@ import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.control.ListView;
 import voogasalad_GucciGames.gameEngine.PlayerMapObjectInterface;
-import voogasalad_GucciGames.gameEngine.targetCoordinate.ATargetCoordinate;
 import voogasalad_GucciGames.gameEngine.targetCoordinate.TargetCoordinateSingle;
 import voogasalad_GucciGames.gameplayer.controller.GameControllerInterface;
 import voogasalad_GucciGames.gameplayer.windows.mainwindow.components.DisplayComponent;
@@ -21,13 +20,13 @@ public class ActionDisplay implements DisplayComponent, Observer {
     private GameControllerInterface myController;
     private PlayerMapObjectInterface activeMapObject;
     private ListView<Button> buttons;
-    private List<Button> temp;
+    private List<Button> baseButtons;
 
     public ActionDisplay(GameControllerInterface controller) {
         myController = controller;
         myController.addMOObserver(this);
-        temp = new ArrayList<Button>();
-        buttons = new ListView<Button>(FXCollections.observableList(temp));
+        baseButtons = new ArrayList<Button>();
+        buttons = new ListView<Button>(FXCollections.observableList(baseButtons));
     }
 
     private Button makeButton(String name) {
@@ -41,15 +40,14 @@ public class ActionDisplay implements DisplayComponent, Observer {
             }
         });
         return button;
-
     }
 
     private void updateButtons() {
         List<Button> updatedActions = new ArrayList<>();
         activeMapObject.getActionNames().stream().
         forEach(action -> updatedActions.add(makeButton(action)));
-        temp = updatedActions;
-        buttons.setItems(FXCollections.observableList(temp));
+        baseButtons = updatedActions;
+        buttons.setItems(FXCollections.observableList(baseButtons));
     }
 
     @Override

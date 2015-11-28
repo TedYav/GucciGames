@@ -3,7 +3,6 @@ package voogasalad_GucciGames.gameplayer.windows.mainwindow.menubar;
 import java.io.File;
 import java.util.ResourceBundle;
 import javafx.scene.Node;
-import javafx.scene.Scene;
 import javafx.scene.control.ComboBox;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
@@ -12,45 +11,39 @@ import voogasalad_GucciGames.gameplayer.controller.GameDataInterface;
 
 public class FileMenu implements GameMenu {
 
-	
-	private ComboBox<String> myDropdown;
-        private ResourceBundle myCssBundle = ResourceBundle.getBundle("voogasalad_GucciGames.gameplayer.config.scenes.CssClasses");
+    private ComboBox<String> myDropdown;
+    private ResourceBundle myCssBundle = ResourceBundle.getBundle(myBundle.getString("cssclass"));
 
-	public FileMenu(GameDataInterface myLoader, Stage stage){
-		myDropdown = new ComboBox<String>();
-		myDropdown.setValue(myBundle.getString("file"));
-		myDropdown.getItems().add("load");
-		myDropdown.setOnAction(e -> {if(myDropdown.getValue().equals("load")){
-		openBrowser(stage);
-			
-		}
-		});
-		myDropdown.getStyleClass().add(myCssBundle.getString("dropdowncssclass"));
-	}
-	
-	@Override
-	public Node returnNodeToDraw() {
-		return myDropdown;
-	}
+    public FileMenu(GameDataInterface myLoader, Stage stage){
+        myDropdown = new ComboBox<String>();
+        myDropdown.setValue(myBundle.getString("file"));
+        myDropdown.getItems().add(myBundle.getString("load"));
+        myDropdown.setOnAction(e -> {
+            if(myDropdown.getValue().equals(myBundle.getString("load"))){
+                openBrowser(stage);
+            }
+        });
+        myDropdown.getStyleClass().add(myCssBundle.getString("dropdowncssclass"));
+    }
 
-	    private void openBrowser (Stage stage) {
-	        FileChooser fileChooser = new FileChooser();
-	        fileChooser.setTitle("browser");
-	        fileChooser.getExtensionFilters().add(new ExtensionFilter("xml file",".xml"));
-//	                .addAll(new ExtensionFilter(getTextResources().getString("imageextensionlabel"),
-//	                                            getTextResources()
-//	                                                    .getString("imageextensions")
-//	                                                    .split(getTextResources()
-//	                                                            .getString("imageextensiondelimiter"))));
-	        File selectedFile = fileChooser.showOpenDialog(stage);
-	        if (selectedFile != null) {
-	            try {
-	            	
-	            }
-	            catch (Exception e) {
-	            }
-	        }
-	    }
-	
-	
+    @Override
+    public Node returnNodeToDraw() {
+        return myDropdown;
+    }
+
+    private void openBrowser (Stage stage) {
+        FileChooser fileChooser = new FileChooser();
+        fileChooser.setTitle(myBundle.getString("browser"));
+        fileChooser.getExtensionFilters().add(new ExtensionFilter(myBundle.getString("xmldescription"),myBundle.getString("xmlextension")));
+        File selectedFile = fileChooser.showOpenDialog(stage);
+        if (selectedFile != null) {
+            try {
+
+            }
+            catch (Exception e) {
+            }
+        }
+    }
+
+
 }

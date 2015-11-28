@@ -11,17 +11,17 @@ public class DisplayChat  implements DisplayComponent{
     private VBox chat;
     private TextArea inputArea;
     private ListView<String> chatHistory;
-    private ResourceBundle myCssBundle = ResourceBundle.getBundle("voogasalad_GucciGames.gameplayer.config.scenes.CssClasses");
-
+    private ResourceBundle myBundle=ResourceBundle.getBundle("voogasalad_GucciGames.gameplayer.config.components.LeftBar");
+    private ResourceBundle myCssBundle = ResourceBundle.getBundle(myBundle.getString("cssclass"));
 
     public DisplayChat() {
         chat = new VBox();
         inputArea=new TextArea();
-        inputArea.setPromptText("Click to chat");
+        inputArea.setPromptText(myBundle.getString("chatprompt"));
         //inputArea.setMaxWidth(200);
-        inputArea.prefHeightProperty().set(100);
+        inputArea.prefHeightProperty().set(Integer.parseInt(myBundle.getString("chatprefheight")));
         chatHistory=new ListView<String>();
-
+        
         chat.getChildren().add(chatHistory);
         chat.getChildren().add(inputArea);
         chat.getStyleClass().add(myCssBundle.getString("left-chat-vbox"));

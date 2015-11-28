@@ -89,10 +89,10 @@ public class MainGameScene extends GameScene {
 	    myPane.setCenter(myMap.getParent());
 	    System.out.println(myPane.getCenter().getBoundsInParent());
 	
-	    myLeftBar = new LeftBar(this, myController, myConfig);
+	    myLeftBar = new LeftBar(this, myController);
 	    myPane.setLeft(myLeftBar.getParent());
 	    
-	    myRightBar = new RightBar(this, myController, myConfig);
+	    myRightBar = new RightBar(this, myController);
 	    myPane.setRight(myRightBar.getParent());
 	    
 	    FileMenu file = new FileMenu(null,myManager.getStage()); //TODO: create for properties file?

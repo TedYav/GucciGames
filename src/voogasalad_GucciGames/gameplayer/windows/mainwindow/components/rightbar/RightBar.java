@@ -17,17 +17,16 @@ public class RightBar extends WindowComponent implements Observer {
     private PlayerMapObjectInterface activeMapObject;
     private VBox container;
     private double spacing = 5;
-    ResourceBundle myBundle;
+    private ResourceBundle myBundle = ResourceBundle.getBundle("voogasalad_GucciGames.gameplayer.config.components.RightBar");
     private GameControllerInterface myController;
 
     private GameStatsDisplay gameStats;
 
     private ResourceBundle myCssBundle = ResourceBundle.getBundle("voogasalad_GucciGames.gameplayer.config.scenes.CssClasses");
 
-    public RightBar(GameScene scene, GameControllerInterface controller, ResourceBundle bundle) {
+    public RightBar(GameScene scene, GameControllerInterface controller) {
         super(scene, controller);
         container = new VBox(spacing);
-        myBundle=bundle;
         myController=controller;
         initializeData();
 
