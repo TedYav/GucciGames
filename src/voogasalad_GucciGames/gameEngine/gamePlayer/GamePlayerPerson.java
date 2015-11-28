@@ -70,11 +70,11 @@ public class GamePlayerPerson {
 		}
 	}
 
-	public MovablePlayerCharacteristic getMyMovable() {
+	public MovablePlayerCharacteristic getMovable() {
 		return myMovable;
 	}
 
-	public void setMyMovable(MovablePlayerCharacteristic myMovable) {
+	public void setMovable(MovablePlayerCharacteristic myMovable) {
 		this.myMovable = myMovable;
 	}
 

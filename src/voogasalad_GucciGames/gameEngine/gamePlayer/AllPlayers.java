@@ -7,8 +7,8 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
+import voogasalad_GucciGames.gameEngine.PlayerMapObjectInterface;
 import voogasalad_GucciGames.gameEngine.mapObject.MapObject;
-import voogasalad_GucciGames.gameplayer.controller.PlayerMapObjectInterface;
 
 public class AllPlayers {
 
@@ -31,7 +31,7 @@ public class AllPlayers {
 		for (Integer i : myMapOfPlayers.keySet()) {
 			GamePlayerPerson person = myMapOfPlayers.get(i);
 			person.resetObjects();
-			person.getMyMovable().reset();
+			person.getMovable().reset();
 
 		}
 	}

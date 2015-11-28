@@ -1,7 +1,7 @@
 package voogasalad_GucciGames.gameplayer.windows.mainwindow.components.leftbar;
 
+import voogasalad_GucciGames.gameEngine.PlayerMapObjectInterface;
 import voogasalad_GucciGames.gameplayer.controller.GameControllerInterface;
-import voogasalad_GucciGames.gameplayer.controller.PlayerMapObjectInterface;
 import voogasalad_GucciGames.gameplayer.windows.mainwindow.components.DisplayComponent;
 import java.util.List;
 import java.util.ResourceBundle;

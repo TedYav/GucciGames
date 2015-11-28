@@ -4,7 +4,7 @@ import java.util.Map;
 import voogasalad_GucciGames.gameplayer.controller.GameParametersInterface;
 import voogasalad_GucciGames.gameplayer.controller.GameResultInterface;
 
-public class GameParams extends CommunicationParameters implements GameParametersInterface{
+public class GameParameters extends CommunicationParameters implements GameParametersInterface{
     private double mapWidth;
     private double mapHeight;
     private String gameName;

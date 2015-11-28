@@ -4,7 +4,6 @@ import java.util.List;
 import java.util.Map;
 
 import voogasalad_GucciGames.gameEngine.mapObject.MapObject;
-import voogasalad_GucciGames.gameEngine.mapObject.MapObjectType;
 
 public interface UseIGuiGaeController {
 	/**
@@ -21,9 +20,9 @@ public interface UseIGuiGaeController {
 
     public void createCustomUnitType(Map<String,String> m);
 
-    public List<MapObjectType> getTileTypes();
+    public List<MapObject> getTileTypes();
 
-    public List<MapObjectType> getUnitTypes();
+    public List<MapObject> getUnitTypes();
 
 
 

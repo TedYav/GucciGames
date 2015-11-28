@@ -3,7 +3,7 @@ package voogasalad_GucciGames.gameEngine.CommunicationParams;
 import java.util.ArrayList;
 import java.util.List;
 
-import voogasalad_GucciGames.gameplayer.controller.PlayerMapObjectInterface;
+import voogasalad_GucciGames.gameEngine.PlayerMapObjectInterface;
 
 public class ActionToGamePlayerParameters extends CommunicationParameters{
 	
