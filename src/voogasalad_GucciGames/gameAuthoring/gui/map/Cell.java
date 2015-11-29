@@ -4,6 +4,8 @@ import javafx.beans.property.DoubleProperty;
 import javafx.geometry.Rectangle2D;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseButton;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.paint.Color;
@@ -13,7 +15,7 @@ import voogasalad_GucciGames.gameEngine.mapObject.MapObject;
 public class Cell {
 	private ImageView myMapView;
 	private Rectangle myBoundBox;
-	private Grid myMap;
+	private Grid myGrid;
 	private DoubleProperty mySize;
 	private PopupMenu myMenu;
 	private boolean isSelected = false;
@@ -21,16 +23,16 @@ public class Cell {
 	private MapObject myMapObject;
 
 	public Cell(Grid map, int x, int y) {
-		myMap = map;
+		myGrid = map;
 		myMapView = new ImageView();
-		mySize = myMap.getCellSize();
+		mySize = myGrid.getCellSize();
 		myMapView.fitWidthProperty().bind(mySize);
 		myMapView.fitHeightProperty().bind(mySize);
 		myMapView.xProperty().bind(mySize.multiply(x));
 		myMapView.yProperty().bind(mySize.multiply(y));
 		myMapView.setOnMouseClicked(e -> mouseClickEvent(e));
 		myPos = new GridPoint(x, y);
-		myMap.add(this);
+		myGrid.add(this);
 	}
 
 	public void setImage(Image img, MapObject mapType) {
@@ -58,7 +60,7 @@ public class Cell {
 	public void select() {
 		if (!isSelected) {
 			addBound();
-			myMap.selectCell(this);
+			myGrid.selectCell(this);
 			isSelected = true;
 		}
 	}
@@ -75,21 +77,21 @@ public class Cell {
 			myBoundBox.setFill(Color.rgb(0, 255, 255, 0.2));
 			myBoundBox.setStrokeWidth(2);
 			myBoundBox.setMouseTransparent(true);
-			myMap.getChildren().add(myBoundBox);
+			myGrid.getChildren().add(myBoundBox);
 		}
 	}
 
 	public void deselect() {
 		if (isSelected) {
 			removeBound();
-			myMap.deselectCell(this);
+			myGrid.deselectCell(this);
 			isSelected = false;
 		}
 	}
 
 	public void removeBound() {
 		if (myBoundBox != null) {
-			myMap.getChildren().remove(myBoundBox);
+			myGrid.getChildren().remove(myBoundBox);
 			myBoundBox.xProperty().unbind();
 			myBoundBox.yProperty().unbind();
 			myBoundBox.widthProperty().unbind();
@@ -104,7 +106,7 @@ public class Cell {
 
 	private void showMenu(MouseEvent e) {
 		if(myMenu==null)
-			myMenu = new PopupMenu(myMap.getController(), this);
+			myMenu = new PopupMenu(myGrid.getController(), this);
 		myMenu.update();
 		myMenu.show(myMapView, e.getScreenX(), e.getScreenY());
 	}
@@ -115,7 +117,7 @@ public class Cell {
 		myMapView.yProperty().unbind();
 		myMapView.fitWidthProperty().unbind();
 		myMapView.fitHeightProperty().unbind();
-		myMap.remove(this);
+		myGrid.remove(this);
 	}
 	
 	public GridPoint getPosition(){

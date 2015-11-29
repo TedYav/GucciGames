@@ -47,12 +47,14 @@ class GridSelector {
 	// Define handling of mouse events
 
 	private void dragStart(MouseEvent e) {
-		myGrid.startFullDrag();
-		_area.setVisible(true);
-		_area.toFront();
-		Point2D p = new Point2D(e.getX(), e.getY());
-		update(p, p);
-		e.consume();
+		if(e.isControlDown()){
+			myGrid.startFullDrag();
+			_area.setVisible(true);
+			_area.toFront();
+			Point2D p = new Point2D(e.getX(), e.getY());
+			update(p, p);
+			e.consume();
+		}
 	}
 
 	private void dragMoved(MouseEvent e) {

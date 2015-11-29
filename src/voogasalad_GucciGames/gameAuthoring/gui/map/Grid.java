@@ -10,6 +10,8 @@ import javafx.beans.property.DoubleProperty;
 import javafx.geometry.Rectangle2D;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseButton;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
@@ -24,8 +26,6 @@ class Grid extends Pane {
 	private final DoubleProperty myCellSize;
 	private final Set<Cell> selectedCells = new HashSet<>();
 	private final Map<GridPoint, Set<Cell>> myCells = new HashMap<>();
-	private Rectangle myMouseBound;
-	private ImageView myMouseImg;
 	private AGuiGaeController myController;
 
 	private List<MapObject> myMapObjects;
@@ -37,13 +37,7 @@ class Grid extends Pane {
 		myBackground.fitWidthProperty().bind(widthProperty());
 		myBackground.fitHeightProperty().bind(heightProperty());
 		myCellSize = cellSize;
-
-		setOnMouseMoved(e -> trackMouseMove(e.getX(), e.getY()));
-		addEventFilter(MouseEvent.DRAG_DETECTED, e -> removeMouseBound());
-		setOnDragOver(e -> trackMouseMove(e.getX(), e.getY()));
-		setOnMouseExited(e -> removeMouseBound());
-		setOnDragExited(e -> removeMouseBound());
-		myCellSize.addListener((c, o, n) -> removeMouseBound());
+		new GridMouseTracker(this);
 		new GridSelector(this);
 
 		myMapObjects = controller.getMapObjects();
@@ -60,7 +54,10 @@ class Grid extends Pane {
 		// pane.maxWidthProperty().bind(widthProperty());
 		// pane.minHeightProperty().bind(heightProperty());
 		// pane.maxHeightProperty().bind(heightProperty());
-		addEventFilter(MouseEvent.MOUSE_CLICKED, e -> placeObjectOnMap(e));
+		addEventFilter(MouseEvent.MOUSE_CLICKED, e -> {
+			if(e.isStillSincePress())
+				placeObjectOnMap(e);
+		});
 
 		// for (int x = 0; x < width; x++) {
 		// for (int y = 0; y < height; y++) {
@@ -70,60 +67,7 @@ class Grid extends Pane {
 		// }
 	}
 
-	private void trackMouseMove(double x, double y) {
-		double size = myCellSize.get();
-		double xt = x - x % size;
-		double yt = y - y % size;
-		if (myMouseBound == null) {
-			addMouseBound(xt, yt, size);
-		} else if (!myMouseBound.contains(x, y)) {
-			removeMouseBound();
-			addMouseBound(xt, yt, size);
-		}
-	}
-
-	private void addMouseBound(double x, double y, double size) {
-		if (myController.getCurrSelectedImage() != null
-				&& !myCells.containsKey(new GridPoint((int) (x / size), (int) (y / size)))) {
-			
-			MapObject mapType = myController.getMapObjectTypeToMap();
-			double width = mapType.getWidth();
-			double height = mapType.getHeight();
-			
-			double myX1 = mapType.getX()*width;
-			double myY1 = mapType.getY()*height;
-			
-			Rectangle2D rect = new Rectangle2D(myX1, myY1, width, height);
-			
-			myMouseImg = new ImageView(myController.getCurrSelectedImage());
-			myMouseImg.setViewport(rect);
-			
-			myMouseImg.setFitWidth(size);
-			myMouseImg.setFitHeight(size);
-			myMouseImg.setX(x);
-			myMouseImg.setY(y);
-			myMouseImg.setOpacity(0.4);
-			myMouseImg.setMouseTransparent(true);
-			getChildren().add(myMouseImg);
-		}
-		myMouseBound = new Rectangle(x, y, size, size);
-		myMouseBound.setFill(Color.TRANSPARENT);
-		myMouseBound.setStroke(Color.YELLOW);
-		myMouseBound.setStrokeWidth(2);
-		myMouseBound.setMouseTransparent(true);
-		getChildren().add(myMouseBound);
-	}
-
-	private void removeMouseBound() {
-		if (myMouseImg != null) {
-			getChildren().remove(myMouseImg);
-			myMouseImg = null;
-		}
-		if (myMouseBound != null) {
-			getChildren().remove(myMouseBound);
-			myMouseBound = null;
-		}
-	}
+	
 
 	public void setBackground(Image img) {
 		myBackground.setImage(img);

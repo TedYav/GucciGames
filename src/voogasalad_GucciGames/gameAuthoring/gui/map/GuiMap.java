@@ -52,7 +52,6 @@ public class GuiMap extends Pane implements IGuiMap{
 			if (e.getCode() == KeyCode.BACK_SPACE || e.getCode() == KeyCode.DELETE)
 				myGrid.removeSelectedCells();
 		});
-
 		addEventHandler(KeyEvent.KEY_PRESSED, e -> {
 			if (e.getCode() == KeyCode.CONTROL)
 				myGridViewer.setPannable(false);
@@ -61,7 +60,7 @@ public class GuiMap extends Pane implements IGuiMap{
 			if (e.getCode() == KeyCode.CONTROL)
 				myGridViewer.setPannable(true);
 		});
-		addEventHandler(KeyEvent.KEY_TYPED, e->keyZoom(e));
+		addEventHandler(KeyEvent.KEY_PRESSED, e->keyZoom(e));
 		addEventHandler(ZoomEvent.ANY, e->gestureZoom(e));
 	}
 	
