@@ -27,7 +27,6 @@ public class PlayerDialog extends GaeDialog  {
 	private IDialogGaeController controller;
 	private List<PlayerContent> contentList = new ArrayList<PlayerContent>();
 	private Properties prop;
-	private ISaveObjProperty saveObjProperty;
 	private DialogElements dialogElements;
 	private Scene scene;
 	private int numOfPlayers;

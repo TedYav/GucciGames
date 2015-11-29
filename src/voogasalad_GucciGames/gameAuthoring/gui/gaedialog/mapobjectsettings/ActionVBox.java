@@ -29,11 +29,11 @@ public class ActionVBox extends VBox {
 		this.dialogElements = dialogElements;
 		this.switchPaneInterface = switchPaneInterface;
 		//TODO: add prop file
-		availableActionsMenu = new DropDownMenuField(dialogElements, null, null, listView);
+		availableActionsMenu = new DropDownMenuField(dialogElements, "action", "action_items", listView);
 		scrollPane.setContent(listView);
 		nextBtn = new Button("Save & Next");
 		addActionToNexBtn();		
-		this.getChildren().addAll(title, availableActionsMenu, scrollPane);
+		this.getChildren().addAll(title, availableActionsMenu, scrollPane, nextBtn);
 		
 	}
 	
