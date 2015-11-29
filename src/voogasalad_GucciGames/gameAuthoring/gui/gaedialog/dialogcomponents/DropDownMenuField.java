@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Properties;
 
 import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.DialogElements;
+import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.stylesheets.IListView;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.scene.control.ComboBox;
@@ -16,9 +17,12 @@ public class DropDownMenuField  extends DialogComponent{
 	private DialogElements dialogElements;
 	private String propKey;
 	private String itemsKey;
-	private ComboBox dropDown = new ComboBox();
+	private ComboBox<String> dropDown = new ComboBox<String>();
+	private IListView listViewInterface;
 	
-	public DropDownMenuField(DialogElements dialogElements, String propKey, String itemsKey){
+	public DropDownMenuField(DialogElements dialogElements, String propKey, 
+			String itemsKey, IListView listViewInterface){
+		this.listViewInterface = listViewInterface;
 		this.dialogElements = dialogElements;
 		this.propKey = propKey;
 		this.itemsKey = itemsKey;
@@ -39,18 +43,12 @@ public class DropDownMenuField  extends DialogComponent{
 	private void addListenerToDropDown(){
 		dropDown.setOnAction(e -> {
 			String s = dropDown.getSelectionModel().getSelectedItem().toString();
+			listViewInterface.addToListView(s);
 		});		
 	}
 
-//	@Override
-//	public HBox getContent() {
-//		// TODO Auto-generated method stub
-//		return content;
-//	}
-
 	@Override
 	public void setSelected(String s) {
-		// TODO Auto-generated method stub
 		dropDown.getSelectionModel().select(s);
 	}
 	
