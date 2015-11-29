@@ -1,4 +1,4 @@
-package voogasalad_GucciGames.gameAuthoring.gui.gaedialog;
+package voogasalad_GucciGames.gameAuthoring.gui.gaedialog.maindialogs;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -7,6 +7,8 @@ import java.util.Map;
 import java.util.Properties;
 
 import voogasalad_GucciGames.gameAuthoring.IDialogGaeController;
+import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.DialogElements;
+import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.ISaveObjProperty;
 import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.paramObjects.PlayerParams;
 import voogasalad_GucciGames.gameAuthoring.properties.ObjectProperty;
 import javafx.scene.Scene;
@@ -25,7 +27,6 @@ public class PlayerDialog extends GaeDialog  {
 	private IDialogGaeController controller;
 	private List<PlayerContent> contentList = new ArrayList<PlayerContent>();
 	private Properties prop;
-	private ISaveObjProperty saveObjProperty;
 	private DialogElements dialogElements;
 	private Scene scene;
 	private int numOfPlayers;
@@ -69,13 +70,10 @@ public class PlayerDialog extends GaeDialog  {
 			while(numOfPlayers  >=  num) {
 				PlayerContent content = new PlayerContent(num, controller);
 				contentList.add(content);
-				ObjectProperty playerProperty = new ObjectProperty();
-				saveObjProperty = setSavePropertyFunction(playerProperty, saveObjProperty);		
-				dialogElements = new DialogElements(prop, playerProperty, saveObjProperty, null,controller);
-				dialogElements.getSaveObjProperty().saveObjProperty("type", "playersetting");
+				dialogElements = new DialogElements(prop, null,controller);
 				content.setDialogElements(dialogElements);
 				content.init();
-				myContent.getChildren().add(content.getContent());
+				myContent.getChildren().add(content);
 				num++;
 			}
 			this.myContent.getChildren().add(saveBtn);

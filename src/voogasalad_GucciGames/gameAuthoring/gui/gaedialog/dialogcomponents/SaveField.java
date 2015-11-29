@@ -1,4 +1,4 @@
-package voogasalad_GucciGames.gameAuthoring.gui.gaedialog;
+package voogasalad_GucciGames.gameAuthoring.gui.gaedialog.dialogcomponents;
 
 import java.util.Properties;
 
@@ -6,6 +6,7 @@ import javafx.scene.control.Button;
 import javafx.scene.layout.HBox;
 import javafx.stage.Stage;
 import voogasalad_GucciGames.gameAuthoring.IDialogGaeController;
+import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.DialogElements;
 import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.paramObjects.AParamsObject;
 import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.paramObjects.GameSettingParams;
 import voogasalad_GucciGames.gameAuthoring.properties.ObjectProperty;
@@ -35,7 +36,7 @@ public class SaveField extends DialogComponent {
 	}
 	private void addListenerToSaveBtn(){
 		saveBtn.setOnAction(e ->  {
-			dialogGaeController.createCustomMapObject(dialogElements.getObjectProperty());
+			//dialogGaeController.createCustomMapObject(dialogElements.getObjectProperty());
 			//dialogGaeController.saveGameSetting(gameParams);
 			stage.close();
 			});
@@ -45,16 +46,17 @@ public class SaveField extends DialogComponent {
 		return saveBtn;
 	}
 
+
 	@Override
-	HBox getContent() {
+	public void setSelected(String s) {
 		// TODO Auto-generated method stub
-		return content;
+		
 	}
 
 	@Override
-	void setSelected(String s) {
+	public String getSelected() {
 		// TODO Auto-generated method stub
-		
+		return null;
 	}
 
 }

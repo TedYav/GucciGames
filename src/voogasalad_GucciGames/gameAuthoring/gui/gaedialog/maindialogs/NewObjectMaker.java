@@ -1,9 +1,12 @@
-package voogasalad_GucciGames.gameAuthoring.gui.gaedialog;
+package voogasalad_GucciGames.gameAuthoring.gui.gaedialog.maindialogs;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Properties;
 
 import voogasalad_GucciGames.gameAuthoring.IDialogGaeController;
+import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.DialogElements;
+import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.ISaveGroovy;
+import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.dialogcomponents.SaveField;
 import voogasalad_GucciGames.gameAuthoring.guiexceptions.InvalidInputException;
 import voogasalad_GucciGames.gameAuthoring.properties.ObjectProperty;
 import javafx.scene.Scene;
@@ -21,34 +24,32 @@ public class NewObjectMaker extends GaeDialog{
 	private Stage makerDialog = new Stage();
 	private Map<String, String> groovyBuffer = new HashMap<String, String>();
 	private Properties prop;
-	private ObjectProperty unitProperty = new ObjectProperty();
 	private ISaveGroovy saveGroovy;
-	private ISaveObjProperty saveObjProperty;
 	private IDialogGaeController controller;
 	private DialogElements dialogElements;
 	private Scene scene;
 	private SaveField save;
 	
 	
-	public NewObjectMaker(DialogContent customContent, IDialogGaeController controller){
+	public NewObjectMaker( IDialogGaeController controller){
 		super();
 		prop = loadProperties("dialogproperties/tiledialogproperties.properties");	
 		saveGroovy = setSaveGroovyFunctions(groovyBuffer, saveGroovy);
-		saveObjProperty = setSavePropertyFunction(unitProperty, saveObjProperty);
 		this.controller = controller;
-		dialogElements = new DialogElements(prop, unitProperty, saveObjProperty, saveGroovy, controller);
+		dialogElements = new DialogElements(prop, saveGroovy, controller);
 		groovyTabPane = new GroovyTabPane(dialogElements);
 		save = new SaveField(dialogElements, controller, makerDialog);
-		customContent.setDialogElements(dialogElements);
-		customContent.initializeCustomContent();
+
 		
-		MakerDialog dialog = new MakerDialog(dialogElements, customContent, groovyTabPane, save);			
-		myContent = dialog.getContent();
+		MakerDialog dialog = new MakerDialog(dialogElements,  groovyTabPane, save);			
+		myContent = dialog;
 		myContent.setId("vbox-element");
 		
 		scene = new Scene(myContent, WIDTH, HEIGHT);
 		
 		scene.getStylesheets().add("voogasalad_GucciGames/gameAuthoring/gui/gaedialog/stylesheets/dialogstylesheet.css");
+		scene.getStylesheets().add("voogasalad_GucciGames/gameAuthoring/gui/gaedialog/stylesheets/tab.css");
+		scene.getStylesheets().add("voogasalad_GucciGames/gameAuthoring/gui/gaedialog/stylesheets/groovytab.css");
 		makerDialog.setScene(scene);		
 		 
 	 }	

@@ -4,20 +4,14 @@ import java.util.Map;
 
 import javafx.geometry.Rectangle2D;
 import javafx.scene.Scene;
-import javafx.scene.control.Tab;
 import javafx.scene.control.TabPane;
 import javafx.scene.image.Image;
 import javafx.scene.layout.BorderPane;
-import javafx.scene.layout.VBox;
 import javafx.stage.Screen;
 import javafx.stage.Stage;
 import voogasalad_GucciGames.gameAuthoring.AGuiGaeController;
 import voogasalad_GucciGames.gameAuthoring.gui.sidebar.SideBar;
-import voogasalad_GucciGames.gameAuthoring.gui.sidebar.StructureTab;
-import voogasalad_GucciGames.gameAuthoring.gui.sidebar.TileTab;
-import voogasalad_GucciGames.gameAuthoring.gui.sidebar.UnitTab;
 import voogasalad_GucciGames.gameAuthoring.gui.statusbar.StatusBar;
-import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.ISaveCustomObj;
 import voogasalad_GucciGames.gameAuthoring.gui.map.GUIMap;
 import voogasalad_GucciGames.gameAuthoring.gui.menubar.GAEMenuBar;
 
@@ -88,9 +82,5 @@ public class GAEGui extends BorderPane {
 		return myController;
 	}
 	
-	private ISaveCustomObj initSaveCustomObj(){
-		ISaveCustomObj save = (p) -> {this.myController.createCustomMapObject(p);};
-		return save;
-	}
 	
 }

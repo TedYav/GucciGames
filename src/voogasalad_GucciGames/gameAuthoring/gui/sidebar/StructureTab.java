@@ -1,24 +1,18 @@
 package voogasalad_GucciGames.gameAuthoring.gui.sidebar;
 
 import javafx.event.ActionEvent;
-import voogasalad_GucciGames.gameAuthoring.AGuiGaeController;
-import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.NewObjectMaker;
-import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.StructMakerCustomContent;
-import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.ISaveCustomObj;
-
+import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.maindialogs.NewObjectMaker;
 public class StructureTab extends ATab {
-	private ISaveCustomObj saveCustomObj;
 
-	public StructureTab(SideBar bar, ISaveCustomObj saveCustomObj) {
+	public StructureTab(SideBar bar) {
 		super(bar);
-		this.saveCustomObj = saveCustomObj;
 		setText("Structures");
 		//init(myController.getImmutableStructureTypes());
 	}
 
 	@Override
 	protected void addNewTypeDialog(ActionEvent e) {
-		NewObjectMaker structMaker = new NewObjectMaker(new StructMakerCustomContent(), myController);
+		NewObjectMaker structMaker = new NewObjectMaker( myController);
 		structMaker.showDialog();
 	}
 

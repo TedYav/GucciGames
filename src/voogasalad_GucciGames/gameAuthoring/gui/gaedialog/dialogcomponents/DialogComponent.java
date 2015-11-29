@@ -1,4 +1,4 @@
-package voogasalad_GucciGames.gameAuthoring.gui.gaedialog;
+package voogasalad_GucciGames.gameAuthoring.gui.gaedialog.dialogcomponents;
 
 import java.util.Arrays;
 import java.util.List;
@@ -8,7 +8,7 @@ import javafx.scene.Node;
 import javafx.scene.layout.HBox;
 import javafx.scene.text.Text;
 
-abstract class DialogComponent {
+abstract class DialogComponent extends HBox {
 	
 	protected HBox createElement(String name, Node n, String hboxId){
 		HBox hbox = new HBox();
@@ -24,9 +24,9 @@ abstract class DialogComponent {
 		return propertiesList;		
 	}
 	
-	abstract HBox getContent();
+	public abstract void setSelected(String s);
 	
-	abstract void setSelected(String s);
+	public abstract String getSelected();
 	
 
 }

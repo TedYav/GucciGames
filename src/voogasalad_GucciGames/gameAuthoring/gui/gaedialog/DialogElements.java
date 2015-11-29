@@ -14,30 +14,18 @@ import voogasalad_GucciGames.gameAuthoring.properties.Property;
 public class DialogElements {
 	
 	private Properties prop;
-	private ObjectProperty objProp;	
-	private ISaveObjProperty saveObjProp;
 	private ISaveGroovy saveGroovy;
 	private IDialogGaeController dialogGaeController;
 	
-	public DialogElements(Properties prop, ObjectProperty objProp, 
-			ISaveObjProperty saveObjProp, ISaveGroovy saveGroovy,IDialogGaeController dialogGaeController ){
+	public DialogElements(Properties prop, ISaveGroovy saveGroovy,IDialogGaeController dialogGaeController ){
 		this.prop = prop;
-		this.objProp = objProp;		
-		this.saveObjProp = saveObjProp;	
+
 		this.saveGroovy = saveGroovy;
 		this.dialogGaeController = dialogGaeController;
 	}
 	
 	public Properties getDialogProperties(){
 		return prop;
-	}
-	
-	public ObjectProperty getObjectProperty(){
-		return objProp;
-	}
-	
-	public ISaveObjProperty getSaveObjProperty(){
-		return saveObjProp;
 	}
 	
 	public ISaveGroovy getSaveGroovy(){

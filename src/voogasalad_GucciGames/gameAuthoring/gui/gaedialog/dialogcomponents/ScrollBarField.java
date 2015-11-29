@@ -1,9 +1,10 @@
-package voogasalad_GucciGames.gameAuthoring.gui.gaedialog;
+package voogasalad_GucciGames.gameAuthoring.gui.gaedialog.dialogcomponents;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Properties;
 
+import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.DialogElements;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.scene.control.ScrollBar;
@@ -16,7 +17,6 @@ public class ScrollBarField extends DialogComponent {
 	private DialogElements dialogElements;
 	private String propKey;
 	private String itemsKey;
-	private HBox content = new HBox();
 	private ScrollBar scrollBar = new ScrollBar();
 	private Text numSpriteText = new Text(Double.toString(scrollBar.getValue()));
 	
@@ -35,8 +35,8 @@ public class ScrollBarField extends DialogComponent {
 		scrollBar.setMax(Double.parseDouble(params.get(1)));
 		scrollBar.setUnitIncrement(Integer.parseInt(params.get(2)));
 		addListenerToScrollBar();
-		content.getChildren().addAll(title, scrollBar, numSpriteText);
-		content.setId("hbox-element");
+		this.getChildren().addAll(title, scrollBar, numSpriteText);
+		this.setId("hbox-element");
 	}
 	
 	private void addListenerToScrollBar(){
@@ -50,16 +50,11 @@ public class ScrollBarField extends DialogComponent {
 					dialogElements.getDialogGaeController().setNumberOfPlayers(newValue.intValue());
 				}
 				numSpriteText.setText(newValue.intValue()+"");
-				dialogElements.getSaveObjProperty().saveObjProperty(propKey, newValue.intValue()+"");				
+				//dialogElements.getSaveObjProperty().saveObjProperty(propKey, newValue.intValue()+"");				
 			}			
 		});
 	}
 
-	@Override
-	public HBox getContent() {
-		// TODO Auto-generated method stub
-		return content;
-	}
 
 	@Override
 	public void setSelected(String s) {
@@ -67,7 +62,13 @@ public class ScrollBarField extends DialogComponent {
 		scrollBar.setValue(Double.parseDouble(s));
 	}
 	
-	public double getSelected(){
+	@Override
+	public String getSelected(){
+		return null;
+		
+	}
+	
+	public double getSelectedDouble(){
 		return scrollBar.getValue();
 	}
 
