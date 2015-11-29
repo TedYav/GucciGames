@@ -15,6 +15,12 @@ public class StructureParams extends AParamsObject {
 	public void setName(String structureName) {
 		this.structureName = structureName;
 	}
+
+	@Override
+	public void print() {
+		// TODO Auto-generated method stub
+		
+	}
 	
 	
 

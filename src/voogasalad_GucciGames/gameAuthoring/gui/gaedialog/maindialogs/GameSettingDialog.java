@@ -1,7 +1,14 @@
-package voogasalad_GucciGames.gameAuthoring.gui.gaedialog;
+package voogasalad_GucciGames.gameAuthoring.gui.gaedialog.maindialogs;
 import java.util.Properties;
 
 import voogasalad_GucciGames.gameAuthoring.IDialogGaeController;
+import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.DialogElements;
+import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.ISaveObjProperty;
+import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.dialogcomponents.DropDownMenuField;
+import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.dialogcomponents.RadioBtnField;
+import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.dialogcomponents.SaveField;
+import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.dialogcomponents.ScrollBarField;
+import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.dialogcomponents.TextInputField;
 import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.paramObjects.GameSettingParams;
 import voogasalad_GucciGames.gameAuthoring.guiexceptions.InvalidInputException;
 import voogasalad_GucciGames.gameAuthoring.properties.GameSettingsProperty;
@@ -32,44 +39,34 @@ public class GameSettingDialog extends GaeDialog {
 	private RadioBtnField miniMap ;
 	private RadioBtnField zoomable;
 	private ScrollBarField numPlayer;
+	private SaveField saveField;
 	
 	
 	public GameSettingDialog(IDialogGaeController dialogGaeController){
 		this.dialogGaeController = dialogGaeController;
-		prop = loadProperties("dialogproperties/gamedialog.properties");
-		this.initializeSaveObjProperty();
-		dialogElements = new DialogElements(prop, gameSettingsProperty, saveObjProperty, null, dialogGaeController);
-		dialogElements.getSaveObjProperty().saveObjProperty("type", "gamesetting");
-		SaveField saveField = new SaveField(dialogElements, dialogGaeController, gameSettingDialog);
-		
-		saveField.getSaveBtn().setOnAction(e -> {
-			gameSettingParams.setName(nameText.getTextInput());
-			gameSettingParams.setMapSize(mapSize.getSelected());
-			gameSettingParams.setFogOfWar(fogOfWar.getSelected().toString() == "Yes" ? true: false);
-			gameSettingParams.setNumberOfPlayers(numPlayer.getSelected());
-			dialogGaeController.saveGameSetting(gameSettingParams);
-			this.gameSettingDialog.close();
-			
-	
-			});
-			
-		
-		myContent.getChildren().addAll(this.initializeDialog(), saveField.getContent());
+		prop = super.loadProperties("/voogasalad_GucciGames/gameAuthoring/gui/gaedialog/maindialogs/dialogproperties/gamedialog.properties");
+		dialogElements = new DialogElements(prop, null, dialogGaeController);
+		saveField = new SaveField(dialogElements, dialogGaeController, gameSettingDialog);
+		this.setSaveAction();
+		myContent.getChildren().addAll(this.initializeDialog(), saveField);
 		Scene gameSettingDialogScene = new Scene(myContent, 500, 500);
 		gameSettingDialogScene.getStylesheets().add("voogasalad_GucciGames/gameAuthoring/gui/gaedialog/stylesheets/dialogstylesheet.css");
 		gameSettingDialog.setScene(gameSettingDialogScene);		
 	}
 	
-	private void initializeSaveObjProperty(){
-		saveObjProperty = (propName, prop) -> {
-			try {
-				gameSettingsProperty.addPropertyElement(propName, prop);
-			} catch (InvalidInputException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-		};
+	private void setSaveAction(){
+		saveField.getSaveBtn().setOnAction(e -> {
+			gameSettingParams.setName(nameText.getTextInput());
+			gameSettingParams.setMapSize(mapSize.getSelected());
+			gameSettingParams.setFogOfWar(fogOfWar.getSelected().toString() == "Yes" ? true: false);
+			gameSettingParams.setNumberOfPlayers(numPlayer.getSelectedDouble());
+			dialogGaeController.saveGameSetting(gameSettingParams);
+			this.gameSettingDialog.close();
+			
+	
+			});
 	}
+	
 
 	protected VBox initializeDialog() {
 		// TODO Auto-generated method stub
@@ -77,19 +74,21 @@ public class GameSettingDialog extends GaeDialog {
 		Text titleElement = new Text();
 		titleElement.setText(prop.getProperty("title"));
 		nameText = new TextInputField(dialogElements, "name");
-		mapSize = new DropDownMenuField(dialogElements, "mapsize", "mapsize_items");
-		 fogOfWar = new DropDownMenuField(dialogElements, "fogofwar", "fogofwar_items");
+		mapSize = new DropDownMenuField(dialogElements, "mapsize", "mapsize_items", null);
+		 fogOfWar = new DropDownMenuField(dialogElements, "fogofwar", "fogofwar_items", null);
 		miniMap = new RadioBtnField(dialogElements, "minimap", "minimap_items");
 		 zoomable = new RadioBtnField(dialogElements, "zoomable", "zoomable_items");
 		numPlayer = new ScrollBarField(dialogElements, "numplayer", "numplayer_items");	
 		
-		content.getChildren().addAll(titleElement, nameText.getContent(), mapSize.getContent(), fogOfWar.getContent(),
-				miniMap.getContent(), zoomable.getContent(), numPlayer.getContent());		
+		content.getChildren().addAll(titleElement, nameText, mapSize, fogOfWar,
+				miniMap, zoomable, numPlayer);		
 		content.getChildren().forEach(hbox->hbox.setId("hbox-element"));		
 		titleElement.setId("title");
 		content.setId("vbox-element");	
 		return content;
 	}
+	
+	
 
 	public void showGameSettingsDialog(){
 		super.showDialog(gameSettingDialog);

@@ -1,4 +1,4 @@
-package voogasalad_GucciGames.gameAuthoring.gui.gaedialog;
+package voogasalad_GucciGames.gameAuthoring.gui.gaedialog.maindialogs;
 import java.util.Properties;
 
 import javafx.scene.Scene;
@@ -7,6 +7,9 @@ import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import voogasalad_GucciGames.gameAuthoring.IDialogGaeController;
+import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.DialogElements;
+import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.dialogcomponents.ScrollBarField;
+import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.dialogcomponents.TextInputField;
 import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.paramObjects.UnitParams;
 import voogasalad_GucciGames.gameAuthoring.guiexceptions.InvalidInputException;
 import voogasalad_GucciGames.gameAuthoring.properties.ObjectProperty;
@@ -21,7 +24,6 @@ public class UnitSettingsDialog extends GaeDialog{
 	private ObjectProperty objProp= new ObjectProperty();
 	private IDialogGaeController controller;
 	private Properties prop;
-	private ISaveObjProperty saveObjProperty;
 	private DialogElements dialogElements;
 	private Scene scene;
 	
@@ -46,14 +48,14 @@ public class UnitSettingsDialog extends GaeDialog{
 	
 	
 	public UnitSettingsDialog(IDialogGaeController controller){
-		prop = loadProperties("dialogproperties/unitsettingdialog.properties");
+		prop = loadProperties(
+				"/voogasalad_GucciGames/gameAuthoring/gui/gaedialog/maindialogs/dialogproperties/unitsettingdialog.properties");
 		
 		this.controller = controller;
 		objProp = new ObjectProperty();
-		this.saveObjProperty = setSavePropertyFunction(objProp, saveObjProperty);		
 
-		this.dialogElements = new DialogElements(prop, objProp, saveObjProperty, null, controller);
-		dialogElements.getSaveObjProperty().saveObjProperty("type", "playersetting");
+		this.dialogElements = new DialogElements(prop, null, controller);
+		//dialogElements.getSaveObjProperty().saveObjProperty("type", "playersetting");
 		initialize();
 		addActionToSave();
 		setScene();	
@@ -76,8 +78,8 @@ public class UnitSettingsDialog extends GaeDialog{
 		healthField = new ScrollBarField(dialogElements, "health", "health_items");
 		rangeMvtField = new ScrollBarField(dialogElements, "mvtrange", "mvtrange_items");
 		rangeAttackField = new ScrollBarField(dialogElements, "attackrange", "attackrange_items");
-		myContent.getChildren().addAll(title, nameInputField.getContent(), numAttackField.getContent(), damageField.getContent(), 
-				healthField.getContent(), rangeMvtField.getContent(), rangeAttackField.getContent(), saveBtn);
+		myContent.getChildren().addAll(title, nameInputField, numAttackField, damageField, 
+				healthField, rangeMvtField, rangeAttackField, saveBtn);
 		myContent.setId("vbox-element");
 
 		
@@ -86,11 +88,11 @@ public class UnitSettingsDialog extends GaeDialog{
 	private void addActionToSave(){
 		saveBtn.setOnAction(e -> {
 			name = nameInputField.getTextInput();
-			numAttack = (int) numAttackField.getSelected();
-			damage = (int)damageField.getSelected();
-			healthVal = (int)healthField.getSelected();
-			rangeMvt = (int) rangeMvtField.getSelected();
-			rangeAttack = (int) rangeAttackField.getSelected();
+			numAttack = (int) numAttackField.getSelectedDouble();
+			damage = (int)damageField.getSelectedDouble();
+			healthVal = (int)healthField.getSelectedDouble();
+			rangeMvt = (int) rangeMvtField.getSelectedDouble();
+			rangeAttack = (int) rangeAttackField.getSelectedDouble();
 			
 			UnitParams unitParams = new UnitParams(name, numAttack, damage, healthVal, rangeMvt, rangeAttack);
 			controller.setUnitParams(unitParams);

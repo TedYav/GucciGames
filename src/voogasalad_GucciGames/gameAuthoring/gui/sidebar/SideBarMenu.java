@@ -5,7 +5,8 @@ import javafx.event.EventHandler;
 import javafx.scene.control.ContextMenu;
 import javafx.scene.control.MenuItem;
 import voogasalad_GucciGames.gameAuthoring.AGuiGaeController;
-import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.UnitSettingsDialog;
+import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.maindialogs.SettingsDialog;
+import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.maindialogs.UnitSettingsDialog;
 
 class SideBarMenu extends ContextMenu {
 	private AGuiGaeController myController;
@@ -15,8 +16,10 @@ class SideBarMenu extends ContextMenu {
 		item1.setOnAction(new EventHandler<ActionEvent>() {
 			public void handle(ActionEvent e) {
 				System.out.println("Edit");
-				UnitSettingsDialog dialog = new UnitSettingsDialog(controller);
+				SettingsDialog dialog = new SettingsDialog(controller);
 				dialog.show();
+				//UnitSettingsDialog dialog = new UnitSettingsDialog(controller);
+				//dialog.show();
 			}
 		});
 		MenuItem item2 = new MenuItem("Duplicate");

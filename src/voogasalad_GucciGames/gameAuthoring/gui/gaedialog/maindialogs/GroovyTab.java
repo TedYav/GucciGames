@@ -1,5 +1,6 @@
-package voogasalad_GucciGames.gameAuthoring.gui.gaedialog;
+package voogasalad_GucciGames.gameAuthoring.gui.gaedialog.maindialogs;
 
+import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.DialogElements;
 import javafx.scene.control.Tab;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
@@ -15,6 +16,7 @@ public class GroovyTab {
 	private String tabName; 
 
 	public GroovyTab(DialogElements dialogElements, String name){
+		
 		this.dialogElements = dialogElements;
 		this.tabName = name;
 		initTab();
@@ -23,8 +25,10 @@ public class GroovyTab {
 	private void initTab(){
 		tab.setText(tabName);
 		Text title = new Text(dialogElements.getDialogProperties().getProperty("groovytitle"));
+		title.setId("groovy-title");
 		groovyTextArea = new TextArea();
 		content.getChildren().addAll(title, groovyTextArea);
+		content.setId("groovy-tab-content");
 		tab.setContent(content);
 	}
 	
@@ -39,6 +43,10 @@ public class GroovyTab {
 
 	protected Tab getTab(){
 		return tab;
+	}
+	
+	protected void setSelected(){
+		content.setId("groovy-tab-selected-content");
 	}
 	
 	protected void setName(String s){

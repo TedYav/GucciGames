@@ -1,12 +1,15 @@
-package voogasalad_GucciGames.gameAuthoring.gui.gaedialog;
+package voogasalad_GucciGames.gameAuthoring.gui.gaedialog.maindialogs;
 import voogasalad_GucciGames.gameAuthoring.IDialogGaeController;
+import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.DialogElements;
+import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.dialogcomponents.FileBrowserField;
+import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.dialogcomponents.ScrollBarField;
+import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.dialogcomponents.TextInputField;
 import javafx.scene.control.Button;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 
-public class PlayerContent extends DialogContent{
+public class PlayerContent extends VBox{
 	
-	private VBox content = new VBox();
 	
 	TextInputField textInputField;
 	FileBrowserField browserField;
@@ -34,8 +37,8 @@ public class PlayerContent extends DialogContent{
 		browserField = new FileBrowserField(dialogElements,"image", "browse", "filechoosertitle");
 		scrollBarField = new ScrollBarField(dialogElements, "nummoves", "nummoves_items");
 		
-		content.getChildren().addAll(title, textInputField.getContent(), browserField.getContent(), scrollBarField.getContent());
-		content.setId("vbox-element");
+		this.getChildren().addAll(title, textInputField, browserField, scrollBarField);
+		this.setId("vbox-element");
 	}
 	
 	protected String getPlayerName(){
@@ -51,26 +54,13 @@ public class PlayerContent extends DialogContent{
 	}
 	
 	protected int getNumMoves(){
-		 return (int) scrollBarField.getSelected();
+		 return (int) scrollBarField.getSelectedDouble();
 	}
+
 	
-
-	@Override
-	protected VBox getContent() {
-		// TODO Auto-generated method stub
-		return content;
-	}
-
-	@Override
-	protected void setDialogElements(DialogElements dialogElements) {
+	public void setDialogElements(DialogElements dialogElements) {
 		// TODO Auto-generated method stub
 		this.dialogElements = dialogElements;
-		
-	}
-
-	@Override
-	protected void initializeCustomContent() {
-		// TODO Auto-generated method stub
 		
 	}
 

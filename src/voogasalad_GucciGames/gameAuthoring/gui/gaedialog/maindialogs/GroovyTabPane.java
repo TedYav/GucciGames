@@ -1,10 +1,11 @@
-package voogasalad_GucciGames.gameAuthoring.gui.gaedialog;
+package voogasalad_GucciGames.gameAuthoring.gui.gaedialog.maindialogs;
 
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Optional;
 import java.util.Properties;
 
+import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.DialogElements;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.ListChangeListener;
@@ -19,7 +20,7 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 
-public class GroovyTabPane extends DialogComponent{
+public class GroovyTabPane extends HBox{
 	
 	private VBox contentVBox = new VBox();
 	private TabPane tabPane = new TabPane();
@@ -40,6 +41,7 @@ public class GroovyTabPane extends DialogComponent{
 		 VBox vbox = new VBox();
 		 controlBtnBox = new HBox();
 		 Button addBtn = createAddButton(prop, "addbtn", "groovytitle");
+		 tabPane.setVisible(false);
 		 vbox.getChildren().addAll(tabPane, controlBtnBox, addBtn);
 		 vbox.setId(vboxStyleId);
 		 return vbox;
@@ -58,7 +60,7 @@ public class GroovyTabPane extends DialogComponent{
 			 dialogElements.getSaveGroovy().
 			 saveGroovyTextArea(groovy, getIdForTab(getSelectedTab()));
 			 try {
-				 dialogElements.getObjectProperty().addPropertyElement(name + "_groovy", groovy);
+				 dialogElements.getSaveGroovy().saveGroovyTextArea(name, groovy);
 			 } catch (Exception e1) {
 				 e1.printStackTrace();
 			 }
@@ -70,6 +72,9 @@ public class GroovyTabPane extends DialogComponent{
 	 protected Button createAddButton(Properties prop, String btnKey, String headerKey){
 		 Button addBtn = new Button(prop.getProperty(btnKey));
 		 addBtn.setOnAction(e -> {
+			 if(tabPane.getTabs().size() == 0){
+				 tabPane.setVisible(true);
+			 }
 			 openAddNewDialog();
 			 
 		 });
@@ -150,6 +155,7 @@ public class GroovyTabPane extends DialogComponent{
 	 
 	 private void setSelectedTab(Tab t){
 		 selectedTab = t;
+		 attributeMap.get(t.getText()).setSelected();
 	 }
 	 
 	 public Tab getSelectedTab(){
@@ -161,11 +167,6 @@ public class GroovyTabPane extends DialogComponent{
 		 return hbox;
 	 }
 
-	@Override
-	public void setSelected(String s) {
-		// TODO Auto-generated method stub
-		
-	}
 	
 	public void setValueForTab(Map<String, String> map){
 		map.forEach((k, v) -> {
@@ -173,4 +174,5 @@ public class GroovyTabPane extends DialogComponent{
 			attributeMap.get(k).getTextArea().setText(v);		
 		});		
 	}
+
 }

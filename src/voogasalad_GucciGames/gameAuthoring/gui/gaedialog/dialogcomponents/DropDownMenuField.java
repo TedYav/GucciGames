@@ -1,8 +1,10 @@
-package voogasalad_GucciGames.gameAuthoring.gui.gaedialog;
+package voogasalad_GucciGames.gameAuthoring.gui.gaedialog.dialogcomponents;
 
 import java.util.List;
 import java.util.Properties;
 
+import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.DialogElements;
+import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.stylesheets.IListView;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.scene.control.ComboBox;
@@ -15,10 +17,12 @@ public class DropDownMenuField  extends DialogComponent{
 	private DialogElements dialogElements;
 	private String propKey;
 	private String itemsKey;
-	private HBox content = new HBox();
-	private ComboBox dropDown = new ComboBox();
+	private ComboBox<String> dropDown = new ComboBox<String>();
+	private IListView listViewInterface;
 	
-	public DropDownMenuField(DialogElements dialogElements, String propKey, String itemsKey){
+	public DropDownMenuField(DialogElements dialogElements, String propKey, 
+			String itemsKey, IListView listViewInterface){
+		this.listViewInterface = listViewInterface;
 		this.dialogElements = dialogElements;
 		this.propKey = propKey;
 		this.itemsKey = itemsKey;
@@ -32,30 +36,23 @@ public class DropDownMenuField  extends DialogComponent{
 		ObservableList<String> options = FXCollections.observableArrayList(propertiesList);
 		dropDown.setItems(options);	
 		addListenerToDropDown();
-		content.getChildren().addAll(label, dropDown);
-		content.setId("hbox-element");
+		this.getChildren().addAll(label, dropDown);
+		this.setId("hbox-element");
 	}
 	
 	private void addListenerToDropDown(){
 		dropDown.setOnAction(e -> {
 			String s = dropDown.getSelectionModel().getSelectedItem().toString();
-			dialogElements.getSaveObjProperty().saveObjProperty(propKey, s);		
+			listViewInterface.addToListView(s);
 		});		
 	}
 
 	@Override
-	HBox getContent() {
-		// TODO Auto-generated method stub
-		return content;
-	}
-
-	@Override
-	void setSelected(String s) {
-		// TODO Auto-generated method stub
+	public void setSelected(String s) {
 		dropDown.getSelectionModel().select(s);
 	}
 	
-	protected String getSelected(){
+	public String getSelected(){
 		if(dropDown.getSelectionModel().getSelectedItem() == null){
 			return "";
 		}

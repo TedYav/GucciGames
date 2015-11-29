@@ -1,9 +1,10 @@
-package voogasalad_GucciGames.gameAuthoring.gui.gaedialog;
+package voogasalad_GucciGames.gameAuthoring.gui.gaedialog.dialogcomponents;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Properties;
 
+import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.DialogElements;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.scene.Node;
@@ -19,7 +20,7 @@ public class RadioBtnField extends DialogComponent {
 	private String propKey;
 	private String itemsKey;
 	private ToggleGroup group = new ToggleGroup();
-	private HBox content = new HBox();
+
 	
 	
 	public RadioBtnField(DialogElements dialogElements, String propKey, String itemsKey){
@@ -39,31 +40,28 @@ public class RadioBtnField extends DialogComponent {
 		checkBoxList.forEach(radioBtn->{
 			radioBtn.setToggleGroup(group);
 			radioBtn.setUserData(radioBtn.getText());});		
-		addListenerToToggleGroup();
-		content.getChildren().add(label);
-		content.getChildren().addAll( checkBoxList);
-		content.setId("hbox-element");
+		//addListenerToToggleGroup();
+		this.getChildren().add(label);
+		this.getChildren().addAll( checkBoxList);
+		this.setId("hbox-element");
 	}
 	
-	private void addListenerToToggleGroup() {
-		group.selectedToggleProperty().addListener(new ChangeListener<Toggle>(){
-			@Override
-			public void changed(ObservableValue<? extends Toggle> observable,
-					Toggle oldValue, Toggle newValue) {
-				// TODO Auto-generated method stub
-				if(group.getSelectedToggle() != null){
-					dialogElements.getSaveObjProperty()
-					.saveObjProperty(propKey, group.getSelectedToggle().getUserData().toString());
-					
-				}			
-			}
-		});
-	}
+//	private void addListenerToToggleGroup() {
+//		group.selectedToggleProperty().addListener(new ChangeListener<Toggle>(){
+//			@Override
+//			public void changed(ObservableValue<? extends Toggle> observable,
+//					Toggle oldValue, Toggle newValue) {
+//				// TODO Auto-generated method stub
+//				if(group.getSelectedToggle() != null){
+//					dialogElements.getSaveObjProperty()
+//					.saveObjProperty(propKey, group.getSelectedToggle().getUserData().toString());
+//					
+//				}			
+//			}
+//		});
+//	}
 	
-	@Override
-	protected HBox getContent(){
-		return content;	
-	}
+
 	
 	@Override
 	public void setSelected(String value){
@@ -72,6 +70,10 @@ public class RadioBtnField extends DialogComponent {
 				group.selectToggle(t);
 			}
 		}
+	}
+	
+	public String getSelected(){
+		return group.getSelectedToggle().getUserData().toString();
 	}
 
 

@@ -5,5 +5,7 @@ public abstract class AParamsObject {
 	public abstract String getName();
 
 	public abstract void setName(String structureName);
+	
+	public abstract void print();
 
 }
