@@ -18,13 +18,13 @@ import voogasalad_GucciGames.gameAuthoring.gui.sidebar.TileTab;
 import voogasalad_GucciGames.gameAuthoring.gui.sidebar.UnitTab;
 import voogasalad_GucciGames.gameAuthoring.gui.statusbar.StatusBar;
 import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.ISaveCustomObj;
-import voogasalad_GucciGames.gameAuthoring.gui.map.GUIMap;
+import voogasalad_GucciGames.gameAuthoring.gui.map.GuiMap;
 import voogasalad_GucciGames.gameAuthoring.gui.menubar.GAEMenuBar;
 
 public class GAEGui extends BorderPane {
 
 	private AGuiGaeController myController;
-	private GUIMap myMap;
+	private GuiMap myMap;
 	//private ISaveCustomObj saveCustomObj;
 
 	public GAEGui(AGuiGaeController controller, Stage stage) {
@@ -60,7 +60,7 @@ public class GAEGui extends BorderPane {
 		setRight(sideBar);
 		
 		// Add Map
-		myMap = new GUIMap(myController);
+		myMap = new GuiMap(myController);
 		myMap.setOnMouseMoved(e->statusBar.update(e));
 		setCenter(myMap);
 		myMap.setBackground(new Image("http://www.narniaweb.com/wp-content/uploads/2009/08/NarniaMap.jpg"));

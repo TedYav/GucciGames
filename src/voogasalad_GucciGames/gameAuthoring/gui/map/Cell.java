@@ -12,7 +12,6 @@ import voogasalad_GucciGames.gameEngine.mapObject.MapObject;
 
 public class Cell {
 	private ImageView myMapView;
-	private ImageView myMiniView;
 	private Rectangle myBoundBox;
 	private Grid myMap;
 	private DoubleProperty mySize;

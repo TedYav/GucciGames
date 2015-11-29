@@ -10,26 +10,27 @@ import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.ZoomEvent;
 import javafx.scene.layout.Pane;
-import javafx.scene.paint.Color;
-import javafx.scene.shape.Rectangle;
 import voogasalad_GucciGames.gameAuthoring.AGuiGaeController;
 
 /** Constructs a scene with a pannable Map background. */
-public class GUIMap extends Pane {
+public class GuiMap extends Pane implements IGuiMap{
 	private IntegerProperty myGridSize = new SimpleIntegerProperty(20);
-
 	private AGuiGaeController myController;
 	private Grid myGrid;
 	private ScrollPane myGridViewer;
 
-	public GUIMap(AGuiGaeController controller) {
+	public GuiMap(AGuiGaeController controller) {
 		myController = controller;
+		createGridViewer();
+		addEventHandlers();
+
+	}
+	
+	private void createGridViewer(){
 		myGridViewer = new ScrollPane();
 		DoubleProperty cellSize = new SimpleDoubleProperty();
-		//DoubleProperty cellSize = new SimpleDoubleProperty(myGridViewer.getViewportBounds().getWidth() / myGridSize.get());
 		myGridViewer.viewportBoundsProperty().addListener((ch, oV, nV) -> cellSize.set(nV.getWidth() / myGridSize.get()));
 		myGridSize.addListener((ch, oV, nV) -> cellSize.set(myGridViewer.viewportBoundsProperty().get().getWidth() / myGridSize.get()));
-		
 		myGrid = new Grid(cellSize, myController);
 		myGridViewer.setContent(myGrid);
 		myGridViewer.setHbarPolicy(ScrollPane.ScrollBarPolicy.NEVER);
@@ -43,6 +44,10 @@ public class GUIMap extends Pane {
 
 		myGridViewer.prefViewportWidthProperty().bind(widthProperty());
 		myGridViewer.prefViewportHeightProperty().bind(heightProperty());
+		getChildren().add(myGridViewer);
+	}
+	
+	private void addEventHandlers(){
 		addEventHandler(KeyEvent.KEY_PRESSED, e -> {
 			if (e.getCode() == KeyCode.BACK_SPACE || e.getCode() == KeyCode.DELETE)
 				myGrid.removeSelectedCells();
@@ -56,24 +61,11 @@ public class GUIMap extends Pane {
 			if (e.getCode() == KeyCode.CONTROL)
 				myGridViewer.setPannable(true);
 		});
-		addEventHandler(KeyEvent.KEY_PRESSED, e->scroll(e));
-		addEventHandler(ZoomEvent.ANY, e->scroll(e));
-		getChildren().add(myGridViewer);
-
-		Rectangle rect = new Rectangle(0, 0, 200, 200);
-		rect.setFill(Color.BLACK);
-
-		Pane pane = new Pane();
-		pane.setMaxSize(200, 200);
-		pane.setLayoutX(50);
-		pane.setLayoutY(50);
-		pane.getChildren().add(rect);
-
-		// getChildren().add(pane);
-
+		addEventHandler(KeyEvent.KEY_TYPED, e->keyZoom(e));
+		addEventHandler(ZoomEvent.ANY, e->gestureZoom(e));
 	}
 	
-	private void scroll(ZoomEvent e) {
+	private void gestureZoom(ZoomEvent e) {
 		if (e.getZoomFactor()<1){
 			if(myGridSize.get()<50){
 				myGridSize.set(myGridSize.get()+1);
@@ -88,7 +80,7 @@ public class GUIMap extends Pane {
 			
 	}
 	
-	private void scroll(KeyEvent e) {
+	private void keyZoom(KeyEvent e) {
 		if (e.getCode() == KeyCode.MINUS){
 			if(myGridSize.get()<50){
 				myGridSize.set(myGridSize.get()+1);
@@ -100,20 +92,17 @@ public class GUIMap extends Pane {
 				myGridSize.set(myGridSize.get()-1);
 			}	
 			e.consume();
-		}
-			
+		}	
 	}
-
+	
+	@Override
 	public void initGrid(int width, int height) {
 		myGrid.initGrid(width, height);
 	}
-
+	
+	@Override
 	public void setBackground(Image background) {
 		myGrid.setBackground(background);
-	}
-
-	public ScrollPane getPane() {
-		return myGridViewer;
 	}
 
 }
