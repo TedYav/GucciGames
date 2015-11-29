@@ -40,6 +40,7 @@ public class ActionVBox extends VBox {
 	private void addActionToNexBtn(){
 		nextBtn.setOnAction(e -> switchPaneInterface.switchSettingsPane(INDEX));
 		for(ListItem item: listView.getAllListItems()){
+			//TODO: create + save actionparam
 			
 		}
 		

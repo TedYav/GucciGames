@@ -1,6 +1,7 @@
 package voogasalad_GucciGames.gameAuthoring.gui.gaedialog.dialogcomponents;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
@@ -13,6 +14,7 @@ public class ActionListView extends ListView implements IListView  {
 	
 	public ActionListView(){
 		myItems = new ArrayList<ListItem>();
+		myNames = new HashSet<String>();
 		
 	}
 	
@@ -47,7 +49,7 @@ public class ActionListView extends ListView implements IListView  {
 
 	@Override
 	public void addToListView(String name) {
-		// TODO Auto-generated method stub
+		addListElement(name);
 		System.out.println(name);
 		
 		
