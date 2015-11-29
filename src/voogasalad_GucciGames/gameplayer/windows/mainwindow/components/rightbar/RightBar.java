@@ -14,57 +14,56 @@ import voogasalad_GucciGames.gameplayer.windows.WindowComponent;
 
 
 public class RightBar extends WindowComponent implements Observer {
-	private PlayerMapObjectInterface activeMapObject;
+    private PlayerMapObjectInterface activeMapObject;
     private VBox container;
     private double spacing = 5;
-    ResourceBundle myBundle;
+    private ResourceBundle myBundle = ResourceBundle.getBundle("voogasalad_GucciGames.gameplayer.config.components.RightBar");
     private GameControllerInterface myController;
-    
+
     private GameStatsDisplay gameStats;
-    
+
     private ResourceBundle myCssBundle = ResourceBundle.getBundle("voogasalad_GucciGames.gameplayer.config.scenes.CssClasses");
-	
-    public RightBar(GameScene scene, GameControllerInterface controller, ResourceBundle bundle) {
-		super(scene, controller);
+
+    public RightBar(GameScene scene, GameControllerInterface controller) {
+        super(scene, controller);
         container = new VBox(spacing);
-        myBundle=bundle;
         myController=controller;
         initializeData();
-        
-	}
 
-	private void initializeData() {
-		myController.addMOObserver(this);
+    }
+
+    private void initializeData() {
+        myController.addMOObserver(this);
         gameStats = new GameStatsDisplay(myController);
         ActionDisplay actions = new ActionDisplay(myController);
         container.getChildren().add(actions.getNodeToDraw());
         container.getChildren().add(gameStats.getNodeToDraw());
         container.getStyleClass().add(myCssBundle.getString("RightVBox"));
         container.setPrefWidth(Double.parseDouble(myCssBundle.getString("rightprefwidth")));
-               
+
         Button endTurn = new Button("End turn");
         endTurn.setOnMouseClicked(e->{
             System.out.println(myController.getEngine());
             myController.endTurn();
-            });
+        });
         container.getChildren().add(endTurn);
-	}
-	
+    }
 
-	@Override
-	public Parent getParent() {
-		return container;
-	}
 
-	@Override
-	public void update(Observable o, Object arg) {
+    @Override
+    public Parent getParent() {
+        return container;
+    }
+
+    @Override
+    public void update(Observable o, Object arg) {
         if (arg!=null && arg.getClass().equals(PlayerMapObjectInterface.class)) {
-        	activeMapObject = (PlayerMapObjectInterface)arg;
+            activeMapObject = (PlayerMapObjectInterface)arg;
         }
-       
-        }
-        public void updateStats() {
-            gameStats.update();
-	}
+
+    }
+    public void updateStats() {
+        gameStats.update();
+    }
 
 }
