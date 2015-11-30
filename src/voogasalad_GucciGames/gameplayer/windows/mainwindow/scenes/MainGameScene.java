@@ -32,9 +32,10 @@ import voogasalad_GucciGames.gameplayer.windows.mainwindow.components.bar.EndTur
 import voogasalad_GucciGames.gameplayer.windows.mainwindow.components.bar.GameStatsDisplay;
 import voogasalad_GucciGames.gameplayer.windows.mainwindow.map.MapInterface;
 import voogasalad_GucciGames.gameplayer.windows.mainwindow.map.main.MainMap;
-import voogasalad_GucciGames.gameplayer.windows.mainwindow.menubar.FileMenu;
+import voogasalad_GucciGames.gameplayer.windows.mainwindow.menubar.FileItem;
 import voogasalad_GucciGames.gameplayer.windows.mainwindow.menubar.GameMenu;
 import voogasalad_GucciGames.gameplayer.windows.mainwindow.menubar.GameMenuBar;
+import voogasalad_GucciGames.gameplayer.windows.mainwindow.menubar.TopBar;
 
 public class MainGameScene extends GameScene {
 
@@ -52,6 +53,7 @@ public class MainGameScene extends GameScene {
 
     private MapKeyHandler myKeyHandler;
     private ResourceBundle myCssBundle = ResourceBundle.getBundle("voogasalad_GucciGames.gameplayer.config.scenes.CssClasses");
+	private TopBar myTopBar;
 
     public MainGameScene(GameSceneManager manager, GameWindowInterface window, String config) {
         super(manager, window, config);
@@ -108,11 +110,13 @@ public class MainGameScene extends GameScene {
         myRightBar = new RightBar(this, myController, rightComponents);
         myPane.setRight(myRightBar.getParent());
 
-        FileMenu file = new FileMenu(null,myManager.getStage()); //TODO: create for properties file?
-        List<GameMenu> listOfGameMenus = new ArrayList<GameMenu>();
-        listOfGameMenus.add(file);
-        myMenuBar = new GameMenuBar(listOfGameMenus);
-        myPane.setTop(myMenuBar.returnToolbar());
+//	    FileItem file = new FileItem(null,myManager.getStage()); //TODO: create for properties file?
+//	    List<GameMenu> listOfGameMenus = new ArrayList<GameMenu>();
+//	    listOfGameMenus.add(file);
+//	    myMenuBar = new GameMenuBar(listOfGameMenus);
+//	    myPane.setTop(myMenuBar.returnToolbar());
+	    myTopBar = new TopBar(this, myController);
+	    myPane.setTop(myTopBar.getParent());
 
         enableObservers();
 
