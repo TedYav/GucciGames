@@ -13,20 +13,18 @@ import javafx.collections.FXCollections;
 import javafx.collections.ListChangeListener;
 import javafx.scene.Node;
 import javafx.scene.control.ListView;
-import javafx.scene.layout.VBox;
 
-public class DisplayMapObjectDetails implements DisplayComponent, ListChangeListener<PlayerMapObjectInterface>, Observer{
+public class DisplayMapObjectDetails extends DisplayComponent implements ListChangeListener<PlayerMapObjectInterface>, Observer{
     private ListView<String> listView;
     private List<String> attributeList;
-    private GameControllerInterface myController;
     private ResourceBundle myBundle=ResourceBundle.getBundle("voogasalad_GucciGames.gameplayer.config.components.LeftBar");
 
     public DisplayMapObjectDetails(GameControllerInterface controller) {
+        super(controller);
         attributeList= new ArrayList<String>();
         attributeList.add(myBundle.getString("detailplaceholder"));
         listView=new ListView<String>(FXCollections.observableList(attributeList));
-        myController=controller;
-        myController.addActiveMOObserver(this);
+        getMyController().addActiveMOObserver(this);
     }
     public Node getNodeToDraw() {
         return listView;
@@ -45,7 +43,7 @@ public class DisplayMapObjectDetails implements DisplayComponent, ListChangeList
         }
     }
     private void updateActiveMapObject(PlayerMapObjectInterface mapObj) {
-        myController.setActiveMapObject(mapObj);
+        getMyController().setActiveMapObject(mapObj);
     }
     @Override
     public void update (Observable o, Object arg) {

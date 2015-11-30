@@ -3,7 +3,7 @@ package voogasalad_GucciGames.gameplayer.windows.mainwindow.scenes;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
-
+import java.util.stream.Collectors;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.input.KeyEvent;
@@ -11,6 +11,7 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.text.Text;
+import voogasalad.util.reflection.Reflection;
 import voogasalad_GucciGames.gameEngine.GameEngineToGamePlayerInterface;
 import voogasalad_GucciGames.gameplayer.controller.GameControllerInterface;
 import voogasalad_GucciGames.gameplayer.eventhandler.MapKeyHandler;
@@ -98,14 +99,8 @@ public class MainGameScene extends GameScene {
         myPane.setCenter(myMap.getParent());
         System.out.println(myPane.getCenter().getBoundsInParent());
 
-        leftComponents=new ArrayList<DisplayComponent>();
-        rightComponents=new ArrayList<DisplayComponent>();
-        leftComponents.add(new DisplayMapObjectImage(myController));
-        leftComponents.add(new DisplayMapObjectDetails(myController));
-        leftComponents.add(new DisplayChat());
-        rightComponents.add(new ActionDisplay(myController));
-        rightComponents.add(new GameStatsDisplay(myController));
-        rightComponents.add(new EndTurnButton(myController));
+        leftComponents=myController.getGame().getLeftComponents().stream().map(s->(DisplayComponent)Reflection.createInstance(s, myController)).collect(Collectors.toList());
+        rightComponents=myController.getGame().getRightComponents().stream().map(s->(DisplayComponent)Reflection.createInstance(s, myController)).collect(Collectors.toList());
 
         myLeftBar = new LeftBar(this, myController,leftComponents);
         myPane.setLeft(myLeftBar.getParent());

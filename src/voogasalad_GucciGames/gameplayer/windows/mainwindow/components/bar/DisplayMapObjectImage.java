@@ -12,21 +12,20 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.FlowPane;
 
-public class DisplayMapObjectImage implements DisplayComponent, ListChangeListener<PlayerMapObjectInterface>{
+public class DisplayMapObjectImage extends DisplayComponent implements ListChangeListener<PlayerMapObjectInterface>{
     private List<PlayerMapObjectInterface> mapObjectsOnCell;
     private FlowPane display;
-    private GameControllerInterface myController;
     private Image buffer;
     private ImageView imgView;
     private ResourceBundle myBundle=ResourceBundle.getBundle("voogasalad_GucciGames.gameplayer.config.components.LeftBar");
     private ResourceBundle myCssBundle = ResourceBundle.getBundle(myBundle.getString("cssclass"));
 
     public DisplayMapObjectImage (GameControllerInterface controller) {
+        super(controller);
         display=new FlowPane();
         display.getStyleClass().add(myCssBundle.getString("leftimageflowpane"));
         //display.setAlignment(Pos.CENTER);
         mapObjectsOnCell=new ArrayList<PlayerMapObjectInterface>();
-        myController=controller;
         updateImages();
     }
     public void updateImages() {
@@ -40,7 +39,7 @@ public class DisplayMapObjectImage implements DisplayComponent, ListChangeListen
     }
     private void initializeImage(PlayerMapObjectInterface m) {
         if (m!=null) {
-            buffer = myController.requestImage(m.getImageURI());
+            buffer = getMyController().requestImage(m.getImageURI());
         }
         imgView=new ImageView(buffer);
         imgView.setPreserveRatio(true);
@@ -52,7 +51,7 @@ public class DisplayMapObjectImage implements DisplayComponent, ListChangeListen
     }
 
     private void updateActiveMapObject(PlayerMapObjectInterface mapObj) {
-        myController.setActiveMapObject(mapObj);
+        getMyController().setActiveMapObject(mapObj);
     }
 
     @Override

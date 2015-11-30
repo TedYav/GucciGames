@@ -24,7 +24,7 @@ public class GameSceneManager implements SceneManager{
 		myWindow = window;
 		myScenes = generateScenes();
 		myData = new XStreamGameEngine();
-		myLoader = new GameLoader(myData.loadEngine());
+		myLoader = new GameLoader(myData.loadGameInfo(myConfig.getString("DefaultGame")));
 		myCurrentScene = myScenes.get(myConfig.getString("DefaultScene"));
 		myCurrentScene.load();
 	}
