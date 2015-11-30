@@ -5,6 +5,7 @@ import voogasalad_GucciGames.gameplayer.controller.GameControllerInterface;
 import voogasalad_GucciGames.gameplayer.windows.mainwindow.components.DisplayComponent;
 import java.util.List;
 import java.util.ResourceBundle;
+import javafx.collections.ListChangeListener;
 import javafx.scene.Node;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -69,5 +70,17 @@ public class DisplayMapObjectImage implements DisplayComponent{
             updateActiveMapObject(null);
         });
         display.getChildren().add(imgView);
+    }
+    @Override
+    public boolean listensToMap () {
+        return false;
+    }
+    @Override
+    public ListChangeListener getListener () {
+        return null;
+    }
+    @Override
+    public void update () {
+        return;
     }
 }

@@ -6,6 +6,7 @@ import java.util.Observable;
 import java.util.Observer;
 
 import javafx.collections.FXCollections;
+import javafx.collections.ListChangeListener;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.Node;
@@ -61,6 +62,21 @@ public class ActionDisplay implements DisplayComponent, Observer {
             activeMapObject = (PlayerMapObjectInterface)arg;
         }
         updateButtons();
+    }
+
+    @Override
+    public boolean listensToMap () {
+        return false;
+    }
+
+    @Override
+    public ListChangeListener getListener () {
+        return null;
+    }
+
+    @Override
+    public void update () {
+        return;
     }
 
 }

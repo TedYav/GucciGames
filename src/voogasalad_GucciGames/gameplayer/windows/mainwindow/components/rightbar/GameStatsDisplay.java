@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
 import javafx.collections.FXCollections;
+import javafx.collections.ListChangeListener;
 import javafx.collections.ObservableList;
 import javafx.scene.Node;
 import javafx.scene.control.ListView;
@@ -25,6 +26,7 @@ public class GameStatsDisplay implements DisplayComponent {
         update();
     }
 
+    @Override
     public void update() {
         observeStats.clear();
         observeStats.add(myBundle.getString("statswin")+myController.getEngine().getGameParameters().gameWon());
@@ -34,6 +36,16 @@ public class GameStatsDisplay implements DisplayComponent {
     @Override
     public Node getNodeToDraw() {
         return listView;
+    }
+
+    @Override
+    public boolean listensToMap () {
+        return false;
+    }
+
+    @Override
+    public ListChangeListener getListener () {
+        return null;
     }
 
 }

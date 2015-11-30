@@ -43,6 +43,7 @@ public class DisplayMapObjectDetails implements DisplayComponent, ListChangeList
     public void onChanged (Change c) {
         while (c.next()) {
             List<PlayerMapObjectInterface> list = c.getList();
+            if (list.size()>0){
             attributeList.clear();
             mapObjectsOnCell.clear();
             for (PlayerMapObjectInterface o: list){
@@ -53,6 +54,7 @@ public class DisplayMapObjectDetails implements DisplayComponent, ListChangeList
                 updateActiveMapObject(mapObjectsOnCell.stream().reduce((u1, u2) -> u2).orElseGet(()->mapObjectsOnCell.get(0)));
             }
             listView.setItems(FXCollections.observableList(attributeList));
+            }
         }
     }
     @Override
@@ -70,5 +72,17 @@ public class DisplayMapObjectDetails implements DisplayComponent, ListChangeList
     }
     private void updateActiveMapObject(PlayerMapObjectInterface mapObj) {
         myController.setActiveMapObject(mapObj);
+    }
+    @Override
+    public boolean listensToMap () {
+        return true;
+    }
+    @Override
+    public ListChangeListener getListener () {
+        return this;
+    }
+    @Override
+    public void update () {
+        return;
     }
 }

@@ -2,6 +2,7 @@ package voogasalad_GucciGames.gameplayer.windows.mainwindow.components.leftbar;
 
 import voogasalad_GucciGames.gameplayer.windows.mainwindow.components.DisplayComponent;
 import java.util.ResourceBundle;
+import javafx.collections.ListChangeListener;
 import javafx.scene.Node;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextArea;
@@ -32,6 +33,21 @@ public class DisplayChat  implements DisplayComponent{
     @Override
     public Node getNodeToDraw() {
         return chat;
+    }
+
+    @Override
+    public boolean listensToMap () {
+        return false;
+    }
+
+    @Override
+    public ListChangeListener getListener () {
+        return null;
+    }
+
+    @Override
+    public void update () {
+        return;
     }
 
 }

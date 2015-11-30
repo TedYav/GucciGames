@@ -1,5 +1,4 @@
-ï¿½BQï¿½Îµyï¿½Dlrï¿½ï¿½Gï¿½ï¿½
-ï¿½<ï¿½ï¿½ï¿½$ï¿½ï¿½gC%ï¿½\<voogasalad__GucciGames.gameEngine.MainGameEngine>
+SÁÊNlD’ßa»È;ËÅsi‚Ê6\r	ñæ»S’<voogasalad__GucciGames.gameEngine.MainGameEngine>
   <myGamePlayers>
     <myMapOfPlayers>
       <entry>
@@ -8,58 +7,22 @@
           <myPlayerId>-1</myPlayerId>
           <myMapObjects>
             <voogasalad__GucciGames.gameEngine.mapObject.MapObject>
-              <myObjectType>
-                <myName>AllTiles</myName>
-                <myImagePath>player/images/allTiles.jpg</myImagePath>
-                <myX>0</myX>
-                <myY>0</myY>
-                <myWidth>100.0</myWidth>
-                <myHeight>100.0</myHeight>
-                <myDefaultCharacteristics class="tree-map">
-                  <entry>
-                    <string>TileCharacteristic</string>
-                    <voogasalad__GucciGames.gameEngine.defaultCharacteristics.TileCharacteristic>
-                      <myCanMove>true</myCanMove>
-                    </voogasalad__GucciGames.gameEngine.defaultCharacteristics.TileCharacteristic>
-                  </entry>
-                </myDefaultCharacteristics>
-                <myActions class="tree-map"/>
-                <myRequests class="tree-map"/>
-              </myObjectType>
               <myCoordinate class="voogasalad_GucciGames.gameEngine.targetCoordinate.TargetCoordinateSingle">
-                <myCenterX>10.0</myCenterX>
-                <myCenterY>9.0</myCenterY>
+                <myCenterX>12.0</myCenterX>
+                <myCenterY>8.0</myCenterY>
               </myCoordinate>
               <myOwnerID>-1</myOwnerID>
               <myLayer>0</myLayer>
+              <myName>AllTiles</myName>
+              <myImagePath>player/images/allTiles.jpg</myImagePath>
               <myCharacteristics class="tree-map"/>
-            </voogasalad__GucciGames.gameEngine.mapObject.MapObject>
-            <voogasalad__GucciGames.gameEngine.mapObject.MapObject>
-              <myObjectType>
-                <myName>AllTiles2</myName>
-                <myImagePath>player/images/allTiles.jpg</myImagePath>
-                <myX>1</myX>
-                <myY>0</myY>
-                <myWidth>100.0</myWidth>
-                <myHeight>100.0</myHeight>
-                <myDefaultCharacteristics class="tree-map">
-                  <entry>
-                    <string>TileCharacteristic</string>
-                    <voogasalad__GucciGames.gameEngine.defaultCharacteristics.TileCharacteristic>
-                      <myCanMove>true</myCanMove>
-                    </voogasalad__GucciGames.gameEngine.defaultCharacteristics.TileCharacteristic>
-                  </entry>
-                </myDefaultCharacteristics>
-                <myActions class="tree-map"/>
-                <myRequests class="tree-map"/>
-              </myObjectType>
-              <myCoordinate class="voogasalad_GucciGames.gameEngine.targetCoordinate.TargetCoordinateSingle">
-                <myCenterX>11.0</myCenterX>
-                <myCenterY>9.0</myCenterY>
-              </myCoordinate>
-              <myOwnerID>-1</myOwnerID>
-              <myLayer>0</myLayer>
-              <myCharacteristics class="tree-map"/>
+              <myEventHandler>
+                <myEvents class="tree-map"/>
+              </myEventHandler>
+              <myWidth>100.0</myWidth>
+              <myHeight>100.0</myHeight>
+              <myX>0.0</myX>
+              <myY>0.0</myY>
             </voogasalad__GucciGames.gameEngine.mapObject.MapObject>
           </myMapObjects>
           <myStatus>DRAW</myStatus>
