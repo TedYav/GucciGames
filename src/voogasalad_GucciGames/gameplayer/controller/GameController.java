@@ -13,6 +13,7 @@ import java.util.Observer;
 import javafx.scene.image.Image;
 import voogasalad_GucciGames.datastructures.Coordinate;
 import voogasalad_GucciGames.datastructures.ImageDatabase;
+import voogasalad_GucciGames.gameData.GameInfo;
 import voogasalad_GucciGames.gameEngine.GameEngineToGamePlayerInterface;
 import voogasalad_GucciGames.gameEngine.PlayerMapObjectInterface;
 import voogasalad_GucciGames.gameEngine.CommunicationParams.ActionToGamePlayerParameters;
@@ -32,6 +33,7 @@ public class GameController implements GameControllerInterface {
 	private ImageDatabase myImageDatabase;
 	private GameSceneInterface myScene;
 	private PlayerMapObjectInterface myTargetUnit;
+	private GameInfo myGame;
 	
 	// TODO: factor into component
 	private String myActionInProgress;
@@ -39,8 +41,9 @@ public class GameController implements GameControllerInterface {
 	private List<Observer> activeMOObservers;
 	private List<TargetCoordinateSingle> possibleMoves;
 
-	public GameController(GameEngineToGamePlayerInterface engine){
-		myEngine = engine;
+	public GameController(GameInfo game){
+	    myGame=game;
+		myEngine = game.getEngine();
 		myImageDatabase = new ImageDatabase();
 		myActionInProgress = "";
 		activeMOObservers=new ArrayList<Observer>();
@@ -191,5 +194,9 @@ public class GameController implements GameControllerInterface {
 	public GameEngineToGamePlayerInterface getEngine() {
 		// TODO Auto-generated method stub
 		return myEngine;
+	}
+	@Override
+	public GameInfo getGame() {
+	    return myGame;
 	}
 }

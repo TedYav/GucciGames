@@ -10,6 +10,7 @@ import javafx.geometry.Point2D;
 
 import java.util.Observer;
 import javafx.scene.image.Image;
+import voogasalad_GucciGames.gameData.GameInfo;
 import voogasalad_GucciGames.gameEngine.GameEngineToGamePlayerInterface;
 import voogasalad_GucciGames.gameEngine.PlayerMapObjectInterface;
 import voogasalad_GucciGames.gameEngine.targetCoordinate.ATargetCoordinate;
@@ -44,6 +45,7 @@ public interface GameControllerInterface{
 	
 //	public void setEngine(GameEngineToGamePlayerInterface engine);
 	public GameEngineToGamePlayerInterface getEngine();
+	public GameInfo getGame();
 	
 	public List<PlayerMapObjectInterface> getInitialState();
 	

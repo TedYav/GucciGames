@@ -2,6 +2,7 @@ package voogasalad_GucciGames.gameAuthoring.model;
 
 
 import java.io.File;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -9,6 +10,7 @@ import java.util.Map;
 import javafx.collections.ObservableList;
 import voogasalad_GucciGames.gameAuthoring.IModelGaeController;
 import voogasalad_GucciGames.gameAuthoring.gui.map.GridPoint;
+import voogasalad_GucciGames.gameData.GameInfo;
 //import voogasalad_GucciGames.gameData.XMLWriter;
 import voogasalad_GucciGames.gameData.XStreamGameEngine;
 import voogasalad_GucciGames.gameEngine.MainGameEngine;
@@ -97,7 +99,19 @@ public class GAEModel implements IGAEModel{
     	XStreamGameEngine saver = new XStreamGameEngine();
 		AllPlayers myPlayers = new AllPlayers(mapOfPlayers);
 		MainGameEngine engine = new MainGameEngine(myPlayers);
-		saver.saveEngine(engine, file);
+		//TODO: saving GameInfo instead of MainGameEngine
+		List<String> leftComponents = new ArrayList<String>();
+	        List<String> rightComponents = new ArrayList<String>();
+	        if (leftComponents.size()==0 && rightComponents.size()==0) {
+	                leftComponents.add("voogasalad_GucciGames.gameplayer.windows.mainwindow.components.bar.DisplayMapObjectImage");
+	                leftComponents.add("voogasalad_GucciGames.gameplayer.windows.mainwindow.components.bar.DisplayMapObjectDetails");
+	                leftComponents.add("voogasalad_GucciGames.gameplayer.windows.mainwindow.components.bar.DisplayChat");
+	                rightComponents.add("voogasalad_GucciGames.gameplayer.windows.mainwindow.components.bar.ActionDisplay");
+	                rightComponents.add("voogasalad_GucciGames.gameplayer.windows.mainwindow.components.bar.GameStatsDisplay");
+	                rightComponents.add("voogasalad_GucciGames.gameplayer.windows.mainwindow.components.bar.EndTurnButton");
+	        }
+		GameInfo game = new GameInfo(engine,leftComponents,rightComponents);
+		saver.saveGameInfo(game, file);
     }
     public void saveToXML(String filePath) {
         
