@@ -23,7 +23,7 @@ import voogasalad_GucciGames.gameplayer.windows.GameWindowManager;
 
 public class DemoMaker extends Application{
 
-	private static String defaultEngineLocation = "./src/voogasalad_GucciGames/gameData/engine.xml";
+	private static String defaultEngineLocation = "./src/games/demo.xml";
 
 	@Override
 	public void start(Stage stage) throws Exception {
@@ -108,6 +108,7 @@ public class DemoMaker extends Application{
 				mo.setBasicParameters(new BasicParameters(null,engine));
 			});
 		}
+		engine.setName("Duvall Tag");
 		return engine;
 	}
 

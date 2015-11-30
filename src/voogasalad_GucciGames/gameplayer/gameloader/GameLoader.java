@@ -12,7 +12,6 @@ public class GameLoader {
     
     public GameLoader(GameEngineToGamePlayerInterface e) {
         myController = new GameController(e);
-        System.out.println(myController.getEngine().getInitialState());
     }
 	public GameControllerInterface getController() {
 		return myController;

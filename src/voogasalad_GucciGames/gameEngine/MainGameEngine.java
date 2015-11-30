@@ -42,6 +42,7 @@ public class MainGameEngine implements GameEngineToGamePlayerInterface {
 	public String getName() {
 		return myName;
 	}
+	
 	public MainGameEngine(AllPlayers gamePlayers) {
 		myGamePlayers = gamePlayers;
 		myCurrentTurnCounter = new TurnCounter();
@@ -49,6 +50,8 @@ public class MainGameEngine implements GameEngineToGamePlayerInterface {
 		myConditionHandler = new ConditionHandler();
 
 		myConditionHandler.addCondition("PlayerUnitCondition", new CheckPlayerObjects(new ConditionParams(this)));
+		
+		myName = "Game " + Math.round((Math.random()*10000));
 	}
 	@Override
 	public String getGameName() {
@@ -216,5 +219,8 @@ public class MainGameEngine implements GameEngineToGamePlayerInterface {
 		pp.setGameResult(game);
 
 		return pp;
+	}
+	public void setName(String name) {
+		myName = name;
 	}
 }
