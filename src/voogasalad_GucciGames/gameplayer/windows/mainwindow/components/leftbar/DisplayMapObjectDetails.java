@@ -18,9 +18,6 @@ import javafx.scene.layout.VBox;
 public class DisplayMapObjectDetails implements DisplayComponent, ListChangeListener<PlayerMapObjectInterface>, Observer{
     private ListView<String> listView;
     private List<String> attributeList;
-    private List<PlayerMapObjectInterface> mapObjectsOnCell;
-    private DisplayMapObjectImage imageDisplay;
-    private VBox display;
     private GameControllerInterface myController;
     private ResourceBundle myBundle=ResourceBundle.getBundle("voogasalad_GucciGames.gameplayer.config.components.LeftBar");
 
@@ -29,33 +26,26 @@ public class DisplayMapObjectDetails implements DisplayComponent, ListChangeList
         attributeList.add(myBundle.getString("detailplaceholder"));
         listView=new ListView<String>(FXCollections.observableList(attributeList));
         myController=controller;
-        mapObjectsOnCell=new ArrayList<PlayerMapObjectInterface>();
-        imageDisplay = new DisplayMapObjectImage(mapObjectsOnCell, myController);
-        display = new VBox();
-        display.getChildren().add(imageDisplay.getNodeToDraw());
-        display.getChildren().add(listView);
         myController.addMOObserver(this);
     }
     public Node getNodeToDraw() {
-        return display;
+        return listView;
     }
     @Override
     public void onChanged (Change c) {
         while (c.next()) {
             List<PlayerMapObjectInterface> list = c.getList();
             if (list.size()>0){
-            attributeList.clear();
-            mapObjectsOnCell.clear();
-            for (PlayerMapObjectInterface o: list){
-                mapObjectsOnCell.add(o);
+                attributeList.clear();
+                listView.setItems(FXCollections.observableList(attributeList));
             }
-            imageDisplay.updateImages();
-            if (mapObjectsOnCell.size()>0) {
-                updateActiveMapObject(mapObjectsOnCell.stream().reduce((u1, u2) -> u2).orElseGet(()->mapObjectsOnCell.get(0)));
-            }
-            listView.setItems(FXCollections.observableList(attributeList));
+            if (list.size()>0) {
+                updateActiveMapObject(list.stream().reduce((u1, u2) -> u2).orElseGet(()->list.get(0)));
             }
         }
+    }
+    private void updateActiveMapObject(PlayerMapObjectInterface mapObj) {
+        myController.setActiveMapObject(mapObj);
     }
     @Override
     public void update (Observable o, Object arg) {
@@ -69,9 +59,6 @@ public class DisplayMapObjectDetails implements DisplayComponent, ListChangeList
              }
              listView.setItems(FXCollections.observableList(attributeList));
          }
-    }
-    private void updateActiveMapObject(PlayerMapObjectInterface mapObj) {
-        myController.setActiveMapObject(mapObj);
     }
     @Override
     public boolean listensToMap () {

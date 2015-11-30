@@ -3,15 +3,17 @@ package voogasalad_GucciGames.gameplayer.windows.mainwindow.components.leftbar;
 import voogasalad_GucciGames.gameEngine.PlayerMapObjectInterface;
 import voogasalad_GucciGames.gameplayer.controller.GameControllerInterface;
 import voogasalad_GucciGames.gameplayer.windows.mainwindow.components.DisplayComponent;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
+import javafx.collections.FXCollections;
 import javafx.collections.ListChangeListener;
 import javafx.scene.Node;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.FlowPane;
 
-public class DisplayMapObjectImage implements DisplayComponent{
+public class DisplayMapObjectImage implements DisplayComponent, ListChangeListener<PlayerMapObjectInterface>{
     private List<PlayerMapObjectInterface> mapObjectsOnCell;
     private FlowPane display;
     private GameControllerInterface myController;
@@ -20,11 +22,11 @@ public class DisplayMapObjectImage implements DisplayComponent{
     private ResourceBundle myBundle=ResourceBundle.getBundle("voogasalad_GucciGames.gameplayer.config.components.LeftBar");
     private ResourceBundle myCssBundle = ResourceBundle.getBundle(myBundle.getString("cssclass"));
 
-    public DisplayMapObjectImage (List<PlayerMapObjectInterface> imageUrls, GameControllerInterface controller) {
+    public DisplayMapObjectImage (GameControllerInterface controller) {
         display=new FlowPane();
         display.getStyleClass().add(myCssBundle.getString("leftimageflowpane"));
         //display.setAlignment(Pos.CENTER);
-        mapObjectsOnCell=imageUrls;
+        mapObjectsOnCell=new ArrayList<PlayerMapObjectInterface>();
         myController=controller;
         updateImages();
     }
@@ -49,11 +51,11 @@ public class DisplayMapObjectImage implements DisplayComponent{
         });
         display.getChildren().add(imgView);
     }
-    
+
     private void updateActiveMapObject(PlayerMapObjectInterface mapObj) {
         myController.setActiveMapObject(mapObj);
     }
-    
+
     @Override
     public Node getNodeToDraw() {
         return display;
@@ -73,14 +75,30 @@ public class DisplayMapObjectImage implements DisplayComponent{
     }
     @Override
     public boolean listensToMap () {
-        return false;
+        return true;
     }
     @Override
     public ListChangeListener getListener () {
-        return null;
+        return this;
     }
     @Override
     public void update () {
         return;
+    }
+    @Override
+    public void onChanged (Change c) {
+        while (c.next()) {
+            List<PlayerMapObjectInterface> list = c.getList();
+            if (list.size()>0){
+                mapObjectsOnCell.clear();
+                for (PlayerMapObjectInterface o: list){
+                    mapObjectsOnCell.add(o);
+                }
+                updateImages();
+                if (mapObjectsOnCell.size()>0) {
+                    updateActiveMapObject(mapObjectsOnCell.stream().reduce((u1, u2) -> u2).orElseGet(()->mapObjectsOnCell.get(0)));
+                }
+            }
+        }
     }
 }

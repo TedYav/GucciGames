@@ -23,6 +23,7 @@ import voogasalad_GucciGames.gameplayer.windows.GameWindowInterface;
 import voogasalad_GucciGames.gameplayer.windows.mainwindow.components.DisplayComponent;
 import voogasalad_GucciGames.gameplayer.windows.mainwindow.components.leftbar.DisplayChat;
 import voogasalad_GucciGames.gameplayer.windows.mainwindow.components.leftbar.DisplayMapObjectDetails;
+import voogasalad_GucciGames.gameplayer.windows.mainwindow.components.leftbar.DisplayMapObjectImage;
 import voogasalad_GucciGames.gameplayer.windows.mainwindow.components.leftbar.LeftBar;
 import voogasalad_GucciGames.gameplayer.windows.mainwindow.components.rightbar.ActionDisplay;
 import voogasalad_GucciGames.gameplayer.windows.mainwindow.components.rightbar.EndTurnButton;
@@ -98,9 +99,10 @@ public class MainGameScene extends GameScene {
         System.out.println(myPane.getCenter().getBoundsInParent());
 
         leftComponents=new ArrayList<DisplayComponent>();
+        rightComponents=new ArrayList<DisplayComponent>();
+        leftComponents.add(new DisplayMapObjectImage(myController));
         leftComponents.add(new DisplayMapObjectDetails(myController));
         leftComponents.add(new DisplayChat());
-        rightComponents=new ArrayList<DisplayComponent>();
         rightComponents.add(new ActionDisplay(myController));
         rightComponents.add(new GameStatsDisplay(myController));
         rightComponents.add(new EndTurnButton(myController));
