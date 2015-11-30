@@ -1,4 +1,4 @@
-package voogasalad_GucciGames.gameplayer.windows.mainwindow.components.rightbar;
+package voogasalad_GucciGames.gameplayer.windows.mainwindow.components.bar;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -22,10 +22,11 @@ public class GameStatsDisplay implements DisplayComponent {
         observeStats = FXCollections.observableList(stats);
         listView=new ListView<String>(observeStats);
         myController=controller;
-        update();
+        updateDisplay();
     }
 
-    public void update() {
+    @Override
+    public void updateDisplay() {
         observeStats.clear();
         observeStats.add(myBundle.getString("statswin")+myController.getEngine().getGameParameters().gameWon());
         observeStats.add(myBundle.getString("statsturn")+myController.getEngine().getGameParameters().whoseTurn());

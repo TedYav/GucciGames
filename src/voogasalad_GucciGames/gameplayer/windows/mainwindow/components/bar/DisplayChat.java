@@ -1,4 +1,4 @@
-package voogasalad_GucciGames.gameplayer.windows.mainwindow.components.leftbar;
+package voogasalad_GucciGames.gameplayer.windows.mainwindow.components.bar;
 
 import voogasalad_GucciGames.gameplayer.windows.mainwindow.components.DisplayComponent;
 import java.util.ResourceBundle;
@@ -21,7 +21,6 @@ public class DisplayChat  implements DisplayComponent{
         //inputArea.setMaxWidth(200);
         inputArea.prefHeightProperty().set(Integer.parseInt(myBundle.getString("chatprefheight")));
         chatHistory=new ListView<String>();
-        
         chat.getChildren().add(chatHistory);
         chat.getChildren().add(inputArea);
         chat.getStyleClass().add(myCssBundle.getString("left-chat-vbox"));

@@ -31,7 +31,7 @@ public interface GameControllerInterface{
 	
 	public void setActiveMapObject(PlayerMapObjectInterface mapObj);
 	public PlayerMapObjectInterface getActiveMapObject();
-	public void addMOObserver(Observer o);
+	public void addActiveMOObserver(Observer o);
 	
 	public List<TargetCoordinateSingle> setActionInProgress(String action, PlayerMapObjectInterface unit);
 	public String getActionInProgress();

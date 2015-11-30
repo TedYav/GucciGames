@@ -1,4 +1,4 @@
-package voogasalad_GucciGames.gameplayer.windows.mainwindow.components.rightbar;
+package voogasalad_GucciGames.gameplayer.windows.mainwindow.components.bar;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -24,7 +24,7 @@ public class ActionDisplay implements DisplayComponent, Observer {
 
     public ActionDisplay(GameControllerInterface controller) {
         myController = controller;
-        myController.addMOObserver(this);
+        myController.addActiveMOObserver(this);
         baseButtons = new ArrayList<Button>();
         buttons = new ListView<Button>(FXCollections.observableList(baseButtons));
     }
@@ -62,5 +62,4 @@ public class ActionDisplay implements DisplayComponent, Observer {
         }
         updateButtons();
     }
-
 }
