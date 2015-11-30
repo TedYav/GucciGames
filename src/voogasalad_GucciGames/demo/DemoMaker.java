@@ -1,10 +1,13 @@
 package voogasalad_GucciGames.demo;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
 import java.util.TreeMap;
 
 import javafx.application.Application;
 import javafx.stage.Stage;
+import voogasalad_GucciGames.gameData.GameInfo;
 import voogasalad_GucciGames.gameData.XStreamGameEngine;
 import voogasalad_GucciGames.gameEngine.MainGameEngine;
 import voogasalad_GucciGames.gameEngine.CommunicationParams.BasicParameters;
@@ -20,18 +23,18 @@ import voogasalad_GucciGames.gameEngine.objectActions.AttackEvent;
 import voogasalad_GucciGames.gameEngine.objectActions.MoveEvent;
 import voogasalad_GucciGames.gameEngine.targetCoordinate.TargetCoordinateSingle;
 import voogasalad_GucciGames.gameplayer.windows.GameWindowManager;
+import voogasalad_GucciGames.gameplayer.windows.mainwindow.components.DisplayComponent;
 
 public class DemoMaker extends Application{
 
-	private static String defaultEngineLocation = "./src/voogasalad_GucciGames/gameData/engine.xml";
+	private static String defaultGameLocation = "./src/voogasalad_GucciGames/gameData/demogame.xml";
 
 	@Override
 	public void start(Stage stage) throws Exception {
 		XStreamGameEngine xStream = new XStreamGameEngine();
 		System.out.println("Creating and saving engine.");
-		xStream.saveEngine(createEngine(), defaultEngineLocation);
+		xStream.saveGameInfo(createGame(), defaultGameLocation);
 		//xStream.loadEngine(defaultEngineLocation);
-
 		GameWindowManager windowmanager = new GameWindowManager();
 	}
 
@@ -39,7 +42,7 @@ public class DemoMaker extends Application{
 		launch(args);
 	}
 
-	private static MainGameEngine createEngine() {
+	private static GameInfo createGame() {
 		Map<Integer,GamePlayerPerson> myMapOfPlayers = new TreeMap<Integer,GamePlayerPerson>();     
 		myMapOfPlayers.put(-1,new GamePlayerPerson(-1)); //neutral player
 		myMapOfPlayers.put(0,new GamePlayerPerson(0)); //player 1 
@@ -108,7 +111,16 @@ public class DemoMaker extends Application{
 				mo.setBasicParameters(new BasicParameters(null,engine));
 			});
 		}
-		return engine;
+	        List<String> leftComponents=new ArrayList<String>();
+	        List<String> rightComponents=new ArrayList<String>();
+	        leftComponents.add("voogasalad_GucciGames.gameplayer.windows.mainwindow.components.bar.DisplayMapObjectImage");
+	        leftComponents.add("voogasalad_GucciGames.gameplayer.windows.mainwindow.components.bar.DisplayMapObjectDetails");
+	        leftComponents.add("voogasalad_GucciGames.gameplayer.windows.mainwindow.components.bar.DisplayChat");
+	        rightComponents.add("voogasalad_GucciGames.gameplayer.windows.mainwindow.components.bar.ActionDisplay");
+	        rightComponents.add("voogasalad_GucciGames.gameplayer.windows.mainwindow.components.bar.GameStatsDisplay");
+	        rightComponents.add("voogasalad_GucciGames.gameplayer.windows.mainwindow.components.bar.EndTurnButton");
+		GameInfo game = new GameInfo(engine,leftComponents,rightComponents);
+		return game;
 	}
 
 }
