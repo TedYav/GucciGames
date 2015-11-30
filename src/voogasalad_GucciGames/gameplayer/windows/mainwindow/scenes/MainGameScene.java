@@ -24,7 +24,7 @@ import voogasalad_GucciGames.gameplayer.windows.mainwindow.components.leftbar.Le
 import voogasalad_GucciGames.gameplayer.windows.mainwindow.components.rightbar.RightBar;
 import voogasalad_GucciGames.gameplayer.windows.mainwindow.map.MapInterface;
 import voogasalad_GucciGames.gameplayer.windows.mainwindow.map.main.MainMap;
-import voogasalad_GucciGames.gameplayer.windows.mainwindow.menubar.FileMenu;
+import voogasalad_GucciGames.gameplayer.windows.mainwindow.menubar.FileItem;
 import voogasalad_GucciGames.gameplayer.windows.mainwindow.menubar.GameMenu;
 import voogasalad_GucciGames.gameplayer.windows.mainwindow.menubar.GameMenuBar;
 
@@ -95,7 +95,7 @@ public class MainGameScene extends GameScene {
 	    myRightBar = new RightBar(this, myController);
 	    myPane.setRight(myRightBar.getParent());
 	    
-	    FileMenu file = new FileMenu(null,myManager.getStage()); //TODO: create for properties file?
+	    FileItem file = new FileItem(null,myManager.getStage()); //TODO: create for properties file?
 	    List<GameMenu> listOfGameMenus = new ArrayList<GameMenu>();
 	    listOfGameMenus.add(file);
 	    myMenuBar = new GameMenuBar(listOfGameMenus);
