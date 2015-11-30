@@ -1,4 +1,4 @@
-Ê¦Z¾&(ø}s¹3Hb]í€ñÆ¢T3V›y<5}ÔÊ<voogasalad__GucciGames.gameData.GameInfo>
+%ekƒq½‡3ä@È\H¼(ðVé»™•ý¯‘ô-læ<voogasalad__GucciGames.gameData.GameInfo>
   <myEngine>
     <myGamePlayers>
       <myMapOfPlayers class="tree-map">
@@ -1865,7 +1865,7 @@
   </myEngine>
   <myRightComponents>
     <string>voogasalad_GucciGames.gameplayer.windows.mainwindow.components.bar.ActionDisplay</string>
-    <string>voogasalad_GucciGames.gameplayer.windows.mainwindow.components.bar.DisplayMapObjectImage</string>
+    <string>voogasalad_GucciGames.gameplayer.windows.mainwindow.components.bar.GameStatsDisplay</string>
     <string>voogasalad_GucciGames.gameplayer.windows.mainwindow.components.bar.EndTurnButton</string>
   </myRightComponents>
   <myLeftComponents>

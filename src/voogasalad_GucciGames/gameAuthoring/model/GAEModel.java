@@ -102,6 +102,14 @@ public class GAEModel implements IGAEModel{
 		//TODO: saving GameInfo instead of MainGameEngine
 		List<String> leftComponents = new ArrayList<String>();
 	        List<String> rightComponents = new ArrayList<String>();
+	        if (leftComponents.size()==0 && rightComponents.size()==0) {
+	                leftComponents.add("voogasalad_GucciGames.gameplayer.windows.mainwindow.components.bar.DisplayMapObjectImage");
+	                leftComponents.add("voogasalad_GucciGames.gameplayer.windows.mainwindow.components.bar.DisplayMapObjectDetails");
+	                leftComponents.add("voogasalad_GucciGames.gameplayer.windows.mainwindow.components.bar.DisplayChat");
+	                rightComponents.add("voogasalad_GucciGames.gameplayer.windows.mainwindow.components.bar.ActionDisplay");
+	                rightComponents.add("voogasalad_GucciGames.gameplayer.windows.mainwindow.components.bar.GameStatsDisplay");
+	                rightComponents.add("voogasalad_GucciGames.gameplayer.windows.mainwindow.components.bar.EndTurnButton");
+	        }
 		GameInfo game = new GameInfo(engine,leftComponents,rightComponents);
 		saver.saveGameInfo(game, file);
     }
