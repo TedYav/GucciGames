@@ -2,7 +2,6 @@ package voogasalad_GucciGames.gameplayer.windows.mainwindow.components.bar;
 
 import voogasalad_GucciGames.gameplayer.windows.mainwindow.components.DisplayComponent;
 import java.util.ResourceBundle;
-import javafx.collections.ListChangeListener;
 import javafx.scene.Node;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextArea;
@@ -22,7 +21,6 @@ public class DisplayChat  implements DisplayComponent{
         //inputArea.setMaxWidth(200);
         inputArea.prefHeightProperty().set(Integer.parseInt(myBundle.getString("chatprefheight")));
         chatHistory=new ListView<String>();
-        
         chat.getChildren().add(chatHistory);
         chat.getChildren().add(inputArea);
         chat.getStyleClass().add(myCssBundle.getString("left-chat-vbox"));
@@ -33,21 +31,6 @@ public class DisplayChat  implements DisplayComponent{
     @Override
     public Node getNodeToDraw() {
         return chat;
-    }
-
-    @Override
-    public boolean listensToMap () {
-        return false;
-    }
-
-    @Override
-    public ListChangeListener getListener () {
-        return null;
-    }
-
-    @Override
-    public void update () {
-        return;
     }
 
 }

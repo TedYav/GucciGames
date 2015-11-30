@@ -177,7 +177,7 @@ public class GameController implements GameControllerInterface {
     }
 
     @Override
-    public void addMOObserver (Observer o) {
+    public void addActiveMOObserver (Observer o) {
         activeMOObservers.add(o);
     }
     

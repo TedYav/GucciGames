@@ -130,8 +130,8 @@ public class MainGameScene extends GameScene {
 
     @Override
     public void update () {
-        myLeftBar.updateStats();
-        myRightBar.updateStats();
+        myLeftBar.updateComponents();
+        myRightBar.updateComponents();
     }
 
 }

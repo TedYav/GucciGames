@@ -6,7 +6,6 @@ import java.util.Observable;
 import java.util.Observer;
 
 import javafx.collections.FXCollections;
-import javafx.collections.ListChangeListener;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.Node;
@@ -25,7 +24,7 @@ public class ActionDisplay implements DisplayComponent, Observer {
 
     public ActionDisplay(GameControllerInterface controller) {
         myController = controller;
-        myController.addMOObserver(this);
+        myController.addActiveMOObserver(this);
         baseButtons = new ArrayList<Button>();
         buttons = new ListView<Button>(FXCollections.observableList(baseButtons));
     }
@@ -63,20 +62,4 @@ public class ActionDisplay implements DisplayComponent, Observer {
         }
         updateButtons();
     }
-
-    @Override
-    public boolean listensToMap () {
-        return false;
-    }
-
-    @Override
-    public ListChangeListener getListener () {
-        return null;
-    }
-
-    @Override
-    public void update () {
-        return;
-    }
-
 }

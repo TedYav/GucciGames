@@ -26,7 +26,7 @@ public class DisplayMapObjectDetails implements DisplayComponent, ListChangeList
         attributeList.add(myBundle.getString("detailplaceholder"));
         listView=new ListView<String>(FXCollections.observableList(attributeList));
         myController=controller;
-        myController.addMOObserver(this);
+        myController.addActiveMOObserver(this);
     }
     public Node getNodeToDraw() {
         return listView;
@@ -60,16 +60,9 @@ public class DisplayMapObjectDetails implements DisplayComponent, ListChangeList
              listView.setItems(FXCollections.observableList(attributeList));
          }
     }
+
     @Override
-    public boolean listensToMap () {
-        return true;
-    }
-    @Override
-    public ListChangeListener getListener () {
+    public ListChangeListener<PlayerMapObjectInterface> getListener () {
         return this;
-    }
-    @Override
-    public void update () {
-        return;
     }
 }
