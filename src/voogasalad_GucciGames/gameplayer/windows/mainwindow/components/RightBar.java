@@ -1,4 +1,4 @@
-package voogasalad_GucciGames.gameplayer.windows.mainwindow.components.rightbar;
+package voogasalad_GucciGames.gameplayer.windows.mainwindow.components;
 
 import java.util.List;
 import java.util.Observable;
@@ -12,8 +12,6 @@ import voogasalad_GucciGames.gameEngine.PlayerMapObjectInterface;
 import voogasalad_GucciGames.gameplayer.controller.GameControllerInterface;
 import voogasalad_GucciGames.gameplayer.windows.GameScene;
 import voogasalad_GucciGames.gameplayer.windows.WindowComponent;
-import voogasalad_GucciGames.gameplayer.windows.mainwindow.components.DisplayComponent;
-import voogasalad_GucciGames.gameplayer.windows.mainwindow.components.WindowSideComponent;
 
 
 public class RightBar extends WindowSideComponent{

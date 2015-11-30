@@ -1,4 +1,4 @@
-package voogasalad_GucciGames.gameplayer.windows.mainwindow.components.leftbar;
+package voogasalad_GucciGames.gameplayer.windows.mainwindow.components.bar;
 
 import voogasalad_GucciGames.gameplayer.windows.mainwindow.components.DisplayComponent;
 import java.util.ResourceBundle;

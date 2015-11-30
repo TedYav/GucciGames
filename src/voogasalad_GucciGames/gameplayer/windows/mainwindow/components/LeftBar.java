@@ -1,4 +1,4 @@
-package voogasalad_GucciGames.gameplayer.windows.mainwindow.components.leftbar;
+package voogasalad_GucciGames.gameplayer.windows.mainwindow.components;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -12,8 +12,6 @@ import voogasalad_GucciGames.gameEngine.PlayerMapObjectInterface;
 import voogasalad_GucciGames.gameplayer.controller.GameControllerInterface;
 import voogasalad_GucciGames.gameplayer.windows.GameScene;
 import voogasalad_GucciGames.gameplayer.windows.WindowComponent;
-import voogasalad_GucciGames.gameplayer.windows.mainwindow.components.DisplayComponent;
-import voogasalad_GucciGames.gameplayer.windows.mainwindow.components.WindowSideComponent;
 import voogasalad_GucciGames.gameplayer.windows.mainwindow.map.MapInterface;
 
 public class LeftBar extends WindowSideComponent{

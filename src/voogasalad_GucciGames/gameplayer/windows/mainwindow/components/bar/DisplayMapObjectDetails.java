@@ -1,4 +1,4 @@
-package voogasalad_GucciGames.gameplayer.windows.mainwindow.components.leftbar;
+package voogasalad_GucciGames.gameplayer.windows.mainwindow.components.bar;
 
 import java.util.ArrayList;
 import java.util.List;

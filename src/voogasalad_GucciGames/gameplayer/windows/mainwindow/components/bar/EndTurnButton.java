@@ -1,4 +1,4 @@
-package voogasalad_GucciGames.gameplayer.windows.mainwindow.components.rightbar;
+package voogasalad_GucciGames.gameplayer.windows.mainwindow.components.bar;
 
 import javafx.collections.ListChangeListener;
 import javafx.scene.Node;
