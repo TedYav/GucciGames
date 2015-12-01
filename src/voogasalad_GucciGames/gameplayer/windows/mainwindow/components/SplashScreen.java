@@ -20,7 +20,6 @@ import javafx.util.Duration;
 import voogasalad_GucciGames.gameplayer.config.PlayerConfig;
 import voogasalad_GucciGames.gameplayer.controller.GameControllerInterface;
 import voogasalad_GucciGames.gameplayer.windows.GameScene;
-import voogasalad_GucciGames.gameplayer.windows.WindowComponent;
 
 public class SplashScreen extends WindowComponent {
 	
@@ -33,6 +32,7 @@ public class SplashScreen extends WindowComponent {
 	public SplashScreen(GameScene scene, GameControllerInterface controller, String config) {
 		super(scene, controller);
 		myPane = new StackPane();
+		setParent(myPane);
 		myPane.setBackground(new Background(new BackgroundFill(Color.BLACK, CornerRadii.EMPTY, Insets.EMPTY)));
 		myConfig = ResourceBundle.getBundle(config);
 		initializeImage(myConfig.getString("Image"));
@@ -68,11 +68,6 @@ public class SplashScreen extends WindowComponent {
 			myImage.setPreserveRatio(true);
 			myPane.getChildren().add(myImage);
 		}
-	}
-
-	@Override
-	public Parent getParent() {
-		return myPane;
 	}
 
 }

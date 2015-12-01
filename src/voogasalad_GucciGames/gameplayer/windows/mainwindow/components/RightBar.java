@@ -17,6 +17,7 @@ public class RightBar extends WindowSideComponent{
     public RightBar(GameScene scene, GameControllerInterface controller, List<DisplayComponent> components) {
         super(scene, controller, components);
         container = new VBox(spacing);
+        setParent(container);
         initializeData();
     }
 
@@ -27,10 +28,5 @@ public class RightBar extends WindowSideComponent{
         }
         container.getStyleClass().add(myCssBundle.getString("RightVBox"));
         container.setPrefWidth(Double.parseDouble(myCssBundle.getString("rightprefwidth")));
-    }
-
-    @Override
-    public Parent getParent() {
-        return container;
     }
 }

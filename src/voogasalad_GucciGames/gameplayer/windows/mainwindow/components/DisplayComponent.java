@@ -28,7 +28,7 @@ public abstract class DisplayComponent {
      * Called if you want to manually refresh the DisplayComponent at the end of every turn.
      */
     public void updateDisplay () {
-        return;
+        
     }
     public GameControllerInterface getMyController () {
         return myController;

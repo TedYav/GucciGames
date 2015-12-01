@@ -22,7 +22,7 @@ import voogasalad_GucciGames.gameEngine.targetCoordinate.ATargetCoordinate;
 import voogasalad_GucciGames.gameEngine.targetCoordinate.TargetCoordinateSingle;
 import voogasalad_GucciGames.gameplayer.controller.GameControllerInterface;
 import voogasalad_GucciGames.gameplayer.windows.GameScene;
-import voogasalad_GucciGames.gameplayer.windows.WindowComponent;
+import voogasalad_GucciGames.gameplayer.windows.mainwindow.components.WindowComponent;
 import voogasalad_GucciGames.gameplayer.windows.mainwindow.map.MapInterface;
 import voogasalad_GucciGames.gameplayer.windows.mainwindow.map.cell.MapCell;
 import voogasalad_GucciGames.gameplayer.windows.mainwindow.map.cell.MapCellInterface;
@@ -65,7 +65,7 @@ public class MainMap extends WindowComponent implements MapInterface {
 		initializeVariables();
 		initializeMap();
 		initializeMiniMap();
-		drawMap(getMyController().getInitialState());
+		drawMap(getController().getInitialState());
 	}
 	
 	
@@ -77,7 +77,7 @@ public class MainMap extends WindowComponent implements MapInterface {
 		myBorderWidth = Double.parseDouble(myConfig.getString("BorderWidth"));
 		mySelectedUnits = FXCollections.observableArrayList();
 		myUnitMap = new TwoWayMap<>();
-		getMyController().setMap(this);
+		getController().setMap(this);
 	}
 
 
@@ -132,7 +132,7 @@ public class MainMap extends WindowComponent implements MapInterface {
 	private void addToMap(PlayerMapObjectInterface object) {
 		Point2D key = Coordinate.CoordinateToPoint(object.getCoordinate());
 		if(!myCellMap.containsKey(key)){
-			MapCell newCell = (MapCell)Reflection.createInstance(myConfig.getString("CellClass"), getMyController(), myCellSize);
+			MapCell newCell = (MapCell)Reflection.createInstance(myConfig.getString("CellClass"), getController(), myCellSize);
 			myCellMap.put(key, newCell);
 			myMap.add(newCell.getParent(), ((Double)object.getCoordinate().getListOfCoordinates().get(0).getCenterX()).intValue(), ((Double)object.getCoordinate().getListOfCoordinates().get(0).getCenterY()).intValue()); //TODO: get non-zero
 		}

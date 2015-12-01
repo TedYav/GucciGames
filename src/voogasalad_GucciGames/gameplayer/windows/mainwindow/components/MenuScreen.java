@@ -12,12 +12,11 @@ import javafx.scene.layout.StackPane;
 import voogasalad_GucciGames.gameplayer.config.PlayerConfig;
 import voogasalad_GucciGames.gameplayer.controller.GameControllerInterface;
 import voogasalad_GucciGames.gameplayer.windows.GameScene;
-import voogasalad_GucciGames.gameplayer.windows.WindowComponent;
 
 public class MenuScreen extends WindowComponent {
 
 	// TODO: factor parent into superclass
-	private StackPane myParent;
+	private StackPane myPane;
 	private Pane myBackground;
 	private Pane myMenu;
 	
@@ -28,17 +27,16 @@ public class MenuScreen extends WindowComponent {
 	public MenuScreen(GameScene scene, GameControllerInterface controller, Map<String, Consumer<String>> options) {
 		super(scene, controller);
 		myOptions = options;
-		System.out.println(myOptions.keySet());
 		initializePanes();
 	}
 
 	private void initializePanes() {
-		myParent = new StackPane();
+		myPane = new StackPane();
+		myBackground = new Pane();
+		myMenu = new Pane();
+		myPane.getChildren().addAll(myBackground, myMenu);
+		setParent(myPane);
 	}
 
-	@Override
-	public Parent getParent() {
-		return myParent;
-	}
 
 }

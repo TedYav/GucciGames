@@ -17,6 +17,7 @@ public class LeftBar extends WindowSideComponent{
     public LeftBar (GameScene scene, GameControllerInterface controller, List<DisplayComponent> components) {
         super(scene, controller, components);
         container = new VBox(spacing);
+        setParent(container);
         initializeData();
     }
 
@@ -29,8 +30,4 @@ public class LeftBar extends WindowSideComponent{
         container.setPrefWidth(Double.parseDouble(myCssBundle.getString("leftprefwidth")));
     }
 
-    @Override
-    public Parent getParent () {
-        return container;
-    }
 }
