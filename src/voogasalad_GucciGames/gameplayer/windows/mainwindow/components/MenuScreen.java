@@ -9,7 +9,7 @@ import java.util.function.Function;
 import javafx.scene.Parent;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
-import voogasalad_GucciGames.gameplayer.config.Config;
+import voogasalad_GucciGames.gameplayer.config.PlayerConfig;
 import voogasalad_GucciGames.gameplayer.controller.GameControllerInterface;
 import voogasalad_GucciGames.gameplayer.windows.GameScene;
 import voogasalad_GucciGames.gameplayer.windows.WindowComponent;
@@ -23,7 +23,7 @@ public class MenuScreen extends WindowComponent {
 	
 	private Map<String, Consumer<String>> myOptions;
 	
-	private ResourceBundle myConfig = Config.load("components.MenuScreen");
+	private ResourceBundle myConfig = PlayerConfig.load("components.MenuScreen");
 	
 	public MenuScreen(GameScene scene, GameControllerInterface controller, Map<String, Consumer<String>> options) {
 		super(scene, controller);

@@ -2,7 +2,7 @@ package voogasalad_GucciGames.gameplayer.config;
 
 import java.util.ResourceBundle;
 
-public class Config {
+public class PlayerConfig {
 
 	public static final String BASEPATH = "voogasalad_GucciGames.gameplayer.config.";
 	

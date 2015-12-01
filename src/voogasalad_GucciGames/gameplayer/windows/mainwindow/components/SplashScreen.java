@@ -17,7 +17,7 @@ import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import javafx.stage.Screen;
 import javafx.util.Duration;
-import voogasalad_GucciGames.gameplayer.config.Config;
+import voogasalad_GucciGames.gameplayer.config.PlayerConfig;
 import voogasalad_GucciGames.gameplayer.controller.GameControllerInterface;
 import voogasalad_GucciGames.gameplayer.windows.GameScene;
 import voogasalad_GucciGames.gameplayer.windows.WindowComponent;
@@ -27,7 +27,7 @@ public class SplashScreen extends WindowComponent {
 	private ImageView myImage;
 	private Text myText;
 	private StackPane myPane;
-	private ResourceBundle myMainConfig = Config.load("components.Splash");
+	private ResourceBundle myMainConfig = PlayerConfig.load("components.Splash");
 	private ResourceBundle myConfig;
 	
 	public SplashScreen(GameScene scene, GameControllerInterface controller, String config) {

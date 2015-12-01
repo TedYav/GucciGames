@@ -1,7 +1,7 @@
 package voogasalad_GucciGames.gameplayer.windows.mainwindow.components.bar;
 
 import voogasalad_GucciGames.gameEngine.PlayerMapObjectInterface;
-import voogasalad_GucciGames.gameplayer.config.Config;
+import voogasalad_GucciGames.gameplayer.config.PlayerConfig;
 import voogasalad_GucciGames.gameplayer.controller.GameControllerInterface;
 import voogasalad_GucciGames.gameplayer.windows.mainwindow.components.DisplayComponent;
 import java.util.ArrayList;
@@ -18,8 +18,8 @@ public class DisplayMapObjectImage extends DisplayComponent implements ListChang
     private FlowPane display;
     private Image buffer;
     private ImageView imgView;
-    private ResourceBundle myBundle=Config.load("components.LeftBar");
-    private ResourceBundle myCssBundle = Config.load(myBundle.getString("cssclass"));
+    private ResourceBundle myBundle=PlayerConfig.load("components.LeftBar");
+    private ResourceBundle myCssBundle = PlayerConfig.load(myBundle.getString("cssclass"));
 
     public DisplayMapObjectImage (GameControllerInterface controller) {
         super(controller);

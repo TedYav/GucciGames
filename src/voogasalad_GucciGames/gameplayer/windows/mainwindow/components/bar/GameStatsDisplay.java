@@ -7,7 +7,7 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.scene.Node;
 import javafx.scene.control.ListView;
-import voogasalad_GucciGames.gameplayer.config.Config;
+import voogasalad_GucciGames.gameplayer.config.PlayerConfig;
 import voogasalad_GucciGames.gameplayer.controller.GameControllerInterface;
 import voogasalad_GucciGames.gameplayer.windows.mainwindow.components.DisplayComponent;
 
@@ -15,7 +15,7 @@ public class GameStatsDisplay extends DisplayComponent {
     private ListView<String> listView;
     private List<String> stats;
     private ObservableList<String> observeStats;
-    private ResourceBundle myBundle=Config.load("components.RightBar");
+    private ResourceBundle myBundle=PlayerConfig.load("components.RightBar");
 
     public GameStatsDisplay(GameControllerInterface controller) {
         super(controller);

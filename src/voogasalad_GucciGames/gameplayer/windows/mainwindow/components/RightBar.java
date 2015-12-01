@@ -4,15 +4,15 @@ import java.util.List;
 import java.util.ResourceBundle;
 import javafx.scene.Parent;
 import javafx.scene.layout.VBox;
-import voogasalad_GucciGames.gameplayer.config.Config;
+import voogasalad_GucciGames.gameplayer.config.PlayerConfig;
 import voogasalad_GucciGames.gameplayer.controller.GameControllerInterface;
 import voogasalad_GucciGames.gameplayer.windows.GameScene;
 
 public class RightBar extends WindowSideComponent{
     private VBox container;
     private double spacing = 5;
-    private ResourceBundle myBundle = Config.load("components.RightBar");
-    private ResourceBundle myCssBundle = Config.load(myBundle.getString("cssclass"));
+    private ResourceBundle myBundle = PlayerConfig.load("components.RightBar");
+    private ResourceBundle myCssBundle = PlayerConfig.load(myBundle.getString("cssclass"));
 
     public RightBar(GameScene scene, GameControllerInterface controller, List<DisplayComponent> components) {
         super(scene, controller, components);
