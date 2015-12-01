@@ -11,13 +11,16 @@ public class GameLoader {
     private GameControllerInterface myController;
     private GameDataInterface myData;
     
+
     public GameLoader(GameInfo game) {
         myController = new GameController(game);
         System.out.println(myController.getEngine().getInitialState());
     }
+    
 	public GameControllerInterface getController() {
 		return myController;
 	}
+	
 	public void reinitializeController(GameSceneInterface scene) {
 	    myController.setScene(scene);
 	}

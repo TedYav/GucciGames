@@ -1,6 +1,8 @@
 package voogasalad_GucciGames.gameData;
 
 import java.io.File;
+import java.util.HashMap;
+import java.util.Map;
 
 import com.thoughtworks.xstream.XStream;
 import com.thoughtworks.xstream.io.xml.DomDriver;
@@ -11,10 +13,22 @@ import voogasalad_GucciGames.gameplayer.controller.GameDataInterface;
 public class XStreamGameEngine implements GameDataInterface{
 
     //@SuppressWarnings("resource")
+	// TODO: refactor constants to resource bundle
 
     XStream serializer = new XStream(new DomDriver());
-    //private static String defaultEngineLocation = "./src/voogasalad_GucciGames/gameData/engine.xml";
+    String currentTurn = "Current Turn: ";
+    private static final String GAMELOCATION = "./src/games/";
+    private static final String GAMELISTFILE = "gamelist.xml";
+    private static final String defaultEngineLocation = "./src/games/demo.xml";
     private static FileLoader myLoader = new FileLoader();
+
+    private Map<String, String> myGames;
+    
+    public XStreamGameEngine(){
+    	loadGames();
+    }
+    
+    //private static String defaultEngineLocation = "./src/voogasalad_GucciGames/gameData/engine.xml";
 
     public void saveGameInfo(GameInfo game, File file) {
         try {
@@ -25,8 +39,8 @@ public class XStreamGameEngine implements GameDataInterface{
             e.printStackTrace();
         }
     }
-    public void saveGameInfo(GameInfo engine, String filePath) {
-        saveGameInfo(engine, new File(filePath));
+    public void saveGameInfo(GameInfo game, String filePath) {
+        saveGameInfo(game, new File(filePath));
     }
 
 //    public GameEngineToGamePlayerInterface loadEngine() {
@@ -59,6 +73,7 @@ public class XStreamGameEngine implements GameDataInterface{
 
     @Override
     public void loadGames () {
-
+    	myGames = new HashMap<>();
+    	
     }
 }

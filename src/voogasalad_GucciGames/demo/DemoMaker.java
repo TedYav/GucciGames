@@ -27,6 +27,7 @@ import voogasalad_GucciGames.gameplayer.windows.mainwindow.components.DisplayCom
 
 public class DemoMaker extends Application{
 
+	private static String defaultEngineLocation = "./src/games/demo.xml";
 	private static String defaultGameLocation = "./src/voogasalad_GucciGames/gameData/demogame.xml";
 
 	@Override
@@ -111,6 +112,7 @@ public class DemoMaker extends Application{
 				mo.setBasicParameters(new BasicParameters(null,engine));
 			});
 		}
+		engine.setName("Duvall Tag");
 	        List<String> leftComponents=new ArrayList<String>();
 	        List<String> rightComponents=new ArrayList<String>();
 	        leftComponents.add("voogasalad_GucciGames.gameplayer.windows.mainwindow.components.bar.DisplayMapObjectImage");
