@@ -65,7 +65,7 @@ public class MainMap extends WindowComponent implements MapInterface {
 		initializeVariables();
 		initializeMap();
 		initializeMiniMap();
-		drawMap(myController.getInitialState());
+		drawMap(getMyController().getInitialState());
 	}
 	
 	
@@ -77,7 +77,7 @@ public class MainMap extends WindowComponent implements MapInterface {
 		myBorderWidth = Double.parseDouble(myConfig.getString("BorderWidth"));
 		mySelectedUnits = FXCollections.observableArrayList();
 		myUnitMap = new TwoWayMap<>();
-		myController.setMap(this);
+		getMyController().setMap(this);
 	}
 
 
@@ -132,7 +132,7 @@ public class MainMap extends WindowComponent implements MapInterface {
 	private void addToMap(PlayerMapObjectInterface object) {
 		Point2D key = Coordinate.CoordinateToPoint(object.getCoordinate());
 		if(!myCellMap.containsKey(key)){
-			MapCell newCell = (MapCell)Reflection.createInstance(myConfig.getString("CellClass"), myController, myCellSize);
+			MapCell newCell = (MapCell)Reflection.createInstance(myConfig.getString("CellClass"), getMyController(), myCellSize);
 			myCellMap.put(key, newCell);
 			myMap.add(newCell.getParent(), ((Double)object.getCoordinate().getListOfCoordinates().get(0).getCenterX()).intValue(), ((Double)object.getCoordinate().getListOfCoordinates().get(0).getCenterY()).intValue()); //TODO: get non-zero
 		}
@@ -172,8 +172,10 @@ public class MainMap extends WindowComponent implements MapInterface {
 		
 	}
 	
-	public void addUnitListener(ListChangeListener<PlayerMapObjectInterface> listener){
-		mySelectedUnits.addListener(listener);
+	public void addUnitListener(List<ListChangeListener<PlayerMapObjectInterface>> listeners){
+	    for (ListChangeListener l: listeners) {
+		mySelectedUnits.addListener(l);
+	    }
 	}
 
 	@Override

@@ -1,30 +1,31 @@
-package voogasalad_GucciGames.gameplayer.windows.mainwindow.components.leftbar;
+package voogasalad_GucciGames.gameplayer.windows.mainwindow.components.bar;
 
 import voogasalad_GucciGames.gameEngine.PlayerMapObjectInterface;
 import voogasalad_GucciGames.gameplayer.controller.GameControllerInterface;
 import voogasalad_GucciGames.gameplayer.windows.mainwindow.components.DisplayComponent;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
+import javafx.collections.ListChangeListener;
 import javafx.scene.Node;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.FlowPane;
 
-public class DisplayMapObjectImage implements DisplayComponent{
+public class DisplayMapObjectImage extends DisplayComponent implements ListChangeListener<PlayerMapObjectInterface>{
     private List<PlayerMapObjectInterface> mapObjectsOnCell;
     private FlowPane display;
-    private GameControllerInterface myController;
     private Image buffer;
     private ImageView imgView;
     private ResourceBundle myBundle=ResourceBundle.getBundle("voogasalad_GucciGames.gameplayer.config.components.LeftBar");
     private ResourceBundle myCssBundle = ResourceBundle.getBundle(myBundle.getString("cssclass"));
 
-    public DisplayMapObjectImage (List<PlayerMapObjectInterface> imageUrls, GameControllerInterface controller) {
+    public DisplayMapObjectImage (GameControllerInterface controller) {
+        super(controller);
         display=new FlowPane();
         display.getStyleClass().add(myCssBundle.getString("leftimageflowpane"));
         //display.setAlignment(Pos.CENTER);
-        mapObjectsOnCell=imageUrls;
-        myController=controller;
+        mapObjectsOnCell=new ArrayList<PlayerMapObjectInterface>();
         updateImages();
     }
     public void updateImages() {
@@ -38,7 +39,7 @@ public class DisplayMapObjectImage implements DisplayComponent{
     }
     private void initializeImage(PlayerMapObjectInterface m) {
         if (m!=null) {
-            buffer = myController.requestImage(m.getImageURI());
+            buffer = getMyController().requestImage(m.getImageURI());
         }
         imgView=new ImageView(buffer);
         imgView.setPreserveRatio(true);
@@ -48,11 +49,11 @@ public class DisplayMapObjectImage implements DisplayComponent{
         });
         display.getChildren().add(imgView);
     }
-    
+
     private void updateActiveMapObject(PlayerMapObjectInterface mapObj) {
-        myController.setActiveMapObject(mapObj);
+        getMyController().setActiveMapObject(mapObj);
     }
-    
+
     @Override
     public Node getNodeToDraw() {
         return display;
@@ -69,5 +70,30 @@ public class DisplayMapObjectImage implements DisplayComponent{
             updateActiveMapObject(null);
         });
         display.getChildren().add(imgView);
+    }
+    
+    @Override
+    public ListChangeListener<PlayerMapObjectInterface> getListener () {
+        return this;
+    }
+    @Override
+    public void updateDisplay () {
+        return;
+    }
+    @Override
+    public void onChanged (Change c) {
+        while (c.next()) {
+            List<PlayerMapObjectInterface> list = c.getList();
+            if (list.size()>0){
+                mapObjectsOnCell.clear();
+                for (PlayerMapObjectInterface o: list){
+                    mapObjectsOnCell.add(o);
+                }
+                updateImages();
+                if (mapObjectsOnCell.size()>0) {
+                    updateActiveMapObject(mapObjectsOnCell.stream().reduce((u1, u2) -> u2).orElseGet(()->mapObjectsOnCell.get(0)));
+                }
+            }
+        }
     }
 }

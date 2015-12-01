@@ -1,4 +1,4 @@
-package voogasalad_GucciGames.gameplayer.windows.mainwindow.components.rightbar;
+package voogasalad_GucciGames.gameplayer.windows.mainwindow.components.bar;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -16,15 +16,14 @@ import voogasalad_GucciGames.gameEngine.targetCoordinate.TargetCoordinateSingle;
 import voogasalad_GucciGames.gameplayer.controller.GameControllerInterface;
 import voogasalad_GucciGames.gameplayer.windows.mainwindow.components.DisplayComponent;
 
-public class ActionDisplay implements DisplayComponent, Observer {
-    private GameControllerInterface myController;
+public class ActionDisplay extends DisplayComponent implements Observer {
     private PlayerMapObjectInterface activeMapObject;
     private ListView<Button> buttons;
     private List<Button> baseButtons;
 
     public ActionDisplay(GameControllerInterface controller) {
-        myController = controller;
-        myController.addMOObserver(this);
+        super(controller);
+        getMyController().addActiveMOObserver(this);
         baseButtons = new ArrayList<Button>();
         buttons = new ListView<Button>(FXCollections.observableList(baseButtons));
     }
@@ -35,8 +34,8 @@ public class ActionDisplay implements DisplayComponent, Observer {
         button.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
-                List<TargetCoordinateSingle> targets = myController.setActionInProgress(name, activeMapObject);
-                myController.getMap().highlightCells(targets);
+                List<TargetCoordinateSingle> targets = getMyController().setActionInProgress(name, activeMapObject);
+                getMyController().getMap().highlightCells(targets);
             }
         });
         return button;
@@ -62,5 +61,4 @@ public class ActionDisplay implements DisplayComponent, Observer {
         }
         updateButtons();
     }
-
 }
