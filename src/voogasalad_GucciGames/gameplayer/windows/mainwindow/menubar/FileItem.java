@@ -9,12 +9,12 @@ import javafx.stage.Stage;
 import javafx.stage.FileChooser.ExtensionFilter;
 import voogasalad_GucciGames.gameplayer.controller.GameDataInterface;
 
-public class FileMenu implements GameMenu {
+public class FileItem implements GameMenu {
 
     private ComboBox<String> myDropdown;
     private ResourceBundle myCssBundle = ResourceBundle.getBundle(myBundle.getString("cssclass"));
 
-    public FileMenu(GameDataInterface myLoader, Stage stage){
+    public FileItem(GameDataInterface myLoader, Stage stage){
         myDropdown = new ComboBox<String>();
         myDropdown.setValue(myBundle.getString("file"));
         myDropdown.getItems().add(myBundle.getString("load"));
