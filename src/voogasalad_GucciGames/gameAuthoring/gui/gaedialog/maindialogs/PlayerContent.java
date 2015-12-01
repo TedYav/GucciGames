@@ -36,6 +36,7 @@ public class PlayerContent extends VBox{
 				"player"+playerNumber);
 		browserField = new FileBrowserField(dialogElements,"image", "browse", "filechoosertitle");
 		scrollBarField = new ScrollBarField(dialogElements, "nummoves", "nummoves_items");
+		scrollBarField.addListenerForPlayer();
 		
 		this.getChildren().addAll(title, textInputField, browserField, scrollBarField);
 		this.setId("vbox-element");

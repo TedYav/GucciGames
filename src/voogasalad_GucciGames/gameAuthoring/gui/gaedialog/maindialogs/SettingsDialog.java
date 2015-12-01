@@ -59,12 +59,11 @@ public class SettingsDialog extends GaeDialog  implements ISwitchSettingsPane{
 	}
 
 	@Override
-	public void switchSettingsPane(int currentIndex) {
+	public void switchSettingsPane(VBox vbox) {
 		// TODO Auto-generated method stub
-		if (currentIndex + 1 < myContents.size()){
 			myPane.getChildren().removeAll(myPane.getChildren());
-			myPane.getChildren().add(myContents.get(currentIndex + 1)); 
-		}
+			myPane.getChildren().add(vbox); 
+		
 		
 	}
 	
