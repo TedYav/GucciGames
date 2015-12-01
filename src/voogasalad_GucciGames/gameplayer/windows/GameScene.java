@@ -6,6 +6,7 @@ import javafx.event.Event;
 import javafx.event.EventHandler;
 import javafx.event.EventType;
 import javafx.scene.Scene;
+import voogasalad_GucciGames.gameplayer.config.Config;
 import voogasalad_GucciGames.gameplayer.gameloader.GameLoader;
 import voogasalad_GucciGames.gameplayer.windows.mainwindow.scenes.GameSceneInterface;
 
@@ -21,7 +22,7 @@ public abstract class GameScene implements GameSceneInterface{
 	public GameScene(GameSceneManager manager, GameWindowInterface window, String config){
 		myManager = manager;
 		myWindow = window;
-		myConfig = ResourceBundle.getBundle(config);
+		myConfig = Config.load(config);
 		readConfig();
 	}
 	

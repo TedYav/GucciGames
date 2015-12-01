@@ -7,6 +7,7 @@ import java.util.Observable;
 import java.util.Observer;
 import java.util.ResourceBundle;
 import voogasalad_GucciGames.gameEngine.PlayerMapObjectInterface;
+import voogasalad_GucciGames.gameplayer.config.Config;
 import voogasalad_GucciGames.gameplayer.controller.GameControllerInterface;
 import voogasalad_GucciGames.gameplayer.windows.mainwindow.components.DisplayComponent;
 import javafx.collections.FXCollections;
@@ -17,7 +18,7 @@ import javafx.scene.control.ListView;
 public class DisplayMapObjectDetails extends DisplayComponent implements ListChangeListener<PlayerMapObjectInterface>, Observer{
     private ListView<String> listView;
     private List<String> attributeList;
-    private ResourceBundle myBundle=ResourceBundle.getBundle("voogasalad_GucciGames.gameplayer.config.components.LeftBar");
+    private ResourceBundle myBundle=Config.load("components.LeftBar");
 
     public DisplayMapObjectDetails(GameControllerInterface controller) {
         super(controller);

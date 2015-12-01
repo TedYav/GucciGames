@@ -1,5 +1,6 @@
 package voogasalad_GucciGames.gameplayer.windows.mainwindow.components.bar;
 
+import voogasalad_GucciGames.gameplayer.config.Config;
 import voogasalad_GucciGames.gameplayer.controller.GameControllerInterface;
 import voogasalad_GucciGames.gameplayer.windows.mainwindow.components.DisplayComponent;
 import java.util.ResourceBundle;
@@ -12,8 +13,8 @@ public class DisplayChat extends DisplayComponent{
     private VBox chat;
     private TextArea inputArea;
     private ListView<String> chatHistory;
-    private ResourceBundle myBundle=ResourceBundle.getBundle("voogasalad_GucciGames.gameplayer.config.components.LeftBar");
-    private ResourceBundle myCssBundle = ResourceBundle.getBundle(myBundle.getString("cssclass"));
+    private ResourceBundle myBundle=Config.load("components.LeftBar");
+    private ResourceBundle myCssBundle = Config.load(myBundle.getString("cssclass"));
 
     public DisplayChat(GameControllerInterface controller) {
         super(controller);

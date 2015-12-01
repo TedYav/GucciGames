@@ -8,6 +8,7 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 import voogasalad.util.reflection.Reflection;
 import voogasalad_GucciGames.gameData.XStreamGameEngine;
+import voogasalad_GucciGames.gameplayer.config.Config;
 import voogasalad_GucciGames.gameplayer.controller.GameController;
 import voogasalad_GucciGames.gameplayer.controller.GameControllerInterface;
 import voogasalad_GucciGames.gameplayer.gameloader.GameLoader;
@@ -23,7 +24,7 @@ public class GameSceneManager implements SceneManager{
 	private XStreamGameEngine myData;
 	
 	public GameSceneManager(String config, GameWindowInterface window){
-		myConfig = ResourceBundle.getBundle("voogasalad_GucciGames.gameplayer.config." + config);
+		myConfig = Config.load(config);
 		myWindow = window;
 		myScenes = generateScenes();
 		myData = new XStreamGameEngine();

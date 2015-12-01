@@ -7,13 +7,14 @@ import javafx.geometry.Rectangle2D;
 import javafx.scene.Scene;
 import javafx.stage.Screen;
 import javafx.stage.Stage;
+import voogasalad_GucciGames.gameplayer.config.Config;
 
 import java.util.Map;
 
 public abstract class GameWindow implements GameWindowInterface {	
 	
 	int myID;
-	private ResourceBundle myConfig = ResourceBundle.getBundle("voogasalad_GucciGames.gameplayer.config.WindowManager");
+	private ResourceBundle myConfig = Config.load("WindowManager");
 	private Stage myStage;
 	
 	public GameWindow(int id){

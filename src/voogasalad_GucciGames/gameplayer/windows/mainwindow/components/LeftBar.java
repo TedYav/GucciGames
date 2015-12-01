@@ -4,14 +4,15 @@ import java.util.List;
 import java.util.ResourceBundle;
 import javafx.scene.Parent;
 import javafx.scene.layout.VBox;
+import voogasalad_GucciGames.gameplayer.config.Config;
 import voogasalad_GucciGames.gameplayer.controller.GameControllerInterface;
 import voogasalad_GucciGames.gameplayer.windows.GameScene;
 
 public class LeftBar extends WindowSideComponent{
     private VBox container;
     private double spacing = 5;
-    private ResourceBundle myBundle=ResourceBundle.getBundle("voogasalad_GucciGames.gameplayer.config.components.LeftBar");
-    private ResourceBundle myCssBundle = ResourceBundle.getBundle(myBundle.getString("cssclass"));
+    private ResourceBundle myBundle=Config.load("components.LeftBar");
+    private ResourceBundle myCssBundle = Config.load(myBundle.getString("cssclass"));
 
     public LeftBar (GameScene scene, GameControllerInterface controller, List<DisplayComponent> components) {
         super(scene, controller, components);
