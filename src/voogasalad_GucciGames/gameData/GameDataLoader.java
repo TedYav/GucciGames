@@ -8,19 +8,14 @@ import java.util.ResourceBundle;
 public class GameDataLoader implements GameDataInterface {
 
 	private XStreamGameEngine myXStream;
-    private Map<String, String> myGames;
+	private GameListManager myGameList;
 
     private final ResourceBundle myConfig = ResourceBundle.getBundle("voogasalad_GucciGames.gameData.config.GameData");
 
     
 	public GameDataLoader(){
 		myXStream = new XStreamGameEngine();
-	}
-	
-	@Override
-	public void loadGames() {
-		// TODO Auto-generated method stub
-		
+		myGameList = new GameListManager();
 	}
 
 	@Override
@@ -30,8 +25,7 @@ public class GameDataLoader implements GameDataInterface {
 
 	@Override
 	public List<String> getAvailableGames() {
-		// TODO Auto-generated method stub
-		return Arrays.asList("Duvall Tag");
+		return myGameList.listGames();	
 	}
 
 	@Override

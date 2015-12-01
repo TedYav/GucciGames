@@ -4,8 +4,6 @@ import java.util.List;
 
 public interface GameDataInterface {
 
-	public void loadGames();
-
 	public GameInfo loadGame(String name);
 	
 	public List<String> getAvailableGames();

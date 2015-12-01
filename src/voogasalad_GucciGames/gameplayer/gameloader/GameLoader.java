@@ -16,6 +16,6 @@ public class GameLoader {
     public GameLoader(GameController controller) {
     	myData = new GameDataLoader();
         myController = controller;
-        myController.loadGame(myData.loadGame("Duvall Tag"));
+        myController.loadGame(myData.loadGame(myData.getAvailableGames().get(0)));
     }
 }
