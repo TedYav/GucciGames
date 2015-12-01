@@ -48,4 +48,10 @@ public class PlayerParams extends AParamsObject{
 		this.numMoves = numMoves;
 	}
 
+	@Override
+	public void print() {
+		// TODO Auto-generated method stub
+		
+	}
+
 }

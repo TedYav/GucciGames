@@ -15,4 +15,10 @@ public class TileParams extends AParamsObject{
 		this.tileName = tileName;
 	}
 
+	@Override
+	public void print() {
+		// TODO Auto-generated method stub
+		
+	}
+
 }

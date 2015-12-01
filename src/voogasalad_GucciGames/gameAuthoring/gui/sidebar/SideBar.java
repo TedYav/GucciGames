@@ -13,9 +13,9 @@ public class SideBar{
 	
 	public SideBar(AGuiGaeController controller){
 		myController = controller;
-		Tab tileTab = new TileTab(this, null);
-    	Tab unitTab = new UnitTab(this, null);
-    	Tab strucTab = new StructureTab(this, null);
+		Tab tileTab = new TileTab(this);
+    	Tab unitTab = new UnitTab(this);
+    	Tab strucTab = new StructureTab(this);
     	myTabPane = new TabPane(tileTab,unitTab,strucTab);
 	}
 	

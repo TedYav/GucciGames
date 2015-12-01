@@ -16,6 +16,17 @@ public class UnitParams extends AParamsObject {
 		this.rangeMvt = rangeMvt;
 		this.rangeAttack = rangeAttack;
 	}
+	
+	@Override
+	public void print() {
+		System.out.println("Unit Params");
+		System.out.println("number of attacks: " + numberOfAttacks);
+		System.out.println("damage: " + damage);
+		System.out.println("health: " + health);
+		System.out.println("rangemvt: " + rangeMvt);
+		System.out.println("range attack: " + rangeAttack);
+		
+	}
 
 	public int getNumberOfAttacks() {
 		return numberOfAttacks;
@@ -64,5 +75,7 @@ public class UnitParams extends AParamsObject {
 	public void setDamage(int damage) {
 		this.damage = damage;
 	}
+
+
 
 }

@@ -1,68 +1,79 @@
 package voogasalad_GucciGames.gameData;
 
 import java.io.File;
+import java.util.HashMap;
+import java.util.Map;
 
 import com.thoughtworks.xstream.XStream;
 import com.thoughtworks.xstream.io.xml.DomDriver;
 
 import voogasalad_GucciGames.gameEngine.GameEngineToGamePlayerInterface;
-import voogasalad_GucciGames.gameEngine.MainGameEngine;
 import voogasalad_GucciGames.gameplayer.controller.GameDataInterface;
 
 public class XStreamGameEngine implements GameDataInterface{
 
     //@SuppressWarnings("resource")
+	// TODO: refactor constants to resource bundle
 
     XStream serializer = new XStream(new DomDriver());
     String currentTurn = "Current Turn: ";
-    private static String defaultEngineLocation = "./src/voogasalad_GucciGames/gameData/engine.xml";
+    private static final String GAMELOCATION = "./src/games/";
+    private static final String GAMELISTFILE = "gamelist.xml";
+    private static final String defaultEngineLocation = "./src/games/demo.xml";
     private static FileLoader myLoader = new FileLoader();
 
+    private Map<String, String> myGames;
+    
+    public XStreamGameEngine(){
+    	loadGames();
+    }
+    
+    //private static String defaultEngineLocation = "./src/voogasalad_GucciGames/gameData/engine.xml";
 
-    public void saveEngine(MainGameEngine engine, File file) {
+    public void saveGameInfo(GameInfo game, File file) {
         try {
-            String engineXML = serializer.toXML(engine);
-            myLoader.save(file, engineXML);
+            String gameXML = serializer.toXML(game);
+            myLoader.save(file, gameXML);
         }
         catch (Exception e) {
             e.printStackTrace();
         }
     }
-    public void saveEngine(MainGameEngine engine, String filePath) {
-        	saveEngine(engine, new File(filePath));
+    public void saveGameInfo(GameInfo game, String filePath) {
+        saveGameInfo(game, new File(filePath));
     }
 
-    public GameEngineToGamePlayerInterface loadEngine() {
-        return loadEngine("");
+//    public GameEngineToGamePlayerInterface loadEngine() {
+//        return loadEngine("");
+//    }
+
+    public GameInfo loadGameInfo(String path) {
+//        if (path.isEmpty()) {
+//            path=defaultEngineLocation;
+//        }
+        return loadGameInfo(new File(path));
     }
 
-    public GameEngineToGamePlayerInterface loadEngine(String path) {
-        if (path.isEmpty()) {
-            path=defaultEngineLocation;
-        }
-        return loadEngine(new File(path));
-    }
-    
-    public GameEngineToGamePlayerInterface loadEngine(File file) {
-        if (file==null || !file.canRead()) {
-        	file = new File(defaultEngineLocation);
-        }
+    public GameInfo loadGameInfo(File file) {
+//        if (file==null || !file.canRead()) {
+//            file = new File(defaultEngineLocation);
+//        }
         System.out.println("Loading engine.");
-        MainGameEngine engine=null;
+        GameInfo game=null;
         try {
-            String engineXML = myLoader.read(file);
-            // loaded XML File should have current turn as 2
-            engine = (MainGameEngine) serializer.fromXML(engineXML);
+            String gameXML = myLoader.read(file);
+            game = (GameInfo) serializer.fromXML(gameXML);
         }
         catch (Exception e) {
             e.printStackTrace();
         }
         System.out.println("Load complete.");
-        return engine;
+        return game;
     }
 
     @Override
     public void loadGames () {
-
+    	myGames = new HashMap<>();
+    	
     }
 }
