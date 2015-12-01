@@ -7,8 +7,11 @@ import java.util.List;
 import java.util.Map;
 
 import javafx.collections.ObservableList;
+import javafx.geometry.Rectangle2D;
 import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
+import voogasalad_GucciGames.datastructures.ImageDatabase;
 import voogasalad_GucciGames.gameAuthoring.gui.GAEGui;
 import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.paramObjects.GameSettingParams;
 import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.paramObjects.PlayerParams;
@@ -33,6 +36,7 @@ public class GaeController extends AGuiGaeController implements IModelGaeControl
     private int numberOfPlayers;
     private int defaultOwnerID = -1;
     private Map<Integer, String> allPlayers = new HashMap<Integer, String>();
+    private ImageDatabase myImageDatabase = new ImageDatabase();
     
     public GaeController(Stage stage){
     	myStage = stage;
@@ -211,5 +215,22 @@ public class GaeController extends AGuiGaeController implements IModelGaeControl
 		return myStage;
 		
 	}
-
+	@Override
+	public Image requestImage(String path) {
+		return myImageDatabase.request(path);
+	}
+	@Override
+	public ImageView getMapObjectImage(MapObject object) {
+		double width = object.getWidth();
+		double height = object.getHeight();
+		
+		double myX1 = object.getX()*width;
+		double myY1 = object.getY()*height;
+		
+		Rectangle2D rect = new Rectangle2D(myX1, myY1, width, height);
+		
+		ImageView view = new ImageView(requestImage(object.getImageURI()));
+		view.setViewport(rect);
+		return view;
+	}
 }

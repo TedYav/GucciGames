@@ -12,13 +12,13 @@ import javafx.stage.Stage;
 import voogasalad_GucciGames.gameAuthoring.AGuiGaeController;
 import voogasalad_GucciGames.gameAuthoring.gui.sidebar.SideBar;
 import voogasalad_GucciGames.gameAuthoring.gui.statusbar.StatusBar;
-import voogasalad_GucciGames.gameAuthoring.gui.map.GUIMap;
+import voogasalad_GucciGames.gameAuthoring.gui.map.GuiMap;
 import voogasalad_GucciGames.gameAuthoring.gui.menubar.GAEMenuBar;
 
 public class GAEGui extends BorderPane {
 
 	private AGuiGaeController myController;
-	private GUIMap myMap;
+	private GuiMap myMap;
 	//private ISaveCustomObj saveCustomObj;
 
 	public GAEGui(AGuiGaeController controller, Stage stage) {
@@ -29,7 +29,7 @@ public class GAEGui extends BorderPane {
 		stage.setWidth(screenBounds.getWidth());
 		stage.setHeight(screenBounds.getHeight());
 		initLayout(stage);
-		initializeMap(20, 20);
+		initializeMap(5, 5);
 		stage.show();
 	}
 	
@@ -54,7 +54,7 @@ public class GAEGui extends BorderPane {
 		setRight(sideBar);
 		
 		// Add Map
-		myMap = new GUIMap(myController);
+		myMap = new GuiMap(myController);
 		myMap.setOnMouseMoved(e->statusBar.update(e));
 		setCenter(myMap);
 		myMap.setBackground(new Image("http://www.narniaweb.com/wp-content/uploads/2009/08/NarniaMap.jpg"));

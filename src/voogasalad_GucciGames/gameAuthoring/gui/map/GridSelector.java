@@ -47,12 +47,14 @@ class GridSelector {
 	// Define handling of mouse events
 
 	private void dragStart(MouseEvent e) {
-		myGrid.startFullDrag();
-		_area.setVisible(true);
-		_area.toFront();
-		Point2D p = new Point2D(e.getX(), e.getY());
-		update(p, p);
-		e.consume();
+		if(e.isControlDown()){
+			myGrid.startFullDrag();
+			_area.setVisible(true);
+			_area.toFront();
+			Point2D p = new Point2D(e.getX(), e.getY());
+			update(p, p);
+			e.consume();
+		}
 	}
 
 	private void dragMoved(MouseEvent e) {
@@ -95,31 +97,31 @@ class GridSelector {
 	private void select(Point2D start, Point2D end) {
 		Set<GridPoint> newSelection = getSelectedCells(start, end);
 		_prevSelection.stream().filter(p -> !newSelection.contains(p)).map(p -> myGrid.getCell(p))
-				.filter(cell -> cell != null).forEach(c -> c.forEach(cell -> {
+				.filter(cell -> cell != null).forEach(cell -> {
 					if (cell.isSelected())
-						cell.addBound();
+						cell.highlight();
 					else
-						cell.removeBound();
-				}));
+						cell.dehighlight();
+				});
 		newSelection.stream().filter(p -> !_prevSelection.contains(p)).map(p -> myGrid.getCell(p))
-				.filter(cell -> cell != null).forEach(c -> c.forEach(cell -> {
+				.filter(cell -> cell != null).forEach(cell -> {
 					if (!cell.isSelected())
-						cell.addBound();
+						cell.highlight();
 					else
-						cell.removeBound();
-				}));
+						cell.dehighlight();
+				});
 
 		_prevSelection = newSelection;
 	}
 
 	private void selectFinalize(Point2D start, Point2D end) {
 		getSelectedCells(start, end).stream().map(p -> myGrid.getCell(p)).filter(cell -> cell != null)
-				.forEach(c -> c.forEach(cell -> {
+				.forEach(cell -> {
 					if (cell.isSelected())
 						cell.deselect();
 					else
 						cell.select();
-				}));
+				});
 	}
 
 }
