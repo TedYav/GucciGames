@@ -44,6 +44,22 @@ public abstract class GameScene implements GameSceneInterface{
 	}
 	
 	/**
+	 * Returns the current GameSceneManager 
+	 * @return
+	 */
+	public GameSceneManager getManager(){
+		return myManager;
+	}
+	
+	/**
+	 * Returns the current GameWindow
+	 * @return
+	 */
+	public GameWindowInterface getWindow(){
+		return myWindow;
+	}
+	
+	/**
 	 * returns the name of the next scene to load
 	 * As defined in resource file.
 	 * @return

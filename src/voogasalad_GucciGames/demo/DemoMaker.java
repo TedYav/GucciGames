@@ -27,15 +27,13 @@ import voogasalad_GucciGames.gameplayer.windows.mainwindow.components.DisplayCom
 
 public class DemoMaker extends Application{
 
-	private static String defaultEngineLocation = "./src/games/demo.xml";
-	private static String defaultGameLocation = "./src/voogasalad_GucciGames/gameData/demogame.xml";
+	private static String defaultGameLocation = "./src/games/demo.xml";
 
 	@Override
 	public void start(Stage stage) throws Exception {
 		XStreamGameEngine xStream = new XStreamGameEngine();
 		System.out.println("Creating and saving engine.");
-		xStream.saveGameInfo(createGame(), defaultGameLocation);
-		//xStream.loadEngine(defaultEngineLocation);
+		xStream.saveGameInfo(createGame());
 		GameWindowManager windowmanager = new GameWindowManager();
 	}
 

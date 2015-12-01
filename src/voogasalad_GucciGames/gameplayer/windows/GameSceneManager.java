@@ -23,6 +23,7 @@ public class GameSceneManager implements SceneManager{
 		myConfig = ResourceBundle.getBundle("voogasalad_GucciGames.gameplayer.config." + config);
 		myWindow = window;
 		myScenes = generateScenes();
+		System.out.println(myScenes);
 		myData = new XStreamGameEngine();
 		myLoader = new GameLoader(myData.loadGameInfo(myConfig.getString("DefaultGame")));
 		myCurrentScene = myScenes.get(myConfig.getString("DefaultScene"));
@@ -32,8 +33,26 @@ public class GameSceneManager implements SceneManager{
 	private Map<String, GameScene> generateScenes(){
 		return myConfig.keySet().stream()
 			.filter((s) -> s.matches("SceneClass\\d"))
-			.map( (s) -> (GameScene)Reflection.createInstance(myConfig.getString(s), this, myWindow, myConfig.getString("SceneConfig"+s.substring(10))))
+			.map( (s) -> (GameScene)Reflection.createInstance(sceneClassPath(s), this, myWindow, configClassPath(s)))
 			.collect(Collectors.toMap((s)->s.getName(), (s)->s));
+	}
+	
+	private String sceneClassPath(String scene){
+		System.out.println(myConfig.getString("ClassPath") + "." + myConfig.getString(scene));
+		return myConfig.getString("ClassPath") + "." + myConfig.getString(scene);
+	}
+	
+	private String configClassPath(String scene){
+		System.out.println(myConfig.getString("ConfigPath") + "." + myConfig.getString(scene));
+		return myConfig.getString("ConfigPath") + "." + myConfig.getString(scene);
+	}
+	
+	public void loadScene(String sceneName){
+		if(myScenes.get(sceneName)!=null){
+			myCurrentScene = myScenes.get(sceneName);
+			myCurrentScene.load();
+			myLoader.reinitializeController(myCurrentScene);
+		}
 	}
 	
 	public void sceneFinished(){

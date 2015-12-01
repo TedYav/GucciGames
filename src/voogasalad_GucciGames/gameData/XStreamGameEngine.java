@@ -28,8 +28,6 @@ public class XStreamGameEngine implements GameDataInterface{
     	loadGames();
     }
     
-    //private static String defaultEngineLocation = "./src/voogasalad_GucciGames/gameData/engine.xml";
-
     public void saveGameInfo(GameInfo game, File file) {
         try {
             String gameXML = serializer.toXML(game);
@@ -39,8 +37,28 @@ public class XStreamGameEngine implements GameDataInterface{
             e.printStackTrace();
         }
     }
+    
+    /**
+     * Saves game in the specified file path. 
+     * @param game
+     * @param filePath
+     */
     public void saveGameInfo(GameInfo game, String filePath) {
         saveGameInfo(game, new File(filePath));
+    }
+    
+    /**
+     * Saves the GameInfo automatically based on the specified game's name.
+     * @param game
+     */
+    public void saveGameInfo(GameInfo game){
+    	saveGameInfo(game, new File(gameNameToFileName(game)));
+    }
+    
+    private String gameNameToFileName(GameInfo game){
+    	StringBuilder sanitizedName = new StringBuilder();
+    	sanitizedName.append(GAMELOCATION).append(game.getEngine().getGameName().replaceAll("[^a-zA-Z0-9\\._]+", "_")).append(".xml");
+    	return sanitizedName.toString();
     }
 
 //    public GameEngineToGamePlayerInterface loadEngine() {

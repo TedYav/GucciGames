@@ -13,11 +13,11 @@ import voogasalad_GucciGames.gameplayer.windows.GameSceneManager;
 import voogasalad_GucciGames.gameplayer.windows.GameWindow;
 import voogasalad_GucciGames.gameplayer.windows.mainwindow.components.SplashScreen;
 
-public class SelectGameScene extends GameScene {
+public class GameLevelScene extends GameScene {
 
         private Scene myScene;
 	
-	public SelectGameScene(GameSceneManager manager, GameWindow window, String config) {
+	public GameLevelScene(GameSceneManager manager, GameWindow window, String config) {
 		super(manager, window, config);
 	}
 	

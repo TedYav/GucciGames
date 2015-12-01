@@ -66,16 +66,7 @@ public class MainGameScene extends GameScene {
 
     @Override
     public void load() {
-        //STEPS UPON LOAD:
-        /*
-         * 1. Load Game Data
-         * 2. Show Splash Screen
-         * 3. Show Main Menu / Level Chooser
-         * 4. Show Game Screen
-         * 5. Show Result of Game
-         * 6. Go to Next Level or Go to Main Menu
-         */
-
+    	
         initializePane();
         loadGameData();
         showGame();
