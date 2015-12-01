@@ -8,7 +8,6 @@ import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.stylesheets.IListView;
 public class CharacteristicsListItem extends ListItem{
 	
 	private String name;
-	private Text nameLbl;
 	private double min;
 	private double max;
 	private ScrollBarField scrollBar;
@@ -17,9 +16,9 @@ public class CharacteristicsListItem extends ListItem{
 	
 	public CharacteristicsListItem(String name, double min, double max, double increm){
 		this.name = name;
-		nameLbl = new Text(name);
+		
 		scrollBar = new ScrollBarField(name, min, max, increm);
-		this.getChildren().addAll(nameLbl, scrollBar);
+		this.getChildren().addAll( scrollBar);
 	}
 	
 	public CharacteristicsParam createNewCharacteristics(){

@@ -28,6 +28,17 @@ public class MainListView extends ListView implements IListView  {
 		}
 		
 	}
+	
+	@Override
+	public void addListItem(ListItem item) {
+		if(!myNames.contains(item.getName())){
+			myItems.add(item);
+			myNames.add(item.getName());
+			redraw();
+		}
+		
+	}
+
 	@Override
 	public void removeListItem(ListItem item){
 		myNames.remove(item.getName());
@@ -51,7 +62,6 @@ public class MainListView extends ListView implements IListView  {
 	@Override
 	public void addToListView(String name) {
 		addListElement(name);
-		System.out.println(name);
 		
 		
 	}
@@ -67,6 +77,7 @@ public class MainListView extends ListView implements IListView  {
 		// TODO Auto-generated method stub
 		return myNames;
 	}
+
 
 
 }

@@ -1,6 +1,11 @@
 package voogasalad_GucciGames.gameAuthoring.gui.gaedialog.mapobjectsettings;
 import java.io.IOException;
+
+import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.dialogcomponents.RulesAndCharVBox;
+
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 import java.io.File;
 
 import javax.xml.parsers.SAXParser;
@@ -14,6 +19,7 @@ import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.DialogElements;
 import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.dialogcomponents.DropDownMenuField;
 import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.dialogcomponents.listelements.MainListView;
 import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.maindialogs.ISwitchSettingsPane;
+import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.mapobjectsettings.xml.ActionSAXHandler;
 import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.paramObjects.ActionParams;
 import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.xml.SAXHandler;
 import javafx.scene.control.Button;
@@ -51,24 +57,39 @@ public class ActionVBox extends VBox {
 	
 	private void addActionToNextBtn(){
 		nextBtn.setOnAction(e -> {
+			Set<String> rules = new HashSet<String>();
+			Set<String> chars = new HashSet<String>();
 		
 			SAXParserFactory saxParserFactory = SAXParserFactory.newInstance();
 		    try {
 		        SAXParser saxParser = saxParserFactory.newSAXParser();
-		        SAXHandler handler = new SAXHandler(listView.getAllListItemsName());
+
+		        ActionSAXHandler handler = new ActionSAXHandler(listView.getAllListItemsName());
 		        saxParser.parse(new 
-		        		File("/voogasalad_GucciGames/gameAuthoring/gui/gaedialog/mapobjectsettings/xml/actionDependencies.xml"), 
+		        		File("src/voogasalad_GucciGames/gameAuthoring/gui/gaedialog/mapobjectsettings/xml/actionDependencies.xml"), 
 		        		handler);
 		        List<ActionParams> actionParams = handler.getActionParams();
 		        for(ActionParams actionParam : actionParams){
-		        	actionParam.print();
+		  
+		  
+		        	rules.addAll(actionParam.getAllRules());
+		        	chars.addAll(actionParam.getAllCharacteristics());
 		        }
+
+		        for(String s: rules){
+		        	System.out.println("rules: " + s);
+		        }
+		        
+		        for(String s: chars){
+		        	System.out.println("chars: " + s);
+		        }
+		        
 		           
 		    } catch (ParserConfigurationException | SAXException | IOException ex) {
 		        ex.printStackTrace();
 		    }
 		    
-		    switchPaneInterface.switchSettingsPane(INDEX);
+		    switchPaneInterface.switchSettingsPane(new RulesAndCharVBox(rules, chars));
 
 		});
 

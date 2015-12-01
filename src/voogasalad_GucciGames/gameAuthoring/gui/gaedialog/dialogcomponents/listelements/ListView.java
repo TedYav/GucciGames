@@ -19,6 +19,8 @@ abstract class ListView extends VBox implements IListView{
 	
 	public abstract void addListElement(String name);
 	
+	public abstract void addListItem(ListItem item);
+	
 	public abstract void removeListItem(ListItem item);
 	
 	public abstract List<ListItem> getAllListItems();

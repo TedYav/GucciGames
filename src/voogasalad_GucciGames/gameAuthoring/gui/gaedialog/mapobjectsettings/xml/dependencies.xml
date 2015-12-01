@@ -12,12 +12,7 @@
 	<characteristicId>3</characteristicId>
 	<characteristicId>4</characteristicId>
 </rule>
-<rule>
-	<ruleId>2</ruleId>
-	<name>minHealthToAttack</name>
-	<displayName>Minimum Health Value Remaining to Attack</displayName>
-	<characteristicId>1</characteristicId>
-</rule>
+
 <characteristic>
 	<characteristicId>1</characteristicId>
 	<name>health</name>

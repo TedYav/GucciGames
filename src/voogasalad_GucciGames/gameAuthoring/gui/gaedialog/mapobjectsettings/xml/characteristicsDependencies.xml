@@ -1,9 +1,26 @@
-<characteristic>
-	<name>health</name>
-	<displayName>My Health</displayName>
-</characteristic>
+<characteristicDependencies>
+	<characteristic name="health" displayName="My Health" min="1" max="10">
+		<displayName>My Health</displayName>
 
-<characteristic>
-	<name>wealth</name>
-	<displayName>Wealth</displayName>
-</characteristic>
+	</characteristic>	
+	<characteristic 
+		name="movementRange" 
+		displayName="Movement Range"
+		min="1" 
+		max="10">
+	</characteristic>
+		
+	<characteristic name="wealth" displayName= "Wealth" min="1" max="10">
+		
+	</characteristic>
+	<characteristic name="attackDamage"  displayName= "Attack Damage" min="1" max="10">
+		
+
+	</characteristic>
+	<characteristic name="attackRange" displayName= "Attack Range" min="1" max="10">
+	
+	</characteristic>
+	<characteristic name="numAttacksPerTurn" displayName= "Number of Attacks Per Turn" min="1" max="10">
+		<displayName>Number of Attacks Per Turn</displayName>
+	</characteristic>
+</characteristicDependencies>

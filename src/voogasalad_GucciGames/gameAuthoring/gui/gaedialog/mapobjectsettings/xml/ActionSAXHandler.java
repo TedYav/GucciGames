@@ -15,13 +15,13 @@ import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.paramObjects.Characteri
 import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.paramObjects.ActionParams;
 import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.paramObjects.RuleParams;
 
-public class SAXHandler extends DefaultHandler {
+public class ActionSAXHandler extends DefaultHandler {
 	
 	private Set<String> selectedActions = new HashSet<String>();
 	private List<ActionParams> actionParams = new ArrayList<ActionParams>();
 	private ActionParams actionParam = null;
 	
-	public SAXHandler(Set<String> selectedActions){
+	public ActionSAXHandler(Set<String> selectedActions){
 		this.selectedActions = selectedActions;
 	}
 	
@@ -29,51 +29,40 @@ public class SAXHandler extends DefaultHandler {
 		return actionParams;
 	}
 	
-	private boolean bDisplayName = false;
-	private boolean bRules = false;
-	private boolean bCharacteristics = false;
+
 	
 	
 	   public void startElement(String uri, String localName,
 		        String qName, Attributes attributes) throws SAXException {
 		        if("action".equals(qName)){
+		            String displayName = attributes.getValue("displayName");
 		            String name = attributes.getValue("name");
-		            if (!selectedActions.contains(name)){
-		            	return;
-		            }
-		            actionParam = new ActionParams(name);
-		        } else if(qName.equalsIgnoreCase("displayName")){
-		        	this.bDisplayName = true;
-		        } else if (qName.equalsIgnoreCase("rules")){
-		        	this.bRules = true;
-		        } else if (qName.equalsIgnoreCase("characteristics")){
-		        	this.bCharacteristics = true;
-		        }            
+		            String rules = attributes.getValue("rules");
+		            String chars = attributes.getValue("chars");
+		            if (selectedActions.contains(displayName)){
+		            	actionParam = new ActionParams(name);
+		            	actionParam.setDisplayName(displayName);
+		            	actionParam.setCharacteristics(chars);
+		            	actionParam.setRules(rules);
+		            } 
+		        }
+		            
 
 		    }
 	   public void endElement(String uri, String localName,
 		        String qName) throws SAXException {
-		   if(qName.equalsIgnoreCase("action")){
+		   if(qName.equalsIgnoreCase("action") && actionParam != null){
+			   System.out.println("adding: " + actionParam.getDisplayName() + " to list");
 			   this.actionParams.add(actionParam);
 		   }
 
 		        
 	   }
 	   
-	    public void characters(char ch[], int start, int length) throws SAXException {
-	    	 
-	        if (bDisplayName) {
-	        	actionParam.setDisplayName(new String(ch, start, length));
-	            bDisplayName = false;
-	        } else if (bRules) {
-	            actionParam.setRules(new String(ch, start, length));
-	            bRules = false;
-	        } else if (bCharacteristics) {
-	            actionParam.setCharacteristics(new String(ch, start, length));
-	            bCharacteristics = false;
-	        } 
-	    }
-	   
+	   public void characters(char ch[], int start, int length) throws SAXException {
+
+	   }
+
 	   
 
 }

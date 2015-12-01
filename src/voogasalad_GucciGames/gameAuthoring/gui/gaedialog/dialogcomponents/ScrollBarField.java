@@ -43,12 +43,23 @@ public class ScrollBarField extends DialogComponent {
 		scrollBar.setMin(min);
 		scrollBar.setMax(max);
 		scrollBar.setUnitIncrement(increm);
-		//addListenerToScrollBar();
+		addDefaultListener();
 		this.getChildren().addAll(title, scrollBar, numSpriteText);
 		this.setId("hbox-element");
 	}
 	
-	public void addListenerToScrollBar(){
+	private void addDefaultListener(){
+		scrollBar.valueProperty().addListener(new ChangeListener<Number>() {
+			@Override
+			public void changed(ObservableValue<? extends Number> observable,
+					Number oldValue, Number newValue) {
+				numSpriteText.setText(newValue.intValue()+"");
+				}			
+		});
+		
+	}
+	
+	public void addListenerForPlayer(){
 		scrollBar.valueProperty().addListener(new ChangeListener<Number>() {
 			@Override
 			public void changed(ObservableValue<? extends Number> observable,
