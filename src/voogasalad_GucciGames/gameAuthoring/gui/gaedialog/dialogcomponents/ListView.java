@@ -23,6 +23,8 @@ abstract class ListView extends VBox implements IListView{
 	
 	public abstract List<ListItem> getAllListItems();
 	
+	public abstract Set<String> getAllListItemsName();
+	
 	protected abstract void redraw();
 	
 

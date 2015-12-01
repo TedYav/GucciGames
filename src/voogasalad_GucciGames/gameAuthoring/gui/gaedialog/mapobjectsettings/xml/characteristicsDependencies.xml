@@ -1,0 +1,9 @@
+<characteristic>
+	<name>health</name>
+	<displayName>My Health</displayName>
+</characteristic>
+
+<characteristic>
+	<name>wealth</name>
+	<displayName>Wealth</displayName>
+</characteristic>

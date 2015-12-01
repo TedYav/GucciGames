@@ -30,7 +30,8 @@ public class ActionListView extends ListView implements IListView  {
 	}
 	@Override
 	public void removeListItem(ListItem item){
-		myItems.remove(item);
+		myNames.remove(item.getName());
+		myItems.remove(item);		
 		redraw();
 	}
 	
@@ -59,6 +60,12 @@ public class ActionListView extends ListView implements IListView  {
 	public List<ListItem> getAllListItems() {
 		// TODO Auto-generated method stub
 		return myItems;
+	}
+
+	@Override
+	public Set<String> getAllListItemsName() {
+		// TODO Auto-generated method stub
+		return myNames;
 	}
 
 

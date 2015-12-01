@@ -1,4 +1,4 @@
-package voogasalad_GucciGames.gameAuthoring.gui.gaedialog.xml;
+package voogasalad_GucciGames.gameAuthoring.gui.gaedialog.mapobjectsettings.xml;
 
 import org.xml.sax.Attributes;
 import org.xml.sax.SAXException;
@@ -30,7 +30,6 @@ public class SAXHandler extends DefaultHandler {
 	}
 	
 	private boolean bDisplayName = false;
-	private boolean bName = false;
 	private boolean bRules = false;
 	private boolean bCharacteristics = false;
 	
@@ -38,12 +37,11 @@ public class SAXHandler extends DefaultHandler {
 	   public void startElement(String uri, String localName,
 		        String qName, Attributes attributes) throws SAXException {
 		        if("action".equals(qName)){
-		            String displayName = attributes.getValue("displayName");
-		            if (!selectedActions.contains(displayName)){
-		            	System.out.println("does not contain: " + displayName);
+		            String name = attributes.getValue("name");
+		            if (!selectedActions.contains(name)){
 		            	return;
 		            }
-		            actionParam = new ActionParams();
+		            actionParam = new ActionParams(name);
 		        } else if(qName.equalsIgnoreCase("displayName")){
 		        	this.bDisplayName = true;
 		        } else if (qName.equalsIgnoreCase("rules")){
@@ -55,7 +53,7 @@ public class SAXHandler extends DefaultHandler {
 		    }
 	   public void endElement(String uri, String localName,
 		        String qName) throws SAXException {
-		   if(qName.equalsIgnoreCase("action") && actionParam !=null){
+		   if(qName.equalsIgnoreCase("action")){
 			   this.actionParams.add(actionParam);
 		   }
 
@@ -63,11 +61,7 @@ public class SAXHandler extends DefaultHandler {
 	   }
 	   
 	    public void characters(char ch[], int start, int length) throws SAXException {
-	    	if(actionParam != null){
-	    	if(bName){
-	    		actionParam.setName(new String(ch, start, length));
-	    		bName = false;
-	    	}
+	    	 
 	        if (bDisplayName) {
 	        	actionParam.setDisplayName(new String(ch, start, length));
 	            bDisplayName = false;
@@ -77,8 +71,7 @@ public class SAXHandler extends DefaultHandler {
 	        } else if (bCharacteristics) {
 	            actionParam.setCharacteristics(new String(ch, start, length));
 	            bCharacteristics = false;
-	        }
-	    	}
+	        } 
 	    }
 	   
 	   
