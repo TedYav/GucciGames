@@ -3,10 +3,11 @@ package voogasalad_GucciGames.gameAuthoring.gui.sidebar;
 import javafx.scene.control.Tab;
 import javafx.scene.control.TabPane;
 import voogasalad_GucciGames.gameAuthoring.AGuiGaeController;
+import voogasalad_GucciGames.gameAuthoring.model.MapObjectType;
 import voogasalad_GucciGames.gameEngine.mapObject.MapObject;
 
 public class SideBar{
-	private MapObject myCurrSelection;
+	private MapObjectType myCurrSelection;
 	private AGuiGaeController myController;
 	private TabPane myTabPane;
 	private ATab mySelectSource;
@@ -27,11 +28,11 @@ public class SideBar{
 		return myController;
 	}
 	
-	protected MapObject getCurrSelection(){
+	protected MapObjectType getCurrSelection(){
 		return myCurrSelection;
 	}
 	
-	protected void setCurrSelection(ATab source, MapObject type){
+	protected void setCurrSelection(ATab source, MapObjectType type){
 		if(mySelectSource!=null){
 			mySelectSource.deselect();
 		}

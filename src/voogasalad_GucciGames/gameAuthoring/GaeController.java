@@ -32,7 +32,7 @@ public class GaeController extends AGuiGaeController implements IModelGaeControl
 
 	private IGAEModel model;
 	private GAEGui gui;
-	private MapObject mapobjecttype;
+	private MapObjectType mapobjecttype;
 	private Image currDraggedImage;
 	private Stage myStage;
     private int numberOfPlayers;
@@ -119,12 +119,12 @@ public class GaeController extends AGuiGaeController implements IModelGaeControl
     }
 
 	@Override
-	public void setMapObjectTypeToMap(MapObject mapType) {
+	public void setMapObjectTypeToMap(MapObjectType mapType) {
 		mapobjecttype = mapType;
 	}
 	
 	@Override
-	public MapObject getMapObjectTypeToMap() {
+	public MapObjectType getMapObjectTypeToMap() {
 		return mapobjecttype;
 	}
 
@@ -223,7 +223,7 @@ public class GaeController extends AGuiGaeController implements IModelGaeControl
 		return myImageDatabase.request(path);
 	}
 	@Override
-	public ImageView getMapObjectImage(MapObject object) {
+	public ImageView getMapObjectImage(MapObjectType object) {
 		double width = object.getWidth();
 		double height = object.getHeight();
 		
@@ -232,7 +232,7 @@ public class GaeController extends AGuiGaeController implements IModelGaeControl
 		
 		Rectangle2D rect = new Rectangle2D(myX1, myY1, width, height);
 		
-		ImageView view = new ImageView(requestImage(object.getImageURI()));
+		ImageView view = new ImageView(requestImage(object.getImagePath()));
 		view.setViewport(rect);
 		return view;
 	}

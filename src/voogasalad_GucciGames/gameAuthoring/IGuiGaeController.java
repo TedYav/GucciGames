@@ -47,9 +47,9 @@ public interface IGuiGaeController{
     
     public void setMapHeight(double y);
     
-    public void setMapObjectTypeToMap(MapObject mapType);
+    public void setMapObjectTypeToMap(MapObjectType mapType);
 
-	public MapObject getMapObjectTypeToMap();
+	public MapObjectType getMapObjectTypeToMap();
 	
 	public Image getCurrSelectedImage();
 	
@@ -64,5 +64,5 @@ public interface IGuiGaeController{
 	
 	public Image requestImage(String path);
 	
-	public ImageView getMapObjectImage(MapObject object);
+	public ImageView getMapObjectImage(MapObjectType object);
 }

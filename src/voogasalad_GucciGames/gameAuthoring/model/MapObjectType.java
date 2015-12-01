@@ -25,6 +25,28 @@ public class MapObjectType {
 		return false;
 	}
 	
+	public double getWidth() {
+		return myWidth;
+	}
 	
+	public double getHeight() {
+		return myHeight;
+	}
+	
+	public double getX() {
+		return myX;
+	}
+	
+	public double getY() {
+		return myY;
+	}
+	
+	public String getImagePath() {
+		return myImagePath;
+	}
+	
+	public String getName() {
+		return myName;
+	}
 
 }
