@@ -1,6 +1,10 @@
 package voogasalad_GucciGames.gameplayer.windows.mainwindow.components;
 
+import java.util.List;
+import java.util.Map;
 import java.util.ResourceBundle;
+import java.util.function.Consumer;
+import java.util.function.Function;
 
 import javafx.scene.Parent;
 import javafx.scene.layout.Pane;
@@ -12,21 +16,29 @@ import voogasalad_GucciGames.gameplayer.windows.WindowComponent;
 
 public class MenuScreen extends WindowComponent {
 
+	// TODO: factor parent into superclass
 	private StackPane myParent;
 	private Pane myBackground;
 	private Pane myMenu;
 	
+	private Map<String, Consumer<String>> myOptions;
+	
 	private ResourceBundle myConfig = Config.load("components.MenuScreen");
 	
-	public MenuScreen(GameScene scene, GameControllerInterface controller) {
+	public MenuScreen(GameScene scene, GameControllerInterface controller, Map<String, Consumer<String>> options) {
 		super(scene, controller);
-		// TODO Auto-generated constructor stub
+		myOptions = options;
+		System.out.println(myOptions.keySet());
+		initializePanes();
+	}
+
+	private void initializePanes() {
+		myParent = new StackPane();
 	}
 
 	@Override
 	public Parent getParent() {
-		// TODO Auto-generated method stub
-		return null;
+		return myParent;
 	}
 
 }
