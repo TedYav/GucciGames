@@ -3,29 +3,25 @@ package voogasalad_GucciGames.gameData;
 import java.io.File;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.ResourceBundle;
 
 import com.thoughtworks.xstream.XStream;
 import com.thoughtworks.xstream.io.xml.DomDriver;
 
 import voogasalad_GucciGames.gameEngine.GameEngineToGamePlayerInterface;
-import voogasalad_GucciGames.gameplayer.controller.GameDataInterface;
 
-public class XStreamGameEngine implements GameDataInterface{
+public class XStreamGameEngine {
 
     //@SuppressWarnings("resource")
 	// TODO: refactor constants to resource bundle
 
     XStream serializer = new XStream(new DomDriver());
     String currentTurn = "Current Turn: ";
-    private static final String GAMELOCATION = "./src/games/";
-    private static final String GAMELISTFILE = "gamelist.xml";
-    private static final String defaultEngineLocation = "./src/games/demo.xml";
     private static FileLoader myLoader = new FileLoader();
 
-    private Map<String, String> myGames;
+    private final ResourceBundle myConfig = ResourceBundle.getBundle("voogasalad_GucciGames.gameData.config.GameData");
     
     public XStreamGameEngine(){
-    	loadGames();
     }
     
     public void saveGameInfo(GameInfo game, File file) {
@@ -57,7 +53,7 @@ public class XStreamGameEngine implements GameDataInterface{
     
     private String gameNameToFileName(String name){
     	StringBuilder sanitizedName = new StringBuilder();
-    	sanitizedName.append(GAMELOCATION).append(name.replaceAll("[^a-zA-Z0-9\\._]+", "_")).append(".xml");
+    	sanitizedName.append(myConfig.getString("GameStorageLocation")).append(name.replaceAll("[^a-zA-Z0-9\\._]+", "_")).append(myConfig.getString("GameExtension"));
     	return sanitizedName.toString();
     }
 
@@ -65,7 +61,6 @@ public class XStreamGameEngine implements GameDataInterface{
 //        return loadEngine("");
 //    }
 
-    @Override
     public GameInfo loadGameByName(String name){
     	return loadGameInfo(new File(gameNameToFileName(name)));
     }
@@ -94,9 +89,4 @@ public class XStreamGameEngine implements GameDataInterface{
         return game;
     }
 
-    @Override
-    public void loadGames () {
-    	myGames = new HashMap<>();
-    	
-    }
 }
