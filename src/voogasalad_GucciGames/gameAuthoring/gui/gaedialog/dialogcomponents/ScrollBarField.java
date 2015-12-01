@@ -24,22 +24,31 @@ public class ScrollBarField extends DialogComponent {
 		this.dialogElements = dialogElements;
 		this.propKey = propKey;
 		this.itemsKey = itemsKey;
-		makeScrollBar();
+		List<String> params = super.parseStringToList(dialogElements.getDialogProperties(), itemsKey);
+		makeScrollBar(dialogElements.getDialogProperties().getProperty(propKey),
+				Double.parseDouble(params.get(0)),
+				Double.parseDouble(params.get(1)),
+				Double.parseDouble(params.get(2))
+				);
 		
 	}
 	
-	protected void makeScrollBar(){
-		Text title = new Text(dialogElements.getDialogProperties().getProperty(propKey));
-		List<String> params = super.parseStringToList(dialogElements.getDialogProperties(), itemsKey);
-		scrollBar.setMin(Double.parseDouble(params.get(0)));
-		scrollBar.setMax(Double.parseDouble(params.get(1)));
-		scrollBar.setUnitIncrement(Integer.parseInt(params.get(2)));
-		addListenerToScrollBar();
+	public ScrollBarField(String name, double min, double max, double increm){
+		makeScrollBar(name, min, max, increm);
+		
+	}
+	
+	protected void makeScrollBar(String name, double min, double max, double increm){
+		Text title = new Text(name);
+		scrollBar.setMin(min);
+		scrollBar.setMax(max);
+		scrollBar.setUnitIncrement(increm);
+		//addListenerToScrollBar();
 		this.getChildren().addAll(title, scrollBar, numSpriteText);
 		this.setId("hbox-element");
 	}
 	
-	private void addListenerToScrollBar(){
+	public void addListenerToScrollBar(){
 		scrollBar.valueProperty().addListener(new ChangeListener<Number>() {
 			@Override
 			public void changed(ObservableValue<? extends Number> observable,

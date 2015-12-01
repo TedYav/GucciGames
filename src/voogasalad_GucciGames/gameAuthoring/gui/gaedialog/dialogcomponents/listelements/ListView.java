@@ -1,4 +1,4 @@
-package voogasalad_GucciGames.gameAuthoring.gui.gaedialog.dialogcomponents;
+package voogasalad_GucciGames.gameAuthoring.gui.gaedialog.dialogcomponents.listelements;
 
 import java.util.ArrayList;
 import java.util.HashSet;

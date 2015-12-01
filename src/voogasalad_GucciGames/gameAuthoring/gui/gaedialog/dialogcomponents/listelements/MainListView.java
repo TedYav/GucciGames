@@ -1,4 +1,4 @@
-package voogasalad_GucciGames.gameAuthoring.gui.gaedialog.dialogcomponents;
+package voogasalad_GucciGames.gameAuthoring.gui.gaedialog.dialogcomponents.listelements;
 
 import java.util.ArrayList;
 import java.util.HashSet;
@@ -7,12 +7,12 @@ import java.util.Set;
 
 import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.stylesheets.IListView;
 
-public class ActionListView extends ListView implements IListView  {
+public class MainListView extends ListView implements IListView  {
 
 	private List<ListItem> myItems;
 	private Set<String> myNames;
 	
-	public ActionListView(){
+	public MainListView(){
 		myItems = new ArrayList<ListItem>();
 		myNames = new HashSet<String>();
 		

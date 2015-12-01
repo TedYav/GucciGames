@@ -11,7 +11,7 @@ import java.util.Stack;
 
 import org.xml.sax.helpers.DefaultHandler;
 
-import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.paramObjects.ACharacteristicsParam;
+import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.paramObjects.CharacteristicsParam;
 import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.paramObjects.ActionParams;
 import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.paramObjects.RuleParams;
 
