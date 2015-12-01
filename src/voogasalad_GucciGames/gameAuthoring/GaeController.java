@@ -19,8 +19,10 @@ import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.paramObjects.StructureP
 import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.paramObjects.TileParams;
 import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.paramObjects.UnitParams;
 import voogasalad_GucciGames.gameAuthoring.gui.map.GridPoint;
+import voogasalad_GucciGames.gameAuthoring.model.DisplayMapObject;
 import voogasalad_GucciGames.gameAuthoring.model.GAEModel;
 import voogasalad_GucciGames.gameAuthoring.model.IGAEModel;
+import voogasalad_GucciGames.gameAuthoring.model.MapObjectType;
 import voogasalad_GucciGames.gameAuthoring.properties.ObjectProperty;
 import voogasalad_GucciGames.gameEngine.mapObject.MapObject;
 
@@ -30,7 +32,7 @@ public class GaeController extends AGuiGaeController implements IModelGaeControl
 
 	private IGAEModel model;
 	private GAEGui gui;
-	private MapObject mapobjecttype;
+	private MapObjectType mapobjecttype;
 	private Image currDraggedImage;
 	private Stage myStage;
     private int numberOfPlayers;
@@ -44,19 +46,20 @@ public class GaeController extends AGuiGaeController implements IModelGaeControl
     	gui = new GAEGui(this,stage);	
     }
     @Override
-    public void deleteComponent (MapObject mapObj) {
+    public void deleteComponent (DisplayMapObject mapObj) {
         model.deleteComponent(mapObj);
     }
+    
     @Override
-    public MapObject addObject(GridPoint gridpoint, MapObject mapObjType){
+    public DisplayMapObject addObject(GridPoint gridpoint, MapObjectType mapObjType){
     	return model.addObject(gridpoint, mapObjType, defaultOwnerID);
     }
     @Override
-    public MapObject addObject(GridPoint gridpoint, MapObject mapObjType, int ownerID){
+    public DisplayMapObject addObject(GridPoint gridpoint, MapObjectType mapObjType, int ownerID){
     	return model.addObject(gridpoint, mapObjType, ownerID);
     }
     @Override
-    public List<MapObject> getMapObjects() {
+    public List<DisplayMapObject> getMapObjects() {
         return model.getMapObjects();
     }
 //    @Override
@@ -85,18 +88,18 @@ public class GaeController extends AGuiGaeController implements IModelGaeControl
         model.createCustomUnitType(m);
     }
     @Override
-    public ObservableList<MapObject> getImmutableTileTypes () {
+    public ObservableList<MapObjectType> getImmutableTileTypes () {
         return model.getImmutableTileTypes();
     }
 
     @Override
-    public ObservableList<MapObject> getImmutableUnitTypes () {
+    public ObservableList<MapObjectType> getImmutableUnitTypes () {
         return model.getImmutableUnitTypes();
     }
 
     
     @Override
-	public ObservableList<MapObject> getImmutableStructureTypes() {
+	public ObservableList<MapObjectType> getImmutableStructureTypes() {
 		return model.getImmutableStructureTypes();
 	}
 	
@@ -116,12 +119,12 @@ public class GaeController extends AGuiGaeController implements IModelGaeControl
     }
 
 	@Override
-	public void setMapObjectTypeToMap(MapObject mapType) {
+	public void setMapObjectTypeToMap(MapObjectType mapType) {
 		mapobjecttype = mapType;
 	}
 	
 	@Override
-	public MapObject getMapObjectTypeToMap() {
+	public MapObjectType getMapObjectTypeToMap() {
 		return mapobjecttype;
 	}
 
@@ -220,7 +223,7 @@ public class GaeController extends AGuiGaeController implements IModelGaeControl
 		return myImageDatabase.request(path);
 	}
 	@Override
-	public ImageView getMapObjectImage(MapObject object) {
+	public ImageView getMapObjectImage(MapObjectType object) {
 		double width = object.getWidth();
 		double height = object.getHeight();
 		
@@ -229,8 +232,11 @@ public class GaeController extends AGuiGaeController implements IModelGaeControl
 		
 		Rectangle2D rect = new Rectangle2D(myX1, myY1, width, height);
 		
-		ImageView view = new ImageView(requestImage(object.getImageURI()));
+		ImageView view = new ImageView(requestImage(object.getImagePath()));
 		view.setViewport(rect);
 		return view;
 	}
+
+
+
 }

@@ -1,5 +1,7 @@
 package voogasalad_GucciGames.gameAuthoring;
 import voogasalad_GucciGames.gameAuthoring.gui.map.GridPoint;
+import voogasalad_GucciGames.gameAuthoring.model.DisplayMapObject;
+import voogasalad_GucciGames.gameAuthoring.model.MapObjectType;
 import voogasalad_GucciGames.gameAuthoring.properties.ObjectProperty;
 import voogasalad_GucciGames.gameAuthoring.properties.Property;
 
@@ -19,25 +21,25 @@ public interface IGuiGaeController{
 	 * @param mapObj
 	 */
     
-    public void deleteComponent(MapObject mapObj);
+    public void deleteComponent (DisplayMapObject mapObj);
     
-    public MapObject addObject(GridPoint gridpoint, MapObject mapObjType);
+    public DisplayMapObject addObject(GridPoint gridpoint, MapObjectType mapObjType);
     
-    public List<MapObject> getMapObjects();
+    public List<DisplayMapObject> getMapObjects();
     
 //    public int getMapObjectListPosAtPoint(ObservableList<MapObject> mapObjectList, GridPoint gridPoint);
-    
+        
     public void clearMap();
     
     public void createCustomTileType(Map<String,String> m);
     
     public void createCustomUnitType(Map<String,String> m);
 
-    public ObservableList<MapObject> getImmutableTileTypes();
+    public ObservableList<MapObjectType> getImmutableTileTypes();
 
-    public ObservableList<MapObject> getImmutableUnitTypes();
+    public ObservableList<MapObjectType> getImmutableUnitTypes();
     
-    public ObservableList<MapObject> getImmutableStructureTypes();
+    public ObservableList<MapObjectType> getImmutableStructureTypes();
 
     public void saveToXML(File file);
     
@@ -45,16 +47,16 @@ public interface IGuiGaeController{
     
     public void setMapHeight(double y);
     
-    public void setMapObjectTypeToMap(MapObject mapType);
+    public void setMapObjectTypeToMap(MapObjectType mapType);
 
-	public MapObject getMapObjectTypeToMap();
+	public MapObjectType getMapObjectTypeToMap();
 	
 	public Image getCurrSelectedImage();
 	
 	public void setCurrDraggedImage(Image draggedImage);
 
-	public MapObject addObject(GridPoint gridpoint, MapObject mapObjType,
-			int ownerID);
+    public DisplayMapObject addObject(GridPoint gridpoint, MapObjectType mapObjType, 
+    		int ownerID);
 	
 	public void changeOwner(MapObject mapObject, int playerID);
 	
@@ -62,5 +64,5 @@ public interface IGuiGaeController{
 	
 	public Image requestImage(String path);
 	
-	public ImageView getMapObjectImage(MapObject object);
+	public ImageView getMapObjectImage(MapObjectType object);
 }
