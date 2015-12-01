@@ -6,9 +6,9 @@ import voogasalad_GucciGames.gameEngine.defaultCharacteristics.TileCharacteristi
 import voogasalad_GucciGames.gameEngine.mapObject.MapObject;
 
 public class TypeData {
-	private ObservableList<MapObject> tileTypes;
-	private ObservableList<MapObject> unitTypes;
-	private ObservableList<MapObject> structureTypes;
+	private ObservableList<MapObjectType> tileTypes;
+	private ObservableList<MapObjectType> unitTypes;
+	private ObservableList<MapObjectType> structureTypes;
 //	private List<MapObject> onMap;
 
 	public TypeData() {
@@ -17,11 +17,12 @@ public class TypeData {
 //		MapObjectType objType = new MapObjectType("Grass", "player/images/dummytexture.jpg");
 //		MapObjectType objType2 = new MapObjectType("Water", "player/images/dummytexture2.jpg");
 	
-		MapObject objType = new MapObject("AllTiles", "player/images/allTiles.jpg", 0, 0, 100.0, 100.0);
-		MapObject objType2 = new MapObject("AllTiles2", "player/images/allTiles.jpg", 1, 0, 100.0, 100.0);
+		MapObjectType objType = new MapObjectType("AllTiles", "player/images/allTiles.jpg", 0, 0, 100.0, 100.0);
+		MapObjectType objType2 = new MapObjectType("AllTiles2", "player/images/allTiles.jpg", 1, 0, 100.0, 100.0);
 		
-		objType.addCharacteristic("TileCharacteristic", new TileCharacteristic());
-		objType2.addCharacteristic("TileCharacteristic", new TileCharacteristic());
+//		objType.addCharacteristic("TileCharacteristic", new TileCharacteristic());
+//		objType2.addCharacteristic("TileCharacteristic", new TileCharacteristic());
+		
 		tileTypes.add(objType);
 		tileTypes.add(objType2);
 //		objType.addDefaultCharacteristic("TileCharacteristic", new TileCharacteristic());
@@ -50,22 +51,22 @@ public class TypeData {
 //	public List<MapObject> getMapObjects(){
 //		return onMap;
 //	}
-	public void addTileType(MapObject type) {
+	public void addTileType(MapObjectType type) {
 		tileTypes.add(type);
 	}
-	public void addUnitType(MapObject type) {
+	public void addUnitType(MapObjectType type) {
 		unitTypes.add(type);
 	}
-	public void addStructureType(MapObject type) {
+	public void addStructureType(MapObjectType type) {
 		structureTypes.add(type);
 	}
-	public ObservableList<MapObject> getImmutableTileTypes() {
+	public ObservableList<MapObjectType> getImmutableTileTypes() {
 		return FXCollections.unmodifiableObservableList(tileTypes);
 	}
-	public ObservableList<MapObject> getImmutableUnitTypes() {
+	public ObservableList<MapObjectType> getImmutableUnitTypes() {
 		return FXCollections.unmodifiableObservableList(unitTypes);
 	}
-	public ObservableList<MapObject> getImmutableStructureTypes() {
+	public ObservableList<MapObjectType> getImmutableStructureTypes() {
 		return FXCollections.unmodifiableObservableList(structureTypes);
 	}
 }

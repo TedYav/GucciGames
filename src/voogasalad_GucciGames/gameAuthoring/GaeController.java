@@ -19,8 +19,10 @@ import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.paramObjects.StructureP
 import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.paramObjects.TileParams;
 import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.paramObjects.UnitParams;
 import voogasalad_GucciGames.gameAuthoring.gui.map.GridPoint;
+import voogasalad_GucciGames.gameAuthoring.model.DisplayMapObject;
 import voogasalad_GucciGames.gameAuthoring.model.GAEModel;
 import voogasalad_GucciGames.gameAuthoring.model.IGAEModel;
+import voogasalad_GucciGames.gameAuthoring.model.MapObjectType;
 import voogasalad_GucciGames.gameAuthoring.properties.ObjectProperty;
 import voogasalad_GucciGames.gameEngine.mapObject.MapObject;
 
@@ -44,19 +46,20 @@ public class GaeController extends AGuiGaeController implements IModelGaeControl
     	gui = new GAEGui(this,stage);	
     }
     @Override
-    public void deleteComponent (MapObject mapObj) {
+    public void deleteComponent (DisplayMapObject mapObj) {
         model.deleteComponent(mapObj);
     }
+    
     @Override
-    public MapObject addObject(GridPoint gridpoint, MapObject mapObjType){
+    public DisplayMapObject addObject(GridPoint gridpoint, MapObjectType mapObjType){
     	return model.addObject(gridpoint, mapObjType, defaultOwnerID);
     }
     @Override
-    public MapObject addObject(GridPoint gridpoint, MapObject mapObjType, int ownerID){
+    public DisplayMapObject addObject(GridPoint gridpoint, MapObjectType mapObjType, int ownerID){
     	return model.addObject(gridpoint, mapObjType, ownerID);
     }
     @Override
-    public List<MapObject> getMapObjects() {
+    public List<DisplayMapObject> getMapObjects() {
         return model.getMapObjects();
     }
 //    @Override
@@ -85,18 +88,18 @@ public class GaeController extends AGuiGaeController implements IModelGaeControl
         model.createCustomUnitType(m);
     }
     @Override
-    public ObservableList<MapObject> getImmutableTileTypes () {
+    public ObservableList<MapObjectType> getImmutableTileTypes () {
         return model.getImmutableTileTypes();
     }
 
     @Override
-    public ObservableList<MapObject> getImmutableUnitTypes () {
+    public ObservableList<MapObjectType> getImmutableUnitTypes () {
         return model.getImmutableUnitTypes();
     }
 
     
     @Override
-	public ObservableList<MapObject> getImmutableStructureTypes() {
+	public ObservableList<MapObjectType> getImmutableStructureTypes() {
 		return model.getImmutableStructureTypes();
 	}
 	
@@ -233,4 +236,7 @@ public class GaeController extends AGuiGaeController implements IModelGaeControl
 		view.setViewport(rect);
 		return view;
 	}
+
+
+
 }
