@@ -1,13 +1,11 @@
 package voogasalad_GucciGames.gameAuthoring.gui.map;
 
 import javafx.beans.property.DoubleProperty;
-import javafx.geometry.Rectangle2D;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 import voogasalad_GucciGames.gameAuthoring.IGuiGaeController;
-import voogasalad_GucciGames.gameEngine.mapObject.MapObject;
 
 class GridMouseTracker {
 	
@@ -41,20 +39,8 @@ class GridMouseTracker {
 	}
 
 	private void addMouseBound(double x, double y, double size) {
-		if (myController.getCurrSelectedImage() != null) {
-			
-			MapObject mapType = myController.getMapObjectTypeToMap();
-			double width = mapType.getWidth();
-			double height = mapType.getHeight();
-			
-			double myX1 = mapType.getX()*width;
-			double myY1 = mapType.getY()*height;
-			
-			Rectangle2D rect = new Rectangle2D(myX1, myY1, width, height);
-			
-			myMouseImg = new ImageView(myController.getCurrSelectedImage());
-			myMouseImg.setViewport(rect);
-			
+		if (myController.getMapObjectTypeToMap() != null) {
+			myMouseImg = myController.getMapObjectImage(myController.getMapObjectTypeToMap());
 			myMouseImg.setFitWidth(size);
 			myMouseImg.setFitHeight(size);
 			myMouseImg.setX(x);

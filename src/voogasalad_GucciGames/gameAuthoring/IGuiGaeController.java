@@ -9,6 +9,7 @@ import java.util.Map;
 
 import javafx.collections.ObservableList;
 import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
 import voogasalad_GucciGames.gameEngine.mapObject.MapObject;
 
@@ -58,4 +59,8 @@ public interface IGuiGaeController{
 	public void changeOwner(MapObject mapObject, int playerID);
 	
 	public Stage getStage();
+	
+	public Image requestImage(String path);
+	
+	public ImageView getMapObjectImage(MapObject object);
 }
