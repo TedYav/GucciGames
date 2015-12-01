@@ -52,12 +52,12 @@ public class XStreamGameEngine implements GameDataInterface{
      * @param game
      */
     public void saveGameInfo(GameInfo game){
-    	saveGameInfo(game, new File(gameNameToFileName(game)));
+    	saveGameInfo(game, new File(gameNameToFileName(game.getEngine().getGameName())));
     }
     
-    private String gameNameToFileName(GameInfo game){
+    private String gameNameToFileName(String name){
     	StringBuilder sanitizedName = new StringBuilder();
-    	sanitizedName.append(GAMELOCATION).append(game.getEngine().getGameName().replaceAll("[^a-zA-Z0-9\\._]+", "_")).append(".xml");
+    	sanitizedName.append(GAMELOCATION).append(name.replaceAll("[^a-zA-Z0-9\\._]+", "_")).append(".xml");
     	return sanitizedName.toString();
     }
 
@@ -65,6 +65,11 @@ public class XStreamGameEngine implements GameDataInterface{
 //        return loadEngine("");
 //    }
 
+    @Override
+    public GameInfo loadGameByName(String name){
+    	return loadGameInfo(new File(gameNameToFileName(name)));
+    }
+    
     public GameInfo loadGameInfo(String path) {
 //        if (path.isEmpty()) {
 //            path=defaultEngineLocation;

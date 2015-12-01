@@ -40,7 +40,6 @@ import voogasalad_GucciGames.gameplayer.windows.mainwindow.menubar.TopBar;
 public class MainGameScene extends GameScene {
 
     private GameControllerInterface myController;
-    private Scene myCurrentScene;
 
     private BorderPane myPane;
 
@@ -51,7 +50,6 @@ public class MainGameScene extends GameScene {
     private GameMenuBar myMenuBar;
     private MainMap myMap;
 
-    private MapKeyHandler myKeyHandler;
     private ResourceBundle myCssBundle = ResourceBundle.getBundle("voogasalad_GucciGames.gameplayer.config.scenes.CssClasses");
 	private TopBar myTopBar;
 
@@ -60,8 +58,7 @@ public class MainGameScene extends GameScene {
     }
 
     private void loadGameData(){
-        myController = myManager.getLoader().getController();
-        myController.setScene(this);
+        myController = myManager.getController();
     }
 
     @Override
@@ -80,17 +77,10 @@ public class MainGameScene extends GameScene {
         myScene.getStylesheets().add(myCssBundle.getString("CssFile"));
     }
 
-    private void showSplash(){
-
-    }
-
     private void showGame(){
-
-
 
         myMap = new MainMap(this, myController);
         myPane.setCenter(myMap.getParent());
-        System.out.println(myPane.getCenter().getBoundsInParent());
 
         leftComponents=myController.getGame().getLeftComponents().stream().map(s->(DisplayComponent)Reflection.createInstance(s, myController)).collect(Collectors.toList());
         rightComponents=myController.getGame().getRightComponents().stream().map(s->(DisplayComponent)Reflection.createInstance(s, myController)).collect(Collectors.toList());
@@ -119,7 +109,7 @@ public class MainGameScene extends GameScene {
     }
 
     @Override
-    public void update () {
+    public void refresh () {
         myLeftBar.updateComponents();
         myRightBar.updateComponents();
     }

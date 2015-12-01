@@ -33,7 +33,7 @@ public class GameMenuScene extends GameScene {
 	}
 
     @Override
-    public void update () {
+    public void refresh () {
         // TODO Auto-generated method stub
         
     }
