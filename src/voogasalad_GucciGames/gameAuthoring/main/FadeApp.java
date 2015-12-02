@@ -140,6 +140,19 @@ public class FadeApp extends Application {
         initStage.setX(bounds.getMinX() + bounds.getWidth() / 2 - SPLASH_WIDTH / 2);
         initStage.setY(bounds.getMinY() + bounds.getHeight() / 2 - SPLASH_HEIGHT / 2);
         initStage.show();
+        Stage stage = new Stage();
+        GridPane pane = new GridPane();
+        pane.setPrefSize(100, 100);
+        pane.setMaxSize(100, 100);
+        stage.setScene(new Scene(pane));
+        stage.show();
+        ImageView viewer = new ImageView();
+        viewer.setImage(new Image("http://fxexperience.com/wp-content/uploads/2010/06/logo.png"));
+        ImageView viewer1 = new ImageView();
+        viewer1.setImage(new Image("http://fxexperience.com/wp-content/uploads/2010/06/logo.png"));
+        pane.add(viewer, 0, 0);
+        pane.add(viewer1, 0, 1);
+        
     }
 
     public interface InitCompletionHandler {

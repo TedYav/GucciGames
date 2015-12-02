@@ -2,6 +2,7 @@ package voogasalad_GucciGames.gameAuthoring.model;
 
 
 import java.io.File;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -9,12 +10,12 @@ import java.util.Map;
 import javafx.collections.ObservableList;
 import voogasalad_GucciGames.gameAuthoring.IModelGaeController;
 import voogasalad_GucciGames.gameAuthoring.gui.map.GridPoint;
+import voogasalad_GucciGames.gameData.GameInfo;
 //import voogasalad_GucciGames.gameData.XMLWriter;
 import voogasalad_GucciGames.gameData.XStreamGameEngine;
 import voogasalad_GucciGames.gameEngine.MainGameEngine;
 import voogasalad_GucciGames.gameEngine.gamePlayer.AllPlayers;
 import voogasalad_GucciGames.gameEngine.gamePlayer.GamePlayerPerson;
-import voogasalad_GucciGames.gameEngine.mapObject.DefaultMapObject;
 import voogasalad_GucciGames.gameEngine.mapObject.MapObject;
 import voogasalad_GucciGames.gameEngine.targetCoordinate.TargetCoordinateSingle;
 
@@ -25,12 +26,14 @@ public class GAEModel implements IGAEModel{
 	private Map<Integer, GamePlayerPerson> mapOfPlayers;	
     private AllPlayers players;
 	private MainGameEngine engine;
+	private List<DisplayMapObject> myMapObjects;
     
     public GAEModel(IModelGaeController controller) {
     	myController = controller;
     	typeData = new TypeData();
     	mapData = new MapData();
     	mapOfPlayers = new HashMap<>();
+    	myMapObjects = new ArrayList<>();
     	// Probs need to change this
 		mapOfPlayers.put(-1, new GamePlayerPerson(-1));
 		mapOfPlayers.put(0, new GamePlayerPerson(0));
@@ -40,23 +43,24 @@ public class GAEModel implements IGAEModel{
     
 
     @Override
-    public void deleteComponent (MapObject mapObj) {
-        int owner = mapObj.getPlayerID();
+    public void deleteComponent (DisplayMapObject mapObj) {
+        int owner = mapObj.getOwnerID();
         mapOfPlayers.get(owner).getMapObjects().remove(mapObj);
     }
     
     @Override
-    public MapObject addObject(GridPoint gridpoint, MapObject mapObjType, int ownerID) {
+    public DisplayMapObject addObject(GridPoint gridpoint, MapObjectType mapObjType, int ownerID) {
     	TargetCoordinateSingle targCoordSingle = new TargetCoordinateSingle(gridpoint.getX(), gridpoint.getY());
     	int layer = mapObjType.isTile() ? 0 : 1;
-    	MapObject mapObject = new MapObject(mapObjType, targCoordSingle, ownerID,layer);
-    	mapOfPlayers.get(ownerID).addMapObject(mapObject);
+    	DisplayMapObject mapObject = new DisplayMapObject(mapObjType, targCoordSingle, ownerID,layer);
+    	//mapOfPlayers.get(ownerID).addMapObject(mapObject);
+    	myMapObjects.add(mapObject);
     	//Validate with engine, if failed, return null, else return this mapObject
     	return mapObject;
     }
     
     @Override
-	public List<MapObject> getMapObjects() {
+	public List<DisplayMapObject> getMapObjects() {
 		return mapData.getMapObjects();
 	}
 
@@ -67,28 +71,28 @@ public class GAEModel implements IGAEModel{
 
     @Override
     public void createCustomTileType (Map<String, String> m) {
-        MapObject objType = new DefaultMapObject(m.get("name"), m.get("imagePath"));//TODO: properties file
+    	MapObjectType objType = new DefaultMapObjectType(m.get("name"), m.get("imagePath"));//TODO: properties file
         typeData.addTileType(objType);
     }
 
     @Override
     public void createCustomUnitType (Map<String, String> m) {  
-        MapObject objType = new DefaultMapObject(m.get("name"), m.get("imagePath"));//TODO: properties file
+    	MapObjectType objType = new DefaultMapObjectType(m.get("name"), m.get("imagePath"));//TODO: properties file
         typeData.addUnitType(objType);
     }
 
     @Override
-    public ObservableList<MapObject> getImmutableTileTypes () {
+    public ObservableList<MapObjectType> getImmutableTileTypes () {
         return typeData.getImmutableTileTypes();
     }
 
     @Override
-    public ObservableList<MapObject> getImmutableUnitTypes () {
+    public ObservableList<MapObjectType> getImmutableUnitTypes () {
         return typeData.getImmutableUnitTypes();
     }
     
     @Override
-	public ObservableList<MapObject> getImmutableStructureTypes() {
+	public ObservableList<MapObjectType> getImmutableStructureTypes() {
 		return typeData.getImmutableStructureTypes();
 	}
 
@@ -97,7 +101,19 @@ public class GAEModel implements IGAEModel{
     	XStreamGameEngine saver = new XStreamGameEngine();
 		AllPlayers myPlayers = new AllPlayers(mapOfPlayers);
 		MainGameEngine engine = new MainGameEngine(myPlayers);
-		saver.saveEngine(engine, file);
+		//TODO: saving GameInfo instead of MainGameEngine
+		List<String> leftComponents = new ArrayList<String>();
+	        List<String> rightComponents = new ArrayList<String>();
+	        if (leftComponents.size()==0 && rightComponents.size()==0) {
+	                leftComponents.add("voogasalad_GucciGames.gameplayer.windows.mainwindow.components.bar.DisplayMapObjectImage");
+	                leftComponents.add("voogasalad_GucciGames.gameplayer.windows.mainwindow.components.bar.DisplayMapObjectDetails");
+	                leftComponents.add("voogasalad_GucciGames.gameplayer.windows.mainwindow.components.bar.DisplayChat");
+	                rightComponents.add("voogasalad_GucciGames.gameplayer.windows.mainwindow.components.bar.ActionDisplay");
+	                rightComponents.add("voogasalad_GucciGames.gameplayer.windows.mainwindow.components.bar.GameStatsDisplay");
+	                rightComponents.add("voogasalad_GucciGames.gameplayer.windows.mainwindow.components.bar.EndTurnButton");
+	        }
+		GameInfo game = new GameInfo(engine,leftComponents,rightComponents);
+		saver.saveGameInfo(game, file);
     }
     public void saveToXML(String filePath) {
         
@@ -119,7 +135,7 @@ public class GAEModel implements IGAEModel{
 
 
     public void addComponent (Map<String,String> objParams) {
-        MapObject mapObj = new MapObject(null, 0);// TODO:MapObject(objParams);
+        DisplayMapObject mapObj = new DisplayMapObject(null, null, 0, 0);// TODO:MapObject(objParams);
         validate();
         mapData.addToMap(mapObj);
     }

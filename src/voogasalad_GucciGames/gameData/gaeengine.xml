@@ -1,72 +1,102 @@
-∞BQ“ŒµyØDlrè‰G∑ø
-˘<ç˝≠$‡¯gC%«\<voogasalad__GucciGames.gameEngine.MainGameEngine>
-  <myGamePlayers>
-    <myMapOfPlayers>
-      <entry>
-        <int>-1</int>
-        <voogasalad__GucciGames.gameEngine.gamePlayer.GamePlayerPerson>
-          <myPlayerId>-1</myPlayerId>
-          <myMapObjects/>
-          <myStatus>DRAW</myStatus>
-        </voogasalad__GucciGames.gameEngine.gamePlayer.GamePlayerPerson>
-      </entry>
-      <entry>
-        <int>0</int>
-        <voogasalad__GucciGames.gameEngine.gamePlayer.GamePlayerPerson>
-          <myPlayerId>0</myPlayerId>
-          <myMapObjects/>
-          <myStatus>DRAW</myStatus>
-        </voogasalad__GucciGames.gameEngine.gamePlayer.GamePlayerPerson>
-      </entry>
-      <entry>
-        <int>1</int>
-        <voogasalad__GucciGames.gameEngine.gamePlayer.GamePlayerPerson>
-          <myPlayerId>1</myPlayerId>
-          <myMapObjects/>
-          <myStatus>DRAW</myStatus>
-        </voogasalad__GucciGames.gameEngine.gamePlayer.GamePlayerPerson>
-      </entry>
-      <entry>
-        <int>2</int>
-        <voogasalad__GucciGames.gameEngine.gamePlayer.GamePlayerPerson>
-          <myPlayerId>2</myPlayerId>
-          <myMapObjects/>
-          <myStatus>DRAW</myStatus>
-        </voogasalad__GucciGames.gameEngine.gamePlayer.GamePlayerPerson>
-      </entry>
-    </myMapOfPlayers>
-  </myGamePlayers>
-  <myCurrentTurnCounter>
-    <currentTurn>0</currentTurn>
-  </myCurrentTurnCounter>
-  <myTurnDecider class="voogasalad_GucciGames.gameEngine.gamePlayer.DefaultTurnDecider">
-    <numPlayers>0</numPlayers>
-    <turnCounter reference="../../myCurrentTurnCounter"/>
-    <myPlayers reference="../../myGamePlayers"/>
-    <myActivePlayer reference="../../myGamePlayers/myMapOfPlayers/entry[2]/voogasalad__GucciGames.gameEngine.gamePlayer.GamePlayerPerson"/>
-  </myTurnDecider>
-  <myConditionHandler>
-    <map>
-      <entry>
-        <string>PlayerUnitCondition</string>
-        <voogasalad__GucciGames.gameEngine.gameConditions.defaultConditions.CheckPlayerObjects>
-          <myParams>
-            <myPlayersID>
-              <int>-1</int>
-              <int>0</int>
-              <int>1</int>
-              <int>2</int>
-            </myPlayersID>
-            <myPlayers>
-              <voogasalad__GucciGames.gameEngine.gamePlayer.GamePlayerPerson reference="../../../../../../../myGamePlayers/myMapOfPlayers/entry[2]/voogasalad__GucciGames.gameEngine.gamePlayer.GamePlayerPerson"/>
-              <voogasalad__GucciGames.gameEngine.gamePlayer.GamePlayerPerson reference="../../../../../../../myGamePlayers/myMapOfPlayers/entry[3]/voogasalad__GucciGames.gameEngine.gamePlayer.GamePlayerPerson"/>
-              <voogasalad__GucciGames.gameEngine.gamePlayer.GamePlayerPerson reference="../../../../../../../myGamePlayers/myMapOfPlayers/entry[4]/voogasalad__GucciGames.gameEngine.gamePlayer.GamePlayerPerson"/>
-            </myPlayers>
-            <removeIDs/>
-          </myParams>
-        </voogasalad__GucciGames.gameEngine.gameConditions.defaultConditions.CheckPlayerObjects>
-      </entry>
-    </map>
-  </myConditionHandler>
-  <mapDimensions>0</mapDimensions>
-</voogasalad__GucciGames.gameEngine.MainGameEngine>
+xàΩz‚5ZRHqbe|92[¥.dÏ)#«rËK¸≤Æ(Ÿ<voogasalad__GucciGames.gameData.GameInfo>
+  <myEngine>
+    <myGamePlayers>
+      <myMapOfPlayers>
+        <entry>
+          <int>-1</int>
+          <voogasalad__GucciGames.gameEngine.gamePlayer.GamePlayerPerson>
+            <myPlayerId>-1</myPlayerId>
+            <myMapObjects>
+              <voogasalad__GucciGames.gameEngine.mapObject.MapObject>
+                <myCoordinate class="voogasalad_GucciGames.gameEngine.targetCoordinate.TargetCoordinateSingle">
+                  <myCenterX>0.0</myCenterX>
+                  <myCenterY>5.0</myCenterY>
+                </myCoordinate>
+                <myOwnerID>-1</myOwnerID>
+                <myLayer>0</myLayer>
+                <myName>AllTiles</myName>
+                <myImagePath>player/images/allTiles.jpg</myImagePath>
+                <myCharacteristics class="tree-map"/>
+                <myEventHandler>
+                  <myEvents class="tree-map"/>
+                </myEventHandler>
+                <myWidth>100.0</myWidth>
+                <myHeight>100.0</myHeight>
+                <myX>0.0</myX>
+                <myY>0.0</myY>
+              </voogasalad__GucciGames.gameEngine.mapObject.MapObject>
+            </myMapObjects>
+            <myStatus>DRAW</myStatus>
+          </voogasalad__GucciGames.gameEngine.gamePlayer.GamePlayerPerson>
+        </entry>
+        <entry>
+          <int>0</int>
+          <voogasalad__GucciGames.gameEngine.gamePlayer.GamePlayerPerson>
+            <myPlayerId>0</myPlayerId>
+            <myMapObjects/>
+            <myStatus>DRAW</myStatus>
+          </voogasalad__GucciGames.gameEngine.gamePlayer.GamePlayerPerson>
+        </entry>
+        <entry>
+          <int>1</int>
+          <voogasalad__GucciGames.gameEngine.gamePlayer.GamePlayerPerson>
+            <myPlayerId>1</myPlayerId>
+            <myMapObjects/>
+            <myStatus>DRAW</myStatus>
+          </voogasalad__GucciGames.gameEngine.gamePlayer.GamePlayerPerson>
+        </entry>
+        <entry>
+          <int>2</int>
+          <voogasalad__GucciGames.gameEngine.gamePlayer.GamePlayerPerson>
+            <myPlayerId>2</myPlayerId>
+            <myMapObjects/>
+            <myStatus>DRAW</myStatus>
+          </voogasalad__GucciGames.gameEngine.gamePlayer.GamePlayerPerson>
+        </entry>
+      </myMapOfPlayers>
+    </myGamePlayers>
+    <myCurrentTurnCounter>
+      <currentTurn>0</currentTurn>
+    </myCurrentTurnCounter>
+    <myTurnDecider class="voogasalad_GucciGames.gameEngine.gamePlayer.DefaultTurnDecider">
+      <numPlayers>0</numPlayers>
+      <turnCounter reference="../../myCurrentTurnCounter"/>
+      <myPlayers reference="../../myGamePlayers"/>
+      <myActivePlayer reference="../../myGamePlayers/myMapOfPlayers/entry[2]/voogasalad__GucciGames.gameEngine.gamePlayer.GamePlayerPerson"/>
+    </myTurnDecider>
+    <myConditionHandler>
+      <map>
+        <entry>
+          <string>PlayerUnitCondition</string>
+          <voogasalad__GucciGames.gameEngine.gameConditions.defaultConditions.CheckPlayerObjects>
+            <myParams>
+              <myPlayersID>
+                <int>-1</int>
+                <int>0</int>
+                <int>1</int>
+                <int>2</int>
+              </myPlayersID>
+              <myPlayers>
+                <voogasalad__GucciGames.gameEngine.gamePlayer.GamePlayerPerson reference="../../../../../../../myGamePlayers/myMapOfPlayers/entry[2]/voogasalad__GucciGames.gameEngine.gamePlayer.GamePlayerPerson"/>
+                <voogasalad__GucciGames.gameEngine.gamePlayer.GamePlayerPerson reference="../../../../../../../myGamePlayers/myMapOfPlayers/entry[3]/voogasalad__GucciGames.gameEngine.gamePlayer.GamePlayerPerson"/>
+                <voogasalad__GucciGames.gameEngine.gamePlayer.GamePlayerPerson reference="../../../../../../../myGamePlayers/myMapOfPlayers/entry[4]/voogasalad__GucciGames.gameEngine.gamePlayer.GamePlayerPerson"/>
+              </myPlayers>
+              <removeIDs/>
+            </myParams>
+          </voogasalad__GucciGames.gameEngine.gameConditions.defaultConditions.CheckPlayerObjects>
+        </entry>
+      </map>
+    </myConditionHandler>
+    <mapDimensions>0</mapDimensions>
+  </myEngine>
+  <myRightComponents>
+    <string>voogasalad_GucciGames.gameplayer.windows.mainwindow.components.bar.ActionDisplay</string>
+    <string>voogasalad_GucciGames.gameplayer.windows.mainwindow.components.bar.GameStatsDisplay</string>
+    <string>voogasalad_GucciGames.gameplayer.windows.mainwindow.components.bar.EndTurnButton</string>
+  </myRightComponents>
+  <myLeftComponents>
+    <string>voogasalad_GucciGames.gameplayer.windows.mainwindow.components.bar.DisplayMapObjectImage</string>
+    <string>voogasalad_GucciGames.gameplayer.windows.mainwindow.components.bar.DisplayMapObjectDetails</string>
+    <string>voogasalad_GucciGames.gameplayer.windows.mainwindow.components.bar.DisplayChat</string>
+  </myLeftComponents>
+</voogasalad__GucciGames.gameData.GameInfo>
