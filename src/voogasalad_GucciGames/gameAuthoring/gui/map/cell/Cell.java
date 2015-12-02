@@ -8,10 +8,12 @@ import javafx.scene.layout.StackPane;
 import voogasalad_GucciGames.gameAuthoring.AGuiGaeController;
 import voogasalad_GucciGames.gameAuthoring.gui.map.GridPoint;
 import voogasalad_GucciGames.gameAuthoring.gui.map.ICellGrid;
+import voogasalad_GucciGames.gameAuthoring.model.DisplayMapObject;
+import voogasalad_GucciGames.gameAuthoring.model.MapObjectType;
 import voogasalad_GucciGames.gameEngine.mapObject.MapObject;
 
-public class Cell extends StackPane implements ICell{
-	
+public class Cell extends StackPane implements ICell {
+
 	private final ICellGrid myGrid;
 	private final DoubleProperty mySize;
 	private final GridPoint myPos;
@@ -19,7 +21,7 @@ public class Cell extends StackPane implements ICell{
 	private final MapObjectContainer myMidLayer;
 	private final CellTopPane myTopLayer;
 	private final AGuiGaeController myController;
-	
+
 	private boolean isSelected = false;
 	private PopupMenu myMenu;
 
@@ -32,12 +34,12 @@ public class Cell extends StackPane implements ICell{
 		myMidLayer = new MapObjectContainer(map.getController());
 		myTopLayer = new CellTopPane();
 		createBindings();
-		getChildren().addAll(myTileLayer,myMidLayer,myTopLayer);
+		getChildren().addAll(myTileLayer, myMidLayer, myTopLayer);
 		setOnMouseClicked(e -> mouseClickEvent(e));
-		
+
 	}
-	
-	private void createBindings(){
+
+	private void createBindings() {
 		layoutXProperty().bind(mySize.multiply(myPos.getX()));
 		layoutYProperty().bind(mySize.multiply(myPos.getY()));
 		maxHeightProperty().bind(mySize);
@@ -48,15 +50,14 @@ public class Cell extends StackPane implements ICell{
 		bind(myMidLayer);
 		bind(myTopLayer);
 	}
-	
+
 	private void mouseClickEvent(MouseEvent e) {
 		if (!e.isStillSincePress())
 			return;
 		if (e.getButton() == MouseButton.PRIMARY) {
-			if(myController.getMapObjectTypeToMap()!=null)
-				//TODO: make a copy in back end
+			if (myController.getMapObjectTypeToMap() != null)
 				add(myController.getMapObjectTypeToMap());
-			else{
+			else {
 				if (isSelected())
 					deselect();
 				else
@@ -67,7 +68,7 @@ public class Cell extends StackPane implements ICell{
 		}
 		e.consume();
 	}
-	
+
 	public void select() {
 		if (!isSelected) {
 			myTopLayer.addBound();
@@ -75,7 +76,7 @@ public class Cell extends StackPane implements ICell{
 			isSelected = true;
 		}
 	}
-	
+
 	public void deselect() {
 		if (isSelected) {
 			myTopLayer.removeBound();
@@ -89,31 +90,36 @@ public class Cell extends StackPane implements ICell{
 	}
 
 	private void showMenu(MouseEvent e) {
-		if(myMenu==null)
+		if (myMenu == null)
 			myMenu = new PopupMenu(myGrid.getController(), this);
 		myMenu.update();
 		myMenu.show(this, e.getScreenX(), e.getScreenY());
 	}
-	
-	public GridPoint getPosition(){
+
+	public GridPoint getPosition() {
 		return myPos;
 	}
 
 	@Override
-	public boolean add(MapObject mapObject) {
-		if(mapObject.isTile()){
-			return myTileLayer.add(mapObject);
-		}else{
-			return myMidLayer.add(mapObject);
+	public boolean add(MapObjectType type) {
+		DisplayMapObject obj = myController.addObject(myPos, type);
+		if (obj != null) {
+			if (type.isTile()) {
+				myTileLayer.add(obj);
+			} else {
+				myMidLayer.add(obj);
+			}
+			return true;
 		}
+		return false;
 	}
 
 	@Override
-	public boolean remove(MapObject mapObject) {
-		if(mapObject.isTile()){
+	public boolean remove(DisplayMapObject obj) {
+		if (obj.getType().isTile()) {
 			return myTileLayer.remove();
-		}else{
-			return myMidLayer.remove(mapObject);
+		} else {
+			return myMidLayer.remove(obj);
 		}
 	}
 
@@ -127,15 +133,15 @@ public class Cell extends StackPane implements ICell{
 	@Override
 	public void highlight() {
 		myTopLayer.addBound();
-		
+
 	}
 
 	@Override
 	public void dehighlight() {
 		myTopLayer.removeBound();
 	}
-	
-	private void bind(Pane pane){
+
+	private void bind(Pane pane) {
 		pane.minWidthProperty().bind(widthProperty());
 		pane.maxWidthProperty().bind(widthProperty());
 		pane.prefWidthProperty().bind(widthProperty());

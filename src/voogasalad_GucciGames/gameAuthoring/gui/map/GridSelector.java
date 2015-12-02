@@ -47,7 +47,7 @@ class GridSelector {
 	// Define handling of mouse events
 
 	private void dragStart(MouseEvent e) {
-		if(e.isControlDown()){
+		if (e.isControlDown()) {
 			myGrid.startFullDrag();
 			_area.setVisible(true);
 			_area.toFront();
@@ -115,13 +115,12 @@ class GridSelector {
 	}
 
 	private void selectFinalize(Point2D start, Point2D end) {
-		getSelectedCells(start, end).stream().map(p -> myGrid.getCell(p)).filter(cell -> cell != null)
-				.forEach(cell -> {
-					if (cell.isSelected())
-						cell.deselect();
-					else
-						cell.select();
-				});
+		getSelectedCells(start, end).stream().map(p -> myGrid.getCell(p)).filter(cell -> cell != null).forEach(cell -> {
+			if (cell.isSelected())
+				cell.deselect();
+			else
+				cell.select();
+		});
 	}
 
 }

@@ -5,9 +5,9 @@ import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 
 class CellTopPane extends Pane {
-	
+
 	private Rectangle myBoundBox;
-	
+
 	CellTopPane() {
 		myBoundBox = new Rectangle();
 		myBoundBox.widthProperty().bind(widthProperty());
@@ -20,11 +20,10 @@ class CellTopPane extends Pane {
 		getChildren().add(myBoundBox);
 	}
 
-	
 	public void addBound() {
 		myBoundBox.setVisible(true);
 	}
-	
+
 	public void removeBound() {
 		myBoundBox.setVisible(false);
 	}

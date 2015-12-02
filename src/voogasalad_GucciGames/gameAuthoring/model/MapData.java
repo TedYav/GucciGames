@@ -5,17 +5,17 @@ import java.util.List;
 import voogasalad_GucciGames.gameEngine.mapObject.MapObject;
 
 public class MapData {
-	private List<MapObject> onMap;
+	private List<DisplayMapObject> onMap;
 
 	
-	public void addToMap(MapObject obj) {
+	public void addToMap(DisplayMapObject obj) {
 		onMap.add(obj);
 	}
 	
 	public void clearMap() {
 		onMap.clear();
 	}
-	public List<MapObject> getMapObjects(){
+	public List<DisplayMapObject> getMapObjects(){
 		return onMap;
 	}
 

@@ -8,11 +8,11 @@ import javafx.beans.property.SimpleIntegerProperty;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.GridPane;
 import voogasalad_GucciGames.gameAuthoring.IGuiGaeController;
-import voogasalad_GucciGames.gameEngine.mapObject.MapObject;
+import voogasalad_GucciGames.gameAuthoring.model.DisplayMapObject;
 
 public class MapObjectContainer extends GridPane {
 	
-	private final Map<MapObject,ImageView> myObjects = new HashMap<>();
+	private final Map<DisplayMapObject,ImageView> myObjects = new HashMap<>();
 	private final IGuiGaeController myController;
 	private final IntegerProperty mySize = new SimpleIntegerProperty(1);
 	
@@ -22,16 +22,16 @@ public class MapObjectContainer extends GridPane {
 	}
 	
 
-	public boolean add(MapObject object){
-		ImageView view = new ImageView(myController.requestImage(object.getImageURI()));
+	public void add(DisplayMapObject object){
+		ImageView view = myController.getMapObjectImage(object);
 		myObjects.put(object, view);
 		fit(view);
-		add(view, myObjects.size() % mySize.intValue(), myObjects.size() / mySize.intValue());
+		int idx = myObjects.size() - 1;
+		add(view, idx % mySize.intValue(), idx / mySize.intValue());
 		mySize.set((int)Math.ceil(Math.sqrt(myObjects.size())));
-		return true;
 	}
 	
-	public boolean remove(MapObject object){
+	public boolean remove(DisplayMapObject object){
 		ImageView view = myObjects.remove(object);
 		if(view!=null){
 			view.fitWidthProperty().unbind();
@@ -59,7 +59,7 @@ public class MapObjectContainer extends GridPane {
 	private void redraw(int size) {
 		getChildren().clear();
 		int idx = 0;
-		for(MapObject k:myObjects.keySet()){
+		for(DisplayMapObject k:myObjects.keySet()){
 			add(myObjects.get(k), idx % size, idx / size);
 			idx++;
 		}
