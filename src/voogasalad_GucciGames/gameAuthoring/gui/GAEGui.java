@@ -19,12 +19,12 @@ public class GAEGui extends BorderPane {
 
 	private AGuiGaeController myController;
 	private GuiMap myMap;
-	//private ISaveCustomObj saveCustomObj;
+	// private ISaveCustomObj saveCustomObj;
 
 	public GAEGui(AGuiGaeController controller, Stage stage) {
 		myController = controller;
 		stage.setScene(new Scene(this));
-		
+
 		Rectangle2D screenBounds = Screen.getPrimary().getVisualBounds();
 		stage.setWidth(screenBounds.getWidth());
 		stage.setHeight(screenBounds.getHeight());
@@ -32,9 +32,9 @@ public class GAEGui extends BorderPane {
 		initializeMap(5, 5);
 		stage.show();
 	}
-	
-	private void initLayout(Stage stage){
-		
+
+	private void initLayout(Stage stage) {
+
 		// Add Menu Bar
 		try {
 			GAEMenuBar menuBar = new GAEMenuBar(myController);
@@ -46,16 +46,16 @@ public class GAEGui extends BorderPane {
 		// Add Status Bar
 		StatusBar statusBar = new StatusBar(myController);
 		setBottom(statusBar);
-		
+
 		// Add Side Bar
 		TabPane sideBar = (new SideBar(myController)).getPane();
 		sideBar.maxWidthProperty().bind(widthProperty().divide(4));
 		sideBar.minWidthProperty().bind(widthProperty().divide(4));
 		setRight(sideBar);
-		
+
 		// Add Map
 		myMap = new GuiMap(myController);
-		myMap.setOnMouseMoved(e->statusBar.update(e));
+		myMap.setOnMouseMoved(e -> statusBar.update(e));
 		setCenter(myMap);
 		myMap.setBackground(new Image("http://www.narniaweb.com/wp-content/uploads/2009/08/NarniaMap.jpg"));
 	}
@@ -63,10 +63,6 @@ public class GAEGui extends BorderPane {
 	public void initializeMap(int width, int height) {
 		myMap.initGrid(width, height);
 	}
-
-	/**
-	 * Mock methods for use case purposes, can delete if obsolete.
-	 */
 
 	/**
 	 * 
@@ -81,6 +77,5 @@ public class GAEGui extends BorderPane {
 	public AGuiGaeController getController() {
 		return myController;
 	}
-	
-	
+
 }

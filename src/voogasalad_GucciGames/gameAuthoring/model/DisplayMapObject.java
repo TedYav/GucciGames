@@ -17,8 +17,12 @@ public class DisplayMapObject {
 		
 	
 	}
+	
+	public MapObjectType getType(){
+		return myType;
+	}
 
-	public int getPlayerID() {
+	public int getOwnerID() {
 		return myOwnerID;
 	}
 	

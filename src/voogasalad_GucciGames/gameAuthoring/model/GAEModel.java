@@ -44,7 +44,7 @@ public class GAEModel implements IGAEModel{
 
     @Override
     public void deleteComponent (DisplayMapObject mapObj) {
-        int owner = mapObj.getPlayerID();
+        int owner = mapObj.getOwnerID();
         mapOfPlayers.get(owner).getMapObjects().remove(mapObj);
     }
     

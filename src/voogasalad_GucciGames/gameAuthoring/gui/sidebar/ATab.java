@@ -29,13 +29,14 @@ public abstract class ATab extends Tab {
 	private static final int WIDTH = 4;
 	protected final Pane myPane = new Pane();
 	protected final GridPane myGridPane = new GridPane();
+	protected final AGuiGaeController myController;
 	protected ObservableList<MapObjectType> myTypeList;
-	protected TwoWayMap<MapObjectType, ImageView> myMap = new TwoWayMap<>();
+	protected final TwoWayMap<MapObjectType, ImageView> myMap = new TwoWayMap<>();
 	protected List<ImageView> myImageViews = new ArrayList<>();
 	protected Button myAddButton = new Button("Add Custom");
 	protected ContextMenu myContextMenu;
-	protected AGuiGaeController myController;
-	private SideBar mySideBar;
+	
+	private final SideBar mySideBar;
 	private Rectangle myBoundBox;
 	private ImageView myTrace;
 
