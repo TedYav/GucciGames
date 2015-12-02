@@ -1,4 +1,4 @@
-package voogasalad_GucciGames.gameAuthoring.gui.gaedialog.dialogcomponents;
+package voogasalad_GucciGames.gameAuthoring.gui.gaedialog.dialogcomponents.listelements;
 
 import java.util.ArrayList;
 import java.util.HashSet;
@@ -19,9 +19,13 @@ abstract class ListView extends VBox implements IListView{
 	
 	public abstract void addListElement(String name);
 	
+	public abstract void addListItem(ListItem item);
+	
 	public abstract void removeListItem(ListItem item);
 	
 	public abstract List<ListItem> getAllListItems();
+	
+	public abstract Set<String> getAllListItemsName();
 	
 	protected abstract void redraw();
 	

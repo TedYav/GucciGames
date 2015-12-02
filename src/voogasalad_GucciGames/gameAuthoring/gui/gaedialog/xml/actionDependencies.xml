@@ -1,0 +1,13 @@
+<action>
+	<name>attack</name>
+	<displayName>Attack Action</displayName>
+	<rules>numAttacksPerTurn</rules>
+	<characteristics>attackRange, attackDamage, numAttacksPerTurn</characteristics>
+</action>
+
+<action>
+	<name>move</name>
+	<displayName>Move Action</displayName>
+	<rules>numMovesPerTurn</rules>
+	<characteristics>movementRange</characteristics>
+</action>
