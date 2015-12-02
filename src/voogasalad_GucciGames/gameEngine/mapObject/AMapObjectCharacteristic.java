@@ -7,13 +7,5 @@ import voogasalad_GucciGames.gameEngine.defaultCharacteristics.CharacteristicPar
 import voogasalad_GucciGames.gameEngine.gameConditions.ConditionParams;
 
 public abstract class AMapObjectCharacteristic {
-	
-	protected CharacteristicParams myCharParams;
 
-	public void set(List<Integer> values) {
-		// TODO Auto-generated method stub
-		
-	};
-	
-	public abstract String toString();
 }
