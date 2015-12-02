@@ -1,8 +1,5 @@
-package voogasalad_GucciGames.gameAuthoring.gui.gaedialog.mapobjectsettings;
+package voogasalad_GucciGames.gameAuthoring.gui.gaedialog.dialogcomponents;
 import java.io.IOException;
-
-import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.dialogcomponents.RulesAndCharVBox;
-
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -16,7 +13,6 @@ import org.xml.sax.SAXException;
 import javax.xml.parsers.ParserConfigurationException;
 
 import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.DialogElements;
-import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.dialogcomponents.DropDownMenuField;
 import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.dialogcomponents.listelements.MainListView;
 import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.maindialogs.ISwitchSettingsPane;
 import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.mapobjectsettings.xml.ActionSAXHandler;
