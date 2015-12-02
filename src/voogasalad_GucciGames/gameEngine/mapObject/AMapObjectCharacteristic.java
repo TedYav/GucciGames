@@ -10,6 +10,7 @@ public abstract class AMapObjectCharacteristic {
 	
 	protected CharacteristicParams myCharParams;
 	
+	//this has to disappear, I have no idea why this is here
 	public AMapObjectCharacteristic(CharacteristicParams charParams){
 		myCharParams = charParams;
 	}

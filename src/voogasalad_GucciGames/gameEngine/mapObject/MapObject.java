@@ -87,7 +87,7 @@ public class MapObject implements PlayerMapObjectInterface{
 	}
 
 	public boolean isTile(){
-		return myCharacteristics.containsKey("TileCharacteristic") || this.getName().equals("TileCharacteristic");
+		return myCharacteristics.containsKey("TileCharacteristic");
 	}
 
 	@Override
