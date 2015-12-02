@@ -9,10 +9,6 @@ import voogasalad_GucciGames.gameEngine.gameConditions.ConditionParams;
 public abstract class AMapObjectCharacteristic {
 	
 	protected CharacteristicParams myCharParams;
-	
-	public AMapObjectCharacteristic(CharacteristicParams charParams){
-		myCharParams = charParams;
-	}
 
 	public void set(List<Integer> values) {
 		// TODO Auto-generated method stub

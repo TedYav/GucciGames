@@ -11,18 +11,19 @@ public class AttackCharacteristic extends AMapObjectCharacteristic{
 	private int currentNumberOfAttacks = 0;
 	
 	
-	public AttackCharacteristic(CharacteristicParams charParams){
-		super(charParams);
+	public AttackCharacteristic(){
+		CharacteristicParams charParams = new CharacteristicParams();
 		myRange = charParams.getMyRange();
 		myDamage = charParams.getMyDamage();
 		maxNumberOfAttacks = charParams.getMyMaxNumberOf();
 	}
 	
 	public AttackCharacteristic(double range, double damage, int maxNum){
-		super(null);
+		CharacteristicParams cp = new CharacteristicParams(null, range, damage, maxNum, false);
 		myRange = range;
 		myDamage = damage;
 		maxNumberOfAttacks = maxNum;
+		
 	}
 	
 	public double getRange() {

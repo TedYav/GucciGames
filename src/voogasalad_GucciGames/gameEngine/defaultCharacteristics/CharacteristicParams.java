@@ -14,6 +14,11 @@ public class CharacteristicParams {
 	private int myMaxNumberOf;
 	private boolean myIsAbleTo;
 	
+	//should arbitrary number of params be able to be entered?
+	
+	public CharacteristicParams(){
+		
+	}
 
 	public CharacteristicParams (String characteristicName, double range, double damage, int maxNumber, boolean can){
 		this.myName = characteristicName;

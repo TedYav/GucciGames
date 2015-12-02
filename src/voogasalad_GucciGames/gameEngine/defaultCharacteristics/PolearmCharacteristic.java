@@ -4,8 +4,8 @@ import voogasalad_GucciGames.gameEngine.mapObject.AMapObjectCharacteristic;
 
 public class PolearmCharacteristic extends AMapObjectCharacteristic{
 
-	public PolearmCharacteristic(CharacteristicParams charParams) {
-		super(charParams);
+	public PolearmCharacteristic() {
+		CharacteristicParams charParams = new CharacteristicParams();
 		// TODO Auto-generated constructor stub
 	}
 

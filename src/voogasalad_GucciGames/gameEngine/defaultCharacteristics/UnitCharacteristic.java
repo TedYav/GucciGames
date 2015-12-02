@@ -4,8 +4,8 @@ import voogasalad_GucciGames.gameEngine.mapObject.AMapObjectCharacteristic;
 
 public class UnitCharacteristic extends AMapObjectCharacteristic{
 
-	public UnitCharacteristic(CharacteristicParams charParams) {
-		super(charParams);
+	public UnitCharacteristic() {
+		CharacteristicParams charParams = new CharacteristicParams();
 		// TODO Auto-generated constructor stub
 	}
 
