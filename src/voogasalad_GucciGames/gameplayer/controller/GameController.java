@@ -21,17 +21,20 @@ import voogasalad_GucciGames.gameEngine.CommunicationParams.GridCoordinateParame
 import voogasalad_GucciGames.gameEngine.targetCoordinate.ATargetCoordinate;
 import voogasalad_GucciGames.gameEngine.targetCoordinate.TargetCoordinateSingle;
 import voogasalad_GucciGames.gameplayer.controller.dummy.ADummy;
+import voogasalad_GucciGames.gameplayer.gameloader.GameControllerLoader;
+import voogasalad_GucciGames.gameplayer.windows.GameSceneManager;
 import voogasalad_GucciGames.gameplayer.windows.mainwindow.map.MapInterface;
 import voogasalad_GucciGames.gameplayer.windows.mainwindow.map.cell.MapCell;
 import voogasalad_GucciGames.gameplayer.windows.mainwindow.map.cell.contents.CellUnit;
 import voogasalad_GucciGames.gameplayer.windows.mainwindow.scenes.GameSceneInterface;
 
-public class GameController implements GameControllerInterface {
+public class GameController implements GameControllerInterface, GameControllerLoader {
 
+	private GameSceneManager myManager;
+	
 	private GameEngineToGamePlayerInterface myEngine;
 	private MapInterface myMap;
 	private ImageDatabase myImageDatabase;
-	private GameSceneInterface myScene;
 	private PlayerMapObjectInterface myTargetUnit;
 	private GameInfo myGame;
 	
@@ -41,13 +44,17 @@ public class GameController implements GameControllerInterface {
 	private List<Observer> activeMOObservers;
 	private List<TargetCoordinateSingle> possibleMoves;
 
-	public GameController(GameInfo game){
-	    myGame=game;
-		myEngine = game.getEngine();
+	public GameController(GameSceneManager manager){
+		myManager = manager;
 		myImageDatabase = new ImageDatabase();
 		myActionInProgress = "";
 		activeMOObservers=new ArrayList<Observer>();
 		possibleMoves = new ArrayList<TargetCoordinateSingle>();
+	}
+	
+	public void loadGame(GameInfo game){
+		myGame=game;
+		myEngine = game.getEngine();
 	}
 	
 	@Override
@@ -146,7 +153,7 @@ public class GameController implements GameControllerInterface {
 	public void endTurn() {
 		// TODO Auto-generated method stub
 	    myEngine.endTurn();
-	           myScene.update();
+	           myManager.refresh();
 	}
 
 	@Override
@@ -163,11 +170,6 @@ public class GameController implements GameControllerInterface {
 //	public <T extends Event> void addEventFilter(EventType<T> eventType, EventHandler<T> eventHandler) {
 //		myScene.addEventFilter(eventType, eventHandler);
 //	}
-
-	@Override
-	public void setScene(GameSceneInterface scene) {
-		myScene = scene;
-	}
 
     @Override
     public void setActiveMapObject (PlayerMapObjectInterface mapObj) {

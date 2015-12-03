@@ -8,7 +8,6 @@ import javafx.collections.ListChangeListener;
 import voogasalad_GucciGames.gameEngine.PlayerMapObjectInterface;
 import voogasalad_GucciGames.gameplayer.controller.GameControllerInterface;
 import voogasalad_GucciGames.gameplayer.windows.GameScene;
-import voogasalad_GucciGames.gameplayer.windows.WindowComponent;
 
 public abstract class WindowSideComponent extends WindowComponent implements Observer{
     private List<DisplayComponent> myComponents;
@@ -16,7 +15,7 @@ public abstract class WindowSideComponent extends WindowComponent implements Obs
     
     public WindowSideComponent(GameScene scene, GameControllerInterface controller, List<DisplayComponent> components){
         super(scene,controller);
-        getMyController().addActiveMOObserver(this);
+        getController().addActiveMOObserver(this);
         setMyComponents(components);
     }
     
