@@ -17,7 +17,6 @@ import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.dialogcomponents.listel
 import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.maindialogs.ISwitchSettingsPane;
 import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.mapobjectsettings.xml.ActionSAXHandler;
 import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.paramObjects.ActionParams;
-import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.xml.SAXHandler;
 import javafx.scene.control.Button;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.layout.VBox;
