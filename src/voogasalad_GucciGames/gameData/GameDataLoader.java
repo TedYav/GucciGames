@@ -35,4 +35,9 @@ public class GameDataLoader implements GameDataInterface {
 		return myXStream.loadGameInfo(path);
 	}
 
+	@Override
+	public GameInfo loadDefault() {
+		return myXStream.loadGameByName(myGameList.listGames().get(0));
+	}
+
 }

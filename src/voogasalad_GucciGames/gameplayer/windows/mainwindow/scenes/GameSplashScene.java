@@ -7,6 +7,7 @@ import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import javafx.util.Duration;
+import voogasalad_GucciGames.gameData.GameDataException;
 import voogasalad_GucciGames.gameplayer.gameloader.GameLoader;
 import voogasalad_GucciGames.gameplayer.windows.GameScene;
 import voogasalad_GucciGames.gameplayer.windows.GameSceneManager;
@@ -32,6 +33,11 @@ public class GameSplashScene extends GameScene {
 		myScene = new Scene(splash.getParent());
 		myScene.addEventHandler(KeyEvent.KEY_PRESSED, (e)->myManager.sceneFinished());
 		loadScene(myScene);
+		try {
+			myManager.getLoader().loadSelectedGame();
+		} catch (GameDataException e1) {
+			myManager.getLoader().loadDefault();
+		}
 	}
 
     @Override
