@@ -1,17 +1,14 @@
 .menutitle{
-	-fx-font-family: PixelGameFont;
 	-fx-font-size: 72px;
 	-fx-fill: #222222;
 }
 
 .menutext{
-	-fx-font-family: PixelGameFont;
 	-fx-font-size: 48px;
 	-fx-fill: #222222;
 }
 
 .menutext-nohover{
-	-fx-font-family: PixelGameFont;
 	-fx-font-size: 48px;
 	-fx-fill: #222222;
 }
@@ -25,6 +22,26 @@
 -fx-node-hpos: center;	 
 -fx-spacing: 5;	 
 -fx-vpos: center;
+}
+
+.gametext{
+	-fx-font-family: PixelGameFont;
+}
+
+.guccitext{
+	-fx-font-family: GoldenBookOSF;
+}
+
+.splashtext-small{
+	-fx-font-size: 72px;
+}
+
+.whitetext{
+	-fx-fill: #ffffff;
+}
+
+.splashtext-large{
+	-fx-font-size: 350px;
 }
 
 .title{

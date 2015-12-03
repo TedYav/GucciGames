@@ -28,7 +28,7 @@ public class InitialScene extends GameScene {
 
 	@Override
 	public void load() {
-		SplashScreen splash = new SplashScreen(this, null, myConfig.getBaseBundleName());
+		SplashScreen splash = new SplashScreen(this, getManager().getController(), myConfig.getBaseBundleName());
 		myScene = new Scene(splash.getParent());
 		myScene.addEventHandler(KeyEvent.KEY_PRESSED, (e)->myManager.sceneFinished());
 		loadScene(myScene);

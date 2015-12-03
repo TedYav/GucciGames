@@ -2,11 +2,8 @@ package voogasalad_GucciGames.gameEngine;
 
 import java.util.List;
 
-import javafx.collections.ListChangeListener;
-import javafx.collections.MapChangeListener;
-import javafx.collections.ObservableList;
-import voogasalad_GucciGames.gameEngine.CommunicationParams.ActionToGamePlayerParameters;
-import voogasalad_GucciGames.gameEngine.CommunicationParams.GridCoordinateParameters;
+import voogasalad_GucciGames.gameEngine.CommunicationParameters.ChangedParameters;
+import voogasalad_GucciGames.gameEngine.CommunicationParameters.GridCoordinateParameters;
 import voogasalad_GucciGames.gameEngine.targetCoordinate.ATargetCoordinate;
 import voogasalad_GucciGames.gameplayer.controller.GameParametersInterface;
 
@@ -59,7 +56,7 @@ public interface GameEngineToGamePlayerInterface {
 	 */
 	public GridCoordinateParameters getPossibleCoordinates(String action, PlayerMapObjectInterface mapObject);
 
-	public ActionToGamePlayerParameters performAction(String action, PlayerMapObjectInterface mapObject,
+	public ChangedParameters performAction(String action, PlayerMapObjectInterface mapObject,
 			ATargetCoordinate target);
 
 	public int getMapWidth();

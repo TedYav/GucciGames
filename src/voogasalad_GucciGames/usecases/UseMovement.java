@@ -2,10 +2,12 @@ package voogasalad_GucciGames.usecases;
 
 import java.util.List;
 
+import voogasalad_GucciGames.gameEngine.CommunicationParameters.BasicParameters;
+import voogasalad_GucciGames.gameEngine.CommunicationParameters.ChangedParameters;
+import voogasalad_GucciGames.gameEngine.CommunicationParameters.CommunicationParameters;
+import voogasalad_GucciGames.gameEngine.CommunicationParameters.GridCoordinateParameters;
+import voogasalad_GucciGames.gameEngine.CommunicationParameters.LocationParameters;
 import voogasalad_GucciGames.gameEngine.mapObject.MapObject;
-import voogasalad_GucciGames.gameEngine.CommunicationParams.BasicParameters;
-import voogasalad_GucciGames.gameEngine.CommunicationParams.CommunicationParameters;
-import voogasalad_GucciGames.gameEngine.CommunicationParams.LocationParameters;
 import voogasalad_GucciGames.gameEngine.mapObject.TheMap;
 import voogasalad_GucciGames.gameEngine.objectActions.MapObjectEvent;
 import voogasalad_GucciGames.gameEngine.targetCoordinate.ATargetCoordinate;
@@ -32,13 +34,13 @@ public class UseMovement extends MapObjectEvent{
 	*/
 
 	@Override
-	protected CommunicationParameters executeAction(LocationParameters params) {
+	protected ChangedParameters executeAction(LocationParameters params) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	protected CommunicationParameters executeRequest(BasicParameters params) {
+	protected GridCoordinateParameters executeRequest(BasicParameters params) {
 		// TODO Auto-generated method stub
 		return null;
 	}

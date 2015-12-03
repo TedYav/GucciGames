@@ -7,11 +7,11 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import voogasalad_GucciGames.gameEngine.CommunicationParams.ActionToGamePlayerParameters;
-import voogasalad_GucciGames.gameEngine.CommunicationParams.BasicParameters;
-import voogasalad_GucciGames.gameEngine.CommunicationParams.GameParameters;
-import voogasalad_GucciGames.gameEngine.CommunicationParams.GameResult;
-import voogasalad_GucciGames.gameEngine.CommunicationParams.GridCoordinateParameters;
+import voogasalad_GucciGames.gameEngine.CommunicationParameters.ChangedParameters;
+import voogasalad_GucciGames.gameEngine.CommunicationParameters.BasicParameters;
+import voogasalad_GucciGames.gameEngine.CommunicationParameters.GameParameters;
+import voogasalad_GucciGames.gameEngine.CommunicationParameters.GameResult;
+import voogasalad_GucciGames.gameEngine.CommunicationParameters.GridCoordinateParameters;
 import voogasalad_GucciGames.gameEngine.gameConditions.ConditionHandler;
 import voogasalad_GucciGames.gameEngine.gameConditions.ConditionParams;
 import voogasalad_GucciGames.gameEngine.gameConditions.Conditions;
@@ -145,7 +145,7 @@ public class MainGameEngine implements GameEngineToGamePlayerInterface {
 	}
 	
 	@Override
-	public ActionToGamePlayerParameters performAction(String action, PlayerMapObjectInterface mapObject,
+	public ChangedParameters performAction(String action, PlayerMapObjectInterface mapObject,
 			ATargetCoordinate target) {
 		// TODO Auto-generated method stub
 		if(((MapObject) mapObject).getPlayerID() == myTurnDecider.getActivePlayer().getMyPlayerId()){
@@ -158,7 +158,7 @@ public class MainGameEngine implements GameEngineToGamePlayerInterface {
 			 */
 		}
 		else{
-			return new ActionToGamePlayerParameters();
+			return new ChangedParameters();
 		}
 
 	}
