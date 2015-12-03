@@ -63,6 +63,15 @@ public class CustomGPlayerDialog extends GaeDialog{
 
     protected void setSaveAction(){
         saveButton.setOnAction(e -> {
+            for (List<CheckBoxField> cb: checkBoxFields) {
+                for (CheckBoxField cbf: cb) {
+                    if (cbf.getCheckBox().isSelected()) {
+                        if (!allCheckedBoxes.get(Integer.parseInt((String) cbf.getUserData())).contains(cbf.getPropKey())) {
+                            allCheckedBoxes.get(Integer.parseInt((String) cbf.getUserData())).add(cbf.getPropKey());
+                        }
+                    }
+                }
+            }
             System.out.println(allCheckedBoxes);
             guiGaeController.setCustomGamePlayerLeftComponents(allCheckedBoxes.get(0));
             guiGaeController.setCustomGamePlayerBottomComponents(allCheckedBoxes.get(1));
@@ -99,7 +108,7 @@ public class CustomGPlayerDialog extends GaeDialog{
         for (numBars=0;numBars<maxBars;numBars++) {
             loadCheckBoxState(numBars,checkBoxFields.get(numBars));
         }
-        setCheckBoxListeners();
+        //setCheckBoxListeners();
         content.getChildren().forEach(hbox->hbox.setId("hbox-element"));		
         titleElement.setId("title");
         content.setId("vbox-element");	
@@ -141,22 +150,22 @@ public class CustomGPlayerDialog extends GaeDialog{
         super.showDialog(gameSettingDialog);
     }
 
-    private void setCheckBoxListeners(){
-        for (numBars=0; numBars<maxBars; numBars++){
-            for(int i=0; i<checkBoxFields.get(numBars).size(); i++){
-                CheckBoxField currCheckBoxField = checkBoxFields.get(numBars).get(i);
-                currCheckBoxField.getCheckBox().selectedProperty().addListener((new ChangeListener<Boolean>() {
-                    public void changed(ObservableValue<? extends Boolean> ov,
-                                        Boolean old_val, Boolean new_val) {
-                        if(new_val){
-                            allCheckedBoxes.get(Integer.parseInt((String) currCheckBoxField.getUserData())).add(currCheckBoxField.getPropKey());
-                        }else{
-                            allCheckedBoxes.get(Integer.parseInt((String) currCheckBoxField.getUserData())).remove(currCheckBoxField.getPropKey());
-                        }
-                    }
-                }));
-            }
-        }
-    }
+//    private void setCheckBoxListeners(){
+//        for (numBars=0; numBars<maxBars; numBars++){
+//            for(int i=0; i<checkBoxFields.get(numBars).size(); i++){
+//                CheckBoxField currCheckBoxField = checkBoxFields.get(numBars).get(i);
+//                currCheckBoxField.getCheckBox().selectedProperty().addListener((new ChangeListener<Boolean>() {
+//                    public void changed(ObservableValue<? extends Boolean> ov,
+//                                        Boolean old_val, Boolean new_val) {
+//                        if(new_val){
+//                            allCheckedBoxes.get(Integer.parseInt((String) currCheckBoxField.getUserData())).add(currCheckBoxField.getPropKey());
+//                        }else{
+//                            allCheckedBoxes.get(Integer.parseInt((String) currCheckBoxField.getUserData())).remove(currCheckBoxField.getPropKey());
+//                        }
+//                    }
+//                }));
+//            }
+//        }
+//    }
 
 }
