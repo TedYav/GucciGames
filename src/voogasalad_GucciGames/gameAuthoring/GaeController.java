@@ -1,6 +1,7 @@
 package voogasalad_GucciGames.gameAuthoring;
 
 import java.io.File;
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
@@ -37,6 +38,7 @@ public class GaeController extends AGuiGaeController implements IModelGaeControl
 	private int defaultOwnerID = -1;
 	private Map<Integer, String> allPlayers = new HashMap<Integer, String>();
 	private ImageDatabase myImageDatabase = new ImageDatabase();
+	private ArrayList<String> customGamePlayerComponents = new ArrayList<String>();
 
 	public GaeController(Stage stage) {
 		myStage = stage;
@@ -249,6 +251,16 @@ public class GaeController extends AGuiGaeController implements IModelGaeControl
 	@Override
 	public ImageView getMapObjectImage(DisplayMapObject object) {
 		return getMapObjectImage(object.getType());
+	}
+
+	@Override
+	public ArrayList<String> getCustomGamePlayerComponents() {
+		return customGamePlayerComponents;
+	}
+
+	@Override
+	public void setCustomGamePlayerComponents(ArrayList<String> allComponents) {
+		customGamePlayerComponents = allComponents;		
 	}
 
 }

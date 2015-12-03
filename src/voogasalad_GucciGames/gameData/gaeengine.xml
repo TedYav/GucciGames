@@ -1,4 +1,4 @@
-xˆ½zâ5ZRHqbe|92[´.dì)#ÇrèKü²®(Ù<voogasalad__GucciGames.gameData.GameInfo>
+ã˜V>ÿVîÜúZXƒæÜž°¼g´×^P®®E«0<voogasalad__GucciGames.gameData.GameInfo>
   <myEngine>
     <myGamePlayers>
       <myMapOfPlayers>
@@ -6,26 +6,7 @@ xˆ½zâ5ZRHqbe|92[´.dì)#ÇrèKü²®(Ù<voogasalad__GucciGames.gameData.GameInfo>
           <int>-1</int>
           <voogasalad__GucciGames.gameEngine.gamePlayer.GamePlayerPerson>
             <myPlayerId>-1</myPlayerId>
-            <myMapObjects>
-              <voogasalad__GucciGames.gameEngine.mapObject.MapObject>
-                <myCoordinate class="voogasalad_GucciGames.gameEngine.targetCoordinate.TargetCoordinateSingle">
-                  <myCenterX>0.0</myCenterX>
-                  <myCenterY>5.0</myCenterY>
-                </myCoordinate>
-                <myOwnerID>-1</myOwnerID>
-                <myLayer>0</myLayer>
-                <myName>AllTiles</myName>
-                <myImagePath>player/images/allTiles.jpg</myImagePath>
-                <myCharacteristics class="tree-map"/>
-                <myEventHandler>
-                  <myEvents class="tree-map"/>
-                </myEventHandler>
-                <myWidth>100.0</myWidth>
-                <myHeight>100.0</myHeight>
-                <myX>0.0</myX>
-                <myY>0.0</myY>
-              </voogasalad__GucciGames.gameEngine.mapObject.MapObject>
-            </myMapObjects>
+            <myMapObjects/>
             <myStatus>DRAW</myStatus>
           </voogasalad__GucciGames.gameEngine.gamePlayer.GamePlayerPerson>
         </entry>
@@ -88,6 +69,7 @@ xˆ½zâ5ZRHqbe|92[´.dì)#ÇrèKü²®(Ù<voogasalad__GucciGames.gameData.GameInfo>
       </map>
     </myConditionHandler>
     <mapDimensions>0</mapDimensions>
+    <myName>Game 2560</myName>
   </myEngine>
   <myRightComponents>
     <string>voogasalad_GucciGames.gameplayer.windows.mainwindow.components.bar.ActionDisplay</string>
