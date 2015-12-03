@@ -118,7 +118,6 @@ public class MainMap extends WindowComponent implements MapInterface {
 	//TODO: add loading bar
 	
 	private void drawMap(List<PlayerMapObjectInterface> initialState){
-		System.out.println(initialState);
 		initialState.stream()
 			.forEach(o->addToMap(o));
         //myParent.getStyleClass().add(myConfig.getString("MainCSSClass"));

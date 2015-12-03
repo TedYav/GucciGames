@@ -8,6 +8,7 @@ import voogasalad.util.reflection.Reflection;
 import voogasalad_GucciGames.gameplayer.config.PlayerConfig;
 import voogasalad_GucciGames.gameplayer.controller.GameController;
 import voogasalad_GucciGames.gameplayer.gameloader.GameLoader;
+import voogasalad_GucciGames.helpers.FontManager;
 
 public class GameWindowManager {
 
@@ -15,9 +16,11 @@ public class GameWindowManager {
 	private ResourceBundle myConfig = PlayerConfig.load("WindowManager");
 		
 	private GameController myController;
+	private FontManager myFontManager;
 	
 	public GameWindowManager(){
 		myWindows = new ArrayList<>();
+		myFontManager = new FontManager();
 		myController = new GameController(this);
 		generateWindows();
 		initializeWindows();

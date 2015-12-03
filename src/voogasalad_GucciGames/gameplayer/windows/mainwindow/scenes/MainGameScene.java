@@ -53,7 +53,6 @@ public class MainGameScene extends GameScene {
     private GameMenuBar myMenuBar;
     private MainMap myMap;
 
-    private ResourceBundle myCssBundle = ResourceBundle.getBundle("voogasalad_GucciGames.gameplayer.config.scenes.CssClasses");
 	private TopBar myTopBar;
 
     public MainGameScene(GameSceneManager manager, GameWindowInterface window, String config) {
@@ -70,14 +69,13 @@ public class MainGameScene extends GameScene {
         initializePane();
         loadGameData();
         showGame();
-        myWindow.loadScene(myScene);
+        loadScene(myScene);
 
     }
 
     private void initializePane(){
         myPane = new BorderPane();
         myScene = new Scene(myPane);
-        myScene.getStylesheets().add(myCssBundle.getString("CssFile"));
     }
 
     private void showGame(){
