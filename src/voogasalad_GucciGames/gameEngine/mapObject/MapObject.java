@@ -211,8 +211,8 @@ public class MapObject implements PlayerMapObjectInterface{
 		this.myHeight = height;
 	}
 
-	public void setBasicParameters(BasicParameters basic){
-		this.myEventHandler = new MapObjectEventHandler(basic);
+	public void setMapObjectEventHandler(MapObjectEventHandler handler){
+		this.myEventHandler = handler;
 	}
 
 	@Override
