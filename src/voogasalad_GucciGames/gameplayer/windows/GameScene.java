@@ -17,6 +17,7 @@ public abstract class GameScene implements GameSceneInterface{
 	protected GameSceneManager myManager;
 	protected GameWindowInterface myWindow;
 	protected ResourceBundle myConfig;
+	protected ResourceBundle myCSS = PlayerConfig.load("scenes.CssClasses");
 	protected Scene myScene;
 	
 	public GameScene(GameSceneManager manager, GameWindowInterface window, String config){
@@ -34,8 +35,13 @@ public abstract class GameScene implements GameSceneInterface{
 	protected void loadScene(Scene scene){
 		myScene = scene;
 		myWindow.loadScene(myScene);
+		loadStyleSheets();
 	}
 
+	private void loadStyleSheets(){
+        myScene.getStylesheets().add(myCSS.getString("CssFile"));
+	}
+	
 	/**
 	 * Returns name of the scene.
 	 * @return

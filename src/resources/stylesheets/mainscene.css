@@ -1,4 +1,12 @@
+.menufont{
+	-fx-font-family: PixelGameFont;
+	-fx-font-size: 72px;
+}
 
+.menufont2{
+	-fx-font-family: Switch;
+	-fx-font-size: 300px;
+}
 
 .title{
 	-fx-font: bold 200pt "Arial";	

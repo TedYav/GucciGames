@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <classpath>
 	<classpathentry excluding="voogasalad_GucciGames/gameEngine/gameConditions/properties/|resources/gameConditions/" kind="src" path="src"/>
-	<classpathentry kind="src" path="resources"/>
+	<classpathentry excluding="fonts/" kind="src" path="resources"/>
 	<classpathentry kind="lib" path="lib/groovy-all-2.4.5-indy.jar"/>
 	<classpathentry kind="lib" path="lib/xstream-1.4.8.jar"/>
 	<classpathentry kind="lib" path="lib/commons-codec-1.10.jar"/>
