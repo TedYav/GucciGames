@@ -12,6 +12,7 @@ import voogasalad_GucciGames.gameplayer.gameloader.GameLoader;
 import voogasalad_GucciGames.gameplayer.windows.GameScene;
 import voogasalad_GucciGames.gameplayer.windows.GameSceneManager;
 import voogasalad_GucciGames.gameplayer.windows.GameWindow;
+import voogasalad_GucciGames.gameplayer.windows.mainwindow.components.LoaderComponent;
 import voogasalad_GucciGames.gameplayer.windows.mainwindow.components.SplashScreen;
 
 public class GameSplashScene extends GameScene {
@@ -30,8 +31,14 @@ public class GameSplashScene extends GameScene {
 		System.out.println("LOADED " + getName());
 		SplashScreen splash = new SplashScreen(this, getManager().getController(), myConfig.getBaseBundleName());
 		splash.setText(getManager().getController().getEngine().getGameName());
+		
+		LoaderComponent loader = new LoaderComponent(this, getManager().getController(), myConfig.getBaseBundleName());
+		splash.addChild(loader);
+		
 		myScene = new Scene(splash.getParent());
-		myScene.addEventHandler(KeyEvent.KEY_PRESSED, (e)->myManager.sceneFinished());
+		
+		loader.setDisplay("Loading Game Engine.");
+		
 		loadScene(myScene);
 		try {
 			myManager.getLoader().loadSelectedGame();
