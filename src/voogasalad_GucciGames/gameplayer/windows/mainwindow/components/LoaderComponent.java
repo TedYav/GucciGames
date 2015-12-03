@@ -33,6 +33,7 @@ public class LoaderComponent extends WindowComponent {
 		setParent(myPane);
 		myConfig = ResourceBundle.getBundle(config);
 		myText = new Text();
+		myPane.getChildren().addAll(myText);
 		myTimeline = new Timeline();
 		mySpeed = Double.parseDouble(myConfig.getString("LoaderSpeed"));
 		myText.getStyleClass().addAll(getStyleClasses(myConfig.getString("LoaderPrefix")));

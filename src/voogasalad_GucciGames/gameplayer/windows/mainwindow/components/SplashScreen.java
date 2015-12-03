@@ -116,6 +116,7 @@ public class SplashScreen extends WindowComponent {
 
 	public void addChild(WindowComponent component) {
 		myTextLayer.getChildren().add(component.getParent());
+		System.out.println("ADDING CHILD");
 		myTextLayer.setMaxHeight( myTextLayer.getMaxHeight() + component.getParent().getBoundsInLocal().getHeight() );
 	}
 
