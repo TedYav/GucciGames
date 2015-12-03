@@ -1,4 +1,4 @@
-package voogasalad_GucciGames.gameplayer.windows;
+package voogasalad_GucciGames.gameplayer.windows.mainwindow.components;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -9,33 +9,40 @@ import javafx.scene.Parent;
 import voogasalad_GucciGames.gameEngine.GameEngineToGamePlayerInterface;
 import voogasalad_GucciGames.gameEngine.PlayerMapObjectInterface;
 import voogasalad_GucciGames.gameplayer.controller.GameControllerInterface;
-import voogasalad_GucciGames.gameplayer.windows.mainwindow.components.DisplayComponent;
+import voogasalad_GucciGames.gameplayer.windows.GameScene;
 
 public abstract class WindowComponent{
 
     private GameScene myScene;
     private GameControllerInterface myController;
+    private Parent myParent; 
 
-    public WindowComponent(GameScene scene, GameControllerInterface controller){
-        setMyScene(scene);
-        setMyController(controller);
+	public WindowComponent(GameScene scene, GameControllerInterface controller){
+		setScene(scene);
+        setController(controller);
     }
+    
+    public Parent getParent() {
+		return myParent;
+	}
 
-    public abstract Parent getParent();
-
-    public GameScene getMyScene () {
+	public void setParent(Parent myParent) {
+		this.myParent = myParent;
+	}
+    
+    public GameScene getScene () {
         return myScene;
     }
 
-    public void setMyScene (GameScene myScene) {
+    public void setScene (GameScene myScene) {
         this.myScene = myScene;
     }
 
-    public GameControllerInterface getMyController () {
+    public GameControllerInterface getController () {
         return myController;
     }
 
-    public void setMyController (GameControllerInterface myController) {
+    public void setController (GameControllerInterface myController) {
         this.myController = myController;
     }
 
