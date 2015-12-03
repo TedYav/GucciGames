@@ -22,11 +22,14 @@ public interface IGAEModel {
     public ObservableList<MapObjectType> getImmutableUnitTypes();
     public ObservableList<MapObjectType> getImmutableStructureTypes();
 
+    public List<String> getLeftComponents();
+    public List<String> getRightComponents();
+    public List<String> getBottomComponents();
+    public void setLeftComponents(List<String> components);
+    public void setRightComponents(List<String> components);
+    public void setBottomComponents(List<String> components);
     
     public void saveToXML(File file);
-    
-    public void setMapWidth(double x);
-    public void setMapHeight(double y);
 	public void changeOwner(MapObject mapObject, int playerID);
 
     

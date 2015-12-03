@@ -4,12 +4,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 import voogasalad_GucciGames.gameEngine.PlayerMapObjectInterface;
-import voogasalad_GucciGames.gameEngine.CommunicationParams.ActionToGamePlayerParameters;
-import voogasalad_GucciGames.gameEngine.CommunicationParams.BasicParameters;
-import voogasalad_GucciGames.gameEngine.CommunicationParams.CommunicationParameters;
-import voogasalad_GucciGames.gameEngine.CommunicationParams.EmptyParameters;
-import voogasalad_GucciGames.gameEngine.CommunicationParams.GridCoordinateParameters;
-import voogasalad_GucciGames.gameEngine.CommunicationParams.LocationParameters;
+import voogasalad_GucciGames.gameEngine.CommunicationParameters.ChangedParameters;
+import voogasalad_GucciGames.gameEngine.CommunicationParameters.BasicParameters;
+import voogasalad_GucciGames.gameEngine.CommunicationParameters.CommunicationParameters;
+import voogasalad_GucciGames.gameEngine.CommunicationParameters.EmptyParameters;
+import voogasalad_GucciGames.gameEngine.CommunicationParameters.GridCoordinateParameters;
+import voogasalad_GucciGames.gameEngine.CommunicationParameters.LocationParameters;
 import voogasalad_GucciGames.gameEngine.defaultCharacteristics.AttackCharacteristic;
 import voogasalad_GucciGames.gameEngine.defaultCharacteristics.HealthCharacteristic;
 import voogasalad_GucciGames.gameEngine.gamePlayer.AllPlayers;
@@ -27,7 +27,7 @@ public class AttackEvent extends MapObjectEvent{
 	}
 
 	@Override
-	protected CommunicationParameters executeAction(LocationParameters params) {
+	protected ChangedParameters executeAction(LocationParameters params) {
 		// TODO Auto-generated method stub
 		System.out.println("Attack Action");
 		TargetCoordinateSingle target = params.getNewLocation();
@@ -42,7 +42,7 @@ public class AttackEvent extends MapObjectEvent{
 			ids.add(ids1.get(i));
 		}
 		
-		ActionToGamePlayerParameters parameters = new ActionToGamePlayerParameters();
+		ChangedParameters parameters = new ChangedParameters();
 		
 		for(Integer id: ids){
 			for(MapObject mo: params.getEngine().getPlayers().getPlayerById(id).getMapObjects()){
@@ -69,7 +69,7 @@ public class AttackEvent extends MapObjectEvent{
 	}
 
 	@Override
-	protected CommunicationParameters executeRequest(BasicParameters params) {
+	protected GridCoordinateParameters executeRequest(BasicParameters params) {
 		// TODO Auto-generated method stub
 		System.out.println("Attack Request");
 		AllPlayers players = params.getEngine().getPlayers();

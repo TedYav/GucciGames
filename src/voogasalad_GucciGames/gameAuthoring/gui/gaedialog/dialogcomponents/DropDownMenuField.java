@@ -1,5 +1,6 @@
 package voogasalad_GucciGames.gameAuthoring.gui.gaedialog.dialogcomponents;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Properties;
 
@@ -17,6 +18,8 @@ public class DropDownMenuField  extends DialogComponent{
 	private DialogElements dialogElements;
 	private String propKey;
 	private String itemsKey;
+	private Text label;
+	private List<String> propertiesList = new ArrayList<String>();
 	private ComboBox<String> dropDown = new ComboBox<String>();
 	private IListView listViewInterface;
 	
@@ -26,18 +29,28 @@ public class DropDownMenuField  extends DialogComponent{
 		this.dialogElements = dialogElements;
 		this.propKey = propKey;
 		this.itemsKey = itemsKey;
+		label = new Text(propKey);
+		propertiesList = parseStringToList(dialogElements.getDialogProperties(), itemsKey);
 		this.makeDropDownList();
 		
 	}
 	
+	public DropDownMenuField(List<String> items){
+		this.propertiesList = items;
+		makeDropDownList();
+		
+	}
+	
+	
+	
 	protected void makeDropDownList(){
-		Text label = new Text(propKey);
-		List<String> propertiesList = parseStringToList(dialogElements.getDialogProperties(), itemsKey);
+		
+		
 		ObservableList<String> options = FXCollections.observableArrayList(propertiesList);
 		dropDown.setItems(options);	
 		addListenerToDropDown();
 		this.getChildren().addAll(label, dropDown);
-		this.setId("hbox-element");
+		
 	}
 	
 	private void addListenerToDropDown(){

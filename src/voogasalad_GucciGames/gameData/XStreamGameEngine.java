@@ -3,33 +3,27 @@ package voogasalad_GucciGames.gameData;
 import java.io.File;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.ResourceBundle;
 
 import com.thoughtworks.xstream.XStream;
 import com.thoughtworks.xstream.io.xml.DomDriver;
 
 import voogasalad_GucciGames.gameEngine.GameEngineToGamePlayerInterface;
-import voogasalad_GucciGames.gameplayer.controller.GameDataInterface;
 
-public class XStreamGameEngine implements GameDataInterface{
+public class XStreamGameEngine {
 
     //@SuppressWarnings("resource")
 	// TODO: refactor constants to resource bundle
 
     XStream serializer = new XStream(new DomDriver());
     String currentTurn = "Current Turn: ";
-    private static final String GAMELOCATION = "./src/games/";
-    private static final String GAMELISTFILE = "gamelist.xml";
-    private static final String defaultEngineLocation = "./src/games/demo.xml";
     private static FileLoader myLoader = new FileLoader();
 
-    private Map<String, String> myGames;
+    private final ResourceBundle myConfig = ResourceBundle.getBundle("voogasalad_GucciGames.gameData.config.GameData");
     
     public XStreamGameEngine(){
-    	loadGames();
     }
     
-    //private static String defaultEngineLocation = "./src/voogasalad_GucciGames/gameData/engine.xml";
-
     public void saveGameInfo(GameInfo game, File file) {
         try {
             String gameXML = serializer.toXML(game);
@@ -39,14 +33,38 @@ public class XStreamGameEngine implements GameDataInterface{
             e.printStackTrace();
         }
     }
+    
+    /**
+     * Saves game in the specified file path. 
+     * @param game
+     * @param filePath
+     */
     public void saveGameInfo(GameInfo game, String filePath) {
         saveGameInfo(game, new File(filePath));
+    }
+    
+    /**
+     * Saves the GameInfo automatically based on the specified game's name.
+     * @param game
+     */
+    public void saveGameInfo(GameInfo game){
+    	saveGameInfo(game, new File(gameNameToFileName(game.getEngine().getGameName())));
+    }
+    
+    public String gameNameToFileName(String name){
+    	StringBuilder sanitizedName = new StringBuilder();
+    	sanitizedName.append(myConfig.getString("GameStorageLocation")).append(name.replaceAll("[^a-zA-Z0-9\\._]+", "_")).append(myConfig.getString("GameExtension"));
+    	return sanitizedName.toString();
     }
 
 //    public GameEngineToGamePlayerInterface loadEngine() {
 //        return loadEngine("");
 //    }
 
+    public GameInfo loadGameByName(String name){
+    	return loadGameInfo(new File(gameNameToFileName(name)));
+    }
+    
     public GameInfo loadGameInfo(String path) {
 //        if (path.isEmpty()) {
 //            path=defaultEngineLocation;
@@ -71,9 +89,4 @@ public class XStreamGameEngine implements GameDataInterface{
         return game;
     }
 
-    @Override
-    public void loadGames () {
-    	myGames = new HashMap<>();
-    	
-    }
 }

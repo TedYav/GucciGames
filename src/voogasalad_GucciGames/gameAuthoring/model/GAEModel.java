@@ -27,6 +27,9 @@ public class GAEModel implements IGAEModel{
     private AllPlayers players;
 	private MainGameEngine engine;
 	private List<DisplayMapObject> myMapObjects;
+        private List<String> leftComponents;
+        private List<String> rightComponents;
+        private List<String> bottomComponents;
     
     public GAEModel(IModelGaeController controller) {
     	myController = controller;
@@ -34,6 +37,9 @@ public class GAEModel implements IGAEModel{
     	mapData = new MapData();
     	mapOfPlayers = new HashMap<>();
     	myMapObjects = new ArrayList<>();
+        leftComponents = new ArrayList<String>();
+        rightComponents = new ArrayList<String>();
+        bottomComponents = new ArrayList<String>();
     	// Probs need to change this
 		mapOfPlayers.put(-1, new GamePlayerPerson(-1));
 		mapOfPlayers.put(0, new GamePlayerPerson(0));
@@ -102,8 +108,6 @@ public class GAEModel implements IGAEModel{
 		AllPlayers myPlayers = new AllPlayers(mapOfPlayers);
 		MainGameEngine engine = new MainGameEngine(myPlayers);
 		//TODO: saving GameInfo instead of MainGameEngine
-		List<String> leftComponents = new ArrayList<String>();
-	        List<String> rightComponents = new ArrayList<String>();
 	        if (leftComponents.size()==0 && rightComponents.size()==0) {
 	                leftComponents.add("voogasalad_GucciGames.gameplayer.windows.mainwindow.components.bar.DisplayMapObjectImage");
 	                leftComponents.add("voogasalad_GucciGames.gameplayer.windows.mainwindow.components.bar.DisplayMapObjectDetails");
@@ -112,7 +116,7 @@ public class GAEModel implements IGAEModel{
 	                rightComponents.add("voogasalad_GucciGames.gameplayer.windows.mainwindow.components.bar.GameStatsDisplay");
 	                rightComponents.add("voogasalad_GucciGames.gameplayer.windows.mainwindow.components.bar.EndTurnButton");
 	        }
-		GameInfo game = new GameInfo(engine,leftComponents,rightComponents);
+		GameInfo game = new GameInfo(engine,leftComponents,rightComponents, bottomComponents);
 		saver.saveGameInfo(game, file);
     }
     public void saveToXML(String filePath) {
@@ -121,16 +125,6 @@ public class GAEModel implements IGAEModel{
     
     private boolean validate(){ //TODO
         return false;
-    }
-
-    @Override
-    public void setMapWidth (double x) {
-        //map.setWidth(x);
-    }
-
-    @Override
-    public void setMapHeight (double y) {
-        //map.setHeight(y);
     }
 
 
@@ -148,6 +142,32 @@ public class GAEModel implements IGAEModel{
 		mapObject.setOwnerID(playerID);
 		mapOfPlayers.get(playerID).addMapObject(mapObject);
 	}
+
+
+    @Override
+    public List<String> getLeftComponents () {
+        return leftComponents;
+    }
+    @Override
+    public List<String> getRightComponents () {
+        return rightComponents;
+    }
+    @Override
+    public List<String> getBottomComponents () {
+        return bottomComponents;
+    }
+    @Override
+    public void setLeftComponents (List<String> components) {
+        leftComponents=components;
+    }
+    @Override
+    public void setRightComponents (List<String> components) {
+        rightComponents=components;
+    }
+    @Override
+    public void setBottomComponents (List<String> components) {
+        bottomComponents=components;
+    }
     
 //	public static void main(String[] args){
 //		Map<Integer, GamePlayerPerson> mapOfPlayers = new HashMap<Integer, GamePlayerPerson>();	

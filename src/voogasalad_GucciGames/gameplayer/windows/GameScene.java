@@ -6,6 +6,7 @@ import javafx.event.Event;
 import javafx.event.EventHandler;
 import javafx.event.EventType;
 import javafx.scene.Scene;
+import voogasalad_GucciGames.gameplayer.config.PlayerConfig;
 import voogasalad_GucciGames.gameplayer.gameloader.GameLoader;
 import voogasalad_GucciGames.gameplayer.windows.mainwindow.scenes.GameSceneInterface;
 
@@ -16,12 +17,13 @@ public abstract class GameScene implements GameSceneInterface{
 	protected GameSceneManager myManager;
 	protected GameWindowInterface myWindow;
 	protected ResourceBundle myConfig;
+	protected ResourceBundle myCSS = PlayerConfig.load("scenes.CssClasses");
 	protected Scene myScene;
 	
 	public GameScene(GameSceneManager manager, GameWindowInterface window, String config){
 		myManager = manager;
 		myWindow = window;
-		myConfig = ResourceBundle.getBundle(config);
+		myConfig = PlayerConfig.load(config);
 		readConfig();
 	}
 	
@@ -33,14 +35,35 @@ public abstract class GameScene implements GameSceneInterface{
 	protected void loadScene(Scene scene){
 		myScene = scene;
 		myWindow.loadScene(myScene);
+		loadStyleSheets();
 	}
 
+	private void loadStyleSheets(){
+        myScene.getStylesheets().add(myCSS.getString("CssFile"));
+	}
+	
 	/**
 	 * Returns name of the scene.
 	 * @return
 	 */
 	public String getName(){
 		return myName;
+	}
+	
+	/**
+	 * Returns the current GameSceneManager 
+	 * @return
+	 */
+	public GameSceneManager getManager(){
+		return myManager;
+	}
+	
+	/**
+	 * Returns the current GameWindow
+	 * @return
+	 */
+	public GameWindowInterface getWindow(){
+		return myWindow;
 	}
 	
 	/**

@@ -20,9 +20,10 @@ import voogasalad_GucciGames.datastructures.TwoWayMap;
 import voogasalad_GucciGames.gameEngine.PlayerMapObjectInterface;
 import voogasalad_GucciGames.gameEngine.targetCoordinate.ATargetCoordinate;
 import voogasalad_GucciGames.gameEngine.targetCoordinate.TargetCoordinateSingle;
+import voogasalad_GucciGames.gameplayer.config.PlayerConfig;
 import voogasalad_GucciGames.gameplayer.controller.GameControllerInterface;
 import voogasalad_GucciGames.gameplayer.windows.GameScene;
-import voogasalad_GucciGames.gameplayer.windows.WindowComponent;
+import voogasalad_GucciGames.gameplayer.windows.mainwindow.components.WindowComponent;
 import voogasalad_GucciGames.gameplayer.windows.mainwindow.map.MapInterface;
 import voogasalad_GucciGames.gameplayer.windows.mainwindow.map.cell.MapCell;
 import voogasalad_GucciGames.gameplayer.windows.mainwindow.map.cell.MapCellInterface;
@@ -34,8 +35,8 @@ public class MainMap extends WindowComponent implements MapInterface {
 	
 	private MiniMap myMiniMap;
 	
-        private ResourceBundle myConfig = ResourceBundle.getBundle("voogasalad_GucciGames.gameplayer.config.components.Map");
-        private ResourceBundle myCssBundle = ResourceBundle.getBundle("voogasalad_GucciGames.gameplayer.config.scenes.CssClasses");
+        private ResourceBundle myConfig = PlayerConfig.load("components.Map");
+        private ResourceBundle myCssBundle = PlayerConfig.load("scenes.CssClasses");
 
 	
 
@@ -53,7 +54,6 @@ public class MainMap extends WindowComponent implements MapInterface {
 	// TODO: factor into cell style, later
 	private int myCellsWide, myCellsTall;
 	private double myCellSize;
-	private double myBorderWidth;
 	
 	// TODO: leftbar and rightbar communicate about individual selection
 	// TODO: later, convert to map by unit type
@@ -65,19 +65,18 @@ public class MainMap extends WindowComponent implements MapInterface {
 		initializeVariables();
 		initializeMap();
 		initializeMiniMap();
-		drawMap(getMyController().getInitialState());
+		drawMap(getController().getInitialState());
 	}
 	
 	
 	private void initializeVariables() {
-		myCellsWide = 8;
-		myCellsTall = 8;
+		myCellsWide = (int) getController().getEngine().getMapWidth();
+		myCellsTall = (int) getController().getEngine().getMapHeight();
 		myCellSize = calculateCellSize();
 		//myController.getEngine().getMapDimensions().get(0);
-		myBorderWidth = Double.parseDouble(myConfig.getString("BorderWidth"));
 		mySelectedUnits = FXCollections.observableArrayList();
 		myUnitMap = new TwoWayMap<>();
-		getMyController().setMap(this);
+		getController().setMap(this);
 	}
 
 
@@ -119,7 +118,6 @@ public class MainMap extends WindowComponent implements MapInterface {
 	//TODO: add loading bar
 	
 	private void drawMap(List<PlayerMapObjectInterface> initialState){
-		System.out.println(initialState);
 		initialState.stream()
 			.forEach(o->addToMap(o));
         //myParent.getStyleClass().add(myConfig.getString("MainCSSClass"));
@@ -132,7 +130,7 @@ public class MainMap extends WindowComponent implements MapInterface {
 	private void addToMap(PlayerMapObjectInterface object) {
 		Point2D key = Coordinate.CoordinateToPoint(object.getCoordinate());
 		if(!myCellMap.containsKey(key)){
-			MapCell newCell = (MapCell)Reflection.createInstance(myConfig.getString("CellClass"), getMyController(), myCellSize);
+			MapCell newCell = (MapCell)Reflection.createInstance(myConfig.getString("CellClass"), getController(), myCellSize);
 			myCellMap.put(key, newCell);
 			myMap.add(newCell.getParent(), ((Double)object.getCoordinate().getListOfCoordinates().get(0).getCenterX()).intValue(), ((Double)object.getCoordinate().getListOfCoordinates().get(0).getCenterY()).intValue()); //TODO: get non-zero
 		}

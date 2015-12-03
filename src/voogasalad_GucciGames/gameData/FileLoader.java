@@ -24,6 +24,7 @@ import javax.crypto.spec.SecretKeySpec;
 public class FileLoader {
 	private static final String KEY = "VOOGASALAD_GUCCI";
 	private static final int BLOCK = 32;
+	private static final boolean CIPHER = false;
 
 	private Cipher myCipher;
 	private SecretKeySpec myKey;
@@ -77,7 +78,9 @@ public class FileLoader {
 
 	private byte[] crypto(int cipherMode, byte[] input) throws Exception {
 		myCipher.init(cipherMode, myKey);
-		//return myCipher.doFinal(input);
-		return input;
+		if(CIPHER)
+			return myCipher.doFinal(input);
+		else
+			return input;
 	}
 }
