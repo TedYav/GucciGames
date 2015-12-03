@@ -1,13 +1,15 @@
 package voogasalad_GucciGames.gameplayer.windows.mainwindow.components.bar;
 
 import voogasalad_GucciGames.gameEngine.PlayerMapObjectInterface;
+import voogasalad_GucciGames.gameplayer.config.PlayerConfig;
 import voogasalad_GucciGames.gameplayer.controller.GameControllerInterface;
+import voogasalad_GucciGames.gameplayer.windows.GameScene;
 import voogasalad_GucciGames.gameplayer.windows.mainwindow.components.DisplayComponent;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
 import javafx.collections.ListChangeListener;
-import javafx.scene.Node;
+import javafx.scene.Parent;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.FlowPane;
@@ -17,11 +19,11 @@ public class DisplayMapObjectImage extends DisplayComponent implements ListChang
     private FlowPane display;
     private Image buffer;
     private ImageView imgView;
-    private ResourceBundle myBundle=ResourceBundle.getBundle("voogasalad_GucciGames.gameplayer.config.components.LeftBar");
-    private ResourceBundle myCssBundle = ResourceBundle.getBundle(myBundle.getString("cssclass"));
+    private ResourceBundle myBundle=PlayerConfig.load("components.Bar");
+    private ResourceBundle myCssBundle = PlayerConfig.load(myBundle.getString("cssclass"));
 
-    public DisplayMapObjectImage (GameControllerInterface controller) {
-        super(controller);
+    public DisplayMapObjectImage (GameScene scene, GameControllerInterface controller) {
+        super(scene,controller);
         display=new FlowPane();
         display.getStyleClass().add(myCssBundle.getString("leftimageflowpane"));
         //display.setAlignment(Pos.CENTER);
@@ -34,12 +36,12 @@ public class DisplayMapObjectImage extends DisplayComponent implements ListChang
             initializeImage(m);
         }
         if (display.getChildren().size()==0) {
-            showImagePlaceholder("player/images/leftbar-image-placeholder.jpg");
+            showImagePlaceholder(myBundle.getString("imageplaceholder"));
         }
     }
     private void initializeImage(PlayerMapObjectInterface m) {
         if (m!=null) {
-            buffer = getMyController().requestImage(m.getImageURI());
+            buffer = getController().requestImage(m.getImageURI());
         }
         imgView=new ImageView(buffer);
         imgView.setPreserveRatio(true);
@@ -51,11 +53,11 @@ public class DisplayMapObjectImage extends DisplayComponent implements ListChang
     }
 
     private void updateActiveMapObject(PlayerMapObjectInterface mapObj) {
-        getMyController().setActiveMapObject(mapObj);
+        getController().setActiveMapObject(mapObj);
     }
 
     @Override
-    public Node getNodeToDraw() {
+    public Parent getParent() {
         return display;
     }
 

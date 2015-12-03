@@ -21,6 +21,7 @@ import voogasalad_GucciGames.gameplayer.windows.GameScene;
 import voogasalad_GucciGames.gameplayer.windows.GameSceneManager;
 import voogasalad_GucciGames.gameplayer.windows.GameWindow;
 import voogasalad_GucciGames.gameplayer.windows.GameWindowInterface;
+import voogasalad_GucciGames.gameplayer.windows.mainwindow.components.BottomBar;
 import voogasalad_GucciGames.gameplayer.windows.mainwindow.components.DisplayComponent;
 import voogasalad_GucciGames.gameplayer.windows.mainwindow.components.LeftBar;
 import voogasalad_GucciGames.gameplayer.windows.mainwindow.components.RightBar;
@@ -40,7 +41,6 @@ import voogasalad_GucciGames.gameplayer.windows.mainwindow.menubar.TopBar;
 public class MainGameScene extends GameScene {
 
     private GameControllerInterface myController;
-    private Scene myCurrentScene;
 
     private BorderPane myPane;
 
@@ -48,10 +48,11 @@ public class MainGameScene extends GameScene {
     private List<DisplayComponent> leftComponents;
     private RightBar myRightBar;
     private List<DisplayComponent> rightComponents;
+    private BottomBar myBottomBar;
+    private List<DisplayComponent> bottomComponents;
     private GameMenuBar myMenuBar;
     private MainMap myMap;
 
-    private MapKeyHandler myKeyHandler;
     private ResourceBundle myCssBundle = ResourceBundle.getBundle("voogasalad_GucciGames.gameplayer.config.scenes.CssClasses");
 	private TopBar myTopBar;
 
@@ -60,22 +61,12 @@ public class MainGameScene extends GameScene {
     }
 
     private void loadGameData(){
-        myController = myManager.getLoader().getController();
-        myController.setScene(this);
+        myController = myManager.getController();
     }
 
     @Override
     public void load() {
-        //STEPS UPON LOAD:
-        /*
-         * 1. Load Game Data
-         * 2. Show Splash Screen
-         * 3. Show Main Menu / Level Chooser
-         * 4. Show Game Screen
-         * 5. Show Result of Game
-         * 6. Go to Next Level or Go to Main Menu
-         */
-
+    	
         initializePane();
         loadGameData();
         showGame();
@@ -89,26 +80,23 @@ public class MainGameScene extends GameScene {
         myScene.getStylesheets().add(myCssBundle.getString("CssFile"));
     }
 
-    private void showSplash(){
-
-    }
-
     private void showGame(){
-
-
 
         myMap = new MainMap(this, myController);
         myPane.setCenter(myMap.getParent());
-        System.out.println(myPane.getCenter().getBoundsInParent());
 
-        leftComponents=myController.getGame().getLeftComponents().stream().map(s->(DisplayComponent)Reflection.createInstance(s, myController)).collect(Collectors.toList());
-        rightComponents=myController.getGame().getRightComponents().stream().map(s->(DisplayComponent)Reflection.createInstance(s, myController)).collect(Collectors.toList());
+        leftComponents=myController.getGame().getLeftComponents().stream().map(s->(DisplayComponent)Reflection.createInstance(s, this, myController)).collect(Collectors.toList());
+        rightComponents=myController.getGame().getRightComponents().stream().map(s->(DisplayComponent)Reflection.createInstance(s, this, myController)).collect(Collectors.toList());
+        bottomComponents=myController.getGame().getBottomComponents().stream().map(s->(DisplayComponent)Reflection.createInstance(s, this, myController)).collect(Collectors.toList());
 
         myLeftBar = new LeftBar(this, myController,leftComponents);
         myPane.setLeft(myLeftBar.getParent());
 
         myRightBar = new RightBar(this, myController, rightComponents);
         myPane.setRight(myRightBar.getParent());
+        
+        myBottomBar = new BottomBar(this,myController, bottomComponents);
+        myPane.setBottom(myBottomBar.getParent());
 
 //	    FileItem file = new FileItem(null,myManager.getStage()); //TODO: create for properties file?
 //	    List<GameMenu> listOfGameMenus = new ArrayList<GameMenu>();
@@ -128,7 +116,7 @@ public class MainGameScene extends GameScene {
     }
 
     @Override
-    public void update () {
+    public void refresh () {
         myLeftBar.updateComponents();
         myRightBar.updateComponents();
     }

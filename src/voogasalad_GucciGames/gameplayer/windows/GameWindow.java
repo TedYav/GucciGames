@@ -7,17 +7,23 @@ import javafx.geometry.Rectangle2D;
 import javafx.scene.Scene;
 import javafx.stage.Screen;
 import javafx.stage.Stage;
+import voogasalad_GucciGames.gameplayer.config.PlayerConfig;
+import voogasalad_GucciGames.gameplayer.controller.GameController;
 
 import java.util.Map;
 
 public abstract class GameWindow implements GameWindowInterface {	
 	
 	int myID;
-	private ResourceBundle myConfig = ResourceBundle.getBundle("voogasalad_GucciGames.gameplayer.config.WindowManager");
+	private ResourceBundle myConfig = PlayerConfig.load("WindowManager");
 	private Stage myStage;
+	private GameWindowManager myManager;
+	protected GameController myController;
 	
-	public GameWindow(int id){
+	public GameWindow(int id, GameWindowManager manager, GameController controller){
 		myID = id;
+		myController = controller;
+		myManager = manager;
 		myStage = new Stage();
 		displayWindow();
 	}
@@ -56,6 +62,12 @@ public abstract class GameWindow implements GameWindowInterface {
 	    return myStage;
 	}
 	
+	public GameWindowManager getManager(){
+		return myManager;
+	}
+	
 	public abstract void initialize();
+
+	public abstract void refresh();
 	
 }

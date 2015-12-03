@@ -1,4 +1,4 @@
-%ekƒq½‡3ä@È\H¼(ğVé»™•ı¯‘ô-læ<voogasalad__GucciGames.gameData.GameInfo>
+4-´É‘ëà¯ËO1Z¹êÓ“Ìq[½Äæ!Ÿä£À<voogasalad__GucciGames.gameData.GameInfo>
   <myEngine>
     <myGamePlayers>
       <myMapOfPlayers class="tree-map">
@@ -1862,10 +1862,13 @@
       </map>
     </myConditionHandler>
     <mapDimensions>0</mapDimensions>
+    <myMapWidth>8</myMapWidth>
+    <myMapHeight>8</myMapHeight>
+    <myName>Duvall Tag</myName>
   </myEngine>
   <myRightComponents>
     <string>voogasalad_GucciGames.gameplayer.windows.mainwindow.components.bar.ActionDisplay</string>
-    <string>voogasalad_GucciGames.gameplayer.windows.mainwindow.components.bar.GameStatsDisplay</string>
+    <string>voogasalad_GucciGames.gameplayer.windows.mainwindow.components.bar.BuildUnitsDisplay</string>
     <string>voogasalad_GucciGames.gameplayer.windows.mainwindow.components.bar.EndTurnButton</string>
   </myRightComponents>
   <myLeftComponents>
@@ -1873,4 +1876,7 @@
     <string>voogasalad_GucciGames.gameplayer.windows.mainwindow.components.bar.DisplayMapObjectDetails</string>
     <string>voogasalad_GucciGames.gameplayer.windows.mainwindow.components.bar.DisplayChat</string>
   </myLeftComponents>
+  <myBottomComponents>
+    <string>voogasalad_GucciGames.gameplayer.windows.mainwindow.components.bar.GameStatsDisplay</string>
+  </myBottomComponents>
 </voogasalad__GucciGames.gameData.GameInfo>

@@ -30,7 +30,7 @@ import voogasalad_GucciGames.gameEngine.mapObject.MapObject;
 public class GaeController extends AGuiGaeController implements IModelGaeController {
 
 	private IGAEModel model;
-	private GAEGui gui;
+	private GAEGui myGui;
 	private MapObjectType myCurrMapObjectType;
 	private Image currDraggedImage;
 	private Stage myStage;
@@ -43,7 +43,7 @@ public class GaeController extends AGuiGaeController implements IModelGaeControl
 	public GaeController(Stage stage) {
 		myStage = stage;
 		model = new GAEModel(this);
-		gui = new GAEGui(this, stage);
+		myGui = new GAEGui(this, stage);
 	}
 
 	@Override
@@ -115,16 +115,6 @@ public class GaeController extends AGuiGaeController implements IModelGaeControl
 	@Override
 	public void saveToXML(File file) {
 		model.saveToXML(file);
-	}
-
-	@Override
-	public void setMapWidth(double x) {
-		model.setMapWidth(x);
-	}
-
-	@Override
-	public void setMapHeight(double y) {
-		model.setMapHeight(y);
 	}
 
 	@Override
@@ -261,6 +251,9 @@ public class GaeController extends AGuiGaeController implements IModelGaeControl
 	@Override
 	public void setCustomGamePlayerComponents(ArrayList<String> allComponents) {
 		customGamePlayerComponents = allComponents;		
+
+	public void initGrid(int width, int height) {
+		myGui.initializeMap(width, height);
 	}
 
 }
