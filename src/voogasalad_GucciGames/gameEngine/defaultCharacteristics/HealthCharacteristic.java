@@ -5,8 +5,7 @@ import voogasalad_GucciGames.gameEngine.mapObject.AMapObjectCharacteristic;
 public abstract class HealthCharacteristic extends AMapObjectCharacteristic{
 
 
-	public HealthCharacteristic(CharacteristicParams charParams) {
-		super(charParams);
+	public HealthCharacteristic() {
 		// TODO Auto-generated constructor stub
 	}
 

@@ -2,10 +2,10 @@ package voogasalad_GucciGames.gameEngine.defaultCharacteristics;
 
 import voogasalad_GucciGames.gameEngine.mapObject.AMapObjectCharacteristic;
 
-public class PolearmCharacteristic extends AMapObjectCharacteristic{
-
-	public PolearmCharacteristic() {
-		// TODO Auto-generated constructor stub
+public class TransferableCharacteristic extends AMapObjectCharacteristic {
+	
+	public TransferableCharacteristic(){
+		
 	}
 
 	@Override
