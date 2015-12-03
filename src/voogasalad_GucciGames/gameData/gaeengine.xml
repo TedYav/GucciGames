@@ -1,4 +1,4 @@
-ï¿½V>ï¿½Vï¿½ï¿½ï¿½ZXï¿½ï¿½Üï¿½ï¿½gï¿½ï¿½^Pï¿½ï¿½Eï¿½0<voogasalad__GucciGames.gameData.GameInfo>
+	šÜd®üƒ	Ÿ„áÖŒºoÏ/œQDğns¼ìÇx<voogasalad__GucciGames.gameData.GameInfo>
   <myEngine>
     <myGamePlayers>
       <myMapOfPlayers>
@@ -69,11 +69,9 @@
       </map>
     </myConditionHandler>
     <mapDimensions>0</mapDimensions>
-<<<<<<< HEAD
-    <myName>Game 2560</myName>
-=======
-    <myName>Game 6117</myName>
->>>>>>> 485b0d06f88b53615b1cb2215c11e5336572be7c
+    <myMapWidth>0</myMapWidth>
+    <myMapHeight>0</myMapHeight>
+    <myName>Game 7467</myName>
   </myEngine>
   <myRightComponents>
     <string>voogasalad_GucciGames.gameplayer.windows.mainwindow.components.bar.ActionDisplay</string>
@@ -85,4 +83,5 @@
     <string>voogasalad_GucciGames.gameplayer.windows.mainwindow.components.bar.DisplayMapObjectDetails</string>
     <string>voogasalad_GucciGames.gameplayer.windows.mainwindow.components.bar.DisplayChat</string>
   </myLeftComponents>
+  <myBottomComponents/>
 </voogasalad__GucciGames.gameData.GameInfo>
