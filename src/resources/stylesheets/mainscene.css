@@ -52,3 +52,10 @@
 	-fx-border-width: 5;
 	-fx-padding: 0;
 }
+
+.bottomhbox{
+	-fx-font: bold 20pt "Palatino Linotype";
+	-fx-background-color: #BFB79F;
+	-fx-spacing: 10;
+	-fx-padding: 5;
+}
