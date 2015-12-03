@@ -1,5 +1,8 @@
 package voogasalad_GucciGames.helpers;
 
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
@@ -29,8 +32,7 @@ public class FontManager {
 	}
 
 	private void loadFonts() {
-		System.out.println(myConfig.keySet());
-		myConfig.keySet().stream().forEach(s -> Font.loadFont(FontManager.class.getResource(myConfig.getString(s)).toExternalForm(), 20));
+		myConfig.keySet().stream().forEach(s -> getFont(s,72));
 	}
 	
 	public List<String> listFonts(){
@@ -38,13 +40,20 @@ public class FontManager {
 	}
 	
 	public Font getFont(String name, double size) throws ResourceException{
-		if(myConfig.getString("name")==null)
+		if(myConfig.getString(name)==null)
 			throw new ResourceException("Error: font " + name + " not found.");
-		
-		return Font.loadFont(FontManager.class.getResource(myConfig.getString(name)).toExternalForm(), size);
+		Font f = Font.font("Verdana");
+		try {
+			f = Font.loadFont(new FileInputStream(new File("resources/fonts/" + myConfig.getString(name))), size);
+		} catch (FileNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			throw new ResourceException("Error: font " + name + " could not be located on filesystem.");
+		}
+		return f;
 	}
 	
-//	public static void main(String[] args){
-//		System.out.println(new FontManager().listFonts());
-//	}
+	public static void main(String[] args){
+		System.out.println(new FontManager().listFonts());
+	}
 }
