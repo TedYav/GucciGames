@@ -211,9 +211,9 @@ public class MapObject implements PlayerMapObjectInterface{
 		this.myHeight = height;
 	}
 
-	public void setBasicParameters(BasicParameters basic){
 
-		this.myEventHandler = new MapObjectEventHandler(basic);
+	public void setMapObjectEventHandler(MapObjectEventHandler handler){
+		this.myEventHandler = handler;
 	}
 
 	@Override
@@ -233,11 +233,11 @@ public class MapObject implements PlayerMapObjectInterface{
 		// TODO Auto-generated method stub
 		return generateSortedListFromStringSet(this.myCharacteristics.keySet());
 	}
-	
+
 	private List<String> generateSortedListFromStringSet(Set<String> set){
 		List<String> list = new ArrayList<>(set);
 		Collections.sort(list);
 		return list;
-		
+
 	}
 }
