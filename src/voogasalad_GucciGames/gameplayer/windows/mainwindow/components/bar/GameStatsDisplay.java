@@ -5,7 +5,6 @@ import java.util.List;
 import java.util.ResourceBundle;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.control.ListView;
 import voogasalad_GucciGames.gameplayer.controller.GameControllerInterface;

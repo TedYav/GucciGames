@@ -1,7 +1,6 @@
 package voogasalad_GucciGames.gameplayer.windows.mainwindow.components.bar;
 
 import java.util.ResourceBundle;
-import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.control.Button;
 import voogasalad_GucciGames.gameplayer.controller.GameControllerInterface;

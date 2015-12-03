@@ -8,7 +8,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
 import javafx.collections.ListChangeListener;
-import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -36,7 +35,7 @@ public class DisplayMapObjectImage extends DisplayComponent implements ListChang
             initializeImage(m);
         }
         if (display.getChildren().size()==0) {
-            showImagePlaceholder("player/images/leftbar-image-placeholder.jpg");
+            showImagePlaceholder(myBundle.getString("imageplaceholder"));
         }
     }
     private void initializeImage(PlayerMapObjectInterface m) {
