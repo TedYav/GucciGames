@@ -251,6 +251,7 @@ public class GaeController extends AGuiGaeController implements IModelGaeControl
 	@Override
 	public void setCustomGamePlayerComponents(ArrayList<String> allComponents) {
 		customGamePlayerComponents = allComponents;		
+	}
 
 	public void initGrid(int width, int height) {
 		myGui.initializeMap(width, height);
