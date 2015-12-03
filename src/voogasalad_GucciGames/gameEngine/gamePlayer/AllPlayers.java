@@ -13,11 +13,7 @@ import voogasalad_GucciGames.gameEngine.mapObject.MapObject;
 public class AllPlayers {
 
 	private Map<Integer, GamePlayerPerson> myMapOfPlayers;
-	private List<PlayerMapObjectInterface> myListOfAllMapObjects; // perhaps
-																	// change it
-																	// to a set
-																	// later
-
+	
 	public AllPlayers(Map<Integer, GamePlayerPerson> players) {
 
 		myMapOfPlayers = players;
