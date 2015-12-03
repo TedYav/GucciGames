@@ -22,7 +22,9 @@ import voogasalad_GucciGames.gameEngine.targetCoordinate.ATargetCoordinate;
 import voogasalad_GucciGames.gameEngine.targetCoordinate.TargetCoordinateSingle;
 import voogasalad_GucciGames.gameplayer.controller.dummy.ADummy;
 import voogasalad_GucciGames.gameplayer.gameloader.GameControllerLoader;
+import voogasalad_GucciGames.gameplayer.gameloader.GameLoader;
 import voogasalad_GucciGames.gameplayer.windows.GameSceneManager;
+import voogasalad_GucciGames.gameplayer.windows.GameWindowManager;
 import voogasalad_GucciGames.gameplayer.windows.mainwindow.map.MapInterface;
 import voogasalad_GucciGames.gameplayer.windows.mainwindow.map.cell.MapCell;
 import voogasalad_GucciGames.gameplayer.windows.mainwindow.map.cell.contents.CellUnit;
@@ -30,7 +32,7 @@ import voogasalad_GucciGames.gameplayer.windows.mainwindow.scenes.GameSceneInter
 
 public class GameController implements GameControllerInterface, GameControllerLoader {
 
-	private GameSceneManager myManager;
+	private GameWindowManager myManager;
 	
 	private GameEngineToGamePlayerInterface myEngine;
 	private MapInterface myMap;
@@ -44,12 +46,15 @@ public class GameController implements GameControllerInterface, GameControllerLo
 	private List<Observer> activeMOObservers;
 	private List<TargetCoordinateSingle> possibleMoves;
 
-	public GameController(GameSceneManager manager){
+	private GameLoader myLoader;
+
+	public GameController(GameWindowManager manager){
 		myManager = manager;
 		myImageDatabase = new ImageDatabase();
 		myActionInProgress = "";
 		activeMOObservers=new ArrayList<Observer>();
 		possibleMoves = new ArrayList<TargetCoordinateSingle>();
+		myLoader = new GameLoader(this);
 	}
 	
 	public void loadGame(GameInfo game){
@@ -200,5 +205,9 @@ public class GameController implements GameControllerInterface, GameControllerLo
 	@Override
 	public GameInfo getGame() {
 	    return myGame;
+	}
+
+	public GameLoader getLoader() {
+		return myLoader;
 	}
 }

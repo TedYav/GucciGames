@@ -34,7 +34,7 @@ public class DemoMaker extends Application{
 		XStreamGameEngine xStream = new XStreamGameEngine();
 		System.out.println("Creating and saving engine.");
 		xStream.saveGameInfo(createGame());
-		GameWindowManager windowmanager = new GameWindowManager();
+		GameWindowManager windowmanager = new GameWindowManager("Duvall Tag");
 	}
 
 	public static void main(String[] args){

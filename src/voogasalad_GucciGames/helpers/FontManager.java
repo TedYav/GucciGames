@@ -1,8 +1,11 @@
-package voogasalad_GucciGames.datastructures;
+package voogasalad_GucciGames.helpers;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.ResourceBundle;
 
 import javafx.scene.text.Font;
+import voogasalad_GucciGames.datastructures.ResourceException;
 
 /**
  * Helper class to manage fonts.
@@ -13,7 +16,7 @@ import javafx.scene.text.Font;
  */
 public class FontManager {
 	
-	private static final String DEFAULTCONFIG = "voogasalad_GucciGames.resources.Fonts";
+	private static final String DEFAULTCONFIG = "Fonts";
 	private ResourceBundle myConfig;
 	
 	public FontManager(){
@@ -22,6 +25,16 @@ public class FontManager {
 	
 	public FontManager(String config){
 		myConfig = ResourceBundle.getBundle(config);
+		loadFonts();
+	}
+
+	private void loadFonts() {
+		System.out.println(myConfig.keySet());
+		myConfig.keySet().stream().forEach(s -> Font.loadFont(FontManager.class.getResource(myConfig.getString(s)).toExternalForm(), 20));
+	}
+	
+	public List<String> listFonts(){
+		return new ArrayList<String>(myConfig.keySet());
 	}
 	
 	public Font getFont(String name, double size) throws ResourceException{
@@ -30,4 +43,8 @@ public class FontManager {
 		
 		return Font.loadFont(FontManager.class.getResource(myConfig.getString(name)).toExternalForm(), size);
 	}
+	
+//	public static void main(String[] args){
+//		System.out.println(new FontManager().listFonts());
+//	}
 }
