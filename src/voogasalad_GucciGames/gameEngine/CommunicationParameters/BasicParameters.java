@@ -1,4 +1,4 @@
-package voogasalad_GucciGames.gameEngine.CommunicationParams;
+package voogasalad_GucciGames.gameEngine.CommunicationParameters;
 
 import voogasalad_GucciGames.gameEngine.MainGameEngine;
 import voogasalad_GucciGames.gameEngine.mapObject.MapObject;

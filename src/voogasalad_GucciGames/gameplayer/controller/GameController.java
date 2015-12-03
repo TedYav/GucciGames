@@ -16,8 +16,8 @@ import voogasalad_GucciGames.datastructures.ImageDatabase;
 import voogasalad_GucciGames.gameData.GameInfo;
 import voogasalad_GucciGames.gameEngine.GameEngineToGamePlayerInterface;
 import voogasalad_GucciGames.gameEngine.PlayerMapObjectInterface;
-import voogasalad_GucciGames.gameEngine.CommunicationParams.ActionToGamePlayerParameters;
-import voogasalad_GucciGames.gameEngine.CommunicationParams.GridCoordinateParameters;
+import voogasalad_GucciGames.gameEngine.CommunicationParameters.ChangedParameters;
+import voogasalad_GucciGames.gameEngine.CommunicationParameters.GridCoordinateParameters;
 import voogasalad_GucciGames.gameEngine.targetCoordinate.ATargetCoordinate;
 import voogasalad_GucciGames.gameEngine.targetCoordinate.TargetCoordinateSingle;
 import voogasalad_GucciGames.gameplayer.controller.dummy.ADummy;
@@ -107,7 +107,7 @@ public class GameController implements GameControllerInterface, GameControllerLo
 	
 	@Override
 	public void performActionInProgress(Point2D target){
-		ActionToGamePlayerParameters params;// = myEngine.performAction(myActionInProgress, activeMapObject, Coordinate.PointToCoordinate(target));
+		ChangedParameters params;// = myEngine.performAction(myActionInProgress, activeMapObject, Coordinate.PointToCoordinate(target));
 		//cancelAction();
 		
 		

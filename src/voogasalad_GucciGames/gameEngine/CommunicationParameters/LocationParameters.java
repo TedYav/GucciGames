@@ -1,6 +1,5 @@
-package voogasalad_GucciGames.gameEngine.CommunicationParams;
+package voogasalad_GucciGames.gameEngine.CommunicationParameters;
 
-import voogasalad_GucciGames.gameEngine.gamePlayer.GamePlayerPerson;
 import voogasalad_GucciGames.gameEngine.mapObject.MapObject;
 import voogasalad_GucciGames.gameEngine.targetCoordinate.TargetCoordinateSingle;
 

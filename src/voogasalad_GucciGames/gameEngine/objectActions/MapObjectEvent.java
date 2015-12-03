@@ -4,10 +4,11 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
-import voogasalad_GucciGames.gameEngine.CommunicationParams.BasicParameters;
-import voogasalad_GucciGames.gameEngine.CommunicationParams.CommunicationParameters;
-import voogasalad_GucciGames.gameEngine.CommunicationParams.EmptyParameters;
-import voogasalad_GucciGames.gameEngine.CommunicationParams.LocationParameters;
+import voogasalad_GucciGames.gameEngine.CommunicationParameters.BasicParameters;
+import voogasalad_GucciGames.gameEngine.CommunicationParameters.ChangedParameters;
+import voogasalad_GucciGames.gameEngine.CommunicationParameters.CommunicationParameters;
+import voogasalad_GucciGames.gameEngine.CommunicationParameters.GridCoordinateParameters;
+import voogasalad_GucciGames.gameEngine.CommunicationParameters.LocationParameters;
 import voogasalad_GucciGames.gameEngine.gameRules.Rules;
 
 /**
@@ -51,22 +52,16 @@ public abstract class MapObjectEvent implements IGamePlayerMapObjectAction{
 	}
 	
 	// Must keep final
-	public final CommunicationParameters executeAction(CommunicationParameters params, int playerID) {
-		if(!(params instanceof LocationParameters)){
-			return new EmptyParameters();
-		}
-		return checkRules(playerID,params) ? executeAction((LocationParameters) params) : new EmptyParameters();
+	public final ChangedParameters executeAction(LocationParameters params, int playerID) {
+		return checkRules(playerID,params) ? executeAction((LocationParameters) params) : null;
 	}
 	
-	protected abstract CommunicationParameters executeAction(LocationParameters params);
+	protected abstract ChangedParameters executeAction(LocationParameters params);
 	
-	public final CommunicationParameters executeRequest(CommunicationParameters params, int playerID){
-		if(!(params instanceof BasicParameters)){
-			return new EmptyParameters();
-		}
-		return checkRules(playerID,params) ? executeRequest((BasicParameters) params) : new EmptyParameters();
+	public final GridCoordinateParameters executeRequest(BasicParameters params, int playerID){
+		return checkRules(playerID,params) ? executeRequest(params) : null;
 	}
 	
-	protected abstract CommunicationParameters executeRequest(BasicParameters params);
+	protected abstract GridCoordinateParameters executeRequest(BasicParameters params);
 
 }
