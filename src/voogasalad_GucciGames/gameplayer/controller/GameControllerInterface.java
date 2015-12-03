@@ -59,6 +59,5 @@ public interface GameControllerInterface{
 //	public <T extends Event> void addEventFilter(EventType<T> eventType, EventHandler<T> eventHandler);
 //	
 	// TODO: refactor out
-	public void setScene(GameSceneInterface scene);
 	void performActionInProgress(Point2D target);
 }

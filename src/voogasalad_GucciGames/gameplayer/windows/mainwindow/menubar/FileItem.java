@@ -7,7 +7,7 @@ import javafx.scene.control.ComboBox;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import javafx.stage.FileChooser.ExtensionFilter;
-import voogasalad_GucciGames.gameplayer.controller.GameDataInterface;
+import voogasalad_GucciGames.gameData.GameDataInterface;
 
 public class FileItem implements GameMenu {
 
