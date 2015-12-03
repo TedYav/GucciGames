@@ -13,9 +13,9 @@ import voogasalad_GucciGames.gameplayer.windows.GameSceneManager;
 import voogasalad_GucciGames.gameplayer.windows.GameWindow;
 import voogasalad_GucciGames.gameplayer.windows.mainwindow.components.SplashScreen;
 
-public class GameSplashScene extends GameScene {
+public class MainMenuScene extends GameScene {
 	
-	public GameSplashScene(GameSceneManager manager, GameWindow window, String config) {
+	public MainMenuScene(GameSceneManager manager, GameWindow window, String config) {
 		super(manager, window, config);
 	}
 	
@@ -27,11 +27,7 @@ public class GameSplashScene extends GameScene {
 	@Override
 	public void load() {
 		System.out.println("LOADED " + getName());
-		SplashScreen splash = new SplashScreen(this, getManager().getController(), myConfig.getBaseBundleName());
-		splash.setText(getManager().getController().getEngine().getGameName());
-		myScene = new Scene(splash.getParent());
-		myScene.addEventHandler(KeyEvent.KEY_PRESSED, (e)->myManager.sceneFinished());
-		loadScene(myScene);
+		myManager.sceneFinished();
 	}
 
     @Override

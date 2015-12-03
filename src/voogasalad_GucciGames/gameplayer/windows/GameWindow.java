@@ -57,6 +57,7 @@ public abstract class GameWindow implements GameWindowInterface {
 	public void loadScene(Scene scene) {
 		myStage.setScene(scene);
 	}
+	
 	@Override
 	public Stage getStage() {
 	    return myStage;
