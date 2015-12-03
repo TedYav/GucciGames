@@ -24,9 +24,6 @@ public interface IGAEModel {
 
     
     public void saveToXML(File file);
-    
-    public void setMapWidth(double x);
-    public void setMapHeight(double y);
 	public void changeOwner(MapObject mapObject, int playerID);
 
     

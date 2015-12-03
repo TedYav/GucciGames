@@ -22,6 +22,8 @@ public interface IGuiGaeController {
 	 * 
 	 * @param mapObj
 	 */
+	
+	public void initGrid(int width, int height);
 
 	public void deleteComponent(DisplayMapObject mapObj);
 
@@ -45,10 +47,6 @@ public interface IGuiGaeController {
 	public ObservableList<MapObjectType> getImmutableStructureTypes();
 
 	public void saveToXML(File file);
-
-	public void setMapWidth(double x);
-
-	public void setMapHeight(double y);
 
 	public void setMapObjectTypeToMap(MapObjectType mapType);
 
