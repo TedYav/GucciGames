@@ -7,6 +7,7 @@ import voogasalad_GucciGames.gameAuthoring.properties.ObjectProperty;
 import voogasalad_GucciGames.gameAuthoring.properties.Property;
 
 import java.io.File;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -22,6 +23,8 @@ public interface IGuiGaeController {
 	 * 
 	 * @param mapObj
 	 */
+	
+	public void initGrid(int width, int height);
 
 	public void deleteComponent(DisplayMapObject mapObj);
 
@@ -46,10 +49,6 @@ public interface IGuiGaeController {
 
 	public void saveToXML(File file);
 
-	public void setMapWidth(double x);
-
-	public void setMapHeight(double y);
-
 	public void setMapObjectTypeToMap(MapObjectType mapType);
 
 	public MapObjectType getMapObjectTypeToMap();
@@ -69,4 +68,16 @@ public interface IGuiGaeController {
 	public ImageView getMapObjectImage(MapObjectType object);
 
 	public ImageView getMapObjectImage(DisplayMapObject object);
+        
+        public List<String> getCustomGamePlayerLeftComponents();
+        
+        public void setCustomGamePlayerLeftComponents(List<String> allComponents);    
+        
+        public List<String> getCustomGamePlayerRightComponents();
+        
+        public void setCustomGamePlayerRightComponents(List<String> allComponents);    
+        
+        public List<String> getCustomGamePlayerBottomComponents();
+        
+        public void setCustomGamePlayerBottomComponents(List<String> allComponents);
 }

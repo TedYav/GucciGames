@@ -20,6 +20,7 @@ import voogasalad_GucciGames.datastructures.TwoWayMap;
 import voogasalad_GucciGames.gameEngine.PlayerMapObjectInterface;
 import voogasalad_GucciGames.gameEngine.targetCoordinate.ATargetCoordinate;
 import voogasalad_GucciGames.gameEngine.targetCoordinate.TargetCoordinateSingle;
+import voogasalad_GucciGames.gameplayer.config.PlayerConfig;
 import voogasalad_GucciGames.gameplayer.controller.GameControllerInterface;
 import voogasalad_GucciGames.gameplayer.windows.GameScene;
 import voogasalad_GucciGames.gameplayer.windows.mainwindow.components.WindowComponent;
@@ -34,8 +35,8 @@ public class MainMap extends WindowComponent implements MapInterface {
 	
 	private MiniMap myMiniMap;
 	
-        private ResourceBundle myConfig = ResourceBundle.getBundle("voogasalad_GucciGames.gameplayer.config.components.Map");
-        private ResourceBundle myCssBundle = ResourceBundle.getBundle("voogasalad_GucciGames.gameplayer.config.scenes.CssClasses");
+        private ResourceBundle myConfig = PlayerConfig.load("components.Map");
+        private ResourceBundle myCssBundle = PlayerConfig.load("scenes.CssClasses");
 
 	
 
@@ -53,7 +54,6 @@ public class MainMap extends WindowComponent implements MapInterface {
 	// TODO: factor into cell style, later
 	private int myCellsWide, myCellsTall;
 	private double myCellSize;
-	private double myBorderWidth;
 	
 	// TODO: leftbar and rightbar communicate about individual selection
 	// TODO: later, convert to map by unit type
@@ -70,11 +70,10 @@ public class MainMap extends WindowComponent implements MapInterface {
 	
 	
 	private void initializeVariables() {
-		myCellsWide = 8;
-		myCellsTall = 8;
+		myCellsWide = (int) getController().getEngine().getMapWidth();
+		myCellsTall = (int) getController().getEngine().getMapHeight();
 		myCellSize = calculateCellSize();
 		//myController.getEngine().getMapDimensions().get(0);
-		myBorderWidth = Double.parseDouble(myConfig.getString("BorderWidth"));
 		mySelectedUnits = FXCollections.observableArrayList();
 		myUnitMap = new TwoWayMap<>();
 		getController().setMap(this);
@@ -119,7 +118,6 @@ public class MainMap extends WindowComponent implements MapInterface {
 	//TODO: add loading bar
 	
 	private void drawMap(List<PlayerMapObjectInterface> initialState){
-		System.out.println(initialState);
 		initialState.stream()
 			.forEach(o->addToMap(o));
         //myParent.getStyleClass().add(myConfig.getString("MainCSSClass"));

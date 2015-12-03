@@ -51,7 +51,7 @@ public class XStreamGameEngine {
     	saveGameInfo(game, new File(gameNameToFileName(game.getEngine().getGameName())));
     }
     
-    private String gameNameToFileName(String name){
+    public String gameNameToFileName(String name){
     	StringBuilder sanitizedName = new StringBuilder();
     	sanitizedName.append(myConfig.getString("GameStorageLocation")).append(name.replaceAll("[^a-zA-Z0-9\\._]+", "_")).append(myConfig.getString("GameExtension"));
     	return sanitizedName.toString();

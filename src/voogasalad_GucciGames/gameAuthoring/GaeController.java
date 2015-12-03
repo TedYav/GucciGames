@@ -1,6 +1,7 @@
 package voogasalad_GucciGames.gameAuthoring;
 
 import java.io.File;
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
@@ -29,7 +30,7 @@ import voogasalad_GucciGames.gameEngine.mapObject.MapObject;
 public class GaeController extends AGuiGaeController implements IModelGaeController {
 
 	private IGAEModel model;
-	private GAEGui gui;
+	private GAEGui myGui;
 	private MapObjectType myCurrMapObjectType;
 	private Image currDraggedImage;
 	private Stage myStage;
@@ -37,11 +38,12 @@ public class GaeController extends AGuiGaeController implements IModelGaeControl
 	private int defaultOwnerID = -1;
 	private Map<Integer, String> allPlayers = new HashMap<Integer, String>();
 	private ImageDatabase myImageDatabase = new ImageDatabase();
+	//private ArrayList<String> customGamePlayerComponents = new ArrayList<String>();
 
 	public GaeController(Stage stage) {
 		myStage = stage;
 		model = new GAEModel(this);
-		gui = new GAEGui(this, stage);
+		myGui = new GAEGui(this, stage);
 	}
 
 	@Override
@@ -113,16 +115,6 @@ public class GaeController extends AGuiGaeController implements IModelGaeControl
 	@Override
 	public void saveToXML(File file) {
 		model.saveToXML(file);
-	}
-
-	@Override
-	public void setMapWidth(double x) {
-		model.setMapWidth(x);
-	}
-
-	@Override
-	public void setMapHeight(double y) {
-		model.setMapHeight(y);
 	}
 
 	@Override
@@ -249,6 +241,38 @@ public class GaeController extends AGuiGaeController implements IModelGaeControl
 	@Override
 	public ImageView getMapObjectImage(DisplayMapObject object) {
 		return getMapObjectImage(object.getType());
+	}
+
+        @Override
+        public List<String> getCustomGamePlayerLeftComponents() {
+                return model.getLeftComponents();
+        }
+
+        @Override
+        public void setCustomGamePlayerLeftComponents(List<String> allComponents) {
+                model.setLeftComponents(allComponents);
+        }
+        @Override
+        public List<String> getCustomGamePlayerRightComponents() {
+                return model.getRightComponents();
+        }
+
+        @Override
+        public void setCustomGamePlayerRightComponents(List<String> allComponents) {
+                model.setRightComponents(allComponents);
+        }
+        @Override
+        public List<String> getCustomGamePlayerBottomComponents() {
+                return model.getBottomComponents();
+        }
+
+        @Override
+        public void setCustomGamePlayerBottomComponents(List<String> allComponents) {
+                model.setBottomComponents(allComponents);
+        }
+
+	public void initGrid(int width, int height) {
+		myGui.initializeMap(width, height);
 	}
 
 }
