@@ -6,6 +6,7 @@ import java.util.Properties;
 import voogasalad_GucciGames.gameAuthoring.IDialogGaeController;
 import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.DialogElements;
 import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.dialogcomponents.ActionVBox;
+import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
@@ -60,10 +61,10 @@ public class SettingsDialog extends GaeDialog  implements ISwitchSettingsPane{
 	}
 
 	@Override
-	public void switchSettingsPane(VBox vbox) {
+	public void switchSettingsPane(Node n) {
 		// TODO Auto-generated method stub
 			myPane.getChildren().removeAll(myPane.getChildren());
-			myPane.getChildren().add(vbox); 
+			myPane.getChildren().add(n); 
 		
 		
 	}
