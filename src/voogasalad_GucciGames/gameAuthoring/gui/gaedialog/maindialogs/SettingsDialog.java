@@ -5,7 +5,8 @@ import java.util.Properties;
 
 import voogasalad_GucciGames.gameAuthoring.IDialogGaeController;
 import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.DialogElements;
-import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.mapobjectsettings.ActionVBox;
+import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.dialogcomponents.ActionVBox;
+import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
@@ -26,6 +27,7 @@ public class SettingsDialog extends GaeDialog  implements ISwitchSettingsPane{
 	private Pane myPane = new Pane();
 	
 	private int currentIndex = 0;
+	private ActionVBox actionVBox;
 	
 	
 	
@@ -34,14 +36,14 @@ public class SettingsDialog extends GaeDialog  implements ISwitchSettingsPane{
 		prop = loadProperties("dialogproperties/actionsettings.properties");			
 		this.controller = controller;
 		dialogElements = new DialogElements(prop, null, controller);
-		setContentsArray();
+		actionVBox = new ActionVBox(dialogElements, this);
+		actionVBox.setPrefSize(WIDTH, HEIGHT);
+		myContents.add(actionVBox);
 		setScene();
 		
 	}
 	
-	private void setContentsArray(){
-		myContents.add(0, new ActionVBox(dialogElements, this));
-	}
+	
 	
 	private void setScene(){
 		myPane.getChildren().add(myContents.get(currentIndex));
@@ -59,10 +61,10 @@ public class SettingsDialog extends GaeDialog  implements ISwitchSettingsPane{
 	}
 
 	@Override
-	public void switchSettingsPane(VBox vbox) {
+	public void switchSettingsPane(Node n) {
 		// TODO Auto-generated method stub
 			myPane.getChildren().removeAll(myPane.getChildren());
-			myPane.getChildren().add(vbox); 
+			myPane.getChildren().add(n); 
 		
 		
 	}

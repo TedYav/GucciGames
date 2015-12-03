@@ -3,6 +3,7 @@
 	rules = "numAttacksPerTurn" chars = "attackRange, attackDamage, numAttacksPerTurn">
 	</action>
 	
-	<action displayName="Move" name="move" rules="numMovesPerTurn" chars="movementRange">
+	<action displayName="Move" name="move" 
+	rules="numMovesPerTurn" chars="movementRange">
 	</action>
 </actionDependencies>

@@ -20,38 +20,34 @@ public class RulesSAXHandler extends DefaultHandler{
 		this.selectedRules = selectedRules;
 	} 
 
-	public List<RuleParams> getRulesDisplayName(){
+	public List<RuleParams> getRuleParams(){
 		return rules;
 	}
 
-	private boolean bDisplayName = false;
+	
 
 	public void startElement(String uri, String localName,
 			String qName, Attributes attributes) throws SAXException {
 		if("rule".equals(qName)){
 			String name = attributes.getValue("name");
-			if (!selectedRules.contains(name)){
-				return;
+			if (selectedRules.contains(name)){
+				ruleParam = new RuleParams(name);
+				ruleParam.setDisplayName(attributes.getValue("displayName"));				
 			}
-			ruleParam = new RuleParams(name);
-		} else if(qName.equalsIgnoreCase("displayName")){
-			this.bDisplayName = true;
+			
 		}       
 
 	}
+	
+	
 	public void endElement(String uri, String localName,
 			String qName) throws SAXException {
-		if(qName.equalsIgnoreCase("action")){
+		if(qName.equalsIgnoreCase("rule") && ruleParam != null){
 			this.rules.add(ruleParam);
 		}
 	}
 
 	public void characters(char ch[], int start, int length) throws SAXException {
-		if(ruleParam != null){
-			if (bDisplayName) {
-				ruleParam.setDisplayName(new String(ch, start, length));
-				bDisplayName = false;
-			} 
-		}
+	
 	}
 }
