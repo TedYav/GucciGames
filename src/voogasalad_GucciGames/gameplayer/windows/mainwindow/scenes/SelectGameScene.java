@@ -36,7 +36,7 @@ public class SelectGameScene extends GameMenuScene {
 	}
     
     private void selectGame(String gameName){
-    	myManager.getLoader().loadGame(gameName);
+    	myManager.getLoader().selectGame(gameName);
     	myManager.sceneFinished();
     }
 }

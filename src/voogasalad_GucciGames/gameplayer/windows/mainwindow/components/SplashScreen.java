@@ -16,6 +16,7 @@ import javafx.scene.layout.Background;
 import javafx.scene.layout.BackgroundFill;
 import javafx.scene.layout.CornerRadii;
 import javafx.scene.layout.StackPane;
+import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
@@ -31,11 +32,17 @@ public class SplashScreen extends WindowComponent {
 	private ImageView myImage;
 	private Text myText;
 	private StackPane myPane;
+	private VBox myTextLayer;
+	
 	private ResourceBundle myMainConfig = PlayerConfig.load("components.Splash");
 	private ResourceBundle myConfig;
 	
 	private double mySpeed;
 	private double myDuration;
+	
+	/*
+	 * TODO: allow window components to take config in constructor
+	 */
 	
 	public SplashScreen(GameScene scene, GameControllerInterface controller, String config) {
 		super(scene, controller);
@@ -64,6 +71,7 @@ public class SplashScreen extends WindowComponent {
 	}
 
 	private void initializeText(String text){
+		myTextLayer = new VBox();
 		myText = new Text();
 		myText.setText(text);
 		myText.getStyleClass().addAll(
@@ -71,7 +79,10 @@ public class SplashScreen extends WindowComponent {
 				.filter((s) -> s.contains("Class"))
 				.map(s->myConfig.getString(s))
 				.collect(Collectors.toList()));
-		myPane.getChildren().add(myText);
+		myTextLayer.getChildren().add(myText);
+		myTextLayer.setMaxWidth(myText.getBoundsInLocal().getWidth());
+		myTextLayer.setMaxHeight(myText.getBoundsInLocal().getHeight());
+		myPane.getChildren().add(myTextLayer);
 	}
 	
 	private void animateText(){
@@ -101,6 +112,12 @@ public class SplashScreen extends WindowComponent {
 			timeline.play();
 		}
 		
+	}
+
+	public void addChild(WindowComponent component) {
+		myTextLayer.getChildren().add(component.getParent());
+		System.out.println("ADDING CHILD");
+		myTextLayer.setMaxHeight( myTextLayer.getMaxHeight() + component.getParent().getBoundsInLocal().getHeight() );
 	}
 
 }

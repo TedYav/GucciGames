@@ -17,6 +17,7 @@ public class GameLoader {
     private GameControllerLoader myController;
     private GameDataInterface myData;
     private boolean gameLoaded = false;
+    private String mySelectedGame = "";
 
     public GameLoader(GameController controller) {
     	myData = new GameDataLoader();
@@ -50,4 +51,22 @@ public class GameLoader {
     public void openGameBrowser(){
     	System.err.println("NOT IMPLEMENTED YET SORRY");
     }
+    
+    public void selectGame(String gameName){
+    	mySelectedGame = gameName;
+    }
+    
+    public void loadSelectedGame() throws GameDataException{
+    	if(!mySelectedGame.isEmpty()){
+    		loadGame(mySelectedGame);
+    		mySelectedGame = "";
+    	}
+    	else{
+    		throw new GameDataException("No game selected to load");
+    	}
+    }
+
+	public void loadDefault() {
+		myController.loadGame(myData.loadDefault());
+	}
 }
