@@ -3,6 +3,8 @@ package voogasalad_GucciGames.gameEngine;
 import java.util.List;
 import java.util.Map;
 
+import voogasalad_GucciGames.gameEngine.CommunicationParameters.ChangedParameters;
+import voogasalad_GucciGames.gameEngine.CommunicationParameters.GridCoordinateParameters;
 import voogasalad_GucciGames.gameEngine.mapObject.AMapObjectCharacteristic;
 import voogasalad_GucciGames.gameEngine.objectActions.IGamePlayerMapObjectAction;
 import voogasalad_GucciGames.gameEngine.targetCoordinate.ATargetCoordinate;
@@ -145,4 +147,8 @@ public interface PlayerMapObjectInterface {
 	 */
 	IGamePlayerMapObjectAction getAction(String name);
 
+	public ChangedParameters performAction(String action, ATargetCoordinate coor);
+	
+	public GridCoordinateParameters performRequest(String action);
+	
 }
