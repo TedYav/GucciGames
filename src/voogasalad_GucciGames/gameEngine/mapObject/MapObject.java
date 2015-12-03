@@ -212,6 +212,7 @@ public class MapObject implements PlayerMapObjectInterface{
 	}
 
 	public void setBasicParameters(BasicParameters basic){
+
 		this.myEventHandler = new MapObjectEventHandler(basic);
 	}
 
