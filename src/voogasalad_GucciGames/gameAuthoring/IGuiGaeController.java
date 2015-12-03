@@ -7,6 +7,7 @@ import voogasalad_GucciGames.gameAuthoring.properties.ObjectProperty;
 import voogasalad_GucciGames.gameAuthoring.properties.Property;
 
 import java.io.File;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -67,4 +68,8 @@ public interface IGuiGaeController {
 	public ImageView getMapObjectImage(MapObjectType object);
 
 	public ImageView getMapObjectImage(DisplayMapObject object);
+	
+	public ArrayList<String> getCustomGamePlayerComponents();
+	
+	public void setCustomGamePlayerComponents(ArrayList<String> allComponents);
 }

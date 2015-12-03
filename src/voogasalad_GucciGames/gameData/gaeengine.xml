@@ -1,5 +1,4 @@
-n»éý…ù|5yÞÿÊÈŒmà
-ù²_à…ˆ@$–’v<voogasalad__GucciGames.gameData.GameInfo>
+ï¿½V>ï¿½Vï¿½ï¿½ï¿½ZXï¿½ï¿½Üžï¿½ï¿½gï¿½ï¿½^Pï¿½ï¿½Eï¿½0<voogasalad__GucciGames.gameData.GameInfo>
   <myEngine>
     <myGamePlayers>
       <myMapOfPlayers>
@@ -70,7 +69,11 @@ n»éý…ù|5yÞÿÊÈŒmà
       </map>
     </myConditionHandler>
     <mapDimensions>0</mapDimensions>
+<<<<<<< HEAD
+    <myName>Game 2560</myName>
+=======
     <myName>Game 6117</myName>
+>>>>>>> 485b0d06f88b53615b1cb2215c11e5336572be7c
   </myEngine>
   <myRightComponents>
     <string>voogasalad_GucciGames.gameplayer.windows.mainwindow.components.bar.ActionDisplay</string>
