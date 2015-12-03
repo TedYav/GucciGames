@@ -1,11 +1,30 @@
-.menufont{
+.menutitle{
 	-fx-font-family: PixelGameFont;
 	-fx-font-size: 72px;
+	-fx-fill: #222222;
 }
 
-.menufont2{
-	-fx-font-family: Switch;
-	-fx-font-size: 300px;
+.menutext{
+	-fx-font-family: PixelGameFont;
+	-fx-font-size: 48px;
+	-fx-fill: #222222;
+}
+
+.menutext-nohover{
+	-fx-font-family: PixelGameFont;
+	-fx-font-size: 48px;
+	-fx-fill: #222222;
+}
+
+.menutext:hover{
+	-fx-fill: #9a0000;
+}
+
+.gamemenu{
+	-fx-hpos: center;	 
+-fx-node-hpos: center;	 
+-fx-spacing: 5;	 
+-fx-vpos: center;
 }
 
 .title{
