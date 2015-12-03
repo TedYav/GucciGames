@@ -38,7 +38,7 @@ public class GaeController extends AGuiGaeController implements IModelGaeControl
 	private int defaultOwnerID = -1;
 	private Map<Integer, String> allPlayers = new HashMap<Integer, String>();
 	private ImageDatabase myImageDatabase = new ImageDatabase();
-	private ArrayList<String> customGamePlayerComponents = new ArrayList<String>();
+	//private ArrayList<String> customGamePlayerComponents = new ArrayList<String>();
 
 	public GaeController(Stage stage) {
 		myStage = stage;
@@ -243,15 +243,33 @@ public class GaeController extends AGuiGaeController implements IModelGaeControl
 		return getMapObjectImage(object.getType());
 	}
 
-	@Override
-	public ArrayList<String> getCustomGamePlayerComponents() {
-		return customGamePlayerComponents;
-	}
+        @Override
+        public List<String> getCustomGamePlayerLeftComponents() {
+                return model.getLeftComponents();
+        }
 
-	@Override
-	public void setCustomGamePlayerComponents(ArrayList<String> allComponents) {
-		customGamePlayerComponents = allComponents;		
-	}
+        @Override
+        public void setCustomGamePlayerLeftComponents(List<String> allComponents) {
+                model.setLeftComponents(allComponents);
+        }
+        @Override
+        public List<String> getCustomGamePlayerRightComponents() {
+                return model.getRightComponents();
+        }
+
+        @Override
+        public void setCustomGamePlayerRightComponents(List<String> allComponents) {
+                model.setRightComponents(allComponents);
+        }
+        @Override
+        public List<String> getCustomGamePlayerBottomComponents() {
+                return model.getBottomComponents();
+        }
+
+        @Override
+        public void setCustomGamePlayerBottomComponents(List<String> allComponents) {
+                model.setBottomComponents(allComponents);
+        }
 
 	public void initGrid(int width, int height) {
 		myGui.initializeMap(width, height);
