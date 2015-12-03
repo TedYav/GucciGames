@@ -8,25 +8,28 @@ import java.util.Observer;
 import java.util.ResourceBundle;
 import voogasalad_GucciGames.gameEngine.PlayerMapObjectInterface;
 import voogasalad_GucciGames.gameplayer.controller.GameControllerInterface;
+import voogasalad_GucciGames.gameplayer.windows.GameScene;
 import voogasalad_GucciGames.gameplayer.windows.mainwindow.components.DisplayComponent;
 import javafx.collections.FXCollections;
 import javafx.collections.ListChangeListener;
 import javafx.scene.Node;
+import javafx.scene.Parent;
 import javafx.scene.control.ListView;
 
 public class DisplayMapObjectDetails extends DisplayComponent implements ListChangeListener<PlayerMapObjectInterface>, Observer{
     private ListView<String> listView;
     private List<String> attributeList;
-    private ResourceBundle myBundle=ResourceBundle.getBundle("voogasalad_GucciGames.gameplayer.config.components.LeftBar");
+    private ResourceBundle myBundle=ResourceBundle.getBundle("voogasalad_GucciGames.gameplayer.config.components.Bar");
 
-    public DisplayMapObjectDetails(GameControllerInterface controller) {
-        super(controller);
+    public DisplayMapObjectDetails(GameScene scene, GameControllerInterface controller) {
+        super(scene,controller);
         attributeList= new ArrayList<String>();
         attributeList.add(myBundle.getString("detailplaceholder"));
         listView=new ListView<String>(FXCollections.observableList(attributeList));
         getMyController().addActiveMOObserver(this);
     }
-    public Node getNodeToDraw() {
+    @Override
+    public Parent getParent() {
         return listView;
     }
     @Override

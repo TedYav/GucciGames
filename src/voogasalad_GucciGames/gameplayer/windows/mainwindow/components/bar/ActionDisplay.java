@@ -9,11 +9,13 @@ import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.Node;
+import javafx.scene.Parent;
 import javafx.scene.control.Button;
 import javafx.scene.control.ListView;
 import voogasalad_GucciGames.gameEngine.PlayerMapObjectInterface;
 import voogasalad_GucciGames.gameEngine.targetCoordinate.TargetCoordinateSingle;
 import voogasalad_GucciGames.gameplayer.controller.GameControllerInterface;
+import voogasalad_GucciGames.gameplayer.windows.GameScene;
 import voogasalad_GucciGames.gameplayer.windows.mainwindow.components.DisplayComponent;
 
 public class ActionDisplay extends DisplayComponent implements Observer {
@@ -21,8 +23,8 @@ public class ActionDisplay extends DisplayComponent implements Observer {
     private ListView<Button> buttons;
     private List<Button> baseButtons;
 
-    public ActionDisplay(GameControllerInterface controller) {
-        super(controller);
+    public ActionDisplay(GameScene scene, GameControllerInterface controller) {
+        super(scene,controller);
         getMyController().addActiveMOObserver(this);
         baseButtons = new ArrayList<Button>();
         buttons = new ListView<Button>(FXCollections.observableList(baseButtons));
@@ -50,7 +52,7 @@ public class ActionDisplay extends DisplayComponent implements Observer {
     }
 
     @Override
-    public Node getNodeToDraw() {
+    public Parent getParent() {
         return buttons;
     }
 

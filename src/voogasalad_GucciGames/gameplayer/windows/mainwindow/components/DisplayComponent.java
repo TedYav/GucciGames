@@ -5,17 +5,13 @@ import javafx.collections.ListChangeListener;
 import javafx.scene.Node;
 import voogasalad_GucciGames.gameEngine.PlayerMapObjectInterface;
 import voogasalad_GucciGames.gameplayer.controller.GameControllerInterface;
+import voogasalad_GucciGames.gameplayer.windows.GameScene;
+import voogasalad_GucciGames.gameplayer.windows.WindowComponent;
 
-public abstract class DisplayComponent {
-    private GameControllerInterface myController;
-    public DisplayComponent(GameControllerInterface controller) {
-        setMyController(controller);
+public abstract class DisplayComponent extends WindowComponent{
+    public DisplayComponent(GameScene scene, GameControllerInterface controller) {
+        super(scene,controller);
     }
-    /**
-     * 
-     * @return Node to be displayed.
-     */
-    public abstract Node getNodeToDraw();
     
     /**
      * 
@@ -29,11 +25,5 @@ public abstract class DisplayComponent {
      */
     public void updateDisplay () {
         return;
-    }
-    public GameControllerInterface getMyController () {
-        return myController;
-    }
-    public void setMyController (GameControllerInterface myController) {
-        this.myController = myController;
     }
 }
