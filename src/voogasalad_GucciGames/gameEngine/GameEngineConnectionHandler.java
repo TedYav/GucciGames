@@ -91,13 +91,6 @@ public class GameEngineConnectionHandler extends Thread {
 	                    
 	                    }
 	                    
-	                    //if input == "GAMEDATA"
-	                    //input = in.readLine();
-	                    //read that many characters and append to a StringBuilder, then make it a string.
-	                    //try to update the engine that way
-	                    //print out the xml on console as a debug
-	                    //if doesn't work, check the end conditions (missing characters and whatnot)
-	                    
 	           
 	                }
 	            } catch (IOException e) {

@@ -48,10 +48,14 @@ public class GameEngineServer implements GameEngineToGamePlayerInterface, Runnab
 	public void updateClientGameEngine() {
 		getWriters().stream().forEach(e -> {
 			XStream xstream = new XStream();
-			e.println(xstream.toXML(myEngine));
+			e.println("GAMEDATA");
+			String s = xstream.toXML(myEngine);
+			e.println(s.length());
+			e.println(s);
 		});
 	}
 	
+	//add a listener to handle exceptions and report to front end.
 	public void run(){
 		ServerSocket listener = null;
         try {
