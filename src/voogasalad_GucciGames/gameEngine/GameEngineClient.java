@@ -13,8 +13,8 @@ import java.util.Set;
 
 import com.thoughtworks.xstream.XStream;
 
-import voogasalad_GucciGames.gameEngine.CommunicationParams.ActionToGamePlayerParameters;
-import voogasalad_GucciGames.gameEngine.CommunicationParams.GridCoordinateParameters;
+import voogasalad_GucciGames.gameEngine.CommunicationParameters.ChangedParameters;
+import voogasalad_GucciGames.gameEngine.CommunicationParameters.GridCoordinateParameters;
 import voogasalad_GucciGames.gameEngine.targetCoordinate.ATargetCoordinate;
 import voogasalad_GucciGames.gameplayer.controller.GameParametersInterface;
 
@@ -118,32 +118,35 @@ public class GameEngineClient implements GameEngineToGamePlayerInterface, Runnab
 		return myEngine.getTurnPlayerID();
 	}
 
-	@Override
-	public GridCoordinateParameters getPossibleCoordinates(String action, PlayerMapObjectInterface mapObject) {
-		// deprecated method
-		return null;
-	}
-
-	@Override
-	public ActionToGamePlayerParameters performAction(String action, PlayerMapObjectInterface mapObject,
-			ATargetCoordinate target) {
-		// deprecated method
-		return null;
-	}
-
-	@Override
-	public double getMapWidth() {
-		return myEngine.getMapWidth();
-	}
-
-	@Override
-	public double getMapHeight() {
-		return myEngine.getMapHeight();
-	}
 
 	@Override
 	public GameParametersInterface getGameParameters() {
 		return myEngine.getGameParameters();
+	}
+
+	@Override
+	public GridCoordinateParameters getPossibleCoordinates(String action, PlayerMapObjectInterface mapObject) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public ChangedParameters performAction(String action, PlayerMapObjectInterface mapObject,
+			ATargetCoordinate target) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public int getMapWidth() {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	@Override
+	public int getMapHeight() {
+		// TODO Auto-generated method stub
+		return 0;
 	}
 
 	//change to either immutable or just make the methods of this public (and not the full set...)

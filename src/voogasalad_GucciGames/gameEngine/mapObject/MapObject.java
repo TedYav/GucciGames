@@ -9,6 +9,9 @@ import java.util.Set;
 import java.util.TreeMap;
 
 import voogasalad_GucciGames.gameEngine.PlayerMapObjectInterface;
+import voogasalad_GucciGames.gameEngine.CommunicationParameters.BasicParameters;
+import voogasalad_GucciGames.gameEngine.CommunicationParameters.ChangedParameters;
+import voogasalad_GucciGames.gameEngine.CommunicationParameters.GridCoordinateParameters;
 import voogasalad_GucciGames.gameEngine.defaultCharacteristics.HealthCharacteristic;
 import voogasalad_GucciGames.gameEngine.objectActions.IGamePlayerMapObjectAction;
 import voogasalad_GucciGames.gameEngine.objectActions.MapObjectEvent;

@@ -87,13 +87,7 @@ public class MainGameEngine implements GameEngineToGamePlayerInterface {
 
 	@Override
 	public GridCoordinateParameters getPossibleCoordinates(String action, PlayerMapObjectInterface myMapObject) {
-		if(((MapObject) myMapObject).getPlayerID() == myTurnDecider.getActivePlayer().getMyPlayerId()){
-			return ((MapObject) myMapObject).performRequest(action);
-			//return ((MapObject) myMapObject).performRequest(action, new BasicParameters(this, ((MapObject) myMapObject)));
-		}
-		else{
-			return new GridCoordinateParameters(new TargetCoordinateMultiple());
-		}
+		return null;
 
 	}
 	////////
@@ -146,20 +140,9 @@ public class MainGameEngine implements GameEngineToGamePlayerInterface {
 	@Override
 	public ChangedParameters performAction(String action, PlayerMapObjectInterface mapObject,
 			ATargetCoordinate target) {
-		// TODO Auto-generated method stub
-		if(((MapObject) mapObject).getPlayerID() == myTurnDecider.getActivePlayer().getMyPlayerId()){
-			return ((MapObject) mapObject).performAction(action, target.getListOfCoordinates().get(0));
-			/*
-			return ((MapObject) mapObject).performAction(action,
-					new LocationParams(new BasicParameters(this, ((MapObject) mapObject)),
-							target.getListOfCoordinates().get(0),
-							this.getPlayers().getPlayerById(((MapObject) mapObject).getPlayerID()).getMovable()));
-			 */
-		}
-		else{
-			return new ChangedParameters();
-		}
-
+	
+		return null;
+		
 	}
 	@Override
 	public int getMapWidth() {
