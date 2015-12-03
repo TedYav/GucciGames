@@ -55,7 +55,7 @@ public class MenuScreen extends WindowComponent {
 	private void drawTitle() {
 		if(!myTitle.isEmpty()){
 			Text t = new Text(myTitle);
-			t.getStyleClass().add("menutitle");
+			t.getStyleClass().addAll("menutitle");
 			myMenu.getChildren().add(t);
 			myText.add(t);
 		}
@@ -80,7 +80,7 @@ public class MenuScreen extends WindowComponent {
 	private void addToMenu(String s, MenuAction action) {
 		Text t = new Text(s);
 		if(action != null){
-			t.getStyleClass().add("menutext");
+			t.getStyleClass().addAll("menutext");
 			t.setOnMouseClicked(e -> action.activate());
 		}
 		else{
