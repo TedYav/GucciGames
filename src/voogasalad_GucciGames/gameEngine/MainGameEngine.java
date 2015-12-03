@@ -37,8 +37,10 @@ public class MainGameEngine implements GameEngineToGamePlayerInterface {
 	private ConditionHandler myConditionHandler;
 	private int mapDimensions;
 	private String myName;
-
-
+	
+	private GameNetworkFormat myNetwork;
+	private GameEngineState myState;
+	
 	public String getName() {
 		return myName;
 	}
