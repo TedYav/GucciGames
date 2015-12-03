@@ -15,6 +15,7 @@ import voogasalad_GucciGames.gameEngine.GameEngineToGamePlayerInterface;
 import voogasalad_GucciGames.gameEngine.PlayerMapObjectInterface;
 import voogasalad_GucciGames.gameEngine.targetCoordinate.ATargetCoordinate;
 import voogasalad_GucciGames.gameEngine.targetCoordinate.TargetCoordinateSingle;
+import voogasalad_GucciGames.gameplayer.gameloader.GameLoader;
 import voogasalad_GucciGames.gameplayer.windows.mainwindow.map.MapInterface;
 import voogasalad_GucciGames.gameplayer.windows.mainwindow.map.cell.MapCell;
 import voogasalad_GucciGames.gameplayer.windows.mainwindow.map.cell.contents.CellUnit;
@@ -46,6 +47,8 @@ public interface GameControllerInterface{
 //	public void setEngine(GameEngineToGamePlayerInterface engine);
 	public GameEngineToGamePlayerInterface getEngine();
 	public GameInfo getGame();
+	
+	public GameLoader getLoader();
 	
 	public List<PlayerMapObjectInterface> getInitialState();
 	
