@@ -1,5 +1,8 @@
 <rulesDependencies>
-	<rule name="numAttacksPerTurn">
-		<displayName></displayName>
+	<rule name="numAttacksPerTurn" 
+		displayName="Number of Attacks Per Turn">
+	</rule>
+	<rule name="numMovesPerTurn" 
+		displayName="Number of Moves Per Turn">
 	</rule>
 </rulesDependencies>

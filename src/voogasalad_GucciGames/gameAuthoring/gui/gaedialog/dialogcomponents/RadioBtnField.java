@@ -14,12 +14,14 @@ import javafx.scene.control.ToggleGroup;
 import javafx.scene.layout.HBox;
 import javafx.scene.text.Text;
 
-public class RadioBtnField extends DialogComponent {
+public class RadioBtnField extends DialogComponent{ 
 	
 	private DialogElements dialogElements;
 	private String propKey;
 	private String itemsKey;
 	private ToggleGroup group = new ToggleGroup();
+	private List<String> itemsList = new ArrayList<String>();
+	private Text label = new Text();
 
 	
 	
@@ -27,40 +29,37 @@ public class RadioBtnField extends DialogComponent {
 		this.dialogElements = dialogElements;
 		this.propKey = propKey;
 		this.itemsKey = itemsKey;
+		createItemList();
 		makeRadioButtons();
+	}
+	
+	public RadioBtnField(List<String> items){
+		itemsList = items;
+		makeRadioButtons();
+		
+	}
+	
+	private void createItemList(){
+		label = new Text(dialogElements.getDialogProperties().getProperty(propKey));
+		itemsList = parseStringToList(dialogElements.getDialogProperties(), itemsKey);
 	}
 		
 	protected void makeRadioButtons(){
-		Text label = new Text(dialogElements.getDialogProperties().getProperty(propKey));
 		List<RadioButton> checkBoxList = new ArrayList<RadioButton>();
-		List<String> propertiesList = parseStringToList(dialogElements.getDialogProperties(), itemsKey);
-		for (int i = 0; i < propertiesList.size(); i++){
-			checkBoxList.add(new RadioButton(propertiesList.get(i)));
+
+		for (int i = 0; i < itemsList.size(); i++){
+			checkBoxList.add(new RadioButton(itemsList.get(i)));
 		}
-		checkBoxList.forEach(radioBtn->{
+		this.add(label, 0, 0);
+		int col = 0;
+		for(RadioButton radioBtn: checkBoxList){
 			radioBtn.setToggleGroup(group);
-			radioBtn.setUserData(radioBtn.getText());});		
-		//addListenerToToggleGroup();
-		this.getChildren().add(label);
-		this.getChildren().addAll( checkBoxList);
-		this.setId("hbox-element");
+			radioBtn.setUserData(radioBtn.getText());
+			this.add(radioBtn, col, 1);
+			col++;
+		}		
+	
 	}
-	
-//	private void addListenerToToggleGroup() {
-//		group.selectedToggleProperty().addListener(new ChangeListener<Toggle>(){
-//			@Override
-//			public void changed(ObservableValue<? extends Toggle> observable,
-//					Toggle oldValue, Toggle newValue) {
-//				// TODO Auto-generated method stub
-//				if(group.getSelectedToggle() != null){
-//					dialogElements.getSaveObjProperty()
-//					.saveObjProperty(propKey, group.getSelectedToggle().getUserData().toString());
-//					
-//				}			
-//			}
-//		});
-//	}
-	
 
 	
 	@Override
