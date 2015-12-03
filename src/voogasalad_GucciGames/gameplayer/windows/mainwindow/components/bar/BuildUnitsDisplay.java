@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Observable;
 import java.util.Observer;
-
 import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -17,18 +16,33 @@ import voogasalad_GucciGames.gameplayer.controller.GameControllerInterface;
 import voogasalad_GucciGames.gameplayer.windows.GameScene;
 import voogasalad_GucciGames.gameplayer.windows.mainwindow.components.DisplayComponent;
 
-public class ActionDisplay extends DisplayComponent implements Observer {
+public class BuildUnitsDisplay extends DisplayComponent implements Observer{
     private PlayerMapObjectInterface activeMapObject;
     private ListView<Button> buttons;
     private List<Button> baseButtons;
-
-    public ActionDisplay(GameScene scene, GameControllerInterface controller) {
+    public BuildUnitsDisplay (GameScene scene, GameControllerInterface controller) {
         super(scene,controller);
         getController().addActiveMOObserver(this);
         baseButtons = new ArrayList<Button>();
         buttons = new ListView<Button>(FXCollections.observableList(baseButtons));
     }
 
+    @Override
+    public Parent getParent() {
+        return buttons;
+    }
+
+    private void updateButtons() {
+        List<Button> buildOptions = new ArrayList<>();
+        activeMapObject.getActionNames().stream().
+        forEach(mapObject -> {
+            if(((String)mapObject).startsWith("build")) {
+                buildOptions.add(makeButton(mapObject));
+            }
+        });
+        baseButtons = buildOptions;
+        buttons.setItems(FXCollections.observableList(baseButtons));
+    }
     private Button makeButton(String name) {
         Button button = new Button();
         button.setText(name);
@@ -40,19 +54,6 @@ public class ActionDisplay extends DisplayComponent implements Observer {
             }
         });
         return button;
-    }
-
-    private void updateButtons() {
-        List<Button> updatedActions = new ArrayList<>();
-        activeMapObject.getActionNames().stream().
-        forEach(action -> updatedActions.add(makeButton(action)));
-        baseButtons = updatedActions;
-        buttons.setItems(FXCollections.observableList(baseButtons));
-    }
-
-    @Override
-    public Parent getParent() {
-        return buttons;
     }
 
     @Override

@@ -86,3 +86,10 @@
 	
 	-fx-stroke-width: 5;
 	-fx-stroke-style: inset;  */
+	
+.bottomhbox{
+	-fx-font: bold 20pt "Palatino Linotype";
+	-fx-background-color: #BFB79F;
+	-fx-spacing: 10;
+	-fx-padding: 5;
+}
