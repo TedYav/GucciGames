@@ -1,5 +1,6 @@
 package voogasalad_GucciGames.gameplayer.windows.mainwindow.components.bar;
 
+import voogasalad_GucciGames.gameplayer.config.PlayerConfig;
 import voogasalad_GucciGames.gameplayer.controller.GameControllerInterface;
 import voogasalad_GucciGames.gameplayer.windows.GameScene;
 import voogasalad_GucciGames.gameplayer.windows.mainwindow.components.DisplayComponent;
@@ -18,8 +19,8 @@ public class DisplayChat extends DisplayComponent{
     private TextArea inputArea;
     private ListView<String> chatHistory;
     private List<String> chatHistoryStrings;
-    private ResourceBundle myBundle=ResourceBundle.getBundle("voogasalad_GucciGames.gameplayer.config.components.Bar");
-    private ResourceBundle myCssBundle = ResourceBundle.getBundle(myBundle.getString("cssclass"));
+    private ResourceBundle myBundle=PlayerConfig.load("components.Bar");
+    private ResourceBundle myCssBundle = PlayerConfig.load(myBundle.getString("cssclass"));
 
     public DisplayChat(GameScene scene, GameControllerInterface controller) {
         super(scene,controller);

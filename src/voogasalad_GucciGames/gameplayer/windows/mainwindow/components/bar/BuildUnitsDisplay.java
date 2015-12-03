@@ -22,7 +22,7 @@ public class BuildUnitsDisplay extends DisplayComponent implements Observer{
     private List<Button> baseButtons;
     public BuildUnitsDisplay (GameScene scene, GameControllerInterface controller) {
         super(scene,controller);
-        getMyController().addActiveMOObserver(this);
+        getController().addActiveMOObserver(this);
         baseButtons = new ArrayList<Button>();
         buttons = new ListView<Button>(FXCollections.observableList(baseButtons));
     }
@@ -49,8 +49,8 @@ public class BuildUnitsDisplay extends DisplayComponent implements Observer{
         button.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
-                List<TargetCoordinateSingle> targets = getMyController().setActionInProgress(name, activeMapObject);
-                getMyController().getMap().highlightCells(targets);
+                List<TargetCoordinateSingle> targets = getController().setActionInProgress(name, activeMapObject);
+                getController().getMap().highlightCells(targets);
             }
         });
         return button;

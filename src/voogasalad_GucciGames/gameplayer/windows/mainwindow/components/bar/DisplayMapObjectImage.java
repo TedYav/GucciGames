@@ -1,6 +1,7 @@
 package voogasalad_GucciGames.gameplayer.windows.mainwindow.components.bar;
 
 import voogasalad_GucciGames.gameEngine.PlayerMapObjectInterface;
+import voogasalad_GucciGames.gameplayer.config.PlayerConfig;
 import voogasalad_GucciGames.gameplayer.controller.GameControllerInterface;
 import voogasalad_GucciGames.gameplayer.windows.GameScene;
 import voogasalad_GucciGames.gameplayer.windows.mainwindow.components.DisplayComponent;
@@ -18,8 +19,8 @@ public class DisplayMapObjectImage extends DisplayComponent implements ListChang
     private FlowPane display;
     private Image buffer;
     private ImageView imgView;
-    private ResourceBundle myBundle=ResourceBundle.getBundle("voogasalad_GucciGames.gameplayer.config.components.Bar");
-    private ResourceBundle myCssBundle = ResourceBundle.getBundle(myBundle.getString("cssclass"));
+    private ResourceBundle myBundle=PlayerConfig.load("components.Bar");
+    private ResourceBundle myCssBundle = PlayerConfig.load(myBundle.getString("cssclass"));
 
     public DisplayMapObjectImage (GameScene scene, GameControllerInterface controller) {
         super(scene,controller);
@@ -40,7 +41,7 @@ public class DisplayMapObjectImage extends DisplayComponent implements ListChang
     }
     private void initializeImage(PlayerMapObjectInterface m) {
         if (m!=null) {
-            buffer = getMyController().requestImage(m.getImageURI());
+            buffer = getController().requestImage(m.getImageURI());
         }
         imgView=new ImageView(buffer);
         imgView.setPreserveRatio(true);
@@ -52,7 +53,7 @@ public class DisplayMapObjectImage extends DisplayComponent implements ListChang
     }
 
     private void updateActiveMapObject(PlayerMapObjectInterface mapObj) {
-        getMyController().setActiveMapObject(mapObj);
+        getController().setActiveMapObject(mapObj);
     }
 
     @Override

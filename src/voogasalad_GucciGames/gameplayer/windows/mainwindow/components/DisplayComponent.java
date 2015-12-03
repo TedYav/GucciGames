@@ -5,7 +5,6 @@ import javafx.collections.ListChangeListener;
 import voogasalad_GucciGames.gameEngine.PlayerMapObjectInterface;
 import voogasalad_GucciGames.gameplayer.controller.GameControllerInterface;
 import voogasalad_GucciGames.gameplayer.windows.GameScene;
-import voogasalad_GucciGames.gameplayer.windows.WindowComponent;
 
 public abstract class DisplayComponent extends WindowComponent{
     public DisplayComponent(GameScene scene, GameControllerInterface controller) {
@@ -23,6 +22,6 @@ public abstract class DisplayComponent extends WindowComponent{
      * Called if you want to manually refresh the DisplayComponent at the end of every turn.
      */
     public void updateDisplay () {
-        return;
+        
     }
 }
