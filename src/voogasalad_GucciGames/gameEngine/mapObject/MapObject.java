@@ -146,11 +146,18 @@ public class MapObject implements PlayerMapObjectInterface{
 		myOwnerID = playerID;
 	}
 
+	/*
+	 * (non-Javadoc)
+	 * @see voogasalad_GucciGames.gameEngine.PlayerMapObjectInterface#isDead()
+	 * 
+	 * If this MapObject has HealthCharacteristic, then this method returns whether the health is 0.
+	 * Otherwise, the MapObject is considered alive so the method returns false.
+	 */
 	@Override
 	public boolean isDead() {
 		// TODO Auto-generated method stub
-		return this.hasCharacteristic("HealthCharacteristic") && 
-				((HealthCharacteristic) getCharacteristic("HealthCharacteristic")).getCurrentHealth() < 0;
+		return this.hasCharacteristic("HealthCharacteristic") &&
+				(((HealthCharacteristic) getCharacteristic("HealthCharacteristic")).getCurrentHealth() <= 0);
 	}
 
 	@Override
