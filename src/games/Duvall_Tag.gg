@@ -1,4 +1,4 @@
-paÆ*P&*õþ	#^qå-±L»ŽSh0P2`[ô‹<voogasalad__GucciGames.gameData.GameInfo>
+4-´É‘ëà¯ËO1Z¹êÓ“Ìq[½Äæ!Ÿä£À<voogasalad__GucciGames.gameData.GameInfo>
   <myEngine>
     <myGamePlayers>
       <myMapOfPlayers class="tree-map">
@@ -1862,6 +1862,8 @@ paÆ*P&*õþ	#^qå-±L»ŽSh0P2`[ô‹<voogasalad__GucciGames.gameData.GameInfo>
       </map>
     </myConditionHandler>
     <mapDimensions>0</mapDimensions>
+    <myMapWidth>8</myMapWidth>
+    <myMapHeight>8</myMapHeight>
     <myName>Duvall Tag</myName>
   </myEngine>
   <myRightComponents>

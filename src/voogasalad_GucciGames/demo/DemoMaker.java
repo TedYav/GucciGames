@@ -105,6 +105,8 @@ public class DemoMaker extends Application{
 		AllPlayers myPlayers = new AllPlayers(myMapOfPlayers);
 
 		MainGameEngine engine = new MainGameEngine(myPlayers);
+		engine.setMapHeight(8);
+		engine.setMapWidth(8);
 		for(Integer key: myMapOfPlayers.keySet()){
 			myMapOfPlayers.get(key).getMapObjects().stream().forEach(mo -> {
 				mo.setBasicParameters(new BasicParameters(null,engine));
