@@ -41,7 +41,7 @@ public class MenuScreen extends WindowComponent {
 	private void drawMenu() {
 		Text test = new Text("testing");
 		//test.setFont(f);
-		test.getStyleClass().add("menufont");
+		test.getStyleClass().add("menufont2");
 		myPane.getChildren().add(test);
 	}
 
