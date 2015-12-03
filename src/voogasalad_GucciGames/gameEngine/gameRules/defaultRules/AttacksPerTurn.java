@@ -1,6 +1,6 @@
 package voogasalad_GucciGames.gameEngine.gameRules.defaultRules;
 
-import voogasalad_GucciGames.gameEngine.CommunicationParams.BasicParameters;
+import voogasalad_GucciGames.gameEngine.CommunicationParameters.BasicParameters;
 import voogasalad_GucciGames.gameEngine.defaultCharacteristics.AttackCharacteristic;
 import voogasalad_GucciGames.gameEngine.gameRules.RuleParams;
 import voogasalad_GucciGames.gameEngine.gameRules.Rules;

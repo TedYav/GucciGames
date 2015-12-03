@@ -1,15 +1,15 @@
-package voogasalad_GucciGames.gameEngine.CommunicationParams;
+package voogasalad_GucciGames.gameEngine.CommunicationParameters;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import voogasalad_GucciGames.gameEngine.PlayerMapObjectInterface;
 
-public class ActionToGamePlayerParameters extends CommunicationParameters{
+public class ChangedParameters extends CommunicationParameters{
 	
 	private List<PlayerMapObjectInterface> changedUnits;
 	
-	public ActionToGamePlayerParameters(){
+	public ChangedParameters(){
 		changedUnits = new ArrayList<PlayerMapObjectInterface>();
 		
 	}

@@ -3,11 +3,11 @@ package voogasalad_GucciGames.gameEngine.objectActions;
 import java.util.HashSet;
 import java.util.Set;
 
-import voogasalad_GucciGames.gameEngine.CommunicationParams.ActionToGamePlayerParameters;
-import voogasalad_GucciGames.gameEngine.CommunicationParams.BasicParameters;
-import voogasalad_GucciGames.gameEngine.CommunicationParams.CommunicationParameters;
-import voogasalad_GucciGames.gameEngine.CommunicationParams.GridCoordinateParameters;
-import voogasalad_GucciGames.gameEngine.CommunicationParams.LocationParameters;
+import voogasalad_GucciGames.gameEngine.CommunicationParameters.ChangedParameters;
+import voogasalad_GucciGames.gameEngine.CommunicationParameters.BasicParameters;
+import voogasalad_GucciGames.gameEngine.CommunicationParameters.CommunicationParameters;
+import voogasalad_GucciGames.gameEngine.CommunicationParameters.GridCoordinateParameters;
+import voogasalad_GucciGames.gameEngine.CommunicationParameters.LocationParameters;
 import voogasalad_GucciGames.gameEngine.defaultCharacteristics.MovableCharacteristic;
 import voogasalad_GucciGames.gameEngine.gamePlayer.AllPlayers;
 import voogasalad_GucciGames.gameEngine.gamePlayer.GamePlayerPerson;
@@ -28,7 +28,7 @@ public class MoveEvent extends MapObjectEvent{
 	}
 
 	@Override
-	protected CommunicationParameters executeAction(LocationParameters params) {
+	protected ChangedParameters executeAction(LocationParameters params) {
 		// TODO Auto-generated method stub
 		System.out.println("Move Action");
 		TargetCoordinateSingle target = params.getNewLocation();
@@ -39,7 +39,7 @@ public class MoveEvent extends MapObjectEvent{
 		player.getMovable().updateMoves();
 		//params.getMovePerson().updateMoves();
 		
-		ActionToGamePlayerParameters myParameters  = new ActionToGamePlayerParameters();
+		ChangedParameters myParameters  = new ChangedParameters();
 		
 		myParameters.addUnit(moving);
 		
@@ -47,7 +47,7 @@ public class MoveEvent extends MapObjectEvent{
 	}
 
 	@Override
-	protected CommunicationParameters executeRequest(BasicParameters params) {
+	protected GridCoordinateParameters executeRequest(BasicParameters params) {
 		// TODO Auto-generated method stub
 		System.out.println("Move Request");
 		AllPlayers players = params.getEngine().getPlayers();
@@ -65,7 +65,8 @@ public class MoveEvent extends MapObjectEvent{
 			otherCoor.add((TargetCoordinateSingle) obj.getCoordinate());
 		});
 		players.getActivePlayer(-1).getMapObjects().stream().forEach(mo -> {
-			if(mo.isTile()){
+			// Fix this
+			if(mo.hasCharacteristic("TileCharacteristic") || mo.getName().equals("TileCharacteristic")){
 				TargetCoordinateSingle single = (TargetCoordinateSingle) mo.getCoordinate();
 				double dx = Math.abs(single.getCenterX()-caller.getCenterX());
 				double dy = Math.abs(single.getCenterY()-caller.getCenterY());

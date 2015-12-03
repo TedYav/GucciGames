@@ -1,7 +1,7 @@
 
 package voogasalad_GucciGames.gameEngine.gameRules;
 
-import voogasalad_GucciGames.gameEngine.CommunicationParams.BasicParameters;
+import voogasalad_GucciGames.gameEngine.CommunicationParameters.BasicParameters;
 
 /**
  *
