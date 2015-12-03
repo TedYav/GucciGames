@@ -11,7 +11,7 @@ import voogasalad_GucciGames.gameplayer.windows.GameScene;
 public class LeftBar extends WindowSideComponent{
     private VBox container;
     private double spacing = 5;
-    private ResourceBundle myBundle=PlayerConfig.load("components.LeftBar");
+    private ResourceBundle myBundle=PlayerConfig.load("components.Bar");
     private ResourceBundle myCssBundle = PlayerConfig.load(myBundle.getString("cssclass"));
 
     public LeftBar (GameScene scene, GameControllerInterface controller, List<DisplayComponent> components) {
@@ -24,7 +24,7 @@ public class LeftBar extends WindowSideComponent{
     @Override
     protected void initializeData() {
         for (DisplayComponent d: getMyComponents()) {
-            container.getChildren().add(d.getNodeToDraw());
+            container.getChildren().add(d.getParent());
         }
         container.getStyleClass().add(myCssBundle.getString("LeftVBox"));
         container.setPrefWidth(Double.parseDouble(myCssBundle.getString("leftprefwidth")));

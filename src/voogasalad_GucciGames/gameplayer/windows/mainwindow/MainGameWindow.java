@@ -1,14 +1,16 @@
 package voogasalad_GucciGames.gameplayer.windows.mainwindow;
 
+import voogasalad_GucciGames.gameplayer.controller.GameController;
 import voogasalad_GucciGames.gameplayer.windows.GameSceneManager;
 import voogasalad_GucciGames.gameplayer.windows.GameWindow;
+import voogasalad_GucciGames.gameplayer.windows.GameWindowManager;
 
 public class MainGameWindow extends GameWindow {
 
 	private GameSceneManager mySceneManager;
 	
-	public MainGameWindow(int id) {
-		super(id);
+	public MainGameWindow(int id, GameWindowManager manager, GameController controller) {
+		super(id, manager, controller);
 	}
 	
 	/**
@@ -16,7 +18,12 @@ public class MainGameWindow extends GameWindow {
 	 * Otherwise any null pointer exceptions get thrown as reflection exceptions.
 	 */
 	public void initialize(){
-		mySceneManager = new GameSceneManager("PrimarySceneManager", this);
+		mySceneManager = new GameSceneManager("PrimarySceneManager", this, myController);
+	}
+
+	@Override
+	public void refresh() {
+		mySceneManager.refresh();
 	}
 
 }

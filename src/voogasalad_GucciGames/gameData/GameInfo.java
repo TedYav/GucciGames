@@ -1,8 +1,10 @@
 package voogasalad_GucciGames.gameData;
 
+import java.util.Collection;
 import java.util.List;
 import voogasalad_GucciGames.gameEngine.GameEngineToGamePlayerInterface;
 import voogasalad_GucciGames.gameEngine.MainGameEngine;
+import voogasalad_GucciGames.gameplayer.windows.mainwindow.components.DisplayComponent;
 
 /**
  * 
@@ -19,11 +21,13 @@ public class GameInfo {
 	// format can be changed
 	private List<String> myRightComponents;	// hold class names
 	private List<String> myLeftComponents;
+	private List<String> myBottomComponents;
 	
-	public GameInfo(MainGameEngine engine, List<String> leftComponents, List<String> rightComponents){
+	public GameInfo(MainGameEngine engine, List<String> leftComponents, List<String> rightComponents, List<String> bottomComponents){
 	    myEngine=engine;
 	    myRightComponents=rightComponents;
 	    myLeftComponents=leftComponents;
+	    myBottomComponents=bottomComponents;
 	}
 	
 	public GameEngineToGamePlayerInterface getEngine() {
@@ -35,5 +39,9 @@ public class GameInfo {
 	public List<String> getRightComponents() {
 	    return myRightComponents;
 	}
+
+    public List<String> getBottomComponents () {
+        return myBottomComponents;
+    }
 }
 

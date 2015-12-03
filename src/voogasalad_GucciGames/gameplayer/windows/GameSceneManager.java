@@ -19,19 +19,17 @@ public class GameSceneManager implements SceneManager{
 	private ResourceBundle myConfig;
 	private GameScene myCurrentScene;
 	private GameWindowInterface myWindow;
-	private GameLoader myLoader;
-	private GameController myController;
 	private XStreamGameEngine myData;
+	private GameController myController;
 	
-	public GameSceneManager(String config, GameWindowInterface window){
+	public GameSceneManager(String config, GameWindowInterface window, GameController controller){
 		myConfig = PlayerConfig.load(config);
+		myController = controller;
 		myWindow = window;
 		myScenes = generateScenes();
 		myData = new XStreamGameEngine();
 		myCurrentScene = myScenes.get(myConfig.getString("DefaultScene"));
 		myCurrentScene.load();
-		myController = new GameController(this);
-		myLoader = new GameLoader(myController);
 	}
 	
 	private Map<String, GameScene> generateScenes(){
@@ -64,7 +62,7 @@ public class GameSceneManager implements SceneManager{
 	    return myWindow.getStage();
 	}
 	public GameLoader getLoader(){
-		return myLoader;
+		return myController.getLoader();
 	}
 
 	public void refresh() {

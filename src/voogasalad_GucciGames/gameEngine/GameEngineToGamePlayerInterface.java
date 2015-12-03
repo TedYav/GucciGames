@@ -62,9 +62,9 @@ public interface GameEngineToGamePlayerInterface {
 	public ActionToGamePlayerParameters performAction(String action, PlayerMapObjectInterface mapObject,
 			ATargetCoordinate target);
 
-	public double getMapWidth();
+	public int getMapWidth();
 
-	public double getMapHeight();
+	public int getMapHeight();
 
 	public GameParametersInterface getGameParameters();
 }

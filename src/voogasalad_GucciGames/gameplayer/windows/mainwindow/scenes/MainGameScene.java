@@ -21,6 +21,7 @@ import voogasalad_GucciGames.gameplayer.windows.GameScene;
 import voogasalad_GucciGames.gameplayer.windows.GameSceneManager;
 import voogasalad_GucciGames.gameplayer.windows.GameWindow;
 import voogasalad_GucciGames.gameplayer.windows.GameWindowInterface;
+import voogasalad_GucciGames.gameplayer.windows.mainwindow.components.BottomBar;
 import voogasalad_GucciGames.gameplayer.windows.mainwindow.components.DisplayComponent;
 import voogasalad_GucciGames.gameplayer.windows.mainwindow.components.LeftBar;
 import voogasalad_GucciGames.gameplayer.windows.mainwindow.components.RightBar;
@@ -47,6 +48,8 @@ public class MainGameScene extends GameScene {
     private List<DisplayComponent> leftComponents;
     private RightBar myRightBar;
     private List<DisplayComponent> rightComponents;
+    private BottomBar myBottomBar;
+    private List<DisplayComponent> bottomComponents;
     private GameMenuBar myMenuBar;
     private MainMap myMap;
 
@@ -82,14 +85,18 @@ public class MainGameScene extends GameScene {
         myMap = new MainMap(this, myController);
         myPane.setCenter(myMap.getParent());
 
-        leftComponents=myController.getGame().getLeftComponents().stream().map(s->(DisplayComponent)Reflection.createInstance(s, myController)).collect(Collectors.toList());
-        rightComponents=myController.getGame().getRightComponents().stream().map(s->(DisplayComponent)Reflection.createInstance(s, myController)).collect(Collectors.toList());
+        leftComponents=myController.getGame().getLeftComponents().stream().map(s->(DisplayComponent)Reflection.createInstance(s, this, myController)).collect(Collectors.toList());
+        rightComponents=myController.getGame().getRightComponents().stream().map(s->(DisplayComponent)Reflection.createInstance(s, this, myController)).collect(Collectors.toList());
+        bottomComponents=myController.getGame().getBottomComponents().stream().map(s->(DisplayComponent)Reflection.createInstance(s, this, myController)).collect(Collectors.toList());
 
         myLeftBar = new LeftBar(this, myController,leftComponents);
         myPane.setLeft(myLeftBar.getParent());
 
         myRightBar = new RightBar(this, myController, rightComponents);
         myPane.setRight(myRightBar.getParent());
+        
+        myBottomBar = new BottomBar(this,myController, bottomComponents);
+        myPane.setBottom(myBottomBar.getParent());
 
 //	    FileItem file = new FileItem(null,myManager.getStage()); //TODO: create for properties file?
 //	    List<GameMenu> listOfGameMenus = new ArrayList<GameMenu>();

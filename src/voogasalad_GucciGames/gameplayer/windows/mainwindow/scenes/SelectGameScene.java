@@ -38,7 +38,9 @@ public class SelectGameScene extends GameScene {
 		
 		myMenu = new MenuScreen(this, myManager.getController(), buildOptionMap());
 		myScene = new Scene(myMenu.getParent());
-		myManager.getLoader().loadGame("Duvall Tag");
+		if(!myManager.getLoader().gameLoaded()){
+			myManager.getLoader().loadGame("Duvall Tag");
+		}
 		myManager.sceneFinished();
 	}
 

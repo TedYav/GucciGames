@@ -36,6 +36,8 @@ public class MainGameEngine implements GameEngineToGamePlayerInterface {
 	private ATurnDecider myTurnDecider;
 	private ConditionHandler myConditionHandler;
 	private int mapDimensions;
+	private int myMapWidth;
+	private int myMapHeight;
 	private String myName;
 
 
@@ -134,9 +136,14 @@ public class MainGameEngine implements GameEngineToGamePlayerInterface {
 		return myGamePlayers;
 	}
 
+	/*
+	 * Deprecated this because we need to support more than square maps. -- Ted :)
+	 */
+	@Deprecated
 	public int getMapDimensions() {
-		return this.mapDimensions;
+		return mapDimensions;
 	}
+	
 	@Override
 	public ActionToGamePlayerParameters performAction(String action, PlayerMapObjectInterface mapObject,
 			ATargetCoordinate target) {
@@ -156,15 +163,24 @@ public class MainGameEngine implements GameEngineToGamePlayerInterface {
 
 	}
 	@Override
-	public double getMapWidth() {
+	public int getMapWidth() {
 		// TODO Auto-generated method stub
-		return mapDimensions;
+		return myMapWidth;
 	}
 	@Override
-	public double getMapHeight() {
+	public int getMapHeight() {
 		// TODO Auto-generated method stub
-		return mapDimensions;
+		return myMapHeight;
 	}
+	
+	public void setMapWidth(int width){
+		myMapWidth = width;
+	}
+	
+	public void setMapHeight(int height){
+		myMapHeight = height;
+	}
+	
 	@Override
 	public GameParametersInterface getGameParameters() {
 		// TODO Auto-generated method stub
