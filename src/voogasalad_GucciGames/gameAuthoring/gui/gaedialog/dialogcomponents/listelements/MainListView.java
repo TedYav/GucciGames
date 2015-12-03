@@ -22,6 +22,7 @@ public class MainListView extends ListView implements IListView  {
 	public void addListElement(String name){
 		if(!myNames.contains(name)){
 			ActionListItem item = new ActionListItem(name, this);
+			item.setPrefSize(this.getPrefWidth(), this.getPrefHeight());
 			myItems.add(item);
 			myNames.add(name);
 			redraw();
@@ -32,6 +33,7 @@ public class MainListView extends ListView implements IListView  {
 	@Override
 	public void addListItem(ListItem item) {
 		if(!myNames.contains(item.getName())){
+			item.setPrefSize(this.getPrefWidth(), this.getPrefHeight());
 			myItems.add(item);
 			myNames.add(item.getName());
 			redraw();

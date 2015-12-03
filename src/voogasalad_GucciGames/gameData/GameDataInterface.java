@@ -10,4 +10,6 @@ public interface GameDataInterface {
 	
 	public GameInfo loadGameFromFile(String path) throws GameDataException;
 
+	public GameInfo loadDefault();
+
 }

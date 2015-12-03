@@ -11,7 +11,7 @@ import java.util.List;
 import java.util.Properties;
 import java.util.ResourceBundle;
 
-import voogasalad_GucciGames.gameEngine.CommunicationParams.BasicParameters;
+import voogasalad_GucciGames.gameEngine.CommunicationParameters.BasicParameters;
 import voogasalad_GucciGames.gameEngine.gamePlayer.GamePlayerPerson;
 
 /**

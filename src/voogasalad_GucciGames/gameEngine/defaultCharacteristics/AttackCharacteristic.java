@@ -9,8 +9,7 @@ public class AttackCharacteristic extends AMapObjectCharacteristic{
 	private double myDamage = 1;
 	private int maxNumberOfAttacks = 1;
 	private int currentNumberOfAttacks = 0;
-	
-	
+
 	public AttackCharacteristic(double range, double damage, int maxNum){
 		myRange = range;
 		myDamage = damage;

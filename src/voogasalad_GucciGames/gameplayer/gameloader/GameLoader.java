@@ -16,6 +16,8 @@ import voogasalad_GucciGames.gameplayer.windows.mainwindow.scenes.GameSceneInter
 public class GameLoader {
     private GameControllerLoader myController;
     private GameDataInterface myData;
+    private boolean gameLoaded = false;
+    private String mySelectedGame = "";
 
     public GameLoader(GameController controller) {
     	myData = new GameDataLoader();
@@ -28,6 +30,7 @@ public class GameLoader {
     
     public void loadGame(String gameName){
     	myController.loadGame(myData.loadGame(gameName));
+    	gameLoaded = true;
     }
     
     public void loadGameFromFile(String path){
@@ -35,11 +38,35 @@ public class GameLoader {
 			myController.loadGame(myData.loadGameFromFile(path));
 		} catch (GameDataException e) {
 			ErrorHandler.handleError(e);
+			gameLoaded = false;
 			openGameBrowser();
 		}
+    	gameLoaded = true;
+    }
+    
+    public boolean gameLoaded(){
+    	return gameLoaded;
     }
     
     public void openGameBrowser(){
     	System.err.println("NOT IMPLEMENTED YET SORRY");
     }
+    
+    public void selectGame(String gameName){
+    	mySelectedGame = gameName;
+    }
+    
+    public void loadSelectedGame() throws GameDataException{
+    	if(!mySelectedGame.isEmpty()){
+    		loadGame(mySelectedGame);
+    		mySelectedGame = "";
+    	}
+    	else{
+    		throw new GameDataException("No game selected to load");
+    	}
+    }
+
+	public void loadDefault() {
+		myController.loadGame(myData.loadDefault());
+	}
 }

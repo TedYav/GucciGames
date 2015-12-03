@@ -1,5 +1,10 @@
 package voogasalad_GucciGames.gameplayer.windows.mainwindow.scenes;
 
+import java.util.HashMap;
+import java.util.Map;
+import java.util.function.Consumer;
+import java.util.stream.Collectors;
+
 import javafx.scene.Scene;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.StackPane;
@@ -11,11 +16,14 @@ import voogasalad_GucciGames.gameplayer.gameloader.GameLoader;
 import voogasalad_GucciGames.gameplayer.windows.GameScene;
 import voogasalad_GucciGames.gameplayer.windows.GameSceneManager;
 import voogasalad_GucciGames.gameplayer.windows.GameWindow;
+import voogasalad_GucciGames.gameplayer.windows.mainwindow.components.MenuAction;
+import voogasalad_GucciGames.gameplayer.windows.mainwindow.components.MenuScreen;
 import voogasalad_GucciGames.gameplayer.windows.mainwindow.components.SplashScreen;
 
-public class GameMenuScene extends GameScene {
-
-        private Scene myScene;
+public abstract class GameMenuScene extends GameScene {
+	
+	protected MenuScreen myMenu;
+	private String myTitle;
 	
 	public GameMenuScene(GameSceneManager manager, GameWindow window, String config) {
 		super(manager, window, config);
@@ -24,15 +32,21 @@ public class GameMenuScene extends GameScene {
 	@Override
 	protected void readConfig(){
 		super.readConfig();
+		myTitle = myConfig.getString("MenuTitle");
 	}
 
 	@Override
 	public void load() {
 		System.out.println("LOADED " + getName());
-		myManager.sceneFinished();
+		
+		myMenu = new MenuScreen(this, myManager.getController(), buildOptionMap(), myTitle);
+		myScene = new Scene(myMenu.getParent());
+		loadScene(myScene);
 	}
 
-    @Override
+    protected abstract Map<String, MenuAction> buildOptionMap();
+
+	@Override
     public void refresh () {
         // TODO Auto-generated method stub
         

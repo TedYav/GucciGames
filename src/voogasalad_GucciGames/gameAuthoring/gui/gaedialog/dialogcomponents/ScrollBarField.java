@@ -74,6 +74,10 @@ public class ScrollBarField extends DialogComponent {
 			}			
 		});
 	}
+	
+	public void setSelected(Double val){
+		scrollBar.setValue(val);
+	}
 
 
 	@Override

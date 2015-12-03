@@ -32,7 +32,6 @@ public class GameSettingDialog extends GaeDialog {
 	private ISaveObjProperty saveObjProperty;
 	private DialogElements dialogElements;
 	private GameSettingParams gameSettingParams = new GameSettingParams();
-	
 	private TextInputField nameText;
 	private DropDownMenuField mapSize;
 	private DropDownMenuField fogOfWar;

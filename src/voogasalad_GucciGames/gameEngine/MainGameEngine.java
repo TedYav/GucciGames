@@ -7,11 +7,11 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import voogasalad_GucciGames.gameEngine.CommunicationParams.ActionToGamePlayerParameters;
-import voogasalad_GucciGames.gameEngine.CommunicationParams.BasicParameters;
-import voogasalad_GucciGames.gameEngine.CommunicationParams.GameParameters;
-import voogasalad_GucciGames.gameEngine.CommunicationParams.GameResult;
-import voogasalad_GucciGames.gameEngine.CommunicationParams.GridCoordinateParameters;
+import voogasalad_GucciGames.gameEngine.CommunicationParameters.ChangedParameters;
+import voogasalad_GucciGames.gameEngine.CommunicationParameters.BasicParameters;
+import voogasalad_GucciGames.gameEngine.CommunicationParameters.GameParameters;
+import voogasalad_GucciGames.gameEngine.CommunicationParameters.GameResult;
+import voogasalad_GucciGames.gameEngine.CommunicationParameters.GridCoordinateParameters;
 import voogasalad_GucciGames.gameEngine.gameConditions.ConditionHandler;
 import voogasalad_GucciGames.gameEngine.gameConditions.ConditionParams;
 import voogasalad_GucciGames.gameEngine.gameConditions.Conditions;
@@ -36,9 +36,10 @@ public class MainGameEngine implements GameEngineToGamePlayerInterface {
 	private ATurnDecider myTurnDecider;
 	private ConditionHandler myConditionHandler;
 	private int mapDimensions;
+	private int myMapWidth;
+	private int myMapHeight;
 	private String myName;
-
-
+	
 	public String getName() {
 		return myName;
 	}
@@ -86,13 +87,7 @@ public class MainGameEngine implements GameEngineToGamePlayerInterface {
 
 	@Override
 	public GridCoordinateParameters getPossibleCoordinates(String action, PlayerMapObjectInterface myMapObject) {
-		if(((MapObject) myMapObject).getPlayerID() == myTurnDecider.getActivePlayer().getMyPlayerId()){
-			return ((MapObject) myMapObject).performRequest(action);
-			//return ((MapObject) myMapObject).performRequest(action, new BasicParameters(this, ((MapObject) myMapObject)));
-		}
-		else{
-			return new GridCoordinateParameters(new TargetCoordinateMultiple());
-		}
+		return null;
 
 	}
 	////////
@@ -134,37 +129,40 @@ public class MainGameEngine implements GameEngineToGamePlayerInterface {
 		return myGamePlayers;
 	}
 
+	/*
+	 * Deprecated this because we need to support more than square maps. -- Ted :)
+	 */
+	@Deprecated
 	public int getMapDimensions() {
-		return this.mapDimensions;
+		return mapDimensions;
 	}
+	
 	@Override
-	public ActionToGamePlayerParameters performAction(String action, PlayerMapObjectInterface mapObject,
+	public ChangedParameters performAction(String action, PlayerMapObjectInterface mapObject,
 			ATargetCoordinate target) {
-		// TODO Auto-generated method stub
-		if(((MapObject) mapObject).getPlayerID() == myTurnDecider.getActivePlayer().getMyPlayerId()){
-			return ((MapObject) mapObject).performAction(action, target.getListOfCoordinates().get(0));
-			/*
-			return ((MapObject) mapObject).performAction(action,
-					new LocationParams(new BasicParameters(this, ((MapObject) mapObject)),
-							target.getListOfCoordinates().get(0),
-							this.getPlayers().getPlayerById(((MapObject) mapObject).getPlayerID()).getMovable()));
-			 */
-		}
-		else{
-			return new ActionToGamePlayerParameters();
-		}
-
+	
+		return null;
+		
 	}
 	@Override
-	public double getMapWidth() {
+	public int getMapWidth() {
 		// TODO Auto-generated method stub
-		return mapDimensions;
+		return myMapWidth;
 	}
 	@Override
-	public double getMapHeight() {
+	public int getMapHeight() {
 		// TODO Auto-generated method stub
-		return mapDimensions;
+		return myMapHeight;
 	}
+	
+	public void setMapWidth(int width){
+		myMapWidth = width;
+	}
+	
+	public void setMapHeight(int height){
+		myMapHeight = height;
+	}
+	
 	@Override
 	public GameParametersInterface getGameParameters() {
 		// TODO Auto-generated method stub

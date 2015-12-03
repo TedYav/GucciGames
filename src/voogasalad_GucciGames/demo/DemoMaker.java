@@ -10,7 +10,7 @@ import javafx.stage.Stage;
 import voogasalad_GucciGames.gameData.GameInfo;
 import voogasalad_GucciGames.gameData.XStreamGameEngine;
 import voogasalad_GucciGames.gameEngine.MainGameEngine;
-import voogasalad_GucciGames.gameEngine.CommunicationParams.BasicParameters;
+import voogasalad_GucciGames.gameEngine.CommunicationParameters.BasicParameters;
 import voogasalad_GucciGames.gameEngine.defaultCharacteristics.AttackCharacteristic;
 import voogasalad_GucciGames.gameEngine.defaultCharacteristics.HealthCharacteristic;
 import voogasalad_GucciGames.gameEngine.defaultCharacteristics.MovableCharacteristic;
@@ -20,10 +20,10 @@ import voogasalad_GucciGames.gameEngine.gamePlayer.GamePlayerPerson;
 import voogasalad_GucciGames.gameEngine.gamePlayer.MovablePlayerCharacteristic;
 import voogasalad_GucciGames.gameEngine.mapObject.MapObject;
 import voogasalad_GucciGames.gameEngine.objectActions.AttackEvent;
+import voogasalad_GucciGames.gameEngine.objectActions.MapObjectEventHandler;
 import voogasalad_GucciGames.gameEngine.objectActions.MoveEvent;
 import voogasalad_GucciGames.gameEngine.targetCoordinate.TargetCoordinateSingle;
 import voogasalad_GucciGames.gameplayer.windows.GameWindowManager;
-import voogasalad_GucciGames.gameplayer.windows.mainwindow.components.DisplayComponent;
 
 public class DemoMaker extends Application{
 
@@ -34,7 +34,7 @@ public class DemoMaker extends Application{
 		XStreamGameEngine xStream = new XStreamGameEngine();
 		System.out.println("Creating and saving engine.");
 		xStream.saveGameInfo(createGame());
-		GameWindowManager windowmanager = new GameWindowManager();
+		GameWindowManager windowmanager = new GameWindowManager("Duvall Tag");
 	}
 
 	public static void main(String[] args){
@@ -105,21 +105,25 @@ public class DemoMaker extends Application{
 		AllPlayers myPlayers = new AllPlayers(myMapOfPlayers);
 
 		MainGameEngine engine = new MainGameEngine(myPlayers);
+		engine.setMapHeight(8);
+		engine.setMapWidth(8);
 		for(Integer key: myMapOfPlayers.keySet()){
 			myMapOfPlayers.get(key).getMapObjects().stream().forEach(mo -> {
-				mo.setBasicParameters(new BasicParameters(null,engine));
+				mo.setMapObjectEventHandler(new MapObjectEventHandler(new BasicParameters(null,engine)));;
 			});
 		}
 		engine.setName("Duvall Tag");
 	        List<String> leftComponents=new ArrayList<String>();
-	        List<String> rightComponents=new ArrayList<String>();
+                List<String> rightComponents=new ArrayList<String>();
+                List<String> bottomComponents=new ArrayList<String>();
 	        leftComponents.add("voogasalad_GucciGames.gameplayer.windows.mainwindow.components.bar.DisplayMapObjectImage");
 	        leftComponents.add("voogasalad_GucciGames.gameplayer.windows.mainwindow.components.bar.DisplayMapObjectDetails");
 	        leftComponents.add("voogasalad_GucciGames.gameplayer.windows.mainwindow.components.bar.DisplayChat");
 	        rightComponents.add("voogasalad_GucciGames.gameplayer.windows.mainwindow.components.bar.ActionDisplay");
-	        rightComponents.add("voogasalad_GucciGames.gameplayer.windows.mainwindow.components.bar.GameStatsDisplay");
+	        rightComponents.add("voogasalad_GucciGames.gameplayer.windows.mainwindow.components.bar.BuildUnitsDisplay");
+	        bottomComponents.add("voogasalad_GucciGames.gameplayer.windows.mainwindow.components.bar.GameStatsDisplay");
 	        rightComponents.add("voogasalad_GucciGames.gameplayer.windows.mainwindow.components.bar.EndTurnButton");
-		GameInfo game = new GameInfo(engine,leftComponents,rightComponents);
+		GameInfo game = new GameInfo(engine,leftComponents,rightComponents,bottomComponents);
 		return game;
 	}
 

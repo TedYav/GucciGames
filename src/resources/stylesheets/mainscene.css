@@ -1,3 +1,52 @@
+.menutitle{
+	-fx-font-size: 72px;
+	-fx-fill: #222222;
+}
+
+.menutext{
+	-fx-font-size: 48px;
+	-fx-fill: #222222;
+}
+
+.menutext-nohover{
+	-fx-font-size: 48px;
+	-fx-fill: #222222;
+}
+
+.menutext:hover{
+	-fx-fill: #9a0000;
+}
+
+.gamemenu{
+	-fx-hpos: center;	 
+-fx-node-hpos: center;	 
+-fx-spacing: 5;	 
+-fx-vpos: center;
+}
+
+.gametext{
+	-fx-font-family: PixelGameFont;
+}
+
+.guccitext{
+	-fx-font-family: GoldenBookOSF;
+}
+
+.splashtext-small{
+	-fx-font-size: 72px;
+}
+
+.whitetext{
+	-fx-fill: #ffffff;
+}
+
+.loadertext-small{
+	-fx-font-size: 72px;
+}
+
+.splashtext-large{
+	-fx-font-size: 350px;
+}
 
 .title{
 	-fx-font: bold 200pt "Arial";	
@@ -51,4 +100,45 @@
 	-fx-border-color: #8F1010;
 	-fx-border-width: 5;
 	-fx-padding: 0;
+}
+
+
+.inactivecell{
+	-fx-fill: #000000;
+	-fx-opacity: 0.0;
+}
+
+.inactivecell:hover{
+	-fx-fill: #ffff00;
+	-fx-opacity: 0.3;
+}
+
+.highlightcell{
+	-fx-fill: #ff7000;
+	-fx-opacity: 0.5;
+	
+}
+/*-fx-stroke: crimson;
+	-fx-stroke-width: 2;	  */
+
+.highlightcell:hover{
+	-fx-fill: #ffff00;
+}
+
+.activecell{
+	-fx-fill: #00ff00;
+	-fx-opacity: 0.5;
+	
+}
+
+/*-fx-stroke: limegreen;
+	
+	-fx-stroke-width: 5;
+	-fx-stroke-style: inset;  */
+	
+.bottomhbox{
+	-fx-font: bold 20pt "Palatino Linotype";
+	-fx-background-color: #BFB79F;
+	-fx-spacing: 10;
+	-fx-padding: 5;
 }

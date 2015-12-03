@@ -1,7 +1,5 @@
 package voogasalad_GucciGames.gameEngine.gameConditions;
 
-import org.junit.Test;
-
 import junit.framework.TestCase;
 
 /**
@@ -27,7 +25,6 @@ public class ConditionParamsTest extends TestCase {
 		super(name);
 	}
 
-	@Test
 	public void removePlayerTest(){
 
 	}

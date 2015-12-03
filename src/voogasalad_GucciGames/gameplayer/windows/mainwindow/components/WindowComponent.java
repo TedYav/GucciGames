@@ -25,12 +25,23 @@ public abstract class WindowComponent{
     public Parent getParent() {
 		return myParent;
 	}
+    
+    public void setParent(Parent parent){
+    	setParent(parent, true);
+    }
 
-	public void setParent(Parent myParent) {
-		this.myParent = myParent;
+	public void setParent(Parent parent, boolean applyCSS) {
+		myParent = parent;
+		if(applyCSS){
+			styleParent();
+		}
 	}
     
-    public GameScene getScene () {
+    private void styleParent() {
+    	myParent.getStyleClass().add("gametext");
+	}
+
+	public GameScene getScene () {
         return myScene;
     }
 

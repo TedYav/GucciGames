@@ -16,48 +16,27 @@ import voogasalad_GucciGames.gameplayer.gameloader.GameLoader;
 import voogasalad_GucciGames.gameplayer.windows.GameScene;
 import voogasalad_GucciGames.gameplayer.windows.GameSceneManager;
 import voogasalad_GucciGames.gameplayer.windows.GameWindow;
+import voogasalad_GucciGames.gameplayer.windows.mainwindow.components.MenuAction;
 import voogasalad_GucciGames.gameplayer.windows.mainwindow.components.MenuScreen;
 import voogasalad_GucciGames.gameplayer.windows.mainwindow.components.SplashScreen;
 
-public class SelectGameScene extends GameScene {
-	
-	private MenuScreen myMenu;
-	
+public class SelectGameScene extends GameMenuScene {
+		
 	public SelectGameScene(GameSceneManager manager, GameWindow window, String config) {
 		super(manager, window, config);
 	}
 	
 	@Override
-	protected void readConfig(){
-		super.readConfig();
-	}
-
-	@Override
-	public void load() {
-		System.out.println("LOADED " + getName());
-		
-		myMenu = new MenuScreen(this, myManager.getController(), buildOptionMap());
-		myScene = new Scene(myMenu.getParent());
-		myManager.getLoader().loadGame("Duvall Tag");
-		myManager.sceneFinished();
-	}
-
-    private Map<String, Consumer<String>> buildOptionMap() {
-		Map<String, Consumer<String>> optionMap = new HashMap<>();
+    protected Map<String, MenuAction> buildOptionMap() {
+		Map<String, MenuAction> optionMap = new HashMap<>();
 		for(String s : myManager.getLoader().getAvailableGames()){
-			optionMap.put(s, this::selectGame);
+			optionMap.put(s, () -> selectGame(s));
 		}
 		return optionMap;
 	}
-
-	@Override
-    public void refresh () {
-        // TODO Auto-generated method stub
-        
-    }
     
     private void selectGame(String gameName){
-    	myManager.getLoader().loadGame(gameName);
+    	myManager.getLoader().selectGame(gameName);
     	myManager.sceneFinished();
     }
 }

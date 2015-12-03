@@ -16,13 +16,15 @@ import voogasalad_GucciGames.datastructures.ImageDatabase;
 import voogasalad_GucciGames.gameData.GameInfo;
 import voogasalad_GucciGames.gameEngine.GameEngineToGamePlayerInterface;
 import voogasalad_GucciGames.gameEngine.PlayerMapObjectInterface;
-import voogasalad_GucciGames.gameEngine.CommunicationParams.ActionToGamePlayerParameters;
-import voogasalad_GucciGames.gameEngine.CommunicationParams.GridCoordinateParameters;
+import voogasalad_GucciGames.gameEngine.CommunicationParameters.ChangedParameters;
+import voogasalad_GucciGames.gameEngine.CommunicationParameters.GridCoordinateParameters;
 import voogasalad_GucciGames.gameEngine.targetCoordinate.ATargetCoordinate;
 import voogasalad_GucciGames.gameEngine.targetCoordinate.TargetCoordinateSingle;
 import voogasalad_GucciGames.gameplayer.controller.dummy.ADummy;
 import voogasalad_GucciGames.gameplayer.gameloader.GameControllerLoader;
+import voogasalad_GucciGames.gameplayer.gameloader.GameLoader;
 import voogasalad_GucciGames.gameplayer.windows.GameSceneManager;
+import voogasalad_GucciGames.gameplayer.windows.GameWindowManager;
 import voogasalad_GucciGames.gameplayer.windows.mainwindow.map.MapInterface;
 import voogasalad_GucciGames.gameplayer.windows.mainwindow.map.cell.MapCell;
 import voogasalad_GucciGames.gameplayer.windows.mainwindow.map.cell.contents.CellUnit;
@@ -30,7 +32,7 @@ import voogasalad_GucciGames.gameplayer.windows.mainwindow.scenes.GameSceneInter
 
 public class GameController implements GameControllerInterface, GameControllerLoader {
 
-	private GameSceneManager myManager;
+	private GameWindowManager myManager;
 	
 	private GameEngineToGamePlayerInterface myEngine;
 	private MapInterface myMap;
@@ -44,12 +46,15 @@ public class GameController implements GameControllerInterface, GameControllerLo
 	private List<Observer> activeMOObservers;
 	private List<TargetCoordinateSingle> possibleMoves;
 
-	public GameController(GameSceneManager manager){
+	private GameLoader myLoader;
+
+	public GameController(GameWindowManager manager){
 		myManager = manager;
 		myImageDatabase = new ImageDatabase();
 		myActionInProgress = "";
 		activeMOObservers=new ArrayList<Observer>();
 		possibleMoves = new ArrayList<TargetCoordinateSingle>();
+		myLoader = new GameLoader(this);
 	}
 	
 	public void loadGame(GameInfo game){
@@ -102,7 +107,7 @@ public class GameController implements GameControllerInterface, GameControllerLo
 	
 	@Override
 	public void performActionInProgress(Point2D target){
-		ActionToGamePlayerParameters params;// = myEngine.performAction(myActionInProgress, activeMapObject, Coordinate.PointToCoordinate(target));
+		ChangedParameters params;// = myEngine.performAction(myActionInProgress, activeMapObject, Coordinate.PointToCoordinate(target));
 		//cancelAction();
 		
 		
@@ -200,5 +205,9 @@ public class GameController implements GameControllerInterface, GameControllerLo
 	@Override
 	public GameInfo getGame() {
 	    return myGame;
+	}
+
+	public GameLoader getLoader() {
+		return myLoader;
 	}
 }
