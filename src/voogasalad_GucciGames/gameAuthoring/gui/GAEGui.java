@@ -15,6 +15,14 @@ import voogasalad_GucciGames.gameAuthoring.gui.statusbar.StatusBar;
 import voogasalad_GucciGames.gameAuthoring.gui.map.GuiMap;
 import voogasalad_GucciGames.gameAuthoring.gui.menubar.GAEMenuBar;
 
+/**
+ * TODO:
+ * 1. Select animation
+ * 2. Add components in backend
+ * 3. Select size of the map
+ * @author Mike Ma (ym67)
+ *
+ */
 public class GAEGui extends BorderPane {
 
 	private AGuiGaeController myController;
@@ -29,7 +37,7 @@ public class GAEGui extends BorderPane {
 		stage.setWidth(screenBounds.getWidth());
 		stage.setHeight(screenBounds.getHeight());
 		initLayout(stage);
-		initializeMap(5, 5);
+		//initializeMap(5, 5);
 		stage.show();
 	}
 

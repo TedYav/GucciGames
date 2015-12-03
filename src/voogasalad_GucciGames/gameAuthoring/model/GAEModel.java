@@ -123,16 +123,6 @@ public class GAEModel implements IGAEModel{
         return false;
     }
 
-    @Override
-    public void setMapWidth (double x) {
-        //map.setWidth(x);
-    }
-
-    @Override
-    public void setMapHeight (double y) {
-        //map.setHeight(y);
-    }
-
 
     public void addComponent (Map<String,String> objParams) {
         DisplayMapObject mapObj = new DisplayMapObject(null, null, 0, 0);// TODO:MapObject(objParams);
