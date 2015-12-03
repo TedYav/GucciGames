@@ -1,4 +1,4 @@
-package voogasalad_GucciGames.gameEngine.CommunicationParams;
+package voogasalad_GucciGames.gameEngine.CommunicationParameters;
 
 import java.util.Map;
 import voogasalad_GucciGames.gameplayer.controller.GameParametersInterface;

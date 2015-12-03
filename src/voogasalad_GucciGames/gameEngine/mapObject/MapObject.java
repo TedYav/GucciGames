@@ -1,14 +1,17 @@
 package voogasalad_GucciGames.gameEngine.mapObject;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 import java.util.TreeMap;
 
 import voogasalad_GucciGames.gameEngine.PlayerMapObjectInterface;
-import voogasalad_GucciGames.gameEngine.CommunicationParams.ActionToGamePlayerParameters;
-import voogasalad_GucciGames.gameEngine.CommunicationParams.BasicParameters;
-import voogasalad_GucciGames.gameEngine.CommunicationParams.GridCoordinateParameters;
+import voogasalad_GucciGames.gameEngine.CommunicationParameters.BasicParameters;
+import voogasalad_GucciGames.gameEngine.CommunicationParameters.ChangedParameters;
+import voogasalad_GucciGames.gameEngine.CommunicationParameters.GridCoordinateParameters;
 import voogasalad_GucciGames.gameEngine.defaultCharacteristics.HealthCharacteristic;
 import voogasalad_GucciGames.gameEngine.objectActions.IGamePlayerMapObjectAction;
 import voogasalad_GucciGames.gameEngine.objectActions.MapObjectEvent;
@@ -17,6 +20,15 @@ import voogasalad_GucciGames.gameEngine.targetCoordinate.ATargetCoordinate;
 import voogasalad_GucciGames.gameEngine.targetCoordinate.TargetCoordinateSingle;
 
 public class MapObject implements PlayerMapObjectInterface{
+
+	/*
+	Check if:
+	unit: .hasCharacteristic("UnitCharacteristic");
+	health: .hasCharacteristic("HealthCharacteristic");
+	tile: .hasCharactersitic("TileCharacteristic");
+	etc.
+	 */
+
 	private ATargetCoordinate myCoordinate;
 	private int myOwnerID;
 	private int myLayer;
@@ -24,10 +36,11 @@ public class MapObject implements PlayerMapObjectInterface{
 	private String myImagePath;
 	private  Map<String, AMapObjectCharacteristic> myCharacteristics;
 	private MapObjectEventHandler myEventHandler;
-	private double myWidth, myHeight, myX, myY;
+	private Map<String, MapObjectEvent> myEvents; //test
+	private double myWidth, myHeight;
 
 	public MapObject(ATargetCoordinate coor, int id, int layer, 
-			String name, String imagePath, double x, double y, double width, double height){
+			String name, String imagePath, double width, double height){
 		this.myCoordinate = coor;
 		this.myOwnerID = id;
 		this.myLayer = layer;
@@ -35,33 +48,27 @@ public class MapObject implements PlayerMapObjectInterface{
 		this.myImagePath = imagePath;
 		this.myHeight = height;
 		this.myWidth = width;
-		this.myX = x;
-		this.myY = y;
 		this.myCharacteristics = new TreeMap<>();
-		this.myEventHandler = new MapObjectEventHandler();
+		this.myEvents = new HashMap<>();
 	}
-	
+
 	public MapObject(String name, String imagePath){
-		this(null,-1,0,name,imagePath,0,0,0,0);
+		this(null,-1,0,name,imagePath,0,0);
 	}
-	
+
 	public MapObject(MapObject obj, ATargetCoordinate coor, int id){
 		this(obj,coor,id,0);
 	}
-	
+
 	public MapObject(MapObject obj, ATargetCoordinate coor, int id, int layer){
-		this(coor,id,layer,obj.getName(),obj.getImagePath(),obj.getX(),obj.getY(),obj.getWidth(),obj.getHeight());
+		this(coor,id,layer,obj.getName(),obj.getImagePath(),obj.getWidth(),obj.getHeight());
 	}
-	
-	public MapObject(String name, String imagePath, double x, double y, double width, double height){
-		this(null,-1,0,name,imagePath,x,y,width,height);
-	}
-	
+
 	public MapObject(ATargetCoordinate coor, int id, int layer, 
 			String name, String imagePath){
-		this(coor,id,layer,name,imagePath,0,0,0,0);
+		this(coor,id,layer,name,imagePath,0,0);
 	}
-	
+
 	public MapObject(ATargetCoordinate coor, int ownerID){
 		this(coor,ownerID,0,"","");
 	}
@@ -86,10 +93,6 @@ public class MapObject implements PlayerMapObjectInterface{
 		return new ArrayList<String>(this.myCharacteristics.keySet());
 	}
 
-	public boolean isTile(){
-		return myCharacteristics.containsKey("TileCharacteristic") || this.getName().equals("TileCharacteristic");
-	}
-
 	@Override
 	public ATargetCoordinate getCoordinate(){
 		return myCoordinate;
@@ -99,13 +102,8 @@ public class MapObject implements PlayerMapObjectInterface{
 		this.myCoordinate = coordinate;
 	}
 
-	public boolean isUnit() {
-		return this.hasCharacteristic("unit");
-	}
-
 	@Override
 	public Map<String, String> getAttributeStrings() {
-		//return myObjectType.getCharacteristic();
 		Map<String, String> myAttrMap = new TreeMap<String, String>();
 		for(String s : myCharacteristics.keySet()){
 			myAttrMap.put(s, myCharacteristics.get(s).toString());
@@ -135,27 +133,31 @@ public class MapObject implements PlayerMapObjectInterface{
 		return myLayer;
 	}
 
-	public ActionToGamePlayerParameters performAction(String action, ATargetCoordinate coor) {
+	public ChangedParameters performAction(String action, ATargetCoordinate coor) {
 		// TODO Auto-generated method stub
-
-		//System.out.println(myObjectType);
-		//System.out.println("action"+myObjectType.getAction(action));
-		//return (ActionToGamePlayerParameters) getAction(action).executeAction(basicParameters, myOwnerID);
-		return (ActionToGamePlayerParameters) myEventHandler.executeAction(action, this, (TargetCoordinateSingle) coor);
+		return this.myEventHandler.executeAction(this.myEvents.get(action), this,  (TargetCoordinateSingle) coor);
 	}
 
 	public GridCoordinateParameters performRequest(String action) {
 		// TODO Auto-generated method stub
-		return (GridCoordinateParameters) myEventHandler.executeRequest(action, this);
+		return myEventHandler.executeRequest(this.myEvents.get(action), this);
 	}
 	public void setOwnerID(int playerID) {
 		myOwnerID = playerID;
 	}
 
+	/*
+	 * (non-Javadoc)
+	 * @see voogasalad_GucciGames.gameEngine.PlayerMapObjectInterface#isDead()
+	 * 
+	 * If this MapObject has HealthCharacteristic, then this method returns whether the health is 0.
+	 * Otherwise, the MapObject is considered alive so the method returns false.
+	 */
 	@Override
 	public boolean isDead() {
 		// TODO Auto-generated method stub
-		return ((HealthCharacteristic) getCharacteristic("HealthCharacteristic")).getCurrentHealth() < 0;
+		return this.hasCharacteristic("HealthCharacteristic") &&
+				(((HealthCharacteristic) getCharacteristic("HealthCharacteristic")).getCurrentHealth() <= 0);
 	}
 
 	@Override
@@ -185,47 +187,36 @@ public class MapObject implements PlayerMapObjectInterface{
 
 
 	public void addEvent(String name, MapObjectEvent action){
-		this.myEventHandler.addEvent(name, action);
+		this.myEvents.put(name, action);
 	}
 
 	public List<String> getEventStrings(){
-		return this.myEventHandler.getEventNames();
+		return generateSortedListFromStringSet(this.myEvents.keySet());
 	}
 
 	public boolean hasEvent(String name){
-		return this.myEventHandler.hasEvent(name);
+		return this.myEvents.containsKey(name);
 	}
 
 	public double getWidth(){
 		return this.myWidth;
 	}
-	
+
 	public double getHeight(){
 		return this.myHeight;
 	}
-	
-	public double getX(){
-		return this.myX;
-	}
-	
-	public double getY(){
-		return this.myY;
-	}
-	
-	public void setXY(double x, double y){
-		this.myX = x;
-		this.myY = y;
-	}
-	
+
 	public void setWidthHeight(double width, double height){
 		this.myWidth = width;
 		this.myHeight = height;
 	}
-	
-	public void setBasicParameters(BasicParameters basic){
-		this.myEventHandler.setBasicParameters(basic);
+
+
+	public void setMapObjectEventHandler(MapObjectEventHandler handler){
+		this.myEventHandler = handler;
 	}
 
+	@Override
 	public IGamePlayerMapObjectAction getAction(String name) {
 		// TODO Auto-generated method stub
 		return null;
@@ -234,33 +225,19 @@ public class MapObject implements PlayerMapObjectInterface{
 	@Override
 	public int getOwnerID() {
 		// TODO Auto-generated method stub
-		return 0;
+		return this.myOwnerID;
 	}
 
 	@Override
 	public List<String> getAllCharacteristicNames() {
 		// TODO Auto-generated method stub
-		return null;
-	}
-	
-	/*
-	public Map<String, String> getAttributes() {
-		Map<String, String> map = new HashMap<String, String>();
-		map.put("hello", "hi"); //change this later
-		return map;
+		return generateSortedListFromStringSet(this.myCharacteristics.keySet());
 	}
 
-	public boolean hasDefaultCharacteristic(String name){
-		return myDefaultCharacteristics.containsKey(name);
+	private List<String> generateSortedListFromStringSet(Set<String> set){
+		List<String> list = new ArrayList<>(set);
+		Collections.sort(list);
+		return list;
 
 	}
-
-	public boolean isTile() {
-		return myDefaultCharacteristics.containsKey("TileCharacteristic") || myName.equals("TileCharacteristics");
-	}
-
-	public void addDefaultCharacteristic(String name, AMapObjectCharacteristic func){
-		this.myDefaultCharacteristics.put(name, func);
-	}
-	 */
 }

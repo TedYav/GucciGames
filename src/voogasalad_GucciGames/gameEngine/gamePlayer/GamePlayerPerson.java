@@ -41,7 +41,7 @@ public class GamePlayerPerson {
 
 	public List<MapObject> getUnits() {
 		// isUnit is not implemented
-		return myMapObjects.stream().filter(e -> e.isUnit()).collect(Collectors.toList());
+		return myMapObjects.stream().filter(e -> e.hasCharacteristic("UnitCharacteristic")).collect(Collectors.toList());
 
 	}
 

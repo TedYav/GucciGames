@@ -1,18 +1,5 @@
 package voogasalad_GucciGames.testing;
 
-import static org.junit.Assert.*;
-
-import java.util.Map;
-import java.util.TreeMap;
-
-import org.junit.Test;
-
-import voogasalad_GucciGames.gameEngine.defaultCharacteristics.AttackCharacteristic;
-import voogasalad_GucciGames.gameEngine.defaultCharacteristics.CharacteristicFactory;
-import voogasalad_GucciGames.gameEngine.defaultCharacteristics.HealthCharacteristic;
-import voogasalad_GucciGames.gameEngine.defaultCharacteristics.MovableCharacteristic;
-import voogasalad_GucciGames.gameEngine.mapObject.AMapObjectCharacteristic;
-
 public class TestCharacteristics {
 /*
 	@Test
