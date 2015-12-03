@@ -17,6 +17,7 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.VBox;
 import voogasalad_GucciGames.gameAuthoring.IGuiGaeController;
+import voogasalad_GucciGames.gameAuthoring.model.MapObjectType;
 import voogasalad_GucciGames.gameEngine.mapObject.MapObject;
 
 public abstract class AbstractTab extends Tab {
@@ -105,15 +106,15 @@ public abstract class AbstractTab extends Tab {
 		}
 	}
 	
-	protected void addDragDropListener(List<MapObject> listTypes){
-		List<MapObject> currMapTypeList = listTypes;
+	protected void addDragDropListener(List<MapObjectType> listTypes){
+		List<MapObjectType> currMapTypeList = listTypes;
 		for(int i=0; i<allImageButtons.size(); i++){
 			ImageView imageview = allImageViews.get(i);
 			Button imageButton = allImageButtons.get(i);
 			imageButton.setOnMousePressed(new EventHandler<MouseEvent>() {
 				public void handle(MouseEvent event) {
 					int imageviewId = allImageViews.indexOf(imageview);
-					MapObject currMapType = currMapTypeList.get(imageviewId);
+					MapObjectType currMapType = currMapTypeList.get(imageviewId);
 					myController.setMapObjectTypeToMap(currMapType);
 					myController.setCurrDraggedImage(imageview.getImage());
 					

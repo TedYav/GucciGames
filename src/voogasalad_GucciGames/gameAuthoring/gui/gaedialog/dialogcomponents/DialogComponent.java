@@ -8,7 +8,7 @@ import javafx.scene.Node;
 import javafx.scene.layout.HBox;
 import javafx.scene.text.Text;
 
-abstract class DialogComponent extends HBox {
+public abstract class DialogComponent extends HBox {
 	
 	protected HBox createElement(String name, Node n, String hboxId){
 		HBox hbox = new HBox();

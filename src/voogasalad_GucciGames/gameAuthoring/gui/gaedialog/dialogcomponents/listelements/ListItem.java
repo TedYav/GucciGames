@@ -1,4 +1,5 @@
-package voogasalad_GucciGames.gameAuthoring.gui.gaedialog.dialogcomponents;
+package voogasalad_GucciGames.gameAuthoring.gui.gaedialog.dialogcomponents.listelements;
+import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.dialogcomponents.DialogComponent;
 import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.stylesheets.IListView;
 
 

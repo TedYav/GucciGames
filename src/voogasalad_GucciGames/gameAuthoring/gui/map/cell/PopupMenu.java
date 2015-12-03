@@ -1,4 +1,4 @@
-package voogasalad_GucciGames.gameAuthoring.gui.map;
+package voogasalad_GucciGames.gameAuthoring.gui.map.cell;
 
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -10,11 +10,11 @@ import javafx.scene.control.ToggleGroup;
 import voogasalad_GucciGames.gameAuthoring.AGuiGaeController;
 
 public class PopupMenu extends ContextMenu {
-	
+
 	private AGuiGaeController myController;
 	private Menu myOwnerMenu;
-	
-	public PopupMenu(AGuiGaeController controller,Cell cell) {
+
+	public PopupMenu(AGuiGaeController controller, Cell cell) {
 		myController = controller;
 		MenuItem item1 = new MenuItem("Edit");
 		item1.setOnAction(new EventHandler<ActionEvent>() {
@@ -23,28 +23,28 @@ public class PopupMenu extends ContextMenu {
 			}
 		});
 		MenuItem item2 = new MenuItem("Remove");
-		item2.setOnAction(e -> cell.removeFromMap());
-		
+		item2.setOnAction(e -> cell.clear());
+
 		myOwnerMenu = new Menu("Owner");
 		update();
-		getItems().addAll(item1,item2,myOwnerMenu);
+		getItems().addAll(item1, item2, myOwnerMenu);
 	}
-	
-	protected void update(){
+
+	protected void update() {
 		myOwnerMenu.getItems().clear();
 		ToggleGroup group = new ToggleGroup();
-		myController.getAllPlayersId().forEach((id,name)->{
+		myController.getAllPlayersId().forEach((id, name) -> {
 			RadioMenuItem item = new RadioMenuItem(name);
 			item.setUserData(id);
 			item.setToggleGroup(group);
 			myOwnerMenu.getItems().add(item);
 		});
-		myOwnerMenu.setDisable(myOwnerMenu.getItems().size()==0);
-		
+		myOwnerMenu.setDisable(myOwnerMenu.getItems().size() == 0);
+
 		group.selectedToggleProperty().addListener((ob, oldV, newV) -> {
 			if (group.getSelectedToggle() != null) {
-				int id = (int)newV.getUserData();
-				//cell.setPlayerID(id);
+				int id = (int) newV.getUserData();
+				// cell.setPlayerID(id);
 			}
 		});
 	}

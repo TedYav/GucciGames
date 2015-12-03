@@ -1,6 +1,6 @@
 package voogasalad_GucciGames.gameAuthoring.gui.gaedialog.stylesheets;
 
-import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.dialogcomponents.ListItem;
+import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.dialogcomponents.listelements.ListItem;
 
 public interface IListView {
 	

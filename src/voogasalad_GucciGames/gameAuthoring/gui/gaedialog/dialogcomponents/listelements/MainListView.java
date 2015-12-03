@@ -1,4 +1,4 @@
-package voogasalad_GucciGames.gameAuthoring.gui.gaedialog.dialogcomponents;
+package voogasalad_GucciGames.gameAuthoring.gui.gaedialog.dialogcomponents.listelements;
 
 import java.util.ArrayList;
 import java.util.HashSet;
@@ -7,12 +7,12 @@ import java.util.Set;
 
 import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.stylesheets.IListView;
 
-public class ActionListView extends ListView implements IListView  {
+public class MainListView extends ListView implements IListView  {
 
 	private List<ListItem> myItems;
 	private Set<String> myNames;
 	
-	public ActionListView(){
+	public MainListView(){
 		myItems = new ArrayList<ListItem>();
 		myNames = new HashSet<String>();
 		
@@ -28,9 +28,21 @@ public class ActionListView extends ListView implements IListView  {
 		}
 		
 	}
+	
+	@Override
+	public void addListItem(ListItem item) {
+		if(!myNames.contains(item.getName())){
+			myItems.add(item);
+			myNames.add(item.getName());
+			redraw();
+		}
+		
+	}
+
 	@Override
 	public void removeListItem(ListItem item){
-		myItems.remove(item);
+		myNames.remove(item.getName());
+		myItems.remove(item);		
 		redraw();
 	}
 	
@@ -50,7 +62,6 @@ public class ActionListView extends ListView implements IListView  {
 	@Override
 	public void addToListView(String name) {
 		addListElement(name);
-		System.out.println(name);
 		
 		
 	}
@@ -60,6 +71,13 @@ public class ActionListView extends ListView implements IListView  {
 		// TODO Auto-generated method stub
 		return myItems;
 	}
+
+	@Override
+	public Set<String> getAllListItemsName() {
+		// TODO Auto-generated method stub
+		return myNames;
+	}
+
 
 
 }
