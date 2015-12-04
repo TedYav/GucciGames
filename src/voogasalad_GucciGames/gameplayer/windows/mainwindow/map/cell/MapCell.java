@@ -34,10 +34,8 @@ public abstract class MapCell extends Observable implements MapCellInterface {
 	
 	// TODO: factor this into two or three classes eventually	
 	private StackPane myParent;
-	
 	private StackPane myObjectLayer;
 	protected Map<Integer, GridPane> myLayerMap;
-	
 	private StackPane myOverlayLayer;
 	protected Shape myOverlay;
 	
@@ -47,7 +45,8 @@ public abstract class MapCell extends Observable implements MapCellInterface {
 	private GameControllerInterface myController;
 	
 	protected double mySize;
-		
+	private Point2D myCoordinate;	
+	
 	private Map<Integer, List<PlayerMapObjectInterface>> myObjects;
 	
 	private FadeTransition myBlinker;

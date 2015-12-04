@@ -38,14 +38,11 @@ public class MainMap extends WindowComponent implements MapInterface {
         private ResourceBundle myConfig = PlayerConfig.load("components.Map");
         private ResourceBundle myCssBundle = PlayerConfig.load("scenes.CssClasses");
 
-	
-
 	private TwoWayMap<Point2D, MapCellInterface> myCellMap;
 	private List<MapCellInterface> myHighlightedCells;
 	private List<MapCellInterface> mySelectedCells;
 	private TwoWayMap<MapCellInterface, PlayerMapObjectInterface> myUnitMap;
 
-	
 	private StackPane myParent;
 	private ScrollPane myFirstLayer;
 	private GridPane myMap;
@@ -64,7 +61,6 @@ public class MainMap extends WindowComponent implements MapInterface {
 		initializePanes();
 		initializeVariables();
 		initializeMap();
-		initializeMiniMap();
 		drawMap(getController().getInitialState());
 	}
 	
@@ -89,9 +85,6 @@ public class MainMap extends WindowComponent implements MapInterface {
 		myCellMap = new TwoWayMap<>();
 		myHighlightedCells = new ArrayList<>();
 		mySelectedCells = new ArrayList<>();
-		
-		// query width, size, etc
-		// myGame.etc etc etc
 	}
 	
 	private void initializePanes(){
@@ -107,11 +100,6 @@ public class MainMap extends WindowComponent implements MapInterface {
 		myFirstLayer.setVbarPolicy(ScrollBarPolicy.NEVER);
 		myFirstLayer.setHbarPolicy(ScrollBarPolicy.NEVER);
 		myFirstLayer.setPannable(true);
-	}
-	
-	private void initializeMiniMap(){
-		myMiniMap = new MiniMap(myCellsWide, myCellsTall);
-		mySecondLayer.getChildren().add(myMiniMap.getParent());
 	}
 		
 	private void drawMap(List<PlayerMapObjectInterface> initialState){
