@@ -1,5 +1,6 @@
 package voogasalad_GucciGames.helpers;
 
+import java.util.HashMap;
 import java.util.Map;
 
 import javafx.scene.image.Image;
@@ -14,6 +15,7 @@ public class ImageAverager implements ResourceDatabase<Color>{
 	
 	public ImageAverager(ResourceManager resourceManager){
 		myManager = resourceManager;
+		myImageMap = new HashMap<>();
 	}
 	
 	@Override
@@ -32,13 +34,13 @@ public class ImageAverager implements ResourceDatabase<Color>{
 		for(int x = 0; x < source.getWidth(); x++){
 			for(int y = 0; y < source.getHeight(); y++){
 				Color currentColor = reader.getColor(x, y);
-				red = (red + currentColor.getRed())/count;
-				blue = (blue + currentColor.getBlue())/count;
-				green = (green + currentColor.getGreen())/count;
+				red = (red*count + currentColor.getRed())/(count+1);
+				blue = (blue*count + currentColor.getBlue())/(count+1);
+				green = (green*count + currentColor.getGreen())/(count+1);
 				count++;
 			}
 		}
-		return new Color(red, blue, green, 1.0);
+		return new Color(red, green, blue, 1.0);
 	}
 	
 	

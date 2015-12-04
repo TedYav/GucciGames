@@ -51,6 +51,7 @@ public class MiniMap extends WindowComponent implements MiniMapInterface, Observ
 				myShapeMap.put(coord, new Rectangle(myCellWidth, myCellHeight));
 				myShapeMap.get(coord).setFill(cell.getColor());
 				cell.addObserver(this);
+				myGrid.add(myShapeMap.get(coord), x, y);
 			}
 		}
 	}

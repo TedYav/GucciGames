@@ -21,12 +21,14 @@ public class BottomBar extends WindowSideComponent{
     public BottomBar (GameScene scene, GameControllerInterface controller, List<DisplayComponent> components) {
         super(scene, controller, components);
         container = new HBox(spacing);
+        container.setMinHeight(250);
         drawMiniMap();
         initializeData();
     }
 
     private void drawMiniMap() {
     	myMiniMap = new MiniMap(getScene(), getController());
+    	System.out.println("DRAWING MINIMAP");
     	container.getChildren().add(myMiniMap.getParent());
 	}
 

@@ -21,4 +21,8 @@ public class ColorUtility {
 		return new Color(red, green, blue, 1.0);
 	}
 	
+	public static void print(Color c){
+		System.out.println("COLOR R: " + c.getRed() + " G: " + c.getGreen() + " B: " + c.getBlue() + " O: " + c.getOpacity());
+	}
+	
 }
