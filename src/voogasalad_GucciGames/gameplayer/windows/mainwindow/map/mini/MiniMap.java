@@ -47,23 +47,12 @@ public class MiniMap extends WindowComponent implements MiniMapInterface, Observ
 		for(int x=0; x<myWidth; x++){
 			for(int y=0; y<myHeight; y++){
 				Point2D coord = new Point2D(x,y);
-				makeShape(coord);
-				colorShape(coord);
-				registerObserver(coord);
+				MapCellInterface cell = getController().getMap().getCell(coord);				
+				myShapeMap.put(coord, new Rectangle(myCellWidth, myCellHeight));
+				myShapeMap.get(coord).setFill(cell.getColor());
+				cell.addObserver(this);
 			}
 		}
-	}
-
-	private void registerObserver(Point2D coord) {
-		getController().getMap().getCell(coord).addObserver(this);
-	}
-
-	private void colorShape(Point2D coord) {
-		
-	}
-
-	private void makeShape(Point2D coord) {
-		myShapeMap.put(coord, new Rectangle(myCellWidth, myCellHeight));
 	}
 
 	private void initializeVariables() {
@@ -108,7 +97,7 @@ public class MiniMap extends WindowComponent implements MiniMapInterface, Observ
 	@Override
 	public void update(Observable o, Object arg) {
 		MapCellInterface cell = (MapCellInterface)o;
-		colorShape(getController().getMap().getCellCoordinate(cell));
+		myShapeMap.get( getController().getMap().getCellCoordinate(cell) ).setFill(cell.getColor());
 	}
 
 }

@@ -2,6 +2,7 @@ package voogasalad_GucciGames.gameplayer.windows.mainwindow.map.cell;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 import java.util.Observable;
@@ -27,6 +28,7 @@ import voogasalad_GucciGames.gameplayer.controller.GameControllerInterface;
 import voogasalad_GucciGames.gameplayer.controller.dummy.MapObjectBasicType;
 import voogasalad_GucciGames.gameplayer.eventhandler.MapMouseHandler;
 import voogasalad_GucciGames.gameplayer.windows.mainwindow.map.MapInterface;
+import voogasalad_GucciGames.helpers.ColorUtility;
 
 public abstract class MapCell extends Observable implements MapCellInterface {
 
@@ -202,7 +204,7 @@ public abstract class MapCell extends Observable implements MapCellInterface {
 		
 	}
 	
-	public List<String> getImageList(){
+	private List<String> getImageList(){
 		return myObjects.values().stream()
 				.filter( l -> !l.isEmpty())
 				.flatMap(l -> 
@@ -216,5 +218,13 @@ public abstract class MapCell extends Observable implements MapCellInterface {
 	    public Map<Integer, List<PlayerMapObjectInterface>> getUnits () {
 	        return myObjects;
 	    }
+	    
+	public Color getColor(){
+		List<Color> myColors = getImageList().stream()
+				.map( (s) -> myController.getResource().getImageColor(s) )
+				.collect(Collectors.toList());
+		//TODO: add fog check
+		return ColorUtility.average(myColors);
+	}
 	
 }

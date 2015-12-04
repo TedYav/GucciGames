@@ -5,6 +5,8 @@ import java.util.Map;
 import java.util.Observer;
 
 import javafx.geometry.Point2D;
+import javafx.scene.paint.Color;
+import javafx.scene.paint.Paint;
 import voogasalad_GucciGames.gameEngine.PlayerMapObjectInterface;
 
 public interface MapCellInterface {
@@ -21,8 +23,8 @@ public interface MapCellInterface {
 	
 	public void addObject(PlayerMapObjectInterface object);
 	public void removeObject(PlayerMapObjectInterface object);
-	
-	public List<String> getImageList();
-	
+		
 	public void addObserver(Observer o);
+
+	public Color getColor();
 }
