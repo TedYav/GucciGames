@@ -13,7 +13,6 @@ import java.util.Observer;
 
 import javafx.scene.image.Image;
 import voogasalad_GucciGames.datastructures.Coordinate;
-import voogasalad_GucciGames.datastructures.ImageDatabase;
 import voogasalad_GucciGames.gameData.wrapper.GameInfo;
 import voogasalad_GucciGames.gameEngine.GameEngineToGamePlayerInterface;
 import voogasalad_GucciGames.gameEngine.PlayerMapObjectInterface;
@@ -30,6 +29,8 @@ import voogasalad_GucciGames.gameplayer.windows.GameWindowManager;
 import voogasalad_GucciGames.gameplayer.windows.mainwindow.map.MapInterface;
 import voogasalad_GucciGames.gameplayer.windows.mainwindow.map.cell.MapCell;
 import voogasalad_GucciGames.gameplayer.windows.mainwindow.map.cell.contents.CellUnit;
+import voogasalad_GucciGames.helpers.ImageDatabase;
+import voogasalad_GucciGames.helpers.ResourceManager;
 
 public class GameController implements GameControllerInterface, GameControllerLoader {
 
@@ -37,7 +38,7 @@ public class GameController implements GameControllerInterface, GameControllerLo
 	
 	private GameEngineToGamePlayerInterface myEngine;
 	private MapInterface myMap;
-	private ImageDatabase myImageDatabase;
+	private ResourceManager myResourceManager;
 	private PlayerMapObjectInterface myTargetUnit;
 	private GameInfo myGame;
 	
@@ -46,14 +47,12 @@ public class GameController implements GameControllerInterface, GameControllerLo
 	private PlayerMapObjectInterface activeMapObject;
 	private List<Observer> activeMOObservers;
 	private List<TargetCoordinateSingle> possibleMoves;
-
-	// TODO: factor imagedatabase into resource manager
 	
 	private GameLoader myLoader;
 
 	public GameController(GameWindowManager manager){
 		myManager = manager;
-		myImageDatabase = new ImageDatabase();
+		myResourceManager = new ResourceManager();
 		myActionInProgress = "";
 		activeMOObservers=new ArrayList<Observer>();
 		possibleMoves = new ArrayList<TargetCoordinateSingle>();
@@ -154,7 +153,12 @@ public class GameController implements GameControllerInterface, GameControllerLo
 
 	@Override
 	public Image requestImage(String imageURI) {
-		return myImageDatabase.request(imageURI);
+		return myResourceManager.getImage(imageURI);
+	}
+	
+	@Override
+	public ResourceManager getResource(){
+		return myResourceManager;
 	}
 
     @Override

@@ -1,4 +1,4 @@
-package voogasalad_GucciGames.datastructures;
+package voogasalad_GucciGames.helpers;
 
 import java.util.Map;
 
@@ -10,10 +10,10 @@ import voogasalad_GucciGames.gameplayer.controller.GameControllerInterface;
 public class ImageAverager implements ResourceDatabase<Color>{
 
 	private Map<String, Color> myImageMap;
-	private GameControllerInterface myController;
+	private ResourceManager myManager;
 	
-	public ImageAverager(GameControllerInterface controller){
-		myController = controller;
+	public ImageAverager(ResourceManager resourceManager){
+		myManager = resourceManager;
 	}
 	
 	@Override
@@ -25,7 +25,7 @@ public class ImageAverager implements ResourceDatabase<Color>{
 	}
 
 	private Color average(String URI) {
-		Image source = myController.requestImage(URI);
+		Image source = myManager.getImage(URI);
 		PixelReader reader = source.getPixelReader();
 		double red = 0, green = 0, blue = 0;
 		double count = 1;

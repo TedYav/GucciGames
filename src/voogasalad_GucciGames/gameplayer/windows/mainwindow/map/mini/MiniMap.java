@@ -16,11 +16,11 @@ import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Color;
 import javafx.scene.paint.Paint;
 import javafx.scene.shape.Rectangle;
-import voogasalad_GucciGames.datastructures.ImageAverager;
 import voogasalad_GucciGames.gameplayer.controller.GameControllerInterface;
 import voogasalad_GucciGames.gameplayer.scenes.GameScene;
 import voogasalad_GucciGames.gameplayer.windows.mainwindow.components.WindowComponent;
 import voogasalad_GucciGames.gameplayer.windows.mainwindow.map.cell.MapCellInterface;
+import voogasalad_GucciGames.helpers.ImageAverager;
 
 public class MiniMap extends WindowComponent implements MiniMapInterface, Observer {
 
@@ -31,9 +31,7 @@ public class MiniMap extends WindowComponent implements MiniMapInterface, Observ
 	private GridPane myGrid;
 	private Pane myOverlayPane;
 	private Rectangle myOverlay;
-	
-	private ImageAverager myImageAverager;
-	
+		
 	private int myWidth, myHeight;
 	private int myCellWidth, myCellHeight;
 	
@@ -61,9 +59,7 @@ public class MiniMap extends WindowComponent implements MiniMapInterface, Observ
 	}
 
 	private void colorShape(Point2D coord) {
-		Color color = Color.BLACK;
-		List<String> cellContents = getController().getMap().getCell(coord).getImageList();
-		myShapeMap.get(coord).setFill(color);
+		
 	}
 
 	private void makeShape(Point2D coord) {
@@ -76,7 +72,6 @@ public class MiniMap extends WindowComponent implements MiniMapInterface, Observ
 		myShapeMap = new HashMap<>();
 		myCellWidth = Integer.parseInt(myConfig.getString("Width"))/myWidth;
 		myCellHeight = Integer.parseInt(myConfig.getString("Height"))/myHeight;
-		myImageAverager = new ImageAverager(getController());
 	}
 	
 	public Parent getParent(){
