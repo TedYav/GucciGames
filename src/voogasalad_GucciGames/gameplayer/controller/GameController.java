@@ -78,19 +78,23 @@ public class GameController implements GameControllerInterface, GameControllerLo
 	public List<TargetCoordinateSingle> setActionInProgress(String action, PlayerMapObjectInterface unit) {
 		myActionInProgress = action;
 		myTargetUnit = unit;
+//	
+		possibleMoves = myTargetUnit.performRequest(action).getListOfCoordinates();
 		
-		GridCoordinateParameters myParameters = myEngine.getPossibleCoordinates(action, unit);
+		return possibleMoves;
+		//return unit.getAction(action)(action);
 		
-
-		//SORRY FOR THE TIME BEING: THIS WILL BE FIXED IN THE FUTURE
-		if(myParameters == null){
-			return new ArrayList<TargetCoordinateSingle>();
-		}
-		else{
-			//possibleMoves = myEngine.getPossibleCoordinates(action, unit).getListOfCoordinates();
-			possibleMoves = myParameters.getListOfCoordinates();
-			return possibleMoves;
-		}
+//		GridCoordinateParameters myParameters = myEngine.getPossibleCoordinates(action, unit);
+//		
+//
+//		//SORRY FOR THE TIME BEING: THIS WILL BE FIXED IN THE FUTURE
+//		if(myParameters == null){
+//			return new ArrayList<TargetCoordinateSingle>();
+//		}
+//		else{
+//			//possibleMoves = myEngine.getPossibleCoordinates(action, unit).getListOfCoordinates();
+//			//			return possibleMoves;
+//		}
 		
 	}
 
@@ -110,20 +114,18 @@ public class GameController implements GameControllerInterface, GameControllerLo
 		ChangedParameters params;// = myEngine.performAction(myActionInProgress, activeMapObject, Coordinate.PointToCoordinate(target));
 		//cancelAction();
 		
-		
+		System.out.println("PERFORMING ACTION");
 		//// SORRY FOR THE TIME BEING
 	
 	        for (TargetCoordinateSingle coord: possibleMoves) {
+	        	System.out.println("CHECKING COORDINATE: " + coord);
 	            if (target.getX()==coord.getCenterX() && target.getY()==coord.getCenterY()) {
-	                 params = myEngine.performAction(myActionInProgress, activeMapObject, Coordinate.PointToCoordinate(target));
+	                 params = activeMapObject.performAction(myActionInProgress, Coordinate.PointToCoordinate(target));
 	                 cancelAction();
 	                 List<PlayerMapObjectInterface> result;
-	             	if(params != null){
+	             	
 	            		result = params.getChangedUnits();
-	            		}
-	            		else{
-	            		result = new ArrayList<PlayerMapObjectInterface>();
-	            		}
+	            		System.out.println(result);
 	                 
 	                 myMap.update(result);
 	                 break;

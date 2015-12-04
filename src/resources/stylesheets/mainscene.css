@@ -40,6 +40,10 @@
 	-fx-fill: #ffffff;
 }
 
+.loadertext-small{
+	-fx-font-size: 72px;
+}
+
 .splashtext-large{
 	-fx-font-size: 350px;
 }

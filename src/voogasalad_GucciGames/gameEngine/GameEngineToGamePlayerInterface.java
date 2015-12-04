@@ -49,13 +49,21 @@ public interface GameEngineToGamePlayerInterface {
 
 	@Deprecated
 	/**
-	 * You can access the
+	 * Not supported anymore (returns null); access MapObject.performRequest(String action)
 	 * @param action
 	 * @param mapObject
 	 * @return
 	 */
 	public GridCoordinateParameters getPossibleCoordinates(String action, PlayerMapObjectInterface mapObject);
 
+	@Deprecated
+	/**
+	 * 
+	 * @param action
+	 * @param mapObject
+	 * @param target
+	 * @return
+	 */
 	public ChangedParameters performAction(String action, PlayerMapObjectInterface mapObject,
 			ATargetCoordinate target);
 
