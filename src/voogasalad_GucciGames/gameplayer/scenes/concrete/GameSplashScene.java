@@ -36,9 +36,7 @@ public class GameSplashScene extends GameScene {
 		splash.addChild(loader);
 		
 		myScene = new Scene(splash.getParent());
-		
-		loader.setDisplay("Loading Game Engine.");
-		
+				
 		loadScene(myScene);
 		try {
 			myManager.getLoader().loadSelectedGame();

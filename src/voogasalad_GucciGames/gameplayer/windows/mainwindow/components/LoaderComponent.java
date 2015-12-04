@@ -37,6 +37,7 @@ public class LoaderComponent extends WindowComponent {
 		myTimeline = new Timeline();
 		mySpeed = Double.parseDouble(myConfig.getString("LoaderSpeed"));
 		myText.getStyleClass().addAll(getStyleClasses(myConfig.getString("LoaderPrefix")));
+		setDisplay(myConfig.getString("LoaderText"));
 	}
 	
 	/*

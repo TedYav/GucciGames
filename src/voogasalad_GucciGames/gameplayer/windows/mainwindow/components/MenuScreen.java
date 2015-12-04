@@ -51,11 +51,12 @@ public class MenuScreen extends WindowComponent {
 		drawMenu();
 		sizeMenu();
 	}
+	
 
 	private void drawTitle() {
 		if(!myTitle.isEmpty()){
 			Text t = new Text(myTitle);
-			t.getStyleClass().addAll("menutitle");
+			t.getStyleClass().addAll( "menutitle");
 			myMenu.getChildren().add(t);
 			myText.add(t);
 		}
