@@ -13,8 +13,9 @@ import voogasalad_GucciGames.gameEngine.gameConditions.Conditions;
  *
  */
 public class ModifyWealth extends Outcome {
-	private String health;
+	private static final String WEALTH = "wealth";
 	Map<String, Object> myParams;
+
 	public ModifyWealth(List<Conditions> conditions, Map<String, Object> params) {
 		super(conditions, params);
 		myParams = params;
@@ -22,8 +23,8 @@ public class ModifyWealth extends Outcome {
 
 	@Override
 	BasicParameters applyOutcome(BasicParameters params, int i) {
-		int delta= (int)myParams.get(health);
-	 	//params.getEngine().getPlayers().getActivePlayer(i).modifymyWealth)(delta);
+		int delta = (int) myParams.get(WEALTH);
+		// params.getEngine().getPlayers().getActivePlayer(i).modifymyWealth)(delta);
 		return params;
 	}
 
