@@ -17,10 +17,8 @@ public abstract class Outcome {
 	private List<Conditions> myConditions = new ArrayList<Conditions>();
 
 	public Outcome(List<Conditions> conditions) {
-
 		myConditions = conditions;
 	}
-
 
 	abstract void applyOutcome(BasicParameters params, int i);
 
@@ -29,7 +27,7 @@ public abstract class Outcome {
 	}
 
 	public final void executeOutcome(BasicParameters params) {
-		List<Integer> players = params.getEngine().getPlayers().getAllIds();//now checks every cond/outcome for all players. a list of players to check is useful
+		List<Integer> players = params.getEngine().getPlayers().getAllIds();
 		for (int i = 0; i < players.size(); i++) {
 			GamePlayerPerson cur= params.getEngine().getPlayers().getPlayerById(players.get(i));
 			if (checkConditions(cur)) {
@@ -40,7 +38,9 @@ public abstract class Outcome {
 	}
 
 	private Boolean checkConditions(GamePlayerPerson player) {
-		if (myConditions.isEmpty()) {
+
+
+		if (myConditions.isEmpty()||myConditions==null) {
 			return true;
 		} else {
 			Boolean flag = true;
