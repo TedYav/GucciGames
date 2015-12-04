@@ -6,7 +6,6 @@ public abstract class HealthCharacteristic extends AMapObjectCharacteristic{
 
 
 	public HealthCharacteristic() {
-		super();
 		// TODO Auto-generated constructor stub
 	}
 

@@ -7,8 +7,8 @@ import java.util.TreeMap;
 
 import javafx.application.Application;
 import javafx.stage.Stage;
-import voogasalad_GucciGames.gameData.GameInfo;
 import voogasalad_GucciGames.gameData.XStreamGameEngine;
+import voogasalad_GucciGames.gameData.wrapper.GameInfo;
 import voogasalad_GucciGames.gameEngine.MainGameEngine;
 import voogasalad_GucciGames.gameEngine.CommunicationParameters.BasicParameters;
 import voogasalad_GucciGames.gameEngine.defaultCharacteristics.AttackCharacteristic;

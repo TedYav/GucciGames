@@ -3,7 +3,6 @@ package voogasalad_GucciGames.gameEngine.defaultCharacteristics;
 public class NullHealthCharacteristic extends HealthCharacteristic {
 
 	public NullHealthCharacteristic() {
-		super();
 		// TODO Auto-generated constructor stub
 	}
 

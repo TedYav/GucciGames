@@ -9,8 +9,9 @@ import javafx.event.EventType;
 import javafx.geometry.Point2D;
 
 import java.util.Observer;
+
 import javafx.scene.image.Image;
-import voogasalad_GucciGames.gameData.GameInfo;
+import voogasalad_GucciGames.gameData.wrapper.GameInfo;
 import voogasalad_GucciGames.gameEngine.GameEngineToGamePlayerInterface;
 import voogasalad_GucciGames.gameEngine.PlayerMapObjectInterface;
 import voogasalad_GucciGames.gameEngine.targetCoordinate.ATargetCoordinate;
