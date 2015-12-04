@@ -18,8 +18,9 @@ public class RemovePlayer extends Outcome {
 	}
 
 	@Override
-	void applyOutcome(BasicParameters params, int id) {
+	BasicParameters applyOutcome(BasicParameters params, int id) {
 		params.getEngine().getPlayers().removePlayer(id);
+		return params;
 	}
 
 }

@@ -20,7 +20,7 @@ public abstract class Outcome {
 		myConditions = conditions;
 	}
 
-	abstract void applyOutcome(BasicParameters params, int i);
+	abstract BasicParameters applyOutcome(BasicParameters params, int i);
 
 	public void addCondition(Conditions condition) {
 		myConditions.add(condition);
@@ -31,14 +31,13 @@ public abstract class Outcome {
 		for (int i = 0; i < players.size(); i++) {
 			GamePlayerPerson cur= params.getEngine().getPlayers().getPlayerById(players.get(i));
 			if (checkConditions(cur)) {
-				applyOutcome(params,  cur.getMyPlayerId());
+				params=applyOutcome(params,  cur.getMyPlayerId());
 			}
 		}
 
 	}
 
 	private Boolean checkConditions(GamePlayerPerson player) {
-
 
 		if (myConditions.isEmpty()||myConditions==null) {
 			return true;
