@@ -11,7 +11,6 @@ import voogasalad_GucciGames.gameEngine.CommunicationParameters.ChangedParameter
 import voogasalad_GucciGames.gameEngine.CommunicationParameters.GameParameters;
 import voogasalad_GucciGames.gameEngine.CommunicationParameters.GameResult;
 import voogasalad_GucciGames.gameEngine.CommunicationParameters.GridCoordinateParameters;
-import voogasalad_GucciGames.gameEngine.gameConditions.ConditionHandler;
 import voogasalad_GucciGames.gameEngine.gameConditions.EndGameConditions;
 import voogasalad_GucciGames.gameEngine.gamePlayer.ATurnDecider;
 import voogasalad_GucciGames.gameEngine.gamePlayer.AllPlayers;
@@ -27,7 +26,6 @@ public class MainGameEngine implements GameEngineToGamePlayerInterface {
 	private AllPlayers myGamePlayers;
 	private TurnCounter myCurrentTurnCounter;
 	private ATurnDecider myTurnDecider;
-	private ConditionHandler myConditionHandler;
 	private int mapDimensions;
 	private int myMapWidth;
 	private int myMapHeight;
@@ -41,7 +39,6 @@ public class MainGameEngine implements GameEngineToGamePlayerInterface {
 		myGamePlayers = gamePlayers;
 		myCurrentTurnCounter = new TurnCounter();
 		myTurnDecider = new DefaultTurnDecider(myGamePlayers, myCurrentTurnCounter);
-		myConditionHandler = new ConditionHandler();
 
 
 		myName = "Game " + Math.round((Math.random()*10000));
