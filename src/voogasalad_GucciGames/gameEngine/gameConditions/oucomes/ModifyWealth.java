@@ -22,7 +22,8 @@ public class ModifyWealth extends Outcome {
 
 	@Override
 	BasicParameters applyOutcome(BasicParameters params, int i) {
-	//	params.getEngine().getPlayers().getActivePlayer(i).modifymyWealth(myParams.get(health))
+		int delta= (int)myParams.get(health);
+	 	//params.getEngine().getPlayers().getActivePlayer(i).modifymyWealth)(delta);
 		return params;
 	}
 
