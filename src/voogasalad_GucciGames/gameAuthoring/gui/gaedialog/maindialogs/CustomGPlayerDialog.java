@@ -21,7 +21,6 @@ import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.paramObjects.GameSettin
 
 public class CustomGPlayerDialog extends GaeDialog{
 
-    private Stage gameSettingDialog = new Stage();
     private VBox myContent = new VBox();
     private VBox parent = new VBox();
     private Properties prop;
@@ -52,13 +51,13 @@ public class CustomGPlayerDialog extends GaeDialog{
         allCheckedBoxes.add(new ArrayList<String>());
         allCheckedBoxes.add(new ArrayList<String>());
         prop = super.loadProperties("/voogasalad_GucciGames/gameAuthoring/gui/gaedialog/maindialogs/dialogproperties/customgplayerdialog.properties");
-        dialogElements = new DialogElements(prop, null, dialogGaeController);
+        dialogElements = new DialogElements(prop, dialogGaeController);
         saveButton = new Button("Save");
         setSaveAction();
         myContent.getChildren().addAll(this.initializeDialog(), saveButton);
-        Scene gameSettingDialogScene = new Scene(myContent, 500, 500);
-        gameSettingDialogScene.getStylesheets().add("voogasalad_GucciGames/gameAuthoring/gui/gaedialog/stylesheets/dialogstylesheet.css");
-        gameSettingDialog.setScene(gameSettingDialogScene);		
+        this.getDialogPane().setContent(myContent);
+  
+        
     }
 
     protected void setSaveAction(){
@@ -76,11 +75,10 @@ public class CustomGPlayerDialog extends GaeDialog{
             guiGaeController.setCustomGamePlayerLeftComponents(allCheckedBoxes.get(0));
             guiGaeController.setCustomGamePlayerBottomComponents(allCheckedBoxes.get(1));
             guiGaeController.setCustomGamePlayerRightComponents(allCheckedBoxes.get(2));
-            this.gameSettingDialog.close();
+            this.close();
         });
     }
 
-    @Override
     protected VBox initializeDialog() {
         // TODO Auto-generated method stub
         GridPane content = new GridPane();				
@@ -147,7 +145,7 @@ public class CustomGPlayerDialog extends GaeDialog{
     }
 
     public void showCustomGPlayerDialog(){
-        super.showDialog(gameSettingDialog);
+        this.show();
     }
 
 //    private void setCheckBoxListeners(){

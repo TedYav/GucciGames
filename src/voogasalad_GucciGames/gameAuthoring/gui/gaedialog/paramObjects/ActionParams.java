@@ -36,7 +36,9 @@ public class ActionParams extends AParamsObject{
 	public void addRule(String ruleName){
 		myRules.add(ruleName);
 	}
-	
+	public void addCharacteristics(String characteristics){
+		myCharacteristics.add(characteristics);
+	}
 	public Set<String> getAllRules(){
 		return myRules;
 	}

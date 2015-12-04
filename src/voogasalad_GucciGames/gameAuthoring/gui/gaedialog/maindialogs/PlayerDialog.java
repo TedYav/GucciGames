@@ -23,12 +23,10 @@ public class PlayerDialog extends GaeDialog  {
 	private static final int WIDTH = 600;
 	private static final int HEIGHT = 600;	
 	private VBox myContent = new VBox();	
-	private Stage playerDialog = new Stage();
 	private IDialogGaeController controller;
 	private List<PlayerContent> contentList = new ArrayList<PlayerContent>();
 	private Properties prop;
 	private DialogElements dialogElements;
-	private Scene scene;
 	private int numOfPlayers;
 	private Button saveBtn = new Button("Save");
 	private ScrollPane scrollPane = new ScrollPane();
@@ -47,14 +45,11 @@ public class PlayerDialog extends GaeDialog  {
 	private void setScene(){
 		scrollPane.setContent(myContent);
 		scrollPane.setPrefSize(WIDTH, HEIGHT);
-		scene = new Scene(scrollPane, WIDTH, HEIGHT);		
-		scene.getStylesheets().add("voogasalad_GucciGames/gameAuthoring/gui/gaedialog/stylesheets/dialogstylesheet.css");
-		playerDialog.setScene(scene);	
+		this.getDialogPane().setContent(scrollPane);
 
 	}
 
 	protected void initialize() {
-		// TODO Auto-generated method stub
 
 		Text title = new Text(prop.getProperty("title"));
 		title.setId("title");
@@ -70,7 +65,7 @@ public class PlayerDialog extends GaeDialog  {
 			while(numOfPlayers  >=  num) {
 				PlayerContent content = new PlayerContent(num, controller);
 				contentList.add(content);
-				dialogElements = new DialogElements(prop, null,controller);
+				dialogElements = new DialogElements(prop, controller);
 				content.setDialogElements(dialogElements);
 				content.init();
 				myContent.getChildren().add(content);
@@ -95,22 +90,12 @@ public class PlayerDialog extends GaeDialog  {
 				// Save Player
 				PlayerParams params = new PlayerParams(id, name, numMoves);
 				controller.savePlayer(params);
-				this.playerDialog.close();
+				this.close();
 			}
 
 		});
 
 	}
 
-
-	public void showDialog(){
-		super.showDialog(playerDialog);
-	}
-
-	@Override
-	protected VBox initializeDialog() {
-		// TODO Auto-generated method stub
-		return null;
-	}
 
 }

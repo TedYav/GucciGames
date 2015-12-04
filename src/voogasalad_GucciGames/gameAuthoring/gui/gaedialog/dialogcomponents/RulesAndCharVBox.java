@@ -29,9 +29,7 @@ public class RulesAndCharVBox extends VBox {
 	public static final int INDEX = 1;
 	
 	private Text title = new Text("Rules and Characteristics");
-	private MainListView rulesListView = new MainListView();
 	private ScrollPane rulesScrollPane = new ScrollPane();
-	private MainListView characteristicsListView = new MainListView();
 	private ScrollPane characteristicsScrollPane = new ScrollPane();
 	private Button saveBtn = new Button("Save");
 	private List<CharacteristicsParam> charParams = new ArrayList<CharacteristicsParam>();
@@ -43,9 +41,8 @@ public class RulesAndCharVBox extends VBox {
 		this.rules = rules;
 		this.characteristics = characteristics;
 		loadCharacteristics();
-		characteristicsScrollPane.setContent(characteristicsListView);
 		loadRules();
-		rulesScrollPane.setContent(rulesListView);
+		
 		addActionToSaveBtn();
 		this.getChildren().addAll(characteristicsScrollPane, rulesScrollPane, saveBtn);
 		
