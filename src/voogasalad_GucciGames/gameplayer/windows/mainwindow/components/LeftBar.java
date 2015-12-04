@@ -6,7 +6,7 @@ import javafx.scene.Parent;
 import javafx.scene.layout.VBox;
 import voogasalad_GucciGames.gameplayer.config.PlayerConfig;
 import voogasalad_GucciGames.gameplayer.controller.GameControllerInterface;
-import voogasalad_GucciGames.gameplayer.windows.GameScene;
+import voogasalad_GucciGames.gameplayer.scenes.GameScene;
 
 public class LeftBar extends WindowSideComponent{
     private VBox container;

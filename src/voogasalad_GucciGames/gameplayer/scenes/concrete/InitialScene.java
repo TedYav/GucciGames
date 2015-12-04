@@ -1,4 +1,4 @@
-package voogasalad_GucciGames.gameplayer.windows.mainwindow.scenes;
+package voogasalad_GucciGames.gameplayer.scenes.concrete;
 
 import javafx.scene.Scene;
 import javafx.scene.input.KeyEvent;
@@ -8,14 +8,16 @@ import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import javafx.util.Duration;
 import voogasalad_GucciGames.gameplayer.gameloader.GameLoader;
-import voogasalad_GucciGames.gameplayer.windows.GameScene;
-import voogasalad_GucciGames.gameplayer.windows.GameSceneManager;
+import voogasalad_GucciGames.gameplayer.scenes.GameScene;
+import voogasalad_GucciGames.gameplayer.scenes.GameSceneManager;
 import voogasalad_GucciGames.gameplayer.windows.GameWindow;
 import voogasalad_GucciGames.gameplayer.windows.mainwindow.components.SplashScreen;
 
-public class MainMenuScene extends GameScene {
+public class InitialScene extends GameScene {
+
+        private Scene myScene;
 	
-	public MainMenuScene(GameSceneManager manager, GameWindow window, String config) {
+	public InitialScene(GameSceneManager manager, GameWindow window, String config) {
 		super(manager, window, config);
 	}
 	
@@ -26,8 +28,10 @@ public class MainMenuScene extends GameScene {
 
 	@Override
 	public void load() {
-		System.out.println("LOADED " + getName());
-		myManager.sceneFinished();
+		SplashScreen splash = new SplashScreen(this, getManager().getController(), myConfig.getBaseBundleName());
+		myScene = new Scene(splash.getParent());
+		myScene.addEventHandler(KeyEvent.KEY_PRESSED, (e)->myManager.sceneFinished());
+		loadScene(myScene);
 	}
 
     @Override

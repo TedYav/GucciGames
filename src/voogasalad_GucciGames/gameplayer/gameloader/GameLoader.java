@@ -11,7 +11,7 @@ import voogasalad_GucciGames.gameEngine.GameEngineToGamePlayerInterface;
 import voogasalad_GucciGames.gameplayer.controller.GameController;
 import voogasalad_GucciGames.gameplayer.controller.GameControllerInterface;
 import voogasalad_GucciGames.gameplayer.exceptions.ErrorHandler;
-import voogasalad_GucciGames.gameplayer.windows.mainwindow.scenes.GameSceneInterface;
+import voogasalad_GucciGames.gameplayer.scenes.GameSceneInterface;
 
 public class GameLoader {
     private GameControllerLoader myController;
