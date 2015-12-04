@@ -116,6 +116,9 @@ public class GAEModel implements IGAEModel{
 	                rightComponents.add("voogasalad_GucciGames.gameplayer.windows.mainwindow.components.bar.GameStatsDisplay");
 	                rightComponents.add("voogasalad_GucciGames.gameplayer.windows.mainwindow.components.bar.EndTurnButton");
 	        }
+	        
+	    //ASK ABOUT THIS, might not need engine to be passed into game info anymore
+	        
 		GameInfo game = new GameInfo(engine,leftComponents,rightComponents, bottomComponents);
 		saver.saveGameInfo(game, file);
     }

@@ -29,8 +29,8 @@ public class GameInfo implements IGameInfoToGAE{
 	private static int myLevelID = 0;
 	private String myGameName;
 	
-	public GameInfo(List<String> leftComponents, List<String> rightComponents, List<String> bottomComponents){
-//	    myEngine=engine;
+	public GameInfo(MainGameEngine engine, List<String> leftComponents, List<String> rightComponents, List<String> bottomComponents){
+	    myEngine=engine;
 	    myLevelsMap = new TreeMap<Integer,GameLevel>();
 	    myGameName = "Game " + Math.round((Math.random()*10000));
 	    myRightComponents=rightComponents;
