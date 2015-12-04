@@ -20,7 +20,7 @@ import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import voogasalad_GucciGames.gameplayer.config.PlayerConfig;
 import voogasalad_GucciGames.gameplayer.controller.GameControllerInterface;
-import voogasalad_GucciGames.gameplayer.windows.GameScene;
+import voogasalad_GucciGames.gameplayer.scenes.GameScene;
 import voogasalad_GucciGames.helpers.FontManager;
 
 public class MenuScreen extends WindowComponent {
