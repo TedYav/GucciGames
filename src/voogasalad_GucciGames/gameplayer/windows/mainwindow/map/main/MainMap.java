@@ -114,16 +114,10 @@ public class MainMap extends WindowComponent implements MapInterface {
 		myMiniMap = new MiniMap(myCellsWide, myCellsTall);
 		mySecondLayer.getChildren().add(myMiniMap.getParent());
 	}
-	
-	//TODO: add loading bar
-	
+		
 	private void drawMap(List<PlayerMapObjectInterface> initialState){
 		initialState.stream()
 			.forEach(o->addToMap(o));
-        //myParent.getStyleClass().add(myConfig.getString("MainCSSClass"));
-        //myParent.applyCss();
-        //myMap.getStyleClass().add(myConfig.getString("MainCSSClass"));
-        //myMap.applyCss();
 		myParent.getStyleClass().add(myCssBundle.getString("mapstackpane"));
 	}
 	
