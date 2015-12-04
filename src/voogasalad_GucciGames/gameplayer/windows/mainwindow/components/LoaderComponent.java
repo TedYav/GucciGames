@@ -16,7 +16,7 @@ import javafx.stage.Screen;
 import javafx.util.Duration;
 import voogasalad_GucciGames.gameplayer.config.PlayerConfig;
 import voogasalad_GucciGames.gameplayer.controller.GameControllerInterface;
-import voogasalad_GucciGames.gameplayer.windows.GameScene;
+import voogasalad_GucciGames.gameplayer.scenes.GameScene;
 
 public class LoaderComponent extends WindowComponent {
 
@@ -37,6 +37,7 @@ public class LoaderComponent extends WindowComponent {
 		myTimeline = new Timeline();
 		mySpeed = Double.parseDouble(myConfig.getString("LoaderSpeed"));
 		myText.getStyleClass().addAll(getStyleClasses(myConfig.getString("LoaderPrefix")));
+		setDisplay(myConfig.getString("LoaderText"));
 	}
 	
 	/*
