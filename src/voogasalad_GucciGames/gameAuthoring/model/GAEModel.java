@@ -10,7 +10,7 @@ import java.util.Map;
 import javafx.collections.ObservableList;
 import voogasalad_GucciGames.gameAuthoring.IModelGaeController;
 import voogasalad_GucciGames.gameAuthoring.gui.map.GridPoint;
-import voogasalad_GucciGames.gameData.GameInfo;
+//import voogasalad_GucciGames.gameData.GameInfo;
 //import voogasalad_GucciGames.gameData.XMLWriter;
 import voogasalad_GucciGames.gameData.XStreamGameEngine;
 import voogasalad_GucciGames.gameEngine.MainGameEngine;
@@ -116,8 +116,8 @@ public class GAEModel implements IGAEModel{
 	                rightComponents.add("voogasalad_GucciGames.gameplayer.windows.mainwindow.components.bar.GameStatsDisplay");
 	                rightComponents.add("voogasalad_GucciGames.gameplayer.windows.mainwindow.components.bar.EndTurnButton");
 	        }
-		GameInfo game = new GameInfo(engine,leftComponents,rightComponents, bottomComponents);
-		saver.saveGameInfo(game, file);
+		//GameInfo game = new GameInfo(engine,leftComponents,rightComponents, bottomComponents);
+		//saver.saveGameInfo(game, file);
     }
     public void saveToXML(String filePath) {
         

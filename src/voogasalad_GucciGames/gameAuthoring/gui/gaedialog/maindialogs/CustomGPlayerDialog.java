@@ -19,7 +19,7 @@ import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.DialogElements;
 import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.dialogcomponents.CheckBoxField;
 import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.paramObjects.GameSettingParams;
 
-public class CustomGPlayerDialog extends GaeDialog{
+public class CustomGPlayerDialog extends javafx.scene.control.Dialog{
 
     private VBox myContent = new VBox();
     private VBox parent = new VBox();
@@ -37,7 +37,8 @@ public class CustomGPlayerDialog extends GaeDialog{
     private int maxBars=3;
 
     public CustomGPlayerDialog(IDialogGaeController dialogGaeController, IGuiGaeController guiGaeController){
-        this.dialogGaeController = dialogGaeController;
+        GaeDialogHelper helper = new GaeDialogHelper();
+    	this.dialogGaeController = dialogGaeController;
         this.guiGaeController = guiGaeController;
         guiList.add("ActionDisplay");
         guiList.add("DisplayChat");
@@ -50,7 +51,7 @@ public class CustomGPlayerDialog extends GaeDialog{
         allCheckedBoxes.add(new ArrayList<String>());
         allCheckedBoxes.add(new ArrayList<String>());
         allCheckedBoxes.add(new ArrayList<String>());
-        prop = super.loadProperties("/voogasalad_GucciGames/gameAuthoring/gui/gaedialog/maindialogs/dialogproperties/customgplayerdialog.properties");
+        prop = helper.loadProperties("/voogasalad_GucciGames/gameAuthoring/gui/gaedialog/maindialogs/dialogproperties/customgplayerdialog.properties");
         dialogElements = new DialogElements(prop, dialogGaeController);
         saveButton = new Button("Save");
         setSaveAction();

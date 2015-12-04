@@ -87,7 +87,7 @@ public class ActionPane extends GridPane {
 		ButtonType next = new ButtonType("Next");
 		switchPaneInterface.setControlBtn(next);
 		Optional<ButtonType> result = switchPaneInterface.getDialogButtonResponse();
-		/*
+		
 		if(result.get() == next) {
 			Set<String> rules = new HashSet<String>();
 			Set<String> chars = new HashSet<String>();
@@ -97,22 +97,27 @@ public class ActionPane extends GridPane {
 		        SAXParser saxParser = saxParserFactory.newSAXParser();
 		        Set<String> columnData = new HashSet<String>();
 		        for(Object p:  tableView.getItems() ){
-		        	columnData.add(((ActionParams) p).getName());
+		        	String name = ((ActionParams) p).getName();
+		        	System.out.println("name: " + name);
+		        	columnData.add(name);
 		        	//columnData.add(((ActionParams)this.actionCol.getColumns()).getName());
 		        }
 
 		        ActionSAXHandler handler = new ActionSAXHandler(columnData);
+		        
+		        /*
 		        saxParser.parse(new 
 		        		File("src/voogasalad_GucciGames/gameAuthoring/gui/gaedialog/mapobjectsettings/xml/actionDependencies.xml"), 
 		        		handler);
 		        List<ActionParams> actionParams = handler.getActionParams();
+		       
 		        for(ActionParams actionParam : actionParams){
 		  
 		  
 		        	rules.addAll(actionParam.getAllRules());
 		        	chars.addAll(actionParam.getAllCharacteristics());
 		        }
-
+				*/
 		        for(String s: rules){
 		        	System.out.println("rules: " + s);
 		        }
@@ -122,14 +127,14 @@ public class ActionPane extends GridPane {
 		        }
 		        
 		           
-		    } catch (ParserConfigurationException | SAXException | IOException ex) {
+		    } catch (ParserConfigurationException | SAXException /*| IOException */ex) {
 		        ex.printStackTrace();
 		    }
 		    
 		    switchPaneInterface.switchSettingsPane(new RulesAndCharVBox(rules, chars));
 		}
 		
-		*/
+		
 	}
 	
 

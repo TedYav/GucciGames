@@ -10,7 +10,7 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
-public class NewObjectMaker extends GaeDialog{	
+public class NewObjectMaker extends javafx.scene.control.Dialog{	
 	private static final int WIDTH = 600;
 	private static final int HEIGHT = 600;
 	private Properties prop;
@@ -20,7 +20,8 @@ public class NewObjectMaker extends GaeDialog{
 	
 	public NewObjectMaker( IDialogGaeController controller){
 		super();
-		prop = loadProperties("dialogproperties/tiledialogproperties.properties");	
+		GaeDialogHelper helper = new GaeDialogHelper();
+		prop = helper.loadProperties("dialogproperties/tiledialogproperties.properties");	
 		this.controller = controller;
 		DialogElements dialogElements = new DialogElements(prop, controller);	
 		gridPane = new NewObjMakerPane(dialogElements);				 

@@ -13,9 +13,6 @@ import javax.xml.parsers.SAXParserFactory;
 
 import org.xml.sax.SAXException;
 
-import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.dialogcomponents.listelements.CharacteristicsListItem;
-import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.dialogcomponents.listelements.MainListView;
-import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.dialogcomponents.listelements.RuleListItem;
 import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.mapobjectsettings.xml.CharacteristicsSAXHandler;
 import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.mapobjectsettings.xml.RulesSAXHandler;
 import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.paramObjects.CharacteristicsParam;
@@ -40,14 +37,14 @@ public class RulesAndCharVBox extends VBox {
 	public RulesAndCharVBox(Set<String> rules, Set<String> characteristics){
 		this.rules = rules;
 		this.characteristics = characteristics;
-		loadCharacteristics();
-		loadRules();
+		//loadCharacteristics();
+		//loadRules();
 		
 		addActionToSaveBtn();
 		this.getChildren().addAll(characteristicsScrollPane, rulesScrollPane, saveBtn);
 		
 	}
-	
+	/*
 	private void loadRules(){
 		
 		SAXParserFactory saxParserFactory = SAXParserFactory.newInstance();
@@ -91,7 +88,7 @@ public class RulesAndCharVBox extends VBox {
 	    }
 		
 	}
-	
+	*/
 	private void addActionToSaveBtn(){
 		this.saveBtn.setOnAction(e -> {
 			

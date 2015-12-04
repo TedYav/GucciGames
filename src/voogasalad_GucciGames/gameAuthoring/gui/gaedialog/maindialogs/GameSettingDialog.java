@@ -13,8 +13,8 @@ import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 
 
-public class GameSettingDialog extends GaeDialog {
-	
+public class GameSettingDialog extends javafx.scene.control.Dialog {
+
 	private VBox myContent = new VBox();
 	private Properties prop;
 	private IDialogGaeController dialogGaeController;
@@ -26,29 +26,30 @@ public class GameSettingDialog extends GaeDialog {
 	private RadioBtnField miniMap ;
 	private RadioBtnField zoomable;
 	private ScrollBarField numPlayer;
-	
-	
+
+
 	public GameSettingDialog(IDialogGaeController dialogGaeController){
+		GaeDialogHelper helper = new GaeDialogHelper();
 		this.dialogGaeController = dialogGaeController;
-		prop = super.loadProperties("/voogasalad_GucciGames/gameAuthoring/gui/gaedialog/maindialogs/dialogproperties/gamedialog.properties");
+		prop = helper.loadProperties("/voogasalad_GucciGames/gameAuthoring/gui/gaedialog/maindialogs/dialogproperties/gamedialog.properties");
 		dialogElements = new DialogElements(prop, dialogGaeController);
 		myContent.getChildren().addAll(this.initializeDialog());
 		this.getDialogPane().setContent(myContent);
 	}
-	
-	
+
+
 
 	protected VBox initializeDialog() {
 		VBox content = new VBox();				
 		Text titleElement = new Text();
 		titleElement.setText(prop.getProperty("title"));
 		nameText = new TextInputField(dialogElements, "name");
-		mapSize = new DropDownMenuField(dialogElements, "mapsize", "mapsize_items", null);
-		 fogOfWar = new DropDownMenuField(dialogElements, "fogofwar", "fogofwar_items", null);
+		mapSize = new DropDownMenuField(dialogElements, "mapsize", "mapsize_items");
+		fogOfWar = new DropDownMenuField(dialogElements, "fogofwar", "fogofwar_items");
 		miniMap = new RadioBtnField(dialogElements, "minimap", "minimap_items");
-		 zoomable = new RadioBtnField(dialogElements, "zoomable", "zoomable_items");
+		zoomable = new RadioBtnField(dialogElements, "zoomable", "zoomable_items");
 		numPlayer = new ScrollBarField(dialogElements, "numplayer", "numplayer_items");	
-		
+
 		content.getChildren().addAll(titleElement, nameText, mapSize, fogOfWar,
 				miniMap, zoomable, numPlayer);		
 		content.getChildren().forEach(hbox->hbox.setId("hbox-element"));		
@@ -56,7 +57,7 @@ public class GameSettingDialog extends GaeDialog {
 		content.setId("vbox-element");	
 		return content;
 	}
-	
+
 
 
 }
