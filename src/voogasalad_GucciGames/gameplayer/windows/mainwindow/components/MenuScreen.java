@@ -20,7 +20,7 @@ import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import voogasalad_GucciGames.gameplayer.config.PlayerConfig;
 import voogasalad_GucciGames.gameplayer.controller.GameControllerInterface;
-import voogasalad_GucciGames.gameplayer.windows.GameScene;
+import voogasalad_GucciGames.gameplayer.scenes.GameScene;
 import voogasalad_GucciGames.helpers.FontManager;
 
 public class MenuScreen extends WindowComponent {
@@ -51,11 +51,12 @@ public class MenuScreen extends WindowComponent {
 		drawMenu();
 		sizeMenu();
 	}
+	
 
 	private void drawTitle() {
 		if(!myTitle.isEmpty()){
 			Text t = new Text(myTitle);
-			t.getStyleClass().addAll("menutitle");
+			t.getStyleClass().addAll( "menutitle");
 			myMenu.getChildren().add(t);
 			myText.add(t);
 		}

@@ -1,4 +1,4 @@
-package voogasalad_GucciGames.gameplayer.windows;
+package voogasalad_GucciGames.gameplayer.scenes;
 
 import java.util.Map;
 import java.util.ResourceBundle;
@@ -12,6 +12,8 @@ import voogasalad_GucciGames.gameplayer.config.PlayerConfig;
 import voogasalad_GucciGames.gameplayer.controller.GameController;
 import voogasalad_GucciGames.gameplayer.controller.GameControllerInterface;
 import voogasalad_GucciGames.gameplayer.gameloader.GameLoader;
+import voogasalad_GucciGames.gameplayer.windows.GameWindowInterface;
+import voogasalad_GucciGames.gameplayer.windows.SceneManager;
 
 public class GameSceneManager implements SceneManager{
 
@@ -34,7 +36,7 @@ public class GameSceneManager implements SceneManager{
 	
 	private Map<String, GameScene> generateScenes(){
 		return myConfig.keySet().stream()
-			.filter((s) -> s.matches("SceneClass\\d"))
+			.filter((s) -> s.matches("SceneClass\\d+"))
 			.map( (s) -> (GameScene)Reflection.createInstance(sceneClassPath(s), this, myWindow, configClassPath(s)))
 			.collect(Collectors.toMap((s)->s.getName(), (s)->s));
 	}
@@ -55,6 +57,7 @@ public class GameSceneManager implements SceneManager{
 	}
 		
 	public void sceneFinished(){
+		System.out.println(myCurrentScene.getNext());
 		myCurrentScene = myScenes.get(myCurrentScene.getNext());
 		myCurrentScene.load();
 	}

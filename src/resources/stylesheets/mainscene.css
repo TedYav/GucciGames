@@ -3,6 +3,11 @@
 	-fx-fill: #222222;
 }
 
+.menutitle-xl{
+	-fx-font-size: 200px;
+	-fx-fill: #222222;
+}
+
 .menutext{
 	-fx-font-size: 48px;
 	-fx-fill: #222222;
