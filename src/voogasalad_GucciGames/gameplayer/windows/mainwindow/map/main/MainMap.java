@@ -73,7 +73,6 @@ public class MainMap extends WindowComponent implements MapInterface {
 		myCellsWide = (int) getController().getEngine().getMapWidth();
 		myCellsTall = (int) getController().getEngine().getMapHeight();
 		myCellSize = calculateCellSize();
-		//myController.getEngine().getMapDimensions().get(0);
 		mySelectedUnits = FXCollections.observableArrayList();
 		myUnitMap = new TwoWayMap<>();
 		getController().setMap(this);

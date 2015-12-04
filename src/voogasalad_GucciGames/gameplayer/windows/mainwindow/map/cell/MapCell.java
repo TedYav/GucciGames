@@ -4,8 +4,10 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Observable;
 import java.util.ResourceBundle;
 import java.util.TreeMap;
+import java.util.stream.Collectors;
 
 import javafx.animation.FadeTransition;
 import javafx.animation.Timeline;
@@ -26,7 +28,7 @@ import voogasalad_GucciGames.gameplayer.controller.dummy.MapObjectBasicType;
 import voogasalad_GucciGames.gameplayer.eventhandler.MapMouseHandler;
 import voogasalad_GucciGames.gameplayer.windows.mainwindow.map.MapInterface;
 
-public abstract class MapCell implements MapCellInterface {
+public abstract class MapCell extends Observable implements MapCellInterface {
 
 	private ResourceBundle myConfig = ResourceBundle.getBundle("voogasalad_GucciGames.gameplayer.config.components.MapCell");
 	
@@ -41,7 +43,7 @@ public abstract class MapCell implements MapCellInterface {
 	
 	private boolean selected;
 	private boolean active;
-	
+		
 	private GameControllerInterface myController;
 	
 	protected double mySize;
@@ -157,9 +159,9 @@ public abstract class MapCell implements MapCellInterface {
 		}
 	}
 
-	private void redraw(){
-		myObjects.keySet().forEach((i) -> redrawLayer(i));
-	}
+//	private void redraw(){
+//		myObjects.keySet().forEach((i) -> redrawLayer(i));
+//	}
 	
 	private void redrawLayer(int layer){
 		makeLayers(layer);
@@ -174,6 +176,8 @@ public abstract class MapCell implements MapCellInterface {
 				}
 			}
 		}
+		setChanged();
+		notifyObservers();
 	}
 
 	private ImageView renderImage(PlayerMapObjectInterface object, double size) {
@@ -198,6 +202,16 @@ public abstract class MapCell implements MapCellInterface {
 	public void addTemporaryOverlay(Node overlay, double duration){
 		
 	}
+	
+	public List<String> getImageList(){
+		return myObjects.values().stream()
+				.filter( l -> !l.isEmpty())
+				.flatMap(l -> 
+					l.stream()
+					.map(o -> o.getImageURI()))
+				.collect(Collectors.toList());
+	}
+	
 	
 	    @Override
 	    public Map<Integer, List<PlayerMapObjectInterface>> getUnits () {

@@ -47,6 +47,8 @@ public class GameController implements GameControllerInterface, GameControllerLo
 	private List<Observer> activeMOObservers;
 	private List<TargetCoordinateSingle> possibleMoves;
 
+	// TODO: factor imagedatabase into resource manager
+	
 	private GameLoader myLoader;
 
 	public GameController(GameWindowManager manager){
@@ -83,20 +85,6 @@ public class GameController implements GameControllerInterface, GameControllerLo
 		possibleMoves = myTargetUnit.performRequest(action).getListOfCoordinates();
 		
 		return possibleMoves;
-		//return unit.getAction(action)(action);
-		
-//		GridCoordinateParameters myParameters = myEngine.getPossibleCoordinates(action, unit);
-//		
-//
-//		//SORRY FOR THE TIME BEING: THIS WILL BE FIXED IN THE FUTURE
-//		if(myParameters == null){
-//			return new ArrayList<TargetCoordinateSingle>();
-//		}
-//		else{
-//			//possibleMoves = myEngine.getPossibleCoordinates(action, unit).getListOfCoordinates();
-//			//			return possibleMoves;
-//		}
-		
 	}
 
 	@Override
@@ -168,16 +156,6 @@ public class GameController implements GameControllerInterface, GameControllerLo
 	public Image requestImage(String imageURI) {
 		return myImageDatabase.request(imageURI);
 	}
-
-//	@Override
-//	public <T extends Event> void addEventHandler(EventType<T> eventType, EventHandler<T> eventHandler) {
-//		myScene.addEventHandler(eventType, eventHandler);
-//	}
-//
-//	@Override
-//	public <T extends Event> void addEventFilter(EventType<T> eventType, EventHandler<T> eventHandler) {
-//		myScene.addEventFilter(eventType, eventHandler);
-//	}
 
     @Override
     public void setActiveMapObject (PlayerMapObjectInterface mapObj) {
