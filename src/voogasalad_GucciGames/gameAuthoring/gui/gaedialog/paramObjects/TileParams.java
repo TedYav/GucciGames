@@ -1,6 +1,6 @@
 package voogasalad_GucciGames.gameAuthoring.gui.gaedialog.paramObjects;
 
-public class TileParams extends AParamsObject{
+public class TileParams extends AParams{
 	private String tileName;
 	
 	public TileParams(String tileName){

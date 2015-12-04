@@ -17,13 +17,15 @@ import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.mapobjectsettings.xml.C
 import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.mapobjectsettings.xml.RulesSAXHandler;
 import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.paramObjects.CharacteristicsParam;
 import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.paramObjects.RuleParams;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.scene.control.Button;
 import javafx.scene.control.ScrollPane;
+import javafx.scene.layout.GridPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 
-public class RulesAndCharVBox extends VBox {
-	public static final int INDEX = 1;
+public class RulesAndCharPane extends GridPane{
 	
 	private Text title = new Text("Rules and Characteristics");
 	private ScrollPane rulesScrollPane = new ScrollPane();
@@ -34,20 +36,22 @@ public class RulesAndCharVBox extends VBox {
 	private Set<String> rules = new HashSet<String>();
 	private Set<String> characteristics = new HashSet<String>();
 	
-	public RulesAndCharVBox(Set<String> rules, Set<String> characteristics){
+	private DialogTableView rulesTableView;
+	
+	public RulesAndCharPane(Set<String> rules, Set<String> characteristics){
 		this.rules = rules;
 		this.characteristics = characteristics;
 		//loadCharacteristics();
-		//loadRules();
+		loadRules();
 		
 		addActionToSaveBtn();
-		this.getChildren().addAll(characteristicsScrollPane, rulesScrollPane, saveBtn);
 		
 	}
-	/*
+	
 	private void loadRules(){
 		
 		SAXParserFactory saxParserFactory = SAXParserFactory.newInstance();
+		List<RuleParams> rulesParams = new ArrayList<RuleParams>();
 	    try {
 	        SAXParser saxParser = saxParserFactory.newSAXParser();
 	 
@@ -55,15 +59,16 @@ public class RulesAndCharVBox extends VBox {
 	        saxParser.parse(new 
 	        		File("src/voogasalad_GucciGames/gameAuthoring/gui/gaedialog/mapobjectsettings/xml/ruleDependencies.xml"), 
 	        		handler);
-	        List<RuleParams> rulesParams = handler.getRuleParams();
-	        for(RuleParams param : rulesParams){     	
-	        	RuleListItem r = new RuleListItem(param.getDisplayName());
-	        	rulesListView.addListItem(r);
-	        }
-	           
+	        rulesParams = handler.getRuleParams();	       
+	          
 	    } catch (ParserConfigurationException | SAXException | IOException ex) {
 	        ex.printStackTrace();
 	    }
+	    List<TableElement> tableElements = new ArrayList<TableElement>();
+	    rulesParams.stream().forEach(p -> tableElements.add(new TableElement(p.getDisplayName(), "rule")));
+	    ObservableList<TableElement> data = FXCollections.observableArrayList(tableElements);
+	    this.rulesTableView = new DialogTableView(data);
+	    this.add(rulesTableView, 0, 1);
 		
 	}
 	
@@ -79,8 +84,6 @@ public class RulesAndCharVBox extends VBox {
 	        List<CharacteristicsParam> charParams = handler.getCharParams();
 	        for(CharacteristicsParam param : charParams){
 	        	
-	        	CharacteristicsListItem c = new CharacteristicsListItem(param.getDisplayName(), param.getName(), param.getMin(), param.getMax(), 1);
-	        	characteristicsListView.addListItem(c);
 	        }
 	           
 	    } catch (ParserConfigurationException | SAXException | IOException ex) {
@@ -88,7 +91,7 @@ public class RulesAndCharVBox extends VBox {
 	    }
 		
 	}
-	*/
+	
 	private void addActionToSaveBtn(){
 		this.saveBtn.setOnAction(e -> {
 			

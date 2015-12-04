@@ -8,6 +8,7 @@ import java.util.ResourceBundle;
 import com.thoughtworks.xstream.XStream;
 import com.thoughtworks.xstream.io.xml.DomDriver;
 
+import voogasalad_GucciGames.gameData.wrapper.GameInfo;
 import voogasalad_GucciGames.gameEngine.GameEngineToGamePlayerInterface;
 
 public class XStreamGameEngine {

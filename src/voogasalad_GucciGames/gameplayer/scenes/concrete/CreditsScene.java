@@ -1,4 +1,4 @@
-package voogasalad_GucciGames.gameplayer.windows.mainwindow.scenes;
+package voogasalad_GucciGames.gameplayer.scenes.concrete;
 
 import javafx.scene.Scene;
 import javafx.scene.input.KeyEvent;
@@ -8,16 +8,16 @@ import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import javafx.util.Duration;
 import voogasalad_GucciGames.gameplayer.gameloader.GameLoader;
-import voogasalad_GucciGames.gameplayer.windows.GameScene;
-import voogasalad_GucciGames.gameplayer.windows.GameSceneManager;
+import voogasalad_GucciGames.gameplayer.scenes.GameScene;
+import voogasalad_GucciGames.gameplayer.scenes.GameSceneManager;
 import voogasalad_GucciGames.gameplayer.windows.GameWindow;
 import voogasalad_GucciGames.gameplayer.windows.mainwindow.components.SplashScreen;
 
-public class GameLevelScene extends GameScene {
+public class CreditsScene extends GameScene {
 
         private Scene myScene;
 	
-	public GameLevelScene(GameSceneManager manager, GameWindow window, String config) {
+	public CreditsScene(GameSceneManager manager, GameWindow window, String config) {
 		super(manager, window, config);
 	}
 	

@@ -4,9 +4,9 @@ public class RealHealthCharacteristic extends HealthCharacteristic{
 
 	private double myCurrentHealth;
 	private double myMaxHealth;
+
 	
 	public RealHealthCharacteristic(double maxHP){
-		super();
 		defineHealthValue(maxHP);
 	}
 	

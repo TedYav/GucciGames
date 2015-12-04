@@ -1,12 +1,12 @@
 package voogasalad_GucciGames.gameAuthoring.gui.gaedialog.maindialogs;
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.Arrays;
+import java.util.List;
 import java.util.Properties;
 
-import javafx.scene.control.Dialog;
 
-
-public class GaeDialogHelper extends javafx.scene.control.Dialog {
+public class GaeDialogHelper{
 
 	public Properties loadProperties(String path){
 		Properties prop = new Properties();
@@ -21,6 +21,17 @@ public class GaeDialogHelper extends javafx.scene.control.Dialog {
 			e.printStackTrace();
 		}
 		return prop;		
+	}
+	
+	public List<String> parseStringToList(Properties prop, String itemsKey){
+		String items = prop.getProperty(itemsKey);	
+		List<String> propertiesList = Arrays.asList(items.split("\\s*,\\s*"));	
+		return propertiesList;		
+	}
+	
+	public List<String> parseStringToList(String items){
+		List<String> propertiesList = Arrays.asList(items.split("\\s*,\\s*"));	
+		return propertiesList;		
 	}
 
 

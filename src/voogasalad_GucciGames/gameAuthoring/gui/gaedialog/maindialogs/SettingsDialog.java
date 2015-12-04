@@ -25,7 +25,6 @@ public class SettingsDialog extends javafx.scene.control.Dialog implements ISwit
 	private Properties prop;
 	private DialogElements dialogElements;
 	private ActionPane actionPane;
-	private ButtonType controlBtn = new ButtonType("Next", ButtonData.NEXT_FORWARD);
 	private static GaeDialogHelper helper = new GaeDialogHelper();
 	
 	
@@ -43,10 +42,9 @@ public class SettingsDialog extends javafx.scene.control.Dialog implements ISwit
 	public void init(){
 		actionPane = new ActionPane(dialogElements, this);
 		//actionPane.setPrefSize(WIDTH, HEIGHT);
-		System.out.println("pane: " +this.getDialogPane());
 		this.getDialogPane().setContent(actionPane);
-		final ButtonType cancelBtn = new ButtonType("Cancel", ButtonData.CANCEL_CLOSE);
-		this.getDialogPane().getButtonTypes().addAll( cancelBtn, controlBtn);
+		//final ButtonType cancelBtn = new ButtonType("Cancel", ButtonData.CANCEL_CLOSE);
+		this.getDialogPane().getButtonTypes().setAll(ButtonType.CLOSE);
 		
 
 	}
@@ -56,15 +54,14 @@ public class SettingsDialog extends javafx.scene.control.Dialog implements ISwit
 			this.getDialogPane().setContent(n);	
 	}
 
-	@Override
-	public void setControlBtn(ButtonType btn) {
-		controlBtn = btn;
-	}
 
 	@Override
 	public Optional<ButtonType> getDialogButtonResponse() {
+		// TODO Auto-generated method stub
 		return this.showAndWait();
 	}
+
+
 	
 	
 

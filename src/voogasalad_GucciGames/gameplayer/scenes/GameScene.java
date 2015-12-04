@@ -1,4 +1,4 @@
-package voogasalad_GucciGames.gameplayer.windows;
+package voogasalad_GucciGames.gameplayer.scenes;
 
 import java.util.ResourceBundle;
 
@@ -8,7 +8,7 @@ import javafx.event.EventType;
 import javafx.scene.Scene;
 import voogasalad_GucciGames.gameplayer.config.PlayerConfig;
 import voogasalad_GucciGames.gameplayer.gameloader.GameLoader;
-import voogasalad_GucciGames.gameplayer.windows.mainwindow.scenes.GameSceneInterface;
+import voogasalad_GucciGames.gameplayer.windows.GameWindowInterface;
 
 public abstract class GameScene implements GameSceneInterface{
 

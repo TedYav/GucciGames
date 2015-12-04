@@ -1,7 +1,7 @@
 package voogasalad_GucciGames.gameplayer.windows.mainwindow;
 
 import voogasalad_GucciGames.gameplayer.controller.GameController;
-import voogasalad_GucciGames.gameplayer.windows.GameSceneManager;
+import voogasalad_GucciGames.gameplayer.scenes.GameSceneManager;
 import voogasalad_GucciGames.gameplayer.windows.GameWindow;
 import voogasalad_GucciGames.gameplayer.windows.GameWindowManager;
 

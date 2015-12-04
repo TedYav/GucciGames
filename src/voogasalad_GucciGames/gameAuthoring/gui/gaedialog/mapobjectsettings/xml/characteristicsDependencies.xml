@@ -1,26 +1,35 @@
 <characteristicDependencies>
 	<characteristic name="health" 
 		displayName="My Health" 
-		min="0" 
-	max="10">
+		 paramNames="minHealth, maxHealth"
+		 paramTypes="double, double">
 	</characteristic>	
 	<characteristic 
 		name="movementRange" 
 		displayName="Movement Range"
-		min="0" 
-		max="10">
+		 paramNames=""
+		 paramTypes="">
 	</characteristic>
-	<characteristic name="wealth" displayName= "Wealth" min="0" max="10">
-		
+	<characteristic 
+		name="wealth" 
+		displayName= "Wealth" 
+		 paramNames=""
+		 paramTypes="">		
 	</characteristic>
-	<characteristic name="attackDamage"  displayName= "Attack Damage" min="0" max="10">
-		
-
+	<characteristic
+		 name="attackDamage"
+		 displayName= "Attack Damage" 
+		 paramNames=""
+		 paramTypes="">
 	</characteristic>
-	<characteristic name="attackRange" displayName= "Attack Range" min="0" max="10">
-	
+	<characteristic name="attackRange" 
+		displayName= "Attack Range" 
+		 paramNames=""
+		 paramTypes="">	
 	</characteristic>
-	<characteristic name="numAttacksPerTurn" displayName= "Number of Attacks Per Turn" min="0" max="10">
-		<displayName>Number of Attacks Per Turn</displayName>
+	<characteristic name="numAttacksPerTurn"
+		 displayName= "Number of Attacks Per Turn" 
+		 paramNames=""
+		 paramTypes="">
 	</characteristic>
 </characteristicDependencies>

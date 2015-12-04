@@ -14,7 +14,7 @@ import javafx.scene.control.ListView;
 import voogasalad_GucciGames.gameEngine.PlayerMapObjectInterface;
 import voogasalad_GucciGames.gameEngine.targetCoordinate.TargetCoordinateSingle;
 import voogasalad_GucciGames.gameplayer.controller.GameControllerInterface;
-import voogasalad_GucciGames.gameplayer.windows.GameScene;
+import voogasalad_GucciGames.gameplayer.scenes.GameScene;
 import voogasalad_GucciGames.gameplayer.windows.mainwindow.components.DisplayComponent;
 
 public class ActionDisplay extends DisplayComponent implements Observer {

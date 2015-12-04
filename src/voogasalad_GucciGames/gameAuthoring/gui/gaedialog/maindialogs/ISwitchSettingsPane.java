@@ -9,9 +9,9 @@ import javafx.scene.layout.VBox;
 public interface ISwitchSettingsPane {
 	
 	public void switchSettingsPane(Node n);
-	
-	public void setControlBtn(ButtonType nextBtn);
-	
+		
 	public Optional<ButtonType> getDialogButtonResponse();
+	
+
 
 }

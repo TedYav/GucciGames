@@ -5,7 +5,7 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
-public class ActionParams extends AParamsObject{
+public class ActionParams extends AParams{
 	
 	private Set<String> myRules;
 	private Set<String> myCharacteristics;
@@ -13,8 +13,8 @@ public class ActionParams extends AParamsObject{
 	private String name;
 	private String displayName;
 	
-	public ActionParams(){
-		
+	public ActionParams(String displayName){
+		this.displayName = displayName;
 	}
 	
 	public void setRules(String rules){
@@ -26,11 +26,6 @@ public class ActionParams extends AParamsObject{
 	public void setCharacteristics(String characteristics){
 		List<String> items = Arrays.asList(characteristics.split("\\s*,\\s*"));
 		myCharacteristics = new HashSet<String>(items);
-	}
-	
-	public ActionParams(String name){
-		this();
-		this.name = name;
 	}
 	
 	public void addRule(String ruleName){

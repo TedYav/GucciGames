@@ -1,4 +1,4 @@
-package voogasalad_GucciGames.gameplayer.windows.mainwindow.scenes;
+package voogasalad_GucciGames.gameplayer.scenes.concrete;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -17,8 +17,8 @@ import voogasalad_GucciGames.gameplayer.controller.GameControllerInterface;
 import voogasalad_GucciGames.gameplayer.eventhandler.MapKeyHandler;
 import voogasalad_GucciGames.gameplayer.eventhandler.MapMouseHandler;
 import voogasalad_GucciGames.gameplayer.gameloader.GameLoader;
-import voogasalad_GucciGames.gameplayer.windows.GameScene;
-import voogasalad_GucciGames.gameplayer.windows.GameSceneManager;
+import voogasalad_GucciGames.gameplayer.scenes.GameScene;
+import voogasalad_GucciGames.gameplayer.scenes.GameSceneManager;
 import voogasalad_GucciGames.gameplayer.windows.GameWindow;
 import voogasalad_GucciGames.gameplayer.windows.GameWindowInterface;
 import voogasalad_GucciGames.gameplayer.windows.mainwindow.components.BottomBar;
