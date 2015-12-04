@@ -2,6 +2,8 @@ package voogasalad_GucciGames.gameAuthoring.gui.gaedialog.groovySettings;
 
 import javafx.geometry.HPos;
 import javafx.scene.control.Button;
+import javafx.scene.control.ButtonBar.ButtonData;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
 import javafx.scene.layout.GridPane;
@@ -17,9 +19,11 @@ public class ActionPane extends GridPane {
 	
 	private Label requestLbl = new Label("Request: ");
 	private TextArea request = new TextArea();
+	private ISwitchGroovyPane controller;
 	
-	public ActionPane(String name){
+	public ActionPane(String name, ISwitchGroovyPane controller){
 		super();
+		this.controller = controller;
 		nameLbl = new Label(name + " Action");
 		nameLbl.setFont( new Font("Arial", 20));
 		this.setHalignment(nameLbl, HPos.RIGHT);
@@ -36,14 +40,8 @@ public class ActionPane extends GridPane {
 		this.add(action, 1, 1);
 		this.add(requestLbl, 0, 2);
 		this.add(request, 1, 2);
-		Button saveBtn = new Button("Save");
-		saveBtn.setOnAction(e -> {
-			
-		});
-		this.add(saveBtn, 2, 3);
-			
-	
-		
+		ButtonType saveBtn = new ButtonType("Save", ButtonData.FINISH);
+		controller.addBtn(saveBtn);		
 	}
 
 }
