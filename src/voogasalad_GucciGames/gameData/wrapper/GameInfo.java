@@ -90,6 +90,9 @@ public class GameInfo implements IGameInfoToGAE{
 			}
 			myLevelsMap.remove(myLevelsMap.keySet().size()-1);
 		}
+		else{
+			System.out.println("Level not found");
+		}
 
 	}
 	
@@ -100,6 +103,7 @@ public class GameInfo implements IGameInfoToGAE{
 				return key;
 			}
 		}
+		System.out.println("Level not found");
 		return -1;
 	}
 	
@@ -116,6 +120,9 @@ public class GameInfo implements IGameInfoToGAE{
 			
 			myLevelsMap.put(first, gameTwo);
 			myLevelsMap.put(second, gameOne);
+		}
+		else{
+			System.out.println("One or more level(s) not found");
 		}
 	}
 	
