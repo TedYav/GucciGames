@@ -25,10 +25,19 @@ public class GameInfo implements GameInfoToGamePlayer{
 	private GuiData guiData;
 	
 	public GameInfo(){
-		
+	          myEngine=new GameEngine("TEMP");
+	}
+	public GameInfo(String gameName) {
+	    myEngine=new GameEngine("TEMP",gameName);
 	}
 	
-
+	public void setGameEngine(GameEngine engine) {
+	    myEngine = engine;
+	}
+	public GameEngine getGameEngine() {
+	    return myEngine;
+	}
+	
 	@Override
 	public String getGameName() {
 		return myEngine.getGameName();
@@ -43,8 +52,12 @@ public class GameInfo implements GameInfoToGamePlayer{
 	public void setGuiComponents(String location, List<String> components) {
 		guiData.setComponents(location, components);
 	}
+    @Override
+    public Map<String, IGameLevelToGamePlayer> getLevels () {
+        return myEngine.getLevelsMap();
+    }
 
-
+	
 	
 	
 	

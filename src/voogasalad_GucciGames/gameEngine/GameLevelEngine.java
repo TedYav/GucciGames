@@ -5,7 +5,7 @@ import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-
+import voogasalad_GucciGames.gameData.wrapper.IGameLevelToGamePlayer;
 import voogasalad_GucciGames.gameEngine.CommunicationParameters.BasicParameters;
 import voogasalad_GucciGames.gameEngine.CommunicationParameters.ChangedParameters;
 import voogasalad_GucciGames.gameEngine.CommunicationParameters.GameParameters;
@@ -21,7 +21,7 @@ import voogasalad_GucciGames.gameEngine.gameRules.RuleParams;
 import voogasalad_GucciGames.gameEngine.targetCoordinate.ATargetCoordinate;
 import voogasalad_GucciGames.gameplayer.controller.GameParametersInterface;
 
-public class GameLevelEngine implements GameEngineToGamePlayerInterface {
+public class GameLevelEngine implements IGameLevelToGamePlayer {
 
 	private AllPlayers myGamePlayers;
 	private TurnCounter myCurrentTurnCounter;
@@ -48,13 +48,13 @@ public class GameLevelEngine implements GameEngineToGamePlayerInterface {
 
 		myName = "Game " + Math.round((Math.random()*10000));
 	}
-	@Override
+	
 	@Deprecated
 	public String getGameName() {
 		return myName;
 	}
 
-	@Override
+	
 	public GameParametersInterface endTurn() {
 		//check game conditions
 		myCurrentTurnCounter.update();
@@ -71,17 +71,17 @@ public class GameLevelEngine implements GameEngineToGamePlayerInterface {
 		return myCurrentTurnCounter.getCurrentTurn();
 	}
 
-	@Override
+	
 	public List<PlayerMapObjectInterface> getInitialState() {
 		return myGamePlayers.getInitialState();
 	}
 
-	@Override
+	
 	public int getTurnPlayerID() {
 		return myTurnDecider.decideTurn();
 	}
 
-	@Override
+	
 	public GridCoordinateParameters getPossibleCoordinates(String action, PlayerMapObjectInterface myMapObject) {
 		return null;
 
@@ -124,19 +124,19 @@ public class GameLevelEngine implements GameEngineToGamePlayerInterface {
 		return mapDimensions;
 	}
 
-	@Override
+	
 	public ChangedParameters performAction(String action, PlayerMapObjectInterface mapObject,
 			ATargetCoordinate target) {
 
 		return null;
 
 	}
-	@Override
+	
 	public int getMapWidth() {
 		// TODO Auto-generated method stub
 		return myMapWidth;
 	}
-	@Override
+	
 	public int getMapHeight() {
 		// TODO Auto-generated method stub
 		return myMapHeight;
@@ -150,7 +150,7 @@ public class GameLevelEngine implements GameEngineToGamePlayerInterface {
 		myMapHeight = height;
 	}
 
-	@Override
+	
 	public GameParametersInterface getGameParameters() {
 		// TODO Auto-generated method stub
 		GameParameters pp= new GameParameters();
@@ -209,7 +209,7 @@ public class GameLevelEngine implements GameEngineToGamePlayerInterface {
 		myName = name;
 	}
 
-	@Override
+	
 	public boolean isGameWon() {
 		return gameWon;
 	}
@@ -226,4 +226,8 @@ public class GameLevelEngine implements GameEngineToGamePlayerInterface {
 		this.myChoosability = myChoosability;
 	}
 
+    @Override
+    public String getLevelName () {
+        return myName;
+    }
 }

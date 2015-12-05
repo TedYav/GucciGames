@@ -54,12 +54,9 @@ public class DemoMaker extends Application{
 		GameLevelEngine level3 = makeLevel(20,20);
 
 		GameInfo game = new GameInfo("Duvall Tag");
-		game.addLevel("Easy");
-		game.addLevel("Medium");
-		game.addLevel("Hard");
-		game.getLevelsMap().get(0).assignEngine(level1);
-		game.getLevelsMap().get(1).assignEngine(level2);
-		game.getLevelsMap().get(2).assignEngine(level3);
+                game.getGameEngine().addLevel("Easy", level1);
+                game.getGameEngine().addLevel("Medium", level2);
+                game.getGameEngine().addLevel("Hard", level3);
 		return game;
 	}
 

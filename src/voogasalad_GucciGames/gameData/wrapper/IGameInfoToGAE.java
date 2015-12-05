@@ -15,7 +15,7 @@ public interface IGameInfoToGAE {
 	
 	public String getGameName();
 		
-	public Map<String, GameLevelEngine> getLevelsMap();
+	public Map<String, IGameLevelToGamePlayer> getLevelsMap();
 	
 	public List<String> getChoosableLevels();
 

@@ -11,4 +11,5 @@ public interface GameInfoToGamePlayer {
 	
 	public void setGuiComponents(String location, List<String> components);
 	
+	public Map<String, IGameLevelToGamePlayer> getLevels();
 }

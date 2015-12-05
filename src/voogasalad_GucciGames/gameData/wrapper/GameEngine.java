@@ -99,7 +99,7 @@ public class GameEngine implements IGameInfoToGAE, GameEngineToGamePlayerInterfa
 	// Java wouldn't let me modify the return type in the interface, don't know why
 	// :(
 	@Override
-	public Map<String, GameLevelEngine> getLevelsMap() {
+	public Map<String, IGameLevelToGamePlayer> getLevelsMap() {
 		return Collections.unmodifiableMap(myLevelsMap);
 	}
 	
