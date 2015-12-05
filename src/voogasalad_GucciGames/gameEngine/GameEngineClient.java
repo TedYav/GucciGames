@@ -149,6 +149,11 @@ public class GameEngineClient implements GameEngineToGamePlayerInterface, Runnab
 		return 0;
 	}
 
+	@Override
+	public String getName() {
+		return myEngine.getName();
+	}
+
 	//change to either immutable or just make the methods of this public (and not the full set...)
 	
 	

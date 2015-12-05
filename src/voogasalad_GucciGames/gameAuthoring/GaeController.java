@@ -25,6 +25,7 @@ import voogasalad_GucciGames.gameAuthoring.model.GAEModel;
 import voogasalad_GucciGames.gameAuthoring.model.IGAEModel;
 import voogasalad_GucciGames.gameAuthoring.model.MapObjectType;
 import voogasalad_GucciGames.gameAuthoring.properties.ObjectProperty;
+import voogasalad_GucciGames.gameData.wrapper.GameInfo;
 import voogasalad_GucciGames.gameEngine.mapObject.MapObject;
 import voogasalad_GucciGames.helpers.ImageDatabase;
 
@@ -98,8 +99,14 @@ public class GaeController extends AGuiGaeController implements IModelGaeControl
 	}
 
 	@Override
+	@Deprecated
 	public void saveToXML(File file) {
-		model.saveToXML(file);
+		
+	}
+	
+	@Override
+	public void saveToXML(GameInfo game){
+		model.saveToXML(game);
 	}
 
 	@Override
