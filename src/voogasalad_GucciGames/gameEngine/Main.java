@@ -4,8 +4,8 @@ import java.util.HashMap;
 import java.util.Map;
 
 import voogasalad_GucciGames.gameEngine.defaultCharacteristics.HealthCharacteristic;
-import voogasalad_GucciGames.gameEngine.defaultCharacteristics.MovableCharacteristic;
 import voogasalad_GucciGames.gameEngine.defaultCharacteristics.HealthCharacteristic;
+import voogasalad_GucciGames.gameEngine.defaultCharacteristics.MovableCharacteristic;
 import voogasalad_GucciGames.gameEngine.gamePlayer.AllPlayers;
 import voogasalad_GucciGames.gameEngine.gamePlayer.GamePlayerPerson;
 import voogasalad_GucciGames.gameEngine.mapObject.MapObject;
@@ -23,40 +23,40 @@ public class Main {
 //		temp.add(1);
 //		temp.add(3);
 //		dummyCharacteristicMap.put("MovableCharacteristic", temp);
-		
+
 		Map<Integer, GamePlayerPerson> map = new HashMap<Integer, GamePlayerPerson>();
 
 		map.put(-1, p);
 		map.put(0, p0);
-		
+
 
 		AllPlayers allPlayers = new AllPlayers(map);
 		MainGameEngine engine = new MainGameEngine(allPlayers);
 		engine.createTestCondition();
-		
+
 		MovableCharacteristic myMovableCharacteristic = new MovableCharacteristic(1, 3);
 		HealthCharacteristic myHealthCharacteristic = new HealthCharacteristic(5);
-		
+
 		MapObject soldier = new MapObject("soldier", "./../");
-		
+
 		MapObject sold1 = new MapObject(soldier, new TargetCoordinateSingle(0, 0),0);
-		
+
 		p0.addMapObject(sold1);
-		
+
 //		soldier.initializeCharacteristicsMap(dummyCharacteristicMap);
-		
-		MoveEvent myMoveEvent = new MoveEvent("Move");
+
+		MoveEvent myMoveEvent = new MoveEvent("Move",null,null);
 		//WhereToMoveEvent myMoveLocationEvent = new WhereToMoveEvent("WhereToMove");
-		
+
 		sold1.addCharacteristic("MovableCharacteristic", myMovableCharacteristic);
 		sold1.addCharacteristic("HealthCharacteristic", myHealthCharacteristic);
 		soldier.addEvent("Move", myMoveEvent);
 		//soldier.addRequest("WhereToMove", myMoveLocationEvent);
-		
-		
+
+
 //		engine.getPossibleCoordinates("Move", (PlayerMapObjectInterface) sold1);
 
-		
+
 		//engine.endTurn();
 
 		// test rules:

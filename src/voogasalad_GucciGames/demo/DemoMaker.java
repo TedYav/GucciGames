@@ -1,7 +1,5 @@
 package voogasalad_GucciGames.demo;
 
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Map;
 import java.util.TreeMap;
 
@@ -13,8 +11,8 @@ import voogasalad_GucciGames.gameEngine.MainGameEngine;
 import voogasalad_GucciGames.gameEngine.CommunicationParameters.BasicParameters;
 import voogasalad_GucciGames.gameEngine.defaultCharacteristics.AttackCharacteristic;
 import voogasalad_GucciGames.gameEngine.defaultCharacteristics.HealthCharacteristic;
-import voogasalad_GucciGames.gameEngine.defaultCharacteristics.MovableCharacteristic;
 import voogasalad_GucciGames.gameEngine.defaultCharacteristics.HealthCharacteristic;
+import voogasalad_GucciGames.gameEngine.defaultCharacteristics.MovableCharacteristic;
 import voogasalad_GucciGames.gameEngine.gamePlayer.AllPlayers;
 import voogasalad_GucciGames.gameEngine.gamePlayer.GamePlayerPerson;
 import voogasalad_GucciGames.gameEngine.gamePlayer.MovablePlayerCharacteristic;
@@ -45,7 +43,7 @@ public class DemoMaker extends Application{
 		MainGameEngine level1 = makeLevel(4,4);
 		MainGameEngine level2 = makeLevel(8, 8);
 		MainGameEngine level3 = makeLevel(20,20);
-	       
+
 		GameInfo game = new GameInfo("Duvall Tag");
 		game.addLevel("Easy");
 		game.addLevel("Medium");
@@ -57,9 +55,9 @@ public class DemoMaker extends Application{
 	}
 
 	private static MainGameEngine makeLevel(int width, int height) {
-		Map<Integer,GamePlayerPerson> myMapOfPlayers = new TreeMap<Integer,GamePlayerPerson>();     
+		Map<Integer,GamePlayerPerson> myMapOfPlayers = new TreeMap<Integer,GamePlayerPerson>();
 		myMapOfPlayers.put(-1,new GamePlayerPerson(-1)); //neutral player
-		myMapOfPlayers.put(0,new GamePlayerPerson(0)); //player 1 
+		myMapOfPlayers.put(0,new GamePlayerPerson(0)); //player 1
 
 		myMapOfPlayers.put(1,new GamePlayerPerson(1)); //player 2
 
@@ -78,10 +76,10 @@ public class DemoMaker extends Application{
 		MovableCharacteristic myMovableCharacteristic = new MovableCharacteristic(1, 3);
 		HealthCharacteristic myHealthCharacteristic = new HealthCharacteristic(5);
 
-		MoveEvent myMoveEvent = new MoveEvent("Move");
+		MoveEvent myMoveEvent = new MoveEvent("Move",null,null);
 		soldier.addEvent("Move", myMoveEvent);
 
-		AttackEvent myAttackEvent = new AttackEvent("Attack");
+		AttackEvent myAttackEvent = new AttackEvent("Attack",null,null);
 		AttackCharacteristic myAttackCharacteristic = new AttackCharacteristic(3, 100, 2);
 
 
