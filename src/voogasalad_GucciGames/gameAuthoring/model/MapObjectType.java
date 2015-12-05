@@ -1,6 +1,13 @@
 package voogasalad_GucciGames.gameAuthoring.model;
 
+import java.util.List;
+
+import voogasalad_GucciGames.gameAuthoring.model.holder.ActionHolder;
+import voogasalad_GucciGames.gameAuthoring.model.holder.CharacteristicHolder;
+
 public class MapObjectType {
+	private List<CharacteristicHolder> myCharacteristics;
+	private List<ActionHolder> myActions;
 	private double myWidth, myHeight, myX, myY;
 	private String myImagePath;
 	private String myName;
