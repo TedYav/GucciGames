@@ -1,9 +1,9 @@
 package voogasalad_GucciGames.gameplayer.gameloader;
 
-import voogasalad_GucciGames.gameData.wrapper.GameEngine;
+import voogasalad_GucciGames.gameData.wrapper.GameInfo;
 
 public interface GameControllerLoader {
 
-	public void loadGame(GameEngine game);
+	public void loadGame(GameInfo game);
 	
 }

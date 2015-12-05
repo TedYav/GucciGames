@@ -6,7 +6,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.ResourceBundle;
-import java.util.TreeMap;
 
 
 public class GuiData {
@@ -39,5 +38,4 @@ public class GuiData {
 	public List<String> getComponents(String location) {
 		return myComponents.get(location);
 	}
-	
 }

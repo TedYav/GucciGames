@@ -21,7 +21,7 @@ import voogasalad_GucciGames.gameEngine.gameRules.RuleParams;
 import voogasalad_GucciGames.gameEngine.targetCoordinate.ATargetCoordinate;
 import voogasalad_GucciGames.gameplayer.controller.GameParametersInterface;
 
-public class MainGameEngine implements GameEngineToGamePlayerInterface {
+public class GameLevelEngine implements GameEngineToGamePlayerInterface {
 
 	private AllPlayers myGamePlayers;
 	private TurnCounter myCurrentTurnCounter;
@@ -31,12 +31,17 @@ public class MainGameEngine implements GameEngineToGamePlayerInterface {
 	private int myMapHeight;
 	private String myName;
 	private boolean gameWon;
+	
+
+	private boolean myChoosability;
+	
+	
 
 	public String getName() {
 		return myName;
 	}
 
-	public MainGameEngine(AllPlayers gamePlayers) {
+	public GameLevelEngine(AllPlayers gamePlayers) {
 		myGamePlayers = gamePlayers;
 		myCurrentTurnCounter = new TurnCounter();
 		myTurnDecider = new DefaultTurnDecider(myGamePlayers, myCurrentTurnCounter);
@@ -211,6 +216,14 @@ public class MainGameEngine implements GameEngineToGamePlayerInterface {
 
 	public void setGameWon(boolean gameWon) {
 		this.gameWon = gameWon;
+	}
+
+	public boolean isMyChoosability() {
+		return myChoosability;
+	}
+
+	public void setMyChoosability(boolean myChoosability) {
+		this.myChoosability = myChoosability;
 	}
 
 }

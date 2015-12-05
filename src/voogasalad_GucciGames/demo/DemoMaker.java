@@ -8,8 +8,8 @@ import java.util.TreeMap;
 import javafx.application.Application;
 import javafx.stage.Stage;
 import voogasalad_GucciGames.gameData.XStreamGameEngine;
-import voogasalad_GucciGames.gameData.wrapper.GameEngine;
-import voogasalad_GucciGames.gameEngine.MainGameEngine;
+import voogasalad_GucciGames.gameData.wrapper.GameInfo;
+import voogasalad_GucciGames.gameEngine.GameLevelEngine;
 import voogasalad_GucciGames.gameEngine.CommunicationParameters.BasicParameters;
 import voogasalad_GucciGames.gameEngine.defaultCharacteristics.AttackCharacteristic;
 import voogasalad_GucciGames.gameEngine.defaultCharacteristics.HealthCharacteristic;
@@ -48,32 +48,22 @@ public class DemoMaker extends Application{
 		launch(args);
 	}
 
-<<<<<<< HEAD
-	private static GameEngine createGame() {
-		MainGameEngine level1 = makeLevel(8, 8);
-		MainGameEngine level2 = makeLevel(20,20);
-	       
-		GameEngine game = new GameEngine("Duvall Tag");
-		game.addLevel("Level 1");
-		game.addLevel("Level 2");
-=======
 	private static GameInfo createGame() {
-		MainGameEngine level1 = makeLevel(4,4);
-		MainGameEngine level2 = makeLevel(8, 8);
-		MainGameEngine level3 = makeLevel(20,20);
+		GameLevelEngine level1 = makeLevel(4,4);
+		GameLevelEngine level2 = makeLevel(8, 8);
+		GameLevelEngine level3 = makeLevel(20,20);
 
 		GameInfo game = new GameInfo("Duvall Tag");
 		game.addLevel("Easy");
 		game.addLevel("Medium");
 		game.addLevel("Hard");
->>>>>>> 7193ebf3fa5242a17f1527500d5991846afb27c0
 		game.getLevelsMap().get(0).assignEngine(level1);
 		game.getLevelsMap().get(1).assignEngine(level2);
 		game.getLevelsMap().get(2).assignEngine(level3);
 		return game;
 	}
 
-	private static MainGameEngine makeLevel(int width, int height) {
+	private static GameLevelEngine makeLevel(int width, int height) {
 		Map<Integer,GamePlayerPerson> myMapOfPlayers = new TreeMap<Integer,GamePlayerPerson>();
 		myMapOfPlayers.put(-1,new GamePlayerPerson(-1)); //neutral player
 		myMapOfPlayers.put(0,new GamePlayerPerson(0)); //player 1
@@ -150,7 +140,7 @@ public class DemoMaker extends Application{
 
 		AllPlayers myPlayers = new AllPlayers(myMapOfPlayers);
 
-		MainGameEngine engine = new MainGameEngine(myPlayers);
+		GameLevelEngine engine = new GameLevelEngine(myPlayers);
 		engine.setMapHeight(height);
 		engine.setMapWidth(width);
 		for(Integer key: myMapOfPlayers.keySet()){

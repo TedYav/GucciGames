@@ -8,7 +8,12 @@ import java.util.Map;
 import java.util.TreeMap;
 
 import voogasalad_GucciGames.gameEngine.GameEngineToGamePlayerInterface;
-import voogasalad_GucciGames.gameEngine.MainGameEngine;
+import voogasalad_GucciGames.gameEngine.GameLevelEngine;
+import voogasalad_GucciGames.gameEngine.PlayerMapObjectInterface;
+import voogasalad_GucciGames.gameEngine.CommunicationParameters.ChangedParameters;
+import voogasalad_GucciGames.gameEngine.CommunicationParameters.GridCoordinateParameters;
+import voogasalad_GucciGames.gameEngine.targetCoordinate.ATargetCoordinate;
+import voogasalad_GucciGames.gameplayer.controller.GameParametersInterface;
 import voogasalad_GucciGames.gameplayer.windows.mainwindow.components.DisplayComponent;
 
 /**
@@ -20,94 +25,65 @@ import voogasalad_GucciGames.gameplayer.windows.mainwindow.components.DisplayCom
  */
 
 
-public class GameEngine implements IGameInfoToGAE {
+public class GameEngine implements IGameInfoToGAE, GameEngineToGamePlayerInterface {
 	private static final int MAINMENU = -1;
-	private Map<String,GameLevel> myLevelsMap;
+	private Map<String,GameLevelEngine> myLevelsMap;
 	private String myGameName;
-	private List<GameLevel> myChoosableLevelsList;
-	private GuiData guiData;
+	private String myCurrentLevel;
+	
+	private String myInitialLevel;
 
-	public GameEngine(String gameName){
-	    myLevelsMap = new TreeMap<String,GameLevel>();
-	    myGameName = gameName;
-	}
-	
-	public GameEngine(){
+
+	public GameEngine(String initialLevel){
+	    myLevelsMap = new TreeMap<String,GameLevelEngine>();
+	    this.myInitialLevel = initialLevel;
+	    this.myCurrentLevel = initialLevel;
 	    
-	    myLevelsMap = new TreeMap<String,GameLevel>();
-	    myGameName = "Game " + Math.round((Math.random()*10000));
+	    myGameName = "RandomName";
+	    
 	}
 	
+	public void resetGame(){
+		myCurrentLevel = myInitialLevel;
+	}
+	
+	public void changeCurrentLevel(String newGameLevel){
+		myCurrentLevel = newGameLevel;
+	}
+	
+	
+	public GameEngine(String initialLevel, String gameName){
+		this(initialLevel);
+		myGameName = gameName;
+	}
 	@Override
 	public String getGameName() {
 		// TODO Auto-generated method stub
 		return this.myGameName;
 	}
 	
-	/**
-	 * Default level adder
-	 * Does not allow you to choose what next level is
-	 * (nextLevelID == LevelID+1)
-	 * @return
-	 */	
-	@Override
-	public void addLevel(String gameName, boolean chooseable){
-		//At the moment, automatically sets next level as the next int in the map	
-		GameLevel gameLevel = new GameLevel(gameName, chooseable);
-		if (chooseable){
-			myChoosableLevelsList.add(gameLevel);
-		}
-		myLevelsMap.put(gameName, gameLevel);
 		
-//		return gameLevel;
-	}	
 	
 	/**
 	 * Adds a new level and returns a reference to it.
-	 * @param gameName
+	 * @param gameName======
 	 * @return
 	 */	
-	@Override
-	public GameLevel addLevel(String levelName){
-		GameLevel gameLevel = new GameLevel(myLevelID, MAINMENU, levelName, true);		
-		myLevelsMap.put(myLevelID, gameLevel);
-		myLevelID++;
+	public void addLevel(String levelName, GameLevelEngine myEngine){
+		myLevelsMap.put(levelName, myEngine);
 		
-		return myLevelsMap.get(myLevelID - 1);
-//		return gameLevel;
+//		return GameLevelEngine;
 	}
 
-	@Override
-	public void deleteLevel(int id) {
-		if (id > -1){
-			myLevelsMap.remove(id);
-			for (int i = id; i<myLevelsMap.keySet().size()-1; i++){
-				myLevelsMap.put(i, myLevelsMap.remove(i+1));
-			}
-		}
-		else{
-			System.out.println("Level not found");
-		}
 
-	}
 	
-
-	public int getLevelID(String name){		
-		for (Integer key: myLevelsMap.keySet()){
-			if (myLevelsMap.get(key).getLevelName().equals(name)){
-				return key;
-			}
-		}
-		System.out.println("Level not found");
-		return -1;
-	}
-	
+	/*
 	public void swapLevels(int first, int second){
 		if (myLevelsMap.containsKey(first) && myLevelsMap.containsKey(second)){
-			GameLevel gameOne = myLevelsMap.get(first);
+			GameLevelEngine gameOne = myLevelsMap.get(first);
 			gameOne.changeID(second);
 			
-			GameLevel gameTwo = myLevelsMap.get(second);
+			GameLevelEngine gameTwo = myLevelsMap.get(second);
 			gameTwo.changeID(first);
 			
 			myLevelsMap.put(first, gameTwo);
@@ -117,54 +93,95 @@ public class GameEngine implements IGameInfoToGAE {
 			System.out.println("One or more level(s) not found");
 		}
 	}
-    
+    */
 
 	// I'm sorry for the code below
 	// Java wouldn't let me modify the return type in the interface, don't know why
 	// :(
 	@Override
-	public Map<Integer, GameLevel> getLevelsMap() {
-		return Collections.unmodifiableMap(myLevelsMap);
-	}
-	
-	@Override
-	public Map<Integer, IGameLevelToGamePlayer> getLevels() {
+	public Map<String, GameLevelEngine> getLevelsMap() {
 		return Collections.unmodifiableMap(myLevelsMap);
 	}
 	
 	@Override
 	public List<String> getChoosableLevels() {
 		List<String> levelNames = new ArrayList<String>();
-		for (int i=0; i<myChoosableLevelsList.size(); i++){
-			levelNames.add(myChoosableLevelsList.get(i).getLevelName());
-		}
+		for (GameLevelEngine engine : myLevelsMap.values()){
+			if(engine.isMyChoosability()){
+			levelNames.add(engine.getName());
+			}
+			}
 		return levelNames;
 	}
-
-	public List<String> getGuiComponents(String location) {
-	    return guiData.getComponents(location);
-	}
-	public void setGuiComponents(String location, List<String> components) {
-	    guiData.setComponents(location, components);
-	}
-
+	
 	@Override
-	public void setEngine(String gameName, MainGameEngine engine) {
-		for (Integer key: myLevelsMap.keySet()){
-			if(gameName.equals(myLevelsMap.get(key).getLevelName())){
-				myLevelsMap.get(key).setGameEngine(engine);
-			}
-		}
+	public void setEngine(String gameName, GameLevelEngine engine) {
+		myLevelsMap.put(gameName, engine);
 		
 	}
 
-    public GuiData getGuiData () {
-        return guiData;
-    }
+	public GameLevelEngine getCurrentLevel() {
+		// TODO Auto-generated method stub
+		return myLevelsMap.get(myCurrentLevel);
+	}
 
-    public void setGuiData (GuiData guiData) {
-        this.guiData = guiData;
-    }
+	@Override
+	public String getName() {
+		return getCurrentLevel().getName();
+	}
+
+	@Override
+	public List<PlayerMapObjectInterface> getInitialState() {
+		return getCurrentLevel().getInitialState();
+	}
+
+	@Override
+	public GameParametersInterface endTurn() {
+		return getCurrentLevel().endTurn();
+	}
+
+	@Override
+	public int getTurnPlayerID() {
+		return getCurrentLevel().getTurnPlayerID();
+	}
+
+	@Override
+	public GridCoordinateParameters getPossibleCoordinates(String action,
+			PlayerMapObjectInterface mapObject) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public ChangedParameters performAction(String action,
+			PlayerMapObjectInterface mapObject, ATargetCoordinate target) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public int getMapWidth() {
+		// TODO Auto-generated method stub
+		return getCurrentLevel().getMapWidth();
+	}
+
+	@Override
+	public int getMapHeight() {
+		// TODO Auto-generated method stub
+		return getCurrentLevel().getMapHeight();
+	}
+
+	@Override
+	public GameParametersInterface getGameParameters() {
+		// TODO Auto-generated method stub
+		return getCurrentLevel().getGameParameters();
+	}
+
+	@Override
+	public boolean isGameWon() {
+		return getCurrentLevel().isGameWon();
+	}
+
 
 
 }

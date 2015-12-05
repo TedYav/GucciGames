@@ -1,7 +1,6 @@
 package voogasalad_GucciGames.gameAuthoring;
 
 import java.io.File;
-import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
@@ -25,7 +24,7 @@ import voogasalad_GucciGames.gameAuthoring.model.GAEModel;
 import voogasalad_GucciGames.gameAuthoring.model.IGAEModel;
 import voogasalad_GucciGames.gameAuthoring.model.MapObjectType;
 import voogasalad_GucciGames.gameAuthoring.properties.ObjectProperty;
-import voogasalad_GucciGames.gameData.wrapper.GameEngine;
+import voogasalad_GucciGames.gameData.wrapper.GameInfo;
 import voogasalad_GucciGames.gameEngine.mapObject.MapObject;
 import voogasalad_GucciGames.helpers.ImageDatabase;
 
@@ -33,8 +32,8 @@ public class GaeController extends AGuiGaeController implements IModelGaeControl
 
 	private IGAEModel model;
 	private GAEGui myGui;
-	private MapObjectType myCurrMapObjectType;
-	private Image currDraggedImage;
+	private MapObjectType mySelectedType;
+	private MapObjectType myDragType;
 	private Stage myStage;
 	private int numberOfPlayers;
 	private int defaultOwnerID = -1;
@@ -105,28 +104,18 @@ public class GaeController extends AGuiGaeController implements IModelGaeControl
 	}
 	
 	@Override
-	public void saveToXML(GameEngine game){
+	public void saveToXML(GameInfo game){
 		model.saveToXML(game);
 	}
 
 	@Override
-	public void setMapObjectTypeToMap(MapObjectType mapType) {
-		myCurrMapObjectType = mapType;
+	public void setSelectedType(MapObjectType mapType) {
+		mySelectedType = mapType;
 	}
 
 	@Override
-	public MapObjectType getMapObjectTypeToMap() {
-		return myCurrMapObjectType;
-	}
-
-	@Override
-	public Image getCurrSelectedImage() {
-		return currDraggedImage;
-	}
-
-	@Override
-	public void setCurrDraggedImage(Image draggedImage) {
-		currDraggedImage = draggedImage;
+	public MapObjectType getSelectedType() {
+		return mySelectedType;
 	}
 
 	@Override
@@ -235,34 +224,6 @@ public class GaeController extends AGuiGaeController implements IModelGaeControl
 		return getMapObjectImage(object.getType());
 	}
 
-//	@Override
-//	public List<String> getCustomGamePlayerLeftComponents() {
-//		return model.getLeftComponents();
-//	}
-//
-//	@Override
-//	public void setCustomGamePlayerLeftComponents(List<String> allComponents) {
-//		model.setLeftComponents(allComponents);
-//	}
-//	@Override
-//	public List<String> getCustomGamePlayerRightComponents() {
-//		return model.getRightComponents();
-//	}
-//
-//	@Override
-//	public void setCustomGamePlayerRightComponents(List<String> allComponents) {
-//		model.setRightComponents(allComponents);
-//	}
-//	@Override
-//	public List<String> getCustomGamePlayerBottomComponents() {
-//		return model.getBottomComponents();
-//	}
-//
-//	@Override
-//	public void setCustomGamePlayerBottomComponents(List<String> allComponents) {
-//		model.setBottomComponents(allComponents);
-//	}
-
 	public void initGrid(int width, int height) {
 		myGui.initializeMap(width, height);
 	}
@@ -286,6 +247,16 @@ public class GaeController extends AGuiGaeController implements IModelGaeControl
 	@Override
 	public void addLevel(String name) {
 		model.addLevel(name);
+	}
+
+	@Override
+	public void setDragType(MapObjectType mapType) {
+		myDragType = mapType;
+	}
+
+	@Override
+	public MapObjectType getDragType() {
+		return myDragType;
 	}
 
 }
