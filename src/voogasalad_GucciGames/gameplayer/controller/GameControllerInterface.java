@@ -22,6 +22,7 @@ import voogasalad_GucciGames.gameplayer.scenes.concrete.MainGameScene;
 import voogasalad_GucciGames.gameplayer.windows.mainwindow.map.MapInterface;
 import voogasalad_GucciGames.gameplayer.windows.mainwindow.map.cell.MapCell;
 import voogasalad_GucciGames.gameplayer.windows.mainwindow.map.cell.contents.CellUnit;
+import voogasalad_GucciGames.helpers.ResourceManager;
 
 
 //TODO:
@@ -64,4 +65,5 @@ public interface GameControllerInterface{
 //	
 	// TODO: refactor out
 	void performActionInProgress(Point2D target);
+	ResourceManager getResource();
 }
