@@ -20,8 +20,9 @@ import voogasalad_GucciGames.gameEngine.targetCoordinate.TargetCoordinateSingle;
 
 //Test at testing.TestActions.java
 
-public class MoveEvent extends MapObjectEvent{
+public class MoveEvent extends MapObjectEvent {
 
+	private static final String MOVABLE_CHARACTERISTIC = "MovableCharacteristic";
 
 	public MoveEvent(String actionName, List<Rules> rules, List<Outcome> outcomes) {
 		super(actionName, rules, outcomes);
@@ -30,7 +31,6 @@ public class MoveEvent extends MapObjectEvent{
 
 	@Override
 	protected ChangedParameters executeAction(LocationParameters params) {
-		// TODO Auto-generated method stub
 		System.out.println("Move Action");
 		TargetCoordinateSingle target = params.getNewLocation();
 		MapObject moving = params.getCalledMe();
@@ -38,10 +38,7 @@ public class MoveEvent extends MapObjectEvent{
 		AllPlayers players = params.getEngine().getPlayers();
 		GamePlayerPerson player = players.getActivePlayer(params.getCalledMe().getPlayerID());
 		player.getMovable().updateMoves();
-		//params.getMovePerson().updateMoves();
-
-		ChangedParameters myParameters  = new ChangedParameters();
-
+		ChangedParameters myParameters = new ChangedParameters();
 		myParameters.addUnit(moving);
 
 		return myParameters;
@@ -49,14 +46,18 @@ public class MoveEvent extends MapObjectEvent{
 
 	@Override
 	protected GridCoordinateParameters executeRequest(BasicParameters params) {
-		// TODO Auto-generated method stub
 		System.out.println("Move Request");
 		AllPlayers players = params.getEngine().getPlayers();
 		TargetCoordinateMultiple result = new TargetCoordinateMultiple();
 		MapObject calledMe = params.getCalledMe();
 
 		// getting the range
-		MovableCharacteristic mc = (MovableCharacteristic) calledMe.getCharacteristic("MovableCharacteristic");
+		MovableCharacteristic mc;
+		if (calledMe.containsCharacteristic(MOVABLE_CHARACTERISTIC)) {
+			mc = (MovableCharacteristic) calledMe.getCharacteristic(MOVABLE_CHARACTERISTIC);
+		} else {
+			mc = new MovableCharacteristic();
+		}
 		double range = mc.getRange();
 		// going through neutral player
 		TargetCoordinateSingle caller = (TargetCoordinateSingle) calledMe.getCoordinate();
@@ -67,12 +68,12 @@ public class MoveEvent extends MapObjectEvent{
 		});
 		players.getActivePlayer(-1).getMapObjects().stream().forEach(mo -> {
 			// Fix this
-			if(mo.hasCharacteristic("TileCharacteristic") || mo.getName().equals("TileCharacteristic")){
+			if (mo.hasCharacteristic("TileCharacteristic") || mo.getName().equals("TileCharacteristic")) {
 				TargetCoordinateSingle single = (TargetCoordinateSingle) mo.getCoordinate();
-				double dx = Math.abs(single.getCenterX()-caller.getCenterX());
-				double dy = Math.abs(single.getCenterY()-caller.getCenterY());
+				double dx = Math.abs(single.getCenterX() - caller.getCenterX());
+				double dy = Math.abs(single.getCenterY() - caller.getCenterY());
 
-				if (checkNeighborhood(dx,dy,range) && !otherCoor.contains(mo.getCoordinate())){
+				if (checkNeighborhood(dx, dy, range) && !otherCoor.contains(mo.getCoordinate())) {
 					result.addTargetCoordinateSingle(mo.getCoordinate());
 				}
 			}

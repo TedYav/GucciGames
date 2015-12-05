@@ -6,18 +6,18 @@ import javafx.scene.paint.Color;
 
 public class ColorUtility {
 
-	public static Color average(List<Color> colors){
+	public static Color average(List<Color> myColors){
 		double red = 0;
 		double green = 0;
 		double blue = 0;
-		for(Color c : colors){
+		for(Color c : myColors){
 			red += (c.getRed()*c.getOpacity());
 			green += (c.getGreen()*c.getOpacity());
 			blue += (c.getBlue()*c.getOpacity());
 		}
-		red /= (double)colors.size();
-		green /= (double)colors.size();
-		blue /= (double)colors.size();
+		red /= (double)myColors.size();
+		green /= (double)myColors.size();
+		blue /= (double)myColors.size();
 		return new Color(red, green, blue, 1.0);
 	}
 	

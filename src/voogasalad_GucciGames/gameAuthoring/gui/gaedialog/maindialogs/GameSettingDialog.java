@@ -4,18 +4,21 @@ import java.util.Properties;
 import voogasalad_GucciGames.gameAuthoring.IDialogGaeController;
 import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.DialogElements;
 import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.dialogcomponents.DropDownMenuField;
-import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.dialogcomponents.RadioBtnField;
 import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.dialogcomponents.ScrollBarField;
 import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.dialogcomponents.TextInputField;
 import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.groovySettings.GameSettingsPane;
 import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.paramObjects.GameSettingParams;
 import javafx.scene.control.ButtonBar.ButtonData;
 import javafx.scene.control.ButtonType;
+import javafx.scene.control.Dialog;
 import javafx.scene.layout.VBox;
-import javafx.scene.text.Text;
 
 
-public class GameSettingDialog extends javafx.scene.control.Dialog {
+<<<<<<< HEAD
+public class GameSettingDialog extends AGaeDialog {
+=======
+public class GameSettingDialog extends Dialog {
+>>>>>>> master
 
 	private VBox myContent = new VBox();
 	private Properties prop;
@@ -35,7 +38,7 @@ public class GameSettingDialog extends javafx.scene.control.Dialog {
 		GameSettingsPane pane = new GameSettingsPane();
 		this.getDialogPane().setContent(pane);
 		final ButtonType save = new ButtonType("Save", ButtonData.FINISH);
-		this.getDialogPane().getButtonTypes().addAll(save, ButtonType.CLOSE);
+		this.getDialogPane().getButtonTypes().add(save);
 	}
 
 

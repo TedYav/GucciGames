@@ -148,7 +148,9 @@ public interface PlayerMapObjectInterface {
 	IGamePlayerMapObjectAction getAction(String name);
 
 	public ChangedParameters performAction(String action, ATargetCoordinate coor);
-	
+
 	public GridCoordinateParameters performRequest(String action);
-	
+
+	public abstract Boolean containsCharacteristic(String name);
+
 }
