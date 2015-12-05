@@ -9,15 +9,16 @@ import org.xml.sax.Attributes;
 import org.xml.sax.SAXException;
 import org.xml.sax.helpers.DefaultHandler;
 
-import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.groovySettings.groovyParams.GCharParam;
 import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.maindialogs.GaeDialogHelper;
 import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.paramObjects.ActionParams;
+import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.paramObjects.ObjParam;
+import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.paramObjects.ObjType;
 
 public class CharacteristicsSAXHandler extends DefaultHandler {
 	
 	private Set<String> selectedCharacteristics = new HashSet<String>();
-	private List<GCharParam> characteristicsParams = new ArrayList<GCharParam>();
-	private GCharParam characteristicsParam = null;
+	private List<ObjParam> characteristicsParams = new ArrayList<ObjParam>();
+	private ObjParam characteristicsParam = null;
 	private final GaeDialogHelper helper = new GaeDialogHelper();
 	
 	public CharacteristicsSAXHandler(Set<String> selectedCharacteristics ){
@@ -26,16 +27,16 @@ public class CharacteristicsSAXHandler extends DefaultHandler {
 	
 	private boolean bDisplayName = false;
 	
-	public List<GCharParam> getCharParams(){
+	public List<ObjParam> getObjParams(){
 		return characteristicsParams ;
 	}
 	  public void startElement(String uri, String localName,
 		        String qName, Attributes attributes) throws SAXException {
+		  
 		        if("characteristic".equals(qName)){
 		            String name = attributes.getValue("name");
 		            if (selectedCharacteristics.contains(name)){
-		            	characteristicsParam = new GCharParam(name);
-		            	characteristicsParam.setDisplayName(attributes.getValue("displayName"));
+		            	characteristicsParam = new ObjParam(name, ObjType.MAP_CHAR, -1);
 		            	List<String> paramNames = helper.parseStringToList(
 		            			attributes.getValue("paramNames"));
 		            	List<String> paramTypes = helper.parseStringToList(

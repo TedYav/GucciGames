@@ -20,7 +20,7 @@ import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
-public class PlayerDialog extends javafx.scene.control.Dialog {
+public class PlayerDialog extends AGaeDialog {
 
 	private static final int WIDTH = 600;
 	private static final int HEIGHT = 600;	
@@ -41,9 +41,7 @@ public class PlayerDialog extends javafx.scene.control.Dialog {
 		this.controller = controller;
 		this.numOfPlayers = numberOfPlayers;
 		
-		final ButtonType save = new ButtonType("Save", ButtonData.FINISH);
-		this.getDialogPane().getButtonTypes().addAll(save, ButtonType.CANCEL);
-		
+		final ButtonType save = new ButtonType("Save", ButtonData.FINISH);		
 		initialize();
 		setScene();	
 

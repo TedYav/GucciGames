@@ -55,7 +55,8 @@ public class RadioBtnField extends DialogComponent{
 		for(RadioButton radioBtn: checkBoxList){
 			radioBtn.setToggleGroup(group);
 			radioBtn.setUserData(radioBtn.getText());
-			this.add(radioBtn, col, 1);
+			//this.add(radioBtn, col, 1);
+			this.add(radioBtn, 1, col);
 			col++;
 		}		
 	

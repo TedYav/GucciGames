@@ -35,6 +35,6 @@
 	<characteristic name="transferrable"
 		displayName = "Transferrable"
 		paramNames="Is Transferrable"
-		paramTypes="boolean"
+		paramTypes="boolean">
 	</characteristic>	
 </characteristicDependencies>
