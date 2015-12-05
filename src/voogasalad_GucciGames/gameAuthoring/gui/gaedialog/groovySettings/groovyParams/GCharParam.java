@@ -4,12 +4,12 @@ import java.util.HashMap;
 import java.util.Map;
 
 
-public class CharParam{
+public class GCharParam{
 	
 	private String name;
 	private Map<String, String> params = new HashMap<String, String>();
 	
-	public CharParam(String name){
+	public GCharParam(String name){
 		this.name = name;
 	}
 

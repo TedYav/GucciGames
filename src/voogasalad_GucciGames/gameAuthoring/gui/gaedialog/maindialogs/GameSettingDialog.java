@@ -14,11 +14,8 @@ import javafx.scene.control.Dialog;
 import javafx.scene.layout.VBox;
 
 
-<<<<<<< HEAD
 public class GameSettingDialog extends AGaeDialog {
-=======
-public class GameSettingDialog extends Dialog {
->>>>>>> master
+
 
 	private VBox myContent = new VBox();
 	private Properties prop;
