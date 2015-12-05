@@ -6,7 +6,7 @@ import javafx.scene.paint.Color;
 
 public class ColorUtility {
 
-	public static Color average(List<Object> myColors){
+	public static Color average(List<Color> myColors){
 		double red = 0;
 		double green = 0;
 		double blue = 0;
