@@ -13,6 +13,7 @@ public class GameLevel implements IGameLevelToGamePlayer, IGameLevelToGameData{
 	private boolean myChoosability;
 	private String myGameLevelName;
 	
+
 	public GameLevel(int id, int nextID, String name, boolean chooseable){
 		this(id, nextID, name, chooseable, null);
 	}
@@ -22,7 +23,6 @@ public class GameLevel implements IGameLevelToGamePlayer, IGameLevelToGameData{
 		this.myNextLevelID = nextID;
 		this.myGameLevelName = name;
 		this.myChoosability = choosable;
-		this.myEngine = engine;
 	}
 	
 	protected void changeID(int newid){
@@ -31,16 +31,14 @@ public class GameLevel implements IGameLevelToGamePlayer, IGameLevelToGameData{
 	
 	@Override
 	public int getID() {
-		// TODO Auto-generated method stub
 		return this.myID;
 	}
 	
-	@Deprecated
 	@Override
 	public int getNextLevel() {
-		
 		return this.myNextLevelID;
 	}
+	
 	@Override
 	public boolean isChoosable() {
 		// TODO Auto-generated method stub
@@ -73,10 +71,15 @@ public class GameLevel implements IGameLevelToGamePlayer, IGameLevelToGameData{
 		// TODO Auto-generated method stub
 		return this.myGameLevelName;
 	}
+	
 	@Override
 	public MainGameEngine getGameEngine() {
 		// TODO Auto-generated method stub
 		return this.myEngine;
+	}
+	
+	public void setGameEngine(MainGameEngine engine){
+		this.myEngine = engine;
 	}
 
 }

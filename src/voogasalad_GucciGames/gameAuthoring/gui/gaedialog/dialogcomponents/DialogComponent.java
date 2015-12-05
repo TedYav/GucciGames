@@ -15,7 +15,7 @@ public abstract class DialogComponent extends GridPane {
 	public DialogComponent(){
 		this.setHgap(10);
 		this.setVgap(10);
-		//this.setPadding(new Insets(20, 150, 10, 10));
+		this.setPadding(new Insets(10, 10, 10, 10));
 	}
 	
 	protected List<String> parseStringToList(Properties prop, String itemsKey){

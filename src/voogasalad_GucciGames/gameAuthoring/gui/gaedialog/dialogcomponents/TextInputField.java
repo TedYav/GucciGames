@@ -1,5 +1,7 @@
 package voogasalad_GucciGames.gameAuthoring.gui.gaedialog.dialogcomponents;
 
+import java.util.Properties;
+
 import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.DialogElements;
 import javafx.scene.control.TextField;
 import javafx.scene.control.ToggleGroup;
@@ -11,30 +13,21 @@ public class TextInputField extends DialogComponent{
 	private DialogElements dialogElements;
 	private String propKey;
 	private TextField textField;
+	private Properties prop;
 	
-	public TextInputField(DialogElements dialogElements, String propKey){
-		this.dialogElements = dialogElements;
+	public TextInputField(Properties prop, String propKey){
+		this.prop = prop;
 		this.propKey = propKey;
 		makeTextInputField();
 		
 	}
 	
 	private void makeTextInputField(){
-		Text title = new Text(dialogElements.getDialogProperties().getProperty(propKey));		
+		Text title = new Text(prop.getProperty(propKey));		
 		textField = new TextField();	
-		//addListenerToTextInputField();
-		this.getChildren().addAll(title,textField);
-		this.setId("hbox-element");
-	
+		this.add(title, 0, 0);
+		this.add(textField, 1, 0);
 	}
-	
-//	private void addListenerToTextInputField(){
-//		textField.textProperty().addListener((observable, oldValue, newValue) -> {
-//			//dialogElements.getSaveObjProperty().
-//			//saveObjProperty(dialogElements.getDialogProperties().getProperty(propKey), newValue);		
-//		});
-//		
-//	}
 	
 	public String getTextInput(){
 		return getTextField().getText();

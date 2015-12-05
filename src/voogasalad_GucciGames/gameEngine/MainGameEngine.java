@@ -30,6 +30,7 @@ public class MainGameEngine implements GameEngineToGamePlayerInterface {
 	private int myMapWidth;
 	private int myMapHeight;
 	private String myName;
+	private boolean gameWon;
 
 	public String getName() {
 		return myName;
@@ -39,7 +40,6 @@ public class MainGameEngine implements GameEngineToGamePlayerInterface {
 		myGamePlayers = gamePlayers;
 		myCurrentTurnCounter = new TurnCounter();
 		myTurnDecider = new DefaultTurnDecider(myGamePlayers, myCurrentTurnCounter);
-
 
 		myName = "Game " + Math.round((Math.random()*10000));
 	}
@@ -150,10 +150,10 @@ public class MainGameEngine implements GameEngineToGamePlayerInterface {
 		// TODO Auto-generated method stub
 		GameParameters pp= new GameParameters();
 		if(myGamePlayers.getNumberOfPlayers() != 2){
-			pp.setGameWon(false);
+			//pp.setGameWon(false);
 		}
 		else{
-			pp.setGameWon(true);
+			//pp.setGameWon(true);
 		}
 
 		pp.setCurrentTurnPlayer(getTurnPlayerID());
@@ -203,4 +203,14 @@ public class MainGameEngine implements GameEngineToGamePlayerInterface {
 	public void setName(String name) {
 		myName = name;
 	}
+
+	@Override
+	public boolean isGameWon() {
+		return gameWon;
+	}
+
+	public void setGameWon(boolean gameWon) {
+		this.gameWon = gameWon;
+	}
+
 }

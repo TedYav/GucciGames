@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 ’H#‘y˜Üˆ∞#ã~ò~Fv}ñ b¥òêÜ‹±Æ<voogasalad__GucciGames.gameData.wrapper.GameInfo>
   <myRightComponents>
     <string>voogasalad_GucciGames.gameplayer.windows.mainwindow.components.bar.ActionDisplay</string>
@@ -13,9 +14,520 @@
     <string>voogasalad_GucciGames.gameplayer.windows.mainwindow.components.bar.GameStatsDisplay</string>
     <string>voogasalad_GucciGames.gameplayer.windows.mainwindow.components.bar.MainMenuButton</string>
   </myBottomComponents>
+=======
+Ã©Q˙Ã‚ø∏d9À&Ïπ¡1∫xsô≥Ÿ#êÊ≥mq6<voogasalad__GucciGames.gameData.wrapper.GameInfo>
+>>>>>>> b1b9a6d93ea152cd85f9e62b354cf2c71ac5cec5
   <myLevelsMap class="tree-map">
     <entry>
       <int>0</int>
+      <voogasalad__GucciGames.gameData.wrapper.GameLevel>
+        <myEngine>
+          <myGamePlayers>
+            <myMapOfPlayers class="tree-map">
+              <entry>
+                <int>-1</int>
+                <voogasalad__GucciGames.gameEngine.gamePlayer.GamePlayerPerson>
+                  <myPlayerId>-1</myPlayerId>
+                  <myMapObjects>
+                    <voogasalad__GucciGames.gameEngine.mapObject.MapObject>
+                      <myCoordinate class="voogasalad_GucciGames.gameEngine.targetCoordinate.TargetCoordinateSingle">
+                        <myCenterX>0.0</myCenterX>
+                        <myCenterY>0.0</myCenterY>
+                      </myCoordinate>
+                      <myOwnerID>-1</myOwnerID>
+                      <myLayer>0</myLayer>
+                      <myName>TileCharacteristic</myName>
+                      <myImagePath>player/images/dummytexture2.jpg</myImagePath>
+                      <myCharacteristics class="tree-map"/>
+                      <myEventHandler>
+                        <myBasic>
+                          <myEngine reference="../../../../../../../../.."/>
+                        </myBasic>
+                      </myEventHandler>
+                      <myEvents/>
+                      <myWidth>0.0</myWidth>
+                      <myHeight>0.0</myHeight>
+                    </voogasalad__GucciGames.gameEngine.mapObject.MapObject>
+                    <voogasalad__GucciGames.gameEngine.mapObject.MapObject>
+                      <myCoordinate class="voogasalad_GucciGames.gameEngine.targetCoordinate.TargetCoordinateSingle">
+                        <myCenterX>0.0</myCenterX>
+                        <myCenterY>1.0</myCenterY>
+                      </myCoordinate>
+                      <myOwnerID>-1</myOwnerID>
+                      <myLayer>0</myLayer>
+                      <myName>TileCharacteristic</myName>
+                      <myImagePath>player/images/dummytexture.jpg</myImagePath>
+                      <myCharacteristics class="tree-map"/>
+                      <myEventHandler>
+                        <myBasic>
+                          <myEngine reference="../../../../../../../../.."/>
+                        </myBasic>
+                      </myEventHandler>
+                      <myEvents/>
+                      <myWidth>0.0</myWidth>
+                      <myHeight>0.0</myHeight>
+                    </voogasalad__GucciGames.gameEngine.mapObject.MapObject>
+                    <voogasalad__GucciGames.gameEngine.mapObject.MapObject>
+                      <myCoordinate class="voogasalad_GucciGames.gameEngine.targetCoordinate.TargetCoordinateSingle">
+                        <myCenterX>0.0</myCenterX>
+                        <myCenterY>2.0</myCenterY>
+                      </myCoordinate>
+                      <myOwnerID>-1</myOwnerID>
+                      <myLayer>0</myLayer>
+                      <myName>TileCharacteristic</myName>
+                      <myImagePath>player/images/dummytexture2.jpg</myImagePath>
+                      <myCharacteristics class="tree-map"/>
+                      <myEventHandler>
+                        <myBasic>
+                          <myEngine reference="../../../../../../../../.."/>
+                        </myBasic>
+                      </myEventHandler>
+                      <myEvents/>
+                      <myWidth>0.0</myWidth>
+                      <myHeight>0.0</myHeight>
+                    </voogasalad__GucciGames.gameEngine.mapObject.MapObject>
+                    <voogasalad__GucciGames.gameEngine.mapObject.MapObject>
+                      <myCoordinate class="voogasalad_GucciGames.gameEngine.targetCoordinate.TargetCoordinateSingle">
+                        <myCenterX>0.0</myCenterX>
+                        <myCenterY>3.0</myCenterY>
+                      </myCoordinate>
+                      <myOwnerID>-1</myOwnerID>
+                      <myLayer>0</myLayer>
+                      <myName>TileCharacteristic</myName>
+                      <myImagePath>player/images/dummytexture.jpg</myImagePath>
+                      <myCharacteristics class="tree-map"/>
+                      <myEventHandler>
+                        <myBasic>
+                          <myEngine reference="../../../../../../../../.."/>
+                        </myBasic>
+                      </myEventHandler>
+                      <myEvents/>
+                      <myWidth>0.0</myWidth>
+                      <myHeight>0.0</myHeight>
+                    </voogasalad__GucciGames.gameEngine.mapObject.MapObject>
+                    <voogasalad__GucciGames.gameEngine.mapObject.MapObject>
+                      <myCoordinate class="voogasalad_GucciGames.gameEngine.targetCoordinate.TargetCoordinateSingle">
+                        <myCenterX>1.0</myCenterX>
+                        <myCenterY>0.0</myCenterY>
+                      </myCoordinate>
+                      <myOwnerID>-1</myOwnerID>
+                      <myLayer>0</myLayer>
+                      <myName>TileCharacteristic</myName>
+                      <myImagePath>player/images/dummytexture.jpg</myImagePath>
+                      <myCharacteristics class="tree-map"/>
+                      <myEventHandler>
+                        <myBasic>
+                          <myEngine reference="../../../../../../../../.."/>
+                        </myBasic>
+                      </myEventHandler>
+                      <myEvents/>
+                      <myWidth>0.0</myWidth>
+                      <myHeight>0.0</myHeight>
+                    </voogasalad__GucciGames.gameEngine.mapObject.MapObject>
+                    <voogasalad__GucciGames.gameEngine.mapObject.MapObject>
+                      <myCoordinate class="voogasalad_GucciGames.gameEngine.targetCoordinate.TargetCoordinateSingle">
+                        <myCenterX>1.0</myCenterX>
+                        <myCenterY>1.0</myCenterY>
+                      </myCoordinate>
+                      <myOwnerID>-1</myOwnerID>
+                      <myLayer>0</myLayer>
+                      <myName>TileCharacteristic</myName>
+                      <myImagePath>player/images/dummytexture2.jpg</myImagePath>
+                      <myCharacteristics class="tree-map"/>
+                      <myEventHandler>
+                        <myBasic>
+                          <myEngine reference="../../../../../../../../.."/>
+                        </myBasic>
+                      </myEventHandler>
+                      <myEvents/>
+                      <myWidth>0.0</myWidth>
+                      <myHeight>0.0</myHeight>
+                    </voogasalad__GucciGames.gameEngine.mapObject.MapObject>
+                    <voogasalad__GucciGames.gameEngine.mapObject.MapObject>
+                      <myCoordinate class="voogasalad_GucciGames.gameEngine.targetCoordinate.TargetCoordinateSingle">
+                        <myCenterX>1.0</myCenterX>
+                        <myCenterY>2.0</myCenterY>
+                      </myCoordinate>
+                      <myOwnerID>-1</myOwnerID>
+                      <myLayer>0</myLayer>
+                      <myName>TileCharacteristic</myName>
+                      <myImagePath>player/images/dummytexture.jpg</myImagePath>
+                      <myCharacteristics class="tree-map"/>
+                      <myEventHandler>
+                        <myBasic>
+                          <myEngine reference="../../../../../../../../.."/>
+                        </myBasic>
+                      </myEventHandler>
+                      <myEvents/>
+                      <myWidth>0.0</myWidth>
+                      <myHeight>0.0</myHeight>
+                    </voogasalad__GucciGames.gameEngine.mapObject.MapObject>
+                    <voogasalad__GucciGames.gameEngine.mapObject.MapObject>
+                      <myCoordinate class="voogasalad_GucciGames.gameEngine.targetCoordinate.TargetCoordinateSingle">
+                        <myCenterX>1.0</myCenterX>
+                        <myCenterY>3.0</myCenterY>
+                      </myCoordinate>
+                      <myOwnerID>-1</myOwnerID>
+                      <myLayer>0</myLayer>
+                      <myName>TileCharacteristic</myName>
+                      <myImagePath>player/images/dummytexture2.jpg</myImagePath>
+                      <myCharacteristics class="tree-map"/>
+                      <myEventHandler>
+                        <myBasic>
+                          <myEngine reference="../../../../../../../../.."/>
+                        </myBasic>
+                      </myEventHandler>
+                      <myEvents/>
+                      <myWidth>0.0</myWidth>
+                      <myHeight>0.0</myHeight>
+                    </voogasalad__GucciGames.gameEngine.mapObject.MapObject>
+                    <voogasalad__GucciGames.gameEngine.mapObject.MapObject>
+                      <myCoordinate class="voogasalad_GucciGames.gameEngine.targetCoordinate.TargetCoordinateSingle">
+                        <myCenterX>2.0</myCenterX>
+                        <myCenterY>0.0</myCenterY>
+                      </myCoordinate>
+                      <myOwnerID>-1</myOwnerID>
+                      <myLayer>0</myLayer>
+                      <myName>TileCharacteristic</myName>
+                      <myImagePath>player/images/dummytexture2.jpg</myImagePath>
+                      <myCharacteristics class="tree-map"/>
+                      <myEventHandler>
+                        <myBasic>
+                          <myEngine reference="../../../../../../../../.."/>
+                        </myBasic>
+                      </myEventHandler>
+                      <myEvents/>
+                      <myWidth>0.0</myWidth>
+                      <myHeight>0.0</myHeight>
+                    </voogasalad__GucciGames.gameEngine.mapObject.MapObject>
+                    <voogasalad__GucciGames.gameEngine.mapObject.MapObject>
+                      <myCoordinate class="voogasalad_GucciGames.gameEngine.targetCoordinate.TargetCoordinateSingle">
+                        <myCenterX>2.0</myCenterX>
+                        <myCenterY>1.0</myCenterY>
+                      </myCoordinate>
+                      <myOwnerID>-1</myOwnerID>
+                      <myLayer>0</myLayer>
+                      <myName>TileCharacteristic</myName>
+                      <myImagePath>player/images/dummytexture.jpg</myImagePath>
+                      <myCharacteristics class="tree-map"/>
+                      <myEventHandler>
+                        <myBasic>
+                          <myEngine reference="../../../../../../../../.."/>
+                        </myBasic>
+                      </myEventHandler>
+                      <myEvents/>
+                      <myWidth>0.0</myWidth>
+                      <myHeight>0.0</myHeight>
+                    </voogasalad__GucciGames.gameEngine.mapObject.MapObject>
+                    <voogasalad__GucciGames.gameEngine.mapObject.MapObject>
+                      <myCoordinate class="voogasalad_GucciGames.gameEngine.targetCoordinate.TargetCoordinateSingle">
+                        <myCenterX>2.0</myCenterX>
+                        <myCenterY>2.0</myCenterY>
+                      </myCoordinate>
+                      <myOwnerID>-1</myOwnerID>
+                      <myLayer>0</myLayer>
+                      <myName>TileCharacteristic</myName>
+                      <myImagePath>player/images/dummytexture2.jpg</myImagePath>
+                      <myCharacteristics class="tree-map"/>
+                      <myEventHandler>
+                        <myBasic>
+                          <myEngine reference="../../../../../../../../.."/>
+                        </myBasic>
+                      </myEventHandler>
+                      <myEvents/>
+                      <myWidth>0.0</myWidth>
+                      <myHeight>0.0</myHeight>
+                    </voogasalad__GucciGames.gameEngine.mapObject.MapObject>
+                    <voogasalad__GucciGames.gameEngine.mapObject.MapObject>
+                      <myCoordinate class="voogasalad_GucciGames.gameEngine.targetCoordinate.TargetCoordinateSingle">
+                        <myCenterX>2.0</myCenterX>
+                        <myCenterY>3.0</myCenterY>
+                      </myCoordinate>
+                      <myOwnerID>-1</myOwnerID>
+                      <myLayer>0</myLayer>
+                      <myName>TileCharacteristic</myName>
+                      <myImagePath>player/images/dummytexture.jpg</myImagePath>
+                      <myCharacteristics class="tree-map"/>
+                      <myEventHandler>
+                        <myBasic>
+                          <myEngine reference="../../../../../../../../.."/>
+                        </myBasic>
+                      </myEventHandler>
+                      <myEvents/>
+                      <myWidth>0.0</myWidth>
+                      <myHeight>0.0</myHeight>
+                    </voogasalad__GucciGames.gameEngine.mapObject.MapObject>
+                    <voogasalad__GucciGames.gameEngine.mapObject.MapObject>
+                      <myCoordinate class="voogasalad_GucciGames.gameEngine.targetCoordinate.TargetCoordinateSingle">
+                        <myCenterX>3.0</myCenterX>
+                        <myCenterY>0.0</myCenterY>
+                      </myCoordinate>
+                      <myOwnerID>-1</myOwnerID>
+                      <myLayer>0</myLayer>
+                      <myName>TileCharacteristic</myName>
+                      <myImagePath>player/images/dummytexture.jpg</myImagePath>
+                      <myCharacteristics class="tree-map"/>
+                      <myEventHandler>
+                        <myBasic>
+                          <myEngine reference="../../../../../../../../.."/>
+                        </myBasic>
+                      </myEventHandler>
+                      <myEvents/>
+                      <myWidth>0.0</myWidth>
+                      <myHeight>0.0</myHeight>
+                    </voogasalad__GucciGames.gameEngine.mapObject.MapObject>
+                    <voogasalad__GucciGames.gameEngine.mapObject.MapObject>
+                      <myCoordinate class="voogasalad_GucciGames.gameEngine.targetCoordinate.TargetCoordinateSingle">
+                        <myCenterX>3.0</myCenterX>
+                        <myCenterY>1.0</myCenterY>
+                      </myCoordinate>
+                      <myOwnerID>-1</myOwnerID>
+                      <myLayer>0</myLayer>
+                      <myName>TileCharacteristic</myName>
+                      <myImagePath>player/images/dummytexture2.jpg</myImagePath>
+                      <myCharacteristics class="tree-map"/>
+                      <myEventHandler>
+                        <myBasic>
+                          <myEngine reference="../../../../../../../../.."/>
+                        </myBasic>
+                      </myEventHandler>
+                      <myEvents/>
+                      <myWidth>0.0</myWidth>
+                      <myHeight>0.0</myHeight>
+                    </voogasalad__GucciGames.gameEngine.mapObject.MapObject>
+                    <voogasalad__GucciGames.gameEngine.mapObject.MapObject>
+                      <myCoordinate class="voogasalad_GucciGames.gameEngine.targetCoordinate.TargetCoordinateSingle">
+                        <myCenterX>3.0</myCenterX>
+                        <myCenterY>2.0</myCenterY>
+                      </myCoordinate>
+                      <myOwnerID>-1</myOwnerID>
+                      <myLayer>0</myLayer>
+                      <myName>TileCharacteristic</myName>
+                      <myImagePath>player/images/dummytexture.jpg</myImagePath>
+                      <myCharacteristics class="tree-map"/>
+                      <myEventHandler>
+                        <myBasic>
+                          <myEngine reference="../../../../../../../../.."/>
+                        </myBasic>
+                      </myEventHandler>
+                      <myEvents/>
+                      <myWidth>0.0</myWidth>
+                      <myHeight>0.0</myHeight>
+                    </voogasalad__GucciGames.gameEngine.mapObject.MapObject>
+                    <voogasalad__GucciGames.gameEngine.mapObject.MapObject>
+                      <myCoordinate class="voogasalad_GucciGames.gameEngine.targetCoordinate.TargetCoordinateSingle">
+                        <myCenterX>3.0</myCenterX>
+                        <myCenterY>3.0</myCenterY>
+                      </myCoordinate>
+                      <myOwnerID>-1</myOwnerID>
+                      <myLayer>0</myLayer>
+                      <myName>TileCharacteristic</myName>
+                      <myImagePath>player/images/dummytexture2.jpg</myImagePath>
+                      <myCharacteristics class="tree-map"/>
+                      <myEventHandler>
+                        <myBasic>
+                          <myEngine reference="../../../../../../../../.."/>
+                        </myBasic>
+                      </myEventHandler>
+                      <myEvents/>
+                      <myWidth>0.0</myWidth>
+                      <myHeight>0.0</myHeight>
+                    </voogasalad__GucciGames.gameEngine.mapObject.MapObject>
+                  </myMapObjects>
+                  <myStatus>DRAW</myStatus>
+                  <myMovable>
+                    <myNumberOfMoves>2</myNumberOfMoves>
+                    <moveCount>0</moveCount>
+                  </myMovable>
+                </voogasalad__GucciGames.gameEngine.gamePlayer.GamePlayerPerson>
+              </entry>
+              <entry>
+                <int>0</int>
+                <voogasalad__GucciGames.gameEngine.gamePlayer.GamePlayerPerson>
+                  <myPlayerId>0</myPlayerId>
+                  <myMapObjects>
+                    <voogasalad__GucciGames.gameEngine.mapObject.MapObject>
+                      <myCoordinate class="voogasalad_GucciGames.gameEngine.targetCoordinate.TargetCoordinateSingle">
+                        <myCenterX>1.0</myCenterX>
+                        <myCenterY>0.0</myCenterY>
+                      </myCoordinate>
+                      <myOwnerID>0</myOwnerID>
+                      <myLayer>1</myLayer>
+                      <myName>Duvall</myName>
+                      <myImagePath>player/images/duvall.png</myImagePath>
+                      <myCharacteristics class="tree-map">
+                        <entry>
+                          <string>AttackCharacteristic</string>
+                          <voogasalad__GucciGames.gameEngine.defaultCharacteristics.AttackCharacteristic>
+                            <myRange>3.0</myRange>
+                            <myDamage>100.0</myDamage>
+                            <maxNumberOfAttacks>2</maxNumberOfAttacks>
+                            <currentNumberOfAttacks>0</currentNumberOfAttacks>
+                          </voogasalad__GucciGames.gameEngine.defaultCharacteristics.AttackCharacteristic>
+                        </entry>
+                        <entry>
+                          <string>HealthCharacteristic</string>
+                          <voogasalad__GucciGames.gameEngine.defaultCharacteristics.HealthCharacteristic>
+                            <myCurrentHealth>5.0</myCurrentHealth>
+                            <myMaxHealth>5.0</myMaxHealth>
+                          </voogasalad__GucciGames.gameEngine.defaultCharacteristics.HealthCharacteristic>
+                        </entry>
+                        <entry>
+                          <string>MovableCharacteristic</string>
+                          <voogasalad__GucciGames.gameEngine.defaultCharacteristics.MovableCharacteristic>
+                            <myNumberOfMoves>3</myNumberOfMoves>
+                            <myRange>1.0</myRange>
+                          </voogasalad__GucciGames.gameEngine.defaultCharacteristics.MovableCharacteristic>
+                        </entry>
+                      </myCharacteristics>
+                      <myEventHandler>
+                        <myBasic>
+                          <myEngine reference="../../../../../../../../.."/>
+                        </myBasic>
+                      </myEventHandler>
+                      <myEvents>
+                        <entry>
+                          <string>Move</string>
+                          <voogasalad__GucciGames.gameEngine.objectActions.MoveEvent>
+                            <myName>Move</myName>
+                            <myRuleList>
+                              <voogasalad__GucciGames.gameEngine.gameRules.defaultRules.PlayersActivePerTurn/>
+                              <voogasalad__GucciGames.gameEngine.gameRules.defaultRules.UnitsMovablePerTurn/>
+                            </myRuleList>
+                            <myOutcomes/>
+                          </voogasalad__GucciGames.gameEngine.objectActions.MoveEvent>
+                        </entry>
+                        <entry>
+                          <string>Attack</string>
+                          <voogasalad__GucciGames.gameEngine.objectActions.AttackEvent>
+                            <myName>Attack</myName>
+                            <myRuleList>
+                              <voogasalad__GucciGames.gameEngine.gameRules.defaultRules.PlayersActivePerTurn reference="../../../../entry/voogasalad__GucciGames.gameEngine.objectActions.MoveEvent/myRuleList/voogasalad__GucciGames.gameEngine.gameRules.defaultRules.PlayersActivePerTurn"/>
+                              <voogasalad__GucciGames.gameEngine.gameRules.defaultRules.AttacksPerTurn>
+                                <objectAllowedAttacks>0</objectAllowedAttacks>
+                              </voogasalad__GucciGames.gameEngine.gameRules.defaultRules.AttacksPerTurn>
+                            </myRuleList>
+                            <myOutcomes>
+                              <voogasalad__GucciGames.gameEngine.gameConditions.outcomes.EndGame>
+                                <myConditions>
+                                  <voogasalad__GucciGames.gameEngine.gameConditions.defaultConditions.CheckOnePlayerLeft>
+                                    <myParams/>
+                                  </voogasalad__GucciGames.gameEngine.gameConditions.defaultConditions.CheckOnePlayerLeft>
+                                </myConditions>
+                                <myOutcomeParams>
+                                  <myArguments/>
+                                  <playerID>
+                                    <int>0</int>
+                                    <int>1</int>
+                                  </playerID>
+                                  <objectID/>
+                                </myOutcomeParams>
+                              </voogasalad__GucciGames.gameEngine.gameConditions.outcomes.EndGame>
+                            </myOutcomes>
+                          </voogasalad__GucciGames.gameEngine.objectActions.AttackEvent>
+                        </entry>
+                      </myEvents>
+                      <myWidth>0.0</myWidth>
+                      <myHeight>0.0</myHeight>
+                    </voogasalad__GucciGames.gameEngine.mapObject.MapObject>
+                  </myMapObjects>
+                  <myStatus>DRAW</myStatus>
+                  <myMovable>
+                    <myNumberOfMoves>2</myNumberOfMoves>
+                    <moveCount>0</moveCount>
+                  </myMovable>
+                </voogasalad__GucciGames.gameEngine.gamePlayer.GamePlayerPerson>
+              </entry>
+              <entry>
+                <int>1</int>
+                <voogasalad__GucciGames.gameEngine.gamePlayer.GamePlayerPerson>
+                  <myPlayerId>1</myPlayerId>
+                  <myMapObjects>
+                    <voogasalad__GucciGames.gameEngine.mapObject.MapObject>
+                      <myCoordinate class="voogasalad_GucciGames.gameEngine.targetCoordinate.TargetCoordinateSingle">
+                        <myCenterX>0.0</myCenterX>
+                        <myCenterY>0.0</myCenterY>
+                      </myCoordinate>
+                      <myOwnerID>1</myOwnerID>
+                      <myLayer>1</myLayer>
+                      <myName>Student</myName>
+                      <myImagePath>player/images/smile.png</myImagePath>
+                      <myCharacteristics class="tree-map">
+                        <entry>
+                          <string>AttackCharacteristic</string>
+                          <voogasalad__GucciGames.gameEngine.defaultCharacteristics.AttackCharacteristic>
+                            <myRange>3.0</myRange>
+                            <myDamage>5.0</myDamage>
+                            <maxNumberOfAttacks>2</maxNumberOfAttacks>
+                            <currentNumberOfAttacks>0</currentNumberOfAttacks>
+                          </voogasalad__GucciGames.gameEngine.defaultCharacteristics.AttackCharacteristic>
+                        </entry>
+                        <entry>
+                          <string>HealthCharacteristic</string>
+                          <voogasalad__GucciGames.gameEngine.defaultCharacteristics.HealthCharacteristic>
+                            <myCurrentHealth>10.0</myCurrentHealth>
+                            <myMaxHealth>10.0</myMaxHealth>
+                          </voogasalad__GucciGames.gameEngine.defaultCharacteristics.HealthCharacteristic>
+                        </entry>
+                        <entry>
+                          <string>MovableCharacteristic</string>
+                          <voogasalad__GucciGames.gameEngine.defaultCharacteristics.MovableCharacteristic>
+                            <myNumberOfMoves>1</myNumberOfMoves>
+                            <myRange>5.0</myRange>
+                          </voogasalad__GucciGames.gameEngine.defaultCharacteristics.MovableCharacteristic>
+                        </entry>
+                      </myCharacteristics>
+                      <myEventHandler>
+                        <myBasic>
+                          <myEngine reference="../../../../../../../../.."/>
+                        </myBasic>
+                      </myEventHandler>
+                      <myEvents>
+                        <entry>
+                          <string>Move</string>
+                          <voogasalad__GucciGames.gameEngine.objectActions.MoveEvent reference="../../../../../../../entry[2]/voogasalad__GucciGames.gameEngine.gamePlayer.GamePlayerPerson/myMapObjects/voogasalad__GucciGames.gameEngine.mapObject.MapObject/myEvents/entry/voogasalad__GucciGames.gameEngine.objectActions.MoveEvent"/>
+                        </entry>
+                        <entry>
+                          <string>Attack</string>
+                          <voogasalad__GucciGames.gameEngine.objectActions.AttackEvent reference="../../../../../../../entry[2]/voogasalad__GucciGames.gameEngine.gamePlayer.GamePlayerPerson/myMapObjects/voogasalad__GucciGames.gameEngine.mapObject.MapObject/myEvents/entry[2]/voogasalad__GucciGames.gameEngine.objectActions.AttackEvent"/>
+                        </entry>
+                      </myEvents>
+                      <myWidth>0.0</myWidth>
+                      <myHeight>0.0</myHeight>
+                    </voogasalad__GucciGames.gameEngine.mapObject.MapObject>
+                  </myMapObjects>
+                  <myStatus>DRAW</myStatus>
+                  <myMovable>
+                    <myNumberOfMoves>2</myNumberOfMoves>
+                    <moveCount>0</moveCount>
+                  </myMovable>
+                </voogasalad__GucciGames.gameEngine.gamePlayer.GamePlayerPerson>
+              </entry>
+            </myMapOfPlayers>
+          </myGamePlayers>
+          <myCurrentTurnCounter>
+            <currentTurn>0</currentTurn>
+          </myCurrentTurnCounter>
+          <myTurnDecider class="voogasalad_GucciGames.gameEngine.gamePlayer.DefaultTurnDecider">
+            <numPlayers>0</numPlayers>
+            <turnCounter reference="../../myCurrentTurnCounter"/>
+            <myPlayers reference="../../myGamePlayers"/>
+            <myActivePlayer reference="../../myGamePlayers/myMapOfPlayers/entry[2]/voogasalad__GucciGames.gameEngine.gamePlayer.GamePlayerPerson"/>
+          </myTurnDecider>
+          <mapDimensions>0</mapDimensions>
+          <myMapWidth>4</myMapWidth>
+          <myMapHeight>4</myMapHeight>
+          <myName>Game 4637</myName>
+          <gameWon>false</gameWon>
+        </myEngine>
+        <myID>0</myID>
+        <myNextLevelID>-1</myNextLevelID>
+        <myChoosability>true</myChoosability>
+        <myGameLevelName>Easy</myGameLevelName>
+      </voogasalad__GucciGames.gameData.wrapper.GameLevel>
+    </entry>
+    <entry>
+      <int>1</int>
       <voogasalad__GucciGames.gameData.wrapper.GameLevel>
         <myEngine>
           <myGamePlayers>
@@ -1299,8 +1811,10 @@
                           <voogasalad__GucciGames.gameEngine.objectActions.MoveEvent>
                             <myName>Move</myName>
                             <myRuleList>
+                              <voogasalad__GucciGames.gameEngine.gameRules.defaultRules.PlayersActivePerTurn/>
                               <voogasalad__GucciGames.gameEngine.gameRules.defaultRules.UnitsMovablePerTurn/>
                             </myRuleList>
+                            <myOutcomes/>
                           </voogasalad__GucciGames.gameEngine.objectActions.MoveEvent>
                         </entry>
                         <entry>
@@ -1308,10 +1822,28 @@
                           <voogasalad__GucciGames.gameEngine.objectActions.AttackEvent>
                             <myName>Attack</myName>
                             <myRuleList>
+                              <voogasalad__GucciGames.gameEngine.gameRules.defaultRules.PlayersActivePerTurn reference="../../../../entry/voogasalad__GucciGames.gameEngine.objectActions.MoveEvent/myRuleList/voogasalad__GucciGames.gameEngine.gameRules.defaultRules.PlayersActivePerTurn"/>
                               <voogasalad__GucciGames.gameEngine.gameRules.defaultRules.AttacksPerTurn>
                                 <objectAllowedAttacks>0</objectAllowedAttacks>
                               </voogasalad__GucciGames.gameEngine.gameRules.defaultRules.AttacksPerTurn>
                             </myRuleList>
+                            <myOutcomes>
+                              <voogasalad__GucciGames.gameEngine.gameConditions.outcomes.EndGame>
+                                <myConditions>
+                                  <voogasalad__GucciGames.gameEngine.gameConditions.defaultConditions.CheckOnePlayerLeft>
+                                    <myParams/>
+                                  </voogasalad__GucciGames.gameEngine.gameConditions.defaultConditions.CheckOnePlayerLeft>
+                                </myConditions>
+                                <myOutcomeParams>
+                                  <myArguments/>
+                                  <playerID>
+                                    <int>0</int>
+                                    <int>1</int>
+                                  </playerID>
+                                  <objectID/>
+                                </myOutcomeParams>
+                              </voogasalad__GucciGames.gameEngine.gameConditions.outcomes.EndGame>
+                            </myOutcomes>
                           </voogasalad__GucciGames.gameEngine.objectActions.AttackEvent>
                         </entry>
                       </myEvents>
@@ -1717,16 +2249,17 @@
           <mapDimensions>0</mapDimensions>
           <myMapWidth>8</myMapWidth>
           <myMapHeight>8</myMapHeight>
-          <myName>Level 1</myName>
+          <myName>Game 8449</myName>
+          <gameWon>false</gameWon>
         </myEngine>
-        <myID>0</myID>
+        <myID>1</myID>
         <myNextLevelID>-1</myNextLevelID>
         <myChoosability>true</myChoosability>
-        <myGameLevelName>Level 1</myGameLevelName>
+        <myGameLevelName>Medium</myGameLevelName>
       </voogasalad__GucciGames.gameData.wrapper.GameLevel>
     </entry>
     <entry>
-      <int>1</int>
+      <int>2</int>
       <voogasalad__GucciGames.gameData.wrapper.GameLevel>
         <myEngine>
           <myGamePlayers>
@@ -9394,8 +9927,10 @@
                           <voogasalad__GucciGames.gameEngine.objectActions.MoveEvent>
                             <myName>Move</myName>
                             <myRuleList>
+                              <voogasalad__GucciGames.gameEngine.gameRules.defaultRules.PlayersActivePerTurn/>
                               <voogasalad__GucciGames.gameEngine.gameRules.defaultRules.UnitsMovablePerTurn/>
                             </myRuleList>
+                            <myOutcomes/>
                           </voogasalad__GucciGames.gameEngine.objectActions.MoveEvent>
                         </entry>
                         <entry>
@@ -9403,10 +9938,28 @@
                           <voogasalad__GucciGames.gameEngine.objectActions.AttackEvent>
                             <myName>Attack</myName>
                             <myRuleList>
+                              <voogasalad__GucciGames.gameEngine.gameRules.defaultRules.PlayersActivePerTurn reference="../../../../entry/voogasalad__GucciGames.gameEngine.objectActions.MoveEvent/myRuleList/voogasalad__GucciGames.gameEngine.gameRules.defaultRules.PlayersActivePerTurn"/>
                               <voogasalad__GucciGames.gameEngine.gameRules.defaultRules.AttacksPerTurn>
                                 <objectAllowedAttacks>0</objectAllowedAttacks>
                               </voogasalad__GucciGames.gameEngine.gameRules.defaultRules.AttacksPerTurn>
                             </myRuleList>
+                            <myOutcomes>
+                              <voogasalad__GucciGames.gameEngine.gameConditions.outcomes.EndGame>
+                                <myConditions>
+                                  <voogasalad__GucciGames.gameEngine.gameConditions.defaultConditions.CheckOnePlayerLeft>
+                                    <myParams/>
+                                  </voogasalad__GucciGames.gameEngine.gameConditions.defaultConditions.CheckOnePlayerLeft>
+                                </myConditions>
+                                <myOutcomeParams>
+                                  <myArguments/>
+                                  <playerID>
+                                    <int>0</int>
+                                    <int>1</int>
+                                  </playerID>
+                                  <objectID/>
+                                </myOutcomeParams>
+                              </voogasalad__GucciGames.gameEngine.gameConditions.outcomes.EndGame>
+                            </myOutcomes>
                           </voogasalad__GucciGames.gameEngine.objectActions.AttackEvent>
                         </entry>
                       </myEvents>
@@ -11788,15 +12341,71 @@
           <mapDimensions>0</mapDimensions>
           <myMapWidth>20</myMapWidth>
           <myMapHeight>20</myMapHeight>
-          <myName>Level 1</myName>
+          <myName>Game 1679</myName>
+          <gameWon>false</gameWon>
         </myEngine>
-        <myID>1</myID>
+        <myID>2</myID>
         <myNextLevelID>-1</myNextLevelID>
         <myChoosability>true</myChoosability>
-        <myGameLevelName>Level 2</myGameLevelName>
+        <myGameLevelName>Hard</myGameLevelName>
       </voogasalad__GucciGames.gameData.wrapper.GameLevel>
     </entry>
   </myLevelsMap>
-  <myLevelID>2</myLevelID>
+  <myLevelID>3</myLevelID>
   <myGameName>Duvall Tag</myGameName>
+  <guiData>
+    <myRightComponents class="java.util.Arrays$ArrayList">
+      <a class="string-array">
+        <string>voogasalad_GucciGames.gameplayer.windows.mainwindow.components.bar.ActionDisplay</string>
+        <string>voogasalad_GucciGames.gameplayer.windows.mainwindow.components.bar.BuildUnitsDisplay</string>
+        <string>voogasalad_GucciGames.gameplayer.windows.mainwindow.components.bar.EndTurnButton</string>
+        <string>voogasalad_GucciGames.gameplayer.windows.mainwindow.components.bar.GameStatsDisplay</string>
+      </a>
+    </myRightComponents>
+    <myLeftComponents class="java.util.Arrays$ArrayList">
+      <a class="string-array">
+        <string>voogasalad_GucciGames.gameplayer.windows.mainwindow.components.bar.DisplayMapObjectImage</string>
+        <string>voogasalad_GucciGames.gameplayer.windows.mainwindow.components.bar.DisplayMapObjectDetails</string>
+        <string>voogasalad_GucciGames.gameplayer.windows.mainwindow.components.bar.DisplayChat</string>
+        <string>voogasalad_GucciGames.gameplayer.windows.mainwindow.map.mini.MiniMap</string>
+      </a>
+    </myLeftComponents>
+    <myBottomComponents class="java.util.Arrays$ArrayList">
+      <a class="string-array">
+        <string>voogasalad_GucciGames.gameplayer.windows.mainwindow.components.bar.MainMenuButton</string>
+      </a>
+    </myBottomComponents>
+    <myComponents>
+      <entry>
+        <string>Left</string>
+        <java.util.Arrays_-ArrayList>
+          <a class="string-array">
+            <string>voogasalad_GucciGames.gameplayer.windows.mainwindow.components.bar.DisplayMapObjectImage</string>
+            <string>voogasalad_GucciGames.gameplayer.windows.mainwindow.components.bar.DisplayMapObjectDetails</string>
+            <string>voogasalad_GucciGames.gameplayer.windows.mainwindow.components.bar.DisplayChat</string>
+            <string>voogasalad_GucciGames.gameplayer.windows.mainwindow.map.mini.MiniMap</string>
+          </a>
+        </java.util.Arrays_-ArrayList>
+      </entry>
+      <entry>
+        <string>Right</string>
+        <java.util.Arrays_-ArrayList>
+          <a class="string-array">
+            <string>voogasalad_GucciGames.gameplayer.windows.mainwindow.components.bar.ActionDisplay</string>
+            <string>voogasalad_GucciGames.gameplayer.windows.mainwindow.components.bar.BuildUnitsDisplay</string>
+            <string>voogasalad_GucciGames.gameplayer.windows.mainwindow.components.bar.EndTurnButton</string>
+            <string>voogasalad_GucciGames.gameplayer.windows.mainwindow.components.bar.GameStatsDisplay</string>
+          </a>
+        </java.util.Arrays_-ArrayList>
+      </entry>
+      <entry>
+        <string>Bottom</string>
+        <java.util.Arrays_-ArrayList>
+          <a class="string-array">
+            <string>voogasalad_GucciGames.gameplayer.windows.mainwindow.components.bar.MainMenuButton</string>
+          </a>
+        </java.util.Arrays_-ArrayList>
+      </entry>
+    </myComponents>
+  </guiData>
 </voogasalad__GucciGames.gameData.wrapper.GameInfo>

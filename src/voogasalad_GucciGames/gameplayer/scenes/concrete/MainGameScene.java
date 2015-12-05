@@ -53,7 +53,7 @@ public class MainGameScene extends GameScene {
     private GameMenuBar myMenuBar;
     private MainMap myMap;
 
-	private TopBar myTopBar;
+    private TopBar myTopBar;
 
     public MainGameScene(GameSceneManager manager, GameWindowInterface window, String config) {
         super(manager, window, config);
@@ -83,9 +83,9 @@ public class MainGameScene extends GameScene {
         myMap = new MainMap(this, myController);
         myPane.setCenter(myMap.getParent());
 
-        leftComponents=myController.getGame().getLeftComponents().stream().map(s->(DisplayComponent)Reflection.createInstance(s, this, myController)).collect(Collectors.toList());
-        rightComponents=myController.getGame().getRightComponents().stream().map(s->(DisplayComponent)Reflection.createInstance(s, this, myController)).collect(Collectors.toList());
-        bottomComponents=myController.getGame().getBottomComponents().stream().map(s->(DisplayComponent)Reflection.createInstance(s, this, myController)).collect(Collectors.toList());
+        leftComponents=myController.getGame().getGuiComponents(myGuiNames.getString("Components").split(",")[0]).stream().map(s->(DisplayComponent)Reflection.createInstance(s, this, myController)).collect(Collectors.toList());
+        rightComponents=myController.getGame().getGuiComponents(myGuiNames.getString("Components").split(",")[1]).stream().map(s->(DisplayComponent)Reflection.createInstance(s, this, myController)).collect(Collectors.toList());
+        bottomComponents=myController.getGame().getGuiComponents(myGuiNames.getString("Components").split(",")[2]).stream().map(s->(DisplayComponent)Reflection.createInstance(s, this, myController)).collect(Collectors.toList());
 
         myLeftBar = new LeftBar(this, myController,leftComponents);
         myPane.setLeft(myLeftBar.getParent());
@@ -93,16 +93,18 @@ public class MainGameScene extends GameScene {
         myRightBar = new RightBar(this, myController, rightComponents);
         myPane.setRight(myRightBar.getParent());
         
+        
+        // forgive me father for I have sinned, I did not want to edit his code
         myBottomBar = new BottomBar(this,myController, bottomComponents);
-        myPane.setBottom(myBottomBar.getParent());
+        myPane.setTop(myBottomBar.getParent());
 
 //	    FileItem file = new FileItem(null,myManager.getStage()); //TODO: create for properties file?
 //	    List<GameMenu> listOfGameMenus = new ArrayList<GameMenu>();
 //	    listOfGameMenus.add(file);
 //	    myMenuBar = new GameMenuBar(listOfGameMenus);
 //	    myPane.setTop(myMenuBar.returnToolbar());
-	    myTopBar = new TopBar(this, myController);
-	    myPane.setTop(myTopBar.getParent());
+//	    myTopBar = new TopBar(this, myController);
+//	    myPane.setTop(myTopBar.getParent());
 
         enableObservers();
 
@@ -111,12 +113,14 @@ public class MainGameScene extends GameScene {
     private void enableObservers() {
         myMap.addUnitListener(myLeftBar.requestListeners());
         myMap.addUnitListener(myRightBar.requestListeners());
+        myMap.addUnitListener(myBottomBar.requestListeners());
     }
 
     @Override
     public void refresh () {
         myLeftBar.updateComponents();
         myRightBar.updateComponents();
+        myBottomBar.updateComponents();
     }
 
 }

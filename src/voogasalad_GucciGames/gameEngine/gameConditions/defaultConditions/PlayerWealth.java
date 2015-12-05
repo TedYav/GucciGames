@@ -5,6 +5,7 @@ package voogasalad_GucciGames.gameEngine.gameConditions.defaultConditions;
 
 import java.util.Map;
 
+import voogasalad_GucciGames.gameEngine.CommunicationParameters.BasicParameters;
 import voogasalad_GucciGames.gameEngine.gameConditions.Conditions;
 import voogasalad_GucciGames.gameEngine.gamePlayer.GamePlayerPerson;
 
@@ -21,10 +22,8 @@ public class PlayerWealth extends Conditions {
 	}
 
 	@Override
-	public Boolean execute(GamePlayerPerson player) {
-		Boolean flag = false;
-		//flag=(player.WealthStatus() == getMyParams().get(WEALTH));
-		return flag;
+	public Boolean execute(BasicParameters params,GamePlayerPerson player) {
+		return (player.getWealth().status() == (int) getMyParams().get(WEALTH));
 	}
 
 }

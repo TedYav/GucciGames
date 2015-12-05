@@ -12,6 +12,7 @@ import java.util.Observer;
 
 import javafx.scene.image.Image;
 import voogasalad_GucciGames.gameData.wrapper.GameInfo;
+import voogasalad_GucciGames.gameData.wrapper.GameInfoToGamePlayer;
 import voogasalad_GucciGames.gameEngine.GameEngineToGamePlayerInterface;
 import voogasalad_GucciGames.gameEngine.PlayerMapObjectInterface;
 import voogasalad_GucciGames.gameEngine.targetCoordinate.ATargetCoordinate;
@@ -30,9 +31,6 @@ import voogasalad_GucciGames.helpers.ResourceManager;
 
 public interface GameControllerInterface{
 	
-	public void activateCell(MapCell cell);
-	public List<MapCell> getActiveCells();
-	
 	public void setActiveMapObject(PlayerMapObjectInterface mapObj);
 	public PlayerMapObjectInterface getActiveMapObject();
 	public void addActiveMOObserver(Observer o);
@@ -43,27 +41,18 @@ public interface GameControllerInterface{
 	
 	public MapInterface getMap();
 	
-	// TODO: remove from interface
-	public void setMap(MapInterface map);
-	
-//	public void setEngine(GameEngineToGamePlayerInterface engine);
 	public GameEngineToGamePlayerInterface getEngine();
-	public GameInfo getGame();
+	public GameInfoToGamePlayer getGame();
 	
 	public GameLoader getLoader();
 	
 	public List<PlayerMapObjectInterface> getInitialState();
 	
 	public void endTurn();
-	
-	public Image requestImage(String imageURI);
-	
+		
 	public boolean actionInProgress();
 	
-//	public <T extends Event> void addEventHandler(EventType<T> eventType, EventHandler<T> eventHandler);
-//	public <T extends Event> void addEventFilter(EventType<T> eventType, EventHandler<T> eventHandler);
-//	
-	// TODO: refactor out
-	void performActionInProgress(Point2D target);
-	ResourceManager getResource();
+	public void performActionInProgress(Point2D target);
+	public ResourceManager getResource();
+	void loadLevel(int levelID);
 }

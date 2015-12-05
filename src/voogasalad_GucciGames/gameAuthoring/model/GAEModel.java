@@ -14,6 +14,7 @@ import voogasalad_GucciGames.gameAuthoring.gui.map.GridPoint;
 //import voogasalad_GucciGames.gameData.XMLWriter;
 import voogasalad_GucciGames.gameData.XStreamGameEngine;
 import voogasalad_GucciGames.gameData.wrapper.GameInfo;
+import voogasalad_GucciGames.gameData.wrapper.GuiData;
 import voogasalad_GucciGames.gameEngine.MainGameEngine;
 import voogasalad_GucciGames.gameEngine.gamePlayer.AllPlayers;
 import voogasalad_GucciGames.gameEngine.gamePlayer.GamePlayerPerson;
@@ -24,10 +25,9 @@ public class GAEModel implements IGAEModel{
     private TypeData typeData;
     private MapData mapData;
     private GuiData guiData;
+    private List<String> levels;
     private IModelGaeController myController;
 	private Map<Integer, GamePlayerPerson> mapOfPlayers;	
-    private AllPlayers players;
-	private MainGameEngine engine;
 	private List<DisplayMapObject> myMapObjects;
 
     
@@ -38,6 +38,7 @@ public class GAEModel implements IGAEModel{
     	mapOfPlayers = new HashMap<>();
     	myMapObjects = new ArrayList<>();
     	guiData = new GuiData();
+    	levels = new ArrayList<>();
     	// Probs need to change this
 		mapOfPlayers.put(-1, new GamePlayerPerson(-1));
 		mapOfPlayers.put(0, new GamePlayerPerson(0));
@@ -161,30 +162,10 @@ public class GAEModel implements IGAEModel{
 	}
 
 
-//    @Override
-//    public List<String> getLeftComponents () {
-//        return guiData.getLeftComponents();
-//    }
-//    @Override
-//    public List<String> getRightComponents () {
-//        return guiData.getRightComponents();
-//    }
-//    @Override
-//    public List<String> getBottomComponents () {
-//        return guiData.getBottomComponents();
-//    }
-//    @Override
-//    public void setLeftComponents (List<String> components) {
-//        guiData.setLeftComponents(components);
-//    }
-//    @Override
-//    public void setRightComponents (List<String> components) {
-//        guiData.setRightComponents(components);
-//    }
-//    @Override
-//    public void setBottomComponents (List<String> components) {
-//        guiData.setBottomComponents(components);
-//    }
+	@Override
+	public void addLevel(String name) {
+		levels.add(name);
+	}
     
 //	public static void main(String[] args){
 //		Map<Integer, GamePlayerPerson> mapOfPlayers = new HashMap<Integer, GamePlayerPerson>();	

@@ -32,6 +32,8 @@ public interface IGAEModel {
     public void setGuiComponents(String location, List<String> components);
     
 	public void changeOwner(MapObject mapObject, int playerID);
+
+	public void addLevel(String name);
 	
 	void saveToXML(GameInfo game);
 

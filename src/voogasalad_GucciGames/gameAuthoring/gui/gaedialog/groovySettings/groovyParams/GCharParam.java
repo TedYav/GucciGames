@@ -1,17 +1,18 @@
-package voogasalad_GucciGames.gameAuthoring.gui.gaedialog.paramObjects;
+package voogasalad_GucciGames.gameAuthoring.gui.gaedialog.groovySettings.groovyParams;
 
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Set;
 
-public class CharacteristicsParam {
+public class GCharParam extends AGroovyParams{
 
 	private String name;
 	private String displayName;
 	private Map<String, String> params = new HashMap<String, String>();
+	private final String type = "Characteristic";
 
 	
-	public CharacteristicsParam(String name){
+	public GCharParam(String name){
 		this.setName(name);
 	}
 
@@ -44,6 +45,12 @@ public class CharacteristicsParam {
 	
 	public void print(){
 		System.out.println("display name:" + this.displayName);
+	}
+
+	@Override
+	public String getType() {
+		// TODO Auto-generated method stub
+		return this.type;
 	}
 
 }

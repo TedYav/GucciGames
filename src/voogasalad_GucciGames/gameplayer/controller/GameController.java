@@ -10,6 +10,7 @@ import java.util.Observer;
 import javafx.scene.image.Image;
 import voogasalad_GucciGames.datastructures.Coordinate;
 import voogasalad_GucciGames.gameData.wrapper.GameInfo;
+import voogasalad_GucciGames.gameData.wrapper.GameInfoToGamePlayer;
 import voogasalad_GucciGames.gameEngine.GameEngineToGamePlayerInterface;
 import voogasalad_GucciGames.gameEngine.PlayerMapObjectInterface;
 import voogasalad_GucciGames.gameEngine.CommunicationParameters.ChangedParameters;
@@ -21,7 +22,7 @@ import voogasalad_GucciGames.gameplayer.windows.mainwindow.map.MapInterface;
 import voogasalad_GucciGames.gameplayer.windows.mainwindow.map.cell.MapCell;
 import voogasalad_GucciGames.helpers.ResourceManager;
 
-public class GameController implements GameControllerInterface, GameControllerLoader {
+public class GameController implements GameControllerInterface, GameControllerAdvancedInterface, GameControllerLoader {
 
 	private GameWindowManager myManager;
 	
@@ -29,7 +30,7 @@ public class GameController implements GameControllerInterface, GameControllerLo
 	private MapInterface myMap;
 	private ResourceManager myResourceManager;
 	private PlayerMapObjectInterface myTargetUnit;
-	private GameInfo myGame;
+	private GameInfoToGamePlayer myGame;
 	
 	// TODO: factor into component
 	private String myActionInProgress;
@@ -50,27 +51,16 @@ public class GameController implements GameControllerInterface, GameControllerLo
 	
 	public void loadGame(GameInfo game){
 		myGame=game;
-		myCurrentEngine = myGame.getLevelsMap().get(0).getGameEngine();
+		loadLevel(1);
 	}
 	
+	@Override
 	public void loadLevel(int levelID){
-		if(myGame.getLevelsMap().containsKey(levelID)){
-			System.out.println("I'M NOT IMPLEMENTED YET");
+		if(myGame.getLevels().containsKey(levelID)){
+			myCurrentEngine = myGame.getLevels().get(levelID).getGameEngine();
 		}
 	}
 	
-	@Override
-	public void activateCell(MapCell cell) {
-		// TODO Auto-generated method stub
-
-	}
-
-	@Override
-	public List<MapCell> getActiveCells() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
 	@Override
 	public List<TargetCoordinateSingle> setActionInProgress(String action, PlayerMapObjectInterface unit) {
 		myActionInProgress = action;
@@ -111,12 +101,14 @@ public class GameController implements GameControllerInterface, GameControllerLo
 	            		System.out.println(result);
 	                 
 	                 myMap.update(result);
+	                 myManager.refresh();
 	                 break;
 	            }
 	        } 
 	        //workaround for canceling action by clicking outside of action range (increments action i think?)
 	        cancelAction();
 	        myMap.update(new ArrayList<PlayerMapObjectInterface>());
+	        myManager.refresh();
 	}
 	
 	@Override
@@ -142,15 +134,10 @@ public class GameController implements GameControllerInterface, GameControllerLo
 	@Override
 	public void endTurn() {
 		// TODO Auto-generated method stub
-	    myCurrentEngine.endTurn();
-	           myManager.refresh();
+	        myCurrentEngine.endTurn();
+	        myManager.refresh();
 	}
 
-	@Override
-	public Image requestImage(String imageURI) {
-		return myResourceManager.getImage(imageURI);
-	}
-	
 	@Override
 	public ResourceManager getResource(){
 		return myResourceManager;
@@ -183,7 +170,7 @@ public class GameController implements GameControllerInterface, GameControllerLo
 		return myCurrentEngine;
 	}
 	@Override
-	public GameInfo getGame() {
+	public GameInfoToGamePlayer getGame() {
 	    return myGame;
 	}
 
