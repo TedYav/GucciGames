@@ -36,7 +36,7 @@ public class GaeController extends AGuiGaeController implements IModelGaeControl
 	private MapObjectType myDragType;
 	private Stage myStage;
 	private int numberOfPlayers;
-	private int defaultOwnerID = -1;
+//	private int defaultOwnerID = -1;
 	private Map<Integer, String> allPlayers = new HashMap<Integer, String>();
 	private ImageDatabase myImageDatabase = new ImageDatabase();
 	//private ArrayList<String> customGamePlayerComponents = new ArrayList<String>();
@@ -52,10 +52,10 @@ public class GaeController extends AGuiGaeController implements IModelGaeControl
 		model.deleteComponent(mapObj);
 	}
 
-	@Override
-	public DisplayMapObject addObject( int levelID, GridPoint gridpoint, MapObjectType mapObjType) {
-		return model.addObject(levelID, gridpoint, mapObjType, defaultOwnerID);
-	}
+//	@Override
+//	public DisplayMapObject addObject( int levelID, GridPoint gridpoint, MapObjectType mapObjType) {
+//		return model.addObject(levelID, gridpoint, mapObjType, defaultOwnerID);
+//	}
 
 	@Override
 	public DisplayMapObject addObject(int levelID, GridPoint gridpoint, MapObjectType mapObjType, int ownerID) {
