@@ -13,9 +13,11 @@ public class DependenciesPane extends GridPane {
 	private DialogTableView dialogTableView;
 	private List<String> availableItems;
 	private String title;
+	private IDependencies controller;
 	
-	public DependenciesPane(List<String> availableItems, String title){
+	public DependenciesPane(List<String> availableItems, IDependencies controller, String title){
 		super();
+		this.controller = controller;
 		this.availableItems = availableItems;
 		this.title = title;
 		this.setHgap(5);
@@ -24,10 +26,13 @@ public class DependenciesPane extends GridPane {
 		setTableView();
 		final Button saveBtn = new Button("Save");
 		saveBtn.setOnAction(e -> {
-			//TODO: save to backend
+			
 			List<String> selected = this.dialogTableView.getData();
+			controller.addDependencies(selected);
+			//TODO: save to backend
 		});
-		this.add(saveBtn, 3, 3);
+	
+		this.add(saveBtn, 4, 4);
 	}
 	
 	private void setTableView(){

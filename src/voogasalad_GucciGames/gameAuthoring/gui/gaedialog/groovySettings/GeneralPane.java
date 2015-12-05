@@ -18,13 +18,15 @@ public class GeneralPane extends GridPane {
 	private Map<String, String> data = new HashMap<String, String>();
 	private Map<Label, TextArea> content = new HashMap<Label, TextArea>();
 	private Label title;
-	private ISwitchGroovyPane controller;	
+	private ISwitchGroovyPane controller;
+	private IDependencies addDepController;
 	private static final String path = "voogasalad_GucciGames.gameAuthoring.gui.gaedialog.groovySettings.";
 	
 	List<String> attributes;
 	
-	public GeneralPane(List<String> attributes, ISwitchGroovyPane controller, String name){
+	public GeneralPane(List<String> attributes, ISwitchGroovyPane controller, IDependencies addDepController, String name){
 		this.controller = controller;
+		this.addDepController = addDepController;
 		this.setHgap(5);
 		this.setVgap(5);
 		this.setPadding(new Insets(5,5,5,5));
@@ -57,9 +59,9 @@ public class GeneralPane extends GridPane {
 	protected void init(List<String> items, String name, String title){
 		final Button nextBtn = new Button("Next");
 		nextBtn.setOnAction(e -> {
-			Reflection reflection = new Reflection();			
-			
-			controller.switchGroovyPane(reflection.createInstance(path + "DependenciesPane", items, name ),
+			Reflection reflection = new Reflection();	
+			this.addDepController.setParams();		
+			controller.switchGroovyPane(reflection.createInstance(path + "DependenciesPane",items, addDepController, name ),
 					title);
 		});
 		
