@@ -1,6 +1,6 @@
 package voogasalad_GucciGames.gameAuthoring.gui.gaedialog.paramObjects;
 
-public class StructureParams extends AParamsObject {
+public class StructureParams extends AParams {
 	
 	private String structureName;
 	

@@ -3,10 +3,6 @@ package voogasalad_GucciGames.gameAuthoring.gui.gaedialog.maindialogs;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Properties;
-
-
-import javafx.beans.value.ChangeListener;
-import javafx.beans.value.ObservableValue;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.layout.GridPane;
@@ -19,9 +15,8 @@ import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.DialogElements;
 import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.dialogcomponents.CheckBoxField;
 import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.paramObjects.GameSettingParams;
 
-public class CustomGPlayerDialog extends GaeDialog{
+public class CustomGPlayerDialog extends javafx.scene.control.Dialog{
 
-    private Stage gameSettingDialog = new Stage();
     private VBox myContent = new VBox();
     private VBox parent = new VBox();
     private Properties prop;
@@ -30,15 +25,18 @@ public class CustomGPlayerDialog extends GaeDialog{
     private DialogElements dialogElements;
     private GameSettingParams gameSettingParams = new GameSettingParams();
     private Button saveButton;
-
+    private CheckBoxField actionDisplay;
+    private Integer propIndexer;
     private List<String> guiList = new ArrayList<String>();
     private List<List<CheckBoxField>> checkBoxFields = new ArrayList<List<CheckBoxField>>();
     private List<List<String>> allCheckedBoxes = new ArrayList<List<String>>(); 
     private int numBars;
-    private int maxBars=3;
+    private int maxBars=3; //assume there are only 3 bars: left, bottom, right
+    private int maxComponents;
 
     public CustomGPlayerDialog(IDialogGaeController dialogGaeController, IGuiGaeController guiGaeController){
-        this.dialogGaeController = dialogGaeController;
+        GaeDialogHelper helper = new GaeDialogHelper();
+    	this.dialogGaeController = dialogGaeController;
         this.guiGaeController = guiGaeController;
         guiList.add("ActionDisplay");
         guiList.add("DisplayChat");
@@ -51,14 +49,25 @@ public class CustomGPlayerDialog extends GaeDialog{
         allCheckedBoxes.add(new ArrayList<String>());
         allCheckedBoxes.add(new ArrayList<String>());
         allCheckedBoxes.add(new ArrayList<String>());
-        prop = super.loadProperties("/voogasalad_GucciGames/gameAuthoring/gui/gaedialog/maindialogs/dialogproperties/customgplayerdialog.properties");
-        dialogElements = new DialogElements(prop, null, dialogGaeController);
+        prop = helper.loadProperties("/voogasalad_GucciGames/gameAuthoring/gui/gaedialog/maindialogs/dialogproperties/customgplayerdialog.properties");
+        dialogElements = new DialogElements(prop, dialogGaeController);
         saveButton = new Button("Save");
+        for (int i=0; i<maxBars; i++) {
+            checkBoxFields.add(new ArrayList<CheckBoxField>());
+            allCheckedBoxes.add(new ArrayList<String>());
+        }
+
         setSaveAction();
+        prop.forEach((key,value) -> {
+            String skey=(String)key;
+            if (skey.startsWith(prop.getProperty("componentprefix")+prop.getProperty("componentdelimiter"))) {
+                guiList.add(prop.getProperty(skey));
+            }
+        });
+        maxComponents=guiList.size();
         myContent.getChildren().addAll(this.initializeDialog(), saveButton);
-        Scene gameSettingDialogScene = new Scene(myContent, 500, 500);
-        gameSettingDialogScene.getStylesheets().add("voogasalad_GucciGames/gameAuthoring/gui/gaedialog/stylesheets/dialogstylesheet.css");
-        gameSettingDialog.setScene(gameSettingDialogScene);		
+        this.getDialogPane().setContent(myContent);
+
     }
 
     protected void setSaveAction(){
@@ -76,38 +85,24 @@ public class CustomGPlayerDialog extends GaeDialog{
             guiGaeController.setCustomGamePlayerLeftComponents(allCheckedBoxes.get(0));
             guiGaeController.setCustomGamePlayerBottomComponents(allCheckedBoxes.get(1));
             guiGaeController.setCustomGamePlayerRightComponents(allCheckedBoxes.get(2));
-            this.gameSettingDialog.close();
+            this.close();
         });
     }
 
-    @Override
     protected VBox initializeDialog() {
-        // TODO Auto-generated method stub
         GridPane content = new GridPane();				
         Text titleElement = new Text();
         titleElement.setText(prop.getProperty("title"));
-
-        Text label = new Text("Left");
-        GridPane.setConstraints(label,0,0);
-        content.getChildren().add(label);
-        label = new Text("Bottom");
+        Text label = new Text(prop.getProperty("leftlabel"));
         GridPane.setConstraints(label,1,0);
         content.getChildren().add(label);
-        label = new Text("Right");
+        label = new Text(prop.getProperty("bottomlabel"));
         GridPane.setConstraints(label,2,0);
         content.getChildren().add(label);
-        for (int j=0;j<5;j++) {
-            for (numBars=0;numBars<maxBars;numBars++) {
-                CheckBoxField actionDisplay = new CheckBoxField(dialogElements, guiList.get(j));
-                actionDisplay.setUserData(""+numBars);
-                checkBoxFields.get(numBars).add(actionDisplay);
-                GridPane.setConstraints(actionDisplay,numBars,j+1);
-                content.getChildren().add(actionDisplay);
-            }
-        }
-        for (numBars=0;numBars<maxBars;numBars++) {
-            loadCheckBoxState(numBars,checkBoxFields.get(numBars));
-        }
+        label = new Text(prop.getProperty("rightlabel"));
+        GridPane.setConstraints(label,3,0);
+        content.getChildren().add(label);
+        initializeCheckBoxes(content);
         //setCheckBoxListeners();
         content.getChildren().forEach(hbox->hbox.setId("hbox-element"));		
         titleElement.setId("title");
@@ -116,7 +111,29 @@ public class CustomGPlayerDialog extends GaeDialog{
         return parent;
     }
 
-
+    protected void initializeCheckBoxes(GridPane content) {
+        for (propIndexer=0;propIndexer<maxComponents;propIndexer++) {
+            Text label = new Text(guiList.get(propIndexer));
+            GridPane.setConstraints(label,0,propIndexer+1);
+            content.getChildren().add(label);
+            for (numBars=0;numBars<maxBars;numBars++) {
+                prop.forEach(((key,value)->{
+                    String skey = (String)key;
+                    String svalue = (String)value;
+                    if (svalue.equals(guiList.get(propIndexer))) {
+                        actionDisplay = new CheckBoxField(dialogElements,(skey.split(prop.getProperty("componentdelimiter")))[1]);
+                    }
+                }));
+                actionDisplay.setUserData(""+numBars);
+                checkBoxFields.get(numBars).add(actionDisplay);
+                GridPane.setConstraints(actionDisplay,numBars+1,propIndexer+1);
+                content.getChildren().add(actionDisplay);
+            }
+        }
+        for (numBars=0;numBars<maxBars;numBars++) {
+            loadCheckBoxState(numBars,checkBoxFields.get(numBars));
+        }
+    }
 
     private void loadCheckBoxState (int index, List<CheckBoxField> boxes) {
         switch (index) {
@@ -147,7 +164,7 @@ public class CustomGPlayerDialog extends GaeDialog{
     }
 
     public void showCustomGPlayerDialog(){
-        super.showDialog(gameSettingDialog);
+        this.show();
     }
 
 //    private void setCheckBoxListeners(){
@@ -167,5 +184,4 @@ public class CustomGPlayerDialog extends GaeDialog{
 //            }
 //        }
 //    }
-
 }

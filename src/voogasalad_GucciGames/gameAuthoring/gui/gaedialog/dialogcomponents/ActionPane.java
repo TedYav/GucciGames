@@ -1,7 +1,9 @@
 package voogasalad_GucciGames.gameAuthoring.gui.gaedialog.dialogcomponents;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Optional;
 import java.util.Set;
 import java.io.File;
 
@@ -13,64 +15,70 @@ import org.xml.sax.SAXException;
 import javax.xml.parsers.ParserConfigurationException;
 
 import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.DialogElements;
-import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.dialogcomponents.listelements.MainListView;
+import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.maindialogs.GaeDialogHelper;
 import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.maindialogs.ISwitchSettingsPane;
 import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.mapobjectsettings.xml.ActionSAXHandler;
 import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.paramObjects.ActionParams;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.scene.control.Button;
-import javafx.scene.control.ScrollPane;
-import javafx.scene.layout.VBox;
+import javafx.scene.layout.GridPane;
+
 import javafx.scene.text.Text;
 
-public class ActionVBox extends VBox {	
-	public static final int INDEX = 0;
+public class ActionPane extends GridPane {	
 	
-	private Text title = new Text("Select Actions");	
-	private DropDownMenuField availableActionsMenu;
-	private MainListView listView = new MainListView();
-	private ScrollPane scrollPane = new ScrollPane();
-	private Button nextBtn;
-	private ISwitchSettingsPane switchPaneInterface;
-	
+	private Text title = new Text("Select Actions");		
+	private ISwitchSettingsPane switchPaneInterface;	
 	private DialogElements dialogElements;
 	
+	private List<ActionParams> dataList = new ArrayList<ActionParams>();
+	private ObservableList<ActionParams> data;
 	
+	private ObservableList<ActionParams> actions;
+	private final GaeDialogHelper helper = new GaeDialogHelper();
+	private DialogTableView tableView ;
 	
-	
-	public ActionVBox(DialogElements dialogElements, 
-			ISwitchSettingsPane switchPaneInterface){
+	public ActionPane(DialogElements dialogElements, ISwitchSettingsPane switchPaneInterface){
 		this.dialogElements = dialogElements;
-		this.switchPaneInterface = switchPaneInterface;
-		//TODO: add prop file
-		availableActionsMenu = new DropDownMenuField(dialogElements, "action", "action_items", listView);
-		scrollPane.setContent(listView);
-		nextBtn = new Button("Save & Next");
-		addActionToNextBtn();		
-		this.getChildren().addAll(title, availableActionsMenu, scrollPane, nextBtn);
+		this.switchPaneInterface = switchPaneInterface;	
+		data = FXCollections.observableArrayList(dataList);
+		
+		List<String> items = helper.parseStringToList(dialogElements.getDialogProperties(), 
+				"action_items");
+		tableView = new DialogTableView(items, "Actions");
+		this.add(tableView, 0, 0);
+		addActionToNextBtn();
 		
 	}
 	
+
 	private void addActionToNextBtn(){
+		Button nextBtn = new Button("Next");
+		this.add(nextBtn, 1, 1);
 		nextBtn.setOnAction(e -> {
 			Set<String> rules = new HashSet<String>();
 			Set<String> chars = new HashSet<String>();
-		
 			SAXParserFactory saxParserFactory = SAXParserFactory.newInstance();
+			
 		    try {
 		        SAXParser saxParser = saxParserFactory.newSAXParser();
 
-		        ActionSAXHandler handler = new ActionSAXHandler(listView.getAllListItemsName());
+		        ActionSAXHandler handler = new ActionSAXHandler(
+		        		new HashSet<String>(tableView.getData()));		        
+		       
 		        saxParser.parse(new 
 		        		File("src/voogasalad_GucciGames/gameAuthoring/gui/gaedialog/mapobjectsettings/xml/actionDependencies.xml"), 
 		        		handler);
 		        List<ActionParams> actionParams = handler.getActionParams();
+		       
 		        for(ActionParams actionParam : actionParams){
 		  
 		  
 		        	rules.addAll(actionParam.getAllRules());
 		        	chars.addAll(actionParam.getAllCharacteristics());
 		        }
-
+				
 		        for(String s: rules){
 		        	System.out.println("rules: " + s);
 		        }
@@ -84,12 +92,12 @@ public class ActionVBox extends VBox {
 		        ex.printStackTrace();
 		    }
 		    
-		    switchPaneInterface.switchSettingsPane(new RulesAndCharVBox(rules, chars));
-
+		    switchPaneInterface.switchSettingsPane(new RulesAndCharPane(rules, chars));
+		    
+	
 		});
-
+}
 		
-	}
 	
 
 }
