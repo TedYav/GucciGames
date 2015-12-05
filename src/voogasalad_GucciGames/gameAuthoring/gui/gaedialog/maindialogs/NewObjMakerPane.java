@@ -1,8 +1,8 @@
 package voogasalad_GucciGames.gameAuthoring.gui.gaedialog.maindialogs;
 import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.DialogElements;
 import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.dialogcomponents.FileBrowserField;
-import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.dialogcomponents.SaveField;
 import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.dialogcomponents.TextInputField;
+import javafx.scene.layout.GridPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 /**
@@ -13,17 +13,12 @@ import javafx.scene.text.Text;
  *
  */
 
-public class MakerDialog extends VBox{
+public class NewObjMakerPane extends GridPane{
 	private DialogElements dialogElements;
-	private GroovyTabPane groovyTabPane;
-	private SaveField save;
 	
 	
-	public MakerDialog(DialogElements dialogElements, 
-			GroovyTabPane groovyTabPane, SaveField save ){
+	public NewObjMakerPane(DialogElements dialogElements ){
 		this.dialogElements = dialogElements;	
-		this.groovyTabPane = groovyTabPane;
-		this.save = save;
 		initContent();		
 	}
 	
@@ -32,8 +27,7 @@ public class MakerDialog extends VBox{
 		title.setId("title");
 		TextInputField name = new TextInputField(dialogElements, "name");
 		FileBrowserField fileBrowser = new FileBrowserField(dialogElements,"image", "browse", "filechoosertitle");
-		this.getChildren().addAll(title, name, fileBrowser,
-				groovyTabPane, save);
+		this.getChildren().addAll(title, name, fileBrowser);
 		
 	}
 	

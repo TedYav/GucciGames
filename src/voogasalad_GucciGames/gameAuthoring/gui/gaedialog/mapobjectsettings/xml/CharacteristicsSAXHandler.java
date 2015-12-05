@@ -9,6 +9,7 @@ import org.xml.sax.Attributes;
 import org.xml.sax.SAXException;
 import org.xml.sax.helpers.DefaultHandler;
 
+import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.maindialogs.GaeDialogHelper;
 import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.paramObjects.ActionParams;
 import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.paramObjects.CharacteristicsParam;
 
@@ -17,6 +18,7 @@ public class CharacteristicsSAXHandler extends DefaultHandler {
 	private Set<String> selectedCharacteristics = new HashSet<String>();
 	private List<CharacteristicsParam> characteristicsParams = new ArrayList<CharacteristicsParam>();
 	private CharacteristicsParam characteristicsParam = null;
+	private final GaeDialogHelper helper = new GaeDialogHelper();
 	
 	public CharacteristicsSAXHandler(Set<String> selectedCharacteristics ){
 		this.selectedCharacteristics = selectedCharacteristics;
@@ -34,12 +36,15 @@ public class CharacteristicsSAXHandler extends DefaultHandler {
 		            if (selectedCharacteristics.contains(name)){
 		            	characteristicsParam = new CharacteristicsParam(name);
 		            	characteristicsParam.setDisplayName(attributes.getValue("displayName"));
-			            characteristicsParam.setMin(attributes.getValue("min"));
-			            characteristicsParam.setMax(attributes.getValue("max"));
-		            } 
-		            
+		            	List<String> paramNames = helper.parseStringToList(
+		            			attributes.getValue("paramNames"));
+		            	List<String> paramTypes = helper.parseStringToList(
+		            			attributes.getValue("paramTypes"));
+		            	for(int i = 0; i < paramNames.size(); i++){
+		            		characteristicsParam.addParam(paramTypes.get(i), paramNames.get(i));
+		            	}
+		            } 	            
 		        }           
-
 		    }
 	   public void endElement(String uri, String localName,
 		        String qName) throws SAXException {

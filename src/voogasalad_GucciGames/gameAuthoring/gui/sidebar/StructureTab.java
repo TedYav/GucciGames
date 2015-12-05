@@ -13,7 +13,7 @@ public class StructureTab extends ATab {
 	@Override
 	protected void addNewTypeDialog(ActionEvent e) {
 		NewObjectMaker structMaker = new NewObjectMaker( myController);
-		structMaker.showDialog();
+		structMaker.showAndWait();
 	}
 
 }
