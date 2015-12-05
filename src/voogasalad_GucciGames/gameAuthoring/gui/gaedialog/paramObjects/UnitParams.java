@@ -1,6 +1,6 @@
 package voogasalad_GucciGames.gameAuthoring.gui.gaedialog.paramObjects;
 
-public class UnitParams extends AParamsObject {
+public class UnitParams extends AParams {
 	private String unitName;
 	private int numberOfAttacks;
 	private int damage;

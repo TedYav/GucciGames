@@ -10,6 +10,7 @@ import java.util.Map;
 import javafx.collections.ObservableList;
 import voogasalad_GucciGames.gameAuthoring.IModelGaeController;
 import voogasalad_GucciGames.gameAuthoring.gui.map.GridPoint;
+//import voogasalad_GucciGames.gameData.GameInfo;
 //import voogasalad_GucciGames.gameData.XMLWriter;
 import voogasalad_GucciGames.gameData.XStreamGameEngine;
 import voogasalad_GucciGames.gameData.wrapper.GameInfo;
@@ -116,11 +117,15 @@ public class GAEModel implements IGAEModel{
 	                rightComponents.add("voogasalad_GucciGames.gameplayer.windows.mainwindow.components.bar.GameStatsDisplay");
 	                rightComponents.add("voogasalad_GucciGames.gameplayer.windows.mainwindow.components.bar.EndTurnButton");
 	        }
+		//GameInfo game = new GameInfo(engine,leftComponents,rightComponents, bottomComponents);
+		//saver.saveGameInfo(game, file);
+
 	        
 	    //ASK ABOUT THIS, might not need engine to be passed into game info anymore
 	        
 		GameInfo game = new GameInfo(engine,leftComponents,rightComponents, bottomComponents);
 		saver.saveGameInfo(game, file);
+
     }
     public void saveToXML(String filePath) {
         

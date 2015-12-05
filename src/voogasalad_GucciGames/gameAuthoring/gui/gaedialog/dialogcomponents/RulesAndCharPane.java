@@ -13,25 +13,25 @@ import javax.xml.parsers.SAXParserFactory;
 
 import org.xml.sax.SAXException;
 
-import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.dialogcomponents.listelements.CharacteristicsListItem;
-import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.dialogcomponents.listelements.MainListView;
-import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.dialogcomponents.listelements.RuleListItem;
 import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.mapobjectsettings.xml.CharacteristicsSAXHandler;
 import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.mapobjectsettings.xml.RulesSAXHandler;
 import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.paramObjects.CharacteristicsParam;
 import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.paramObjects.RuleParams;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+import javafx.geometry.Insets;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
+import javafx.scene.layout.GridPane;
 import javafx.scene.layout.VBox;
+import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 
-public class RulesAndCharVBox extends VBox {
-	public static final int INDEX = 1;
+public class RulesAndCharPane extends GridPane{
 	
 	private Text title = new Text("Rules and Characteristics");
-	private MainListView rulesListView = new MainListView();
 	private ScrollPane rulesScrollPane = new ScrollPane();
-	private MainListView characteristicsListView = new MainListView();
 	private ScrollPane characteristicsScrollPane = new ScrollPane();
 	private Button saveBtn = new Button("Save");
 	private List<CharacteristicsParam> charParams = new ArrayList<CharacteristicsParam>();
@@ -39,21 +39,22 @@ public class RulesAndCharVBox extends VBox {
 	private Set<String> rules = new HashSet<String>();
 	private Set<String> characteristics = new HashSet<String>();
 	
-	public RulesAndCharVBox(Set<String> rules, Set<String> characteristics){
+	private DialogTableView rulesTableView;
+	
+	public RulesAndCharPane(Set<String> rules, Set<String> characteristics){
 		this.rules = rules;
 		this.characteristics = characteristics;
 		loadCharacteristics();
-		characteristicsScrollPane.setContent(characteristicsListView);
 		loadRules();
-		rulesScrollPane.setContent(rulesListView);
+		
 		addActionToSaveBtn();
-		this.getChildren().addAll(characteristicsScrollPane, rulesScrollPane, saveBtn);
 		
 	}
 	
 	private void loadRules(){
 		
 		SAXParserFactory saxParserFactory = SAXParserFactory.newInstance();
+		List<RuleParams> rulesParams = new ArrayList<RuleParams>();
 	    try {
 	        SAXParser saxParser = saxParserFactory.newSAXParser();
 	 
@@ -61,19 +62,26 @@ public class RulesAndCharVBox extends VBox {
 	        saxParser.parse(new 
 	        		File("src/voogasalad_GucciGames/gameAuthoring/gui/gaedialog/mapobjectsettings/xml/ruleDependencies.xml"), 
 	        		handler);
-	        List<RuleParams> rulesParams = handler.getRuleParams();
-	        for(RuleParams param : rulesParams){     	
-	        	RuleListItem r = new RuleListItem(param.getDisplayName());
-	        	rulesListView.addListItem(r);
-	        }
-	           
+	        rulesParams = handler.getRuleParams();	       
+	          
 	    } catch (ParserConfigurationException | SAXException | IOException ex) {
 	        ex.printStackTrace();
 	    }
+	    List<TableElement> tableElements = new ArrayList<TableElement>();
+	    rulesParams.stream().forEach(p -> tableElements.add(new TableElement(p.getDisplayName(), "rule")));
+	    ObservableList<TableElement> data = FXCollections.observableArrayList(tableElements);
+	    this.rulesTableView = new DialogTableView(data, "Rules");
+	    this.add(rulesTableView, 0, 1);
 		
 	}
 	
 	private void loadCharacteristics(){
+		VBox charVBox = new VBox(5);
+		charVBox.setPadding(new Insets(5,5,5,5));
+		Label label = new Label("Characteristics");
+		label.setFont(new Font("Arial", 20));
+		charVBox.getChildren().add(label);
+		
 		SAXParserFactory saxParserFactory = SAXParserFactory.newInstance();
 	    try {
 	        SAXParser saxParser = saxParserFactory.newSAXParser();
@@ -84,14 +92,16 @@ public class RulesAndCharVBox extends VBox {
 	        		handler);
 	        List<CharacteristicsParam> charParams = handler.getCharParams();
 	        for(CharacteristicsParam param : charParams){
-	        	
-	        	CharacteristicsListItem c = new CharacteristicsListItem(param.getDisplayName(), param.getName(), param.getMin(), param.getMax(), 1);
-	        	characteristicsListView.addListItem(c);
+	        	CharGridPane p = new CharGridPane(param);
+	        	Label labelChar = new Label(param.getName());
+	        	charVBox.getChildren().add(labelChar);
+	        	charVBox.getChildren().add(p);
 	        }
 	           
 	    } catch (ParserConfigurationException | SAXException | IOException ex) {
 	        ex.printStackTrace();
 	    }
+	    this.add(charVBox, 1, 1);
 		
 	}
 	

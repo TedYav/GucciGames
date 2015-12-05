@@ -31,6 +31,7 @@ public class NamePane extends GridPane {
 		this.add(textField, 1, 1);
 		this.add(nextBtn, 2, 2);
 		this.setPadding(new Insets(50, 50, 50, 50));
+		this.setVgap(10);
 		init();
 	}
 	
@@ -39,7 +40,7 @@ public class NamePane extends GridPane {
 			if(validate()){
 				Reflection reflection = new Reflection();
 				paneController.switchGroovyPane(reflection.createInstance(
-						path + type + "Pane", textField.getText()), 
+						path + type + "Pane", textField.getText(), paneController), 
 						"Custom " + type);
 			}
 			
@@ -53,9 +54,7 @@ public class NamePane extends GridPane {
 		} catch(Exception e){
 			nextBtn.setDisable(true);
 			return false;
-		}
-		
-		
+		}		
 	}
 
 }

@@ -1,45 +1,40 @@
 package voogasalad_GucciGames.gameAuthoring.gui.gaedialog.paramObjects;
 
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Set;
+
 public class CharacteristicsParam {
 
 	private String name;
 	private String displayName;
-	private double param;
-	private double min;
-	private double max;
+	private Map<String, String> params = new HashMap<String, String>();
+
 	
 	public CharacteristicsParam(String name){
 		this.setName(name);
 	}
-	public CharacteristicsParam (String name, double param){
-		this.setName(name);
-		this.setParam(param);
-		
-	}
+
 	public String getName() {
 		return name;
 	}
 	public void setName(String name) {
 		this.name = name;
 	}
-	public double getParam() {
-		return param;
+	
+	public void addParam(String type, String name){
+		params.put(name, type);
 	}
-	public void setParam(double param) {
-		this.param = param;
+	
+	public void removeParam(String name){
+		params.remove(name);
 	}
-	public double getMin() {
-		return min;
+	
+	public Map<String, String> getAllParams(){
+		return params;
 	}
-	public void setMin(String min) {
-		this.min = Double.parseDouble(min);
-	}
-	public double getMax() {
-		return max;
-	}
-	public void setMax(String max) {
-		this.max = Double.parseDouble(max);
-	}
+
+	
 	public String getDisplayName() {
 		return displayName;
 	}
