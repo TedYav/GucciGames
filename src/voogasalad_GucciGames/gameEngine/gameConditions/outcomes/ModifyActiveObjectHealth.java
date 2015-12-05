@@ -25,9 +25,11 @@ public class ModifyActiveObjectHealth extends Outcome {
 	@Override
 	ChangedParameters applyOutcome(BasicParameters params, ChangedParameters changedParams, int i) {
 		MapObject obj = params.getCalledMe();
-		HealthCharacteristic objChar = (HealthCharacteristic) obj.getCharacteristic(HEALTH);
-		objChar.changeHealth(deltaHealth);
-		changedParams.addUnit(obj);
+		if (obj.containsCharacteristic(HEALTH)) {
+			HealthCharacteristic objChar = (HealthCharacteristic) obj.getCharacteristic(HEALTH);
+			objChar.changeHealth(deltaHealth);
+			changedParams.addUnit(obj);
+		}
 		return changedParams;
 	}
 

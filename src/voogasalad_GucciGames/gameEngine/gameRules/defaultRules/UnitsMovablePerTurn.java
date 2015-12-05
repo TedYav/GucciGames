@@ -11,15 +11,14 @@ import voogasalad_GucciGames.gameEngine.gameRules.Rules;
  *
  */
 public class UnitsMovablePerTurn extends Rules {
-	RuleParams myParams;
+	private RuleParams myParams;
 
-	public UnitsMovablePerTurn(RuleParams ruleParams, BasicParameters params) {
-		super(ruleParams, params);
+	public UnitsMovablePerTurn(RuleParams ruleParams) {
+		super(ruleParams);
 		myParams = ruleParams;
 	}
 
 	public UnitsMovablePerTurn() {
-		// TODO Auto-generated constructor stub
 	}
 
 	@Override
@@ -27,7 +26,7 @@ public class UnitsMovablePerTurn extends Rules {
 		GamePlayerPerson player = communicationParams.getEngine().getPlayers().getPlayerById(communicationParams.getCalledMe().getPlayerID());
 		int playerAllowedMoves = player.getAllowedMovesPerTurn();
 		int playerCurrentMoves = player.getMovesDoneThisTurn();
-		if (playerAllowedMoves == -1) {
+		if (playerAllowedMoves == 1000) {
 			return true;
 		} else {
 			if (playerCurrentMoves < playerAllowedMoves) {

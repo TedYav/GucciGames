@@ -16,10 +16,14 @@ import voogasalad_GucciGames.gameEngine.gamePlayer.GamePlayerPerson;
  */
 public abstract class Outcome {
 	private List<Conditions> myConditions = new ArrayList<Conditions>();
-	private OutcomeParams myOutcomeParams;
+	private OutcomeParams myOutcomeParams = new OutcomeParams();
 
 	public Outcome(List<Conditions> conditions, OutcomeParams outcomeParams) {
+		this(outcomeParams);
 		myConditions = conditions;
+	}
+
+	public Outcome(OutcomeParams outcomeParams) {
 		myOutcomeParams = outcomeParams;
 
 	}
@@ -35,12 +39,12 @@ public abstract class Outcome {
 	}
 
 	public final ChangedParameters executeOutcome(BasicParameters params, ChangedParameters changedParams) {
-		//for every affected player, check conditions, then apply outcome.
+		// for every affected player, check conditions, then apply outcome.
 		List<Integer> players = myOutcomeParams.getPlayerID();
 		for (int i = 0; i < players.size(); i++) {
 			GamePlayerPerson cur = params.getEngine().getPlayers().getPlayerById(players.get(i));
-			if (checkConditions(params,cur)) {
-				changedParams = applyOutcome(params, changedParams,players.get(i));
+			if (checkConditions(params, cur)) {
+				changedParams = applyOutcome(params, changedParams, players.get(i));
 			}
 		}
 
