@@ -1,8 +1,10 @@
 package voogasalad_GucciGames.demo;
 
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.TreeMap;
-
 import javafx.application.Application;
 import javafx.stage.Stage;
 import voogasalad_GucciGames.gameData.XStreamGameEngine;
@@ -13,9 +15,16 @@ import voogasalad_GucciGames.gameEngine.defaultCharacteristics.AttackCharacteris
 import voogasalad_GucciGames.gameEngine.defaultCharacteristics.HealthCharacteristic;
 import voogasalad_GucciGames.gameEngine.defaultCharacteristics.HealthCharacteristic;
 import voogasalad_GucciGames.gameEngine.defaultCharacteristics.MovableCharacteristic;
+import voogasalad_GucciGames.gameEngine.gameConditions.Conditions;
+import voogasalad_GucciGames.gameEngine.gameConditions.defaultConditions.CheckOnePlayerLeft;
+import voogasalad_GucciGames.gameEngine.gameConditions.outcomes.EndGame;
+import voogasalad_GucciGames.gameEngine.gameConditions.outcomes.Outcome;
+import voogasalad_GucciGames.gameEngine.gameConditions.outcomes.OutcomeParams;
 import voogasalad_GucciGames.gameEngine.gamePlayer.AllPlayers;
 import voogasalad_GucciGames.gameEngine.gamePlayer.GamePlayerPerson;
 import voogasalad_GucciGames.gameEngine.gamePlayer.MovablePlayerCharacteristic;
+import voogasalad_GucciGames.gameEngine.gameRules.Rules;
+import voogasalad_GucciGames.gameEngine.gameRules.defaultRules.PlayersActivePerTurn;
 import voogasalad_GucciGames.gameEngine.mapObject.MapObject;
 import voogasalad_GucciGames.gameEngine.objectActions.AttackEvent;
 import voogasalad_GucciGames.gameEngine.objectActions.MapObjectEventHandler;
@@ -75,11 +84,25 @@ public class DemoMaker extends Application{
 
 		MovableCharacteristic myMovableCharacteristic = new MovableCharacteristic(1, 3);
 		HealthCharacteristic myHealthCharacteristic = new HealthCharacteristic(5);
+                PlayersActivePerTurn moveOwn = new PlayersActivePerTurn();
 
-		MoveEvent myMoveEvent = new MoveEvent("Move",null,null);
+                List<Rules> moveRules = new ArrayList<Rules>();
+                moveRules.add(moveOwn);
+		MoveEvent myMoveEvent = new MoveEvent("Move",moveRules,new ArrayList<Outcome>());
 		soldier.addEvent("Move", myMoveEvent);
 
-		AttackEvent myAttackEvent = new AttackEvent("Attack",null,null);
+		Conditions onePlayerLeft = new CheckOnePlayerLeft(new HashMap<String,Object>());
+		List<Conditions> endGameConditions = new ArrayList<Conditions>();
+		endGameConditions.add(onePlayerLeft);
+		OutcomeParams oParams = new OutcomeParams();
+		oParams.setPlayerID(0);
+                oParams.setPlayerID(1);
+		Outcome endGame = new EndGame(endGameConditions, oParams);
+		List<Outcome> attackOutcomes = new ArrayList<Outcome>();
+		attackOutcomes.add(endGame);
+		List<Rules> attackRules = new ArrayList<Rules>();
+		attackRules.add(moveOwn);
+		AttackEvent myAttackEvent = new AttackEvent("Attack",attackRules,attackOutcomes);
 		AttackCharacteristic myAttackCharacteristic = new AttackCharacteristic(3, 100, 2);
 
 

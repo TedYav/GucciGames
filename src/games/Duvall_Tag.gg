@@ -1,19 +1,4 @@
-Èv zT—/}¥øhæ	?Ö˙§m¨DpÃÂ¨ë˜'<voogasalad__GucciGames.gameData.wrapper.GameInfo>
-  <myRightComponents>
-    <string>voogasalad_GucciGames.gameplayer.windows.mainwindow.components.bar.ActionDisplay</string>
-    <string>voogasalad_GucciGames.gameplayer.windows.mainwindow.components.bar.BuildUnitsDisplay</string>
-    <string>voogasalad_GucciGames.gameplayer.windows.mainwindow.components.bar.EndTurnButton</string>
-    <string>voogasalad_GucciGames.gameplayer.windows.mainwindow.components.bar.GameStatsDisplay</string>
-  </myRightComponents>
-  <myLeftComponents>
-    <string>voogasalad_GucciGames.gameplayer.windows.mainwindow.components.bar.DisplayMapObjectImage</string>
-    <string>voogasalad_GucciGames.gameplayer.windows.mainwindow.components.bar.DisplayMapObjectDetails</string>
-    <string>voogasalad_GucciGames.gameplayer.windows.mainwindow.components.bar.DisplayChat</string>
-    <string>voogasalad_GucciGames.gameplayer.windows.mainwindow.map.mini.MiniMap</string>
-  </myLeftComponents>
-  <myBottomComponents>
-    <string>voogasalad_GucciGames.gameplayer.windows.mainwindow.components.bar.MainMenuButton</string>
-  </myBottomComponents>
+Ã©Q˙Ã‚ø∏d9À&Ïπ¡1∫xsô≥Ÿ#êÊ≥mq6<voogasalad__GucciGames.gameData.wrapper.GameInfo>
   <myLevelsMap class="tree-map">
     <entry>
       <int>0</int>
@@ -388,8 +373,10 @@
                           <voogasalad__GucciGames.gameEngine.objectActions.MoveEvent>
                             <myName>Move</myName>
                             <myRuleList>
+                              <voogasalad__GucciGames.gameEngine.gameRules.defaultRules.PlayersActivePerTurn/>
                               <voogasalad__GucciGames.gameEngine.gameRules.defaultRules.UnitsMovablePerTurn/>
                             </myRuleList>
+                            <myOutcomes/>
                           </voogasalad__GucciGames.gameEngine.objectActions.MoveEvent>
                         </entry>
                         <entry>
@@ -397,10 +384,28 @@
                           <voogasalad__GucciGames.gameEngine.objectActions.AttackEvent>
                             <myName>Attack</myName>
                             <myRuleList>
+                              <voogasalad__GucciGames.gameEngine.gameRules.defaultRules.PlayersActivePerTurn reference="../../../../entry/voogasalad__GucciGames.gameEngine.objectActions.MoveEvent/myRuleList/voogasalad__GucciGames.gameEngine.gameRules.defaultRules.PlayersActivePerTurn"/>
                               <voogasalad__GucciGames.gameEngine.gameRules.defaultRules.AttacksPerTurn>
                                 <objectAllowedAttacks>0</objectAllowedAttacks>
                               </voogasalad__GucciGames.gameEngine.gameRules.defaultRules.AttacksPerTurn>
                             </myRuleList>
+                            <myOutcomes>
+                              <voogasalad__GucciGames.gameEngine.gameConditions.outcomes.EndGame>
+                                <myConditions>
+                                  <voogasalad__GucciGames.gameEngine.gameConditions.defaultConditions.CheckOnePlayerLeft>
+                                    <myParams/>
+                                  </voogasalad__GucciGames.gameEngine.gameConditions.defaultConditions.CheckOnePlayerLeft>
+                                </myConditions>
+                                <myOutcomeParams>
+                                  <myArguments/>
+                                  <playerID>
+                                    <int>0</int>
+                                    <int>1</int>
+                                  </playerID>
+                                  <objectID/>
+                                </myOutcomeParams>
+                              </voogasalad__GucciGames.gameEngine.gameConditions.outcomes.EndGame>
+                            </myOutcomes>
                           </voogasalad__GucciGames.gameEngine.objectActions.AttackEvent>
                         </entry>
                       </myEvents>
@@ -494,7 +499,7 @@
           <mapDimensions>0</mapDimensions>
           <myMapWidth>4</myMapWidth>
           <myMapHeight>4</myMapHeight>
-          <myName>Game 3026</myName>
+          <myName>Game 4637</myName>
           <gameWon>false</gameWon>
         </myEngine>
         <myID>0</myID>
@@ -1788,8 +1793,10 @@
                           <voogasalad__GucciGames.gameEngine.objectActions.MoveEvent>
                             <myName>Move</myName>
                             <myRuleList>
+                              <voogasalad__GucciGames.gameEngine.gameRules.defaultRules.PlayersActivePerTurn/>
                               <voogasalad__GucciGames.gameEngine.gameRules.defaultRules.UnitsMovablePerTurn/>
                             </myRuleList>
+                            <myOutcomes/>
                           </voogasalad__GucciGames.gameEngine.objectActions.MoveEvent>
                         </entry>
                         <entry>
@@ -1797,10 +1804,28 @@
                           <voogasalad__GucciGames.gameEngine.objectActions.AttackEvent>
                             <myName>Attack</myName>
                             <myRuleList>
+                              <voogasalad__GucciGames.gameEngine.gameRules.defaultRules.PlayersActivePerTurn reference="../../../../entry/voogasalad__GucciGames.gameEngine.objectActions.MoveEvent/myRuleList/voogasalad__GucciGames.gameEngine.gameRules.defaultRules.PlayersActivePerTurn"/>
                               <voogasalad__GucciGames.gameEngine.gameRules.defaultRules.AttacksPerTurn>
                                 <objectAllowedAttacks>0</objectAllowedAttacks>
                               </voogasalad__GucciGames.gameEngine.gameRules.defaultRules.AttacksPerTurn>
                             </myRuleList>
+                            <myOutcomes>
+                              <voogasalad__GucciGames.gameEngine.gameConditions.outcomes.EndGame>
+                                <myConditions>
+                                  <voogasalad__GucciGames.gameEngine.gameConditions.defaultConditions.CheckOnePlayerLeft>
+                                    <myParams/>
+                                  </voogasalad__GucciGames.gameEngine.gameConditions.defaultConditions.CheckOnePlayerLeft>
+                                </myConditions>
+                                <myOutcomeParams>
+                                  <myArguments/>
+                                  <playerID>
+                                    <int>0</int>
+                                    <int>1</int>
+                                  </playerID>
+                                  <objectID/>
+                                </myOutcomeParams>
+                              </voogasalad__GucciGames.gameEngine.gameConditions.outcomes.EndGame>
+                            </myOutcomes>
                           </voogasalad__GucciGames.gameEngine.objectActions.AttackEvent>
                         </entry>
                       </myEvents>
@@ -2206,7 +2231,7 @@
           <mapDimensions>0</mapDimensions>
           <myMapWidth>8</myMapWidth>
           <myMapHeight>8</myMapHeight>
-          <myName>Game 3617</myName>
+          <myName>Game 8449</myName>
           <gameWon>false</gameWon>
         </myEngine>
         <myID>1</myID>
@@ -9884,8 +9909,10 @@
                           <voogasalad__GucciGames.gameEngine.objectActions.MoveEvent>
                             <myName>Move</myName>
                             <myRuleList>
+                              <voogasalad__GucciGames.gameEngine.gameRules.defaultRules.PlayersActivePerTurn/>
                               <voogasalad__GucciGames.gameEngine.gameRules.defaultRules.UnitsMovablePerTurn/>
                             </myRuleList>
+                            <myOutcomes/>
                           </voogasalad__GucciGames.gameEngine.objectActions.MoveEvent>
                         </entry>
                         <entry>
@@ -9893,10 +9920,28 @@
                           <voogasalad__GucciGames.gameEngine.objectActions.AttackEvent>
                             <myName>Attack</myName>
                             <myRuleList>
+                              <voogasalad__GucciGames.gameEngine.gameRules.defaultRules.PlayersActivePerTurn reference="../../../../entry/voogasalad__GucciGames.gameEngine.objectActions.MoveEvent/myRuleList/voogasalad__GucciGames.gameEngine.gameRules.defaultRules.PlayersActivePerTurn"/>
                               <voogasalad__GucciGames.gameEngine.gameRules.defaultRules.AttacksPerTurn>
                                 <objectAllowedAttacks>0</objectAllowedAttacks>
                               </voogasalad__GucciGames.gameEngine.gameRules.defaultRules.AttacksPerTurn>
                             </myRuleList>
+                            <myOutcomes>
+                              <voogasalad__GucciGames.gameEngine.gameConditions.outcomes.EndGame>
+                                <myConditions>
+                                  <voogasalad__GucciGames.gameEngine.gameConditions.defaultConditions.CheckOnePlayerLeft>
+                                    <myParams/>
+                                  </voogasalad__GucciGames.gameEngine.gameConditions.defaultConditions.CheckOnePlayerLeft>
+                                </myConditions>
+                                <myOutcomeParams>
+                                  <myArguments/>
+                                  <playerID>
+                                    <int>0</int>
+                                    <int>1</int>
+                                  </playerID>
+                                  <objectID/>
+                                </myOutcomeParams>
+                              </voogasalad__GucciGames.gameEngine.gameConditions.outcomes.EndGame>
+                            </myOutcomes>
                           </voogasalad__GucciGames.gameEngine.objectActions.AttackEvent>
                         </entry>
                       </myEvents>
@@ -12278,7 +12323,7 @@
           <mapDimensions>0</mapDimensions>
           <myMapWidth>20</myMapWidth>
           <myMapHeight>20</myMapHeight>
-          <myName>Game 713</myName>
+          <myName>Game 1679</myName>
           <gameWon>false</gameWon>
         </myEngine>
         <myID>2</myID>
@@ -12290,4 +12335,59 @@
   </myLevelsMap>
   <myLevelID>3</myLevelID>
   <myGameName>Duvall Tag</myGameName>
+  <guiData>
+    <myRightComponents class="java.util.Arrays$ArrayList">
+      <a class="string-array">
+        <string>voogasalad_GucciGames.gameplayer.windows.mainwindow.components.bar.ActionDisplay</string>
+        <string>voogasalad_GucciGames.gameplayer.windows.mainwindow.components.bar.BuildUnitsDisplay</string>
+        <string>voogasalad_GucciGames.gameplayer.windows.mainwindow.components.bar.EndTurnButton</string>
+        <string>voogasalad_GucciGames.gameplayer.windows.mainwindow.components.bar.GameStatsDisplay</string>
+      </a>
+    </myRightComponents>
+    <myLeftComponents class="java.util.Arrays$ArrayList">
+      <a class="string-array">
+        <string>voogasalad_GucciGames.gameplayer.windows.mainwindow.components.bar.DisplayMapObjectImage</string>
+        <string>voogasalad_GucciGames.gameplayer.windows.mainwindow.components.bar.DisplayMapObjectDetails</string>
+        <string>voogasalad_GucciGames.gameplayer.windows.mainwindow.components.bar.DisplayChat</string>
+        <string>voogasalad_GucciGames.gameplayer.windows.mainwindow.map.mini.MiniMap</string>
+      </a>
+    </myLeftComponents>
+    <myBottomComponents class="java.util.Arrays$ArrayList">
+      <a class="string-array">
+        <string>voogasalad_GucciGames.gameplayer.windows.mainwindow.components.bar.MainMenuButton</string>
+      </a>
+    </myBottomComponents>
+    <myComponents>
+      <entry>
+        <string>Left</string>
+        <java.util.Arrays_-ArrayList>
+          <a class="string-array">
+            <string>voogasalad_GucciGames.gameplayer.windows.mainwindow.components.bar.DisplayMapObjectImage</string>
+            <string>voogasalad_GucciGames.gameplayer.windows.mainwindow.components.bar.DisplayMapObjectDetails</string>
+            <string>voogasalad_GucciGames.gameplayer.windows.mainwindow.components.bar.DisplayChat</string>
+            <string>voogasalad_GucciGames.gameplayer.windows.mainwindow.map.mini.MiniMap</string>
+          </a>
+        </java.util.Arrays_-ArrayList>
+      </entry>
+      <entry>
+        <string>Right</string>
+        <java.util.Arrays_-ArrayList>
+          <a class="string-array">
+            <string>voogasalad_GucciGames.gameplayer.windows.mainwindow.components.bar.ActionDisplay</string>
+            <string>voogasalad_GucciGames.gameplayer.windows.mainwindow.components.bar.BuildUnitsDisplay</string>
+            <string>voogasalad_GucciGames.gameplayer.windows.mainwindow.components.bar.EndTurnButton</string>
+            <string>voogasalad_GucciGames.gameplayer.windows.mainwindow.components.bar.GameStatsDisplay</string>
+          </a>
+        </java.util.Arrays_-ArrayList>
+      </entry>
+      <entry>
+        <string>Bottom</string>
+        <java.util.Arrays_-ArrayList>
+          <a class="string-array">
+            <string>voogasalad_GucciGames.gameplayer.windows.mainwindow.components.bar.MainMenuButton</string>
+          </a>
+        </java.util.Arrays_-ArrayList>
+      </entry>
+    </myComponents>
+  </guiData>
 </voogasalad__GucciGames.gameData.wrapper.GameInfo>

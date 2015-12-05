@@ -2,7 +2,6 @@
 package voogasalad_GucciGames.gameEngine.gameConditions.outcomes;
 
 import java.util.List;
-import java.util.Map;
 
 import voogasalad_GucciGames.gameEngine.CommunicationParameters.BasicParameters;
 import voogasalad_GucciGames.gameEngine.CommunicationParameters.ChangedParameters;
@@ -15,18 +14,16 @@ import voogasalad_GucciGames.gameEngine.gameConditions.Conditions;
  */
 public class ModifyWealth extends Outcome {
 	private static final String WEALTH = "wealth";
-	Map<String, Object> myParams;
 
-	public ModifyWealth(List<Conditions> conditions, Map<String, Object> params) {
-		super(conditions, params);
-		myParams = params;
+	public ModifyWealth(List<Conditions> conditions,  OutcomeParams conditionParams) {
+		super(conditions, conditionParams);
 	}
 
 	@Override
-	ChangedParameters applyOutcome(BasicParameters params,ChangedParameters changedParams, int i) {
-		int delta = (int) myParams.get(WEALTH);
-		params.getEngine().getPlayers().getActivePlayer(i).getWealth().modifyWealth(delta);
-		changedParams.addPlayer(i);
+	ChangedParameters applyOutcome(BasicParameters params, ChangedParameters changedParams, int playerID) {
+		int delta = (int) this.getMyParams().getArgumentValue(WEALTH);
+			params.getEngine().getPlayers().getActivePlayer(playerID).getWealth().modifyWealth(delta);
+			changedParams.addPlayer(playerID);
 		return changedParams;
 	}
 
