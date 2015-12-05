@@ -93,16 +93,18 @@ public class MainGameScene extends GameScene {
         myRightBar = new RightBar(this, myController, rightComponents);
         myPane.setRight(myRightBar.getParent());
         
+        
+        // forgive me father for I have sinned, I did not want to edit his code
         myBottomBar = new BottomBar(this,myController, bottomComponents);
-        myPane.setBottom(myBottomBar.getParent());
+        myPane.setTop(myBottomBar.getParent());
 
 //	    FileItem file = new FileItem(null,myManager.getStage()); //TODO: create for properties file?
 //	    List<GameMenu> listOfGameMenus = new ArrayList<GameMenu>();
 //	    listOfGameMenus.add(file);
 //	    myMenuBar = new GameMenuBar(listOfGameMenus);
 //	    myPane.setTop(myMenuBar.returnToolbar());
-	    myTopBar = new TopBar(this, myController);
-	    myPane.setTop(myTopBar.getParent());
+//	    myTopBar = new TopBar(this, myController);
+//	    myPane.setTop(myTopBar.getParent());
 
         enableObservers();
 

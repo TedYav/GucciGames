@@ -41,7 +41,7 @@ public class DisplayMapObjectImage extends DisplayComponent implements ListChang
     }
     private void initializeImage(PlayerMapObjectInterface m) {
         if (m!=null) {
-            buffer = getController().requestImage(m.getImageURI());
+            buffer = getController().getResource().getImage(m.getImageURI());
         }
         imgView=new ImageView(buffer);
         imgView.setPreserveRatio(true);
