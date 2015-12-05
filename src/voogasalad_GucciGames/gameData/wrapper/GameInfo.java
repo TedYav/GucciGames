@@ -22,64 +22,25 @@ import voogasalad_GucciGames.gameplayer.windows.mainwindow.components.DisplayCom
 
 public class GameInfo implements IGameInfoToGAE, GameInfoToGamePlayer{
 	private static final int MAINMENU = -1;
-	// these will hold the components which go in each part of the player gui
-	// format can be changed
-	private List<String> myRightComponents;	// hold class names
-	private List<String> myLeftComponents;
-	private List<String> myBottomComponents;
 	
 	private Map<Integer,GameLevel> myLevelsMap;
 	private int myLevelID = 0;
 	private String myGameName;
 	private List<GameLevel> myChoosableLevelsList;
+	private GuiData guiData;
 	
 	public GameInfo(String gameName){
-		this(gameName, defaultLeft(), defaultRight(), defaultBottom());
-	}
-	
-	// TODO: CHANGE THIS -> JOHN DAI
-	
-	private static List<String> defaultBottom() {
-	
-     List<String> bottomComponents=new ArrayList<String>();
-         bottomComponents.add("voogasalad_GucciGames.gameplayer.windows.mainwindow.components.bar.MainMenuButton");
-        
-         // REMOVED UNTIL WE MAKE DISPLAYCOMPONENT AND WINDOWCOMPONENT INTERCHANGEABLE
-         //bottomComponents.add("voogasalad_GucciGames.gameplayer.windows.mainwindow.map.mini.MiniMap");
-         return bottomComponents;
+		this(gameName, new GuiData());
 	}
 
-	private static List<String> defaultRight() {
-        List<String> rightComponents=new ArrayList<String>();
-		 rightComponents.add("voogasalad_GucciGames.gameplayer.windows.mainwindow.components.bar.ActionDisplay");
-	     rightComponents.add("voogasalad_GucciGames.gameplayer.windows.mainwindow.components.bar.BuildUnitsDisplay");
-	     rightComponents.add("voogasalad_GucciGames.gameplayer.windows.mainwindow.components.bar.EndTurnButton");
-	     rightComponents.add("voogasalad_GucciGames.gameplayer.windows.mainwindow.components.bar.GameStatsDisplay");
-	     return rightComponents;
-	}
-
-	private static List<String> defaultLeft() {
-		 List<String> leftComponents=new ArrayList<String>();
-	     leftComponents.add("voogasalad_GucciGames.gameplayer.windows.mainwindow.components.bar.DisplayMapObjectImage");
-	     leftComponents.add("voogasalad_GucciGames.gameplayer.windows.mainwindow.components.bar.DisplayMapObjectDetails");
-	     leftComponents.add("voogasalad_GucciGames.gameplayer.windows.mainwindow.components.bar.DisplayChat");
-	     leftComponents.add("voogasalad_GucciGames.gameplayer.windows.mainwindow.map.mini.MiniMap");
-	     return leftComponents;
-	}
-
-	public GameInfo(String gameName, List<String> leftComponents, List<String> rightComponents, List<String> bottomComponents){
+	public GameInfo(String gameName, GuiData gui){
 	    myLevelsMap = new TreeMap<Integer,GameLevel>();
 	    myGameName = gameName;
-	    myRightComponents=rightComponents;
-	    myLeftComponents=leftComponents;
-	    myBottomComponents=bottomComponents;
+	    guiData=gui;
 	}
 	
-	public GameInfo(List<String> leftComponents, List<String> rightComponents, List<String> bottomComponents){
-	    myLeftComponents=leftComponents;
-	    myRightComponents=rightComponents;
-	    myBottomComponents=bottomComponents;
-	    
+	public GameInfo(GuiData gui){
+	    guiData=gui;
 	    myLevelsMap = new TreeMap<Integer,GameLevel>();
 	    myGameName = "Game " + Math.round((Math.random()*10000));
 	}
@@ -188,16 +149,12 @@ public class GameInfo implements IGameInfoToGAE, GameInfoToGamePlayer{
 		return levelNames;
 	}
 
-	public List<String> getLeftComponents() {
-	    return myLeftComponents;
+	public List<String> getGuiComponents(String location) {
+	    return guiData.getComponents(location);
 	}
-	public List<String> getRightComponents() {
-	    return myRightComponents;
+	public void setGuiComponents(String location, List<String> components) {
+	    guiData.setComponents(location, components);
 	}
-
-    public List<String> getBottomComponents () {
-        return myBottomComponents;
-    }
 
 	@Override
 	public void setEngine(String gameName, MainGameEngine engine) {
@@ -208,8 +165,15 @@ public class GameInfo implements IGameInfoToGAE, GameInfoToGamePlayer{
 		}
 		
 	}
-    
 
+    public GuiData getGuiData () {
+        return guiData;
+    }
+
+    public void setGuiData (GuiData guiData) {
+        this.guiData = guiData;
+    }
+    
 
 }
 

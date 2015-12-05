@@ -9,10 +9,7 @@ public interface GameInfoToGamePlayer {
 	
 	public Map<Integer, IGameLevelToGamePlayer> getLevels();
 	
-	public List<String> getLeftComponents();
-	
-	public List<String> getRightComponents();
-
-    public List<String> getBottomComponents ();
+	public List<String> getGuiComponents(String location);
+	public void setGuiComponents(String location, List<String> components);
 	
 }
