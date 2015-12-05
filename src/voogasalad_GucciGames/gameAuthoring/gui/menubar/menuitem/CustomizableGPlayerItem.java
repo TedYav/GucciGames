@@ -14,7 +14,7 @@ public class CustomizableGPlayerItem extends Menu{
 		setAccelerator(KeyCombination.keyCombination("Ctrl+G"));
 		setOnAction(e -> {
 			CustomGPlayerDialog  customGamePlayerDialog = new CustomGPlayerDialog((IDialogGaeController)controller,(IGuiGaeController)controller);
-			customGamePlayerDialog.showCustomGPlayerDialog();
+			customGamePlayerDialog.showAndWait();
 			//controller.saveToXML();
 			//TODO
 		});
