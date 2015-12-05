@@ -26,6 +26,7 @@ public class ModifyWealth extends Outcome {
 	ChangedParameters applyOutcome(BasicParameters params,ChangedParameters changedParams, int i) {
 		int delta = (int) myParams.get(WEALTH);
 		params.getEngine().getPlayers().getActivePlayer(i).getWealth().modifyWealth(delta);
+		changedParams.addPlayer(i);
 		return changedParams;
 	}
 
