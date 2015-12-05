@@ -9,15 +9,15 @@ import org.xml.sax.Attributes;
 import org.xml.sax.SAXException;
 import org.xml.sax.helpers.DefaultHandler;
 
+import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.groovySettings.groovyParams.GCharParam;
 import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.maindialogs.GaeDialogHelper;
 import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.paramObjects.ActionParams;
-import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.paramObjects.CharacteristicsParam;
 
 public class CharacteristicsSAXHandler extends DefaultHandler {
 	
 	private Set<String> selectedCharacteristics = new HashSet<String>();
-	private List<CharacteristicsParam> characteristicsParams = new ArrayList<CharacteristicsParam>();
-	private CharacteristicsParam characteristicsParam = null;
+	private List<GCharParam> characteristicsParams = new ArrayList<GCharParam>();
+	private GCharParam characteristicsParam = null;
 	private final GaeDialogHelper helper = new GaeDialogHelper();
 	
 	public CharacteristicsSAXHandler(Set<String> selectedCharacteristics ){
@@ -26,7 +26,7 @@ public class CharacteristicsSAXHandler extends DefaultHandler {
 	
 	private boolean bDisplayName = false;
 	
-	public List<CharacteristicsParam> getCharParams(){
+	public List<GCharParam> getCharParams(){
 		return characteristicsParams ;
 	}
 	  public void startElement(String uri, String localName,
@@ -34,7 +34,7 @@ public class CharacteristicsSAXHandler extends DefaultHandler {
 		        if("characteristic".equals(qName)){
 		            String name = attributes.getValue("name");
 		            if (selectedCharacteristics.contains(name)){
-		            	characteristicsParam = new CharacteristicsParam(name);
+		            	characteristicsParam = new GCharParam(name);
 		            	characteristicsParam.setDisplayName(attributes.getValue("displayName"));
 		            	List<String> paramNames = helper.parseStringToList(
 		            			attributes.getValue("paramNames"));

@@ -17,10 +17,14 @@ public abstract class MapObjectEvent implements IGamePlayerMapObjectAction {
 	private List<Rules> myRuleList = new ArrayList<Rules>();
 	private List<Outcome> myOutcomes = new ArrayList<Outcome>();
 
-	public MapObjectEvent(String actionName, List<Rules> rules, List<Outcome> outcomes) {
+	public MapObjectEvent(String actionName) {
 		myName = actionName;
-		myRuleList = rules;
-		myOutcomes = outcomes;
+	}
+
+	public MapObjectEvent(String actionName, List<Rules> rules, List<Outcome> outcomes) {
+		this(actionName);
+		myRuleList.addAll(rules);
+		myOutcomes.addAll(outcomes);
 	}
 
 	protected List<Rules> getRuleList() {
@@ -58,17 +62,15 @@ public abstract class MapObjectEvent implements IGamePlayerMapObjectAction {
 	protected abstract ChangedParameters executeAction(LocationParameters params);
 	
 	private ChangedParameters executeOutcome(BasicParameters basic, ChangedParameters changed){
-		this.myOutcomes.stream().forEach(outcome -> 
-		{
-			outcome.executeOutcome(basic, changed);
-		});
+		for(Outcome outcome: this.myOutcomes){
+			changed = outcome.executeOutcome(basic, changed);
+		}
 		return changed;
 	}
 
 	/*
 	 * Execution of request.
 	 */
-	
 	public final GridCoordinateParameters executeRequest(BasicParameters params, int playerID) {
 		return checkRules(playerID, params) ? executeRequest(params) : null;
 	}
