@@ -5,7 +5,7 @@ import java.util.Map;
 
 import voogasalad_GucciGames.gameEngine.defaultCharacteristics.HealthCharacteristic;
 import voogasalad_GucciGames.gameEngine.defaultCharacteristics.MovableCharacteristic;
-import voogasalad_GucciGames.gameEngine.defaultCharacteristics.RealHealthCharacteristic;
+import voogasalad_GucciGames.gameEngine.defaultCharacteristics.HealthCharacteristic;
 import voogasalad_GucciGames.gameEngine.gamePlayer.AllPlayers;
 import voogasalad_GucciGames.gameEngine.gamePlayer.GamePlayerPerson;
 import voogasalad_GucciGames.gameEngine.mapObject.MapObject;
@@ -35,7 +35,7 @@ public class Main {
 		engine.createTestCondition();
 		
 		MovableCharacteristic myMovableCharacteristic = new MovableCharacteristic(1, 3);
-		HealthCharacteristic myHealthCharacteristic = new RealHealthCharacteristic(5);
+		HealthCharacteristic myHealthCharacteristic = new HealthCharacteristic(5);
 		
 		MapObject soldier = new MapObject("soldier", "./../");
 		

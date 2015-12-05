@@ -14,7 +14,7 @@ import voogasalad_GucciGames.gameEngine.CommunicationParameters.BasicParameters;
 import voogasalad_GucciGames.gameEngine.defaultCharacteristics.AttackCharacteristic;
 import voogasalad_GucciGames.gameEngine.defaultCharacteristics.HealthCharacteristic;
 import voogasalad_GucciGames.gameEngine.defaultCharacteristics.MovableCharacteristic;
-import voogasalad_GucciGames.gameEngine.defaultCharacteristics.RealHealthCharacteristic;
+import voogasalad_GucciGames.gameEngine.defaultCharacteristics.HealthCharacteristic;
 import voogasalad_GucciGames.gameEngine.gamePlayer.AllPlayers;
 import voogasalad_GucciGames.gameEngine.gamePlayer.GamePlayerPerson;
 import voogasalad_GucciGames.gameEngine.gamePlayer.MovablePlayerCharacteristic;
@@ -69,7 +69,7 @@ public class DemoMaker extends Application{
 		myMapOfPlayers.get(1).setMovable(new MovablePlayerCharacteristic(2));
 
 		MovableCharacteristic myMovableCharacteristic = new MovableCharacteristic(1, 3);
-		HealthCharacteristic myHealthCharacteristic = new RealHealthCharacteristic(5);
+		HealthCharacteristic myHealthCharacteristic = new HealthCharacteristic(5);
 
 		MoveEvent myMoveEvent = new MoveEvent("Move");
 		soldier.addEvent("Move", myMoveEvent);
@@ -96,7 +96,7 @@ public class DemoMaker extends Application{
 				myMapOfPlayers.get(-1).getMapObjects().add(newObj);
 				if ((i+j)%9==0) {
 					MapObject arch = new MapObject(new TargetCoordinateSingle(i,j),1,1,"Student" , "player/images/smile.png");
-					arch.addCharacteristic("HealthCharacteristic", new RealHealthCharacteristic(10));
+					arch.addCharacteristic("HealthCharacteristic", new HealthCharacteristic(10));
 					arch.addCharacteristic("AttackCharacteristic", new AttackCharacteristic(3,5,2));
 					arch.addCharacteristic("MovableCharacteristic", new MovableCharacteristic(5,1));
 					arch.addEvent("Move", myMoveEvent);
