@@ -87,6 +87,10 @@ public class GAEGui extends BorderPane {
 	public Map<String, String> getMapForCustomTile() {
 		return null;
 	}
+	
+	public LevelTabPane getLevelTabPane(){
+		return myLevelTabPane;
+	}
 
 	public AGuiGaeController getController() {
 		return myController;

@@ -13,6 +13,7 @@ public class LevelTabPane extends TabPane{
 	
 	public LevelTabPane(AGuiGaeController controller, StatusBar statusBar){
 		LevelTab levelTab = new LevelTab(controller, statusBar, 1);
+		levelTab.setClosable(false);
 		this.getTabs().add(levelTab);
 		myController = controller;
 		myStatusBar = statusBar;
@@ -31,6 +32,7 @@ public class LevelTabPane extends TabPane{
 	public LevelTab createNewTab() {
 		int id = myTabs.size() + 1;
 		LevelTab newTab = new LevelTab(myController, myStatusBar,id);
+		this.getTabs().add(newTab);
 		myTabs.add(newTab);
 		return newTab;
 	}

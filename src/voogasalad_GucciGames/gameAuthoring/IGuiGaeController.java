@@ -1,5 +1,6 @@
 package voogasalad_GucciGames.gameAuthoring;
 
+import voogasalad_GucciGames.gameAuthoring.gui.levels.LevelTabPane;
 import voogasalad_GucciGames.gameAuthoring.gui.map.GridPoint;
 import voogasalad_GucciGames.gameAuthoring.model.DisplayMapObject;
 import voogasalad_GucciGames.gameAuthoring.model.MapObjectType;
@@ -80,4 +81,6 @@ public interface IGuiGaeController {
 	public List<String> getCustomGamePlayerBottomComponents();
 
 	public void setCustomGamePlayerBottomComponents(List<String> allComponents);
+	
+	public LevelTabPane getLevelTabPane();
 }
