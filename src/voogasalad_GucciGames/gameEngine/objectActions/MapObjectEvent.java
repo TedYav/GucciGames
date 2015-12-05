@@ -51,17 +51,33 @@ public abstract class MapObjectEvent implements IGamePlayerMapObjectAction {
 	}
 
 	// Must keep final
-	//TODO: loop over outcomes
+	
+	/*
+	 * Execution of Attack
+	 */
 	public final ChangedParameters executeAction(LocationParameters params, int playerID) {
-		return checkRules(playerID, params) ? executeAction(params) : null;
+		return checkRules(playerID, params) ? executeOutcome(params,executeAction(params)) : null;
+	}
+	
+	protected abstract ChangedParameters executeAction(LocationParameters params);
+	
+	private ChangedParameters executeOutcome(BasicParameters basic, ChangedParameters changed){
+		for(Outcome outcome: this.myOutcomes){
+			changed = outcome.executeOutcome(basic, changed);
+		}
+		return changed;
 	}
 
-	protected abstract ChangedParameters executeAction(LocationParameters params);
-
+	/*
+	 * Execution of request.
+	 */
 	public final GridCoordinateParameters executeRequest(BasicParameters params, int playerID) {
 		return checkRules(playerID, params) ? executeRequest(params) : null;
 	}
 
 	protected abstract GridCoordinateParameters executeRequest(BasicParameters params);
-
+	
+	public String getName(){
+		return this.myName;
+	}
 }

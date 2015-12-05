@@ -20,27 +20,23 @@ import voogasalad_GucciGames.gameplayer.windows.mainwindow.components.DisplayCom
  */
 
 
-public class GameInfo implements IGameInfoToGAE, GameInfoToGamePlayer{
+public class GameEngine extends AGameInfo implements IGameInfoToGAE, GameInfoToGamePlayer {
 	private static final int MAINMENU = -1;
+
 	
 	private Map<Integer,GameLevel> myLevelsMap;
 	private int myLevelID = 0;
 	private String myGameName;
 	private List<GameLevel> myChoosableLevelsList;
 	private GuiData guiData;
-	
-	public GameInfo(String gameName){
-		this(gameName, new GuiData());
-	}
 
-	public GameInfo(String gameName, GuiData gui){
+	public GameEngine(String gameName){
 	    myLevelsMap = new TreeMap<Integer,GameLevel>();
 	    myGameName = gameName;
-	    guiData=gui;
 	}
 	
-	public GameInfo(GuiData gui){
-	    guiData=gui;
+	public GameEngine(){
+	    
 	    myLevelsMap = new TreeMap<Integer,GameLevel>();
 	    myGameName = "Game " + Math.round((Math.random()*10000));
 	}
@@ -126,7 +122,8 @@ public class GameInfo implements IGameInfoToGAE, GameInfoToGamePlayer{
 			System.out.println("One or more level(s) not found");
 		}
 	}
-	
+    
+
 	// I'm sorry for the code below
 	// Java wouldn't let me modify the return type in the interface, don't know why
 	// :(
@@ -173,7 +170,7 @@ public class GameInfo implements IGameInfoToGAE, GameInfoToGamePlayer{
     public void setGuiData (GuiData guiData) {
         this.guiData = guiData;
     }
-    
+
 
 }
 

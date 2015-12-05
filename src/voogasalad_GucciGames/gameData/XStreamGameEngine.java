@@ -8,7 +8,7 @@ import java.util.ResourceBundle;
 import com.thoughtworks.xstream.XStream;
 import com.thoughtworks.xstream.io.xml.DomDriver;
 
-import voogasalad_GucciGames.gameData.wrapper.GameInfo;
+import voogasalad_GucciGames.gameData.wrapper.GameEngine;
 import voogasalad_GucciGames.gameEngine.GameEngineToGamePlayerInterface;
 
 public class XStreamGameEngine {
@@ -25,7 +25,7 @@ public class XStreamGameEngine {
     public XStreamGameEngine(){
     }
     
-    public void saveGameInfo(GameInfo game, File file) {
+    public void saveGameInfo(GameEngine game, File file) {
         try {
             String gameXML = serializer.toXML(game);
             myLoader.save(file, gameXML);
@@ -40,7 +40,7 @@ public class XStreamGameEngine {
      * @param game
      * @param filePath
      */
-    public void saveGameInfo(GameInfo game, String filePath) {
+    public void saveGameInfo(GameEngine game, String filePath) {
         saveGameInfo(game, new File(filePath));
     }
     
@@ -48,7 +48,7 @@ public class XStreamGameEngine {
      * Saves the GameInfo automatically based on the specified game's name.
      * @param game
      */
-    public void saveGameInfo(GameInfo game){
+    public void saveGameInfo(GameEngine game){
     	saveGameInfo(game, new File(gameNameToFileName(game.getGameName())));
     }
     
@@ -62,26 +62,26 @@ public class XStreamGameEngine {
 //        return loadEngine("");
 //    }
 
-    public GameInfo loadGameByName(String name){
+    public GameEngine loadGameByName(String name){
     	return loadGameInfo(new File(gameNameToFileName(name)));
     }
     
-    public GameInfo loadGameInfo(String path) {
+    public GameEngine loadGameInfo(String path) {
 //        if (path.isEmpty()) {
 //            path=defaultEngineLocation;
 //        }
         return loadGameInfo(new File(path));
     }
 
-    public GameInfo loadGameInfo(File file) {
+    public GameEngine loadGameInfo(File file) {
 //        if (file==null || !file.canRead()) {
 //            file = new File(defaultEngineLocation);
 //        }
         System.out.println("Loading engine.");
-        GameInfo game=null;
+        GameEngine game=null;
         try {
             String gameXML = myLoader.read(file);
-            game = (GameInfo) serializer.fromXML(gameXML);
+            game = (GameEngine) serializer.fromXML(gameXML);
         }
         catch (Exception e) {
             e.printStackTrace();

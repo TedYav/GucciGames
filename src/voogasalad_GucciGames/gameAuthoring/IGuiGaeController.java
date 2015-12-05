@@ -6,7 +6,7 @@ import voogasalad_GucciGames.gameAuthoring.model.DisplayMapObject;
 import voogasalad_GucciGames.gameAuthoring.model.MapObjectType;
 import voogasalad_GucciGames.gameAuthoring.properties.ObjectProperty;
 import voogasalad_GucciGames.gameAuthoring.properties.Property;
-import voogasalad_GucciGames.gameData.wrapper.GameInfo;
+import voogasalad_GucciGames.gameData.wrapper.GameEngine;
 
 import java.io.File;
 import java.util.ArrayList;
@@ -52,7 +52,7 @@ public interface IGuiGaeController {
 	@Deprecated
 	public void saveToXML(File file);
 
-	public void saveToXML(GameInfo game);
+	public void saveToXML(GameEngine game);
 	
 	public void setMapObjectTypeToMap(MapObjectType mapType);
 
