@@ -20,24 +20,21 @@ import voogasalad_GucciGames.gameplayer.windows.mainwindow.components.DisplayCom
  */
 
 
-public class GameEngine extends AGameInfo implements IGameInfoToGAE, GameInfoToGamePlayer {
+public class GameEngine implements IGameInfoToGAE {
 	private static final int MAINMENU = -1;
-
-	
-	private Map<Integer,GameLevel> myLevelsMap;
-	private int myLevelID = 0;
+	private Map<String,GameLevel> myLevelsMap;
 	private String myGameName;
 	private List<GameLevel> myChoosableLevelsList;
 	private GuiData guiData;
 
 	public GameEngine(String gameName){
-	    myLevelsMap = new TreeMap<Integer,GameLevel>();
+	    myLevelsMap = new TreeMap<String,GameLevel>();
 	    myGameName = gameName;
 	}
 	
 	public GameEngine(){
 	    
-	    myLevelsMap = new TreeMap<Integer,GameLevel>();
+	    myLevelsMap = new TreeMap<String,GameLevel>();
 	    myGameName = "Game " + Math.round((Math.random()*10000));
 	}
 	
@@ -56,13 +53,11 @@ public class GameEngine extends AGameInfo implements IGameInfoToGAE, GameInfoToG
 	@Override
 	public void addLevel(String gameName, boolean chooseable){
 		//At the moment, automatically sets next level as the next int in the map	
-		int nextID = myLevelID + 1;
-		GameLevel gameLevel = new GameLevel(myLevelID, nextID, gameName, chooseable);
+		GameLevel gameLevel = new GameLevel(gameName, chooseable);
 		if (chooseable){
 			myChoosableLevelsList.add(gameLevel);
 		}
-		myLevelsMap.put(myLevelID, gameLevel);
-		myLevelID++;
+		myLevelsMap.put(gameName, gameLevel);
 		
 //		return gameLevel;
 	}	

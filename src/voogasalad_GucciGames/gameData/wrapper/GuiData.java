@@ -9,7 +9,7 @@ import java.util.ResourceBundle;
 import java.util.TreeMap;
 
 
-public class GuiData extends AGameInfo {
+public class GuiData {
 	private transient ResourceBundle namesBundle = ResourceBundle.getBundle("voogasalad_GucciGames.gameData.config.GuiComponents");
 	private List<String> myRightComponents;	// hold class names
 	private List<String> myLeftComponents;
