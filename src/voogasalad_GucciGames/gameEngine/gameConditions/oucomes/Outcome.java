@@ -3,6 +3,7 @@ package voogasalad_GucciGames.gameEngine.gameConditions.oucomes;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Map;
 
 import voogasalad_GucciGames.gameEngine.CommunicationParameters.BasicParameters;
 import voogasalad_GucciGames.gameEngine.gameConditions.Conditions;
@@ -16,31 +17,30 @@ import voogasalad_GucciGames.gameEngine.gamePlayer.GamePlayerPerson;
 public abstract class Outcome {
 	private List<Conditions> myConditions = new ArrayList<Conditions>();
 
-	public Outcome(List<Conditions> conditions) {
-
+	public Outcome(List<Conditions> conditions, Map<String, Object> conditionParams) {
 		myConditions = conditions;
 	}
 
-
-	abstract void applyOutcome(BasicParameters params, int i);
+	abstract BasicParameters applyOutcome(BasicParameters params, int i);
 
 	public void addCondition(Conditions condition) {
 		myConditions.add(condition);
 	}
 
-	public final void executeOutcome(BasicParameters params) {
-		List<Integer> players = params.getEngine().getPlayers().getAllIds();//now checks every cond/outcome for all players. a list of players to check is useful
+	public final BasicParameters executeOutcome(BasicParameters params) {
+		List<Integer> players = params.getEngine().getPlayers().getAllIds();
 		for (int i = 0; i < players.size(); i++) {
-			GamePlayerPerson cur= params.getEngine().getPlayers().getPlayerById(players.get(i));
+			GamePlayerPerson cur = params.getEngine().getPlayers().getPlayerById(players.get(i));
 			if (checkConditions(cur)) {
-				applyOutcome(params,  cur.getMyPlayerId());
+				params = applyOutcome(params, cur.getMyPlayerId());
 			}
 		}
-
+		return params;// might need to change the return type
 	}
 
 	private Boolean checkConditions(GamePlayerPerson player) {
-		if (myConditions.isEmpty()) {
+
+		if (myConditions.isEmpty() || myConditions == null) {
 			return true;
 		} else {
 			Boolean flag = true;

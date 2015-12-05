@@ -1,5 +1,6 @@
 package voogasalad_GucciGames.gameAuthoring;
 
+import voogasalad_GucciGames.gameAuthoring.gui.levels.LevelTabPane;
 import voogasalad_GucciGames.gameAuthoring.gui.map.GridPoint;
 import voogasalad_GucciGames.gameAuthoring.model.DisplayMapObject;
 import voogasalad_GucciGames.gameAuthoring.model.MapObjectType;
@@ -23,7 +24,7 @@ public interface IGuiGaeController {
 	 * 
 	 * @param mapObj
 	 */
-	
+
 	public void initGrid(int width, int height);
 
 	public void deleteComponent(DisplayMapObject mapObj);
@@ -68,6 +69,7 @@ public interface IGuiGaeController {
 	public ImageView getMapObjectImage(MapObjectType object);
 
 	public ImageView getMapObjectImage(DisplayMapObject object);
+
 //
 //	public List<String> getCustomGamePlayerLeftComponents();
 //
@@ -84,4 +86,7 @@ public interface IGuiGaeController {
 	public List<String> getCustomGamePlayerComponents(String location);
 
 	public void setCustomGamePlayerComponents(String location, List<String> allComponents);
+
+	public LevelTabPane getLevelTabPane();
+
 }

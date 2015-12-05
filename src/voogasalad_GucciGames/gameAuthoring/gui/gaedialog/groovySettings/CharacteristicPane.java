@@ -22,6 +22,7 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
+import javafx.scene.text.Font;
 
 public class CharacteristicPane extends GridPane{
 	
@@ -37,36 +38,58 @@ public class CharacteristicPane extends GridPane{
 	
 
 	public CharacteristicPane(String name){
+		super();
 		tableView = new TableView();
 		nameLbl = new Label(name + " Characteristics");
+		nameLbl.setFont(new Font("Arial", 20));
 		data = FXCollections.observableArrayList(dataList);
+		this.setHgap(5);
+		this.setVgap(5);
 		setTable();
 		setAddElementHBox();
-		//this.setHalignment(vbox, HPos.CENTER);
-		this.setValignment(vbox, VPos.CENTER);
+		setControlBtn();
 		charParam = new CustomCharParams(name);
 		
 	
 	}
 	
 	public void setTable(){
-		TableColumn paramNameCol = new TableColumn("Paramter Name");
+		TableColumn paramNameCol = new TableColumn("Parameter Name");
 		paramNameCol.
 		setCellValueFactory(new PropertyValueFactory<Param, String>("name"));
-		TableColumn paramTypeCol = new TableColumn("Paramter Type");
+		TableColumn paramTypeCol = new TableColumn("Parameter Type");
 		paramTypeCol.
 		setCellValueFactory(new PropertyValueFactory<Param, String>("type"));
 		paramNameCol.setMinWidth(150);
 		paramTypeCol.setMinWidth(150);
 		tableView.setItems(data);
-		tableView.getColumns().addAll(paramNameCol, paramTypeCol);
+		tableView.getColumns().addAll(paramNameCol, paramTypeCol);	
+
+	    this.add(lbl, 0, 0);
+	    this.add(nameLbl, 0, 1);
+	    this.add(tableView, 0, 2);
+	    this.setHalignment(lbl, HPos.CENTER);
+	    this.setHalignment(nameLbl, HPos.CENTER);
+	    this.setHalignment(tableView, HPos.CENTER);
 		
+	}
 	
-		vbox = new VBox();
-	        vbox.setSpacing(5);
-	        vbox.setPadding(new Insets(10, 0, 0, 10));
-	        vbox.getChildren().addAll(lbl, nameLbl, tableView);
-		this.getChildren().add(vbox);
+	private void setControlBtn(){
+		final Button deleteBtn = new Button("Delete Selected Row");
+		deleteBtn.setOnAction(e -> {
+			data.remove(this.tableView.getSelectionModel().getSelectedItem());
+			this.tableView.getSelectionModel().clearSelection();
+		});
+		this.add(deleteBtn,1 , 2);
+		
+		final Button saveBtn = new Button("Save");
+		saveBtn.setOnAction(e -> {
+			for(Param p: data){
+				charParam.addParam(p.getType(), p.getName());
+				//TODO: send to backend
+			}
+		});
+		this.add(saveBtn, 1, 3);
 		
 	}
 	
@@ -85,8 +108,10 @@ public class CharacteristicPane extends GridPane{
 
 			
 		});
+		
+
 		hbox.getChildren().addAll(paramNameField, dropDown, addBtn);
-		vbox.getChildren().add(hbox);
+		this.add(hbox, 0, 3);
 		
 	}
 	

@@ -12,7 +12,7 @@ class GroovyItem extends MenuItem {
 		setOnAction(e -> {
 			//TODO
 			GroovyDialog dialog = new GroovyDialog();
-			dialog.showGroovyDialog();
+			dialog.showAndWait();
 			
 		});
 	}

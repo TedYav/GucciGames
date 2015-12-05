@@ -1,7 +1,10 @@
 package voogasalad_GucciGames.gameAuthoring.gui.gaedialog.paramObjects;
 
-public abstract class AParamsObject {
+public abstract class AParams {
 	
+	public AParams(){
+		
+	}
 	public abstract String getName();
 
 	public abstract void setName(String name);

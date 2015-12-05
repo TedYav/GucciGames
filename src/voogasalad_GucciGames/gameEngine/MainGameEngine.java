@@ -1,5 +1,4 @@
 package voogasalad_GucciGames.gameEngine;
-import java.io.IOException;
 import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -7,26 +6,19 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import voogasalad_GucciGames.gameEngine.CommunicationParameters.ChangedParameters;
 import voogasalad_GucciGames.gameEngine.CommunicationParameters.BasicParameters;
+import voogasalad_GucciGames.gameEngine.CommunicationParameters.ChangedParameters;
 import voogasalad_GucciGames.gameEngine.CommunicationParameters.GameParameters;
 import voogasalad_GucciGames.gameEngine.CommunicationParameters.GameResult;
 import voogasalad_GucciGames.gameEngine.CommunicationParameters.GridCoordinateParameters;
-import voogasalad_GucciGames.gameEngine.gameConditions.ConditionHandler;
-import voogasalad_GucciGames.gameEngine.gameConditions.ConditionParams;
-import voogasalad_GucciGames.gameEngine.gameConditions.Conditions;
-import voogasalad_GucciGames.gameEngine.gameConditions.ConditionsFactory;
 import voogasalad_GucciGames.gameEngine.gameConditions.EndGameConditions;
-import voogasalad_GucciGames.gameEngine.gameConditions.defaultConditions.CheckPlayerObjects;
 import voogasalad_GucciGames.gameEngine.gamePlayer.ATurnDecider;
 import voogasalad_GucciGames.gameEngine.gamePlayer.AllPlayers;
 import voogasalad_GucciGames.gameEngine.gamePlayer.DefaultTurnDecider;
 import voogasalad_GucciGames.gameEngine.gamePlayer.TurnCounter;
 import voogasalad_GucciGames.gameEngine.gameRules.RuleFactory;
 import voogasalad_GucciGames.gameEngine.gameRules.RuleParams;
-import voogasalad_GucciGames.gameEngine.mapObject.MapObject;
 import voogasalad_GucciGames.gameEngine.targetCoordinate.ATargetCoordinate;
-import voogasalad_GucciGames.gameEngine.targetCoordinate.TargetCoordinateMultiple;
 import voogasalad_GucciGames.gameplayer.controller.GameParametersInterface;
 
 public class MainGameEngine implements GameEngineToGamePlayerInterface {
@@ -34,31 +26,29 @@ public class MainGameEngine implements GameEngineToGamePlayerInterface {
 	private AllPlayers myGamePlayers;
 	private TurnCounter myCurrentTurnCounter;
 	private ATurnDecider myTurnDecider;
-	private ConditionHandler myConditionHandler;
 	private int mapDimensions;
 	private int myMapWidth;
 	private int myMapHeight;
 	private String myName;
-	
+
 	public String getName() {
 		return myName;
 	}
-	
+
 	public MainGameEngine(AllPlayers gamePlayers) {
 		myGamePlayers = gamePlayers;
 		myCurrentTurnCounter = new TurnCounter();
 		myTurnDecider = new DefaultTurnDecider(myGamePlayers, myCurrentTurnCounter);
-		myConditionHandler = new ConditionHandler();
 
-		myConditionHandler.addCondition("PlayerUnitCondition", new CheckPlayerObjects(new ConditionParams(this)));
-		
+
 		myName = "Game " + Math.round((Math.random()*10000));
 	}
-	@Deprecated 
+	@Override
+	@Deprecated
 	public String getGameName() {
 		return myName;
 	}
-	
+
 	@Override
 	public GameParametersInterface endTurn() {
 		//check game conditions
@@ -95,19 +85,10 @@ public class MainGameEngine implements GameEngineToGamePlayerInterface {
 	public void createTestCondition() {
 		List<Integer> pl = new ArrayList<Integer>();
 		pl.add(0);
-		ConditionParams condParams = new ConditionParams("PlayerUnitCondition", "player", pl, null);
-		ConditionsFactory factory = new ConditionsFactory();
+
 		//BasicParameters comParams = new BasicParameters(myGamePlayers, null, null);
 		BasicParameters comParams = new BasicParameters(null,this);
-		try {
-			Conditions condition = factory.createCondition(condParams, comParams);
-			myConditionHandler.addCondition("PlayerUnitCondition", condition);
-		} catch (InstantiationException | IllegalAccessException | ClassNotFoundException | IllegalArgumentException
-				| InvocationTargetException | NoSuchMethodException | SecurityException e) {
-			e.printStackTrace();
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
+
 		endTurn();
 		endTurn();
 	}
@@ -137,13 +118,13 @@ public class MainGameEngine implements GameEngineToGamePlayerInterface {
 	public int getMapDimensions() {
 		return mapDimensions;
 	}
-	
+
 	@Override
 	public ChangedParameters performAction(String action, PlayerMapObjectInterface mapObject,
 			ATargetCoordinate target) {
-	
+
 		return null;
-		
+
 	}
 	@Override
 	public int getMapWidth() {
@@ -155,15 +136,15 @@ public class MainGameEngine implements GameEngineToGamePlayerInterface {
 		// TODO Auto-generated method stub
 		return myMapHeight;
 	}
-	
+
 	public void setMapWidth(int width){
 		myMapWidth = width;
 	}
-	
+
 	public void setMapHeight(int height){
 		myMapHeight = height;
 	}
-	
+
 	@Override
 	public GameParametersInterface getGameParameters() {
 		// TODO Auto-generated method stub
