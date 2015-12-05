@@ -2,16 +2,16 @@ package voogasalad_GucciGames.gameData;
 
 import java.util.List;
 
-import voogasalad_GucciGames.gameData.wrapper.GameInfo;
+import voogasalad_GucciGames.gameData.wrapper.GameEngine;
 
 public interface GameDataInterface {
 
-	public GameInfo loadGame(String name);
+	public GameEngine loadGame(String name);
 	
 	public List<String> getAvailableGames();
 	
-	public GameInfo loadGameFromFile(String path) throws GameDataException;
+	public GameEngine loadGameFromFile(String path) throws GameDataException;
 
-	public GameInfo loadDefault();
+	public GameEngine loadDefault();
 
 }
