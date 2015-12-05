@@ -48,7 +48,7 @@ public class GameDataManager implements GameDataInterface {
 	}
 	
 	public String getGamePath(String gameName){
-		return myXStream.gameNameToFileName(gameName);
+		return myXStream.gameNameToPathName(gameName);
 	}
 
 	/**

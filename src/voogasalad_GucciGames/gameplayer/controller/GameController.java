@@ -50,7 +50,8 @@ public class GameController implements GameControllerInterface, GameControllerAd
 	}
 	
 	public void loadGame(GameInfo game){
-		myGame=game;
+		myGame=game; 
+		myResourceManager.loadGame(game);
 		loadLevel(1);
 	}
 	

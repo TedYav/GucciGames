@@ -29,10 +29,10 @@ public class ResourceManager implements GameResourceManagerToGAE, GameResourceMa
 	private boolean copyOnAccess = false;
 	
 	private ResourceBundle myConfig = ResourceBundle.getBundle("voogasalad_GucciGames.helpers.config.ResourceManager");
-	
-	public static void main(String[] args){
-		ResourceManager r = new ResourceManager("test");
-	}
+//	
+//	public static void main(String[] args){
+//		ResourceManager r = new ResourceManager("Duvall Tag");
+//	}
 	
 	public ResourceManager(){
 		this("");
@@ -46,6 +46,8 @@ public class ResourceManager implements GameResourceManagerToGAE, GameResourceMa
 	public ResourceManager(String gameName){
 		myImageDatabase = new ImageDatabase();
 		myImageAverager = new ImageAverager(this);
+		myData = new GameDataManager();
+		myGameName = gameName;
 		setRoot();
 	}
 	
@@ -55,11 +57,12 @@ public class ResourceManager implements GameResourceManagerToGAE, GameResourceMa
 	}
 	
 	private void setRoot() {
-		myRootDirectory = (myGame == null) ? "" : myData.getGamePath(myGameName);
+		myRootDirectory = (myGame == null) ? "" : myData.getGamePath(myGameName) + myConfig.getString("LocalResourcePath");
 	}
 
 	public void loadGame(GameInfo game){
 		myGame = game;
+		myGameName = myGame.getGameName();
 		setRoot();
 	}
 	
@@ -76,8 +79,19 @@ public class ResourceManager implements GameResourceManagerToGAE, GameResourceMa
 
 	public Image getImage(String URI){
 		copyImageIfToggled(URI);
-		System.out.println("URL REQUESTED" + URI);
-		return myImageDatabase.request(myRootDirectory + myConfig.getString("ImagePath") + URI);
+		//System.out.println("URL REQUESTED" + URI);
+		Image result = null;
+		try{
+			result = myImageDatabase.request(myRootDirectory + myConfig.getString("ImagePath") + URI);
+		}catch(IllegalArgumentException e){
+			try{
+				result = myImageDatabase.request(myConfig.getString("DefaultRoot") + myConfig.getString("ImagePath") + URI);
+			}
+			catch(IllegalArgumentException e2){
+				throw e2;
+			}
+		}
+		return result;
 	}
 	
 	private void copyImageIfToggled(String URI) {
