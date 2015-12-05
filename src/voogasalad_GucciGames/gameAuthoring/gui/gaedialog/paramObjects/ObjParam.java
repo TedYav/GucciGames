@@ -1,16 +1,19 @@
-package voogasalad_GucciGames.gameAuthoring.gui.gaedialog.groovySettings.groovyParams;
-
+package voogasalad_GucciGames.gameAuthoring.gui.gaedialog.paramObjects;
 import java.util.HashMap;
 import java.util.Map;
 
 
-public class GCharParam{
+public class ObjParam{
 	
 	private String name;
 	private Map<String, String> params = new HashMap<String, String>();
+	private ObjType type;
+	private int ownerId;
 	
-	public GCharParam(String name){
+	public ObjParam(String name, ObjType type, int ownerId){
 		this.name = name;
+		this.type = type;
+		this.ownerId = ownerId;
 	}
 
 

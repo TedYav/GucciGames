@@ -6,6 +6,7 @@ import java.util.List;
 import voogasalad_GucciGames.gameEngine.CommunicationParameters.BasicParameters;
 import voogasalad_GucciGames.gameEngine.CommunicationParameters.ChangedParameters;
 import voogasalad_GucciGames.gameEngine.gameConditions.Conditions;
+import voogasalad_GucciGames.gameEngine.gamePlayer.chars.PlayerWealthChar;
 
 /**
  *
@@ -15,15 +16,21 @@ import voogasalad_GucciGames.gameEngine.gameConditions.Conditions;
 public class ModifyWealth extends Outcome {
 	private static final String WEALTH = "wealth";
 
-	public ModifyWealth(List<Conditions> conditions,  OutcomeParams conditionParams) {
+	public ModifyWealth(List<Conditions> conditions, OutcomeParams conditionParams) {
 		super(conditions, conditionParams);
 	}
 
 	@Override
 	ChangedParameters applyOutcome(BasicParameters params, ChangedParameters changedParams, int playerID) {
 		int delta = (int) this.getMyParams().getArgumentValue(WEALTH);
-			params.getEngine().getPlayers().getActivePlayer(playerID).getWealth().modifyWealth(delta);
+		if (params.getEngine().getPlayers().getActivePlayer(playerID).hasCharerctristic(WEALTH)) {
+			PlayerWealthChar playerWealth = (PlayerWealthChar) params.getEngine().getPlayers().getActivePlayer(playerID)
+					.getMyCharacteristics(WEALTH);
+			playerWealth.modifyWealth(delta);
 			changedParams.addPlayer(playerID);
+
+		}
+
 		return changedParams;
 	}
 

@@ -26,12 +26,13 @@ public class NamePane extends GridPane {
 		textFieldLbl = new Label("Name: ");
 		textField = new TextField();
 		nextBtn = new Button("Next");
-		this.add(instructionsLbl, 0, 0);
+		this.getChildren().add(instructionsLbl);
 		this.add(textFieldLbl, 0, 1);
 		this.add(textField, 1, 1);
 		this.add(nextBtn, 2, 2);
 		this.setPadding(new Insets(50, 50, 50, 50));
 		this.setVgap(10);
+		this.setHgap(10);
 		init();
 	}
 	

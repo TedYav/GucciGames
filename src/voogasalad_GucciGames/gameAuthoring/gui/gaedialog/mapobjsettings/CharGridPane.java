@@ -1,9 +1,10 @@
-package voogasalad_GucciGames.gameAuthoring.gui.gaedialog.dialogcomponents;
+package voogasalad_GucciGames.gameAuthoring.gui.gaedialog.mapobjsettings;
 
 import java.util.HashMap;
 import java.util.Map;
 
 import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.groovySettings.groovyParams.GCharParam;
+import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.paramObjects.ObjParam;
 import javafx.geometry.HPos;
 import javafx.geometry.Insets;
 import javafx.scene.control.Label;
@@ -12,15 +13,15 @@ import javafx.scene.layout.GridPane;
 
 public class CharGridPane extends GridPane {
 	
-	private GCharParam param;
+	private ObjParam param;
 	private Map<Label, TextField> contents = new HashMap<Label, TextField>();
 	private Label name;
 	
-	public CharGridPane(GCharParam p){
+	public CharGridPane(ObjParam param){
 		this.setHgap(5);
 		this.setVgap(5);
 		this.setPadding(new Insets(5,5,5,5));
-		this.param = p;	
+		this.param = param;	
 		setContent();
 		
 		

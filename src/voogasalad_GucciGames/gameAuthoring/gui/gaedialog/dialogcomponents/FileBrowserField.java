@@ -16,9 +16,10 @@ public class FileBrowserField extends DialogComponent{
 	private String browseBtnKey, fileChooserKey, labelKey;
 	private TextField pathTextField = new TextField();
 	private Button browseBtn;
+	private Properties prop;
 	
-	public FileBrowserField(DialogElements dialogElements, String labelKey, String browseBtnKey, String fileChooserKey){
-		this.dialogElements = dialogElements;
+	public FileBrowserField(Properties prop, String labelKey, String browseBtnKey, String fileChooserKey){
+		this.prop = prop;
 		this.browseBtnKey = browseBtnKey;
 		this.fileChooserKey = fileChooserKey;
 		this.labelKey = labelKey;
@@ -27,14 +28,14 @@ public class FileBrowserField extends DialogComponent{
 	}
 	
 	protected void makeBrowseElement(){
-		Text label = new Text(dialogElements.getDialogProperties().getProperty(labelKey));
-		browseBtn = new Button(dialogElements.getDialogProperties().getProperty(browseBtnKey));
+		Text label = new Text(prop.getProperty(labelKey));
+		browseBtn = new Button(prop.getProperty(browseBtnKey));
 		addActionHandlerForBrowseBtn();
 		pathTextField = new TextField();
 		//addListenerForPathTextField();
-
-		this.getChildren().addAll(label, pathTextField, browseBtn);
-		this.setId("hbox-element");
+		this.add(label, 0, 0);
+		this.add(pathTextField, 1, 0);
+		this.add(browseBtn, 2, 0);
 
 	}
 	

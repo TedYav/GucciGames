@@ -1,7 +1,7 @@
 package voogasalad_GucciGames.gameAuthoring.gui.sidebar;
 
 import javafx.event.ActionEvent;
-import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.maindialogs.NewObjectMaker;
+import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.maindialogs.NewObMakerDialog;
 public class StructureTab extends ATab {
 
 	public StructureTab(SideBar bar) {
@@ -12,7 +12,7 @@ public class StructureTab extends ATab {
 
 	@Override
 	protected void addNewTypeDialog(ActionEvent e) {
-		NewObjectMaker structMaker = new NewObjectMaker( myController);
+		NewObMakerDialog structMaker = new NewObMakerDialog( myController);
 		structMaker.showAndWait();
 	}
 
