@@ -19,9 +19,10 @@ public class CharacteristicsSAXHandler extends DefaultHandler {
 	private List<ObjParam> characteristicsParams = new ArrayList<ObjParam>();
 	private ObjParam characteristicsParam = null;
 	private final GaeDialogHelper helper = new GaeDialogHelper();
+	private ObjType type;
 
-	public CharacteristicsSAXHandler( ){
-
+	public CharacteristicsSAXHandler( ObjType type ){
+		this.type = type;
 	}
 
 	private boolean bDisplayName = false;
@@ -35,7 +36,7 @@ public class CharacteristicsSAXHandler extends DefaultHandler {
 		if("element".equals(qName)){
 			String name = attributes.getValue("name");
 
-			characteristicsParam = new ObjParam(name, ObjType.MAP_CHAR, -1);
+			characteristicsParam = new ObjParam(name, type, -1);
 			List<String> paramNames = helper.parseStringToList(
 					attributes.getValue("paramNames"));
 			List<String> paramTypes = helper.parseStringToList(

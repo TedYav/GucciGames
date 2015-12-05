@@ -35,7 +35,7 @@ public class ParamObjParser {
 	private static final String conditionPath = mainPath+"conditionDependencies.xml";
 	
 	public ParamObjParser(){
-		
+		parseAll();
 	}
 	
 	public Set<ObjParam> getMapObjChars(){
@@ -54,12 +54,20 @@ public class ParamObjParser {
 		return allConditionParams;
 	}
 	
-	private void parse(String path, Set<ObjParam> set){
+	private void parseAll(){
+		parseOutcomes();
+		parseMapObjChar();
+		parsePlayerChar();
+		parseCondition();
+		
+	}
+	
+	private void parse(String path, Set<ObjParam> set, ObjType type){
 		SAXParserFactory saxParserFactory = SAXParserFactory.newInstance();
 	    try {
 	        SAXParser saxParser = saxParserFactory.newSAXParser();
 	 
-	        CharacteristicsSAXHandler handler = new CharacteristicsSAXHandler();
+	        CharacteristicsSAXHandler handler = new CharacteristicsSAXHandler(type);
 	        saxParser.parse(new 
 	        		File(path), 
 	        		handler);
@@ -72,21 +80,21 @@ public class ParamObjParser {
 	}
 	
 	private void parseMapObjChar(){
-		parse(mapObjCharPath, this.allMapObjCharParams);
+		parse(mapObjCharPath, this.allMapObjCharParams, ObjType.MAP_CHAR);
 	}
 	
 	private void parsePlayerChar(){
-		parse(this.playerCharPath, this.allPlayerCharParams);
+		parse(this.playerCharPath, this.allPlayerCharParams, ObjType.PLAYER_CHAR);
 		
 	}
 	
 	private void parseOutcomes(){
-		parse(this.outcomePath, this.allOutcomeParams);
+		parse(this.outcomePath, this.allOutcomeParams, ObjType.OUTCOME);
 		
 	}
 	
 	private void parseCondition(){
-		parse(this.conditionPath, this.allConditionParams);
+		parse(this.conditionPath, this.allConditionParams, ObjType.CONDITION);
 	}
 	
 	
