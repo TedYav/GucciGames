@@ -18,6 +18,7 @@ public abstract class GameScene implements GameSceneInterface{
 	protected GameWindowInterface myWindow;
 	protected ResourceBundle myConfig;
 	protected ResourceBundle myCSS = PlayerConfig.load("scenes.CssClasses");
+	protected ResourceBundle myGuiNames = ResourceBundle.getBundle("voogasalad_GucciGames.gameData.config.GuiComponents");
 	protected Scene myScene;
 	
 	public GameScene(GameSceneManager manager, GameWindowInterface window, String config){

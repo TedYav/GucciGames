@@ -1,4 +1,4 @@
-package voogasalad_GucciGames.gameEngine.objectActions;
+package voogasalad_GucciGames.gameEngine.objectActions.defaultActions;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -9,20 +9,22 @@ import voogasalad_GucciGames.gameEngine.CommunicationParameters.GridCoordinatePa
 import voogasalad_GucciGames.gameEngine.CommunicationParameters.LocationParameters;
 import voogasalad_GucciGames.gameEngine.defaultCharacteristics.AttackCharacteristic;
 import voogasalad_GucciGames.gameEngine.defaultCharacteristics.HealthCharacteristic;
-import voogasalad_GucciGames.gameEngine.gameConditions.outcomes.Outcome;
 import voogasalad_GucciGames.gameEngine.gamePlayer.AllPlayers;
 import voogasalad_GucciGames.gameEngine.gamePlayer.GamePlayerPerson;
-import voogasalad_GucciGames.gameEngine.gameRules.Rules;
-import voogasalad_GucciGames.gameEngine.gameRules.defaultRules.AttacksPerTurn;
 import voogasalad_GucciGames.gameEngine.mapObject.MapObject;
+import voogasalad_GucciGames.gameEngine.objectActions.MapObjectEvent;
 import voogasalad_GucciGames.gameEngine.targetCoordinate.TargetCoordinateMultiple;
 import voogasalad_GucciGames.gameEngine.targetCoordinate.TargetCoordinateSingle;
 
-public class AttackEvent extends MapObjectEvent {
+/**
+ *
+ * @author Sally Al
+ *
+ */
+public class RegularAttack extends MapObjectEvent{
 
-	public AttackEvent(String actionName, List<Rules> rules, List<Outcome> outcomes) {
-		super(actionName, rules, outcomes);
-		getRuleList().add(new AttacksPerTurn());
+	public RegularAttack(String actionName) {
+		super(actionName);
 	}
 
 	@Override
@@ -50,11 +52,10 @@ public class AttackEvent extends MapObjectEvent {
 					HealthCharacteristic hc = (HealthCharacteristic) mo.getCharacteristic("HealthCharacteristic");
 					System.out.println("health target:" + hc.getCurrentHealth());
 					hc.changeHealth(damage);
-					if (hc.getCurrentHealth() <= 0) {
+					if (hc.getCurrentHealth() < 0) {
 						GamePlayerPerson playerAttacked = params.getEngine().getPlayers()
 								.getActivePlayer(mo.getPlayerID());
 						playerAttacked.getMapObjects().remove(mo);
-						System.out.println("Map objectName" + mo.getName());
 						parameters.addUnit(mo);
 						// remove player with 0 objects left
 						if (playerAttacked.getMapObjects().size() == 0) {
@@ -104,5 +105,4 @@ public class AttackEvent extends MapObjectEvent {
 
 		return new GridCoordinateParameters(result);
 	}
-
 }

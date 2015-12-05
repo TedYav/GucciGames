@@ -4,12 +4,9 @@ import voogasalad_GucciGames.gameAuthoring.gui.levels.LevelTabPane;
 import voogasalad_GucciGames.gameAuthoring.gui.map.GridPoint;
 import voogasalad_GucciGames.gameAuthoring.model.DisplayMapObject;
 import voogasalad_GucciGames.gameAuthoring.model.MapObjectType;
-import voogasalad_GucciGames.gameAuthoring.properties.ObjectProperty;
-import voogasalad_GucciGames.gameAuthoring.properties.Property;
 import voogasalad_GucciGames.gameData.wrapper.GameInfo;
 
 import java.io.File;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -54,13 +51,13 @@ public interface IGuiGaeController {
 
 	public void saveToXML(GameInfo game);
 	
-	public void setMapObjectTypeToMap(MapObjectType mapType);
+	public void setSelectedType(MapObjectType mapType);
 
-	public MapObjectType getMapObjectTypeToMap();
+	public MapObjectType getSelectedType();
+	
+	public void setDragType(MapObjectType mapType);
 
-	public Image getCurrSelectedImage();
-
-	public void setCurrDraggedImage(Image draggedImage);
+	public MapObjectType getDragType();
 
 	public DisplayMapObject addObject(GridPoint gridpoint, MapObjectType mapObjType, int ownerID);
 

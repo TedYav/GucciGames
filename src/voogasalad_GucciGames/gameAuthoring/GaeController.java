@@ -29,8 +29,8 @@ public class GaeController extends AGuiGaeController implements IModelGaeControl
 
 	private IGAEModel model;
 	private GAEGui myGui;
-	private MapObjectType myCurrMapObjectType;
-	private Image currDraggedImage;
+	private MapObjectType mySelectedType;
+	private MapObjectType myDragType;
 	private Stage myStage;
 	private int numberOfPlayers;
 	private int defaultOwnerID = -1;
@@ -106,23 +106,13 @@ public class GaeController extends AGuiGaeController implements IModelGaeControl
 	}
 
 	@Override
-	public void setMapObjectTypeToMap(MapObjectType mapType) {
-		myCurrMapObjectType = mapType;
+	public void setSelectedType(MapObjectType mapType) {
+		mySelectedType = mapType;
 	}
 
 	@Override
-	public MapObjectType getMapObjectTypeToMap() {
-		return myCurrMapObjectType;
-	}
-
-	@Override
-	public Image getCurrSelectedImage() {
-		return currDraggedImage;
-	}
-
-	@Override
-	public void setCurrDraggedImage(Image draggedImage) {
-		currDraggedImage = draggedImage;
+	public MapObjectType getSelectedType() {
+		return mySelectedType;
 	}
 
 	@Override
@@ -212,7 +202,6 @@ public class GaeController extends AGuiGaeController implements IModelGaeControl
 		return getMapObjectImage(object.getType());
 	}
 
-
 	public void initGrid(int width, int height) {
 		myGui.initializeMap(width, height);
 	}
@@ -238,6 +227,15 @@ public class GaeController extends AGuiGaeController implements IModelGaeControl
 		model.addLevel(name);
 	}
 
+	@Override
+	public void setDragType(MapObjectType mapType) {
+		myDragType = mapType;
+	}
+
+	@Override
+	public MapObjectType getDragType() {
+		return myDragType;
+	}
 
 
 }

@@ -9,53 +9,75 @@ import voogasalad_GucciGames.gameEngine.CommunicationParameters.ChangedParameter
 import voogasalad_GucciGames.gameEngine.CommunicationParameters.CommunicationParameters;
 import voogasalad_GucciGames.gameEngine.CommunicationParameters.GridCoordinateParameters;
 import voogasalad_GucciGames.gameEngine.CommunicationParameters.LocationParameters;
+import voogasalad_GucciGames.gameEngine.gameConditions.outcomes.Outcome;
 import voogasalad_GucciGames.gameEngine.gameRules.Rules;
 
-public abstract class MapObjectEvent implements IGamePlayerMapObjectAction{
+public abstract class MapObjectEvent implements IGamePlayerMapObjectAction {
 	private String myName;
-	private List<Rules> myRuleList  = new ArrayList<Rules>();
+	private List<Rules> myRuleList = new ArrayList<Rules>();
+	private List<Outcome> myOutcomes = new ArrayList<Outcome>();
+
 	public MapObjectEvent(String actionName) {
 		myName = actionName;
 	}
-	public MapObjectEvent(String actionName, List<Rules> rules) {
-		myName = actionName;
-		myRuleList= rules;
+
+	public MapObjectEvent(String actionName, List<Rules> rules, List<Outcome> outcomes) {
+		this(actionName);
+		myRuleList.addAll(rules);
+		myOutcomes.addAll(outcomes);
 	}
 
-	protected List<Rules> getRuleList(){
+	protected List<Rules> getRuleList() {
 		return myRuleList;
 	}
 
 	private Boolean checkRules(int playerID, CommunicationParameters params) {
 		Boolean ruletest = true;
-			if (myRuleList != null && !myRuleList.isEmpty()) {
-				Iterator<Rules> ruleItr = myRuleList.iterator();
-				while (ruleItr.hasNext()) {
-					ruletest = ruleItr.next().executeRules((BasicParameters) params);
-					if (ruletest == false) {
-						return ruletest;
-					}
+		if (myRuleList != null && !myRuleList.isEmpty()) {
+			Iterator<Rules> ruleItr = myRuleList.iterator();
+			while (ruleItr.hasNext()) {
+				ruletest = ruleItr.next().executeRules((BasicParameters) params);
+				if (ruletest == false) {
+					return ruletest;
 				}
 			}
+		}
 
 		return ruletest;
 	}
 
-	protected boolean checkNeighborhood(double dx, double dy, double range){
-		return (dx <= range) && (dy <=range);
+	protected boolean checkNeighborhood(double dx, double dy, double range) {
+		return (dx <= range) && (dy <= range);
 	}
 
 	// Must keep final
+	
+	/*
+	 * Execution of Attack
+	 */
 	public final ChangedParameters executeAction(LocationParameters params, int playerID) {
-		return checkRules(playerID,params) ? executeAction(params) : null;
+		return checkRules(playerID, params) ? executeOutcome(params,executeAction(params)) : null;
+	}
+	
+	protected abstract ChangedParameters executeAction(LocationParameters params);
+	
+	private ChangedParameters executeOutcome(BasicParameters basic, ChangedParameters changed){
+		for(Outcome outcome: this.myOutcomes){
+			changed = outcome.executeOutcome(basic, changed);
+		}
+		return changed;
 	}
 
-	protected abstract ChangedParameters executeAction(LocationParameters params);
-
-	public final GridCoordinateParameters executeRequest(BasicParameters params, int playerID){
-		return checkRules(playerID,params) ? executeRequest(params) : null;
+	/*
+	 * Execution of request.
+	 */
+	public final GridCoordinateParameters executeRequest(BasicParameters params, int playerID) {
+		return checkRules(playerID, params) ? executeRequest(params) : null;
 	}
 
 	protected abstract GridCoordinateParameters executeRequest(BasicParameters params);
-
+	
+	public String getName(){
+		return this.myName;
+	}
 }
