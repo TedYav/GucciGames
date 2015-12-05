@@ -47,16 +47,6 @@ public class DemoMaker extends Application{
 	public static void main(String[] args){
 		launch(args);
 	}
-
-<<<<<<< HEAD
-	private static GameEngine createGame() {
-		MainGameEngine level1 = makeLevel(8, 8);
-		MainGameEngine level2 = makeLevel(20,20);
-	       
-		GameEngine game = new GameEngine("Duvall Tag");
-		game.addLevel("Level 1");
-		game.addLevel("Level 2");
-=======
 	private static GameInfo createGame() {
 		MainGameEngine level1 = makeLevel(4,4);
 		MainGameEngine level2 = makeLevel(8, 8);
@@ -66,7 +56,6 @@ public class DemoMaker extends Application{
 		game.addLevel("Easy");
 		game.addLevel("Medium");
 		game.addLevel("Hard");
->>>>>>> 7193ebf3fa5242a17f1527500d5991846afb27c0
 		game.getLevelsMap().get(0).assignEngine(level1);
 		game.getLevelsMap().get(1).assignEngine(level2);
 		game.getLevelsMap().get(2).assignEngine(level3);
