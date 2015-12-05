@@ -9,7 +9,7 @@ public class GameLevel implements IGameLevelToGamePlayer, IGameLevelToGameData{
 	private MainGameEngine myEngine;
 	
 	private int myID;
-	private int myNextLevelID;
+	private int myNextLevelID; //remove this; we cannot/should not have an instance variable like that.
 	private boolean myChoosability;
 	private String myGameLevelName;
 	
@@ -34,6 +34,8 @@ public class GameLevel implements IGameLevelToGamePlayer, IGameLevelToGameData{
 		// TODO Auto-generated method stub
 		return this.myID;
 	}
+	
+	@Deprecated
 	@Override
 	public int getNextLevel() {
 		

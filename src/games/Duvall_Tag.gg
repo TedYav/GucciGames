@@ -1,4 +1,4 @@
-≠ØŒŒ;—∫	–≠∏8÷8∞›Û’Bõ¥RA⁄R%◊‡<voogasalad__GucciGames.gameData.wrapper.GameInfo>
+’H#‘y˜Üˆ∞#ã~ò~Fv}ñ b¥òêÜ‹±Æ<voogasalad__GucciGames.gameData.wrapper.GameInfo>
   <myRightComponents>
     <string>voogasalad_GucciGames.gameplayer.windows.mainwindow.components.bar.ActionDisplay</string>
     <string>voogasalad_GucciGames.gameplayer.windows.mainwindow.components.bar.BuildUnitsDisplay</string>
@@ -1275,10 +1275,10 @@
                         </entry>
                         <entry>
                           <string>HealthCharacteristic</string>
-                          <voogasalad__GucciGames.gameEngine.defaultCharacteristics.RealHealthCharacteristic>
+                          <voogasalad__GucciGames.gameEngine.defaultCharacteristics.HealthCharacteristic>
                             <myCurrentHealth>5.0</myCurrentHealth>
                             <myMaxHealth>5.0</myMaxHealth>
-                          </voogasalad__GucciGames.gameEngine.defaultCharacteristics.RealHealthCharacteristic>
+                          </voogasalad__GucciGames.gameEngine.defaultCharacteristics.HealthCharacteristic>
                         </entry>
                         <entry>
                           <string>MovableCharacteristic</string>
@@ -1352,10 +1352,10 @@
                         </entry>
                         <entry>
                           <string>HealthCharacteristic</string>
-                          <voogasalad__GucciGames.gameEngine.defaultCharacteristics.RealHealthCharacteristic>
+                          <voogasalad__GucciGames.gameEngine.defaultCharacteristics.HealthCharacteristic>
                             <myCurrentHealth>10.0</myCurrentHealth>
                             <myMaxHealth>10.0</myMaxHealth>
-                          </voogasalad__GucciGames.gameEngine.defaultCharacteristics.RealHealthCharacteristic>
+                          </voogasalad__GucciGames.gameEngine.defaultCharacteristics.HealthCharacteristic>
                         </entry>
                         <entry>
                           <string>MovableCharacteristic</string>
@@ -1404,10 +1404,10 @@
                         </entry>
                         <entry>
                           <string>HealthCharacteristic</string>
-                          <voogasalad__GucciGames.gameEngine.defaultCharacteristics.RealHealthCharacteristic>
+                          <voogasalad__GucciGames.gameEngine.defaultCharacteristics.HealthCharacteristic>
                             <myCurrentHealth>10.0</myCurrentHealth>
                             <myMaxHealth>10.0</myMaxHealth>
-                          </voogasalad__GucciGames.gameEngine.defaultCharacteristics.RealHealthCharacteristic>
+                          </voogasalad__GucciGames.gameEngine.defaultCharacteristics.HealthCharacteristic>
                         </entry>
                         <entry>
                           <string>MovableCharacteristic</string>
@@ -1456,10 +1456,10 @@
                         </entry>
                         <entry>
                           <string>HealthCharacteristic</string>
-                          <voogasalad__GucciGames.gameEngine.defaultCharacteristics.RealHealthCharacteristic>
+                          <voogasalad__GucciGames.gameEngine.defaultCharacteristics.HealthCharacteristic>
                             <myCurrentHealth>10.0</myCurrentHealth>
                             <myMaxHealth>10.0</myMaxHealth>
-                          </voogasalad__GucciGames.gameEngine.defaultCharacteristics.RealHealthCharacteristic>
+                          </voogasalad__GucciGames.gameEngine.defaultCharacteristics.HealthCharacteristic>
                         </entry>
                         <entry>
                           <string>MovableCharacteristic</string>
@@ -1508,10 +1508,10 @@
                         </entry>
                         <entry>
                           <string>HealthCharacteristic</string>
-                          <voogasalad__GucciGames.gameEngine.defaultCharacteristics.RealHealthCharacteristic>
+                          <voogasalad__GucciGames.gameEngine.defaultCharacteristics.HealthCharacteristic>
                             <myCurrentHealth>10.0</myCurrentHealth>
                             <myMaxHealth>10.0</myMaxHealth>
-                          </voogasalad__GucciGames.gameEngine.defaultCharacteristics.RealHealthCharacteristic>
+                          </voogasalad__GucciGames.gameEngine.defaultCharacteristics.HealthCharacteristic>
                         </entry>
                         <entry>
                           <string>MovableCharacteristic</string>
@@ -1560,10 +1560,10 @@
                         </entry>
                         <entry>
                           <string>HealthCharacteristic</string>
-                          <voogasalad__GucciGames.gameEngine.defaultCharacteristics.RealHealthCharacteristic>
+                          <voogasalad__GucciGames.gameEngine.defaultCharacteristics.HealthCharacteristic>
                             <myCurrentHealth>10.0</myCurrentHealth>
                             <myMaxHealth>10.0</myMaxHealth>
-                          </voogasalad__GucciGames.gameEngine.defaultCharacteristics.RealHealthCharacteristic>
+                          </voogasalad__GucciGames.gameEngine.defaultCharacteristics.HealthCharacteristic>
                         </entry>
                         <entry>
                           <string>MovableCharacteristic</string>
@@ -1612,10 +1612,10 @@
                         </entry>
                         <entry>
                           <string>HealthCharacteristic</string>
-                          <voogasalad__GucciGames.gameEngine.defaultCharacteristics.RealHealthCharacteristic>
+                          <voogasalad__GucciGames.gameEngine.defaultCharacteristics.HealthCharacteristic>
                             <myCurrentHealth>10.0</myCurrentHealth>
                             <myMaxHealth>10.0</myMaxHealth>
-                          </voogasalad__GucciGames.gameEngine.defaultCharacteristics.RealHealthCharacteristic>
+                          </voogasalad__GucciGames.gameEngine.defaultCharacteristics.HealthCharacteristic>
                         </entry>
                         <entry>
                           <string>MovableCharacteristic</string>
@@ -1664,10 +1664,10 @@
                         </entry>
                         <entry>
                           <string>HealthCharacteristic</string>
-                          <voogasalad__GucciGames.gameEngine.defaultCharacteristics.RealHealthCharacteristic>
+                          <voogasalad__GucciGames.gameEngine.defaultCharacteristics.HealthCharacteristic>
                             <myCurrentHealth>10.0</myCurrentHealth>
                             <myMaxHealth>10.0</myMaxHealth>
-                          </voogasalad__GucciGames.gameEngine.defaultCharacteristics.RealHealthCharacteristic>
+                          </voogasalad__GucciGames.gameEngine.defaultCharacteristics.HealthCharacteristic>
                         </entry>
                         <entry>
                           <string>MovableCharacteristic</string>
@@ -9370,10 +9370,10 @@
                         </entry>
                         <entry>
                           <string>HealthCharacteristic</string>
-                          <voogasalad__GucciGames.gameEngine.defaultCharacteristics.RealHealthCharacteristic>
+                          <voogasalad__GucciGames.gameEngine.defaultCharacteristics.HealthCharacteristic>
                             <myCurrentHealth>5.0</myCurrentHealth>
                             <myMaxHealth>5.0</myMaxHealth>
-                          </voogasalad__GucciGames.gameEngine.defaultCharacteristics.RealHealthCharacteristic>
+                          </voogasalad__GucciGames.gameEngine.defaultCharacteristics.HealthCharacteristic>
                         </entry>
                         <entry>
                           <string>MovableCharacteristic</string>
@@ -9447,10 +9447,10 @@
                         </entry>
                         <entry>
                           <string>HealthCharacteristic</string>
-                          <voogasalad__GucciGames.gameEngine.defaultCharacteristics.RealHealthCharacteristic>
+                          <voogasalad__GucciGames.gameEngine.defaultCharacteristics.HealthCharacteristic>
                             <myCurrentHealth>10.0</myCurrentHealth>
                             <myMaxHealth>10.0</myMaxHealth>
-                          </voogasalad__GucciGames.gameEngine.defaultCharacteristics.RealHealthCharacteristic>
+                          </voogasalad__GucciGames.gameEngine.defaultCharacteristics.HealthCharacteristic>
                         </entry>
                         <entry>
                           <string>MovableCharacteristic</string>
@@ -9499,10 +9499,10 @@
                         </entry>
                         <entry>
                           <string>HealthCharacteristic</string>
-                          <voogasalad__GucciGames.gameEngine.defaultCharacteristics.RealHealthCharacteristic>
+                          <voogasalad__GucciGames.gameEngine.defaultCharacteristics.HealthCharacteristic>
                             <myCurrentHealth>10.0</myCurrentHealth>
                             <myMaxHealth>10.0</myMaxHealth>
-                          </voogasalad__GucciGames.gameEngine.defaultCharacteristics.RealHealthCharacteristic>
+                          </voogasalad__GucciGames.gameEngine.defaultCharacteristics.HealthCharacteristic>
                         </entry>
                         <entry>
                           <string>MovableCharacteristic</string>
@@ -9551,10 +9551,10 @@
                         </entry>
                         <entry>
                           <string>HealthCharacteristic</string>
-                          <voogasalad__GucciGames.gameEngine.defaultCharacteristics.RealHealthCharacteristic>
+                          <voogasalad__GucciGames.gameEngine.defaultCharacteristics.HealthCharacteristic>
                             <myCurrentHealth>10.0</myCurrentHealth>
                             <myMaxHealth>10.0</myMaxHealth>
-                          </voogasalad__GucciGames.gameEngine.defaultCharacteristics.RealHealthCharacteristic>
+                          </voogasalad__GucciGames.gameEngine.defaultCharacteristics.HealthCharacteristic>
                         </entry>
                         <entry>
                           <string>MovableCharacteristic</string>
@@ -9603,10 +9603,10 @@
                         </entry>
                         <entry>
                           <string>HealthCharacteristic</string>
-                          <voogasalad__GucciGames.gameEngine.defaultCharacteristics.RealHealthCharacteristic>
+                          <voogasalad__GucciGames.gameEngine.defaultCharacteristics.HealthCharacteristic>
                             <myCurrentHealth>10.0</myCurrentHealth>
                             <myMaxHealth>10.0</myMaxHealth>
-                          </voogasalad__GucciGames.gameEngine.defaultCharacteristics.RealHealthCharacteristic>
+                          </voogasalad__GucciGames.gameEngine.defaultCharacteristics.HealthCharacteristic>
                         </entry>
                         <entry>
                           <string>MovableCharacteristic</string>
@@ -9655,10 +9655,10 @@
                         </entry>
                         <entry>
                           <string>HealthCharacteristic</string>
-                          <voogasalad__GucciGames.gameEngine.defaultCharacteristics.RealHealthCharacteristic>
+                          <voogasalad__GucciGames.gameEngine.defaultCharacteristics.HealthCharacteristic>
                             <myCurrentHealth>10.0</myCurrentHealth>
                             <myMaxHealth>10.0</myMaxHealth>
-                          </voogasalad__GucciGames.gameEngine.defaultCharacteristics.RealHealthCharacteristic>
+                          </voogasalad__GucciGames.gameEngine.defaultCharacteristics.HealthCharacteristic>
                         </entry>
                         <entry>
                           <string>MovableCharacteristic</string>
@@ -9707,10 +9707,10 @@
                         </entry>
                         <entry>
                           <string>HealthCharacteristic</string>
-                          <voogasalad__GucciGames.gameEngine.defaultCharacteristics.RealHealthCharacteristic>
+                          <voogasalad__GucciGames.gameEngine.defaultCharacteristics.HealthCharacteristic>
                             <myCurrentHealth>10.0</myCurrentHealth>
                             <myMaxHealth>10.0</myMaxHealth>
-                          </voogasalad__GucciGames.gameEngine.defaultCharacteristics.RealHealthCharacteristic>
+                          </voogasalad__GucciGames.gameEngine.defaultCharacteristics.HealthCharacteristic>
                         </entry>
                         <entry>
                           <string>MovableCharacteristic</string>
@@ -9759,10 +9759,10 @@
                         </entry>
                         <entry>
                           <string>HealthCharacteristic</string>
-                          <voogasalad__GucciGames.gameEngine.defaultCharacteristics.RealHealthCharacteristic>
+                          <voogasalad__GucciGames.gameEngine.defaultCharacteristics.HealthCharacteristic>
                             <myCurrentHealth>10.0</myCurrentHealth>
                             <myMaxHealth>10.0</myMaxHealth>
-                          </voogasalad__GucciGames.gameEngine.defaultCharacteristics.RealHealthCharacteristic>
+                          </voogasalad__GucciGames.gameEngine.defaultCharacteristics.HealthCharacteristic>
                         </entry>
                         <entry>
                           <string>MovableCharacteristic</string>
@@ -9811,10 +9811,10 @@
                         </entry>
                         <entry>
                           <string>HealthCharacteristic</string>
-                          <voogasalad__GucciGames.gameEngine.defaultCharacteristics.RealHealthCharacteristic>
+                          <voogasalad__GucciGames.gameEngine.defaultCharacteristics.HealthCharacteristic>
                             <myCurrentHealth>10.0</myCurrentHealth>
                             <myMaxHealth>10.0</myMaxHealth>
-                          </voogasalad__GucciGames.gameEngine.defaultCharacteristics.RealHealthCharacteristic>
+                          </voogasalad__GucciGames.gameEngine.defaultCharacteristics.HealthCharacteristic>
                         </entry>
                         <entry>
                           <string>MovableCharacteristic</string>
@@ -9863,10 +9863,10 @@
                         </entry>
                         <entry>
                           <string>HealthCharacteristic</string>
-                          <voogasalad__GucciGames.gameEngine.defaultCharacteristics.RealHealthCharacteristic>
+                          <voogasalad__GucciGames.gameEngine.defaultCharacteristics.HealthCharacteristic>
                             <myCurrentHealth>10.0</myCurrentHealth>
                             <myMaxHealth>10.0</myMaxHealth>
-                          </voogasalad__GucciGames.gameEngine.defaultCharacteristics.RealHealthCharacteristic>
+                          </voogasalad__GucciGames.gameEngine.defaultCharacteristics.HealthCharacteristic>
                         </entry>
                         <entry>
                           <string>MovableCharacteristic</string>
@@ -9915,10 +9915,10 @@
                         </entry>
                         <entry>
                           <string>HealthCharacteristic</string>
-                          <voogasalad__GucciGames.gameEngine.defaultCharacteristics.RealHealthCharacteristic>
+                          <voogasalad__GucciGames.gameEngine.defaultCharacteristics.HealthCharacteristic>
                             <myCurrentHealth>10.0</myCurrentHealth>
                             <myMaxHealth>10.0</myMaxHealth>
-                          </voogasalad__GucciGames.gameEngine.defaultCharacteristics.RealHealthCharacteristic>
+                          </voogasalad__GucciGames.gameEngine.defaultCharacteristics.HealthCharacteristic>
                         </entry>
                         <entry>
                           <string>MovableCharacteristic</string>
@@ -9967,10 +9967,10 @@
                         </entry>
                         <entry>
                           <string>HealthCharacteristic</string>
-                          <voogasalad__GucciGames.gameEngine.defaultCharacteristics.RealHealthCharacteristic>
+                          <voogasalad__GucciGames.gameEngine.defaultCharacteristics.HealthCharacteristic>
                             <myCurrentHealth>10.0</myCurrentHealth>
                             <myMaxHealth>10.0</myMaxHealth>
-                          </voogasalad__GucciGames.gameEngine.defaultCharacteristics.RealHealthCharacteristic>
+                          </voogasalad__GucciGames.gameEngine.defaultCharacteristics.HealthCharacteristic>
                         </entry>
                         <entry>
                           <string>MovableCharacteristic</string>
@@ -10019,10 +10019,10 @@
                         </entry>
                         <entry>
                           <string>HealthCharacteristic</string>
-                          <voogasalad__GucciGames.gameEngine.defaultCharacteristics.RealHealthCharacteristic>
+                          <voogasalad__GucciGames.gameEngine.defaultCharacteristics.HealthCharacteristic>
                             <myCurrentHealth>10.0</myCurrentHealth>
                             <myMaxHealth>10.0</myMaxHealth>
-                          </voogasalad__GucciGames.gameEngine.defaultCharacteristics.RealHealthCharacteristic>
+                          </voogasalad__GucciGames.gameEngine.defaultCharacteristics.HealthCharacteristic>
                         </entry>
                         <entry>
                           <string>MovableCharacteristic</string>
@@ -10071,10 +10071,10 @@
                         </entry>
                         <entry>
                           <string>HealthCharacteristic</string>
-                          <voogasalad__GucciGames.gameEngine.defaultCharacteristics.RealHealthCharacteristic>
+                          <voogasalad__GucciGames.gameEngine.defaultCharacteristics.HealthCharacteristic>
                             <myCurrentHealth>10.0</myCurrentHealth>
                             <myMaxHealth>10.0</myMaxHealth>
-                          </voogasalad__GucciGames.gameEngine.defaultCharacteristics.RealHealthCharacteristic>
+                          </voogasalad__GucciGames.gameEngine.defaultCharacteristics.HealthCharacteristic>
                         </entry>
                         <entry>
                           <string>MovableCharacteristic</string>
@@ -10123,10 +10123,10 @@
                         </entry>
                         <entry>
                           <string>HealthCharacteristic</string>
-                          <voogasalad__GucciGames.gameEngine.defaultCharacteristics.RealHealthCharacteristic>
+                          <voogasalad__GucciGames.gameEngine.defaultCharacteristics.HealthCharacteristic>
                             <myCurrentHealth>10.0</myCurrentHealth>
                             <myMaxHealth>10.0</myMaxHealth>
-                          </voogasalad__GucciGames.gameEngine.defaultCharacteristics.RealHealthCharacteristic>
+                          </voogasalad__GucciGames.gameEngine.defaultCharacteristics.HealthCharacteristic>
                         </entry>
                         <entry>
                           <string>MovableCharacteristic</string>
@@ -10175,10 +10175,10 @@
                         </entry>
                         <entry>
                           <string>HealthCharacteristic</string>
-                          <voogasalad__GucciGames.gameEngine.defaultCharacteristics.RealHealthCharacteristic>
+                          <voogasalad__GucciGames.gameEngine.defaultCharacteristics.HealthCharacteristic>
                             <myCurrentHealth>10.0</myCurrentHealth>
                             <myMaxHealth>10.0</myMaxHealth>
-                          </voogasalad__GucciGames.gameEngine.defaultCharacteristics.RealHealthCharacteristic>
+                          </voogasalad__GucciGames.gameEngine.defaultCharacteristics.HealthCharacteristic>
                         </entry>
                         <entry>
                           <string>MovableCharacteristic</string>
@@ -10227,10 +10227,10 @@
                         </entry>
                         <entry>
                           <string>HealthCharacteristic</string>
-                          <voogasalad__GucciGames.gameEngine.defaultCharacteristics.RealHealthCharacteristic>
+                          <voogasalad__GucciGames.gameEngine.defaultCharacteristics.HealthCharacteristic>
                             <myCurrentHealth>10.0</myCurrentHealth>
                             <myMaxHealth>10.0</myMaxHealth>
-                          </voogasalad__GucciGames.gameEngine.defaultCharacteristics.RealHealthCharacteristic>
+                          </voogasalad__GucciGames.gameEngine.defaultCharacteristics.HealthCharacteristic>
                         </entry>
                         <entry>
                           <string>MovableCharacteristic</string>
@@ -10279,10 +10279,10 @@
                         </entry>
                         <entry>
                           <string>HealthCharacteristic</string>
-                          <voogasalad__GucciGames.gameEngine.defaultCharacteristics.RealHealthCharacteristic>
+                          <voogasalad__GucciGames.gameEngine.defaultCharacteristics.HealthCharacteristic>
                             <myCurrentHealth>10.0</myCurrentHealth>
                             <myMaxHealth>10.0</myMaxHealth>
-                          </voogasalad__GucciGames.gameEngine.defaultCharacteristics.RealHealthCharacteristic>
+                          </voogasalad__GucciGames.gameEngine.defaultCharacteristics.HealthCharacteristic>
                         </entry>
                         <entry>
                           <string>MovableCharacteristic</string>
@@ -10331,10 +10331,10 @@
                         </entry>
                         <entry>
                           <string>HealthCharacteristic</string>
-                          <voogasalad__GucciGames.gameEngine.defaultCharacteristics.RealHealthCharacteristic>
+                          <voogasalad__GucciGames.gameEngine.defaultCharacteristics.HealthCharacteristic>
                             <myCurrentHealth>10.0</myCurrentHealth>
                             <myMaxHealth>10.0</myMaxHealth>
-                          </voogasalad__GucciGames.gameEngine.defaultCharacteristics.RealHealthCharacteristic>
+                          </voogasalad__GucciGames.gameEngine.defaultCharacteristics.HealthCharacteristic>
                         </entry>
                         <entry>
                           <string>MovableCharacteristic</string>
@@ -10383,10 +10383,10 @@
                         </entry>
                         <entry>
                           <string>HealthCharacteristic</string>
-                          <voogasalad__GucciGames.gameEngine.defaultCharacteristics.RealHealthCharacteristic>
+                          <voogasalad__GucciGames.gameEngine.defaultCharacteristics.HealthCharacteristic>
                             <myCurrentHealth>10.0</myCurrentHealth>
                             <myMaxHealth>10.0</myMaxHealth>
-                          </voogasalad__GucciGames.gameEngine.defaultCharacteristics.RealHealthCharacteristic>
+                          </voogasalad__GucciGames.gameEngine.defaultCharacteristics.HealthCharacteristic>
                         </entry>
                         <entry>
                           <string>MovableCharacteristic</string>
@@ -10435,10 +10435,10 @@
                         </entry>
                         <entry>
                           <string>HealthCharacteristic</string>
-                          <voogasalad__GucciGames.gameEngine.defaultCharacteristics.RealHealthCharacteristic>
+                          <voogasalad__GucciGames.gameEngine.defaultCharacteristics.HealthCharacteristic>
                             <myCurrentHealth>10.0</myCurrentHealth>
                             <myMaxHealth>10.0</myMaxHealth>
-                          </voogasalad__GucciGames.gameEngine.defaultCharacteristics.RealHealthCharacteristic>
+                          </voogasalad__GucciGames.gameEngine.defaultCharacteristics.HealthCharacteristic>
                         </entry>
                         <entry>
                           <string>MovableCharacteristic</string>
@@ -10487,10 +10487,10 @@
                         </entry>
                         <entry>
                           <string>HealthCharacteristic</string>
-                          <voogasalad__GucciGames.gameEngine.defaultCharacteristics.RealHealthCharacteristic>
+                          <voogasalad__GucciGames.gameEngine.defaultCharacteristics.HealthCharacteristic>
                             <myCurrentHealth>10.0</myCurrentHealth>
                             <myMaxHealth>10.0</myMaxHealth>
-                          </voogasalad__GucciGames.gameEngine.defaultCharacteristics.RealHealthCharacteristic>
+                          </voogasalad__GucciGames.gameEngine.defaultCharacteristics.HealthCharacteristic>
                         </entry>
                         <entry>
                           <string>MovableCharacteristic</string>
@@ -10539,10 +10539,10 @@
                         </entry>
                         <entry>
                           <string>HealthCharacteristic</string>
-                          <voogasalad__GucciGames.gameEngine.defaultCharacteristics.RealHealthCharacteristic>
+                          <voogasalad__GucciGames.gameEngine.defaultCharacteristics.HealthCharacteristic>
                             <myCurrentHealth>10.0</myCurrentHealth>
                             <myMaxHealth>10.0</myMaxHealth>
-                          </voogasalad__GucciGames.gameEngine.defaultCharacteristics.RealHealthCharacteristic>
+                          </voogasalad__GucciGames.gameEngine.defaultCharacteristics.HealthCharacteristic>
                         </entry>
                         <entry>
                           <string>MovableCharacteristic</string>
@@ -10591,10 +10591,10 @@
                         </entry>
                         <entry>
                           <string>HealthCharacteristic</string>
-                          <voogasalad__GucciGames.gameEngine.defaultCharacteristics.RealHealthCharacteristic>
+                          <voogasalad__GucciGames.gameEngine.defaultCharacteristics.HealthCharacteristic>
                             <myCurrentHealth>10.0</myCurrentHealth>
                             <myMaxHealth>10.0</myMaxHealth>
-                          </voogasalad__GucciGames.gameEngine.defaultCharacteristics.RealHealthCharacteristic>
+                          </voogasalad__GucciGames.gameEngine.defaultCharacteristics.HealthCharacteristic>
                         </entry>
                         <entry>
                           <string>MovableCharacteristic</string>
@@ -10643,10 +10643,10 @@
                         </entry>
                         <entry>
                           <string>HealthCharacteristic</string>
-                          <voogasalad__GucciGames.gameEngine.defaultCharacteristics.RealHealthCharacteristic>
+                          <voogasalad__GucciGames.gameEngine.defaultCharacteristics.HealthCharacteristic>
                             <myCurrentHealth>10.0</myCurrentHealth>
                             <myMaxHealth>10.0</myMaxHealth>
-                          </voogasalad__GucciGames.gameEngine.defaultCharacteristics.RealHealthCharacteristic>
+                          </voogasalad__GucciGames.gameEngine.defaultCharacteristics.HealthCharacteristic>
                         </entry>
                         <entry>
                           <string>MovableCharacteristic</string>
@@ -10695,10 +10695,10 @@
                         </entry>
                         <entry>
                           <string>HealthCharacteristic</string>
-                          <voogasalad__GucciGames.gameEngine.defaultCharacteristics.RealHealthCharacteristic>
+                          <voogasalad__GucciGames.gameEngine.defaultCharacteristics.HealthCharacteristic>
                             <myCurrentHealth>10.0</myCurrentHealth>
                             <myMaxHealth>10.0</myMaxHealth>
-                          </voogasalad__GucciGames.gameEngine.defaultCharacteristics.RealHealthCharacteristic>
+                          </voogasalad__GucciGames.gameEngine.defaultCharacteristics.HealthCharacteristic>
                         </entry>
                         <entry>
                           <string>MovableCharacteristic</string>
@@ -10747,10 +10747,10 @@
                         </entry>
                         <entry>
                           <string>HealthCharacteristic</string>
-                          <voogasalad__GucciGames.gameEngine.defaultCharacteristics.RealHealthCharacteristic>
+                          <voogasalad__GucciGames.gameEngine.defaultCharacteristics.HealthCharacteristic>
                             <myCurrentHealth>10.0</myCurrentHealth>
                             <myMaxHealth>10.0</myMaxHealth>
-                          </voogasalad__GucciGames.gameEngine.defaultCharacteristics.RealHealthCharacteristic>
+                          </voogasalad__GucciGames.gameEngine.defaultCharacteristics.HealthCharacteristic>
                         </entry>
                         <entry>
                           <string>MovableCharacteristic</string>
@@ -10799,10 +10799,10 @@
                         </entry>
                         <entry>
                           <string>HealthCharacteristic</string>
-                          <voogasalad__GucciGames.gameEngine.defaultCharacteristics.RealHealthCharacteristic>
+                          <voogasalad__GucciGames.gameEngine.defaultCharacteristics.HealthCharacteristic>
                             <myCurrentHealth>10.0</myCurrentHealth>
                             <myMaxHealth>10.0</myMaxHealth>
-                          </voogasalad__GucciGames.gameEngine.defaultCharacteristics.RealHealthCharacteristic>
+                          </voogasalad__GucciGames.gameEngine.defaultCharacteristics.HealthCharacteristic>
                         </entry>
                         <entry>
                           <string>MovableCharacteristic</string>
@@ -10851,10 +10851,10 @@
                         </entry>
                         <entry>
                           <string>HealthCharacteristic</string>
-                          <voogasalad__GucciGames.gameEngine.defaultCharacteristics.RealHealthCharacteristic>
+                          <voogasalad__GucciGames.gameEngine.defaultCharacteristics.HealthCharacteristic>
                             <myCurrentHealth>10.0</myCurrentHealth>
                             <myMaxHealth>10.0</myMaxHealth>
-                          </voogasalad__GucciGames.gameEngine.defaultCharacteristics.RealHealthCharacteristic>
+                          </voogasalad__GucciGames.gameEngine.defaultCharacteristics.HealthCharacteristic>
                         </entry>
                         <entry>
                           <string>MovableCharacteristic</string>
@@ -10903,10 +10903,10 @@
                         </entry>
                         <entry>
                           <string>HealthCharacteristic</string>
-                          <voogasalad__GucciGames.gameEngine.defaultCharacteristics.RealHealthCharacteristic>
+                          <voogasalad__GucciGames.gameEngine.defaultCharacteristics.HealthCharacteristic>
                             <myCurrentHealth>10.0</myCurrentHealth>
                             <myMaxHealth>10.0</myMaxHealth>
-                          </voogasalad__GucciGames.gameEngine.defaultCharacteristics.RealHealthCharacteristic>
+                          </voogasalad__GucciGames.gameEngine.defaultCharacteristics.HealthCharacteristic>
                         </entry>
                         <entry>
                           <string>MovableCharacteristic</string>
@@ -10955,10 +10955,10 @@
                         </entry>
                         <entry>
                           <string>HealthCharacteristic</string>
-                          <voogasalad__GucciGames.gameEngine.defaultCharacteristics.RealHealthCharacteristic>
+                          <voogasalad__GucciGames.gameEngine.defaultCharacteristics.HealthCharacteristic>
                             <myCurrentHealth>10.0</myCurrentHealth>
                             <myMaxHealth>10.0</myMaxHealth>
-                          </voogasalad__GucciGames.gameEngine.defaultCharacteristics.RealHealthCharacteristic>
+                          </voogasalad__GucciGames.gameEngine.defaultCharacteristics.HealthCharacteristic>
                         </entry>
                         <entry>
                           <string>MovableCharacteristic</string>
@@ -11007,10 +11007,10 @@
                         </entry>
                         <entry>
                           <string>HealthCharacteristic</string>
-                          <voogasalad__GucciGames.gameEngine.defaultCharacteristics.RealHealthCharacteristic>
+                          <voogasalad__GucciGames.gameEngine.defaultCharacteristics.HealthCharacteristic>
                             <myCurrentHealth>10.0</myCurrentHealth>
                             <myMaxHealth>10.0</myMaxHealth>
-                          </voogasalad__GucciGames.gameEngine.defaultCharacteristics.RealHealthCharacteristic>
+                          </voogasalad__GucciGames.gameEngine.defaultCharacteristics.HealthCharacteristic>
                         </entry>
                         <entry>
                           <string>MovableCharacteristic</string>
@@ -11059,10 +11059,10 @@
                         </entry>
                         <entry>
                           <string>HealthCharacteristic</string>
-                          <voogasalad__GucciGames.gameEngine.defaultCharacteristics.RealHealthCharacteristic>
+                          <voogasalad__GucciGames.gameEngine.defaultCharacteristics.HealthCharacteristic>
                             <myCurrentHealth>10.0</myCurrentHealth>
                             <myMaxHealth>10.0</myMaxHealth>
-                          </voogasalad__GucciGames.gameEngine.defaultCharacteristics.RealHealthCharacteristic>
+                          </voogasalad__GucciGames.gameEngine.defaultCharacteristics.HealthCharacteristic>
                         </entry>
                         <entry>
                           <string>MovableCharacteristic</string>
@@ -11111,10 +11111,10 @@
                         </entry>
                         <entry>
                           <string>HealthCharacteristic</string>
-                          <voogasalad__GucciGames.gameEngine.defaultCharacteristics.RealHealthCharacteristic>
+                          <voogasalad__GucciGames.gameEngine.defaultCharacteristics.HealthCharacteristic>
                             <myCurrentHealth>10.0</myCurrentHealth>
                             <myMaxHealth>10.0</myMaxHealth>
-                          </voogasalad__GucciGames.gameEngine.defaultCharacteristics.RealHealthCharacteristic>
+                          </voogasalad__GucciGames.gameEngine.defaultCharacteristics.HealthCharacteristic>
                         </entry>
                         <entry>
                           <string>MovableCharacteristic</string>
@@ -11163,10 +11163,10 @@
                         </entry>
                         <entry>
                           <string>HealthCharacteristic</string>
-                          <voogasalad__GucciGames.gameEngine.defaultCharacteristics.RealHealthCharacteristic>
+                          <voogasalad__GucciGames.gameEngine.defaultCharacteristics.HealthCharacteristic>
                             <myCurrentHealth>10.0</myCurrentHealth>
                             <myMaxHealth>10.0</myMaxHealth>
-                          </voogasalad__GucciGames.gameEngine.defaultCharacteristics.RealHealthCharacteristic>
+                          </voogasalad__GucciGames.gameEngine.defaultCharacteristics.HealthCharacteristic>
                         </entry>
                         <entry>
                           <string>MovableCharacteristic</string>
@@ -11215,10 +11215,10 @@
                         </entry>
                         <entry>
                           <string>HealthCharacteristic</string>
-                          <voogasalad__GucciGames.gameEngine.defaultCharacteristics.RealHealthCharacteristic>
+                          <voogasalad__GucciGames.gameEngine.defaultCharacteristics.HealthCharacteristic>
                             <myCurrentHealth>10.0</myCurrentHealth>
                             <myMaxHealth>10.0</myMaxHealth>
-                          </voogasalad__GucciGames.gameEngine.defaultCharacteristics.RealHealthCharacteristic>
+                          </voogasalad__GucciGames.gameEngine.defaultCharacteristics.HealthCharacteristic>
                         </entry>
                         <entry>
                           <string>MovableCharacteristic</string>
@@ -11267,10 +11267,10 @@
                         </entry>
                         <entry>
                           <string>HealthCharacteristic</string>
-                          <voogasalad__GucciGames.gameEngine.defaultCharacteristics.RealHealthCharacteristic>
+                          <voogasalad__GucciGames.gameEngine.defaultCharacteristics.HealthCharacteristic>
                             <myCurrentHealth>10.0</myCurrentHealth>
                             <myMaxHealth>10.0</myMaxHealth>
-                          </voogasalad__GucciGames.gameEngine.defaultCharacteristics.RealHealthCharacteristic>
+                          </voogasalad__GucciGames.gameEngine.defaultCharacteristics.HealthCharacteristic>
                         </entry>
                         <entry>
                           <string>MovableCharacteristic</string>
@@ -11319,10 +11319,10 @@
                         </entry>
                         <entry>
                           <string>HealthCharacteristic</string>
-                          <voogasalad__GucciGames.gameEngine.defaultCharacteristics.RealHealthCharacteristic>
+                          <voogasalad__GucciGames.gameEngine.defaultCharacteristics.HealthCharacteristic>
                             <myCurrentHealth>10.0</myCurrentHealth>
                             <myMaxHealth>10.0</myMaxHealth>
-                          </voogasalad__GucciGames.gameEngine.defaultCharacteristics.RealHealthCharacteristic>
+                          </voogasalad__GucciGames.gameEngine.defaultCharacteristics.HealthCharacteristic>
                         </entry>
                         <entry>
                           <string>MovableCharacteristic</string>
@@ -11371,10 +11371,10 @@
                         </entry>
                         <entry>
                           <string>HealthCharacteristic</string>
-                          <voogasalad__GucciGames.gameEngine.defaultCharacteristics.RealHealthCharacteristic>
+                          <voogasalad__GucciGames.gameEngine.defaultCharacteristics.HealthCharacteristic>
                             <myCurrentHealth>10.0</myCurrentHealth>
                             <myMaxHealth>10.0</myMaxHealth>
-                          </voogasalad__GucciGames.gameEngine.defaultCharacteristics.RealHealthCharacteristic>
+                          </voogasalad__GucciGames.gameEngine.defaultCharacteristics.HealthCharacteristic>
                         </entry>
                         <entry>
                           <string>MovableCharacteristic</string>
@@ -11423,10 +11423,10 @@
                         </entry>
                         <entry>
                           <string>HealthCharacteristic</string>
-                          <voogasalad__GucciGames.gameEngine.defaultCharacteristics.RealHealthCharacteristic>
+                          <voogasalad__GucciGames.gameEngine.defaultCharacteristics.HealthCharacteristic>
                             <myCurrentHealth>10.0</myCurrentHealth>
                             <myMaxHealth>10.0</myMaxHealth>
-                          </voogasalad__GucciGames.gameEngine.defaultCharacteristics.RealHealthCharacteristic>
+                          </voogasalad__GucciGames.gameEngine.defaultCharacteristics.HealthCharacteristic>
                         </entry>
                         <entry>
                           <string>MovableCharacteristic</string>
@@ -11475,10 +11475,10 @@
                         </entry>
                         <entry>
                           <string>HealthCharacteristic</string>
-                          <voogasalad__GucciGames.gameEngine.defaultCharacteristics.RealHealthCharacteristic>
+                          <voogasalad__GucciGames.gameEngine.defaultCharacteristics.HealthCharacteristic>
                             <myCurrentHealth>10.0</myCurrentHealth>
                             <myMaxHealth>10.0</myMaxHealth>
-                          </voogasalad__GucciGames.gameEngine.defaultCharacteristics.RealHealthCharacteristic>
+                          </voogasalad__GucciGames.gameEngine.defaultCharacteristics.HealthCharacteristic>
                         </entry>
                         <entry>
                           <string>MovableCharacteristic</string>
@@ -11527,10 +11527,10 @@
                         </entry>
                         <entry>
                           <string>HealthCharacteristic</string>
-                          <voogasalad__GucciGames.gameEngine.defaultCharacteristics.RealHealthCharacteristic>
+                          <voogasalad__GucciGames.gameEngine.defaultCharacteristics.HealthCharacteristic>
                             <myCurrentHealth>10.0</myCurrentHealth>
                             <myMaxHealth>10.0</myMaxHealth>
-                          </voogasalad__GucciGames.gameEngine.defaultCharacteristics.RealHealthCharacteristic>
+                          </voogasalad__GucciGames.gameEngine.defaultCharacteristics.HealthCharacteristic>
                         </entry>
                         <entry>
                           <string>MovableCharacteristic</string>
@@ -11579,10 +11579,10 @@
                         </entry>
                         <entry>
                           <string>HealthCharacteristic</string>
-                          <voogasalad__GucciGames.gameEngine.defaultCharacteristics.RealHealthCharacteristic>
+                          <voogasalad__GucciGames.gameEngine.defaultCharacteristics.HealthCharacteristic>
                             <myCurrentHealth>10.0</myCurrentHealth>
                             <myMaxHealth>10.0</myMaxHealth>
-                          </voogasalad__GucciGames.gameEngine.defaultCharacteristics.RealHealthCharacteristic>
+                          </voogasalad__GucciGames.gameEngine.defaultCharacteristics.HealthCharacteristic>
                         </entry>
                         <entry>
                           <string>MovableCharacteristic</string>
@@ -11631,10 +11631,10 @@
                         </entry>
                         <entry>
                           <string>HealthCharacteristic</string>
-                          <voogasalad__GucciGames.gameEngine.defaultCharacteristics.RealHealthCharacteristic>
+                          <voogasalad__GucciGames.gameEngine.defaultCharacteristics.HealthCharacteristic>
                             <myCurrentHealth>10.0</myCurrentHealth>
                             <myMaxHealth>10.0</myMaxHealth>
-                          </voogasalad__GucciGames.gameEngine.defaultCharacteristics.RealHealthCharacteristic>
+                          </voogasalad__GucciGames.gameEngine.defaultCharacteristics.HealthCharacteristic>
                         </entry>
                         <entry>
                           <string>MovableCharacteristic</string>
@@ -11683,10 +11683,10 @@
                         </entry>
                         <entry>
                           <string>HealthCharacteristic</string>
-                          <voogasalad__GucciGames.gameEngine.defaultCharacteristics.RealHealthCharacteristic>
+                          <voogasalad__GucciGames.gameEngine.defaultCharacteristics.HealthCharacteristic>
                             <myCurrentHealth>10.0</myCurrentHealth>
                             <myMaxHealth>10.0</myMaxHealth>
-                          </voogasalad__GucciGames.gameEngine.defaultCharacteristics.RealHealthCharacteristic>
+                          </voogasalad__GucciGames.gameEngine.defaultCharacteristics.HealthCharacteristic>
                         </entry>
                         <entry>
                           <string>MovableCharacteristic</string>
@@ -11735,10 +11735,10 @@
                         </entry>
                         <entry>
                           <string>HealthCharacteristic</string>
-                          <voogasalad__GucciGames.gameEngine.defaultCharacteristics.RealHealthCharacteristic>
+                          <voogasalad__GucciGames.gameEngine.defaultCharacteristics.HealthCharacteristic>
                             <myCurrentHealth>10.0</myCurrentHealth>
                             <myMaxHealth>10.0</myMaxHealth>
-                          </voogasalad__GucciGames.gameEngine.defaultCharacteristics.RealHealthCharacteristic>
+                          </voogasalad__GucciGames.gameEngine.defaultCharacteristics.HealthCharacteristic>
                         </entry>
                         <entry>
                           <string>MovableCharacteristic</string>
