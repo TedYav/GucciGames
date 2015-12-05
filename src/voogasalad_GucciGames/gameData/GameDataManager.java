@@ -6,18 +6,23 @@ import java.util.Map;
 import java.util.ResourceBundle;
 
 import voogasalad_GucciGames.gameData.wrapper.GameInfo;
+import voogasalad_GucciGames.gameData.wrapper.GameInfoToGameData;
 
 public class GameDataManager implements GameDataInterface {
 
 	private XStreamGameEngine myXStream;
 	private GameListManager myGameList;
-
+	private GameFileHelper myFileHelper;
+	
     private final ResourceBundle myConfig = ResourceBundle.getBundle("voogasalad_GucciGames.gameData.config.GameData");
 
+    private String myBasePath;
     
 	public GameDataManager(){
 		myXStream = new XStreamGameEngine();
 		myGameList = new GameListManager();
+		myFileHelper = new GameFileHelper();
+		myBasePath = myConfig.getString("BaseResourcePath");
 	}
 
 	@Override
@@ -42,8 +47,20 @@ public class GameDataManager implements GameDataInterface {
 		return myXStream.loadGameByName(myGameList.listGames().get(0));
 	}
 	
-	public String getGamePath(GameInfo game){
-		return myXStream.gameNameToFileName(game.getGameName());
+	public String getGamePath(GameInfoToGameData myGame){
+		return myXStream.gameNameToFileName(myGame.getGameName());
+	}
+
+	public List<String> getResources(List<String> extensions) {
+		return myFileHelper.getMatchingFiles(myBasePath, extensions);
+	}
+	
+	public List<String> getResources(List<String> extensions, String path){
+		return myFileHelper.getMatchingFiles(myBasePath + "/" + path, extensions);
+	}
+
+	public void copyResourceToGame(String URI, GameInfoToGameData game) {
+		myFileHelper.copyResource(myBasePath + URI, getGamePath(game)+ "/" +myConfig.getString("ResourcesPath"));
 	}
 
 }

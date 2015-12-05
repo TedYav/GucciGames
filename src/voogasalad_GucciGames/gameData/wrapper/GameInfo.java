@@ -20,7 +20,7 @@ import voogasalad_GucciGames.gameplayer.windows.mainwindow.components.DisplayCom
  */
 
 
-public class GameInfo implements IGameInfoToGAE, GameInfoToGamePlayer{
+public class GameInfo implements IGameInfoToGAE, GameInfoToGamePlayer, GameInfoToGameData{
 	private static final int MAINMENU = -1;
 	// these will hold the components which go in each part of the player gui
 	// format can be changed
