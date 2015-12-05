@@ -13,8 +13,11 @@ import javafx.scene.control.ContextMenu;
 import javafx.scene.control.Tab;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.ClipboardContent;
+import javafx.scene.input.Dragboard;
 import javafx.scene.input.MouseButton;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.input.TransferMode;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
@@ -23,7 +26,6 @@ import javafx.scene.shape.Rectangle;
 import voogasalad_GucciGames.datastructures.TwoWayMap;
 import voogasalad_GucciGames.gameAuthoring.AGuiGaeController;
 import voogasalad_GucciGames.gameAuthoring.model.MapObjectType;
-import voogasalad_GucciGames.gameEngine.mapObject.MapObject;
 
 public abstract class ATab extends Tab {
 	private static final int WIDTH = 4;
@@ -35,10 +37,11 @@ public abstract class ATab extends Tab {
 	protected List<ImageView> myImageViews = new ArrayList<>();
 	protected Button myAddButton = new Button("Add Custom");
 	protected ContextMenu myContextMenu;
-	
+
 	private final SideBar mySideBar;
 	private Rectangle myBoundBox;
 	private ImageView myTrace;
+	private MapObjectType mySelectedType;
 
 	ATab(SideBar bar) {
 		mySideBar = bar;
@@ -46,7 +49,7 @@ public abstract class ATab extends Tab {
 		myContextMenu = new SideBarMenu(myController);
 		setClosable(false);
 		setLayout();
-		myAddButton.setOnAction(e->addNewTypeDialog(e));
+		myAddButton.setOnAction(e -> addNewTypeDialog(e));
 	}
 
 	private void setLayout() {
@@ -61,16 +64,10 @@ public abstract class ATab extends Tab {
 		container.minWidthProperty().bind(myPane.widthProperty());
 		container.maxHeightProperty().bind(myPane.heightProperty());
 		this.setContent(myPane);
-		myPane.setOnMouseMoved(e->trackMouse(e));
-		myPane.setOnMouseExited(e->myTrace.setVisible(false));
-		myPane.setOnMouseEntered(e->myTrace.setVisible(myBoundBox!=null));
-		myTrace = new ImageView();
-		myTrace.setVisible(false);
-		myTrace.setFitHeight(30);
-		myTrace.setFitWidth(30);
-		myTrace.setOpacity(0.5);
-		myTrace.setMouseTransparent(true);
-		myPane.getChildren().add(myTrace);
+		myPane.setOnMouseMoved(e -> trackMouse(e));
+		myPane.setOnMouseExited(e -> deleteTrace());
+		myPane.setOnMouseEntered(e -> trackMouse(e));
+
 	}
 
 	protected void init(ObservableList<MapObjectType> list) {
@@ -78,32 +75,46 @@ public abstract class ATab extends Tab {
 		list.forEach(e -> addType(e));
 		list.addListener((ListChangeListener.Change<? extends MapObjectType> change) -> {
 			change.next();
-			change.getAddedSubList().forEach(e->addType(e));
-			change.getRemoved().forEach(e->deleteType(e));
+			change.getAddedSubList().forEach(e -> addType(e));
+			change.getRemoved().forEach(e -> deleteType(e));
 		});
 	}
 
 	private void addType(MapObjectType type) {
 		Image image = new Image(getClass().getClassLoader().getResourceAsStream(type.getImagePath()));
 		ImageView imageView = new ImageView(image);
-		
+
 		double width = type.getWidth();
 		double height = type.getHeight();
-		
-		double myX1 = type.getX()*width;
-		double myY1 = type.getY()*height;
-		
+
+		double myX1 = type.getX() * width;
+		double myY1 = type.getY() * height;
+
 		Rectangle2D rect = new Rectangle2D(myX1, myY1, width, height);
 		imageView.setViewport(rect);
-		
+
 		imageView.setFitHeight(height);
 		imageView.setFitWidth(width);
-		
-		imageView.setOnMouseClicked(e->mouseClicked(imageView, e));
+
+		imageView.setOnMouseClicked(e -> mouseClicked(imageView, e));
+		imageView.setOnDragDetected(e -> dragDetected(imageView, e));
 		myMap.put(type, imageView);
 		myImageViews.add(imageView);
 		int index = myImageViews.size() - 1;
 		myGridPane.add(imageView, index % WIDTH, index / WIDTH);
+	}
+
+	private void dragDetected(ImageView imageView, MouseEvent e) {
+		if(myTrace != null)
+			myTrace.setVisible(false);
+		/* allow any transfer mode */
+		Dragboard db = imageView.startDragAndDrop(TransferMode.ANY);
+		/* put a string on dragboard */
+		ClipboardContent content = new ClipboardContent();
+		content.putImage(imageView.getImage());
+		db.setContent(content);
+		myController.setDragType(myMap.getKey(imageView));
+		e.consume();
 	}
 
 	@SuppressWarnings("static-access")
@@ -112,7 +123,7 @@ public abstract class ATab extends Tab {
 		int index = myImageViews.indexOf(imageView);
 		myGridPane.getChildren().remove(imageView);
 		myImageViews.remove(index);
-		for(int i=index;i<myImageViews.size();i++){
+		for (int i = index; i < myImageViews.size(); i++) {
 			myGridPane.setColumnIndex(myImageViews.get(i), index % WIDTH);
 			myGridPane.setRowIndex(myImageViews.get(i), index / WIDTH);
 		}
@@ -120,11 +131,11 @@ public abstract class ATab extends Tab {
 
 	protected abstract void addNewTypeDialog(ActionEvent e);
 
-	private void mouseClicked(ImageView source, MouseEvent e){
-		if(e.getButton()==MouseButton.PRIMARY){
+	private void mouseClicked(ImageView source, MouseEvent e) {
+		if (e.getButton() == MouseButton.PRIMARY) {
 			select(source);
-		}else if(e.getButton()==MouseButton.SECONDARY){
-			myContextMenu.show(source,e.getSceneX(),e.getSceneY());
+		} else if (e.getButton() == MouseButton.SECONDARY) {
+			myContextMenu.show(source, e.getSceneX(), e.getSceneY());
 		}
 		e.consume();
 	}
@@ -132,46 +143,64 @@ public abstract class ATab extends Tab {
 	@SuppressWarnings("static-access")
 	private void select(ImageView source) {
 		MapObjectType curr = myMap.getKey(source);
-		if(curr!=mySideBar.getCurrSelection()){
-			mySideBar.setCurrSelection(this,curr);
-			myController.setMapObjectTypeToMap(curr);
-			myController.setCurrDraggedImage(source.getImage());
-			myBoundBox = new Rectangle(source.getFitWidth(),source.getFitHeight());
+		setTrace(myController.getMapObjectImage(curr));
+		if (curr != mySideBar.getCurrSelection()) {
+			mySideBar.setCurrSelection(this, curr);
+			myController.setSelectedType(curr);
+			myBoundBox = new Rectangle(source.getFitWidth(), source.getFitHeight());
 			myBoundBox.setStroke(Color.RED);
 			myBoundBox.setStrokeWidth(2);
 			myBoundBox.setFill(Color.TRANSPARENT);
 			myBoundBox.setMouseTransparent(true);
 			myGridPane.add(myBoundBox, myGridPane.getColumnIndex(source), myGridPane.getRowIndex(source));
-		}else{
-			mySideBar.setCurrSelection(this,null);
+		} else {
+			mySideBar.setCurrSelection(this, null);
 			deselect();
 		}
 	}
 
 	protected void deselect() {
-		if(myBoundBox!=null){
-			myController.setMapObjectTypeToMap(null);
-			myController.setCurrDraggedImage(null);
+		if (myBoundBox != null) {
+			myController.setSelectedType(null);
 			myGridPane.getChildren().remove(myBoundBox);
 			myBoundBox = null;
-			myTrace.setImage(null);
+			myPane.getChildren().remove(myTrace);
+			myTrace = null;
 		}
 	}
 
-	private void trackMouse(MouseEvent e){
-		if(myController.getCurrSelectedImage()==null){
-			if(myTrace.isVisible()){
-				myTrace.setVisible(false);
-			}
+	private void setTrace(ImageView img) {
+		if (myTrace != img) {
+			myPane.getChildren().remove(myTrace);
+			myTrace = img;
+			myTrace.setFitHeight(30);
+			myTrace.setFitWidth(30);
+			myTrace.setOpacity(0.5);
+			myTrace.setMouseTransparent(true);
+			myPane.getChildren().add(myTrace);
+		}
+	}
+
+	private void deleteTrace() {
+		myPane.getChildren().remove(myTrace);
+		myTrace = null;
+	}
+
+	private void trackMouse(MouseEvent e) {
+		if (myController.getSelectedType() == null) {
+			deleteTrace();
 			e.consume();
 			return;
+		} else {
+			if (mySelectedType != myController.getSelectedType()) {
+				mySelectedType = myController.getSelectedType();
+				setTrace(myController.getMapObjectImage(mySelectedType));
+			}
+			if (myTrace == null)
+				setTrace(myController.getMapObjectImage(mySelectedType));
+			myTrace.setX(e.getX() - 15);
+			myTrace.setY(e.getY() - 15);
 		}
-		if(myTrace.getImage()!=myController.getCurrSelectedImage()){
-			myTrace.setImage(myController.getCurrSelectedImage());
-			myTrace.setVisible(true);
-		}
-		myTrace.setX(e.getX()-15);
-		myTrace.setY(e.getY()-15);
 	}
 
 }

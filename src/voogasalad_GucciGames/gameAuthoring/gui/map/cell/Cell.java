@@ -55,8 +55,8 @@ public class Cell extends StackPane implements ICell {
 		if (!e.isStillSincePress())
 			return;
 		if (e.getButton() == MouseButton.PRIMARY) {
-			if (myController.getMapObjectTypeToMap() != null)
-				add(myController.getMapObjectTypeToMap());
+			if (myController.getSelectedType() != null)
+				add(myController.getSelectedType());
 			else {
 				if (isSelected())
 					deselect();
