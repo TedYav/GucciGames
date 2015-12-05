@@ -5,7 +5,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.ResourceBundle;
 
-import voogasalad_GucciGames.gameData.wrapper.GameEngine;
+import voogasalad_GucciGames.gameData.wrapper.GameInfo;
 
 public class GameDataManager implements GameDataInterface {
 
@@ -21,7 +21,7 @@ public class GameDataManager implements GameDataInterface {
 	}
 
 	@Override
-	public GameEngine loadGame(String name) {
+	public GameInfo loadGame(String name) {
 		return myXStream.loadGameByName(name);
 	}
 
@@ -31,18 +31,18 @@ public class GameDataManager implements GameDataInterface {
 	}
 
 	@Override
-	public GameEngine loadGameFromFile(String path) throws GameDataException {
+	public GameInfo loadGameFromFile(String path) throws GameDataException {
 		if(!path.endsWith(myConfig.getString("GameExtension")))
 			throw new GameDataException("Please select a valid game data file.)");
 		return myXStream.loadGameInfo(path);
 	}
 
 	@Override
-	public GameEngine loadDefault() {
+	public GameInfo loadDefault() {
 		return myXStream.loadGameByName(myGameList.listGames().get(0));
 	}
 	
-	public String getGamePath(GameEngine game){
+	public String getGamePath(GameInfo game){
 		return myXStream.gameNameToFileName(game.getGameName());
 	}
 

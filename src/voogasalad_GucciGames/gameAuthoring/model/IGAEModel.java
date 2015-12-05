@@ -6,7 +6,7 @@ import java.util.Map;
 
 import javafx.collections.ObservableList;
 import voogasalad_GucciGames.gameAuthoring.gui.map.GridPoint;
-import voogasalad_GucciGames.gameData.wrapper.GameEngine;
+import voogasalad_GucciGames.gameData.wrapper.GameInfo;
 import voogasalad_GucciGames.gameEngine.mapObject.MapObject;
 
 public interface IGAEModel {
@@ -35,7 +35,7 @@ public interface IGAEModel {
 
 	public void addLevel(String name);
 	
-	void saveToXML(GameEngine game);
+	void saveToXML(GameInfo game);
 
     
 }

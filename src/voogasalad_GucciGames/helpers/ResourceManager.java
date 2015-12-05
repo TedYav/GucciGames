@@ -5,7 +5,7 @@ import java.util.List;
 import javafx.scene.image.Image;
 import javafx.scene.paint.Color;
 import voogasalad_GucciGames.gameData.GameDataManager;
-import voogasalad_GucciGames.gameData.wrapper.GameEngine;
+import voogasalad_GucciGames.gameData.wrapper.GameInfo;
 import voogasalad_GucciGames.gameplayer.controller.GameControllerInterface;
 
 public class ResourceManager implements GameResourceManager{
@@ -13,7 +13,7 @@ public class ResourceManager implements GameResourceManager{
 	private ImageDatabase myImageDatabase;
 	private ImageAverager myImageAverager;
 	
-	private GameEngine myGame;
+	private GameInfo myGame;
 	private String myPath;
 	
 	private GameDataManager myData;
@@ -22,7 +22,7 @@ public class ResourceManager implements GameResourceManager{
 		this(null);
 	}
 	
-	public ResourceManager(GameEngine game){
+	public ResourceManager(GameInfo game){
 		myImageDatabase = new ImageDatabase();
 		myImageAverager = new ImageAverager(this);
 		myGame = game;
@@ -33,7 +33,7 @@ public class ResourceManager implements GameResourceManager{
 		myPath = (myGame == null) ? "" : myData.getGamePath(myGame);
 	}
 
-	public void setGame(GameEngine game){
+	public void setGame(GameInfo game){
 		myGame = game;
 		setPath();
 	}
