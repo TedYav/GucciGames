@@ -21,7 +21,6 @@ public abstract class DisplayComponent extends WindowComponent{
     /**
      * Called if you want to manually refresh the DisplayComponent at the end of every turn.
      */
-    public void updateDisplay () {
-        
+    public void updateDisplay () {  
     }
 }
