@@ -140,8 +140,8 @@ public class GameEngineServer implements GameEngineToGamePlayerInterface, Runnab
 
 
 	@Override
-	public boolean isGameWon() {
-		return myEngine.isGameWon();
+	public boolean hasLevelEnded() {
+		return myEngine.hasLevelEnded();
 	}
 
 
