@@ -1,11 +1,8 @@
 package voogasalad_GucciGames.gameEngine;
 
-import java.io.BufferedReader;
 import java.io.IOException;
-import java.io.InputStreamReader;
 import java.io.PrintWriter;
 import java.net.ServerSocket;
-import java.net.Socket;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -20,7 +17,7 @@ import voogasalad_GucciGames.gameplayer.controller.GameParametersInterface;
 /**
  * This is a wrapper class around the game engine. It contains an instance of a
  * game engine and allows updating multiple clients' game engines.
- * 
+ *
  * @author Efe Aras
  *
  */
@@ -54,8 +51,9 @@ public class GameEngineServer implements GameEngineToGamePlayerInterface, Runnab
 			e.println(s);
 		});
 	}
-	
+
 	//add a listener to handle exceptions and report to front end.
+	@Override
 	public void run(){
 		ServerSocket listener = null;
         try {
@@ -67,7 +65,7 @@ public class GameEngineServer implements GameEngineToGamePlayerInterface, Runnab
 		   try {
 	            while (true) {
 	                new GameEngineConnectionHandler(listener.accept(), this).start();
-	            	
+
 	            }
 	        } catch (IOException e) {
 				// TODO Auto-generated catch block
@@ -140,11 +138,19 @@ public class GameEngineServer implements GameEngineToGamePlayerInterface, Runnab
 		return myEngine.getMapHeight();
 	}
 
-	
-	
+	/* (non-Javadoc)
+	 * @see voogasalad_GucciGames.gameEngine.GameEngineToGamePlayerInterface#isGameWon()
+	 */
+	@Override
+	public boolean isGameWon() {
+		return myEngine.isGameWon();
+	}
+
+
+
 	//http://cs.lmu.edu/~ray/notes/javanetexamples/#chat
-		
-	
-	
+
+
+
 
 }

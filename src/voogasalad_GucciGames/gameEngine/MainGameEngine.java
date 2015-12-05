@@ -151,10 +151,10 @@ public class MainGameEngine implements GameEngineToGamePlayerInterface {
 		// TODO Auto-generated method stub
 		GameParameters pp= new GameParameters();
 		if(myGamePlayers.getNumberOfPlayers() != 2){
-			pp.setGameWon(false);
+			//pp.setGameWon(false);
 		}
 		else{
-			pp.setGameWon(true);
+			//pp.setGameWon(true);
 		}
 
 		pp.setCurrentTurnPlayer(getTurnPlayerID());
@@ -205,6 +205,7 @@ public class MainGameEngine implements GameEngineToGamePlayerInterface {
 		myName = name;
 	}
 
+	@Override
 	public boolean isGameWon() {
 		return gameWon;
 	}
@@ -212,4 +213,5 @@ public class MainGameEngine implements GameEngineToGamePlayerInterface {
 	public void setGameWon(boolean gameWon) {
 		this.gameWon = gameWon;
 	}
+
 }
