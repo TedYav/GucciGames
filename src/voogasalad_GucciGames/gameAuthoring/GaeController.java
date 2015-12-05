@@ -18,6 +18,7 @@ import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.paramObjects.PlayerPara
 import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.paramObjects.StructureParams;
 import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.paramObjects.TileParams;
 import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.paramObjects.UnitParams;
+import voogasalad_GucciGames.gameAuthoring.gui.levels.LevelTabPane;
 import voogasalad_GucciGames.gameAuthoring.gui.map.GridPoint;
 import voogasalad_GucciGames.gameAuthoring.model.DisplayMapObject;
 import voogasalad_GucciGames.gameAuthoring.model.GAEModel;
@@ -66,22 +67,6 @@ public class GaeController extends AGuiGaeController implements IModelGaeControl
 		return model.getMapObjects();
 	}
 
-	// @Override
-	// public int getMapObjectListPosAtPoint(ObservableList<MapObject>
-	// mapObjectList, GridPoint gridPoint) {
-	// for(int i=0; i<mapObjectList.size(); i++){
-	// MapObject currMapObj= mapObjectList.get(i);
-	// ATargetCoordinate targCoordinate = currMapObj.getCoordinate();
-	// for(TargetCoordinateSingle targCoorSingle :
-	// targCoordinate.getListOfCoordinates()){
-	// if (gridPoint.getX() == targCoorSingle.getCenterX() && gridPoint.getY()
-	// == targCoorSingle.getCenterY()){
-	// return i;
-	// }
-	// }
-	// }
-	// return -1;
-	// }
 	@Override
 	public void clearMap() {
 		model.clearMap();
@@ -273,6 +258,11 @@ public class GaeController extends AGuiGaeController implements IModelGaeControl
 
 	public void initGrid(int width, int height) {
 		myGui.initializeMap(width, height);
+	}
+	
+	@Override
+	public LevelTabPane getLevelTabPane(){
+		return myGui.getLevelTabPane();
 	}
 
 }
