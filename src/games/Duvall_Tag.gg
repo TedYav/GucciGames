@@ -1,4 +1,5 @@
 <<<<<<< HEAD
+<<<<<<< HEAD
 Ì©QúÌâ¿¸d9Ë&ì¹Á1ºxs™³Ù#æ³mq6<voogasalad__GucciGames.gameData.wrapper.GameInfo>
 =======
 ÆğÓôb{E"‹Å!níöIy·¾ıîV€Qç¨A<voogasalad__GucciGames.gameData.wrapper.GameInfo>
@@ -18,6 +19,9 @@
     <string>voogasalad_GucciGames.gameplayer.windows.mainwindow.components.bar.MainMenuButton</string>
   </myBottomComponents>
 >>>>>>> c05da467e8356d7331dcae336bcc233113aa1fef
+=======
+—º“ô,…€«»Ÿö9%xÚo"@¨2:Î„)ºÍ\Á<voogasalad__GucciGames.gameData.wrapper.GameInfo>
+>>>>>>> master
   <myLevelsMap class="tree-map">
     <entry>
       <int>0</int>
@@ -519,10 +523,14 @@
           <myMapWidth>4</myMapWidth>
           <myMapHeight>4</myMapHeight>
 <<<<<<< HEAD
+<<<<<<< HEAD
           <myName>Game 4637</myName>
 =======
           <myName>Game 7912</myName>
 >>>>>>> c05da467e8356d7331dcae336bcc233113aa1fef
+=======
+          <myName>Game 4503</myName>
+>>>>>>> master
           <gameWon>false</gameWon>
         </myEngine>
         <myID>0</myID>
@@ -2255,10 +2263,14 @@
           <myMapWidth>8</myMapWidth>
           <myMapHeight>8</myMapHeight>
 <<<<<<< HEAD
+<<<<<<< HEAD
           <myName>Game 8449</myName>
 =======
           <myName>Game 9639</myName>
 >>>>>>> c05da467e8356d7331dcae336bcc233113aa1fef
+=======
+          <myName>Game 1876</myName>
+>>>>>>> master
           <gameWon>false</gameWon>
         </myEngine>
         <myID>1</myID>
@@ -12351,10 +12363,14 @@
           <myMapWidth>20</myMapWidth>
           <myMapHeight>20</myMapHeight>
 <<<<<<< HEAD
+<<<<<<< HEAD
           <myName>Game 1679</myName>
 =======
           <myName>Game 9415</myName>
 >>>>>>> c05da467e8356d7331dcae336bcc233113aa1fef
+=======
+          <myName>Game 2292</myName>
+>>>>>>> master
           <gameWon>false</gameWon>
         </myEngine>
         <myID>2</myID>

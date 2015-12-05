@@ -30,8 +30,10 @@ public class GameStatsDisplay extends DisplayComponent {
     @Override
     public void updateDisplay() {
         observeStats.clear();
+        int myID = getController().getEngine().getGameParameters().whoseTurn();
         observeStats.add(myBundle.getString("statswin")+getController().getEngine().isGameWon());
         observeStats.add(myBundle.getString("statsturn")+getController().getEngine().getGameParameters().whoseTurn());
+        observeStats.add(myBundle.getString("statsscore")+getController().getEngine().getGameParameters().getScore().get("Player" + myID));
     }
 
     @Override
