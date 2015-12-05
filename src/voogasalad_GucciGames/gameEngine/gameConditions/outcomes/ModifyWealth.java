@@ -1,10 +1,11 @@
 
-package voogasalad_GucciGames.gameEngine.gameConditions.oucomes;
+package voogasalad_GucciGames.gameEngine.gameConditions.outcomes;
 
 import java.util.List;
 import java.util.Map;
 
 import voogasalad_GucciGames.gameEngine.CommunicationParameters.BasicParameters;
+import voogasalad_GucciGames.gameEngine.CommunicationParameters.ChangedParameters;
 import voogasalad_GucciGames.gameEngine.gameConditions.Conditions;
 
 /**
@@ -22,10 +23,11 @@ public class ModifyWealth extends Outcome {
 	}
 
 	@Override
-	BasicParameters applyOutcome(BasicParameters params, int i) {
+	ChangedParameters applyOutcome(BasicParameters params,ChangedParameters changedParams, int i) {
 		int delta = (int) myParams.get(WEALTH);
-		// params.getEngine().getPlayers().getActivePlayer(i).modifymyWealth)(delta);
-		return params;
+		params.getEngine().getPlayers().getActivePlayer(i).getWealth().modifyWealth(delta);
+		changedParams.addPlayer(i);
+		return changedParams;
 	}
 
 }

@@ -4,15 +4,11 @@ import java.util.List;
 
 import voogasalad_GucciGames.gameEngine.CommunicationParameters.BasicParameters;
 import voogasalad_GucciGames.gameEngine.CommunicationParameters.ChangedParameters;
-import voogasalad_GucciGames.gameEngine.CommunicationParameters.CommunicationParameters;
-import voogasalad_GucciGames.gameEngine.CommunicationParameters.EmptyParameters;
 import voogasalad_GucciGames.gameEngine.CommunicationParameters.GridCoordinateParameters;
 import voogasalad_GucciGames.gameEngine.CommunicationParameters.LocationParameters;
-import voogasalad_GucciGames.gameEngine.gamePlayer.AllPlayers;
-import voogasalad_GucciGames.gameEngine.mapObject.MapObject;
-import voogasalad_GucciGames.gameEngine.mapObject.TheMap;
+import voogasalad_GucciGames.gameEngine.gameConditions.outcomes.Outcome;
+import voogasalad_GucciGames.gameEngine.gameRules.Rules;
 import voogasalad_GucciGames.gameEngine.objectActions.MapObjectEvent;
-import voogasalad_GucciGames.gameEngine.targetCoordinate.ATargetCoordinate;
 
 /**
  *
@@ -22,8 +18,8 @@ import voogasalad_GucciGames.gameEngine.targetCoordinate.ATargetCoordinate;
  */
 public class Movement extends MapObjectEvent{
 
-	public Movement(String actionName) {
-		super(actionName);
+	public Movement(String actionName, List<Rules> rules, List<Outcome> outcomes) {
+		super(actionName, rules, outcomes);
 		// TODO Auto-generated constructor stub
 	}
 
@@ -124,7 +120,7 @@ public class Movement extends MapObjectEvent{
 		return null;
 
 	}
-	
+
 	@Override
 	public CommunicationParams action(CommunicationParams communication) {
 		// TODO Auto-generated method stub

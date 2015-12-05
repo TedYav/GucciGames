@@ -11,7 +11,7 @@ public interface GameEngineToGamePlayerInterface {
 
 	/**
 	 * This is the name of the game running in this instance of the engine.
-	 * 
+	 *
 	 * @return a String to represent the name of the game.
 	 */
 	@Deprecated
@@ -28,7 +28,7 @@ public interface GameEngineToGamePlayerInterface {
 	 * This returns the list of map objects that the author has created, and it
 	 * just gives a list of them to the Game Player. Note that it is given in
 	 * the form of a PlayerMapObjectInterface.
-	 * 
+	 *
 	 * @return a List of all the MapObjects on the map through the
 	 *         PlayerMapObjectInterface.
 	 */
@@ -40,8 +40,8 @@ public interface GameEngineToGamePlayerInterface {
 	 * outcomes have been achieved by checking their conditions and advance a
 	 * turn counter. This method also returns a GameParametersInterface which
 	 * contains information about whether the game has ended or not.
-	 * 
-	 * 
+	 *
+	 *
 	 */
 	public GameParametersInterface endTurn();
 
@@ -49,7 +49,7 @@ public interface GameEngineToGamePlayerInterface {
 	/**
 	 * Instead of this method, the user is encouraged to access the current game
 	 * parameters and then access the turn player ID from there.
-	 * 
+	 *
 	 * @return
 	 */
 	public int getTurnPlayerID();
@@ -65,7 +65,7 @@ public interface GameEngineToGamePlayerInterface {
 
 	@Deprecated
 	/**
-	 * 
+	 *
 	 * @param action
 	 * @param mapObject
 	 * @param target
@@ -79,4 +79,6 @@ public interface GameEngineToGamePlayerInterface {
 	public int getMapHeight();
 
 	public GameParametersInterface getGameParameters();
+
+	public boolean isGameWon();
 }

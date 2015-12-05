@@ -1,16 +1,18 @@
 package voogasalad_GucciGames.gameEngine.objectActions;
 
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
-import voogasalad_GucciGames.gameEngine.CommunicationParameters.ChangedParameters;
 import voogasalad_GucciGames.gameEngine.CommunicationParameters.BasicParameters;
-import voogasalad_GucciGames.gameEngine.CommunicationParameters.CommunicationParameters;
+import voogasalad_GucciGames.gameEngine.CommunicationParameters.ChangedParameters;
 import voogasalad_GucciGames.gameEngine.CommunicationParameters.GridCoordinateParameters;
 import voogasalad_GucciGames.gameEngine.CommunicationParameters.LocationParameters;
 import voogasalad_GucciGames.gameEngine.defaultCharacteristics.MovableCharacteristic;
+import voogasalad_GucciGames.gameEngine.gameConditions.outcomes.Outcome;
 import voogasalad_GucciGames.gameEngine.gamePlayer.AllPlayers;
 import voogasalad_GucciGames.gameEngine.gamePlayer.GamePlayerPerson;
+import voogasalad_GucciGames.gameEngine.gameRules.Rules;
 import voogasalad_GucciGames.gameEngine.gameRules.defaultRules.UnitsMovablePerTurn;
 import voogasalad_GucciGames.gameEngine.mapObject.MapObject;
 import voogasalad_GucciGames.gameEngine.targetCoordinate.TargetCoordinateMultiple;
@@ -21,10 +23,9 @@ import voogasalad_GucciGames.gameEngine.targetCoordinate.TargetCoordinateSingle;
 public class MoveEvent extends MapObjectEvent{
 
 
-	public MoveEvent(String actionName) {
-		super(actionName);
+	public MoveEvent(String actionName, List<Rules> rules, List<Outcome> outcomes) {
+		super(actionName, rules, outcomes);
 		getRuleList().add(new UnitsMovablePerTurn());
-		// TODO Auto-generated constructor stub
 	}
 
 	@Override
@@ -38,11 +39,11 @@ public class MoveEvent extends MapObjectEvent{
 		GamePlayerPerson player = players.getActivePlayer(params.getCalledMe().getPlayerID());
 		player.getMovable().updateMoves();
 		//params.getMovePerson().updateMoves();
-		
+
 		ChangedParameters myParameters  = new ChangedParameters();
-		
+
 		myParameters.addUnit(moving);
-		
+
 		return myParameters;
 	}
 
@@ -60,7 +61,7 @@ public class MoveEvent extends MapObjectEvent{
 		// going through neutral player
 		TargetCoordinateSingle caller = (TargetCoordinateSingle) calledMe.getCoordinate();
 		Set<TargetCoordinateSingle> otherCoor = new HashSet<>();
-		
+
 		players.getNonNeutralMapObjects().stream().forEach(obj -> {
 			otherCoor.add((TargetCoordinateSingle) obj.getCoordinate());
 		});
@@ -70,7 +71,7 @@ public class MoveEvent extends MapObjectEvent{
 				TargetCoordinateSingle single = (TargetCoordinateSingle) mo.getCoordinate();
 				double dx = Math.abs(single.getCenterX()-caller.getCenterX());
 				double dy = Math.abs(single.getCenterY()-caller.getCenterY());
-				
+
 				if (checkNeighborhood(dx,dy,range) && !otherCoor.contains(mo.getCoordinate())){
 					result.addTargetCoordinateSingle(mo.getCoordinate());
 				}

@@ -30,7 +30,7 @@ public class GameSplashScene extends GameScene {
 	public void load() {
 		System.out.println("LOADED " + getName());
 		SplashScreen splash = new SplashScreen(this, getManager().getController(), myConfig.getBaseBundleName());
-		splash.setText(getManager().getController().getEngine().getGameName());
+		splash.setText(getManager().getController().getGame().getGameName());
 		
 		LoaderComponent loader = new LoaderComponent(this, getManager().getController(), myConfig.getBaseBundleName());
 		splash.addChild(loader);

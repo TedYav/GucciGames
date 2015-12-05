@@ -18,11 +18,12 @@ import javafx.scene.paint.Paint;
 import javafx.scene.shape.Rectangle;
 import voogasalad_GucciGames.gameplayer.controller.GameControllerInterface;
 import voogasalad_GucciGames.gameplayer.scenes.GameScene;
+import voogasalad_GucciGames.gameplayer.windows.mainwindow.components.DisplayComponent;
 import voogasalad_GucciGames.gameplayer.windows.mainwindow.components.WindowComponent;
 import voogasalad_GucciGames.gameplayer.windows.mainwindow.map.cell.MapCellInterface;
 import voogasalad_GucciGames.helpers.ImageAverager;
 
-public class MiniMap extends WindowComponent implements MiniMapInterface, Observer {
+public class MiniMap extends DisplayComponent implements MiniMapInterface, Observer {
 
 	private Map<Point2D, Rectangle> myShapeMap;	
 	private ResourceBundle myConfig = ResourceBundle.getBundle("voogasalad_GucciGames.gameplayer.config.components.MiniMap");

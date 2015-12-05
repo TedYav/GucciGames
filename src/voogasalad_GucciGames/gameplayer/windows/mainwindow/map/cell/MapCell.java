@@ -182,7 +182,7 @@ public abstract class MapCell extends Observable implements MapCellInterface {
 	}
 
 	private ImageView renderImage(PlayerMapObjectInterface object, double size) {
-		ImageView image = new ImageView(myController.requestImage(object.getImageURI()));
+		ImageView image = new ImageView(myController.getResource().getImage(object.getImageURI()));
 		image.setFitWidth(size);
 		image.setFitHeight(size);
 		return image;

@@ -22,6 +22,7 @@ import voogasalad_GucciGames.gameEngine.targetCoordinate.ATargetCoordinate;
 import voogasalad_GucciGames.gameEngine.targetCoordinate.TargetCoordinateSingle;
 import voogasalad_GucciGames.gameplayer.config.PlayerConfig;
 import voogasalad_GucciGames.gameplayer.controller.GameControllerInterface;
+import voogasalad_GucciGames.gameplayer.controller.GameControllerAdvancedInterface;
 import voogasalad_GucciGames.gameplayer.scenes.GameScene;
 import voogasalad_GucciGames.gameplayer.windows.mainwindow.components.WindowComponent;
 import voogasalad_GucciGames.gameplayer.windows.mainwindow.map.MapInterface;
@@ -71,7 +72,7 @@ public class MainMap extends WindowComponent implements MapInterface {
 		myCellSize = calculateCellSize();
 		mySelectedUnits = FXCollections.observableArrayList();
 		myUnitMap = new TwoWayMap<>();
-		getController().setMap(this);
+		((GameControllerAdvancedInterface) getController()).setMap(this);
 	}
 
 
