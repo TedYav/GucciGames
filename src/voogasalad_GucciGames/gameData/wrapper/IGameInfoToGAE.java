@@ -7,8 +7,8 @@ import voogasalad_GucciGames.gameEngine.MainGameEngine;
 
 public interface IGameInfoToGAE {
 	
-	public void addLevel(String gameName, boolean chooseable, MainGameEngine engine);
-	public void addLevel(String gameName, boolean chooseable, int nextLevelId, MainGameEngine engine);
+	public void addLevel(String gameName, boolean chooseable);
+	public void addLevel(String gameName, boolean chooseable, int nextLevelId                                   );
 	
 //	public void editLevel(String gameName);
 	
@@ -23,5 +23,7 @@ public interface IGameInfoToGAE {
 	public Map<Integer, String>getLevelsMap();
 	
 	public List<String> getChoosableLevels();
+
+	public void setEngine(String gameName, MainGameEngine engine);   
 	
 }

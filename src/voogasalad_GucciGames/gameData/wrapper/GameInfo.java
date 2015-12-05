@@ -40,6 +40,15 @@ public class GameInfo implements IGameInfoToGAE{
 	    myBottomComponents=bottomComponents;
 	}
 	
+	public GameInfo(List<String> leftComponents, List<String> rightComponents, List<String> bottomComponents){
+	    myLeftComponents=leftComponents;
+	    myRightComponents=rightComponents;
+	    myBottomComponents=bottomComponents;
+	    
+	    myLevelsMap = new TreeMap<Integer,GameLevel>();
+	    myGameName = "Game " + Math.round((Math.random()*10000));
+	}
+	
 	@Override
 	public String getName() {
 		// TODO Auto-generated method stub
@@ -53,11 +62,10 @@ public class GameInfo implements IGameInfoToGAE{
 	 * @return
 	 */	
 	@Override
-	public void addLevel(String gameName, boolean chooseable, MainGameEngine engine){
-		//At the moment, automatically sets next level as the next int in the map
-		myEngine = engine;		
+	public void addLevel(String gameName, boolean chooseable){
+		//At the moment, automatically sets next level as the next int in the map	
 		int nextID = myLevelID + 1;
-		GameLevel gameLevel = new GameLevel(myLevelID, nextID, gameName, chooseable, engine);
+		GameLevel gameLevel = new GameLevel(myLevelID, nextID, gameName, chooseable);
 		if (chooseable){
 			myChoosableLevelsList.add(gameLevel);
 		}
@@ -77,12 +85,11 @@ public class GameInfo implements IGameInfoToGAE{
 	 * @return
 	 */	
 	@Override
-	public void addLevel(String gameName, boolean chooseable, int nextLevelId, MainGameEngine engine){
-		GameLevel gameLevel = new GameLevel(myLevelID, nextLevelId, gameName, chooseable, engine);	
+	public void addLevel(String gameName, boolean chooseable, int nextLevelId){
+		GameLevel gameLevel = new GameLevel(myLevelID, nextLevelId, gameName, chooseable);	
 		if (chooseable){
 			myChoosableLevelsList.add(gameLevel);
 		}
-		myEngine = engine;
 		myLevelsMap.put(myLevelID, gameLevel);
 		myLevelID++;
 		
@@ -151,7 +158,6 @@ public class GameInfo implements IGameInfoToGAE{
 		}
 		return levelNames;
 	}
-
 	
 	public GameEngineToGamePlayerInterface getEngine() {
 	    return myEngine;
@@ -166,6 +172,17 @@ public class GameInfo implements IGameInfoToGAE{
     public List<String> getBottomComponents () {
         return myBottomComponents;
     }
+
+	@Override
+	public void setEngine(String gameName, MainGameEngine engine) {
+		for (Integer key: myLevelsMap.keySet()){
+			if(gameName.equals(myLevelsMap.get(key).getLevelName())){
+				myEngine = engine;
+				myLevelsMap.get(key).setGameEngine(engine);
+			}
+		}
+		
+	}
     
 
 
