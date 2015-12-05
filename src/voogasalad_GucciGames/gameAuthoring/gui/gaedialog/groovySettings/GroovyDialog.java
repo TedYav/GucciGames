@@ -21,12 +21,13 @@ public class GroovyDialog extends javafx.scene.control.Dialog implements ISwitch
 		super();
 		groovyMainPane = new MainPane(this, WIDTH, HEIGHT);
 		stackPane.setPrefSize(WIDTH, HEIGHT);
+		stackPane.setPadding(new Insets(15,15,15,15));
+		
 		stackPane.getChildren().add(groovyMainPane);		
 		this.getDialogPane().setContent(stackPane);
 		setHeaderText("Create Custom Game Components Using Groovy");
-		StackPane.setMargin(groovyMainPane, new Insets(8,8,8,8));
 		
-		this.addBtn(ButtonType.CANCEL);
+		this.addBtn(ButtonType.CLOSE);
 	}
 	
 

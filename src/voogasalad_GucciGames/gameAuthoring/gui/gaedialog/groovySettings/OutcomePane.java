@@ -4,31 +4,25 @@ import java.util.ArrayList;
 import java.util.List;
 
 import voogasalad.util.reflection.Reflection;
-import javafx.geometry.HPos;
 import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.TextArea;
 import javafx.scene.layout.GridPane;
-import javafx.scene.text.Font;
 
-public class RulePane extends GridPane{
-	
+public class OutcomePane extends GridPane {
 	private List<String> attributes = new ArrayList<String>();
 	private ISwitchGroovyPane controller;	
 	private static final String path = "voogasalad_GucciGames.gameAuthoring.gui.gaedialog.groovySettings.";
-
 	
-	public RulePane(String name, ISwitchGroovyPane controller){
-		attributes.add("Rules");
-		this.controller = controller;
+	public OutcomePane(String name, ISwitchGroovyPane controller){
+		attributes.add("Outcome");
+		
 		GeneralPane pane = new GeneralPane(attributes,controller, name);
-		List<String> actions = new ArrayList<String>();
-		String title = "Add Action(s) to Rule";
-		String header = "Actions";
-		pane.init(actions, header, title);
+		List<String> conditions = new ArrayList<String>();
+		String title = "Add Condition(s) to Outcomes";
+		String header = "Conditions";
+		pane.init(conditions, header, title);
 		this.getChildren().add(pane);
+
 	}
 	
-
 
 }
