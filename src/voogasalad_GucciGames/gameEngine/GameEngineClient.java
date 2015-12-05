@@ -4,12 +4,9 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.PrintWriter;
-import java.net.ServerSocket;
 import java.net.Socket;
 import java.net.UnknownHostException;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 
 import com.thoughtworks.xstream.XStream;
 
@@ -21,7 +18,7 @@ import voogasalad_GucciGames.gameplayer.controller.GameParametersInterface;
 /**
  * This is the wrapper for the client. May be merged with GameEngineServer later
  * on.
- * 
+ *
  * @author Efe Aras
  *
  */
@@ -43,10 +40,11 @@ public class GameEngineClient implements GameEngineToGamePlayerInterface, Runnab
 		XStream xstream = new XStream();
 		myEngine = (MainGameEngine) xstream.fromXML(engineXML);
 	}
-	
-	//add a listener to handle exceptions and report to front end. alternatively, make this 
+
+	//add a listener to handle exceptions and report to front end. alternatively, make this
+	@Override
 	public void run(){
-		
+
         try {
 			Socket socket = new Socket(SERVER_ADDRESS, PORT);
 			BufferedReader in = new BufferedReader(new InputStreamReader(
@@ -56,25 +54,25 @@ public class GameEngineClient implements GameEngineToGamePlayerInterface, Runnab
 		        // Process all messages from server, according to the protocol.
 		        while (true) {
 		            String input = in.readLine();
-		        
+
 		            if(input.equals("GAMEDATA")){
 	                    input = in.readLine();
 	                    int lengthXML = Integer.parseInt(input);
-	                    
+
 	                    StringBuilder myBuilder = new StringBuilder();
-	                    
+
 	                    for(int i = 0; i < lengthXML; i++){
 	                    	myBuilder.append(in.read());
 	                    }
 	                    this.updateGameEngine(myBuilder.toString());
-	                    
+
 		            }
-		            
-		           
-		        
-		        
+
+
+
+
 		        }
-			
+
 		} catch (UnknownHostException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -82,8 +80,8 @@ public class GameEngineClient implements GameEngineToGamePlayerInterface, Runnab
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-        
-        
+
+
 	}
 	@Override
 	public String getGameName() {
@@ -109,8 +107,8 @@ public class GameEngineClient implements GameEngineToGamePlayerInterface, Runnab
 		String s = xstream.toXML(myEngine);
 		myWriterToServer.println(s.length());
 		myWriterToServer.println(s);
-		
-		
+
+
 	}
 
 	@Override
@@ -149,7 +147,18 @@ public class GameEngineClient implements GameEngineToGamePlayerInterface, Runnab
 		return 0;
 	}
 
+
+	@Override
+	public boolean isGameWon() {
+		return myEngine.isGameWon();}
+
+	@Override
+	public String getName() {
+		return myEngine.getName();
+
+	}
+
 	//change to either immutable or just make the methods of this public (and not the full set...)
-	
-	
+
+
 }

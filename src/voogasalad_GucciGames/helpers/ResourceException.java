@@ -1,4 +1,4 @@
-package voogasalad_GucciGames.datastructures;
+package voogasalad_GucciGames.helpers;
 
 public class ResourceException extends RuntimeException {
 

@@ -1,6 +1,8 @@
 package voogasalad_GucciGames.gameEngine.gameConditions.defaultConditions;
 
-import voogasalad_GucciGames.gameEngine.gameConditions.ConditionParams;
+import java.util.Map;
+
+import voogasalad_GucciGames.gameEngine.CommunicationParameters.BasicParameters;
 import voogasalad_GucciGames.gameEngine.gameConditions.Conditions;
 import voogasalad_GucciGames.gameEngine.gamePlayer.GamePlayerPerson;
 
@@ -11,13 +13,12 @@ import voogasalad_GucciGames.gameEngine.gamePlayer.GamePlayerPerson;
  */
 public class CheckPlayerObjects extends Conditions {
 
-	public CheckPlayerObjects(ConditionParams condParams) {
+	public CheckPlayerObjects(Map<String,Object> condParams) {
 		super(condParams);
-
 	}
 
 	@Override
-	public Boolean execute(GamePlayerPerson player) {
+	public Boolean execute(BasicParameters params,GamePlayerPerson player) {
 		if (player.getMapObjects().size() == 0)
 			return true;
 		else

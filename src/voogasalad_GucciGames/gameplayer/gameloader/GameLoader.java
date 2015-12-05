@@ -4,7 +4,7 @@ import java.util.List;
 
 import voogasalad_GucciGames.gameData.GameDataException;
 import voogasalad_GucciGames.gameData.GameDataInterface;
-import voogasalad_GucciGames.gameData.GameDataLoader;
+import voogasalad_GucciGames.gameData.GameDataManager;
 import voogasalad_GucciGames.gameData.XStreamGameEngine;
 import voogasalad_GucciGames.gameData.wrapper.GameInfo;
 import voogasalad_GucciGames.gameEngine.GameEngineToGamePlayerInterface;
@@ -20,7 +20,7 @@ public class GameLoader {
     private String mySelectedGame = "";
 
     public GameLoader(GameController controller) {
-    	myData = new GameDataLoader();
+    	myData = new GameDataManager();
         myController = controller;
     }
     

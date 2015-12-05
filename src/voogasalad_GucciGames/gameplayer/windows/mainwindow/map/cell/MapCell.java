@@ -2,10 +2,13 @@ package voogasalad_GucciGames.gameplayer.windows.mainwindow.map.cell;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
+import java.util.Observable;
 import java.util.ResourceBundle;
 import java.util.TreeMap;
+import java.util.stream.Collectors;
 
 import javafx.animation.FadeTransition;
 import javafx.animation.Timeline;
@@ -25,27 +28,27 @@ import voogasalad_GucciGames.gameplayer.controller.GameControllerInterface;
 import voogasalad_GucciGames.gameplayer.controller.dummy.MapObjectBasicType;
 import voogasalad_GucciGames.gameplayer.eventhandler.MapMouseHandler;
 import voogasalad_GucciGames.gameplayer.windows.mainwindow.map.MapInterface;
+import voogasalad_GucciGames.helpers.ColorUtility;
 
-public abstract class MapCell implements MapCellInterface {
+public abstract class MapCell extends Observable implements MapCellInterface {
 
 	private ResourceBundle myConfig = ResourceBundle.getBundle("voogasalad_GucciGames.gameplayer.config.components.MapCell");
 	
 	// TODO: factor this into two or three classes eventually	
 	private StackPane myParent;
-	
 	private StackPane myObjectLayer;
 	protected Map<Integer, GridPane> myLayerMap;
-	
 	private StackPane myOverlayLayer;
 	protected Shape myOverlay;
 	
 	private boolean selected;
 	private boolean active;
-	
+		
 	private GameControllerInterface myController;
 	
 	protected double mySize;
-		
+	private Point2D myCoordinate;	
+	
 	private Map<Integer, List<PlayerMapObjectInterface>> myObjects;
 	
 	private FadeTransition myBlinker;
@@ -157,9 +160,9 @@ public abstract class MapCell implements MapCellInterface {
 		}
 	}
 
-	private void redraw(){
-		myObjects.keySet().forEach((i) -> redrawLayer(i));
-	}
+//	private void redraw(){
+//		myObjects.keySet().forEach((i) -> redrawLayer(i));
+//	}
 	
 	private void redrawLayer(int layer){
 		makeLayers(layer);
@@ -174,10 +177,12 @@ public abstract class MapCell implements MapCellInterface {
 				}
 			}
 		}
+		setChanged();
+		notifyObservers();
 	}
 
 	private ImageView renderImage(PlayerMapObjectInterface object, double size) {
-		ImageView image = new ImageView(myController.requestImage(object.getImageURI()));
+		ImageView image = new ImageView(myController.getResource().getImage(object.getImageURI()));
 		image.setFitWidth(size);
 		image.setFitHeight(size);
 		return image;
@@ -199,9 +204,27 @@ public abstract class MapCell implements MapCellInterface {
 		
 	}
 	
+	private List<String> getImageList(){
+		return myObjects.values().stream()
+				.filter( l -> !l.isEmpty())
+				.flatMap(l -> 
+					l.stream()
+					.map(o -> o.getImageURI()))
+				.collect(Collectors.toList());
+	}
+	
+	
 	    @Override
 	    public Map<Integer, List<PlayerMapObjectInterface>> getUnits () {
 	        return myObjects;
 	    }
+	    
+	public Color getColor(){
+		List<Color> myColors = getImageList().stream()
+				.map( (s) -> myController.getResource().getImageColor(s) )
+				.collect(Collectors.toList());
+		//TODO: add fog check
+		return ColorUtility.average(myColors);
+	}
 	
 }

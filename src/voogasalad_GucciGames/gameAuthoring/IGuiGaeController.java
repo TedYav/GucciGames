@@ -1,10 +1,12 @@
 package voogasalad_GucciGames.gameAuthoring;
 
+import voogasalad_GucciGames.gameAuthoring.gui.levels.LevelTabPane;
 import voogasalad_GucciGames.gameAuthoring.gui.map.GridPoint;
 import voogasalad_GucciGames.gameAuthoring.model.DisplayMapObject;
 import voogasalad_GucciGames.gameAuthoring.model.MapObjectType;
 import voogasalad_GucciGames.gameAuthoring.properties.ObjectProperty;
 import voogasalad_GucciGames.gameAuthoring.properties.Property;
+import voogasalad_GucciGames.gameData.wrapper.GameInfo;
 
 import java.io.File;
 import java.util.ArrayList;
@@ -23,7 +25,7 @@ public interface IGuiGaeController {
 	 * 
 	 * @param mapObj
 	 */
-	
+
 	public void initGrid(int width, int height);
 
 	public void deleteComponent(DisplayMapObject mapObj);
@@ -47,8 +49,11 @@ public interface IGuiGaeController {
 
 	public ObservableList<MapObjectType> getImmutableStructureTypes();
 
+	@Deprecated
 	public void saveToXML(File file);
 
+	public void saveToXML(GameInfo game);
+	
 	public void setMapObjectTypeToMap(MapObjectType mapType);
 
 	public MapObjectType getMapObjectTypeToMap();
@@ -68,16 +73,26 @@ public interface IGuiGaeController {
 	public ImageView getMapObjectImage(MapObjectType object);
 
 	public ImageView getMapObjectImage(DisplayMapObject object);
-        
-        public List<String> getCustomGamePlayerLeftComponents();
-        
-        public void setCustomGamePlayerLeftComponents(List<String> allComponents);    
-        
-        public List<String> getCustomGamePlayerRightComponents();
-        
-        public void setCustomGamePlayerRightComponents(List<String> allComponents);    
-        
-        public List<String> getCustomGamePlayerBottomComponents();
-        
-        public void setCustomGamePlayerBottomComponents(List<String> allComponents);
+
+//
+//	public List<String> getCustomGamePlayerLeftComponents();
+//
+//	public void setCustomGamePlayerLeftComponents(List<String> allComponents);    
+//
+//	public List<String> getCustomGamePlayerRightComponents();
+//
+//	public void setCustomGamePlayerRightComponents(List<String> allComponents);    
+//
+//	public List<String> getCustomGamePlayerBottomComponents();
+//
+//	public void setCustomGamePlayerBottomComponents(List<String> allComponents);
+
+	public List<String> getCustomGamePlayerComponents(String location);
+
+	public void setCustomGamePlayerComponents(String location, List<String> allComponents);
+
+	public LevelTabPane getLevelTabPane();
+
+	public void addLevel(String name);
+
 }

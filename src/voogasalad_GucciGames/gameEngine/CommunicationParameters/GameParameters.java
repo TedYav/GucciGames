@@ -1,6 +1,7 @@
 package voogasalad_GucciGames.gameEngine.CommunicationParameters;
 
 import java.util.Map;
+
 import voogasalad_GucciGames.gameplayer.controller.GameParametersInterface;
 import voogasalad_GucciGames.gameplayer.controller.GameResultInterface;
 
@@ -10,9 +11,9 @@ public class GameParameters extends CommunicationParameters implements GameParam
     private String gameName;
     private Map<String,Double> score;
     private int currentTurnPlayer;
-    private boolean gameWon;
+
     private GameResult gameResult;
-    
+
     public double getMapWidth () {
         return mapWidth;
     }
@@ -31,7 +32,8 @@ public class GameParameters extends CommunicationParameters implements GameParam
     public void setGameName (String gameName) {
         this.gameName = gameName;
     }
-    public Map<String,Double> getScore () {
+    @Override
+	public Map<String,Double> getScore () {
         return score;
     }
     public void setScore (Map<String,Double> score) {
@@ -43,12 +45,7 @@ public class GameParameters extends CommunicationParameters implements GameParam
     public void setCurrentTurnPlayer (int currentTurnPlayer) {
         this.currentTurnPlayer = currentTurnPlayer;
     }
-    public boolean gameWon () {
-        return gameWon;
-    }
-    public void setGameWon (boolean gameWon) {
-        this.gameWon = gameWon;
-    }
+
     public GameResult getGameResult () {
         return gameResult;
     }

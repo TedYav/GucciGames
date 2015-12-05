@@ -1,7 +1,7 @@
 package voogasalad_GucciGames.usecases;
 
-import voogasalad_GucciGames.gameEngine.gameConditions.oucomes.Outcome;
 import javafx.scene.Scene;
+import voogasalad_GucciGames.gameEngine.gameConditions.outcomes.Outcome;
 
 public class UseLevel {
 	//need condition that is like win but with result being new level

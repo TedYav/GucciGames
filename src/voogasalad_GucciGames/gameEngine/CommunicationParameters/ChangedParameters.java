@@ -5,20 +5,30 @@ import java.util.List;
 
 import voogasalad_GucciGames.gameEngine.PlayerMapObjectInterface;
 
-public class ChangedParameters extends CommunicationParameters{
-	
+public class ChangedParameters extends CommunicationParameters {
+	private List<Integer> playersChangedIDs;
+
 	private List<PlayerMapObjectInterface> changedUnits;
-	
-	public ChangedParameters(){
+
+	public ChangedParameters() {
 		changedUnits = new ArrayList<PlayerMapObjectInterface>();
-		
+		playersChangedIDs = new ArrayList<Integer>();
+
 	}
-	
-	public void addUnit(PlayerMapObjectInterface unit){
+
+	public void addPlayer(int id) {
+		playersChangedIDs.add(id);
+	}
+
+	public List<Integer> getChangedPlayersById() {
+		return playersChangedIDs;
+	}
+
+	public void addUnit(PlayerMapObjectInterface unit) {
 		changedUnits.add(unit);
 	}
-	
-	public List<PlayerMapObjectInterface> getChangedUnits(){
+
+	public List<PlayerMapObjectInterface> getChangedUnits() {
 		return changedUnits;
 	}
 
