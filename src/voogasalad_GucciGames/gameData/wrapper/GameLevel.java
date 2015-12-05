@@ -5,7 +5,7 @@ import com.thoughtworks.xstream.annotations.XStreamOmitField;
 import voogasalad_GucciGames.gameEngine.MainGameEngine;
 
 public class GameLevel implements IGameLevelToGamePlayer, IGameLevelToGameData{
-	@XStreamOmitField
+	//@XStreamOmitField
 	private MainGameEngine myEngine;
 	
 	private int myID;

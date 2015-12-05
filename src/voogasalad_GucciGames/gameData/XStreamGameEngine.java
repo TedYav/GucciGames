@@ -49,8 +49,7 @@ public class XStreamGameEngine {
      * @param game
      */
     public void saveGameInfo(GameInfo game){
-    	System.err.println("I DO NOT WORK RIGHT NOW DO NOT RUN ME");
-    	//saveGameInfo(game, new File(gameNameToFileName(game.getEngine().getGameName())));
+    	saveGameInfo(game, new File(gameNameToFileName(game.getGameName())));
     }
     
     public String gameNameToFileName(String name){
