@@ -7,29 +7,29 @@
 	<characteristic 
 		name="movementRange" 
 		displayName="Movement Range"
-		 paramNames=""
-		 paramTypes="">
+		 paramNames="minRange, maxRange"
+		 paramTypes="double, double">
 	</characteristic>
 	<characteristic 
 		name="wealth" 
 		displayName= "Wealth" 
-		 paramNames=""
-		 paramTypes="">		
+		 paramNames="min, max"
+		 paramTypes="double, double">		
 	</characteristic>
 	<characteristic
 		 name="attackDamage"
 		 displayName= "Attack Damage" 
-		 paramNames=""
-		 paramTypes="">
+		 paramNames="min, max"
+		 paramTypes="double, double">	
 	</characteristic>
 	<characteristic name="attackRange" 
 		displayName= "Attack Range" 
-		 paramNames=""
-		 paramTypes="">	
+		 paramNames="min, max"
+		 paramTypes="double, double">	
 	</characteristic>
 	<characteristic name="numAttacksPerTurn"
 		 displayName= "Number of Attacks Per Turn" 
-		 paramNames=""
-		 paramTypes="">
+		 paramNames="min, max"
+		 paramTypes="double, double">	
 	</characteristic>
 </characteristicDependencies>

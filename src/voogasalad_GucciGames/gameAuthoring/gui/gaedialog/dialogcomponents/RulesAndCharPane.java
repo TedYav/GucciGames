@@ -19,10 +19,13 @@ import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.paramObjects.Characteri
 import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.paramObjects.RuleParams;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.geometry.Insets;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.VBox;
+import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 
 public class RulesAndCharPane extends GridPane{
@@ -41,7 +44,7 @@ public class RulesAndCharPane extends GridPane{
 	public RulesAndCharPane(Set<String> rules, Set<String> characteristics){
 		this.rules = rules;
 		this.characteristics = characteristics;
-		//loadCharacteristics();
+		loadCharacteristics();
 		loadRules();
 		
 		addActionToSaveBtn();
@@ -67,12 +70,18 @@ public class RulesAndCharPane extends GridPane{
 	    List<TableElement> tableElements = new ArrayList<TableElement>();
 	    rulesParams.stream().forEach(p -> tableElements.add(new TableElement(p.getDisplayName(), "rule")));
 	    ObservableList<TableElement> data = FXCollections.observableArrayList(tableElements);
-	    this.rulesTableView = new DialogTableView(data);
+	    this.rulesTableView = new DialogTableView(data, "Rules");
 	    this.add(rulesTableView, 0, 1);
 		
 	}
 	
 	private void loadCharacteristics(){
+		VBox charVBox = new VBox(5);
+		charVBox.setPadding(new Insets(5,5,5,5));
+		Label label = new Label("Characteristics");
+		label.setFont(new Font("Arial", 20));
+		charVBox.getChildren().add(label);
+		
 		SAXParserFactory saxParserFactory = SAXParserFactory.newInstance();
 	    try {
 	        SAXParser saxParser = saxParserFactory.newSAXParser();
@@ -83,12 +92,16 @@ public class RulesAndCharPane extends GridPane{
 	        		handler);
 	        List<CharacteristicsParam> charParams = handler.getCharParams();
 	        for(CharacteristicsParam param : charParams){
-	        	
+	        	CharGridPane p = new CharGridPane(param);
+	        	Label labelChar = new Label(param.getName());
+	        	charVBox.getChildren().add(labelChar);
+	        	charVBox.getChildren().add(p);
 	        }
 	           
 	    } catch (ParserConfigurationException | SAXException | IOException ex) {
 	        ex.printStackTrace();
 	    }
+	    this.add(charVBox, 1, 1);
 		
 	}
 	

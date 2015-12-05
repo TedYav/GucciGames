@@ -13,6 +13,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ButtonBar.ButtonData;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.Dialog;
+import javafx.scene.control.ScrollPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
@@ -26,6 +27,7 @@ public class SettingsDialog extends javafx.scene.control.Dialog implements ISwit
 	private DialogElements dialogElements;
 	private ActionPane actionPane;
 	private static GaeDialogHelper helper = new GaeDialogHelper();
+	private ScrollPane scrollPane = new ScrollPane();
 	
 	
 	public SettingsDialog(IDialogGaeController controller){
@@ -34,16 +36,15 @@ public class SettingsDialog extends javafx.scene.control.Dialog implements ISwit
 		this.controller = controller;
 		dialogElements = new DialogElements(prop, controller);	
 		this.setHeaderText("Settings");
-		this.getDialogPane().setContent(actionPane);
+		scrollPane.setContent(actionPane);
+		this.getDialogPane().setContent(scrollPane);
 		this.getDialogPane().setPrefSize(WIDTH, HEIGHT);
 		this.init();		
 	}
 		
 	public void init(){
 		actionPane = new ActionPane(dialogElements, this);
-		//actionPane.setPrefSize(WIDTH, HEIGHT);
 		this.getDialogPane().setContent(actionPane);
-		//final ButtonType cancelBtn = new ButtonType("Cancel", ButtonData.CANCEL_CLOSE);
 		this.getDialogPane().getButtonTypes().setAll(ButtonType.CLOSE);
 		
 
@@ -51,7 +52,8 @@ public class SettingsDialog extends javafx.scene.control.Dialog implements ISwit
 
 	@Override
 	public void switchSettingsPane(Node n) {
-			this.getDialogPane().setContent(n);	
+			scrollPane.setContent(n);
+			this.getDialogPane().setContent(scrollPane);
 	}
 
 

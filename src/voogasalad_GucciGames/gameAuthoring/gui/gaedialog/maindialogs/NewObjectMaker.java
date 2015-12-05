@@ -2,9 +2,11 @@ package voogasalad_GucciGames.gameAuthoring.gui.gaedialog.maindialogs;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Properties;
+
 import voogasalad_GucciGames.gameAuthoring.IDialogGaeController;
 import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.DialogElements;
 import javafx.scene.Scene;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.Tab;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.VBox;
@@ -24,7 +26,9 @@ public class NewObjectMaker extends javafx.scene.control.Dialog{
 		prop = helper.loadProperties("dialogproperties/tiledialogproperties.properties");	
 		this.controller = controller;
 		DialogElements dialogElements = new DialogElements(prop, controller);	
-		gridPane = new NewObjMakerPane(dialogElements);				 
+		gridPane = new NewObjMakerPane(dialogElements);		
+		this.getDialogPane().setContent(gridPane);
+		this.getDialogPane().getButtonTypes().add(ButtonType.CANCEL);
 	 }	
  
 	 

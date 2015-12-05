@@ -46,7 +46,7 @@ public class ActionPane extends GridPane {
 		
 		List<String> items = helper.parseStringToList(dialogElements.getDialogProperties(), 
 				"action_items");
-		tableView = new DialogTableView(items);
+		tableView = new DialogTableView(items, "Actions");
 		this.add(tableView, 0, 0);
 		addActionToNextBtn();
 		
