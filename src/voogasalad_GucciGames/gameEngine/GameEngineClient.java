@@ -158,6 +158,12 @@ public class GameEngineClient implements GameEngineToGamePlayerInterface, Runnab
 
 	}
 
+    @Override
+    public void changeCurrentLevel (String newGameLevel) {
+        // TODO Auto-generated method stub
+        
+    }
+
 	//change to either immutable or just make the methods of this public (and not the full set...)
 
 
