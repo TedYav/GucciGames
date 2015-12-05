@@ -40,7 +40,6 @@ public class MainGameEngine implements GameEngineToGamePlayerInterface {
 		myCurrentTurnCounter = new TurnCounter();
 		myTurnDecider = new DefaultTurnDecider(myGamePlayers, myCurrentTurnCounter);
 
-
 		myName = "Game " + Math.round((Math.random()*10000));
 	}
 	@Override

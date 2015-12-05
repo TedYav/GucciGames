@@ -31,14 +31,14 @@ public class GameLevel implements IGameLevelToGamePlayer, IGameLevelToGameData{
 	
 	@Override
 	public int getID() {
-		// TODO Auto-generated method stub
 		return this.myID;
 	}
+	
 	@Override
 	public int getNextLevel() {
-		
 		return this.myNextLevelID;
 	}
+	
 	@Override
 	public boolean isChoosable() {
 		// TODO Auto-generated method stub
@@ -71,6 +71,7 @@ public class GameLevel implements IGameLevelToGamePlayer, IGameLevelToGameData{
 		// TODO Auto-generated method stub
 		return this.myGameLevelName;
 	}
+	
 	@Override
 	public MainGameEngine getGameEngine() {
 		// TODO Auto-generated method stub

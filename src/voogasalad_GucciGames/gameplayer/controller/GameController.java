@@ -21,7 +21,7 @@ import voogasalad_GucciGames.gameplayer.windows.mainwindow.map.MapInterface;
 import voogasalad_GucciGames.gameplayer.windows.mainwindow.map.cell.MapCell;
 import voogasalad_GucciGames.helpers.ResourceManager;
 
-public class GameController implements GameControllerInterface, GameControllerLoader {
+public class GameController implements GameControllerInterface, GameControllerAdvancedInterface, GameControllerLoader {
 
 	private GameWindowManager myManager;
 	
@@ -50,27 +50,15 @@ public class GameController implements GameControllerInterface, GameControllerLo
 	
 	public void loadGame(GameInfo game){
 		myGame=game;
-		myCurrentEngine = myGame.getLevelsMap().get(0).getGameEngine();
+		loadLevel(1);
 	}
 	
 	public void loadLevel(int levelID){
 		if(myGame.getLevelsMap().containsKey(levelID)){
-			System.out.println("I'M NOT IMPLEMENTED YET");
+			myCurrentEngine = myGame.getLevelsMap().get(levelID).getGameEngine();
 		}
 	}
 	
-	@Override
-	public void activateCell(MapCell cell) {
-		// TODO Auto-generated method stub
-
-	}
-
-	@Override
-	public List<MapCell> getActiveCells() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
 	@Override
 	public List<TargetCoordinateSingle> setActionInProgress(String action, PlayerMapObjectInterface unit) {
 		myActionInProgress = action;
@@ -146,11 +134,6 @@ public class GameController implements GameControllerInterface, GameControllerLo
 	           myManager.refresh();
 	}
 
-	@Override
-	public Image requestImage(String imageURI) {
-		return myResourceManager.getImage(imageURI);
-	}
-	
 	@Override
 	public ResourceManager getResource(){
 		return myResourceManager;

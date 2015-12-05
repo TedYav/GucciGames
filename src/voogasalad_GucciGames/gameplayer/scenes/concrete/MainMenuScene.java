@@ -35,7 +35,7 @@ public class MainMenuScene extends GameMenuScene {
 		options.put("New Game", () -> myManager.sceneFinished());
 		options.put("Load Game", () -> myManager.loadScene("LoadGameScene"));
 		options.put("View High Scores", () -> myManager.loadScene("HighScoresScene"));
-		options.put("Reload", () -> { myManager.getLoader().loadGame(myManager.getController().getEngine().getGameName()); 
+		options.put("Reload", () -> { myManager.getLoader().loadGame(myManager.getController().getGame().getGameName()); 
 										myManager.loadScene("GameSplashScene"); });
 		options.put("Quit", () -> myManager.loadScene("SelectGameScene"));
 		return options;
