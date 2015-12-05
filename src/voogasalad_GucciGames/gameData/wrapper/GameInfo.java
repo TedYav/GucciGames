@@ -32,39 +32,6 @@ public class GameInfo implements IGameInfoToGAE, GameInfoToGamePlayer{
 	public GameInfo(String gameName){
 		this(gameName, new GuiData());
 	}
-	
-	// TODO: CHANGE THIS -> JOHN DAI
-//	
-//	private static List<String> defaultBottom() {
-//	    return guiData.
-//	}
-//	
-//     List<String> bottomComponents=new ArrayList<String>();
-//     
-//         bottomComponents.add("voogasalad_GucciGames.gameplayer.windows.mainwindow.components.bar.MainMenuButton");
-//        
-//         // REMOVED UNTIL WE MAKE DISPLAYCOMPONENT AND WINDOWCOMPONENT INTERCHANGEABLE
-//         //bottomComponents.add("voogasalad_GucciGames.gameplayer.windows.mainwindow.map.mini.MiniMap");
-//         return bottomComponents;
-//	}
-//
-//	private static List<String> defaultRight() {
-//        List<String> rightComponents=new ArrayList<String>();
-//		 rightComponents.add("voogasalad_GucciGames.gameplayer.windows.mainwindow.components.bar.ActionDisplay");
-//	     rightComponents.add("voogasalad_GucciGames.gameplayer.windows.mainwindow.components.bar.BuildUnitsDisplay");
-//	     rightComponents.add("voogasalad_GucciGames.gameplayer.windows.mainwindow.components.bar.EndTurnButton");
-//	     rightComponents.add("voogasalad_GucciGames.gameplayer.windows.mainwindow.components.bar.GameStatsDisplay");
-//	     return rightComponents;
-//	}
-//
-//	private static List<String> defaultLeft() {
-//		 List<String> leftComponents=new ArrayList<String>();
-//	     leftComponents.add("voogasalad_GucciGames.gameplayer.windows.mainwindow.components.bar.DisplayMapObjectImage");
-//	     leftComponents.add("voogasalad_GucciGames.gameplayer.windows.mainwindow.components.bar.DisplayMapObjectDetails");
-//	     leftComponents.add("voogasalad_GucciGames.gameplayer.windows.mainwindow.components.bar.DisplayChat");
-//	     leftComponents.add("voogasalad_GucciGames.gameplayer.windows.mainwindow.map.mini.MiniMap");
-//	     return leftComponents;
-//	}
 
 	public GameInfo(String gameName, GuiData gui){
 	    myLevelsMap = new TreeMap<Integer,GameLevel>();
@@ -188,13 +155,6 @@ public class GameInfo implements IGameInfoToGAE, GameInfoToGamePlayer{
 	public void setGuiComponents(String location, List<String> components) {
 	    guiData.setComponents(location, components);
 	}
-//	public List<String> getRightComponents() {
-//	    return myRightComponents;
-//	}
-//
-//    public List<String> getBottomComponents () {
-//        return myBottomComponents;
-//    }
 
 	@Override
 	public void setEngine(String gameName, MainGameEngine engine) {

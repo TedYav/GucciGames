@@ -166,32 +166,6 @@ public class GAEModel implements IGAEModel{
 	public void addLevel(String name) {
 		levels.add(name);
 	}
-
-
-//    @Override
-//    public List<String> getLeftComponents () {
-//        return guiData.getLeftComponents();
-//    }
-//    @Override
-//    public List<String> getRightComponents () {
-//        return guiData.getRightComponents();
-//    }
-//    @Override
-//    public List<String> getBottomComponents () {
-//        return guiData.getBottomComponents();
-//    }
-//    @Override
-//    public void setLeftComponents (List<String> components) {
-//        guiData.setLeftComponents(components);
-//    }
-//    @Override
-//    public void setRightComponents (List<String> components) {
-//        guiData.setRightComponents(components);
-//    }
-//    @Override
-//    public void setBottomComponents (List<String> components) {
-//        guiData.setBottomComponents(components);
-//    }
     
 //	public static void main(String[] args){
 //		Map<Integer, GamePlayerPerson> mapOfPlayers = new HashMap<Integer, GamePlayerPerson>();	
