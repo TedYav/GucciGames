@@ -2,11 +2,7 @@ package voogasalad_GucciGames.gameplayer.controller;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 
-import javafx.event.Event;
-import javafx.event.EventHandler;
-import javafx.event.EventType;
 import javafx.geometry.Point2D;
 
 import java.util.Observer;
@@ -17,26 +13,19 @@ import voogasalad_GucciGames.gameData.wrapper.GameInfo;
 import voogasalad_GucciGames.gameEngine.GameEngineToGamePlayerInterface;
 import voogasalad_GucciGames.gameEngine.PlayerMapObjectInterface;
 import voogasalad_GucciGames.gameEngine.CommunicationParameters.ChangedParameters;
-import voogasalad_GucciGames.gameEngine.CommunicationParameters.GridCoordinateParameters;
-import voogasalad_GucciGames.gameEngine.targetCoordinate.ATargetCoordinate;
 import voogasalad_GucciGames.gameEngine.targetCoordinate.TargetCoordinateSingle;
-import voogasalad_GucciGames.gameplayer.controller.dummy.ADummy;
 import voogasalad_GucciGames.gameplayer.gameloader.GameControllerLoader;
 import voogasalad_GucciGames.gameplayer.gameloader.GameLoader;
-import voogasalad_GucciGames.gameplayer.scenes.GameSceneInterface;
-import voogasalad_GucciGames.gameplayer.scenes.GameSceneManager;
 import voogasalad_GucciGames.gameplayer.windows.GameWindowManager;
 import voogasalad_GucciGames.gameplayer.windows.mainwindow.map.MapInterface;
 import voogasalad_GucciGames.gameplayer.windows.mainwindow.map.cell.MapCell;
-import voogasalad_GucciGames.gameplayer.windows.mainwindow.map.cell.contents.CellUnit;
-import voogasalad_GucciGames.helpers.ImageDatabase;
 import voogasalad_GucciGames.helpers.ResourceManager;
 
 public class GameController implements GameControllerInterface, GameControllerLoader {
 
 	private GameWindowManager myManager;
 	
-	private GameEngineToGamePlayerInterface myEngine;
+	private GameEngineToGamePlayerInterface myCurrentEngine;
 	private MapInterface myMap;
 	private ResourceManager myResourceManager;
 	private PlayerMapObjectInterface myTargetUnit;
@@ -61,7 +50,13 @@ public class GameController implements GameControllerInterface, GameControllerLo
 	
 	public void loadGame(GameInfo game){
 		myGame=game;
-		myEngine = game.getEngine();
+		myCurrentEngine = myGame.getLevelsMap().get(0).getGameEngine();
+	}
+	
+	public void loadLevel(int levelID){
+		if(myGame.getLevelsMap().containsKey(levelID)){
+			System.out.println("I'M NOT IMPLEMENTED YET");
+		}
 	}
 	
 	@Override
@@ -141,13 +136,13 @@ public class GameController implements GameControllerInterface, GameControllerLo
 
 	@Override
 	public List<PlayerMapObjectInterface> getInitialState() {
-		return myEngine.getInitialState();
+		return myCurrentEngine.getInitialState();
 	}
 
 	@Override
 	public void endTurn() {
 		// TODO Auto-generated method stub
-	    myEngine.endTurn();
+	    myCurrentEngine.endTurn();
 	           myManager.refresh();
 	}
 
@@ -185,7 +180,7 @@ public class GameController implements GameControllerInterface, GameControllerLo
 	@Override
 	public GameEngineToGamePlayerInterface getEngine() {
 		// TODO Auto-generated method stub
-		return myEngine;
+		return myCurrentEngine;
 	}
 	@Override
 	public GameInfo getGame() {

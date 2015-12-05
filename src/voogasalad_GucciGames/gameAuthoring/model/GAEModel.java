@@ -101,26 +101,26 @@ public class GAEModel implements IGAEModel{
 	}
 
     @Override
-    public void saveToXML (File file) {    	
-    	XStreamGameEngine saver = new XStreamGameEngine();
-		AllPlayers myPlayers = new AllPlayers(mapOfPlayers);
-		MainGameEngine engine = new MainGameEngine(myPlayers);
-		//TODO: saving GameInfo instead of MainGameEngine
-		if (guiData.numberOfComponents() == 0) {
-			guiData.addLeftComponent("voogasalad_GucciGames.gameplayer.windows.mainwindow.components.bar.DisplayMapObjectImage");
-			guiData.addLeftComponent("voogasalad_GucciGames.gameplayer.windows.mainwindow.components.bar.DisplayMapObjectDetails");
-			guiData.addLeftComponent("voogasalad_GucciGames.gameplayer.windows.mainwindow.components.bar.DisplayChat");
-			guiData.addRightComponent("voogasalad_GucciGames.gameplayer.windows.mainwindow.components.bar.ActionDisplay");
-			guiData.addRightComponent("voogasalad_GucciGames.gameplayer.windows.mainwindow.components.bar.GameStatsDisplay");
-			guiData.addRightComponent("voogasalad_GucciGames.gameplayer.windows.mainwindow.components.bar.EndTurnButton");
-		}
-
-		//ASK ABOUT THIS, might not need engine to be passed into game info anymore
-
-		GameInfo game = new GameInfo(engine, guiData.getLeftComponents(),
-				guiData.getRightComponents(), guiData.getBottomComponents());
-
-		saver.saveGameInfo(game, file);
+    public void saveToXML (GameInfo game) {    	
+    	System.err.println("IMPLEMENT ME PLZ");
+//    	XStreamGameEngine saver = new XStreamGameEngine();
+//		AllPlayers myPlayers = new AllPlayers(mapOfPlayers);
+//		MainGameEngine engine = new MainGameEngine(myPlayers);
+//		//TODO: saving GameInfo instead of MainGameEngine
+//		if (guiData.numberOfComponents() == 0) {
+//			guiData.addLeftComponent("voogasalad_GucciGames.gameplayer.windows.mainwindow.components.bar.DisplayMapObjectImage");
+//			guiData.addLeftComponent("voogasalad_GucciGames.gameplayer.windows.mainwindow.components.bar.DisplayMapObjectDetails");
+//			guiData.addLeftComponent("voogasalad_GucciGames.gameplayer.windows.mainwindow.components.bar.DisplayChat");
+//			guiData.addRightComponent("voogasalad_GucciGames.gameplayer.windows.mainwindow.components.bar.ActionDisplay");
+//			guiData.addRightComponent("voogasalad_GucciGames.gameplayer.windows.mainwindow.components.bar.GameStatsDisplay");
+//			guiData.addRightComponent("voogasalad_GucciGames.gameplayer.windows.mainwindow.components.bar.EndTurnButton");
+//		}
+//
+//		//ASK ABOUT THIS, might not need engine to be passed into game info anymore
+//
+//		GameInfo game = new GameInfo();
+//
+//		saver.saveGameInfo(game, file);
 
     }
     public void saveToXML(String filePath) {

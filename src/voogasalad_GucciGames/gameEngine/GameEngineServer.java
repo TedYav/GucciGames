@@ -140,6 +140,11 @@ public class GameEngineServer implements GameEngineToGamePlayerInterface, Runnab
 		return myEngine.getMapHeight();
 	}
 
+	@Override
+	public String getName() {
+		return myEngine.getName();
+	}
+
 	
 	
 	//http://cs.lmu.edu/~ray/notes/javanetexamples/#chat
