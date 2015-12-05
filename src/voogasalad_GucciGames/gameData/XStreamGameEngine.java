@@ -49,7 +49,7 @@ public class XStreamGameEngine {
      * @param game
      */
     public void saveGameInfo(GameInfo game){
-    	saveGameInfo(game, new File(gameNameToFileName(game.getEngine().getGameName())));
+    	saveGameInfo(game, new File(gameNameToFileName(game.getGameName())));
     }
     
     public String gameNameToFileName(String name){

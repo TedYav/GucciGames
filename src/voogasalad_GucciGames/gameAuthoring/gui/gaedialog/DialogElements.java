@@ -14,13 +14,10 @@ import voogasalad_GucciGames.gameAuthoring.properties.Property;
 public class DialogElements {
 	
 	private Properties prop;
-	private ISaveGroovy saveGroovy;
 	private IDialogGaeController dialogGaeController;
 	
-	public DialogElements(Properties prop, ISaveGroovy saveGroovy,IDialogGaeController dialogGaeController ){
+	public DialogElements(Properties prop, IDialogGaeController dialogGaeController ){
 		this.prop = prop;
-
-		this.saveGroovy = saveGroovy;
 		this.dialogGaeController = dialogGaeController;
 	}
 	
@@ -28,9 +25,6 @@ public class DialogElements {
 		return prop;
 	}
 	
-	public ISaveGroovy getSaveGroovy(){
-		return saveGroovy;
-	}
 	
 	public IDialogGaeController getDialogGaeController(){
 		return dialogGaeController;

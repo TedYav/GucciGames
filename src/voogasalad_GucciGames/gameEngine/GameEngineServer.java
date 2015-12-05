@@ -138,9 +138,7 @@ public class GameEngineServer implements GameEngineToGamePlayerInterface, Runnab
 		return myEngine.getMapHeight();
 	}
 
-	/* (non-Javadoc)
-	 * @see voogasalad_GucciGames.gameEngine.GameEngineToGamePlayerInterface#isGameWon()
-	 */
+
 	@Override
 	public boolean isGameWon() {
 		return myEngine.isGameWon();
@@ -148,7 +146,12 @@ public class GameEngineServer implements GameEngineToGamePlayerInterface, Runnab
 
 
 
-	//http://cs.lmu.edu/~ray/notes/javanetexamples/#chat
+	@Override
+	public String getName() {
+		return myEngine.getName();
+	}
+
+
 
 
 

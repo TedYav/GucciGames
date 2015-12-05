@@ -11,14 +11,7 @@ import javafx.scene.layout.HBox;
 import javafx.scene.text.Text;
 
 public abstract class DialogComponent extends GridPane {
-	
-//	protected HBox createElement(String name, Node n, String hboxId){
-//		HBox hbox = new HBox();
-//		Text key = new Text(name);
-//		hbox.getChildren().addAll(key, n);	
-//		hbox.setId(hboxId);
-//		return hbox;	
-//	} 
+
 	public DialogComponent(){
 		this.setHgap(10);
 		this.setVgap(10);

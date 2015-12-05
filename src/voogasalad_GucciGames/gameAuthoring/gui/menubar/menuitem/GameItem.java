@@ -12,7 +12,7 @@ class GameItem extends MenuItem{
 		setAccelerator(KeyCombination.keyCombination("Ctrl+M"));
 		setOnAction(e -> {
 			GameSettingDialog  gameSettingDialog = new GameSettingDialog((IDialogGaeController)controller);
-			gameSettingDialog.showGameSettingsDialog();
+			gameSettingDialog.showAndWait();
 			//controller.saveToXML();
 			//TODO
 		});

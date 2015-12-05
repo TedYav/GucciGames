@@ -147,12 +147,15 @@ public class GameEngineClient implements GameEngineToGamePlayerInterface, Runnab
 		return 0;
 	}
 
-	/* (non-Javadoc)
-	 * @see voogasalad_GucciGames.gameEngine.GameEngineToGamePlayerInterface#isGameWon()
-	 */
+
 	@Override
 	public boolean isGameWon() {
-		return myEngine.isGameWon();
+		return myEngine.isGameWon();}
+
+	@Override
+	public String getName() {
+		return myEngine.getName();
+
 	}
 
 	//change to either immutable or just make the methods of this public (and not the full set...)

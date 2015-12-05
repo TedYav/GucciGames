@@ -6,6 +6,7 @@ import java.util.Map;
 
 import javafx.collections.ObservableList;
 import voogasalad_GucciGames.gameAuthoring.gui.map.GridPoint;
+import voogasalad_GucciGames.gameData.wrapper.GameInfo;
 import voogasalad_GucciGames.gameEngine.mapObject.MapObject;
 
 public interface IGAEModel {
@@ -22,15 +23,17 @@ public interface IGAEModel {
     public ObservableList<MapObjectType> getImmutableUnitTypes();
     public ObservableList<MapObjectType> getImmutableStructureTypes();
 
-    public List<String> getLeftComponents();
-    public List<String> getRightComponents();
-    public List<String> getBottomComponents();
-    public void setLeftComponents(List<String> components);
-    public void setRightComponents(List<String> components);
-    public void setBottomComponents(List<String> components);
+    public List<String> getComponents(String location);
+//    public List<String> getRightComponents();
+//    public List<String> getBottomComponents();
+//    public void setLeftComponents(List<String> components);
+//    public void setRightComponents(List<String> components);
+//    public void setBottomComponents(List<String> components);
+    public void setGuiComponents(String location, List<String> components);
     
-    public void saveToXML(File file);
 	public void changeOwner(MapObject mapObject, int playerID);
+	
+	void saveToXML(GameInfo game);
 
     
 }

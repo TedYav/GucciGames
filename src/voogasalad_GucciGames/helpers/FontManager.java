@@ -8,7 +8,6 @@ import java.util.List;
 import java.util.ResourceBundle;
 
 import javafx.scene.text.Font;
-import voogasalad_GucciGames.datastructures.ResourceException;
 
 /**
  * Helper class to manage fonts.

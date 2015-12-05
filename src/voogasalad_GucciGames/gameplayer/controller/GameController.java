@@ -2,42 +2,32 @@ package voogasalad_GucciGames.gameplayer.controller;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 
-import javafx.event.Event;
-import javafx.event.EventHandler;
-import javafx.event.EventType;
 import javafx.geometry.Point2D;
 
 import java.util.Observer;
 
 import javafx.scene.image.Image;
 import voogasalad_GucciGames.datastructures.Coordinate;
-import voogasalad_GucciGames.datastructures.ImageDatabase;
 import voogasalad_GucciGames.gameData.wrapper.GameInfo;
 import voogasalad_GucciGames.gameEngine.GameEngineToGamePlayerInterface;
 import voogasalad_GucciGames.gameEngine.PlayerMapObjectInterface;
 import voogasalad_GucciGames.gameEngine.CommunicationParameters.ChangedParameters;
-import voogasalad_GucciGames.gameEngine.CommunicationParameters.GridCoordinateParameters;
-import voogasalad_GucciGames.gameEngine.targetCoordinate.ATargetCoordinate;
 import voogasalad_GucciGames.gameEngine.targetCoordinate.TargetCoordinateSingle;
-import voogasalad_GucciGames.gameplayer.controller.dummy.ADummy;
 import voogasalad_GucciGames.gameplayer.gameloader.GameControllerLoader;
 import voogasalad_GucciGames.gameplayer.gameloader.GameLoader;
-import voogasalad_GucciGames.gameplayer.scenes.GameSceneInterface;
-import voogasalad_GucciGames.gameplayer.scenes.GameSceneManager;
 import voogasalad_GucciGames.gameplayer.windows.GameWindowManager;
 import voogasalad_GucciGames.gameplayer.windows.mainwindow.map.MapInterface;
 import voogasalad_GucciGames.gameplayer.windows.mainwindow.map.cell.MapCell;
-import voogasalad_GucciGames.gameplayer.windows.mainwindow.map.cell.contents.CellUnit;
+import voogasalad_GucciGames.helpers.ResourceManager;
 
 public class GameController implements GameControllerInterface, GameControllerLoader {
 
 	private GameWindowManager myManager;
 	
-	private GameEngineToGamePlayerInterface myEngine;
+	private GameEngineToGamePlayerInterface myCurrentEngine;
 	private MapInterface myMap;
-	private ImageDatabase myImageDatabase;
+	private ResourceManager myResourceManager;
 	private PlayerMapObjectInterface myTargetUnit;
 	private GameInfo myGame;
 	
@@ -46,12 +36,12 @@ public class GameController implements GameControllerInterface, GameControllerLo
 	private PlayerMapObjectInterface activeMapObject;
 	private List<Observer> activeMOObservers;
 	private List<TargetCoordinateSingle> possibleMoves;
-
+	
 	private GameLoader myLoader;
 
 	public GameController(GameWindowManager manager){
 		myManager = manager;
-		myImageDatabase = new ImageDatabase();
+		myResourceManager = new ResourceManager();
 		myActionInProgress = "";
 		activeMOObservers=new ArrayList<Observer>();
 		possibleMoves = new ArrayList<TargetCoordinateSingle>();
@@ -60,7 +50,13 @@ public class GameController implements GameControllerInterface, GameControllerLo
 	
 	public void loadGame(GameInfo game){
 		myGame=game;
-		myEngine = game.getEngine();
+		myCurrentEngine = myGame.getLevelsMap().get(0).getGameEngine();
+	}
+	
+	public void loadLevel(int levelID){
+		if(myGame.getLevelsMap().containsKey(levelID)){
+			System.out.println("I'M NOT IMPLEMENTED YET");
+		}
 	}
 	
 	@Override
@@ -83,20 +79,6 @@ public class GameController implements GameControllerInterface, GameControllerLo
 		possibleMoves = myTargetUnit.performRequest(action).getListOfCoordinates();
 		
 		return possibleMoves;
-		//return unit.getAction(action)(action);
-		
-//		GridCoordinateParameters myParameters = myEngine.getPossibleCoordinates(action, unit);
-//		
-//
-//		//SORRY FOR THE TIME BEING: THIS WILL BE FIXED IN THE FUTURE
-//		if(myParameters == null){
-//			return new ArrayList<TargetCoordinateSingle>();
-//		}
-//		else{
-//			//possibleMoves = myEngine.getPossibleCoordinates(action, unit).getListOfCoordinates();
-//			//			return possibleMoves;
-//		}
-		
 	}
 
 	@Override
@@ -154,30 +136,25 @@ public class GameController implements GameControllerInterface, GameControllerLo
 
 	@Override
 	public List<PlayerMapObjectInterface> getInitialState() {
-		return myEngine.getInitialState();
+		return myCurrentEngine.getInitialState();
 	}
 
 	@Override
 	public void endTurn() {
 		// TODO Auto-generated method stub
-	    myEngine.endTurn();
+	    myCurrentEngine.endTurn();
 	           myManager.refresh();
 	}
 
 	@Override
 	public Image requestImage(String imageURI) {
-		return myImageDatabase.request(imageURI);
+		return myResourceManager.getImage(imageURI);
 	}
-
-//	@Override
-//	public <T extends Event> void addEventHandler(EventType<T> eventType, EventHandler<T> eventHandler) {
-//		myScene.addEventHandler(eventType, eventHandler);
-//	}
-//
-//	@Override
-//	public <T extends Event> void addEventFilter(EventType<T> eventType, EventHandler<T> eventHandler) {
-//		myScene.addEventFilter(eventType, eventHandler);
-//	}
+	
+	@Override
+	public ResourceManager getResource(){
+		return myResourceManager;
+	}
 
     @Override
     public void setActiveMapObject (PlayerMapObjectInterface mapObj) {
@@ -203,7 +180,7 @@ public class GameController implements GameControllerInterface, GameControllerLo
 	@Override
 	public GameEngineToGamePlayerInterface getEngine() {
 		// TODO Auto-generated method stub
-		return myEngine;
+		return myCurrentEngine;
 	}
 	@Override
 	public GameInfo getGame() {
