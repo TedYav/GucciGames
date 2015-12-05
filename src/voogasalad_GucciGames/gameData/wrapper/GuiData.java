@@ -23,6 +23,7 @@ public class GuiData extends AGameInfo {
 		myComponents = new HashMap<String, List<String>>();
 		List<String> componentNames = Arrays.asList(namesBundle.getString("Components").split(","));
 		for(String name: componentNames){
+		    System.out.println("GUIDATA+"+name);
 			myComponents.put(name, Arrays.asList(namesBundle.getString("default"+name).split(",")));
 		}
 		

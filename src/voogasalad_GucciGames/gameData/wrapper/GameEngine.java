@@ -33,12 +33,15 @@ public class GameEngine extends AGameInfo implements IGameInfoToGAE, GameInfoToG
 	public GameEngine(String gameName){
 	    myLevelsMap = new TreeMap<Integer,GameLevel>();
 	    myGameName = gameName;
+	    guiData=new GuiData();
 	}
 	
 	public GameEngine(){
 	    
 	    myLevelsMap = new TreeMap<Integer,GameLevel>();
 	    myGameName = "Game " + Math.round((Math.random()*10000));
+	       guiData=new GuiData();
+
 	}
 	
 	@Override
@@ -147,6 +150,7 @@ public class GameEngine extends AGameInfo implements IGameInfoToGAE, GameInfoToG
 	}
 
 	public List<String> getGuiComponents(String location) {
+	    System.out.println(location);
 	    return guiData.getComponents(location);
 	}
 	public void setGuiComponents(String location, List<String> components) {

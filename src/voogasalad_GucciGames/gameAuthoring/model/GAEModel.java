@@ -13,12 +13,8 @@ import voogasalad_GucciGames.gameAuthoring.gui.map.GridPoint;
 //import voogasalad_GucciGames.gameData.GameInfo;
 //import voogasalad_GucciGames.gameData.XMLWriter;
 import voogasalad_GucciGames.gameData.XStreamGameEngine;
-<<<<<<< HEAD
 import voogasalad_GucciGames.gameData.wrapper.GameEngine;
-=======
-import voogasalad_GucciGames.gameData.wrapper.GameInfo;
 import voogasalad_GucciGames.gameData.wrapper.GuiData;
->>>>>>> 7193ebf3fa5242a17f1527500d5991846afb27c0
 import voogasalad_GucciGames.gameEngine.MainGameEngine;
 import voogasalad_GucciGames.gameEngine.gamePlayer.AllPlayers;
 import voogasalad_GucciGames.gameEngine.gamePlayer.GamePlayerPerson;

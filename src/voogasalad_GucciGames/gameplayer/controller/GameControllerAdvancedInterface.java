@@ -4,12 +4,8 @@ import java.util.List;
 import java.util.Observer;
 
 import javafx.geometry.Point2D;
-<<<<<<< HEAD
 import voogasalad_GucciGames.gameData.wrapper.GameEngine;
-=======
-import voogasalad_GucciGames.gameData.wrapper.GameInfo;
 import voogasalad_GucciGames.gameData.wrapper.GameInfoToGamePlayer;
->>>>>>> 7193ebf3fa5242a17f1527500d5991846afb27c0
 import voogasalad_GucciGames.gameEngine.GameEngineToGamePlayerInterface;
 import voogasalad_GucciGames.gameEngine.PlayerMapObjectInterface;
 import voogasalad_GucciGames.gameEngine.targetCoordinate.TargetCoordinateSingle;
@@ -32,11 +28,7 @@ public interface GameControllerAdvancedInterface {
 	public MapInterface getMap();
 	
 	public GameEngineToGamePlayerInterface getEngine();
-<<<<<<< HEAD
-	public GameEngine getGame();
-=======
 	public GameInfoToGamePlayer getGame();
->>>>>>> 7193ebf3fa5242a17f1527500d5991846afb27c0
 	
 	public GameLoader getLoader();
 	

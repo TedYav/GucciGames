@@ -1,0 +1,52 @@
+[1mdiff --git a/src/games/Duvall_Tag.gg b/src/games/Duvall_Tag.gg[m
+[1mindex e2a4c4f..199dd47 100644[m
+[1m--- a/src/games/Duvall_Tag.gg[m
+[1m+++ b/src/games/Duvall_Tag.gg[m
+[36m@@ -1,4 +1,4 @@[m
+[31m-Ã©Q˙Ã‚ø∏d9À&Ïπ¡1∫xsô≥Ÿ#êÊ≥mq6<voogasalad__GucciGames.gameData.wrapper.GameInfo>[m
+[32m+[m[32m”ÔejáäiœQñÃ@B~aÃﬁ1ºîÕÂ,‹DnM}¡<voogasalad__GucciGames.gameData.wrapper.GameInfo>[m
+   <myLevelsMap class="tree-map">[m
+     <entry>[m
+       <int>0</int>[m
+[36m@@ -499,7 +499,7 @@[m
+           <mapDimensions>0</mapDimensions>[m
+           <myMapWidth>4</myMapWidth>[m
+           <myMapHeight>4</myMapHeight>[m
+[31m-          <myName>Game 4637</myName>[m
+[32m+[m[32m          <myName>Game 9013</myName>[m
+           <gameWon>false</gameWon>[m
+         </myEngine>[m
+         <myID>0</myID>[m
+[36m@@ -2231,7 +2231,7 @@[m
+           <mapDimensions>0</mapDimensions>[m
+           <myMapWidth>8</myMapWidth>[m
+           <myMapHeight>8</myMapHeight>[m
+[31m-          <myName>Game 8449</myName>[m
+[32m+[m[32m          <myName>Game 6095</myName>[m
+           <gameWon>false</gameWon>[m
+         </myEngine>[m
+         <myID>1</myID>[m
+[36m@@ -12323,7 +12323,7 @@[m
+           <mapDimensions>0</mapDimensions>[m
+           <myMapWidth>20</myMapWidth>[m
+           <myMapHeight>20</myMapHeight>[m
+[31m-          <myName>Game 1679</myName>[m
+[32m+[m[32m          <myName>Game 6843</myName>[m
+           <gameWon>false</gameWon>[m
+         </myEngine>[m
+         <myID>2</myID>[m
+[1mdiff --git a/src/voogasalad_GucciGames/gameAuthoring/gui/gaedialog/maindialogs/CustomGPlayerDialog.java b/src/voogasalad_GucciGames/gameAuthoring/gui/gaedialog/maindialogs/CustomGPlayerDialog.java[m
+[1mindex 93f58b7..7a6041c 100644[m
+[1m--- a/src/voogasalad_GucciGames/gameAuthoring/gui/gaedialog/maindialogs/CustomGPlayerDialog.java[m
+[1m+++ b/src/voogasalad_GucciGames/gameAuthoring/gui/gaedialog/maindialogs/CustomGPlayerDialog.java[m
+[36m@@ -45,7 +45,7 @@[m [mpublic class CustomGPlayerDialog extends javafx.scene.control.Dialog{[m
+     private int maxComponents;[m
+ [m
+     public CustomGPlayerDialog(IDialogGaeController dialogGaeController, IGuiGaeController guiGaeController){[m
+[31m-    	[m
+[32m+[m[41m    [m	[32msuper();[m
+         GaeDialogHelper helper = new GaeDialogHelper();[m
+     	this.dialogGaeController = dialogGaeController;[m
+         this.guiGaeController = guiGaeController;[m
+warning: LF will be replaced by CRLF in src/games/Duvall_Tag.gg.
+The file will have its original line endings in your working directory.

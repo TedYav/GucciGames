@@ -9,12 +9,8 @@ import java.util.Observer;
 
 import javafx.scene.image.Image;
 import voogasalad_GucciGames.datastructures.Coordinate;
-<<<<<<< HEAD
 import voogasalad_GucciGames.gameData.wrapper.GameEngine;
-=======
-import voogasalad_GucciGames.gameData.wrapper.GameInfo;
 import voogasalad_GucciGames.gameData.wrapper.GameInfoToGamePlayer;
->>>>>>> 7193ebf3fa5242a17f1527500d5991846afb27c0
 import voogasalad_GucciGames.gameEngine.GameEngineToGamePlayerInterface;
 import voogasalad_GucciGames.gameEngine.PlayerMapObjectInterface;
 import voogasalad_GucciGames.gameEngine.CommunicationParameters.ChangedParameters;
@@ -34,11 +30,7 @@ public class GameController implements GameControllerInterface, GameControllerAd
 	private MapInterface myMap;
 	private ResourceManager myResourceManager;
 	private PlayerMapObjectInterface myTargetUnit;
-<<<<<<< HEAD
-	private GameEngine myGame;
-=======
 	private GameInfoToGamePlayer myGame;
->>>>>>> 7193ebf3fa5242a17f1527500d5991846afb27c0
 	
 	// TODO: factor into component
 	private String myActionInProgress;
@@ -178,11 +170,7 @@ public class GameController implements GameControllerInterface, GameControllerAd
 		return myCurrentEngine;
 	}
 	@Override
-<<<<<<< HEAD
-	public GameEngine getGame() {
-=======
 	public GameInfoToGamePlayer getGame() {
->>>>>>> 7193ebf3fa5242a17f1527500d5991846afb27c0
 	    return myGame;
 	}
 
