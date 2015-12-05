@@ -10,6 +10,7 @@ import java.util.Observer;
 import javafx.scene.image.Image;
 import voogasalad_GucciGames.datastructures.Coordinate;
 import voogasalad_GucciGames.gameData.wrapper.GameInfo;
+import voogasalad_GucciGames.gameData.wrapper.GameInfoToGamePlayer;
 import voogasalad_GucciGames.gameEngine.GameEngineToGamePlayerInterface;
 import voogasalad_GucciGames.gameEngine.PlayerMapObjectInterface;
 import voogasalad_GucciGames.gameEngine.CommunicationParameters.ChangedParameters;
@@ -29,7 +30,7 @@ public class GameController implements GameControllerInterface, GameControllerAd
 	private MapInterface myMap;
 	private ResourceManager myResourceManager;
 	private PlayerMapObjectInterface myTargetUnit;
-	private GameInfo myGame;
+	private GameInfoToGamePlayer myGame;
 	
 	// TODO: factor into component
 	private String myActionInProgress;
@@ -53,9 +54,10 @@ public class GameController implements GameControllerInterface, GameControllerAd
 		loadLevel(1);
 	}
 	
+	@Override
 	public void loadLevel(int levelID){
-		if(myGame.getLevelsMap().containsKey(levelID)){
-			myCurrentEngine = myGame.getLevelsMap().get(levelID).getGameEngine();
+		if(myGame.getLevels().containsKey(levelID)){
+			myCurrentEngine = myGame.getLevels().get(levelID).getGameEngine();
 		}
 	}
 	
@@ -166,7 +168,7 @@ public class GameController implements GameControllerInterface, GameControllerAd
 		return myCurrentEngine;
 	}
 	@Override
-	public GameInfo getGame() {
+	public GameInfoToGamePlayer getGame() {
 	    return myGame;
 	}
 

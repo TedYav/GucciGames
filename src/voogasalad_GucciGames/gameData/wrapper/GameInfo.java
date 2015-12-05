@@ -20,7 +20,7 @@ import voogasalad_GucciGames.gameplayer.windows.mainwindow.components.DisplayCom
  */
 
 
-public class GameInfo implements IGameInfoToGAE{
+public class GameInfo implements IGameInfoToGAE, GameInfoToGamePlayer{
 	private static final int MAINMENU = -1;
 	// these will hold the components which go in each part of the player gui
 	// format can be changed
@@ -166,11 +166,19 @@ public class GameInfo implements IGameInfoToGAE{
 		}
 	}
 	
+	// I'm sorry for the code below
+	// Java wouldn't let me modify the return type in the interface, don't know why
+	// :(
 	@Override
 	public Map<Integer, GameLevel> getLevelsMap() {
 		return Collections.unmodifiableMap(myLevelsMap);
 	}
-
+	
+	@Override
+	public Map<Integer, IGameLevelToGamePlayer> getLevels() {
+		return Collections.unmodifiableMap(myLevelsMap);
+	}
+	
 	@Override
 	public List<String> getChoosableLevels() {
 		List<String> levelNames = new ArrayList<String>();

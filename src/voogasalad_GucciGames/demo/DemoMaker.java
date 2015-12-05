@@ -42,14 +42,17 @@ public class DemoMaker extends Application{
 	}
 
 	private static GameInfo createGame() {
-		MainGameEngine level1 = makeLevel(8, 8);
-		MainGameEngine level2 = makeLevel(20,20);
+		MainGameEngine level1 = makeLevel(4,4);
+		MainGameEngine level2 = makeLevel(8, 8);
+		MainGameEngine level3 = makeLevel(20,20);
 	       
 		GameInfo game = new GameInfo("Duvall Tag");
-		game.addLevel("Level 1");
-		game.addLevel("Level 2");
+		game.addLevel("Easy");
+		game.addLevel("Medium");
+		game.addLevel("Hard");
 		game.getLevelsMap().get(0).assignEngine(level1);
 		game.getLevelsMap().get(1).assignEngine(level2);
+		game.getLevelsMap().get(2).assignEngine(level3);
 		return game;
 	}
 
@@ -124,7 +127,6 @@ public class DemoMaker extends Application{
 				mo.setMapObjectEventHandler(new MapObjectEventHandler(new BasicParameters(null,engine)));;
 			});
 		}
-		engine.setName("Level 1");
 		return engine;
 	}
 
