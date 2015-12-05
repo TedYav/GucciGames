@@ -31,6 +31,7 @@ public class GameInfo implements IGameInfoToGAE{
 	private Map<Integer,GameLevel> myLevelsMap;
 	private int myLevelID = 0;
 	private String myGameName;
+	private List<GameLevel> myChoosableLevelsList;
 	
 	public GameInfo(String gameName){
 		this(gameName, defaultLeft(), defaultRight(), defaultBottom());
@@ -74,12 +75,41 @@ public class GameInfo implements IGameInfoToGAE{
 	    myBottomComponents=bottomComponents;
 	}
 	
+	public GameInfo(List<String> leftComponents, List<String> rightComponents, List<String> bottomComponents){
+	    myLeftComponents=leftComponents;
+	    myRightComponents=rightComponents;
+	    myBottomComponents=bottomComponents;
+	    
+	    myLevelsMap = new TreeMap<Integer,GameLevel>();
+	    myGameName = "Game " + Math.round((Math.random()*10000));
+	}
+	
 	@Override
 	public String getGameName() {
 		// TODO Auto-generated method stub
 		return this.myGameName;
 	}
-
+	
+	/**
+	 * Default level adder
+	 * Does not allow you to choose what next level is
+	 * (nextLevelID == LevelID+1)
+	 * @return
+	 */	
+	@Override
+	public void addLevel(String gameName, boolean chooseable){
+		//At the moment, automatically sets next level as the next int in the map	
+		int nextID = myLevelID + 1;
+		GameLevel gameLevel = new GameLevel(myLevelID, nextID, gameName, chooseable);
+		if (chooseable){
+			myChoosableLevelsList.add(gameLevel);
+		}
+		myLevelsMap.put(myLevelID, gameLevel);
+		myLevelID++;
+		
+//		return gameLevel;
+	}	
+	
 	/**
 	 * Adds a new level and returns a reference to it.
 	 * @param gameName
@@ -103,10 +133,23 @@ public class GameInfo implements IGameInfoToGAE{
 				myLevelsMap.put(i, myLevelsMap.remove(i+1));
 			}
 		}
+		else{
+			System.out.println("Level not found");
+		}
 
 	}
 	
-	@Override
+
+	public int getLevelID(String name){		
+		for (Integer key: myLevelsMap.keySet()){
+			if (myLevelsMap.get(key).getLevelName().equals(name)){
+				return key;
+			}
+		}
+		System.out.println("Level not found");
+		return -1;
+	}
+	
 	public void swapLevels(int first, int second){
 		if (myLevelsMap.containsKey(first) && myLevelsMap.containsKey(second)){
 			GameLevel gameOne = myLevelsMap.get(first);
@@ -118,13 +161,25 @@ public class GameInfo implements IGameInfoToGAE{
 			myLevelsMap.put(first, gameTwo);
 			myLevelsMap.put(second, gameOne);
 		}
+		else{
+			System.out.println("One or more level(s) not found");
+		}
 	}
 	
 	@Override
 	public Map<Integer, GameLevel> getLevelsMap() {
 		return Collections.unmodifiableMap(myLevelsMap);
 	}
-	
+
+	@Override
+	public List<String> getChoosableLevels() {
+		List<String> levelNames = new ArrayList<String>();
+		for (int i=0; i<myChoosableLevelsList.size(); i++){
+			levelNames.add(myChoosableLevelsList.get(i).getLevelName());
+		}
+		return levelNames;
+	}
+
 	public List<String> getLeftComponents() {
 	    return myLeftComponents;
 	}
@@ -135,6 +190,17 @@ public class GameInfo implements IGameInfoToGAE{
     public List<String> getBottomComponents () {
         return myBottomComponents;
     }
+
+	@Override
+	public void setEngine(String gameName, MainGameEngine engine) {
+		for (Integer key: myLevelsMap.keySet()){
+			if(gameName.equals(myLevelsMap.get(key).getLevelName())){
+				myLevelsMap.get(key).setGameEngine(engine);
+			}
+		}
+		
+	}
+    
 
 
 }
