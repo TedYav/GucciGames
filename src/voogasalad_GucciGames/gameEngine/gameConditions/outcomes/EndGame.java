@@ -21,6 +21,7 @@ public class EndGame extends Outcome {
 	@Override
 	ChangedParameters applyOutcome(BasicParameters params,ChangedParameters changedParams, int i) {
 		params.getEngine().setGameWon(true);
+		System.out.println("setgame="+params.getEngine().isGameWon());
 		return changedParams;
 	}
 

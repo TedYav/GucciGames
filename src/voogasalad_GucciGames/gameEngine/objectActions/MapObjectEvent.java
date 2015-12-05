@@ -51,6 +51,7 @@ public abstract class MapObjectEvent implements IGamePlayerMapObjectAction {
 	}
 
 	// Must keep final
+	//TODO: loop over outcomes
 	public final ChangedParameters executeAction(LocationParameters params, int playerID) {
 		return checkRules(playerID, params) ? executeAction(params) : null;
 	}
