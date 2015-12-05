@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.Map;
 
 import voogasalad_GucciGames.gameEngine.CommunicationParameters.BasicParameters;
+import voogasalad_GucciGames.gameEngine.CommunicationParameters.ChangedParameters;
 import voogasalad_GucciGames.gameEngine.gameConditions.Conditions;
 
 /**
@@ -19,9 +20,12 @@ public class RemovePlayer extends Outcome {
 	}
 
 	@Override
-	BasicParameters applyOutcome(BasicParameters params, int id) {
-		params.getEngine().getPlayers().removePlayer(id);
-		return params;
+	ChangedParameters applyOutcome(BasicParameters params, ChangedParameters changedParams, int id) {
+		if (params.getEngine().getPlayers().getAllIds().contains(id)) {
+			params.getEngine().getPlayers().removePlayer(id);
+			changedParams.addPlayer(id);
+		}
+		return changedParams;
 	}
 
 }
