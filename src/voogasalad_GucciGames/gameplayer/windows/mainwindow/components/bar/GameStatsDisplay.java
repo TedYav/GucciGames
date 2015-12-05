@@ -3,6 +3,7 @@ package voogasalad_GucciGames.gameplayer.windows.mainwindow.components.bar;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
+
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.scene.Parent;
@@ -29,7 +30,7 @@ public class GameStatsDisplay extends DisplayComponent {
     @Override
     public void updateDisplay() {
         observeStats.clear();
-        observeStats.add(myBundle.getString("statswin")+getController().getEngine().getGameParameters().gameWon());
+        observeStats.add(myBundle.getString("statswin")+getController().getEngine().isGameWon());
         observeStats.add(myBundle.getString("statsturn")+getController().getEngine().getGameParameters().whoseTurn());
     }
 

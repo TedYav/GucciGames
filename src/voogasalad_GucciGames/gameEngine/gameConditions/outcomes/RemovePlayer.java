@@ -1,5 +1,5 @@
 
-package voogasalad_GucciGames.gameEngine.gameConditions.oucomes;
+package voogasalad_GucciGames.gameEngine.gameConditions.outcomes;
 
 import java.util.List;
 import java.util.Map;
