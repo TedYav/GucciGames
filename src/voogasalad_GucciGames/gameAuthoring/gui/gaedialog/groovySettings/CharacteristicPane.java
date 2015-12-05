@@ -5,7 +5,7 @@ import java.util.List;
 
 import voogasalad.util.reflection.Reflection;
 import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.dialogcomponents.DropDownMenuField;
-import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.groovySettings.groovyParams.CharParam;
+import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.groovySettings.groovyParams.GCharParam;
 import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.paramObjects.Param;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -33,7 +33,7 @@ public class CharacteristicPane extends GridPane{
 	private VBox vbox;
 	private List<Param> dataList = new ArrayList<Param>();
 	private ObservableList<Param> data;
-	private CharParam charParam;
+	private GCharParam charParam;
 
 	
 
@@ -48,7 +48,7 @@ public class CharacteristicPane extends GridPane{
 		setTable();
 		setAddElementHBox();
 		setControlBtn();
-		charParam = new CharParam(name);
+		charParam = new GCharParam(name);
 		
 	
 	}
