@@ -22,7 +22,7 @@ import voogasalad_GucciGames.gameEngine.gameConditions.outcomes.Outcome;
 import voogasalad_GucciGames.gameEngine.gameConditions.outcomes.OutcomeParams;
 import voogasalad_GucciGames.gameEngine.gamePlayer.AllPlayers;
 import voogasalad_GucciGames.gameEngine.gamePlayer.GamePlayerPerson;
-import voogasalad_GucciGames.gameEngine.gamePlayer.MovablePlayerCharacteristic;
+import voogasalad_GucciGames.gameEngine.gamePlayer.chars.MovablePlayerCharacteristic;
 import voogasalad_GucciGames.gameEngine.gameRules.Rules;
 import voogasalad_GucciGames.gameEngine.gameRules.defaultRules.PlayersActivePerTurn;
 import voogasalad_GucciGames.gameEngine.mapObject.MapObject;

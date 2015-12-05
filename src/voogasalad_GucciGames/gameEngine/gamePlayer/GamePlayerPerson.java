@@ -1,35 +1,31 @@
 package voogasalad_GucciGames.gameEngine.gamePlayer;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.stream.Collectors;
 
 import voogasalad_GucciGames.gameEngine.defaultCharacteristics.AttackCharacteristic;
 import voogasalad_GucciGames.gameEngine.gameConditions.EndGameConditions;
+import voogasalad_GucciGames.gameEngine.gamePlayer.chars.APlayerChars;
+import voogasalad_GucciGames.gameEngine.gamePlayer.chars.MovablePlayerCharacteristic;
 import voogasalad_GucciGames.gameEngine.mapObject.MapObject;
 
 public class GamePlayerPerson {
-	// neither myPlayerID nor myMapObjects is initialized -> runtime errors
 	private int myPlayerId;
-	private PlayerResources myResources;
+	private static final String NUM_OF_MOVES = "numOfMoves";
 	private List<MapObject> myMapObjects;
+	private Map<String, APlayerChars> myCharacteristics = new HashMap<String, APlayerChars>();
 
 	private String myStatus = "DRAW";
 	private MovablePlayerCharacteristic myMovable;
-	private PlayerWealth myWealth;
 
 	public GamePlayerPerson(int id) {
 		myMapObjects = new ArrayList<MapObject>();
 		myPlayerId = id;
-	}
-
-	public void SetWealth(int wealth) {
-		myWealth = new PlayerWealth();
-		myWealth.setWealth(wealth);
-	}
-
-	public PlayerWealth getWealth() {
-		return myWealth;
+		myMovable = new MovablePlayerCharacteristic();
+		myCharacteristics.put(NUM_OF_MOVES, myMovable);
 	}
 
 	public List<MapObject> getMapObjects() {
@@ -61,11 +57,11 @@ public class GamePlayerPerson {
 	}
 
 	public int getAllowedMovesPerTurn() {
-		return myMovable.getMyNumberOfMoves();
+		return ((MovablePlayerCharacteristic) myCharacteristics.get(NUM_OF_MOVES)).getMyNumberOfMoves();
 	}
 
 	public int getMovesDoneThisTurn() {
-		return myMovable.getMoveCount();
+		return ((MovablePlayerCharacteristic) myCharacteristics.get(NUM_OF_MOVES)).getMoveCount();
 	}
 
 	public void resetObjects() {
@@ -80,11 +76,11 @@ public class GamePlayerPerson {
 	}
 
 	public MovablePlayerCharacteristic getMovable() {
-		return myMovable;
+		return ((MovablePlayerCharacteristic) myCharacteristics.get(NUM_OF_MOVES));
 	}
 
 	public void setMovable(MovablePlayerCharacteristic myMovable) {
-		this.myMovable = myMovable;
+		myCharacteristics.put(NUM_OF_MOVES, myMovable);
 	}
 
 	public EndGameConditions getStatusCondition() {
@@ -97,6 +93,19 @@ public class GamePlayerPerson {
 		} else {
 			return EndGameConditions.DRAW;
 		}
+	}
+
+	public APlayerChars getMyCharacteristics(String name) {
+		return myCharacteristics.get(name);
+
+	}
+
+	public Boolean hasCharerctristic(String name) {
+		return myCharacteristics.containsKey(name);
+	}
+
+	public void addCharacterstic(String name, APlayerChars charInstance) {
+		this.myCharacteristics.put(name, charInstance);
 	}
 
 }

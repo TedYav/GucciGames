@@ -1,17 +1,20 @@
 /**
  *
  */
-package voogasalad_GucciGames.gameEngine.gamePlayer;
+package voogasalad_GucciGames.gameEngine.gamePlayer.chars;
 
 /**
  *
  * @author Sally Al
  *
  */
-public class PlayerWealth extends AGamePlayerPersonCharacteristic {
-	private int myWealth = 0;
+public class PlayerWealth extends APlayerChars {
+	private int myWealth = 100;
 
-
+	public PlayerWealth(){}
+	public PlayerWealth(int wealth){
+		myWealth = wealth;
+	}
 	public int status() {
 		return myWealth;
 	}
