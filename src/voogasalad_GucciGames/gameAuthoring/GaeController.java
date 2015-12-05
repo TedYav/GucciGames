@@ -53,23 +53,23 @@ public class GaeController extends AGuiGaeController implements IModelGaeControl
 	}
 
 	@Override
-	public DisplayMapObject addObject(GridPoint gridpoint, MapObjectType mapObjType) {
-		return model.addObject(gridpoint, mapObjType, defaultOwnerID);
+	public DisplayMapObject addObject( int levelID, GridPoint gridpoint, MapObjectType mapObjType) {
+		return model.addObject(levelID, gridpoint, mapObjType, defaultOwnerID);
 	}
 
 	@Override
-	public DisplayMapObject addObject(GridPoint gridpoint, MapObjectType mapObjType, int ownerID) {
-		return model.addObject(gridpoint, mapObjType, ownerID);
+	public DisplayMapObject addObject(int levelID, GridPoint gridpoint, MapObjectType mapObjType, int ownerID) {
+		return model.addObject(levelID, gridpoint, mapObjType, ownerID);
 	}
 
 	@Override
-	public List<DisplayMapObject> getMapObjects() {
-		return model.getMapObjects();
+	public List<DisplayMapObject> getMapObjects(int id) {
+		return model.getMapObjects(id);
 	}
 
 	@Override
-	public void clearMap() {
-		model.clearMap();
+	public void clearMap(int id) {
+		model.clearMap(id);
 	}
 
 	@Override
@@ -245,8 +245,8 @@ public class GaeController extends AGuiGaeController implements IModelGaeControl
 	}
 	
 	@Override
-	public void addLevel(String name) {
-		model.addLevel(name);
+	public int addLevel() {
+		return model.addLevel();
 	}
 
 	@Override

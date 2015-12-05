@@ -23,22 +23,26 @@ import voogasalad_GucciGames.gameEngine.targetCoordinate.TargetCoordinateSingle;
 
 public class GAEModel implements IGAEModel{
     private TypeData typeData;
-    private MapData mapData;
+    //private MapData mapData;
     private GuiData guiData;
-    private List<String> levels;
     private IModelGaeController myController;
 	private Map<Integer, GamePlayerPerson> mapOfPlayers;	
-	private List<DisplayMapObject> myMapObjects;
+	//private List<DisplayMapObject> myMapObjects;
+	// map from level id (unique) to list of map objects
+	private Map<Integer, MapData> myLevels;
+	private int nextLevel;
 
     
     public GAEModel(IModelGaeController controller) {
     	myController = controller;
     	typeData = new TypeData();
-    	mapData = new MapData();
+    	//mapData = new MapData();
     	mapOfPlayers = new HashMap<>();
-    	myMapObjects = new ArrayList<>();
+    	//myMapObjects = new ArrayList<>();
     	guiData = new GuiData();
-    	levels = new ArrayList<>();
+    	myLevels = new HashMap<>();
+    	nextLevel = 0;
+    	
     	// Probs need to change this
 		mapOfPlayers.put(-1, new GamePlayerPerson(-1));
 		mapOfPlayers.put(0, new GamePlayerPerson(0));
@@ -54,24 +58,24 @@ public class GAEModel implements IGAEModel{
     }
     
     @Override
-    public DisplayMapObject addObject(GridPoint gridpoint, MapObjectType mapObjType, int ownerID) {
+    public DisplayMapObject addObject(int levelID, GridPoint gridpoint, MapObjectType mapObjType, int ownerID) {
     	TargetCoordinateSingle targCoordSingle = new TargetCoordinateSingle(gridpoint.getX(), gridpoint.getY());
     	int layer = mapObjType.isTile() ? 0 : 1;
     	DisplayMapObject mapObject = new DisplayMapObject(mapObjType, targCoordSingle, ownerID,layer);
     	//mapOfPlayers.get(ownerID).addMapObject(mapObject);
-    	myMapObjects.add(mapObject);
+    	myLevels.get(levelID).addToMap(mapObject);
     	//Validate with engine, if failed, return null, else return this mapObject
     	return mapObject;
     }
     
     @Override
-	public List<DisplayMapObject> getMapObjects() {
-		return mapData.getMapObjects();
+	public List<DisplayMapObject> getMapObjects(int id) {
+		return myLevels.get(id).getMapObjects();
 	}
 
     @Override
-    public void clearMap () {
-        mapData.clearMap();
+    public void clearMap (int id) {
+        myLevels.get(id).clearMap();
     }
 
     @Override
@@ -132,14 +136,6 @@ public class GAEModel implements IGAEModel{
         return false;
     }
 
-
-    public void addComponent (Map<String,String> objParams) {
-        DisplayMapObject mapObj = new DisplayMapObject(null, null, 0, 0);// TODO:MapObject(objParams);
-        validate();
-        mapData.addToMap(mapObj);
-    }
-
-
 	@Override
 	public void changeOwner(MapObject mapObject, int playerID) {
 		int oldID = mapObject.getPlayerID(); 
@@ -163,8 +159,12 @@ public class GAEModel implements IGAEModel{
 
 
 	@Override
-	public void addLevel(String name) {
-		levels.add(name);
+	public int addLevel() {
+		int newLevelID = nextLevel;
+		myLevels.put(newLevelID, new MapData());
+		nextLevel += 1;
+		return newLevelID;
+		
 	}
     
 //	public static void main(String[] args){
