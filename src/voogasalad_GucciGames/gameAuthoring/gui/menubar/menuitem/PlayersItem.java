@@ -13,7 +13,7 @@ class PlayersItem extends MenuItem{
 			//controller.saveToXML();
 			System.out.println(controller.getNumberOfPlayers());
 			PlayerDialog playerDialog = new PlayerDialog(controller, controller.getNumberOfPlayers());
-			playerDialog.showDialog();
+			playerDialog.showAndWait();
 			
 			//TODO
 		});

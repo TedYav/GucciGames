@@ -18,7 +18,7 @@ public class TileTab extends ATab {
 	@Override
 	protected void addNewTypeDialog(ActionEvent e) {
 		NewObjectMaker addNewTileDialog = new NewObjectMaker(myController);
-		addNewTileDialog.showDialog();
+		addNewTileDialog.showAndWait();
 		
 	}
 

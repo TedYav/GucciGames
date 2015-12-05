@@ -2,6 +2,7 @@ package voogasalad_GucciGames.gameData.wrapper;
 
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Collections;
 import java.util.List;
 import java.util.Map;
 import java.util.TreeMap;
@@ -20,21 +21,55 @@ import voogasalad_GucciGames.gameplayer.windows.mainwindow.components.DisplayCom
 
 
 public class GameInfo implements IGameInfoToGAE{
-	private MainGameEngine myEngine;
+	private static final int MAINMENU = -1;
 	// these will hold the components which go in each part of the player gui
 	// format can be changed
 	private List<String> myRightComponents;	// hold class names
 	private List<String> myLeftComponents;
 	private List<String> myBottomComponents;
+	
 	private Map<Integer,GameLevel> myLevelsMap;
-	private static int myLevelID = 0;
+	private int myLevelID = 0;
 	private String myGameName;
 	private List<GameLevel> myChoosableLevelsList;
 	
-	public GameInfo(MainGameEngine engine, List<String> leftComponents, List<String> rightComponents, List<String> bottomComponents){
-	    myEngine=engine;
+	public GameInfo(String gameName){
+		this(gameName, defaultLeft(), defaultRight(), defaultBottom());
+	}
+	
+	// TODO: CHANGE THIS -> JOHN DAI
+	
+	private static List<String> defaultBottom() {
+	
+     List<String> bottomComponents=new ArrayList<String>();
+         bottomComponents.add("voogasalad_GucciGames.gameplayer.windows.mainwindow.components.bar.MainMenuButton");
+        
+         // REMOVED UNTIL WE MAKE DISPLAYCOMPONENT AND WINDOWCOMPONENT INTERCHANGEABLE
+         //bottomComponents.add("voogasalad_GucciGames.gameplayer.windows.mainwindow.map.mini.MiniMap");
+         return bottomComponents;
+	}
+
+	private static List<String> defaultRight() {
+        List<String> rightComponents=new ArrayList<String>();
+		 rightComponents.add("voogasalad_GucciGames.gameplayer.windows.mainwindow.components.bar.ActionDisplay");
+	     rightComponents.add("voogasalad_GucciGames.gameplayer.windows.mainwindow.components.bar.BuildUnitsDisplay");
+	     rightComponents.add("voogasalad_GucciGames.gameplayer.windows.mainwindow.components.bar.EndTurnButton");
+	     rightComponents.add("voogasalad_GucciGames.gameplayer.windows.mainwindow.components.bar.GameStatsDisplay");
+	     return rightComponents;
+	}
+
+	private static List<String> defaultLeft() {
+		 List<String> leftComponents=new ArrayList<String>();
+	     leftComponents.add("voogasalad_GucciGames.gameplayer.windows.mainwindow.components.bar.DisplayMapObjectImage");
+	     leftComponents.add("voogasalad_GucciGames.gameplayer.windows.mainwindow.components.bar.DisplayMapObjectDetails");
+	     leftComponents.add("voogasalad_GucciGames.gameplayer.windows.mainwindow.components.bar.DisplayChat");
+	     leftComponents.add("voogasalad_GucciGames.gameplayer.windows.mainwindow.map.mini.MiniMap");
+	     return leftComponents;
+	}
+
+	public GameInfo(String gameName, List<String> leftComponents, List<String> rightComponents, List<String> bottomComponents){
 	    myLevelsMap = new TreeMap<Integer,GameLevel>();
-	    myGameName = "Game " + Math.round((Math.random()*10000));
+	    myGameName = gameName;
 	    myRightComponents=rightComponents;
 	    myLeftComponents=leftComponents;
 	    myBottomComponents=bottomComponents;
@@ -50,7 +85,7 @@ public class GameInfo implements IGameInfoToGAE{
 	}
 	
 	@Override
-	public String getName() {
+	public String getGameName() {
 		// TODO Auto-generated method stub
 		return this.myGameName;
 	}
@@ -76,34 +111,27 @@ public class GameInfo implements IGameInfoToGAE{
 	}	
 	
 	/**
-	 * Allows you to choose where this level will lead to
-	 * end game level ID = -1
+	 * Adds a new level and returns a reference to it.
 	 * @param gameName
-	 * @param chooseable
-	 * @param engine
-	 * @param nextLevelId
 	 * @return
 	 */	
 	@Override
-	public void addLevel(String gameName, boolean chooseable, int nextLevelId){
-		GameLevel gameLevel = new GameLevel(myLevelID, nextLevelId, gameName, chooseable);	
-		if (chooseable){
-			myChoosableLevelsList.add(gameLevel);
-		}
+	public GameLevel addLevel(String levelName){
+		GameLevel gameLevel = new GameLevel(myLevelID, MAINMENU, levelName, true);		
 		myLevelsMap.put(myLevelID, gameLevel);
 		myLevelID++;
 		
+		return myLevelsMap.get(myLevelID - 1);
 //		return gameLevel;
 	}
 
 	@Override
-	public void deleteLevel(String gameName) {
-		int key = getLevelID(gameName);
-		if (key > -1){
-			for (int i = key; i<myLevelsMap.keySet().size()-1; i++){
-				myLevelsMap.put(i, myLevelsMap.get(i+1));
+	public void deleteLevel(int id) {
+		if (id > -1){
+			myLevelsMap.remove(id);
+			for (int i = id; i<myLevelsMap.keySet().size()-1; i++){
+				myLevelsMap.put(i, myLevelsMap.remove(i+1));
 			}
-			myLevelsMap.remove(myLevelsMap.keySet().size()-1);
 		}
 		else{
 			System.out.println("Level not found");
@@ -111,7 +139,7 @@ public class GameInfo implements IGameInfoToGAE{
 
 	}
 	
-	@Override
+
 	public int getLevelID(String name){		
 		for (Integer key: myLevelsMap.keySet()){
 			if (myLevelsMap.get(key).getLevelName().equals(name)){
@@ -122,10 +150,7 @@ public class GameInfo implements IGameInfoToGAE{
 		return -1;
 	}
 	
-	@Override
-	public void swapLevelIDs(String one, String two){
-		int first = getLevelID(one);
-		int second = getLevelID(two);
+	public void swapLevels(int first, int second){
 		if (myLevelsMap.containsKey(first) && myLevelsMap.containsKey(second)){
 			GameLevel gameOne = myLevelsMap.get(first);
 			gameOne.changeID(second);
@@ -142,14 +167,10 @@ public class GameInfo implements IGameInfoToGAE{
 	}
 	
 	@Override
-	public Map<Integer, String> getLevelsMap() {
-		Map<Integer,String> temp = new TreeMap<Integer,String>();
-		for (Integer key: myLevelsMap.keySet()){
-			temp.put(key, myLevelsMap.get(key).getLevelName());
-		}
-		return temp;
+	public Map<Integer, GameLevel> getLevelsMap() {
+		return Collections.unmodifiableMap(myLevelsMap);
 	}
-	
+
 	@Override
 	public List<String> getChoosableLevels() {
 		List<String> levelNames = new ArrayList<String>();
@@ -158,10 +179,7 @@ public class GameInfo implements IGameInfoToGAE{
 		}
 		return levelNames;
 	}
-	
-	public GameEngineToGamePlayerInterface getEngine() {
-	    return myEngine;
-	}
+
 	public List<String> getLeftComponents() {
 	    return myLeftComponents;
 	}
@@ -177,19 +195,12 @@ public class GameInfo implements IGameInfoToGAE{
 	public void setEngine(String gameName, MainGameEngine engine) {
 		for (Integer key: myLevelsMap.keySet()){
 			if(gameName.equals(myLevelsMap.get(key).getLevelName())){
-				myEngine = engine;
 				myLevelsMap.get(key).setGameEngine(engine);
 			}
 		}
 		
 	}
     
-
-
-
-
-
-
 
 
 }

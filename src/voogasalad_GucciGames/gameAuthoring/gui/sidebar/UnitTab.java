@@ -14,7 +14,7 @@ public class UnitTab extends ATab {
 	@Override
 	protected void addNewTypeDialog(ActionEvent e) {
 		NewObjectMaker unitMaker = new NewObjectMaker( myController);
-		unitMaker.showDialog();
+		unitMaker.showAndWait();
 	}
 
 }

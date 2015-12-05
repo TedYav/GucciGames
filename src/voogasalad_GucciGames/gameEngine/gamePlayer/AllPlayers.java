@@ -3,7 +3,6 @@ package voogasalad_GucciGames.gameEngine.gamePlayer;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
-import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
@@ -13,7 +12,7 @@ import voogasalad_GucciGames.gameEngine.mapObject.MapObject;
 public class AllPlayers {
 
 	private Map<Integer, GamePlayerPerson> myMapOfPlayers;
-	
+
 	public AllPlayers(Map<Integer, GamePlayerPerson> players) {
 
 		myMapOfPlayers = players;
@@ -55,13 +54,8 @@ public class AllPlayers {
 	}
 
 	public void removePlayer(int id) {
-		Iterator<GamePlayerPerson> itr = myMapOfPlayers.values().iterator();
-		while (itr.hasNext()) {
-			if (itr.next().getMyPlayerId() == id) {
-				itr.remove();
-				System.out.println("remove player with id = " + id);
-				return;
-			}
+		if(myMapOfPlayers.containsKey(id)&& myMapOfPlayers!=null){
+			myMapOfPlayers.remove(id);
 		}
 	}
 
@@ -105,7 +99,7 @@ public class AllPlayers {
 
 		return myInitObjects;
 	}
-	
+
 	public List<MapObject> getNonNeutralMapObjects(){
 		List<MapObject> result = new ArrayList<MapObject>();
 		this.myMapOfPlayers.keySet().stream().forEach(key -> {

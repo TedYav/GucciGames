@@ -12,6 +12,8 @@ import javafx.stage.Stage;
 import voogasalad_GucciGames.gameAuthoring.AGuiGaeController;
 import voogasalad_GucciGames.gameAuthoring.gui.sidebar.SideBar;
 import voogasalad_GucciGames.gameAuthoring.gui.statusbar.StatusBar;
+import voogasalad_GucciGames.gameAuthoring.gui.levels.LevelTab;
+import voogasalad_GucciGames.gameAuthoring.gui.levels.LevelTabPane;
 import voogasalad_GucciGames.gameAuthoring.gui.map.GuiMap;
 import voogasalad_GucciGames.gameAuthoring.gui.menubar.GAEMenuBar;
 
@@ -26,7 +28,8 @@ import voogasalad_GucciGames.gameAuthoring.gui.menubar.GAEMenuBar;
 public class GAEGui extends BorderPane {
 
 	private AGuiGaeController myController;
-	private GuiMap myMap;
+	private LevelTabPane myLevelTabPane;
+//	private GuiMap myMap;
 	// private ISaveCustomObj saveCustomObj;
 
 	public GAEGui(AGuiGaeController controller, Stage stage) {
@@ -62,14 +65,17 @@ public class GAEGui extends BorderPane {
 		setRight(sideBar);
 
 		// Add Map
-		myMap = new GuiMap(myController);
-		myMap.setOnMouseMoved(e -> statusBar.update(e));
-		setCenter(myMap);
-		myMap.setBackground(new Image("http://www.narniaweb.com/wp-content/uploads/2009/08/NarniaMap.jpg"));
+		myLevelTabPane = new LevelTabPane(myController, statusBar);
+		setCenter(myLevelTabPane);
+//		myMap = new GuiMap(myController);
+//		myMap.setOnMouseMoved(e -> statusBar.update(e));
+//		setCenter(myMap);
+//		myMap.setBackground(new Image("http://www.narniaweb.com/wp-content/uploads/2009/08/NarniaMap.jpg"));
 	}
 
 	public void initializeMap(int width, int height) {
-		myMap.initGrid(width, height);
+		LevelTab levelTab = myLevelTabPane.getCurrTab();
+		myLevelTabPane.initializeMap(width, height, levelTab);
 	}
 
 	/**
@@ -80,6 +86,10 @@ public class GAEGui extends BorderPane {
 	 */
 	public Map<String, String> getMapForCustomTile() {
 		return null;
+	}
+	
+	public LevelTabPane getLevelTabPane(){
+		return myLevelTabPane;
 	}
 
 	public AGuiGaeController getController() {
