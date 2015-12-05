@@ -93,4 +93,6 @@ public interface IGuiGaeController {
 
 	public LevelTabPane getLevelTabPane();
 
+	public void addLevel(String name);
+
 }

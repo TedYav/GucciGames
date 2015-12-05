@@ -1,4 +1,4 @@
-package voogasalad_GucciGames.gameEngine.gameConditions.oucomes;
+package voogasalad_GucciGames.gameEngine.gameConditions.outcomes;
 
 import java.util.ArrayList;
 import java.util.Iterator;
@@ -31,14 +31,14 @@ public abstract class Outcome {
 		List<Integer> players = params.getEngine().getPlayers().getAllIds();
 		for (int i = 0; i < players.size(); i++) {
 			GamePlayerPerson cur = params.getEngine().getPlayers().getPlayerById(players.get(i));
-			if (checkConditions(cur)) {
+			if (checkConditions(params,cur)) {
 				params = applyOutcome(params, cur.getMyPlayerId());
 			}
 		}
 		return params;// might need to change the return type
 	}
 
-	private Boolean checkConditions(GamePlayerPerson player) {
+	private Boolean checkConditions(BasicParameters params, GamePlayerPerson player) {
 
 		if (myConditions.isEmpty() || myConditions == null) {
 			return true;
@@ -46,7 +46,7 @@ public abstract class Outcome {
 			Boolean flag = true;
 			Iterator<Conditions> itr = myConditions.iterator();
 			while (itr.hasNext() && flag == true) {
-				flag = itr.next().execute(player);
+				flag = itr.next().execute(params,player);
 			}
 			return flag;
 		}

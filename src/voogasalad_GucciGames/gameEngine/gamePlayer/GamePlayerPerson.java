@@ -16,11 +16,20 @@ public class GamePlayerPerson {
 
 	private String myStatus = "DRAW";
 	private MovablePlayerCharacteristic myMovable;
-	
-	
+	private PlayerWealth myWealth;
+
 	public GamePlayerPerson(int id) {
 		myMapObjects = new ArrayList<MapObject>();
 		myPlayerId = id;
+	}
+
+	public void SetWealth(int wealth) {
+		myWealth = new PlayerWealth();
+		myWealth.setWealth(wealth);
+	}
+
+	public PlayerWealth getWealth() {
+		return myWealth;
 	}
 
 	public List<MapObject> getMapObjects() {
@@ -41,7 +50,8 @@ public class GamePlayerPerson {
 
 	public List<MapObject> getUnits() {
 		// isUnit is not implemented
-		return myMapObjects.stream().filter(e -> e.hasCharacteristic("UnitCharacteristic")).collect(Collectors.toList());
+		return myMapObjects.stream().filter(e -> e.hasCharacteristic("UnitCharacteristic"))
+				.collect(Collectors.toList());
 
 	}
 
@@ -54,16 +64,15 @@ public class GamePlayerPerson {
 		return myMovable.getMyNumberOfMoves();
 	}
 
-
-
 	public int getMovesDoneThisTurn() {
 		return myMovable.getMoveCount();
 	}
 
-	public void resetObjects(){
-		for(MapObject object: myMapObjects){
-			if(object.hasCharacteristic("AttackCharacteristic")){
-				AttackCharacteristic attachChar =(AttackCharacteristic) object.getCharacteristic("AttackCharacteristic");
+	public void resetObjects() {
+		for (MapObject object : myMapObjects) {
+			if (object.hasCharacteristic("AttackCharacteristic")) {
+				AttackCharacteristic attachChar = (AttackCharacteristic) object
+						.getCharacteristic("AttackCharacteristic");
 				attachChar.reset();
 			}
 
@@ -79,14 +88,13 @@ public class GamePlayerPerson {
 	}
 
 	public EndGameConditions getStatusCondition() {
-		
-		if(myStatus.equals("WIN")){
+
+		if (myStatus.equals("WIN")) {
 			return EndGameConditions.WIN;
 		}
-		if(myStatus.equals("LOSE")){
+		if (myStatus.equals("LOSE")) {
 			return EndGameConditions.LOSE;
-		}
-		else{
+		} else {
 			return EndGameConditions.DRAW;
 		}
 	}

@@ -24,10 +24,9 @@ public class GAEModel implements IGAEModel{
     private TypeData typeData;
     private MapData mapData;
     private GuiData guiData;
+    private List<String> levels;
     private IModelGaeController myController;
 	private Map<Integer, GamePlayerPerson> mapOfPlayers;	
-    private AllPlayers players;
-	private MainGameEngine engine;
 	private List<DisplayMapObject> myMapObjects;
 
     
@@ -38,6 +37,7 @@ public class GAEModel implements IGAEModel{
     	mapOfPlayers = new HashMap<>();
     	myMapObjects = new ArrayList<>();
     	guiData = new GuiData();
+    	levels = new ArrayList<>();
     	// Probs need to change this
 		mapOfPlayers.put(-1, new GamePlayerPerson(-1));
 		mapOfPlayers.put(0, new GamePlayerPerson(0));
@@ -158,6 +158,12 @@ public class GAEModel implements IGAEModel{
 	public void setGuiComponents(String location, List<String> components) {
 		guiData.setComponents(location, components);
 		
+	}
+
+
+	@Override
+	public void addLevel(String name) {
+		levels.add(name);
 	}
 
 
