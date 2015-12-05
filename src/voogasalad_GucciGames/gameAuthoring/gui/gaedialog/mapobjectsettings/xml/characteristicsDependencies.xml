@@ -32,4 +32,9 @@
 		 paramNames="min, max"
 		 paramTypes="double, double">	
 	</characteristic>
+	<characteristic name="transferrable"
+		displayName = "Transferrable"
+		paramNames="Is Transferrable"
+		paramTypes="boolean"
+	</characteristic>	
 </characteristicDependencies>

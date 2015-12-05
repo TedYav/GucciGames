@@ -20,7 +20,7 @@ import voogasalad_GucciGames.gameplayer.windows.mainwindow.components.DisplayCom
  */
 
 
-public class GameEngine extends AGameInfo implements IGameInfoToGAE {
+public class GameEngine implements IGameInfoToGAE, GameInfoToGamePlayer {
 	private static final int MAINMENU = -1;
 
 	
@@ -28,6 +28,7 @@ public class GameEngine extends AGameInfo implements IGameInfoToGAE {
 	private int myLevelID = 0;
 	private String myGameName;
 	private List<GameLevel> myChoosableLevelsList;
+	private GuiData guiData;
 
 	public GameEngine(String gameName){
 	    myLevelsMap = new TreeMap<Integer,GameLevel>();
@@ -121,12 +122,21 @@ public class GameEngine extends AGameInfo implements IGameInfoToGAE {
 			System.out.println("One or more level(s) not found");
 		}
 	}
-	
+    
+
+	// I'm sorry for the code below
+	// Java wouldn't let me modify the return type in the interface, don't know why
+	// :(
 	@Override
 	public Map<Integer, GameLevel> getLevelsMap() {
 		return Collections.unmodifiableMap(myLevelsMap);
 	}
-
+	
+	@Override
+	public Map<Integer, IGameLevelToGamePlayer> getLevels() {
+		return Collections.unmodifiableMap(myLevelsMap);
+	}
+	
 	@Override
 	public List<String> getChoosableLevels() {
 		List<String> levelNames = new ArrayList<String>();
@@ -136,6 +146,12 @@ public class GameEngine extends AGameInfo implements IGameInfoToGAE {
 		return levelNames;
 	}
 
+	public List<String> getGuiComponents(String location) {
+	    return guiData.getComponents(location);
+	}
+	public void setGuiComponents(String location, List<String> components) {
+	    guiData.setComponents(location, components);
+	}
 
 	@Override
 	public void setEngine(String gameName, MainGameEngine engine) {
@@ -146,7 +162,14 @@ public class GameEngine extends AGameInfo implements IGameInfoToGAE {
 		}
 		
 	}
-    
+
+    public GuiData getGuiData () {
+        return guiData;
+    }
+
+    public void setGuiData (GuiData guiData) {
+        this.guiData = guiData;
+    }
 
 
 }

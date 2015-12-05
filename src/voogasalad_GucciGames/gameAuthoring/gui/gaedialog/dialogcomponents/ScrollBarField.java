@@ -14,18 +14,18 @@ import javafx.scene.text.Text;
 
 public class ScrollBarField extends DialogComponent {
 	
-	private DialogElements dialogElements;
+	private Properties prop;
 	private String propKey;
 	private String itemsKey;
 	private ScrollBar scrollBar = new ScrollBar();
 	private Text numSpriteText = new Text(Double.toString(scrollBar.getValue()));
 	
-	public ScrollBarField(DialogElements dialogElements, String propKey, String itemsKey){
-		this.dialogElements = dialogElements;
+	public ScrollBarField(Properties prop, String propKey, String itemsKey){
+		this.prop = prop;
 		this.propKey = propKey;
 		this.itemsKey = itemsKey;
-		List<String> params = super.parseStringToList(dialogElements.getDialogProperties(), itemsKey);
-		makeScrollBar(dialogElements.getDialogProperties().getProperty(propKey),
+		List<String> params = super.parseStringToList(prop, itemsKey);
+		makeScrollBar(prop.getProperty(propKey),
 				Double.parseDouble(params.get(0)),
 				Double.parseDouble(params.get(1)),
 				Double.parseDouble(params.get(2))
@@ -44,8 +44,10 @@ public class ScrollBarField extends DialogComponent {
 		scrollBar.setMax(max);
 		scrollBar.setUnitIncrement(increm);
 		addDefaultListener();
-		this.getChildren().addAll(title, scrollBar, numSpriteText);
-		this.setId("hbox-element");
+		this.add(title, 0, 0);
+		this.add(scrollBar, 1, 0);
+		this.add(numSpriteText, 2, 0);
+	
 	}
 	
 	private void addDefaultListener(){
@@ -66,9 +68,9 @@ public class ScrollBarField extends DialogComponent {
 					Number oldValue, Number newValue) {
 				// TODO Auto-generated method stub
 				//TODO: REFACTOR
-				if(propKey == "numplayer"){
-					dialogElements.getDialogGaeController().setNumberOfPlayers(newValue.intValue());
-				}
+//				if(propKey == "numplayer"){
+//					dialogElements.getDialogGaeController().setNumberOfPlayers(newValue.intValue());
+//				}
 				numSpriteText.setText(newValue.intValue()+"");
 				//dialogElements.getSaveObjProperty().saveObjProperty(propKey, newValue.intValue()+"");				
 			}			

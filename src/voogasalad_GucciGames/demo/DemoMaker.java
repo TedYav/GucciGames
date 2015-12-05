@@ -1,10 +1,10 @@
 package voogasalad_GucciGames.demo;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.TreeMap;
-
 import javafx.application.Application;
 import javafx.stage.Stage;
 import voogasalad_GucciGames.gameData.XStreamGameEngine;
@@ -13,11 +13,18 @@ import voogasalad_GucciGames.gameEngine.MainGameEngine;
 import voogasalad_GucciGames.gameEngine.CommunicationParameters.BasicParameters;
 import voogasalad_GucciGames.gameEngine.defaultCharacteristics.AttackCharacteristic;
 import voogasalad_GucciGames.gameEngine.defaultCharacteristics.HealthCharacteristic;
-import voogasalad_GucciGames.gameEngine.defaultCharacteristics.MovableCharacteristic;
 import voogasalad_GucciGames.gameEngine.defaultCharacteristics.HealthCharacteristic;
+import voogasalad_GucciGames.gameEngine.defaultCharacteristics.MovableCharacteristic;
+import voogasalad_GucciGames.gameEngine.gameConditions.Conditions;
+import voogasalad_GucciGames.gameEngine.gameConditions.defaultConditions.CheckOnePlayerLeft;
+import voogasalad_GucciGames.gameEngine.gameConditions.outcomes.EndGame;
+import voogasalad_GucciGames.gameEngine.gameConditions.outcomes.Outcome;
+import voogasalad_GucciGames.gameEngine.gameConditions.outcomes.OutcomeParams;
 import voogasalad_GucciGames.gameEngine.gamePlayer.AllPlayers;
 import voogasalad_GucciGames.gameEngine.gamePlayer.GamePlayerPerson;
 import voogasalad_GucciGames.gameEngine.gamePlayer.MovablePlayerCharacteristic;
+import voogasalad_GucciGames.gameEngine.gameRules.Rules;
+import voogasalad_GucciGames.gameEngine.gameRules.defaultRules.PlayersActivePerTurn;
 import voogasalad_GucciGames.gameEngine.mapObject.MapObject;
 import voogasalad_GucciGames.gameEngine.objectActions.AttackEvent;
 import voogasalad_GucciGames.gameEngine.objectActions.MapObjectEventHandler;
@@ -41,6 +48,7 @@ public class DemoMaker extends Application{
 		launch(args);
 	}
 
+<<<<<<< HEAD
 	private static GameEngine createGame() {
 		MainGameEngine level1 = makeLevel(8, 8);
 		MainGameEngine level2 = makeLevel(20,20);
@@ -48,15 +56,27 @@ public class DemoMaker extends Application{
 		GameEngine game = new GameEngine("Duvall Tag");
 		game.addLevel("Level 1");
 		game.addLevel("Level 2");
+=======
+	private static GameInfo createGame() {
+		MainGameEngine level1 = makeLevel(4,4);
+		MainGameEngine level2 = makeLevel(8, 8);
+		MainGameEngine level3 = makeLevel(20,20);
+
+		GameInfo game = new GameInfo("Duvall Tag");
+		game.addLevel("Easy");
+		game.addLevel("Medium");
+		game.addLevel("Hard");
+>>>>>>> 7193ebf3fa5242a17f1527500d5991846afb27c0
 		game.getLevelsMap().get(0).assignEngine(level1);
 		game.getLevelsMap().get(1).assignEngine(level2);
+		game.getLevelsMap().get(2).assignEngine(level3);
 		return game;
 	}
 
 	private static MainGameEngine makeLevel(int width, int height) {
-		Map<Integer,GamePlayerPerson> myMapOfPlayers = new TreeMap<Integer,GamePlayerPerson>();     
+		Map<Integer,GamePlayerPerson> myMapOfPlayers = new TreeMap<Integer,GamePlayerPerson>();
 		myMapOfPlayers.put(-1,new GamePlayerPerson(-1)); //neutral player
-		myMapOfPlayers.put(0,new GamePlayerPerson(0)); //player 1 
+		myMapOfPlayers.put(0,new GamePlayerPerson(0)); //player 1
 
 		myMapOfPlayers.put(1,new GamePlayerPerson(1)); //player 2
 
@@ -74,11 +94,25 @@ public class DemoMaker extends Application{
 
 		MovableCharacteristic myMovableCharacteristic = new MovableCharacteristic(1, 3);
 		HealthCharacteristic myHealthCharacteristic = new HealthCharacteristic(5);
+                PlayersActivePerTurn moveOwn = new PlayersActivePerTurn();
 
-		MoveEvent myMoveEvent = new MoveEvent("Move");
+                List<Rules> moveRules = new ArrayList<Rules>();
+                moveRules.add(moveOwn);
+		MoveEvent myMoveEvent = new MoveEvent("Move",moveRules,new ArrayList<Outcome>());
 		soldier.addEvent("Move", myMoveEvent);
 
-		AttackEvent myAttackEvent = new AttackEvent("Attack");
+		Conditions onePlayerLeft = new CheckOnePlayerLeft(new HashMap<String,Object>());
+		List<Conditions> endGameConditions = new ArrayList<Conditions>();
+		endGameConditions.add(onePlayerLeft);
+		OutcomeParams oParams = new OutcomeParams();
+		oParams.setPlayerID(0);
+                oParams.setPlayerID(1);
+		Outcome endGame = new EndGame(endGameConditions, oParams);
+		List<Outcome> attackOutcomes = new ArrayList<Outcome>();
+		attackOutcomes.add(endGame);
+		List<Rules> attackRules = new ArrayList<Rules>();
+		attackRules.add(moveOwn);
+		AttackEvent myAttackEvent = new AttackEvent("Attack",attackRules,attackOutcomes);
 		AttackCharacteristic myAttackCharacteristic = new AttackCharacteristic(3, 100, 2);
 
 
@@ -124,7 +158,6 @@ public class DemoMaker extends Application{
 				mo.setMapObjectEventHandler(new MapObjectEventHandler(new BasicParameters(null,engine)));;
 			});
 		}
-		engine.setName("Level 1");
 		return engine;
 	}
 

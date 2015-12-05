@@ -37,7 +37,7 @@ public class CharacteristicPane extends GridPane{
 
 	
 
-	public CharacteristicPane(String name){
+	public CharacteristicPane(String name, ISwitchGroovyPane controller){
 		super();
 		tableView = new TableView();
 		nameLbl = new Label(name + " Characteristics");
