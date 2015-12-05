@@ -40,7 +40,7 @@ public class NamePane extends GridPane {
 			if(validate()){
 				Reflection reflection = new Reflection();
 				paneController.switchGroovyPane(reflection.createInstance(
-						path + type + "Pane", textField.getText()), 
+						path + type + "Pane", textField.getText(), paneController), 
 						"Custom " + type);
 			}
 			
@@ -54,9 +54,7 @@ public class NamePane extends GridPane {
 		} catch(Exception e){
 			nextBtn.setDisable(true);
 			return false;
-		}
-		
-		
+		}		
 	}
 
 }
