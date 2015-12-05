@@ -2,6 +2,7 @@ package voogasalad_GucciGames.gameAuthoring.gui.gaedialog.groovySettings;
 import java.util.Optional;
 
 import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.groovySettings.groovyParams.AGroovyParams;
+import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.maindialogs.AGaeDialog;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Node;
@@ -18,7 +19,7 @@ import javafx.scene.paint.Color;
 import javafx.scene.paint.Paint;
 import javafx.stage.Stage;
 
-public class GroovyDialog extends javafx.scene.control.Dialog implements ISwitchGroovyPane{
+public class GroovyDialog extends AGaeDialog implements ISwitchGroovyPane{
 	
 	private static final int WIDTH = 700;
 	private static final int HEIGHT = 500;
@@ -32,7 +33,7 @@ public class GroovyDialog extends javafx.scene.control.Dialog implements ISwitch
 	@SuppressWarnings("unchecked")
 	public GroovyDialog(){
 		super();
-		groovyMainPane = new MainPane(this, WIDTH, HEIGHT);
+		groovyMainPane = new MainPane(this);
 		stackPane.setPrefSize(WIDTH, HEIGHT);
 		stackPane.setPadding(new Insets(15,15,15,15));
 		

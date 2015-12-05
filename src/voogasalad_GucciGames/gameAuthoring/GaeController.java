@@ -1,7 +1,6 @@
 package voogasalad_GucciGames.gameAuthoring;
 
 import java.io.File;
-import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
@@ -15,9 +14,6 @@ import javafx.stage.Stage;
 import voogasalad_GucciGames.gameAuthoring.gui.GAEGui;
 import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.paramObjects.GameSettingParams;
 import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.paramObjects.PlayerParams;
-import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.paramObjects.StructureParams;
-import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.paramObjects.TileParams;
-import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.paramObjects.UnitParams;
 import voogasalad_GucciGames.gameAuthoring.gui.levels.LevelTabPane;
 import voogasalad_GucciGames.gameAuthoring.gui.map.GridPoint;
 import voogasalad_GucciGames.gameAuthoring.model.DisplayMapObject;
@@ -186,26 +182,7 @@ public class GaeController extends AGuiGaeController implements IModelGaeControl
 
 	}
 
-	@Override
-	public void setTileParams(TileParams params) {
-		// TODO Auto-generated method stub
 
-	}
-
-	@Override
-	public void setUnitParams(UnitParams params) {
-		// TODO Auto-generated method stub
-		// TODO: DEBUG
-		System.out.println("set");
-		params.print();
-
-	}
-
-	@Override
-	public void setStructureParams(StructureParams params) {
-		// TODO Auto-generated method stub
-
-	}
 
 	@Override
 	public Stage getStage() {
@@ -235,33 +212,6 @@ public class GaeController extends AGuiGaeController implements IModelGaeControl
 		return getMapObjectImage(object.getType());
 	}
 
-//	@Override
-//	public List<String> getCustomGamePlayerLeftComponents() {
-//		return model.getLeftComponents();
-//	}
-//
-//	@Override
-//	public void setCustomGamePlayerLeftComponents(List<String> allComponents) {
-//		model.setLeftComponents(allComponents);
-//	}
-//	@Override
-//	public List<String> getCustomGamePlayerRightComponents() {
-//		return model.getRightComponents();
-//	}
-//
-//	@Override
-//	public void setCustomGamePlayerRightComponents(List<String> allComponents) {
-//		model.setRightComponents(allComponents);
-//	}
-//	@Override
-//	public List<String> getCustomGamePlayerBottomComponents() {
-//		return model.getBottomComponents();
-//	}
-//
-//	@Override
-//	public void setCustomGamePlayerBottomComponents(List<String> allComponents) {
-//		model.setBottomComponents(allComponents);
-//	}
 
 	public void initGrid(int width, int height) {
 		myGui.initializeMap(width, height);
@@ -287,5 +237,7 @@ public class GaeController extends AGuiGaeController implements IModelGaeControl
 	public void addLevel(String name) {
 		model.addLevel(name);
 	}
+
+
 
 }

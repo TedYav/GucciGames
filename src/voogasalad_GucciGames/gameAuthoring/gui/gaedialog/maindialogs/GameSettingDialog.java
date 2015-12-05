@@ -15,7 +15,7 @@ import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 
 
-public class GameSettingDialog extends javafx.scene.control.Dialog {
+public class GameSettingDialog extends AGaeDialog {
 
 	private VBox myContent = new VBox();
 	private Properties prop;
@@ -35,7 +35,7 @@ public class GameSettingDialog extends javafx.scene.control.Dialog {
 		GameSettingsPane pane = new GameSettingsPane();
 		this.getDialogPane().setContent(pane);
 		final ButtonType save = new ButtonType("Save", ButtonData.FINISH);
-		this.getDialogPane().getButtonTypes().addAll(save, ButtonType.CLOSE);
+		this.getDialogPane().getButtonTypes().add(save);
 	}
 
 
