@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.Map;
 
 import voogasalad_GucciGames.gameEngine.CommunicationParameters.BasicParameters;
+import voogasalad_GucciGames.gameEngine.CommunicationParameters.ChangedParameters;
 import voogasalad_GucciGames.gameEngine.gameConditions.Conditions;
 import voogasalad_GucciGames.gameEngine.gamePlayer.GamePlayerPerson;
 
@@ -21,21 +22,21 @@ public abstract class Outcome {
 		myConditions = conditions;
 	}
 
-	abstract BasicParameters applyOutcome(BasicParameters params, int i);
+	abstract ChangedParameters applyOutcome(BasicParameters params,ChangedParameters changedParams, int i);
 
 	public void addCondition(Conditions condition) {
 		myConditions.add(condition);
 	}
 
-	public final BasicParameters executeOutcome(BasicParameters params) {
+	public final ChangedParameters executeOutcome(BasicParameters params, ChangedParameters changedParams) {
 		List<Integer> players = params.getEngine().getPlayers().getAllIds();
 		for (int i = 0; i < players.size(); i++) {
 			GamePlayerPerson cur = params.getEngine().getPlayers().getPlayerById(players.get(i));
 			if (checkConditions(params,cur)) {
-				params = applyOutcome(params, cur.getMyPlayerId());
+				changedParams = applyOutcome(params, changedParams,cur.getMyPlayerId());
 			}
 		}
-		return params;// might need to change the return type
+		return changedParams;
 	}
 
 	private Boolean checkConditions(BasicParameters params, GamePlayerPerson player) {

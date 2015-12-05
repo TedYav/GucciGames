@@ -9,8 +9,10 @@ import voogasalad_GucciGames.gameEngine.CommunicationParameters.GridCoordinatePa
 import voogasalad_GucciGames.gameEngine.CommunicationParameters.LocationParameters;
 import voogasalad_GucciGames.gameEngine.defaultCharacteristics.AttackCharacteristic;
 import voogasalad_GucciGames.gameEngine.defaultCharacteristics.HealthCharacteristic;
+import voogasalad_GucciGames.gameEngine.gameConditions.outcomes.Outcome;
 import voogasalad_GucciGames.gameEngine.gamePlayer.AllPlayers;
 import voogasalad_GucciGames.gameEngine.gamePlayer.GamePlayerPerson;
+import voogasalad_GucciGames.gameEngine.gameRules.Rules;
 import voogasalad_GucciGames.gameEngine.gameRules.defaultRules.AttacksPerTurn;
 import voogasalad_GucciGames.gameEngine.mapObject.MapObject;
 import voogasalad_GucciGames.gameEngine.targetCoordinate.TargetCoordinateMultiple;
@@ -18,8 +20,8 @@ import voogasalad_GucciGames.gameEngine.targetCoordinate.TargetCoordinateSingle;
 
 public class AttackEvent extends MapObjectEvent {
 
-	public AttackEvent(String actionName) {
-		super(actionName);
+	public AttackEvent(String actionName, List<Rules> rules, List<Outcome> outcomes) {
+		super(actionName, rules, outcomes);
 		getRuleList().add(new AttacksPerTurn());
 	}
 

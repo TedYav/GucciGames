@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.Map;
 
 import voogasalad_GucciGames.gameEngine.CommunicationParameters.BasicParameters;
+import voogasalad_GucciGames.gameEngine.CommunicationParameters.ChangedParameters;
 import voogasalad_GucciGames.gameEngine.gameConditions.Conditions;
 
 /**
@@ -19,9 +20,9 @@ public class EndGame extends Outcome {
 	}
 
 	@Override
-	BasicParameters applyOutcome(BasicParameters params, int i) {
+	ChangedParameters applyOutcome(BasicParameters params,ChangedParameters changedParams, int i) {
 		params.getEngine().setGameWon(true);
-		return params;
+		return changedParams;
 	}
 
 }
