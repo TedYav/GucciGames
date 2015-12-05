@@ -31,7 +31,7 @@ public class GameStatsDisplay extends DisplayComponent {
     public void updateDisplay() {
         observeStats.clear();
         int myID = getController().getEngine().getGameParameters().whoseTurn();
-        observeStats.add(myBundle.getString("statswin")+getController().getEngine().isGameWon());
+        observeStats.add(myBundle.getString("statswin")+getController().getEngine().hasLevelEnded());
         observeStats.add(myBundle.getString("statsturn")+getController().getEngine().getGameParameters().whoseTurn());
         observeStats.add(myBundle.getString("statsscore")+getController().getEngine().getGameParameters().getScore().get("Player" + myID));
     }

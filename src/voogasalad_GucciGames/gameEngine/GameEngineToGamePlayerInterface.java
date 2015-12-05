@@ -80,5 +80,5 @@ public interface GameEngineToGamePlayerInterface {
 
 	public GameParametersInterface getGameParameters();
 
-	public boolean isGameWon();
+	public boolean hasLevelEnded();
 }
