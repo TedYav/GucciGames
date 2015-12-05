@@ -1,16 +1,17 @@
-­¯ÎÎ;Ñº	Ð­¸8Ö8°ÝóÕB›´RAÚR%×à<voogasalad__GucciGames.gameData.wrapper.GameInfo>
+,ê¡R&ÕS¶j\JGM©ÎÂ_r²xÉã@ÝrV†<voogasalad__GucciGames.gameData.wrapper.GameInfo>
   <myRightComponents>
     <string>voogasalad_GucciGames.gameplayer.windows.mainwindow.components.bar.ActionDisplay</string>
     <string>voogasalad_GucciGames.gameplayer.windows.mainwindow.components.bar.BuildUnitsDisplay</string>
     <string>voogasalad_GucciGames.gameplayer.windows.mainwindow.components.bar.EndTurnButton</string>
+    <string>voogasalad_GucciGames.gameplayer.windows.mainwindow.components.bar.GameStatsDisplay</string>
   </myRightComponents>
   <myLeftComponents>
     <string>voogasalad_GucciGames.gameplayer.windows.mainwindow.components.bar.DisplayMapObjectImage</string>
     <string>voogasalad_GucciGames.gameplayer.windows.mainwindow.components.bar.DisplayMapObjectDetails</string>
     <string>voogasalad_GucciGames.gameplayer.windows.mainwindow.components.bar.DisplayChat</string>
+    <string>voogasalad_GucciGames.gameplayer.windows.mainwindow.map.mini.MiniMap</string>
   </myLeftComponents>
   <myBottomComponents>
-    <string>voogasalad_GucciGames.gameplayer.windows.mainwindow.components.bar.GameStatsDisplay</string>
     <string>voogasalad_GucciGames.gameplayer.windows.mainwindow.components.bar.MainMenuButton</string>
   </myBottomComponents>
   <myLevelsMap class="tree-map">
