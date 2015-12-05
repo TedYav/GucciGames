@@ -3,6 +3,10 @@ package voogasalad_GucciGames.gameAuthoring.gui.gaedialog.maindialogs;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Properties;
+import java.util.ResourceBundle;
+
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.layout.GridPane;
@@ -14,9 +18,15 @@ import voogasalad_GucciGames.gameAuthoring.IGuiGaeController;
 import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.DialogElements;
 import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.dialogcomponents.CheckBoxField;
 import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.paramObjects.GameSettingParams;
+import voogasalad_GucciGames.gameplayer.windows.mainwindow.menubar.MenuLoader;
 
+//<<<<<<< HEAD
+//public class CustomGPlayerDialog extends GaeDialog{
+	
 public class CustomGPlayerDialog extends javafx.scene.control.Dialog{
 
+    private ResourceBundle namesBundle = ResourceBundle.getBundle("voogasalad_GucciGames.gameData.config.GuiComponents");
+    private Stage gameSettingDialog = new Stage();
     private VBox myContent = new VBox();
     private VBox parent = new VBox();
     private Properties prop;
@@ -35,20 +45,10 @@ public class CustomGPlayerDialog extends javafx.scene.control.Dialog{
     private int maxComponents;
 
     public CustomGPlayerDialog(IDialogGaeController dialogGaeController, IGuiGaeController guiGaeController){
+    	
         GaeDialogHelper helper = new GaeDialogHelper();
     	this.dialogGaeController = dialogGaeController;
         this.guiGaeController = guiGaeController;
-        guiList.add("ActionDisplay");
-        guiList.add("DisplayChat");
-        guiList.add("DisplayMapObjectDetails");
-        guiList.add("DisplayMapObjectImage");
-        guiList.add("GameStatsDisplay");
-        checkBoxFields.add(new ArrayList<CheckBoxField>());
-        checkBoxFields.add(new ArrayList<CheckBoxField>());
-        checkBoxFields.add(new ArrayList<CheckBoxField>());
-        allCheckedBoxes.add(new ArrayList<String>());
-        allCheckedBoxes.add(new ArrayList<String>());
-        allCheckedBoxes.add(new ArrayList<String>());
         prop = helper.loadProperties("/voogasalad_GucciGames/gameAuthoring/gui/gaedialog/maindialogs/dialogproperties/customgplayerdialog.properties");
         dialogElements = new DialogElements(prop, dialogGaeController);
         saveButton = new Button("Save");
@@ -82,10 +82,14 @@ public class CustomGPlayerDialog extends javafx.scene.control.Dialog{
                 }
             }
             System.out.println(allCheckedBoxes);
-            guiGaeController.setCustomGamePlayerLeftComponents(allCheckedBoxes.get(0));
-            guiGaeController.setCustomGamePlayerBottomComponents(allCheckedBoxes.get(1));
-            guiGaeController.setCustomGamePlayerRightComponents(allCheckedBoxes.get(2));
-            this.close();
+//            guiGaeController.setCustomGamePlayerLeftComponents(allCheckedBoxes.get(0));
+//            guiGaeController.setCustomGamePlayerBottomComponents(allCheckedBoxes.get(1));
+//            guiGaeController.setCustomGamePlayerRightComponents(allCheckedBoxes.get(2));
+            guiGaeController.setCustomGamePlayerComponents("Left", allCheckedBoxes.get(0));
+            guiGaeController.setCustomGamePlayerComponents("Bottom", allCheckedBoxes.get(1));
+            guiGaeController.setCustomGamePlayerComponents("Right", allCheckedBoxes.get(2));
+            this.gameSettingDialog.close();
+
         });
     }
 
@@ -139,21 +143,21 @@ public class CustomGPlayerDialog extends javafx.scene.control.Dialog{
         switch (index) {
             case 0:
                 for (CheckBoxField c: boxes) {
-                    if (guiGaeController.getCustomGamePlayerLeftComponents().contains(c.getPropKey())) {
+                    if (guiGaeController.getCustomGamePlayerComponents("Left").contains(c.getPropKey())) {
                         c.getCheckBox().setSelected(true);
                     }
                 }
                 break;
             case 1:
                 for (CheckBoxField c: boxes) {
-                    if (guiGaeController.getCustomGamePlayerBottomComponents().contains(c.getPropKey())) {
+                    if (guiGaeController.getCustomGamePlayerComponents("Bottom").contains(c.getPropKey())) {
                         c.getCheckBox().setSelected(true);
                     }
                 }
                 break;
             case 2:
                 for (CheckBoxField c: boxes) {
-                    if (guiGaeController.getCustomGamePlayerRightComponents().contains(c.getPropKey())) {
+                    if (guiGaeController.getCustomGamePlayerComponents("Right").contains(c.getPropKey())) {
                         c.getCheckBox().setSelected(true);
                     }
                 }
