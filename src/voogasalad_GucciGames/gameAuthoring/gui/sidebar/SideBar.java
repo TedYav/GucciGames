@@ -4,7 +4,6 @@ import javafx.scene.control.Tab;
 import javafx.scene.control.TabPane;
 import voogasalad_GucciGames.gameAuthoring.AGuiGaeController;
 import voogasalad_GucciGames.gameAuthoring.model.MapObjectType;
-import voogasalad_GucciGames.gameEngine.mapObject.MapObject;
 
 public class SideBar{
 	private MapObjectType myCurrSelection;

@@ -12,6 +12,7 @@ import javafx.scene.layout.Pane;
 import voogasalad_GucciGames.gameAuthoring.AGuiGaeController;
 import voogasalad_GucciGames.gameAuthoring.gui.map.cell.Cell;
 import voogasalad_GucciGames.gameAuthoring.gui.map.cell.ICell;
+import voogasalad_GucciGames.gameAuthoring.model.MapObjectType;
 
 class Grid extends Pane implements ICellGrid{
 
@@ -73,6 +74,10 @@ class Grid extends Pane implements ICellGrid{
 	public void removeSelectedCells() {
 		Set<ICell> set = new HashSet<>(selectedCells);
 		set.forEach(cell->cell.clear());
+	}
+	
+	public void addTypeToSelectedCells(MapObjectType type){
+		selectedCells.forEach(cell->cell.add(type));
 	}
 
 	public ICell getCell(GridPoint pt) {
