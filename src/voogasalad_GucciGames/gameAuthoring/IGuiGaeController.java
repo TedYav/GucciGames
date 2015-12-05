@@ -27,14 +27,14 @@ public interface IGuiGaeController {
 
 	public void deleteComponent(DisplayMapObject mapObj);
 
-	public DisplayMapObject addObject(GridPoint gridpoint, MapObjectType mapObjType);
+	public DisplayMapObject addObject(int levelID, GridPoint gridpoint, MapObjectType mapObjType);
 
-	public List<DisplayMapObject> getMapObjects();
+	public List<DisplayMapObject> getMapObjects(int id);
 
 	// public int getMapObjectListPosAtPoint(ObservableList<MapObject>
 	// mapObjectList, GridPoint gridPoint);
 
-	public void clearMap();
+	public void clearMap(int id);
 
 	public void createCustomTileType(Map<String, String> m);
 
@@ -59,7 +59,7 @@ public interface IGuiGaeController {
 
 	public MapObjectType getDragType();
 
-	public DisplayMapObject addObject(GridPoint gridpoint, MapObjectType mapObjType, int ownerID);
+	public DisplayMapObject addObject(int levelID, GridPoint gridpoint, MapObjectType mapObjType, int ownerID);
 
 	public void changeOwner(MapObject mapObject, int playerID);
 
@@ -71,25 +71,13 @@ public interface IGuiGaeController {
 
 	public ImageView getMapObjectImage(DisplayMapObject object);
 
-//
-//	public List<String> getCustomGamePlayerLeftComponents();
-//
-//	public void setCustomGamePlayerLeftComponents(List<String> allComponents);    
-//
-//	public List<String> getCustomGamePlayerRightComponents();
-//
-//	public void setCustomGamePlayerRightComponents(List<String> allComponents);    
-//
-//	public List<String> getCustomGamePlayerBottomComponents();
-//
-//	public void setCustomGamePlayerBottomComponents(List<String> allComponents);
-
 	public List<String> getCustomGamePlayerComponents(String location);
 
 	public void setCustomGamePlayerComponents(String location, List<String> allComponents);
 
 	public LevelTabPane getLevelTabPane();
 
-	public void addLevel(String name);
+	public int addLevel();
+
 
 }
