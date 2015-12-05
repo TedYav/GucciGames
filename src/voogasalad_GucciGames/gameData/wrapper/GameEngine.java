@@ -3,6 +3,7 @@ package voogasalad_GucciGames.gameData.wrapper;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.TreeMap;
@@ -35,7 +36,7 @@ public class GameEngine implements IGameInfoToGAE, GameEngineToGamePlayerInterfa
 
 
 	public GameEngine(String initialLevel){
-	    myLevelsMap = new TreeMap<String,GameLevelEngine>();
+	    myLevelsMap = new HashMap<String,GameLevelEngine>();
 	    this.myInitialLevel = initialLevel;
 	    this.myCurrentLevel = initialLevel;
 	    
@@ -71,7 +72,8 @@ public class GameEngine implements IGameInfoToGAE, GameEngineToGamePlayerInterfa
 	 * @return
 	 */	
 	public void addLevel(String levelName, GameLevelEngine myEngine){
-		myLevelsMap.put(levelName, myEngine);
+	    myEngine.setName(levelName);
+	    myLevelsMap.put(levelName, myEngine);
 		
 //		return GameLevelEngine;
 	}

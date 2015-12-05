@@ -2,6 +2,7 @@ package voogasalad_GucciGames.gameData.wrapper;
 
 import java.util.List;
 import java.util.Map;
+import voogasalad_GucciGames.gameEngine.GameEngineToGamePlayerInterface;
 
 public interface GameInfoToGamePlayer {
 
@@ -12,4 +13,8 @@ public interface GameInfoToGamePlayer {
 	public void setGuiComponents(String location, List<String> components);
 	
 	public Map<String, IGameLevelToGamePlayer> getLevels();
+	
+	public GameEngineToGamePlayerInterface getEngineInterface();
+
+    void setGuiData (GuiData gui);
 }

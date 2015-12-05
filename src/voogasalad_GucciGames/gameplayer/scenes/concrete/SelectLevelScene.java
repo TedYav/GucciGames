@@ -36,7 +36,9 @@ public class SelectLevelScene extends GameMenuScene {
 		Map<String, MenuAction> options = new LinkedHashMap<>();
 		Map<String, IGameLevelToGamePlayer> levels = getManager().getController().getGame().getLevels();
 		levels.keySet().stream()
-			.map( id -> levels.get(id))
+		    .forEach( s -> System.out.println(levels.get(s).getLevelName()));
+		levels.keySet().stream()
+			.map( name -> levels.get(name))
 			.filter( level -> level.isMyChoosability() )
 			.forEach( level -> options.put(level.getLevelName(), () -> loadLevel(level)));
 		options.put("Back", () -> myManager.loadScene("MainMenuScene"));
@@ -44,6 +46,7 @@ public class SelectLevelScene extends GameMenuScene {
 	}
 
 	private void loadLevel(IGameLevelToGamePlayer level) {
+	    System.out.println("loading"+level.getLevelName());
 		getManager().getController().loadLevel(level.getLevelName());
 		myManager.sceneFinished();
 	}

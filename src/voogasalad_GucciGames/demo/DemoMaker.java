@@ -9,6 +9,7 @@ import javafx.application.Application;
 import javafx.stage.Stage;
 import voogasalad_GucciGames.gameData.XStreamGameEngine;
 import voogasalad_GucciGames.gameData.wrapper.GameInfo;
+import voogasalad_GucciGames.gameData.wrapper.GuiData;
 import voogasalad_GucciGames.gameEngine.GameLevelEngine;
 import voogasalad_GucciGames.gameEngine.CommunicationParameters.BasicParameters;
 import voogasalad_GucciGames.gameEngine.defaultCharacteristics.AttackCharacteristic;
@@ -50,13 +51,22 @@ public class DemoMaker extends Application{
 
 	private static GameInfo createGame() {
 		GameLevelEngine level1 = makeLevel(4,4);
+		level1.setMyChoosability(true);
+//		level1.setName("Easy");
 		GameLevelEngine level2 = makeLevel(8, 8);
+                level2.setMyChoosability(true);
+//                level1.setName("Easy");
 		GameLevelEngine level3 = makeLevel(20,20);
+                level3.setMyChoosability(true);
+//                level1.setName("Easy");
 
 		GameInfo game = new GameInfo("Duvall Tag");
                 game.getGameEngine().addLevel("Easy", level1);
                 game.getGameEngine().addLevel("Medium", level2);
                 game.getGameEngine().addLevel("Hard", level3);
+                
+                GuiData gui = new GuiData();
+                game.setGuiData(gui);
 		return game;
 	}
 

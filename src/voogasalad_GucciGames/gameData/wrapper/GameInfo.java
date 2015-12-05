@@ -52,9 +52,18 @@ public class GameInfo implements GameInfoToGamePlayer{
 	public void setGuiComponents(String location, List<String> components) {
 		guiData.setComponents(location, components);
 	}
+	
+	@Override
+	public void setGuiData(GuiData gui) {
+	    guiData=gui;
+	}
     @Override
     public Map<String, IGameLevelToGamePlayer> getLevels () {
         return myEngine.getLevelsMap();
+    }
+    @Override
+    public GameEngineToGamePlayerInterface getEngineInterface () {
+        return myEngine;
     }
 
 	
