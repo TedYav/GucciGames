@@ -25,6 +25,7 @@ public class GameInfo implements IGameInfoToGAE{
 	private List<String> myRightComponents;	// hold class names
 	private List<String> myLeftComponents;
 	private List<String> myBottomComponents;
+	
 	private Map<Integer,GameLevel> myLevelsMap;
 	private static int myLevelID = 0;
 	private String myGameName;
@@ -141,12 +142,6 @@ public class GameInfo implements IGameInfoToGAE{
     public List<String> getBottomComponents () {
         return myBottomComponents;
     }
-
-
-
-
-
-
 
 
 }

@@ -243,36 +243,47 @@ public class GaeController extends AGuiGaeController implements IModelGaeControl
 		return getMapObjectImage(object.getType());
 	}
 
-        @Override
-        public List<String> getCustomGamePlayerLeftComponents() {
-                return model.getLeftComponents();
-        }
-
-        @Override
-        public void setCustomGamePlayerLeftComponents(List<String> allComponents) {
-                model.setLeftComponents(allComponents);
-        }
-        @Override
-        public List<String> getCustomGamePlayerRightComponents() {
-                return model.getRightComponents();
-        }
-
-        @Override
-        public void setCustomGamePlayerRightComponents(List<String> allComponents) {
-                model.setRightComponents(allComponents);
-        }
-        @Override
-        public List<String> getCustomGamePlayerBottomComponents() {
-                return model.getBottomComponents();
-        }
-
-        @Override
-        public void setCustomGamePlayerBottomComponents(List<String> allComponents) {
-                model.setBottomComponents(allComponents);
-        }
+//	@Override
+//	public List<String> getCustomGamePlayerLeftComponents() {
+//		return model.getLeftComponents();
+//	}
+//
+//	@Override
+//	public void setCustomGamePlayerLeftComponents(List<String> allComponents) {
+//		model.setLeftComponents(allComponents);
+//	}
+//	@Override
+//	public List<String> getCustomGamePlayerRightComponents() {
+//		return model.getRightComponents();
+//	}
+//
+//	@Override
+//	public void setCustomGamePlayerRightComponents(List<String> allComponents) {
+//		model.setRightComponents(allComponents);
+//	}
+//	@Override
+//	public List<String> getCustomGamePlayerBottomComponents() {
+//		return model.getBottomComponents();
+//	}
+//
+//	@Override
+//	public void setCustomGamePlayerBottomComponents(List<String> allComponents) {
+//		model.setBottomComponents(allComponents);
+//	}
 
 	public void initGrid(int width, int height) {
 		myGui.initializeMap(width, height);
+	}
+
+	@Override
+	public List<String> getCustomGamePlayerComponents(String location) {
+		return model.getComponents(location);
+	}
+
+	@Override
+	public void setCustomGamePlayerComponents(String location,
+			List<String> allComponents) {
+		model.setGuiComponents(location, allComponents);
 	}
 
 }

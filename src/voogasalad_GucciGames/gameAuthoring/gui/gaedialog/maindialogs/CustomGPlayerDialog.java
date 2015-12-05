@@ -3,7 +3,7 @@ package voogasalad_GucciGames.gameAuthoring.gui.gaedialog.maindialogs;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Properties;
-
+import java.util.ResourceBundle;
 
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
@@ -18,9 +18,11 @@ import voogasalad_GucciGames.gameAuthoring.IGuiGaeController;
 import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.DialogElements;
 import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.dialogcomponents.CheckBoxField;
 import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.paramObjects.GameSettingParams;
+import voogasalad_GucciGames.gameplayer.windows.mainwindow.menubar.MenuLoader;
 
 public class CustomGPlayerDialog extends GaeDialog{
-
+	
+	private ResourceBundle namesBundle = ResourceBundle.getBundle("voogasalad_GucciGames.gameData.config.GuiComponents");
     private Stage gameSettingDialog = new Stage();
     private VBox myContent = new VBox();
     private VBox parent = new VBox();
@@ -38,7 +40,7 @@ public class CustomGPlayerDialog extends GaeDialog{
     private int maxBars=3;
 
     public CustomGPlayerDialog(IDialogGaeController dialogGaeController, IGuiGaeController guiGaeController){
-        this.dialogGaeController = dialogGaeController;
+    	this.dialogGaeController = dialogGaeController;
         this.guiGaeController = guiGaeController;
         guiList.add("ActionDisplay");
         guiList.add("DisplayChat");
@@ -73,9 +75,12 @@ public class CustomGPlayerDialog extends GaeDialog{
                 }
             }
             System.out.println(allCheckedBoxes);
-            guiGaeController.setCustomGamePlayerLeftComponents(allCheckedBoxes.get(0));
-            guiGaeController.setCustomGamePlayerBottomComponents(allCheckedBoxes.get(1));
-            guiGaeController.setCustomGamePlayerRightComponents(allCheckedBoxes.get(2));
+//            guiGaeController.setCustomGamePlayerLeftComponents(allCheckedBoxes.get(0));
+//            guiGaeController.setCustomGamePlayerBottomComponents(allCheckedBoxes.get(1));
+//            guiGaeController.setCustomGamePlayerRightComponents(allCheckedBoxes.get(2));
+            guiGaeController.setCustomGamePlayerComponents("Left", allCheckedBoxes.get(0));
+            guiGaeController.setCustomGamePlayerComponents("Bottom", allCheckedBoxes.get(1));
+            guiGaeController.setCustomGamePlayerComponents("Right", allCheckedBoxes.get(2));
             this.gameSettingDialog.close();
         });
     }
@@ -122,21 +127,21 @@ public class CustomGPlayerDialog extends GaeDialog{
         switch (index) {
             case 0:
                 for (CheckBoxField c: boxes) {
-                    if (guiGaeController.getCustomGamePlayerLeftComponents().contains(c.getPropKey())) {
+                    if (guiGaeController.getCustomGamePlayerComponents("Left").contains(c.getPropKey())) {
                         c.getCheckBox().setSelected(true);
                     }
                 }
                 break;
             case 1:
                 for (CheckBoxField c: boxes) {
-                    if (guiGaeController.getCustomGamePlayerBottomComponents().contains(c.getPropKey())) {
+                    if (guiGaeController.getCustomGamePlayerComponents("Bottom").contains(c.getPropKey())) {
                         c.getCheckBox().setSelected(true);
                     }
                 }
                 break;
             case 2:
                 for (CheckBoxField c: boxes) {
-                    if (guiGaeController.getCustomGamePlayerRightComponents().contains(c.getPropKey())) {
+                    if (guiGaeController.getCustomGamePlayerComponents("Right").contains(c.getPropKey())) {
                         c.getCheckBox().setSelected(true);
                     }
                 }

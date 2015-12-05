@@ -68,16 +68,20 @@ public interface IGuiGaeController {
 	public ImageView getMapObjectImage(MapObjectType object);
 
 	public ImageView getMapObjectImage(DisplayMapObject object);
-        
-        public List<String> getCustomGamePlayerLeftComponents();
-        
-        public void setCustomGamePlayerLeftComponents(List<String> allComponents);    
-        
-        public List<String> getCustomGamePlayerRightComponents();
-        
-        public void setCustomGamePlayerRightComponents(List<String> allComponents);    
-        
-        public List<String> getCustomGamePlayerBottomComponents();
-        
-        public void setCustomGamePlayerBottomComponents(List<String> allComponents);
+//
+//	public List<String> getCustomGamePlayerLeftComponents();
+//
+//	public void setCustomGamePlayerLeftComponents(List<String> allComponents);    
+//
+//	public List<String> getCustomGamePlayerRightComponents();
+//
+//	public void setCustomGamePlayerRightComponents(List<String> allComponents);    
+//
+//	public List<String> getCustomGamePlayerBottomComponents();
+//
+//	public void setCustomGamePlayerBottomComponents(List<String> allComponents);
+
+	public List<String> getCustomGamePlayerComponents(String location);
+
+	public void setCustomGamePlayerComponents(String location, List<String> allComponents);
 }
