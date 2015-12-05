@@ -1,6 +1,8 @@
 
 package voogasalad_GucciGames.gameEngine.gameConditions;
 
+import java.util.Map;
+
 import voogasalad_GucciGames.gameEngine.gamePlayer.GamePlayerPerson;
 
 /**
@@ -9,12 +11,16 @@ import voogasalad_GucciGames.gameEngine.gamePlayer.GamePlayerPerson;
  *
  */
 public abstract class Conditions {
-	protected ConditionParams myParams;
+	private Map<String, Object> myParams;
 
-	public Conditions(ConditionParams condParams) {
+	public Conditions(Map<String,Object> condParams) {
 		myParams = condParams;
 	}
 
 	public abstract Boolean execute(GamePlayerPerson player);
+
+	protected Map<String,Object> getMyParams() {
+		return myParams;
+	}
 
 }
