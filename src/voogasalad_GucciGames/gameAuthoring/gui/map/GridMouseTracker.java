@@ -2,7 +2,9 @@ package voogasalad_GucciGames.gameAuthoring.gui.map;
 
 import javafx.beans.property.DoubleProperty;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.DragEvent;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.input.TransferMode;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 import voogasalad_GucciGames.gameAuthoring.IGuiGaeController;
@@ -21,11 +23,13 @@ class GridMouseTracker {
 		myController = grid.getController();
 		grid.setOnMouseMoved(e -> mouseMoved(e.getX(), e.getY()));
 		grid.addEventFilter(MouseEvent.DRAG_DETECTED, e -> removeMouseBound());
-		grid.setOnDragOver(e -> mouseMoved(e.getX(), e.getY()));
+		grid.setOnDragOver(e -> onDragOver(e));
+		grid.setOnDragDropped(e->onDragDropped(e));
 		grid.setOnMouseExited(e -> removeMouseBound());
 		grid.setOnDragExited(e -> removeMouseBound());
 		myCellSize.addListener((c, o, n) -> removeMouseBound());
 	}
+	
 	private void mouseMoved(double x, double y) {
 		double size = myCellSize.get();
 		double xt = x - x % size;
@@ -37,10 +41,24 @@ class GridMouseTracker {
 			addMouseBound(xt, yt, size);
 		}
 	}
+	
+	private void onDragOver(DragEvent e){
+		if(e.getDragboard().hasImage())
+			e.acceptTransferModes(TransferMode.ANY);
+	}
+	
+	private void onDragDropped(DragEvent e) {
+        if (myController.getDragType()!=null) {
+            myGrid.addTypeToSelectedCells(myController.getDragType());
+            myController.setDragType(null);
+            e.setDropCompleted(true);
+            e.consume();
+        }
+	}
 
 	private void addMouseBound(double x, double y, double size) {
-		if (myController.getMapObjectTypeToMap() != null) {
-			myMouseImg = myController.getMapObjectImage(myController.getMapObjectTypeToMap());
+		if (myController.getSelectedType() != null) {
+			myMouseImg = myController.getMapObjectImage(myController.getSelectedType());
 			myMouseImg.setFitWidth(size);
 			myMouseImg.setFitHeight(size);
 			myMouseImg.setX(x);

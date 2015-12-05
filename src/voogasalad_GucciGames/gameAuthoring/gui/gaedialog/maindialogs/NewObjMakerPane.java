@@ -17,7 +17,6 @@ import javafx.scene.text.Text;
  */
 
 public class NewObjMakerPane extends GridPane{
-	private DialogElements dialogElements;
 	private Properties prop;
 	
 	
@@ -30,8 +29,8 @@ public class NewObjMakerPane extends GridPane{
 		Text title = new Text(prop.getProperty("title"));
 		title.setFont(new Font("Arial" , 20));
 		TextInputField name = new TextInputField(prop, "name");
-		FileBrowserField fileBrowser = new FileBrowserField(dialogElements,"image", "browse", "filechoosertitle");
-		this.getChildren().addAll(title, name, fileBrowser);
+		FileBrowserField fileBrowser = new FileBrowserField(prop,"image", "browse", "filechoosertitle");
+		this.add(title, 0, 0);
 		this.add(name, 0, 1);
 		this.add(fileBrowser, 0, 2);
 		
