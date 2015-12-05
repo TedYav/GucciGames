@@ -275,5 +275,10 @@ public class GaeController extends AGuiGaeController implements IModelGaeControl
 			List<String> allComponents) {
 		model.setGuiComponents(location, allComponents);
 	}
+	
+	@Override
+	public void addLevel(String name) {
+		model.addLevel(name);
+	}
 
 }
