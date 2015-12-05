@@ -151,6 +151,12 @@ public class GameEngineServer implements GameEngineToGamePlayerInterface, Runnab
 		return myEngine.getName();
 	}
 
+    @Override
+    public void changeCurrentLevel (String newGameLevel) {
+        // TODO Auto-generated method stub
+        
+    }
+
 
 
 

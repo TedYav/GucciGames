@@ -51,13 +51,15 @@ public class GameController implements GameControllerInterface, GameControllerAd
 	
 	public void loadGame(GameInfo game){
 		myGame=game;
-		loadLevel(1);
+		loadLevel("1");
 	}
 	
 	@Override
-	public void loadLevel(int levelID){
+	public void loadLevel(String levelID){
 		if(myGame.getLevels().containsKey(levelID)){
-			myCurrentEngine = myGame.getLevels().get(levelID).getGameEngine();
+		    myCurrentEngine.changeCurrentLevel(levelID);
+		    
+		    //myCurrentLevelEngine = myGame.getLevels().get(levelID).getGameEngine();
 		}
 	}
 	
