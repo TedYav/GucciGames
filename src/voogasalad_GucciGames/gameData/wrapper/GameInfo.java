@@ -1,5 +1,6 @@
 package voogasalad_GucciGames.gameData.wrapper;
 
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 import java.util.Map;
@@ -28,6 +29,7 @@ public class GameInfo implements IGameInfoToGAE{
 	private Map<Integer,GameLevel> myLevelsMap;
 	private static int myLevelID = 0;
 	private String myGameName;
+	private List<GameLevel> myChoosableLevelsList;
 	
 	public GameInfo(MainGameEngine engine, List<String> leftComponents, List<String> rightComponents, List<String> bottomComponents){
 	    myEngine=engine;
@@ -56,6 +58,9 @@ public class GameInfo implements IGameInfoToGAE{
 		myEngine = engine;		
 		int nextID = myLevelID + 1;
 		GameLevel gameLevel = new GameLevel(myLevelID, nextID, gameName, chooseable, engine);
+		if (chooseable){
+			myChoosableLevelsList.add(gameLevel);
+		}
 		myLevelsMap.put(myLevelID, gameLevel);
 		myLevelID++;
 		
@@ -73,7 +78,10 @@ public class GameInfo implements IGameInfoToGAE{
 	 */	
 	@Override
 	public void addLevel(String gameName, boolean chooseable, int nextLevelId, MainGameEngine engine){
-		GameLevel gameLevel = new GameLevel(myLevelID, nextLevelId, gameName, chooseable, engine);		
+		GameLevel gameLevel = new GameLevel(myLevelID, nextLevelId, gameName, chooseable, engine);	
+		if (chooseable){
+			myChoosableLevelsList.add(gameLevel);
+		}
 		myEngine = engine;
 		myLevelsMap.put(myLevelID, gameLevel);
 		myLevelID++;
@@ -135,6 +143,16 @@ public class GameInfo implements IGameInfoToGAE{
 		return temp;
 	}
 	
+	@Override
+	public List<String> getChoosableLevels() {
+		List<String> levelNames = new ArrayList<String>();
+		for (int i=0; i<myChoosableLevelsList.size(); i++){
+			levelNames.add(myChoosableLevelsList.get(i).getLevelName());
+		}
+		return levelNames;
+	}
+
+	
 	public GameEngineToGamePlayerInterface getEngine() {
 	    return myEngine;
 	}
@@ -148,6 +166,7 @@ public class GameInfo implements IGameInfoToGAE{
     public List<String> getBottomComponents () {
         return myBottomComponents;
     }
+    
 
 
 

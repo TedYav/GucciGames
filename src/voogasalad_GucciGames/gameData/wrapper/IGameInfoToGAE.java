@@ -1,5 +1,6 @@
 package voogasalad_GucciGames.gameData.wrapper;
 
+import java.util.List;
 import java.util.Map;
 
 import voogasalad_GucciGames.gameEngine.MainGameEngine;
@@ -21,5 +22,6 @@ public interface IGameInfoToGAE {
 	
 	public Map<Integer, String>getLevelsMap();
 	
+	public List<String> getChoosableLevels();
 	
 }
