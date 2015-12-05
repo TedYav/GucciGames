@@ -101,12 +101,14 @@ public class GameController implements GameControllerInterface, GameControllerAd
 	            		System.out.println(result);
 	                 
 	                 myMap.update(result);
+	                 myManager.refresh();
 	                 break;
 	            }
 	        } 
 	        //workaround for canceling action by clicking outside of action range (increments action i think?)
 	        cancelAction();
 	        myMap.update(new ArrayList<PlayerMapObjectInterface>());
+	        myManager.refresh();
 	}
 	
 	@Override
@@ -132,8 +134,8 @@ public class GameController implements GameControllerInterface, GameControllerAd
 	@Override
 	public void endTurn() {
 		// TODO Auto-generated method stub
-	    myCurrentEngine.endTurn();
-	           myManager.refresh();
+	        myCurrentEngine.endTurn();
+	        myManager.refresh();
 	}
 
 	@Override

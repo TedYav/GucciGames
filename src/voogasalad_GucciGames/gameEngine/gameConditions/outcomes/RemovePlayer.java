@@ -2,7 +2,6 @@
 package voogasalad_GucciGames.gameEngine.gameConditions.outcomes;
 
 import java.util.List;
-import java.util.Map;
 
 import voogasalad_GucciGames.gameEngine.CommunicationParameters.BasicParameters;
 import voogasalad_GucciGames.gameEngine.CommunicationParameters.ChangedParameters;
@@ -15,8 +14,8 @@ import voogasalad_GucciGames.gameEngine.gameConditions.Conditions;
  */
 public class RemovePlayer extends Outcome {
 
-	public RemovePlayer(List<Conditions> conditions, Map<String, Object> params) {
-		super(conditions, params);
+	public RemovePlayer(List<Conditions> conditions, OutcomeParams conditionParams) {
+		super(conditions, conditionParams);
 	}
 
 	@Override
