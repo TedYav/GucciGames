@@ -1,4 +1,4 @@
-package voogasalad_GucciGames.gameplayer.windows.mainwindow.scenes;
+package voogasalad_GucciGames.gameplayer.scenes;
 
 import javafx.event.Event;
 import javafx.event.EventHandler;

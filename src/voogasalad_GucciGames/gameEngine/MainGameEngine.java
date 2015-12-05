@@ -54,10 +54,11 @@ public class MainGameEngine implements GameEngineToGamePlayerInterface {
 		
 		myName = "Game " + Math.round((Math.random()*10000));
 	}
-	@Override
+	@Deprecated 
 	public String getGameName() {
 		return myName;
 	}
+	
 	@Override
 	public GameParametersInterface endTurn() {
 		//check game conditions

@@ -10,10 +10,11 @@ import javafx.event.EventType;
 import javafx.geometry.Point2D;
 
 import java.util.Observer;
+
 import javafx.scene.image.Image;
 import voogasalad_GucciGames.datastructures.Coordinate;
 import voogasalad_GucciGames.datastructures.ImageDatabase;
-import voogasalad_GucciGames.gameData.GameInfo;
+import voogasalad_GucciGames.gameData.wrapper.GameInfo;
 import voogasalad_GucciGames.gameEngine.GameEngineToGamePlayerInterface;
 import voogasalad_GucciGames.gameEngine.PlayerMapObjectInterface;
 import voogasalad_GucciGames.gameEngine.CommunicationParameters.ChangedParameters;
@@ -23,12 +24,12 @@ import voogasalad_GucciGames.gameEngine.targetCoordinate.TargetCoordinateSingle;
 import voogasalad_GucciGames.gameplayer.controller.dummy.ADummy;
 import voogasalad_GucciGames.gameplayer.gameloader.GameControllerLoader;
 import voogasalad_GucciGames.gameplayer.gameloader.GameLoader;
-import voogasalad_GucciGames.gameplayer.windows.GameSceneManager;
+import voogasalad_GucciGames.gameplayer.scenes.GameSceneInterface;
+import voogasalad_GucciGames.gameplayer.scenes.GameSceneManager;
 import voogasalad_GucciGames.gameplayer.windows.GameWindowManager;
 import voogasalad_GucciGames.gameplayer.windows.mainwindow.map.MapInterface;
 import voogasalad_GucciGames.gameplayer.windows.mainwindow.map.cell.MapCell;
 import voogasalad_GucciGames.gameplayer.windows.mainwindow.map.cell.contents.CellUnit;
-import voogasalad_GucciGames.gameplayer.windows.mainwindow.scenes.GameSceneInterface;
 
 public class GameController implements GameControllerInterface, GameControllerLoader {
 

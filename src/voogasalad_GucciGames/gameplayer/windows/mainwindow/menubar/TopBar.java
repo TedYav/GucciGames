@@ -3,7 +3,7 @@ package voogasalad_GucciGames.gameplayer.windows.mainwindow.menubar;
 import javafx.scene.Parent;
 import javafx.scene.control.MenuBar;
 import voogasalad_GucciGames.gameplayer.controller.GameControllerInterface;
-import voogasalad_GucciGames.gameplayer.windows.GameScene;
+import voogasalad_GucciGames.gameplayer.scenes.GameScene;
 import voogasalad_GucciGames.gameplayer.windows.mainwindow.components.WindowComponent;
 
 public class TopBar extends WindowComponent {

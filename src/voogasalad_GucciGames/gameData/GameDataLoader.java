@@ -5,6 +5,8 @@ import java.util.List;
 import java.util.Map;
 import java.util.ResourceBundle;
 
+import voogasalad_GucciGames.gameData.wrapper.GameInfo;
+
 public class GameDataLoader implements GameDataInterface {
 
 	private XStreamGameEngine myXStream;

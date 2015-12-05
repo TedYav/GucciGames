@@ -8,20 +8,15 @@ import voogasalad_GucciGames.gameplayer.controller.GameControllerInterface;
 import voogasalad_GucciGames.gameplayer.scenes.GameScene;
 import voogasalad_GucciGames.gameplayer.windows.mainwindow.components.DisplayComponent;
 
-public class EndTurnButton extends DisplayComponent{
+public class MainMenuButton extends DisplayComponent{
     private Button endTurn;
-    private ResourceBundle myBundle=PlayerConfig.load("components.EndTurnButton");
-    public EndTurnButton(GameScene scene, GameControllerInterface controller) {
+    private ResourceBundle myBundle=PlayerConfig.load("components.MainMenuButton");
+    public MainMenuButton(GameScene scene, GameControllerInterface controller) {
         super(scene,controller);
-        endTurn=new Button(myBundle.getString("player") + getController().getEngine().getGameParameters().whoseTurn()+myBundle.getString("endturn"));
+        endTurn=new Button(myBundle.getString("mainmenu"));
         endTurn.setOnMouseClicked(e->{
-            controller.endTurn();
+            getScene().getManager().loadScene("MainMenuScene");
         });
-    }
-    
-    @Override
-    public void updateDisplay() {
-        endTurn.setText(myBundle.getString("player") + getController().getEngine().getGameParameters().whoseTurn()+myBundle.getString("endturn"));
     }
 
     @Override
