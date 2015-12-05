@@ -64,13 +64,6 @@ public class GroovyDialog extends AGaeDialog implements ISwitchGroovyPane{
 
 
 	@Override
-	public void addBtn(ButtonType t) {
-		this.getDialogPane().getButtonTypes().add(t);
-		
-	}
-
-
-	@Override
 	public Optional<ButtonType> getRet() {
 		// TODO Auto-generated method stub
 		return this.showAndWait();
@@ -83,6 +76,13 @@ public class GroovyDialog extends AGaeDialog implements ISwitchGroovyPane{
 		this.nextPane = p;
 		
 		this.nextTitle = title;
+	}
+
+
+	@Override
+	protected void setSaveAction() {
+		// TODO Auto-generated method stub
+		
 	}
 
 
