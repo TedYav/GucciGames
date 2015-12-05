@@ -84,7 +84,7 @@ public class RulesAndCharPane extends GridPane{
 		Label label = new Label("Characteristics");
 		label.setFont(new Font("Arial", 20));
 		charVBox.getChildren().add(label);
-		
+		/*
 		SAXParserFactory saxParserFactory = SAXParserFactory.newInstance();
 	    try {
 	        SAXParser saxParser = saxParserFactory.newSAXParser();
@@ -104,6 +104,7 @@ public class RulesAndCharPane extends GridPane{
 	    } catch (ParserConfigurationException | SAXException | IOException ex) {
 	        ex.printStackTrace();
 	    }
+	    */
 	    this.add(charVBox, 1, 1);
 		
 	}
