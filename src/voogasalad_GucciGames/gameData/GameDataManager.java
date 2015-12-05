@@ -7,7 +7,7 @@ import java.util.ResourceBundle;
 
 import voogasalad_GucciGames.gameData.wrapper.GameInfo;
 
-public class GameDataLoader implements GameDataInterface {
+public class GameDataManager implements GameDataInterface {
 
 	private XStreamGameEngine myXStream;
 	private GameListManager myGameList;
@@ -15,7 +15,7 @@ public class GameDataLoader implements GameDataInterface {
     private final ResourceBundle myConfig = ResourceBundle.getBundle("voogasalad_GucciGames.gameData.config.GameData");
 
     
-	public GameDataLoader(){
+	public GameDataManager(){
 		myXStream = new XStreamGameEngine();
 		myGameList = new GameListManager();
 	}
@@ -40,6 +40,10 @@ public class GameDataLoader implements GameDataInterface {
 	@Override
 	public GameInfo loadDefault() {
 		return myXStream.loadGameByName(myGameList.listGames().get(0));
+	}
+	
+	public String getGamePath(GameInfo game){
+		return myXStream.gameNameToFileName(game.getName());
 	}
 
 }
