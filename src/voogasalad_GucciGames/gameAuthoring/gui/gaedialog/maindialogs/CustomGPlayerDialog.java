@@ -25,7 +25,7 @@ import voogasalad_GucciGames.gameplayer.windows.mainwindow.menubar.MenuLoader;
 	
 public class CustomGPlayerDialog extends javafx.scene.control.Dialog{
 
-	private ResourceBundle namesBundle = ResourceBundle.getBundle("voogasalad_GucciGames.gameData.config.GuiComponents");
+    private ResourceBundle namesBundle = ResourceBundle.getBundle("voogasalad_GucciGames.gameData.config.GuiComponents");
     private Stage gameSettingDialog = new Stage();
     private VBox myContent = new VBox();
     private VBox parent = new VBox();
@@ -49,17 +49,6 @@ public class CustomGPlayerDialog extends javafx.scene.control.Dialog{
         GaeDialogHelper helper = new GaeDialogHelper();
     	this.dialogGaeController = dialogGaeController;
         this.guiGaeController = guiGaeController;
-        guiList.add("ActionDisplay");
-        guiList.add("DisplayChat");
-        guiList.add("DisplayMapObjectDetails");
-        guiList.add("DisplayMapObjectImage");
-        guiList.add("GameStatsDisplay");
-        checkBoxFields.add(new ArrayList<CheckBoxField>());
-        checkBoxFields.add(new ArrayList<CheckBoxField>());
-        checkBoxFields.add(new ArrayList<CheckBoxField>());
-        allCheckedBoxes.add(new ArrayList<String>());
-        allCheckedBoxes.add(new ArrayList<String>());
-        allCheckedBoxes.add(new ArrayList<String>());
         prop = helper.loadProperties("/voogasalad_GucciGames/gameAuthoring/gui/gaedialog/maindialogs/dialogproperties/customgplayerdialog.properties");
         dialogElements = new DialogElements(prop, dialogGaeController);
         saveButton = new Button("Save");
