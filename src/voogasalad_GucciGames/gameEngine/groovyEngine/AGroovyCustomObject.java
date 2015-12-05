@@ -9,12 +9,16 @@ import groovy.lang.GroovyShell;
 
 public abstract class AGroovyCustomObject {
 	
-	private String myName;
+	protected String myName;
 	
 	public AGroovyCustomObject(String name){
 		this.myName = name;
 	}
 	
-	public abstract GroovyClassLoader createLoader(); 
+	public String getName(){
+		return this.myName;
+	}
+	
+	public abstract String getGroovyString(); 
 	
 }
