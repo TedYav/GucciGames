@@ -10,6 +10,6 @@ public interface GameResourceManagerToPlayer {
 	
 	public Color getImageColor(String URI);
 
-	public void setGame(GameInfo game);
+	public void loadGame(GameInfo game);
 	
 }

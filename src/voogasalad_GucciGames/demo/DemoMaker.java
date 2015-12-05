@@ -1,5 +1,6 @@
 package voogasalad_GucciGames.demo;
 
+import java.util.ArrayList;
 import java.util.Map;
 import java.util.TreeMap;
 
@@ -61,7 +62,7 @@ public class DemoMaker extends Application{
 
 		myMapOfPlayers.put(1,new GamePlayerPerson(1)); //player 2
 
-		MapObject soldier = new MapObject(new TargetCoordinateSingle(1,0),0,1,"Duvall", "player/images/duvall.png");
+		MapObject soldier = new MapObject(new TargetCoordinateSingle(1,0),0,1,"Duvall", "units/duvall.png");
 		//MapObjectType archer = new MapObjectType("Student" , "player/images/smile.png");
 		//MapObjectType ground = new MapObjectType("TileCharacteristics", "player/images/dummytexture.jpg");
 		//MapObjectType water = new MapObjectType("TileCharacteristics", "player/images/dummytexture2.jpg");
@@ -76,10 +77,10 @@ public class DemoMaker extends Application{
 		MovableCharacteristic myMovableCharacteristic = new MovableCharacteristic(1, 3);
 		HealthCharacteristic myHealthCharacteristic = new HealthCharacteristic(5);
 
-		MoveEvent myMoveEvent = new MoveEvent("Move",null,null);
+		MoveEvent myMoveEvent = new MoveEvent("Move",new ArrayList<>(),new ArrayList<>());
 		soldier.addEvent("Move", myMoveEvent);
 
-		AttackEvent myAttackEvent = new AttackEvent("Attack",null,null);
+		AttackEvent myAttackEvent = new AttackEvent("Attack",new ArrayList<>(),new ArrayList<>());
 		AttackCharacteristic myAttackCharacteristic = new AttackCharacteristic(3, 100, 2);
 
 
@@ -93,14 +94,14 @@ public class DemoMaker extends Application{
 			for (int j=0;j<height;j++) {
 				MapObject newObj;
 				if((i+j)%2==0){
-					newObj = new MapObject(new TargetCoordinateSingle(i,j),-1,0,"TileCharacteristic", "player/images/dummytexture2.jpg");
+					newObj = new MapObject(new TargetCoordinateSingle(i,j),-1,0,"TileCharacteristic", "tiles/water.jpg");
 				}
 				else{
-					newObj = new MapObject(new TargetCoordinateSingle(i,j),-1,0,"TileCharacteristic", "player/images/dummytexture.jpg");
+					newObj = new MapObject(new TargetCoordinateSingle(i,j),-1,0,"TileCharacteristic", "tiles/grass.jpg");
 				}
 				myMapOfPlayers.get(-1).getMapObjects().add(newObj);
 				if ((i+j)%9==0) {
-					MapObject arch = new MapObject(new TargetCoordinateSingle(i,j),1,1,"Student" , "player/images/smile.png");
+					MapObject arch = new MapObject(new TargetCoordinateSingle(i,j),1,1,"Student" , "units/smile.png");
 					arch.addCharacteristic("HealthCharacteristic", new HealthCharacteristic(10));
 					arch.addCharacteristic("AttackCharacteristic", new AttackCharacteristic(3,5,2));
 					arch.addCharacteristic("MovableCharacteristic", new MovableCharacteristic(5,1));

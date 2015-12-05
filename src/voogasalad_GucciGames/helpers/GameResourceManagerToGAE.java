@@ -12,7 +12,11 @@ public interface GameResourceManagerToGAE {
 	
 	public List<String> getImages(String directory);
 	
+	public List<String> listImageDirectories();
+	
 	public Image getImage(String URI);
+	
+	
 	
 	/**
 	 * Returns the average color of the request image.
@@ -28,7 +32,7 @@ public interface GameResourceManagerToGAE {
 	 */
 	public void toggleCopyOnAccess(boolean copy);
 	
-	public void setGame(GameInfo game);
+	public void loadGame(GameInfo game);
 
 	
 }

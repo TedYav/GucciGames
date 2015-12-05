@@ -16,6 +16,7 @@ public class ImageDatabase implements ResourceDatabase<Image> {
 	@Override
 	public Image request(String URI) {
 		if(!myImageMap.containsKey(URI)){
+			System.out.println(URI);
 			myImageMap.put(URI, new Image(URI));
 		}
 		return myImageMap.get(URI);

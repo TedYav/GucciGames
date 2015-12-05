@@ -223,7 +223,6 @@ public abstract class MapCell extends Observable implements MapCellInterface {
 		List<Color> myColors = getImageList().stream()
 				.map( (s) -> myController.getResource().getImageColor(s) )
 				.collect(Collectors.toList());
-		//TODO: add fog check
 		return ColorUtility.average(myColors);
 	}
 	

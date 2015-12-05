@@ -16,11 +16,13 @@ public class ResourceManager implements GameResourceManagerToGAE, GameResourceMa
 	private ImageDatabase myImageDatabase;
 	private ImageAverager myImageAverager;
 	
-	private static final String IMAGE = "Image";
-	private static final String EXTENSION = "Extension";
+	private String myGameName;
+	private GameInfo myGame;
 	
-	private GameInfoToGameData myGame;
-	private String myPath;
+	/**
+	 * Set to empty string if no game loaded. If game loaded, looks for resources in current game.
+	 */
+	private String myRootDirectory;
 	
 	private GameDataManager myData;
 	
@@ -28,67 +30,81 @@ public class ResourceManager implements GameResourceManagerToGAE, GameResourceMa
 	
 	private ResourceBundle myConfig = ResourceBundle.getBundle("voogasalad_GucciGames.helpers.config.ResourceManager");
 	
-	public ResourceManager(){
-		this(null);
+	public static void main(String[] args){
+		ResourceManager r = new ResourceManager("test");
 	}
 	
-	public static void main(String[] args){
-		ResourceManager r = new ResourceManager();
-		System.out.println(r.getExtensions(IMAGE));
-		
+	public ResourceManager(){
+		this("");
+	}
+	
+	/**
+	 * Constructs a new resource manager for the named game.
+	 * When called with this constructor **files will be automatically copied to the game**
+	 * @param gameName
+	 */
+	public ResourceManager(String gameName){
+		myImageDatabase = new ImageDatabase();
+		myImageAverager = new ImageAverager(this);
+		setRoot();
 	}
 	
 	public ResourceManager(GameInfo game){
-		myImageDatabase = new ImageDatabase();
-		myImageAverager = new ImageAverager(this);
+		this(game.getGameName());
 		myGame = game;
-		setPath();
 	}
 	
-	private void setPath() {
-		myPath = (myGame == null) ? "" : myData.getGamePath(myGame);
+	private void setRoot() {
+		myRootDirectory = (myGame == null) ? "" : myData.getGamePath(myGameName);
 	}
 
-	public void setGame(GameInfo game){
+	public void loadGame(GameInfo game){
 		myGame = game;
-		setPath();
+		setRoot();
 	}
 	
 	public List<String> getImages(){
-		return myData.getResources(getExtensions(IMAGE));
+		return myData.getResources(getExtensions(myConfig.getString("ImageExt")), myConfig.getString("ImagePath"));
 	}
 	
 	private List<String> getExtensions(String type) {
 		return myConfig.keySet().stream()
-				.filter( s -> s.startsWith(type + EXTENSION))
+				.filter( s -> s.startsWith(type))
 				.map( s -> myConfig.getString(s))
 				.collect(Collectors.toList());
 	}
 
 	public Image getImage(String URI){
 		copyImageIfToggled(URI);
-		return myImageDatabase.request(myPath + URI);
+		System.out.println("URL REQUESTED" + URI);
+		return myImageDatabase.request(myRootDirectory + myConfig.getString("ImagePath") + URI);
 	}
 	
 	private void copyImageIfToggled(String URI) {
 		if(copyOnAccess){
-			myData.copyResourceToGame(URI, myGame);
+			myData.copyResourceToGame(myConfig.getString("ImagePath") + URI, myGameName);
 		}
 	}
 
 	public Color getImageColor(String URI){
 		copyImageIfToggled(URI);
-		return myImageAverager.request(myPath + URI);
+		return myImageAverager.request(URI);
 	}
 
 	@Override
 	public List<String> getImages(String directory) {
-		return myData.getResources(getExtensions(IMAGE), myPath + directory);
+		return myData.getResources(getExtensions(myConfig.getString("ImageExt")), myConfig.getString("ImagePath") + directory);
 	}
 
 	@Override
 	public void toggleCopyOnAccess(boolean copy) {
 		copyOnAccess = copy;
+	}
+
+	@Override
+	public List<String> listImageDirectories() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 	
 }

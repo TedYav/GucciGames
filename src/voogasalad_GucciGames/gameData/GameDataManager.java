@@ -47,20 +47,35 @@ public class GameDataManager implements GameDataInterface {
 		return myXStream.loadGameByName(myGameList.listGames().get(0));
 	}
 	
-	public String getGamePath(GameInfoToGameData myGame){
-		return myXStream.gameNameToFileName(myGame.getGameName());
+	public String getGamePath(String gameName){
+		return myXStream.gameNameToFileName(gameName);
 	}
 
+	/**
+	 * Gets resources from the root folder (i.e. GAE database)
+	 * @param extensions
+	 * @return
+	 */
 	public List<String> getResources(List<String> extensions) {
 		return myFileHelper.getMatchingFiles(myBasePath, extensions);
 	}
 	
+	/**
+	 * Gets resources from the subdirectory folder of the main database (i.e. GAE database)
+	 * @param extensions
+	 * @return
+	 */
 	public List<String> getResources(List<String> extensions, String path){
 		return myFileHelper.getMatchingFiles(myBasePath + "/" + path, extensions);
 	}
 
-	public void copyResourceToGame(String URI, GameInfoToGameData game) {
-		myFileHelper.copyResource(myBasePath + URI, getGamePath(game)+ "/" +myConfig.getString("ResourcesPath"));
+	/**
+	 * Copies an image to the specified game folder.
+	 * @param URI
+	 * @param gameName
+	 */
+	public void copyResourceToGame(String URI, String gameName) {
+		myFileHelper.copyResource(myBasePath + URI, getGamePath(gameName)+ "/" +myConfig.getString("ResourcesPath"));
 	}
 
 }
