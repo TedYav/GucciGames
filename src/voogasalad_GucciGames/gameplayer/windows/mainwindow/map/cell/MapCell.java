@@ -204,7 +204,7 @@ public abstract class MapCell extends Observable implements MapCellInterface {
 		
 	}
 	
-	private List<Object> getImageList(){
+	private List<String> getImageList(){
 		return myObjects.values().stream()
 				.filter( l -> !l.isEmpty())
 				.flatMap(l -> 
@@ -220,7 +220,7 @@ public abstract class MapCell extends Observable implements MapCellInterface {
 	    }
 	    
 	public Color getColor(){
-		List<Object> myColors = getImageList().stream()
+		List<Color> myColors = getImageList().stream()
 				.map( (s) -> myController.getResource().getImageColor(s) )
 				.collect(Collectors.toList());
 		//TODO: add fog check
