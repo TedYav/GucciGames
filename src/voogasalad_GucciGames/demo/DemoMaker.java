@@ -8,7 +8,7 @@ import java.util.TreeMap;
 import javafx.application.Application;
 import javafx.stage.Stage;
 import voogasalad_GucciGames.gameData.XStreamGameEngine;
-import voogasalad_GucciGames.gameData.wrapper.GameInfo;
+import voogasalad_GucciGames.gameData.wrapper.GameEngine;
 import voogasalad_GucciGames.gameEngine.MainGameEngine;
 import voogasalad_GucciGames.gameEngine.CommunicationParameters.BasicParameters;
 import voogasalad_GucciGames.gameEngine.defaultCharacteristics.AttackCharacteristic;
@@ -41,11 +41,11 @@ public class DemoMaker extends Application{
 		launch(args);
 	}
 
-	private static GameInfo createGame() {
+	private static GameEngine createGame() {
 		MainGameEngine level1 = makeLevel(8, 8);
 		MainGameEngine level2 = makeLevel(20,20);
 	       
-		GameInfo game = new GameInfo("Duvall Tag");
+		GameEngine game = new GameEngine("Duvall Tag");
 		game.addLevel("Level 1");
 		game.addLevel("Level 2");
 		game.getLevelsMap().get(0).assignEngine(level1);

@@ -13,7 +13,7 @@ import voogasalad_GucciGames.gameAuthoring.gui.map.GridPoint;
 //import voogasalad_GucciGames.gameData.GameInfo;
 //import voogasalad_GucciGames.gameData.XMLWriter;
 import voogasalad_GucciGames.gameData.XStreamGameEngine;
-import voogasalad_GucciGames.gameData.wrapper.GameInfo;
+import voogasalad_GucciGames.gameData.wrapper.GameEngine;
 import voogasalad_GucciGames.gameEngine.MainGameEngine;
 import voogasalad_GucciGames.gameEngine.gamePlayer.AllPlayers;
 import voogasalad_GucciGames.gameEngine.gamePlayer.GamePlayerPerson;
@@ -101,7 +101,7 @@ public class GAEModel implements IGAEModel{
 	}
 
     @Override
-    public void saveToXML (GameInfo game) {    	
+    public void saveToXML (GameEngine game) {    	
     	System.err.println("IMPLEMENT ME PLZ");
 //    	XStreamGameEngine saver = new XStreamGameEngine();
 //		AllPlayers myPlayers = new AllPlayers(mapOfPlayers);
