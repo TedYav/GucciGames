@@ -50,10 +50,11 @@ public class AttackEvent extends MapObjectEvent {
 					HealthCharacteristic hc = (HealthCharacteristic) mo.getCharacteristic("HealthCharacteristic");
 					System.out.println("health target:" + hc.getCurrentHealth());
 					hc.changeHealth(damage);
-					if (hc.getCurrentHealth() < 0) {
+					if (hc.getCurrentHealth() <= 0) {
 						GamePlayerPerson playerAttacked = params.getEngine().getPlayers()
 								.getActivePlayer(mo.getPlayerID());
 						playerAttacked.getMapObjects().remove(mo);
+						System.out.println("Map objectName" + mo.getName());
 						parameters.addUnit(mo);
 						// remove player with 0 objects left
 						if (playerAttacked.getMapObjects().size() == 0) {

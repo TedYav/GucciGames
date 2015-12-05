@@ -113,12 +113,14 @@ public class MainGameScene extends GameScene {
     private void enableObservers() {
         myMap.addUnitListener(myLeftBar.requestListeners());
         myMap.addUnitListener(myRightBar.requestListeners());
+        myMap.addUnitListener(myBottomBar.requestListeners());
     }
 
     @Override
     public void refresh () {
         myLeftBar.updateComponents();
         myRightBar.updateComponents();
+        myBottomBar.updateComponents();
     }
 
 }
