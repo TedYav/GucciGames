@@ -1,4 +1,4 @@
-package voogasalad_GucciGames.gameAuthoring.gui.gaedialog.dialogcomponents;
+package voogasalad_GucciGames.gameAuthoring.gui.gaedialog.mapobjsettings;
 
 import java.io.File;
 import java.io.IOException;
@@ -13,10 +13,11 @@ import javax.xml.parsers.SAXParserFactory;
 
 import org.xml.sax.SAXException;
 
-import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.groovySettings.groovyParams.CharParam;
+import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.dialogcomponents.DialogTableView;
+import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.dialogcomponents.TableElement;
+import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.groovySettings.groovyParams.GCharParam;
 import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.mapobjectsettings.xml.CharacteristicsSAXHandler;
 import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.mapobjectsettings.xml.RulesSAXHandler;
-import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.mapobjsettings.CharGridPane;
 import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.paramObjects.ObjParam;
 import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.paramObjects.RuleParams;
 import javafx.collections.FXCollections;
@@ -36,7 +37,7 @@ public class RulesAndCharPane extends GridPane{
 	private ScrollPane rulesScrollPane = new ScrollPane();
 	private ScrollPane characteristicsScrollPane = new ScrollPane();
 	private Button saveBtn = new Button("Save");
-	private List<CharParam> charParams = new ArrayList<CharParam>();
+	private List<GCharParam> charParams = new ArrayList<GCharParam>();
 	
 	private Set<String> rules = new HashSet<String>();
 	private Set<String> characteristics = new HashSet<String>();
@@ -88,7 +89,7 @@ public class RulesAndCharPane extends GridPane{
 	    try {
 	        SAXParser saxParser = saxParserFactory.newSAXParser();
 	 
-	        CharacteristicsSAXHandler handler = new CharacteristicsSAXHandler(characteristics);
+	        CharacteristicsSAXHandler handler = new CharacteristicsSAXHandler();
 	        saxParser.parse(new 
 	        		File("src/voogasalad_GucciGames/gameAuthoring/gui/gaedialog/mapobjectsettings/xml/characteristicsDependencies.xml"), 
 	        		handler);
