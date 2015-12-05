@@ -3,8 +3,10 @@ package voogasalad_GucciGames.gameAuthoring.gui.levels;
 import java.util.ArrayList;
 
 import voogasalad_GucciGames.gameAuthoring.AGuiGaeController;
+import voogasalad_GucciGames.gameAuthoring.gui.map.GuiMap;
 import voogasalad_GucciGames.gameAuthoring.gui.statusbar.StatusBar;
 import javafx.scene.control.TabPane;
+import javafx.scene.input.KeyEvent;
 
 public class LevelTabPane extends TabPane{
 	ArrayList<LevelTab> myTabs = new ArrayList<LevelTab>();
@@ -18,11 +20,12 @@ public class LevelTabPane extends TabPane{
 		myController = controller;
 		myStatusBar = statusBar;
 		myTabs.add(levelTab);
+		addEventHandler(KeyEvent.ANY, e -> {
+			if(!(e.getTarget() instanceof GuiMap))
+				e.fireEvent(getCurrTab().getMap(), e.copyFor(this, getCurrTab().getMap()));
+			e.consume();
+		});
 	}
-	
-//	public void addTab(LevelTab levelTab) {
-//		myTabs.add(levelTab);
-//	}
 	
 	public LevelTab getCurrTab() {
 		int ind = getSelectionModel().getSelectedIndex();

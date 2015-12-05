@@ -7,8 +7,8 @@ import javafx.scene.control.Tab;
 import javafx.scene.image.Image;
 
 public class LevelTab extends Tab{
-	GuiMap myMap;
-	String myName;
+	private final GuiMap myMap;
+	private String myName;
 	
 	LevelTab(AGuiGaeController controller, StatusBar statusBar, int id){
 		myMap = new GuiMap(controller);
@@ -21,6 +21,11 @@ public class LevelTab extends Tab{
 	
 	public void initGrid(int width, int height){
 		myMap.initGrid(width, height);
+		myMap.setBackground(new Image("http://www.narniaweb.com/wp-content/uploads/2009/08/NarniaMap.jpg"));
+	}
+	
+	protected GuiMap getMap(){
+		return myMap;
 	}
 	
 	//not used yet
