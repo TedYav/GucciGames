@@ -8,7 +8,7 @@ import java.io.IOException;
 public class GroovyCustomEvent extends AGroovyCustomObject{
 	
 	private static String BUNDLE_STRING = "resources.groovy.groovyStringsEvents";
-	private static String IMPORT_FILE = "./resources/groovy/imports.txt";
+	private static String IMPORT_FILE = "./resources/groovy/events.txt";
 	
 	private String myGroovyString;
 	
@@ -17,14 +17,8 @@ public class GroovyCustomEvent extends AGroovyCustomObject{
 		// TODO Auto-generated constructor stub
 		String imports = getImports();
 		StringBuilder groovy = new StringBuilder();
-		
-		
-		
 		groovy.append(imports);
-		
 		this.myGroovyString = String.format(groovy.toString(), name,name,request,action);
-		
-		System.out.println(myGroovyString);
 	}
 
 	@Override
@@ -49,10 +43,9 @@ public class GroovyCustomEvent extends AGroovyCustomObject{
 		return sb.toString();
 	}
 	
+	/*
 	public static void main(String[] a){
 		new GroovyCustomEvent("","request","action");
 	}
-
-	
-	
+	*/
 }
