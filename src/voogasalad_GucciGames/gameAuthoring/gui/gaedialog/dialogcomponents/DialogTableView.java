@@ -54,6 +54,13 @@ public class DialogTableView extends GridPane {
 		setTableView();
 	}
 	
+	public DialogTableView(List<String> availableItems, String title, int width, int height){
+		this.title = title;
+		this.data = data;
+		setTableView();
+		tableView.setPrefSize(width, height);		
+	}
+	
 	public List<String> getData(){
 		List<String> items = new ArrayList<String>();
 		for(TableElement e: data){

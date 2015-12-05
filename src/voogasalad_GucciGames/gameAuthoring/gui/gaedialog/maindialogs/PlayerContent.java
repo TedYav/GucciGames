@@ -39,7 +39,7 @@ public class PlayerContent extends GridPane{
 		title.setId("subtitle");
 		textInputField = new TextInputField(prop, 
 				"player"+playerNumber);
-		browserField = new FileBrowserField(dialogElements,"image", "browse", "filechoosertitle");
+		browserField = new FileBrowserField(prop,"image", "browse", "filechoosertitle");
 		scrollBarField = new ScrollBarField(prop, "nummoves", "nummoves_items");
 		scrollBarField.addListenerForPlayer();
 		

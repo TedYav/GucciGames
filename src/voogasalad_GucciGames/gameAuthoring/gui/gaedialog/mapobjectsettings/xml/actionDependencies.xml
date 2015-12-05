@@ -1,6 +1,8 @@
 <actionDependencies>
 	<action displayName="Attack" name="attack" 
-	rules = "numAttacksPerTurn" chars = "attackRange, attackDamage, numAttacksPerTurn">
+	rules = "numAttacksPerTurn" 
+	chars = "attackRange, attackDamage, numAttacksPerTurn"
+	outcomes = "">
 	</action>
 	
 	<action displayName="Move" name="move" 

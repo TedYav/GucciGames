@@ -8,7 +8,7 @@ import javafx.scene.layout.VBox;
 
 public interface ISwitchSettingsPane {
 	
-	public void switchSettingsPane(Node n);
+	public void switchSettingsPane(Object p);
 		
 	public Optional<ButtonType> getDialogButtonResponse();
 	

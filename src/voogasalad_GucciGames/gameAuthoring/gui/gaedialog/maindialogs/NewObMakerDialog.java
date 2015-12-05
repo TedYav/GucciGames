@@ -7,7 +7,7 @@ import javafx.scene.control.ButtonBar.ButtonData;
 import javafx.scene.control.ButtonType;
 import javafx.scene.layout.GridPane;
 
-public class NewObjectMaker extends javafx.scene.control.Dialog{	
+public class NewObMakerDialog extends javafx.scene.control.Dialog{	
 	private static final int WIDTH = 600;
 	private static final int HEIGHT = 600;
 	private Properties prop;
@@ -15,7 +15,7 @@ public class NewObjectMaker extends javafx.scene.control.Dialog{
 	private GridPane gridPane = new GridPane();
 	
 	
-	public NewObjectMaker( IDialogGaeController controller){
+	public NewObMakerDialog( IDialogGaeController controller){
 		super();
 		GaeDialogHelper helper = new GaeDialogHelper();
 		prop = helper.loadProperties("dialogproperties/tiledialogproperties.properties");	
@@ -24,7 +24,6 @@ public class NewObjectMaker extends javafx.scene.control.Dialog{
 		gridPane = new NewObjMakerPane(prop);		
 		this.getDialogPane().setContent(gridPane);
 		final ButtonType save = new ButtonType("Save", ButtonData.FINISH);
-		this.getDialogPane().getButtonTypes().addAll(save, ButtonType.CANCEL);
 	 }	
  
 	 

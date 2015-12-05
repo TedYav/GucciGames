@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 åTâÓ :/5ÿ4Z˘±cå=
 éDªŒsﬂ∆‡%[y<voogasalad__GucciGames.gameData.wrapper.GameInfo>
   <myEngine>
@@ -5,6 +6,37 @@
       <entry>
         <string>Easy</string>
         <voogasalad__GucciGames.gameEngine.GameLevelEngine>
+=======
+<<<<<<< HEAD
+<<<<<<< HEAD
+Ã©Q˙Ã‚ø∏d9À&Ïπ¡1∫xsô≥Ÿ#êÊ≥mq6<voogasalad__GucciGames.gameData.wrapper.GameInfo>
+=======
+∆”ÙbÅ{E"ã≈!nÌˆIy∑æ˝ÓVÄQÁç®A<voogasalad__GucciGames.gameData.wrapper.GameInfo>
+  <myRightComponents>
+    <string>voogasalad_GucciGames.gameplayer.windows.mainwindow.components.bar.ActionDisplay</string>
+    <string>voogasalad_GucciGames.gameplayer.windows.mainwindow.components.bar.BuildUnitsDisplay</string>
+    <string>voogasalad_GucciGames.gameplayer.windows.mainwindow.components.bar.EndTurnButton</string>
+    <string>voogasalad_GucciGames.gameplayer.windows.mainwindow.components.bar.GameStatsDisplay</string>
+  </myRightComponents>
+  <myLeftComponents>
+    <string>voogasalad_GucciGames.gameplayer.windows.mainwindow.components.bar.DisplayMapObjectImage</string>
+    <string>voogasalad_GucciGames.gameplayer.windows.mainwindow.components.bar.DisplayMapObjectDetails</string>
+    <string>voogasalad_GucciGames.gameplayer.windows.mainwindow.components.bar.DisplayChat</string>
+    <string>voogasalad_GucciGames.gameplayer.windows.mainwindow.map.mini.MiniMap</string>
+  </myLeftComponents>
+  <myBottomComponents>
+    <string>voogasalad_GucciGames.gameplayer.windows.mainwindow.components.bar.MainMenuButton</string>
+  </myBottomComponents>
+>>>>>>> c05da467e8356d7331dcae336bcc233113aa1fef
+=======
+ó∫ìÙ,ÖÄ´ªüˆ9%x⁄o"@®2:ŒÑ)Å∫ûÕ\¡<voogasalad__GucciGames.gameData.wrapper.GameInfo>
+>>>>>>> master
+  <myLevelsMap class="tree-map">
+    <entry>
+      <int>0</int>
+      <voogasalad__GucciGames.gameData.wrapper.GameLevel>
+        <myEngine>
+>>>>>>> d810f1e8197aac97807575f0994c39e5f6d792b1
           <myGamePlayers>
             <myMapOfPlayers class="tree-map">
               <entry>
@@ -500,7 +532,19 @@
           <mapDimensions>0</mapDimensions>
           <myMapWidth>4</myMapWidth>
           <myMapHeight>4</myMapHeight>
+<<<<<<< HEAD
           <myName>Game 2883</myName>
+=======
+<<<<<<< HEAD
+<<<<<<< HEAD
+          <myName>Game 4637</myName>
+=======
+          <myName>Game 7912</myName>
+>>>>>>> c05da467e8356d7331dcae336bcc233113aa1fef
+=======
+          <myName>Game 4503</myName>
+>>>>>>> master
+>>>>>>> d810f1e8197aac97807575f0994c39e5f6d792b1
           <gameWon>false</gameWon>
           <myChoosability>false</myChoosability>
         </voogasalad__GucciGames.gameEngine.GameLevelEngine>
@@ -1902,6 +1946,59 @@
                       <myWidth>0.0</myWidth>
                       <myHeight>0.0</myHeight>
                     </voogasalad__GucciGames.gameEngine.mapObject.MapObject>
+<<<<<<< HEAD
+=======
+                  </myMapObjects>
+                  <myStatus>DRAW</myStatus>
+                  <myMovable>
+                    <myNumberOfMoves>2</myNumberOfMoves>
+                    <moveCount>0</moveCount>
+                  </myMovable>
+                </voogasalad__GucciGames.gameEngine.gamePlayer.GamePlayerPerson>
+              </entry>
+            </myMapOfPlayers>
+          </myGamePlayers>
+          <myCurrentTurnCounter>
+            <currentTurn>0</currentTurn>
+          </myCurrentTurnCounter>
+          <myTurnDecider class="voogasalad_GucciGames.gameEngine.gamePlayer.DefaultTurnDecider">
+            <numPlayers>0</numPlayers>
+            <turnCounter reference="../../myCurrentTurnCounter"/>
+            <myPlayers reference="../../myGamePlayers"/>
+            <myActivePlayer reference="../../myGamePlayers/myMapOfPlayers/entry[2]/voogasalad__GucciGames.gameEngine.gamePlayer.GamePlayerPerson"/>
+          </myTurnDecider>
+          <mapDimensions>0</mapDimensions>
+          <myMapWidth>8</myMapWidth>
+          <myMapHeight>8</myMapHeight>
+<<<<<<< HEAD
+<<<<<<< HEAD
+          <myName>Game 8449</myName>
+=======
+          <myName>Game 9639</myName>
+>>>>>>> c05da467e8356d7331dcae336bcc233113aa1fef
+=======
+          <myName>Game 1876</myName>
+>>>>>>> master
+          <gameWon>false</gameWon>
+        </myEngine>
+        <myID>1</myID>
+        <myNextLevelID>-1</myNextLevelID>
+        <myChoosability>true</myChoosability>
+        <myGameLevelName>Medium</myGameLevelName>
+      </voogasalad__GucciGames.gameData.wrapper.GameLevel>
+    </entry>
+    <entry>
+      <int>2</int>
+      <voogasalad__GucciGames.gameData.wrapper.GameLevel>
+        <myEngine>
+          <myGamePlayers>
+            <myMapOfPlayers class="tree-map">
+              <entry>
+                <int>-1</int>
+                <voogasalad__GucciGames.gameEngine.gamePlayer.GamePlayerPerson>
+                  <myPlayerId>-1</myPlayerId>
+                  <myMapObjects>
+>>>>>>> d810f1e8197aac97807575f0994c39e5f6d792b1
                     <voogasalad__GucciGames.gameEngine.mapObject.MapObject>
                       <myCoordinate class="voogasalad_GucciGames.gameEngine.targetCoordinate.TargetCoordinateSingle">
                         <myCenterX>3.0</myCenterX>
@@ -12312,9 +12409,23 @@
             <myActivePlayer reference="../../myGamePlayers/myMapOfPlayers/entry[2]/voogasalad__GucciGames.gameEngine.gamePlayer.GamePlayerPerson"/>
           </myTurnDecider>
           <mapDimensions>0</mapDimensions>
+<<<<<<< HEAD
           <myMapWidth>8</myMapWidth>
           <myMapHeight>8</myMapHeight>
           <myName>Game 2762</myName>
+=======
+          <myMapWidth>20</myMapWidth>
+          <myMapHeight>20</myMapHeight>
+<<<<<<< HEAD
+<<<<<<< HEAD
+          <myName>Game 1679</myName>
+=======
+          <myName>Game 9415</myName>
+>>>>>>> c05da467e8356d7331dcae336bcc233113aa1fef
+=======
+          <myName>Game 2292</myName>
+>>>>>>> master
+>>>>>>> d810f1e8197aac97807575f0994c39e5f6d792b1
           <gameWon>false</gameWon>
           <myChoosability>false</myChoosability>
         </voogasalad__GucciGames.gameEngine.GameLevelEngine>
