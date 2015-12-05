@@ -1,4 +1,4 @@
-RĞÒ(BÒA©iã…­Ì	ÇœWˆˆƒ z†Šœ4¹Á^!Z<voogasalad__GucciGames.gameData.wrapper.GameInfo>
+¢»4Ô¦¼EÅW²‰Fh½Ãô·IEÚéò!¢Ãa@í<voogasalad__GucciGames.gameData.wrapper.GameInfo>
   <myEngine>
     <myLevelsMap>
       <entry>
@@ -397,7 +397,7 @@ RĞÒ(BÒA©iã…­Ì	ÇœWˆˆƒ z†Šœ4¹Á^!Z<voogasalad__GucciGames.gameData.wrapper.GameInf
                               <voogasalad__GucciGames.gameEngine.gameRules.defaultRules.AttacksPerTurn/>
                             </myRuleList>
                             <myOutcomes>
-                              <voogasalad__GucciGames.gameEngine.gameConditions.outcomes.EndGame>
+                              <voogasalad__GucciGames.gameEngine.gameConditions.outcomes.EndLevel>
                                 <myConditions>
                                   <voogasalad__GucciGames.gameEngine.gameConditions.defaultConditions.CheckOnePlayerLeft>
                                     <myParams/>
@@ -411,7 +411,8 @@ RĞÒ(BÒA©iã…­Ì	ÇœWˆˆƒ z†Šœ4¹Á^!Z<voogasalad__GucciGames.gameData.wrapper.GameInf
                                   </playerID>
                                   <objectID/>
                                 </myOutcomeParams>
-                              </voogasalad__GucciGames.gameEngine.gameConditions.outcomes.EndGame>
+                                <myParams reference="../myOutcomeParams"/>
+                              </voogasalad__GucciGames.gameEngine.gameConditions.outcomes.EndLevel>
                             </myOutcomes>
                           </voogasalad__GucciGames.gameEngine.objectActions.AttackEvent>
                         </entry>
@@ -525,8 +526,8 @@ RĞÒ(BÒA©iã…­Ì	ÇœWˆˆƒ z†Šœ4¹Á^!Z<voogasalad__GucciGames.gameData.wrapper.GameInf
           <myMapWidth>4</myMapWidth>
           <myMapHeight>4</myMapHeight>
           <myName>Easy</myName>
-          <gameWon>false</gameWon>
           <myChoosability>true</myChoosability>
+          <hasLevelEnded>false</hasLevelEnded>
         </voogasalad__GucciGames.gameEngine.GameLevelEngine>
       </entry>
       <entry>
@@ -1837,7 +1838,7 @@ RĞÒ(BÒA©iã…­Ì	ÇœWˆˆƒ z†Šœ4¹Á^!Z<voogasalad__GucciGames.gameData.wrapper.GameInf
                               <voogasalad__GucciGames.gameEngine.gameRules.defaultRules.AttacksPerTurn/>
                             </myRuleList>
                             <myOutcomes>
-                              <voogasalad__GucciGames.gameEngine.gameConditions.outcomes.EndGame>
+                              <voogasalad__GucciGames.gameEngine.gameConditions.outcomes.EndLevel>
                                 <myConditions>
                                   <voogasalad__GucciGames.gameEngine.gameConditions.defaultConditions.CheckOnePlayerLeft>
                                     <myParams/>
@@ -1851,7 +1852,8 @@ RĞÒ(BÒA©iã…­Ì	ÇœWˆˆƒ z†Šœ4¹Á^!Z<voogasalad__GucciGames.gameData.wrapper.GameInf
                                   </playerID>
                                   <objectID/>
                                 </myOutcomeParams>
-                              </voogasalad__GucciGames.gameEngine.gameConditions.outcomes.EndGame>
+                                <myParams reference="../myOutcomeParams"/>
+                              </voogasalad__GucciGames.gameEngine.gameConditions.outcomes.EndLevel>
                             </myOutcomes>
                           </voogasalad__GucciGames.gameEngine.objectActions.AttackEvent>
                         </entry>
@@ -2277,8 +2279,8 @@ RĞÒ(BÒA©iã…­Ì	ÇœWˆˆƒ z†Šœ4¹Á^!Z<voogasalad__GucciGames.gameData.wrapper.GameInf
           <myMapWidth>8</myMapWidth>
           <myMapHeight>8</myMapHeight>
           <myName>Medium</myName>
-          <gameWon>false</gameWon>
           <myChoosability>true</myChoosability>
+          <hasLevelEnded>false</hasLevelEnded>
         </voogasalad__GucciGames.gameEngine.GameLevelEngine>
       </entry>
       <entry>
@@ -9973,7 +9975,7 @@ RĞÒ(BÒA©iã…­Ì	ÇœWˆˆƒ z†Šœ4¹Á^!Z<voogasalad__GucciGames.gameData.wrapper.GameInf
                               <voogasalad__GucciGames.gameEngine.gameRules.defaultRules.AttacksPerTurn/>
                             </myRuleList>
                             <myOutcomes>
-                              <voogasalad__GucciGames.gameEngine.gameConditions.outcomes.EndGame>
+                              <voogasalad__GucciGames.gameEngine.gameConditions.outcomes.EndLevel>
                                 <myConditions>
                                   <voogasalad__GucciGames.gameEngine.gameConditions.defaultConditions.CheckOnePlayerLeft>
                                     <myParams/>
@@ -9987,7 +9989,8 @@ RĞÒ(BÒA©iã…­Ì	ÇœWˆˆƒ z†Šœ4¹Á^!Z<voogasalad__GucciGames.gameData.wrapper.GameInf
                                   </playerID>
                                   <objectID/>
                                 </myOutcomeParams>
-                              </voogasalad__GucciGames.gameEngine.gameConditions.outcomes.EndGame>
+                                <myParams reference="../myOutcomeParams"/>
+                              </voogasalad__GucciGames.gameEngine.gameConditions.outcomes.EndLevel>
                             </myOutcomes>
                           </voogasalad__GucciGames.gameEngine.objectActions.AttackEvent>
                         </entry>
@@ -12389,8 +12392,8 @@ RĞÒ(BÒA©iã…­Ì	ÇœWˆˆƒ z†Šœ4¹Á^!Z<voogasalad__GucciGames.gameData.wrapper.GameInf
           <myMapWidth>20</myMapWidth>
           <myMapHeight>20</myMapHeight>
           <myName>Hard</myName>
-          <gameWon>false</gameWon>
           <myChoosability>true</myChoosability>
+          <hasLevelEnded>false</hasLevelEnded>
         </voogasalad__GucciGames.gameEngine.GameLevelEngine>
       </entry>
     </myLevelsMap>

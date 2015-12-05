@@ -3,7 +3,7 @@ package voogasalad_GucciGames.gameAuthoring.gui.gaedialog.mapobjsettings;
 import java.util.HashMap;
 import java.util.Map;
 
-import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.groovySettings.groovyParams.CharParam;
+import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.groovySettings.groovyParams.GCharParam;
 import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.paramObjects.ObjParam;
 import javafx.geometry.HPos;
 import javafx.geometry.Insets;

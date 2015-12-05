@@ -30,14 +30,11 @@ public class GameLevelEngine implements IGameLevelToGamePlayer {
 	private int myMapWidth;
 	private int myMapHeight;
 	private String myName;
-	private boolean gameWon;
-	
-
 	private boolean myChoosability;
-	
-	
+	private boolean hasLevelEnded;
 
-	public String getName() {
+	@Override
+	public String getLevelName() {
 		return myName;
 	}
 
@@ -209,13 +206,13 @@ public class GameLevelEngine implements IGameLevelToGamePlayer {
 		myName = name;
 	}
 
-	
-	public boolean isGameWon() {
-		return gameWon;
+	@Override
+	public boolean hasLevelEnded() {
+		return hasLevelEnded;
 	}
 
-	public void setGameWon(boolean gameWon) {
-		this.gameWon = gameWon;
+	public void setEndLevel(boolean gameWon) {
+		this.hasLevelEnded = gameWon;
 	}
 
 	public boolean isMyChoosability() {
@@ -225,9 +222,4 @@ public class GameLevelEngine implements IGameLevelToGamePlayer {
 	public void setMyChoosability(boolean myChoosability) {
 		this.myChoosability = myChoosability;
 	}
-
-    @Override
-    public String getLevelName () {
-        return myName;
-    }
 }

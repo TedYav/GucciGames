@@ -80,10 +80,7 @@ public interface GameEngineToGamePlayerInterface {
 
 	public GameParametersInterface getGameParameters();
 
-	public boolean isGameWon();
-	
 	       public void changeCurrentLevel(String newGameLevel);
 
-	
-	
+	public boolean hasLevelEnded();
 }

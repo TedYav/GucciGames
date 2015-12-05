@@ -18,7 +18,7 @@ import voogasalad_GucciGames.gameEngine.defaultCharacteristics.HealthCharacteris
 import voogasalad_GucciGames.gameEngine.defaultCharacteristics.MovableCharacteristic;
 import voogasalad_GucciGames.gameEngine.gameConditions.Conditions;
 import voogasalad_GucciGames.gameEngine.gameConditions.defaultConditions.CheckOnePlayerLeft;
-import voogasalad_GucciGames.gameEngine.gameConditions.outcomes.EndGame;
+import voogasalad_GucciGames.gameEngine.gameConditions.outcomes.EndLevel;
 import voogasalad_GucciGames.gameEngine.gameConditions.outcomes.Outcome;
 import voogasalad_GucciGames.gameEngine.gameConditions.outcomes.OutcomeParams;
 import voogasalad_GucciGames.gameEngine.gamePlayer.AllPlayers;
@@ -104,7 +104,7 @@ public class DemoMaker extends Application{
 		OutcomeParams oParams = new OutcomeParams();
 		oParams.setPlayerID(0);
                 oParams.setPlayerID(1);
-		Outcome endGame = new EndGame(endGameConditions, oParams);
+		Outcome endGame = new EndLevel(endGameConditions, oParams);
 		List<Outcome> attackOutcomes = new ArrayList<Outcome>();
 		attackOutcomes.add(endGame);
 		List<Rules> attackRules = new ArrayList<Rules>();

@@ -111,7 +111,7 @@ public class GameEngine implements IGameInfoToGAE, GameEngineToGamePlayerInterfa
 		List<String> levelNames = new ArrayList<String>();
 		for (GameLevelEngine engine : myLevelsMap.values()){
 			if(engine.isMyChoosability()){
-			levelNames.add(engine.getName());
+			levelNames.add(engine.getLevelName());
 			}
 			}
 		return levelNames;
@@ -131,7 +131,7 @@ public class GameEngine implements IGameInfoToGAE, GameEngineToGamePlayerInterfa
 
 	@Override
 	public String getName() {
-		return getCurrentLevel().getName();
+		return getCurrentLevel().getLevelName();
 	}
 
 	@Override
@@ -181,10 +181,10 @@ public class GameEngine implements IGameInfoToGAE, GameEngineToGamePlayerInterfa
 		return getCurrentLevel().getGameParameters();
 	}
 
-	@Override
-	public boolean isGameWon() {
-		return getCurrentLevel().isGameWon();
-	}
+    @Override
+    public boolean hasLevelEnded () {
+        return getCurrentLevel().hasLevelEnded();
+    }
 
 
 

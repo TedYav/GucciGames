@@ -17,7 +17,6 @@ import javax.xml.parsers.ParserConfigurationException;
 
 import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.DialogElements;
 import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.dialogcomponents.DialogTableView;
-import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.dialogcomponents.RulesAndCharPane;
 import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.maindialogs.GaeDialogHelper;
 import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.maindialogs.ISwitchSettingsPane;
 import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.mapobjectsettings.xml.ActionSAXHandler;
