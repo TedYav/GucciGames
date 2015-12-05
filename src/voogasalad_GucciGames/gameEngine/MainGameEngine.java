@@ -30,6 +30,7 @@ public class MainGameEngine implements GameEngineToGamePlayerInterface {
 	private int myMapWidth;
 	private int myMapHeight;
 	private String myName;
+	private boolean gameWon;
 
 	public String getName() {
 		return myName;
@@ -202,5 +203,13 @@ public class MainGameEngine implements GameEngineToGamePlayerInterface {
 	}
 	public void setName(String name) {
 		myName = name;
+	}
+
+	public boolean isGameWon() {
+		return gameWon;
+	}
+
+	public void setGameWon(boolean gameWon) {
+		this.gameWon = gameWon;
 	}
 }
