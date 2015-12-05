@@ -14,8 +14,15 @@ public interface GameEngineToGamePlayerInterface {
 	 * 
 	 * @return a String to represent the name of the game.
 	 */
+	@Deprecated
 	public String getGameName();
 
+	/**
+	 * Returns the name of the level associated with this engine.
+	 * @return
+	 */
+	public String getName();
+	
 	// make this list unmodifiable later on.
 	/**
 	 * This returns the list of map objects that the author has created, and it

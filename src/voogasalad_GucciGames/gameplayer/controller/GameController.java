@@ -61,7 +61,13 @@ public class GameController implements GameControllerInterface, GameControllerLo
 	
 	public void loadGame(GameInfo game){
 		myGame=game;
-		myEngine = game.getEngine();
+		System.err.println("GIT BLAME TED. This needs to be implemented, but code must be pushed now for others to use it.");
+	}
+	
+	public void loadLevel(int levelID){
+		if(myGame.getLevelsMap().containsKey(levelID)){
+			System.out.println("I'M NOT IMPLEMENTED YET");
+		}
 	}
 	
 	@Override

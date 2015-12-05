@@ -42,6 +42,14 @@ public class DemoMaker extends Application{
 	}
 
 	private static GameInfo createGame() {
+		MainGameEngine level1 = makeLevel(8, 8);
+		MainGameEngine level2 = makeLevel(20,20);
+	       
+		GameInfo game = new GameInfo("Duvall Tag");
+		return game;
+	}
+
+	private static MainGameEngine makeLevel(int width, int height) {
 		Map<Integer,GamePlayerPerson> myMapOfPlayers = new TreeMap<Integer,GamePlayerPerson>();     
 		myMapOfPlayers.put(-1,new GamePlayerPerson(-1)); //neutral player
 		myMapOfPlayers.put(0,new GamePlayerPerson(0)); //player 1 
@@ -76,8 +84,8 @@ public class DemoMaker extends Application{
 
 		soldier.addEvent("Attack", myAttackEvent);
 
-		for (int i=0;i<8;i++) {
-			for (int j=0;j<8;j++) {
+		for (int i=0;i<width;i++) {
+			for (int j=0;j<height;j++) {
 				MapObject newObj;
 				if((i+j)%2==0){
 					newObj = new MapObject(new TargetCoordinateSingle(i,j),-1,0,"TileCharacteristic", "player/images/dummytexture2.jpg");
@@ -105,27 +113,15 @@ public class DemoMaker extends Application{
 		AllPlayers myPlayers = new AllPlayers(myMapOfPlayers);
 
 		MainGameEngine engine = new MainGameEngine(myPlayers);
-		engine.setMapHeight(8);
-		engine.setMapWidth(8);
+		engine.setMapHeight(height);
+		engine.setMapWidth(width);
 		for(Integer key: myMapOfPlayers.keySet()){
 			myMapOfPlayers.get(key).getMapObjects().stream().forEach(mo -> {
 				mo.setMapObjectEventHandler(new MapObjectEventHandler(new BasicParameters(null,engine)));;
 			});
 		}
-		engine.setName("Duvall Tag");
-	        List<String> leftComponents=new ArrayList<String>();
-                List<String> rightComponents=new ArrayList<String>();
-                List<String> bottomComponents=new ArrayList<String>();
-	        leftComponents.add("voogasalad_GucciGames.gameplayer.windows.mainwindow.components.bar.DisplayMapObjectImage");
-	        leftComponents.add("voogasalad_GucciGames.gameplayer.windows.mainwindow.components.bar.DisplayMapObjectDetails");
-	        leftComponents.add("voogasalad_GucciGames.gameplayer.windows.mainwindow.components.bar.DisplayChat");
-	        rightComponents.add("voogasalad_GucciGames.gameplayer.windows.mainwindow.components.bar.ActionDisplay");
-	        rightComponents.add("voogasalad_GucciGames.gameplayer.windows.mainwindow.components.bar.BuildUnitsDisplay");
-	        bottomComponents.add("voogasalad_GucciGames.gameplayer.windows.mainwindow.components.bar.GameStatsDisplay");
-                bottomComponents.add("voogasalad_GucciGames.gameplayer.windows.mainwindow.components.bar.MainMenuButton");
-	        rightComponents.add("voogasalad_GucciGames.gameplayer.windows.mainwindow.components.bar.EndTurnButton");
-		GameInfo game = new GameInfo(engine,leftComponents,rightComponents,bottomComponents);
-		return game;
+		engine.setName("Level 1");
+		return engine;
 	}
 
 }
