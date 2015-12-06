@@ -18,7 +18,7 @@ public class TypeMap {
 		map.put("int", int.class);
 		map.put("String", String.class);
 		map.put("double", double.class);
-		map.put("Boolean", Boolean.class);
+		map.put("Boolean", boolean.class);
 		Collections.unmodifiableMap(map);
 	}
 
