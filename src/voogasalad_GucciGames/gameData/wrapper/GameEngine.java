@@ -200,6 +200,7 @@ public class GameEngine implements IGameInfoToGAE, GameEngineToGamePlayerInterfa
 	@Override
 	public int getMapWidth() {
 		// TODO Auto-generated method stub
+	    System.out.println(getCurrentLevel());
 		return getCurrentLevel().getMapWidth();
 	}
 

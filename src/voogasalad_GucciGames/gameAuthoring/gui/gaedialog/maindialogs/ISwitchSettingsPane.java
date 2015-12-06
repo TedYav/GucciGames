@@ -12,6 +12,8 @@ public interface ISwitchSettingsPane {
 		
 	public Optional<ButtonType> getDialogButtonResponse();
 	
+	public void addSaveButton(ButtonType save);
+	
 
 
 }

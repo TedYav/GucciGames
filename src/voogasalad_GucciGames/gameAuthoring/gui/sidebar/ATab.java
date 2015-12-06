@@ -37,7 +37,7 @@ public abstract class ATab extends Tab {
 	protected final TwoWayMap<MapObjectType, ImageView> myMap = new TwoWayMap<>();
 	protected List<ImageView> myImageViews = new ArrayList<>();
 	protected Button myAddButton = new Button("Add Custom");
-	protected ContextMenu myContextMenu;
+	protected SideBarMenu myContextMenu;
 
 	private final SideBar mySideBar;
 	private Rectangle myBoundBox;
@@ -126,6 +126,7 @@ public abstract class ATab extends Tab {
 		if (e.getButton() == MouseButton.PRIMARY) {
 			select(source);
 		} else if (e.getButton() == MouseButton.SECONDARY) {
+			myContextMenu.setCurrType(myMap.getKey(source));
 			myContextMenu.show(source, e.getSceneX(), e.getSceneY());
 		}
 		e.consume();

@@ -1,11 +1,8 @@
 
 package voogasalad_GucciGames.gameEngine.gameConditions.outcomes;
 
-import java.util.List;
-
 import voogasalad_GucciGames.gameEngine.CommunicationParameters.BasicParameters;
 import voogasalad_GucciGames.gameEngine.CommunicationParameters.ChangedParameters;
-import voogasalad_GucciGames.gameEngine.gameConditions.Conditions;
 import voogasalad_GucciGames.gameEngine.gamePlayer.chars.PlayerWealthChar;
 
 /**
@@ -17,8 +14,8 @@ public class ModifyWealth extends Outcome {
 	private static final String WEALTH = "AttackCharacteristic";
 	private int delta = 0;
 
-	public ModifyWealth(List<Conditions> conditions,String affectedPlayers,String wealth, int value) {
-		super(conditions, affectedPlayers);
+	public ModifyWealth(String affectedPlayers, int value) {
+		super(affectedPlayers);
 		delta = value;
 	}
 

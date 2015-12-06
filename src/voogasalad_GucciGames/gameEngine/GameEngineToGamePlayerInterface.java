@@ -81,7 +81,11 @@ public interface GameEngineToGamePlayerInterface {
 
 	public GameParametersInterface getGameParameters();
 
+
 	public void changeCurrentLevel(String newGameLevel);
+
+	public GameLevelEngine getCurrentLevel();
+
 
 	public boolean hasLevelEnded();
 
