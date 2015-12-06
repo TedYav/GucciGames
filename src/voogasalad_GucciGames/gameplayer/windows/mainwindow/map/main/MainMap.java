@@ -3,6 +3,7 @@ package voogasalad_GucciGames.gameplayer.windows.mainwindow.map.main;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
+
 import javafx.collections.FXCollections;
 import javafx.collections.ListChangeListener;
 import javafx.collections.ObservableList;
@@ -18,24 +19,21 @@ import voogasalad.util.reflection.Reflection;
 import voogasalad_GucciGames.datastructures.Coordinate;
 import voogasalad_GucciGames.datastructures.TwoWayMap;
 import voogasalad_GucciGames.gameEngine.PlayerMapObjectInterface;
-import voogasalad_GucciGames.gameEngine.targetCoordinate.ATargetCoordinate;
 import voogasalad_GucciGames.gameEngine.targetCoordinate.TargetCoordinateSingle;
-import voogasalad_GucciGames.gameplayer.controller.GameControllerInterface;
 import voogasalad_GucciGames.gameplayer.config.PlayerConfig;
 import voogasalad_GucciGames.gameplayer.controller.GameControllerAdvancedInterface;
+import voogasalad_GucciGames.gameplayer.controller.GameControllerInterface;
 import voogasalad_GucciGames.gameplayer.scenes.GameScene;
 import voogasalad_GucciGames.gameplayer.windows.mainwindow.components.WindowComponent;
 import voogasalad_GucciGames.gameplayer.windows.mainwindow.map.MapInterface;
 import voogasalad_GucciGames.gameplayer.windows.mainwindow.map.cell.MapCell;
 import voogasalad_GucciGames.gameplayer.windows.mainwindow.map.cell.MapCellInterface;
-import voogasalad_GucciGames.gameplayer.windows.mainwindow.map.cell.SquareCell;
 import voogasalad_GucciGames.gameplayer.windows.mainwindow.map.mini.MiniMap;
-import voogasalad_GucciGames.testing.TestPlayer;
 
 public class MainMap extends WindowComponent implements MapInterface {
-	
+
 	private MiniMap myMiniMap;
-	
+
         private ResourceBundle myConfig = PlayerConfig.load("components.Map");
         private ResourceBundle myCssBundle = PlayerConfig.load("scenes.CssClasses");
 
@@ -48,15 +46,15 @@ public class MainMap extends WindowComponent implements MapInterface {
 	private ScrollPane myFirstLayer;
 	private GridPane myMap;
 	private Pane mySecondLayer;
-	
+
 	// TODO: factor into cell style, later
 	private int myCellsWide, myCellsTall;
 	private double myCellSize;
-	
+
 	// TODO: leftbar and rightbar communicate about individual selection
 	// TODO: later, convert to map by unit type
 	private ObservableList<PlayerMapObjectInterface> mySelectedUnits;
-	
+
 	public MainMap(GameScene scene, GameControllerInterface controller) {
 		super(scene, controller);
 		initializePanes();
@@ -64,11 +62,11 @@ public class MainMap extends WindowComponent implements MapInterface {
 		initializeMap();
 		drawMap(getController().getInitialState());
 	}
-	
-	
+
+
 	private void initializeVariables() {
-		myCellsWide = (int) getController().getEngine().getMapWidth();
-		myCellsTall = (int) getController().getEngine().getMapHeight();
+		myCellsWide = getController().getEngine().getMapWidth();
+		myCellsTall = getController().getEngine().getMapHeight();
 		myCellSize = calculateCellSize();
 		mySelectedUnits = FXCollections.observableArrayList();
 		myUnitMap = new TwoWayMap<>();
@@ -87,28 +85,28 @@ public class MainMap extends WindowComponent implements MapInterface {
 		myHighlightedCells = new ArrayList<>();
 		mySelectedCells = new ArrayList<>();
 	}
-	
+
 	private void initializePanes(){
 		myParent = new StackPane();
 		myFirstLayer = new ScrollPane();
 		myMap = new GridPane();
 		mySecondLayer = new Pane();
-		
+
 		myParent.getChildren().add(myFirstLayer);
 		myFirstLayer.setContent(myMap);
 //		myParent.getChildren().add(mySecondLayer);
-//		
+//
 		myFirstLayer.setVbarPolicy(ScrollBarPolicy.NEVER);
 		myFirstLayer.setHbarPolicy(ScrollBarPolicy.NEVER);
 		myFirstLayer.setPannable(true);
 	}
-		
+
 	private void drawMap(List<PlayerMapObjectInterface> initialState){
 		initialState.stream()
 			.forEach(o->addToMap(o));
 		myParent.getStyleClass().add(myCssBundle.getString("mapstackpane"));
 	}
-	
+
 	private void addToMap(PlayerMapObjectInterface object) {
 		Point2D key = Coordinate.CoordinateToPoint(object.getCoordinate());
 		if(!myCellMap.containsKey(key)){
@@ -127,37 +125,37 @@ public class MainMap extends WindowComponent implements MapInterface {
 	}
 
 	private void fogCells() {
-		
+
 	}
-	
+
 	@Override
 	public void update() {
 		clearActiveCells();
 		clearHighlights();
 		fogCells();
 	}
-	
+
 	@Override
 	public void redrawFog() {
-		
+
 	}
-	
+
 	// for doing animations and such
 	private void recenter(PlayerMapObjectInterface target){
-		
+
 	}
 
 	@Override
 	public void recenter(Point2D center) {
 		recenter(center.getX()/myCellsWide, center.getY()/myCellsTall);
 	}
-	
+
 	@Override
 	public void recenter(double xPercent, double yPercent){
 		myFirstLayer.setHvalue(xPercent);
 		myFirstLayer.setVvalue(yPercent);
 	}
-	
+
 	public void addUnitListener(List<ListChangeListener<PlayerMapObjectInterface>> listeners){
 	    for (ListChangeListener l: listeners) {
 		mySelectedUnits.addListener(l);
@@ -172,7 +170,7 @@ public class MainMap extends WindowComponent implements MapInterface {
 			.filter((c) -> c!=null)
 			.forEach((c) -> { c.toggleHighlight(true); myHighlightedCells.add(c);} );
 	}
-	
+
 	@Override
 	public void clearHighlights(){
 		myHighlightedCells.forEach((c) -> c.toggleHighlight(false) );

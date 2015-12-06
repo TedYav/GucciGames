@@ -4,14 +4,14 @@ import voogasalad_GucciGames.gameAuthoring.gui.levels.LevelTabPane;
 import voogasalad_GucciGames.gameAuthoring.gui.map.GridPoint;
 import voogasalad_GucciGames.gameAuthoring.model.DisplayMapObject;
 import voogasalad_GucciGames.gameAuthoring.model.MapObjectType;
-import voogasalad_GucciGames.gameData.wrapper.GameInfo;
+import voogasalad_GucciGames.helpers.GameResourceManagerToGAE;
 
 import java.io.File;
 import java.util.List;
-import java.util.Map;
 
 import javafx.beans.property.BooleanProperty;
 import javafx.collections.ObservableList;
+import javafx.scene.control.Dialog;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
@@ -74,6 +74,10 @@ public interface IGuiGaeController {
 	public void setDefaultOwner(int ownerID);
 
 	public BooleanProperty getHasGameProperty();
+	
+	public GameResourceManagerToGAE getResourceManager();
+	
+	public Dialog<String> getImageBrowseDialog(String type);
 
 
 }

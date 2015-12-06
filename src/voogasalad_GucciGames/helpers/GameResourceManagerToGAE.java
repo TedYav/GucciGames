@@ -46,5 +46,14 @@ public interface GameResourceManagerToGAE {
 	 * Returns a list of sprites available.
 	 * @return
 	 */
-	public List<String> getSprites();	
+	public List<String> getSprites();
+	
+	/**
+	 * Loads game into the resource manager
+	 * @param gameName
+	 */
+	public void loadGame(String gameName);
+
+	// NOTE: ted will implement this if needed
+	//public void copyImageToGame(String imagePath);
 }
