@@ -51,10 +51,6 @@ public class GAEModel implements IGAEModel{
     	// load all default properites
     	ParamObjParser parser = new ParamObjParser();
     	Set<ObjParam> objs = parser.getMapObjChars();
-    	objs.stream().forEach(e -> {
-    		System.out.println(e.getName());
-    	});
-    	System.out.println("size" + objs.size());
     	
     	// Probs need to change this
 		mapOfPlayers.put(-1, new GamePlayerPerson(-1));
