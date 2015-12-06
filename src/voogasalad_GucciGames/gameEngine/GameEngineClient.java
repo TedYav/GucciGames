@@ -25,20 +25,20 @@ import voogasalad_GucciGames.gameplayer.controller.GameParametersInterface;
 public class GameEngineClient implements GameEngineToGamePlayerInterface, Runnable{
 
 	private int myPlayerID;
-	private MainGameEngine myEngine;
+	private GameLevelEngine myEngine;
 	private PrintWriter myWriterToServer;
     private String name;
 
 	private static int PORT = 6550; //hard code for now
 	private static String SERVER_ADDRESS = ""; //harcode for now
 
-	public GameEngineClient(MainGameEngine engine) {
+	public GameEngineClient(GameLevelEngine engine) {
 		myEngine = engine;
 	}
 
 	public void updateGameEngine(String engineXML) {
 		XStream xstream = new XStream();
-		myEngine = (MainGameEngine) xstream.fromXML(engineXML);
+		myEngine = (GameLevelEngine) xstream.fromXML(engineXML);
 	}
 
 	//add a listener to handle exceptions and report to front end. alternatively, make this
@@ -149,14 +149,20 @@ public class GameEngineClient implements GameEngineToGamePlayerInterface, Runnab
 
 
 	@Override
-	public boolean isGameWon() {
-		return myEngine.isGameWon();}
+	public boolean hasLevelEnded() {
+		return myEngine.hasLevelEnded();}
 
 	@Override
 	public String getName() {
-		return myEngine.getName();
+		return myEngine.getLevelName();
 
 	}
+
+    @Override
+    public void changeCurrentLevel (String newGameLevel) {
+        // TODO Auto-generated method stub
+        
+    }
 
 	//change to either immutable or just make the methods of this public (and not the full set...)
 

@@ -13,12 +13,14 @@ import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.paramObjects.PlayerPara
 import voogasalad_GucciGames.gameAuthoring.properties.ObjectProperty;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.ScrollPane;
+import javafx.scene.control.ButtonBar.ButtonData;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
-public class PlayerDialog extends javafx.scene.control.Dialog {
+public class PlayerDialog extends AGaeDialog {
 
 	private static final int WIDTH = 600;
 	private static final int HEIGHT = 600;	
@@ -37,7 +39,9 @@ public class PlayerDialog extends javafx.scene.control.Dialog {
 		GaeDialogHelper helper = new GaeDialogHelper();
 		prop = helper.loadProperties("dialogproperties/playerdialogproperties.properties");			
 		this.controller = controller;
-		this.numOfPlayers = numberOfPlayers;		
+		this.numOfPlayers = numberOfPlayers;
+		
+		final ButtonType save = new ButtonType("Save", ButtonData.FINISH);		
 		initialize();
 		setScene();	
 
@@ -64,7 +68,7 @@ public class PlayerDialog extends javafx.scene.control.Dialog {
 
 
 			while(numOfPlayers  >=  num) {
-				PlayerContent content = new PlayerContent(num, controller);
+				PlayerContent content = new PlayerContent(num, controller, prop);
 				contentList.add(content);
 				dialogElements = new DialogElements(prop, controller);
 				content.setDialogElements(dialogElements);

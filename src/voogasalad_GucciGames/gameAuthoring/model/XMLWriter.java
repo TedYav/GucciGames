@@ -5,14 +5,14 @@ import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 
-import voogasalad_GucciGames.gameEngine.MainGameEngine;
+import voogasalad_GucciGames.gameEngine.GameLevelEngine;
 
 import com.thoughtworks.xstream.XStream;
 import com.thoughtworks.xstream.io.xml.DomDriver;
 
 public class XMLWriter {
 	
-	public void write(MainGameEngine engine) {
+	public void write(GameLevelEngine engine) {
 		XStream serializer = new XStream(new DomDriver());
 		String engineLocation = "./examples/SavedGames/newengine.xml";
 		

@@ -48,9 +48,11 @@ public class GuiMap extends Pane implements IGuiMap{
 	}
 	
 	private void addEventHandlers(){
-		addEventHandler(KeyEvent.KEY_PRESSED, e -> {
-			if (e.getCode() == KeyCode.BACK_SPACE || e.getCode() == KeyCode.DELETE)
+		addEventFilter(KeyEvent.KEY_PRESSED, e -> {
+			if (e.getCode() == KeyCode.BACK_SPACE || e.getCode() == KeyCode.DELETE){
 				myGrid.removeSelectedCells();
+			}
+				
 		});
 		addEventHandler(KeyEvent.KEY_PRESSED, e -> {
 			if (e.getCode() == KeyCode.CONTROL)

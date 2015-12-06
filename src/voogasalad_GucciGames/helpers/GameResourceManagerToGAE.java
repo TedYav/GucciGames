@@ -32,7 +32,5 @@ public interface GameResourceManagerToGAE {
 	 */
 	public void toggleCopyOnAccess(boolean copy);
 	
-	public void loadGame(GameInfo game);
-
-	
+	public void changeGameName(String newName);	
 }

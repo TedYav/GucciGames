@@ -8,13 +8,13 @@ import javafx.scene.image.Image;
 import javafx.scene.paint.Color;
 import voogasalad_GucciGames.gameData.GameDataManager;
 import voogasalad_GucciGames.gameData.wrapper.GameInfo;
-import voogasalad_GucciGames.gameData.wrapper.GameInfoToGameData;
 import voogasalad_GucciGames.gameplayer.controller.GameControllerInterface;
 
 public class ResourceManager implements GameResourceManagerToGAE, GameResourceManagerToPlayer{
 
 	private ImageDatabase myImageDatabase;
 	private ImageAverager myImageAverager;
+	private SpriteDatabase mySpriteDatabase;
 	
 	private String myGameName;
 	private GameInfo myGame;
@@ -32,6 +32,19 @@ public class ResourceManager implements GameResourceManagerToGAE, GameResourceMa
 //	
 //	public static void main(String[] args){
 //		ResourceManager r = new ResourceManager("Duvall Tag");
+//	}
+	
+//	public static void main(String[] args){
+//		ResourceManager g = new ResourceManager("Duvall Tag");
+//		g.toggleCopyOnAccess(true);
+//		List<String> dirs = g.listImageDirectories();
+//		List<String> images = g.getImages();
+//		List<String> tiles = g.getImages("tiles");
+//		System.out.println(dirs);
+//		System.out.println(images);
+//		System.out.println(tiles);
+//		g.getImage(tiles.get(1));
+//		
 //	}
 	
 	public ResourceManager(){
@@ -60,14 +73,11 @@ public class ResourceManager implements GameResourceManagerToGAE, GameResourceMa
 		myRootDirectory = (myGame == null) ? "" : myData.getGamePath(myGameName) + myConfig.getString("LocalResourcePath");
 	}
 
+	@Override
 	public void loadGame(GameInfo game){
 		myGame = game;
 		myGameName = myGame.getGameName();
 		setRoot();
-	}
-	
-	public List<String> getImages(){
-		return myData.getResources(getExtensions(myConfig.getString("ImageExt")), myConfig.getString("ImagePath"));
 	}
 	
 	private List<String> getExtensions(String type) {
@@ -105,20 +115,43 @@ public class ResourceManager implements GameResourceManagerToGAE, GameResourceMa
 		return myImageAverager.request(URI);
 	}
 
+	public List<String> getImages(){
+		return filterURIs(myData.getResources(getExtensions(myConfig.getString("ImageExt")), myConfig.getString("ImagePath")), myConfig.getString("ImagePath"));
+	}
+	
+	private List<String> filterURIs(List<String> resources, String base) {
+		return resources.stream().map( s -> s.substring(base.length())).collect(Collectors.toList());
+	}
+
 	@Override
 	public List<String> getImages(String directory) {
-		return myData.getResources(getExtensions(myConfig.getString("ImageExt")), myConfig.getString("ImagePath") + directory);
+		return filterURIs(myData.getResources(getExtensions(myConfig.getString("ImageExt")), myConfig.getString("ImagePath") + directory + endslash(directory)), myConfig.getString("ImagePath"));
+	}
+
+	private String endslash(String directory) {
+		return (directory.endsWith("/"))?"":"/";
 	}
 
 	@Override
 	public void toggleCopyOnAccess(boolean copy) {
 		copyOnAccess = copy;
+		if(copy){
+			buildGameDirectories();
+		}
+	}
+
+	private void buildGameDirectories() {
+		myData.buildGameDirectories(myGameName);
 	}
 
 	@Override
 	public List<String> listImageDirectories() {
-		// TODO Auto-generated method stub
-		return null;
+		return myData.listDirectories(myConfig.getString("Image"));
+	}
+
+	@Override
+	public void changeGameName(String newName) {
+		myData.renameGameDirectory(myGameName, newName);
 	}
 	
 }

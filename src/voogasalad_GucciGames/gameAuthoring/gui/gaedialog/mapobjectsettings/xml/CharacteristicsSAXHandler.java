@@ -11,53 +11,54 @@ import org.xml.sax.helpers.DefaultHandler;
 
 import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.maindialogs.GaeDialogHelper;
 import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.paramObjects.ActionParams;
-import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.paramObjects.CharacteristicsParam;
+import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.paramObjects.ObjParam;
+import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.paramObjects.ObjType;
 
 public class CharacteristicsSAXHandler extends DefaultHandler {
-	
-	private Set<String> selectedCharacteristics = new HashSet<String>();
-	private List<CharacteristicsParam> characteristicsParams = new ArrayList<CharacteristicsParam>();
-	private CharacteristicsParam characteristicsParam = null;
+
+	private List<ObjParam> characteristicsParams = new ArrayList<ObjParam>();
+	private ObjParam characteristicsParam = null;
 	private final GaeDialogHelper helper = new GaeDialogHelper();
-	
-	public CharacteristicsSAXHandler(Set<String> selectedCharacteristics ){
-		this.selectedCharacteristics = selectedCharacteristics;
+	private ObjType type;
+
+	public CharacteristicsSAXHandler( ObjType type ){
+		this.type = type;
 	}
-	
+
 	private boolean bDisplayName = false;
-	
-	public List<CharacteristicsParam> getCharParams(){
+
+	public List<ObjParam> getObjParams(){
 		return characteristicsParams ;
 	}
-	  public void startElement(String uri, String localName,
-		        String qName, Attributes attributes) throws SAXException {
-		        if("characteristic".equals(qName)){
-		            String name = attributes.getValue("name");
-		            if (selectedCharacteristics.contains(name)){
-		            	characteristicsParam = new CharacteristicsParam(name);
-		            	characteristicsParam.setDisplayName(attributes.getValue("displayName"));
-		            	List<String> paramNames = helper.parseStringToList(
-		            			attributes.getValue("paramNames"));
-		            	List<String> paramTypes = helper.parseStringToList(
-		            			attributes.getValue("paramTypes"));
-		            	for(int i = 0; i < paramNames.size(); i++){
-		            		characteristicsParam.addParam(paramTypes.get(i), paramNames.get(i));
-		            	}
-		            } 	            
-		        }           
-		    }
-	   public void endElement(String uri, String localName,
-		        String qName) throws SAXException {
-		   if(qName.equalsIgnoreCase("characteristic") && characteristicsParam != null){
-			   this.characteristicsParams.add(characteristicsParam);
-		   }
+	public void startElement(String uri, String localName,
+			String qName, Attributes attributes) throws SAXException {
 
-		        
-	   }
-	   
-	   public void characters(char ch[], int start, int length) throws SAXException {
-		 
-	   }
+		if("element".equals(qName)){
+			String name = attributes.getValue("name");
+
+			characteristicsParam = new ObjParam(name, type, -1);
+			List<String> paramNames = helper.parseStringToList(
+					attributes.getValue("paramNames"));
+			List<String> paramTypes = helper.parseStringToList(
+					attributes.getValue("paramTypes"));
+			for(int i = 0; i < paramNames.size(); i++){
+				characteristicsParam.addParam(paramTypes.get(i), paramNames.get(i));
+			}
+
+		}           
+	}
+	public void endElement(String uri, String localName,
+			String qName) throws SAXException {
+		if(qName.equalsIgnoreCase("characteristic") && characteristicsParam != null){
+			this.characteristicsParams.add(characteristicsParam);
+		}
+
+
+	}
+
+	public void characters(char ch[], int start, int length) throws SAXException {
+
+	}
 
 
 }

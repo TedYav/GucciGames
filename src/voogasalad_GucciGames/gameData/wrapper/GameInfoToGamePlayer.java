@@ -2,17 +2,19 @@ package voogasalad_GucciGames.gameData.wrapper;
 
 import java.util.List;
 import java.util.Map;
+import voogasalad_GucciGames.gameEngine.GameEngineToGamePlayerInterface;
 
 public interface GameInfoToGamePlayer {
 
 	public String getGameName();
+		
+	public List<String> getGuiComponents(String location);
 	
-	public Map<Integer, IGameLevelToGamePlayer> getLevels();
+	public void setGuiComponents(String location, List<String> components);
 	
-	public List<String> getLeftComponents();
+	public Map<String, IGameLevelToGamePlayer> getLevels();
 	
-	public List<String> getRightComponents();
+	public GameEngineToGamePlayerInterface getEngineInterface();
 
-    public List<String> getBottomComponents ();
-	
+    void setGuiData (GuiData gui);
 }
