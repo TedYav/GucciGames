@@ -53,7 +53,7 @@ public class GaeController extends AGuiGaeController implements IModelGaeControl
 	}
 
 	@Override
-	public DisplayMapObject addObject( int levelID, GridPoint gridpoint, MapObjectType mapObjType) {
+	public DisplayMapObject addObject(int levelID, GridPoint gridpoint, MapObjectType mapObjType) {
 		return model.addObject(levelID, gridpoint, mapObjType, defaultOwnerID);
 	}
 
@@ -224,8 +224,9 @@ public class GaeController extends AGuiGaeController implements IModelGaeControl
 		return getMapObjectImage(object.getType());
 	}
 
-	public void initGrid(int width, int height) {
-		myGui.initializeMap(width, height);
+	public void initGame(String name) {
+		//TODO: Add the name somewhere
+		myGui.initGame(name);
 	}
 	
 	@Override
@@ -245,8 +246,8 @@ public class GaeController extends AGuiGaeController implements IModelGaeControl
 	}
 	
 	@Override
-	public int addLevel() {
-		return model.addLevel();
+	public int addLevel(String name) {
+		return model.addLevel(name);
 	}
 
 	@Override

@@ -33,7 +33,7 @@ public interface IGAEModel {
     
 	public void changeOwner(MapObject mapObject, int playerID);
 
-	public int addLevel();
+	public int addLevel(String name);
 	
 	public void saveToXML(GameInfo game);
 

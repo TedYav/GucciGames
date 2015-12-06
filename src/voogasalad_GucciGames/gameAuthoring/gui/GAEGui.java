@@ -4,24 +4,21 @@ import java.util.Map;
 
 import javafx.geometry.Rectangle2D;
 import javafx.scene.Scene;
+import javafx.scene.control.Dialog;
 import javafx.scene.control.TabPane;
-import javafx.scene.image.Image;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Screen;
 import javafx.stage.Stage;
 import voogasalad_GucciGames.gameAuthoring.AGuiGaeController;
 import voogasalad_GucciGames.gameAuthoring.gui.sidebar.SideBar;
 import voogasalad_GucciGames.gameAuthoring.gui.statusbar.StatusBar;
-import voogasalad_GucciGames.gameAuthoring.gui.levels.LevelTab;
+import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.maindialogs.NewLevelDialog;
 import voogasalad_GucciGames.gameAuthoring.gui.levels.LevelTabPane;
-import voogasalad_GucciGames.gameAuthoring.gui.map.GuiMap;
 import voogasalad_GucciGames.gameAuthoring.gui.menubar.GAEMenuBar;
 
 /**
- * TODO:
- * 1. Select animation
- * 2. Add components in backend
- * 3. Select size of the map
+ * TODO: 1. Select animation 2. Add components in backend
+ * 
  * @author Mike Ma (ym67)
  *
  */
@@ -29,8 +26,6 @@ public class GAEGui extends BorderPane {
 
 	private AGuiGaeController myController;
 	private LevelTabPane myLevelTabPane;
-//	private GuiMap myMap;
-	// private ISaveCustomObj saveCustomObj;
 
 	public GAEGui(AGuiGaeController controller, Stage stage) {
 		myController = controller;
@@ -40,7 +35,6 @@ public class GAEGui extends BorderPane {
 		stage.setWidth(screenBounds.getWidth());
 		stage.setHeight(screenBounds.getHeight());
 		initLayout(stage);
-		//initializeMap(5, 5);
 		stage.show();
 	}
 
@@ -65,17 +59,17 @@ public class GAEGui extends BorderPane {
 		setRight(sideBar);
 
 		// Add Map
-		myLevelTabPane = new LevelTabPane(myController, statusBar);
+		myLevelTabPane = new LevelTabPane(myController);
 		setCenter(myLevelTabPane);
-//		myMap = new GuiMap(myController);
-//		myMap.setOnMouseMoved(e -> statusBar.update(e));
-//		setCenter(myMap);
-//		myMap.setBackground(new Image("http://www.narniaweb.com/wp-content/uploads/2009/08/NarniaMap.jpg"));
+		myLevelTabPane.setOnMouseMoved(e -> statusBar.update(e));
 	}
 
-	public void initializeMap(int width, int height) {
-		LevelTab levelTab = myLevelTabPane.getCurrTab();
-		myLevelTabPane.initializeMap(width, height, levelTab);
+	public void initGame(String name) {
+		Dialog<Map<String, String>> dialog = new NewLevelDialog(myController);
+		dialog.showAndWait().ifPresent(map -> {
+			myController.getLevelTabPane().createNewTab(map.get("name"), Integer.parseInt(map.get("width")),
+					Integer.parseInt(map.get("height")));
+		});
 	}
 
 	/**
@@ -87,8 +81,8 @@ public class GAEGui extends BorderPane {
 	public Map<String, String> getMapForCustomTile() {
 		return null;
 	}
-	
-	public LevelTabPane getLevelTabPane(){
+
+	public LevelTabPane getLevelTabPane() {
 		return myLevelTabPane;
 	}
 

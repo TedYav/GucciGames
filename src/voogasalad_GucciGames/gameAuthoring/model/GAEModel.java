@@ -159,24 +159,13 @@ public class GAEModel implements IGAEModel{
 
 
 	@Override
-	public int addLevel() {
+	public int addLevel(String name) {
+		//>>>>>>>>
+		//<<<<<<<<
 		int newLevelID = nextLevel;
 		myLevels.put(newLevelID, new MapData());
 		nextLevel += 1;
 		return newLevelID;
 		
 	}
-    
-//	public static void main(String[] args){
-//		Map<Integer, GamePlayerPerson> mapOfPlayers = new HashMap<Integer, GamePlayerPerson>();	
-////		List<GamePlayerPerson> listOfPlayers = new ArrayList<GamePlayerPerson>();	
-//		AllPlayers myPlayers = new AllPlayers(mapOfPlayers);
-//		MainGameEngine engine = new MainGameEngine(myPlayers, null, null);
-//		System.out.println("made game engine");
-//		XMLWriter writer = new XMLWriter();
-//		writer.write(engine);
-//		
-//	}
-
-
 }
