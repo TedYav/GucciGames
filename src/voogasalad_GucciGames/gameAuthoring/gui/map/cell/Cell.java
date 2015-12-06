@@ -116,6 +116,7 @@ public class Cell extends StackPane implements ICell {
 
 	@Override
 	public boolean remove(DisplayMapObject obj) {
+		
 		if (obj.getType().isTile())
 			return myTileLayer.remove();
 		else
