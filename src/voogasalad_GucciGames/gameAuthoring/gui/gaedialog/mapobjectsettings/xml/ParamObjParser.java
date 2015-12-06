@@ -50,7 +50,7 @@ public class ParamObjParser {
 	public ParamObjParser(){
 		parseAll();
 	}
-	
+
 	public Set<ObjParam> getMapObjChars(){
 		return allMapObjCharParams;
 	}
@@ -96,8 +96,8 @@ public class ParamObjParser {
 	        saxParser.parse(new 
 	        		File(actionPath), 
 	        		handler);
-	        List<ActionParams> list = handler.getActionParams();	
-	        allActions = new HashSet<ActionParams>(list);
+	        List<ActionParams> list = handler.getActionParams();
+	        allActions.addAll(list);
 	         
 	    } catch (ParserConfigurationException | SAXException | IOException ex) {
 	        ex.printStackTrace();
@@ -120,7 +120,7 @@ public class ParamObjParser {
 	        		File(rulePath), 
 	        		handler);
 	        List<RuleParams> list = handler.getRuleParams();	
-	        allRules = new HashSet<RuleParams>(list);
+	        allRules.addAll(list);
 	         
 	    } catch (ParserConfigurationException | SAXException | IOException ex) {
 	        ex.printStackTrace();
@@ -141,14 +141,15 @@ public class ParamObjParser {
 	        		handler);
 	       List<ObjParam> list = handler.getObjParams();
 
-	       set = new HashSet<ObjParam>(list);
+	       set.addAll(list);
+
 	           
 	    } catch (ParserConfigurationException | SAXException | IOException ex) {
 	        ex.printStackTrace();
 	    }
 
-	    return;
 	}
+
 	
 	private void parseMapObjChar(){
 		parse(mapObjCharPath, allMapObjCharParams, ObjType.MAP_CHAR);
