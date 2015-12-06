@@ -131,6 +131,18 @@ public class TypeData implements IGameProperties {
 		
 	}
 
+	@Override
+	public void addAction(ActionParams params, MapObjectType type) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void addCharacteristic(ObjParam param, MapObjectType type) {
+		// TODO Auto-generated method stub
+		
+	}
+
 	
 
 

@@ -36,7 +36,7 @@ public class GAEModel implements IGAEModel{
 
 	//private List<DisplayMapObject> myMapObjects;
 	// map from level id (unique) to list of map objects
-	//private Map<Integer, MapData> myLevels;
+	// private Map<Integer, MapData> myLevels;
 	private LevelData levelData;
 
     
@@ -122,7 +122,7 @@ public class GAEModel implements IGAEModel{
     public void saveToXML() {
 //      AllPlayers myPlayers = new AllPlayers(mapOfPlayers);
 //      MainGameEngine engine = new MainGameEngine(myPlayers);
-    	myFactory.create(typeData, levelData, guiData);
+    	myFactory.create(mapOfPlayers, typeData, levelData, guiData);
     	
     }
     
@@ -177,68 +177,5 @@ public class GAEModel implements IGAEModel{
 	public IGameProperties getPropertiesInterface() {
 		return typeData;
 	}
-	
-	
-
-
-//	@Override
-//	public List<ObjParam> getMapCharParams() {
-//		// TODO Auto-generated method stub
-//		return null;
-//	}
-//
-//
-//	@Override
-//	public List<ObjParam> getSelectedMapObjCharParams(List<String> selectedChar) {
-//		// TODO Auto-generated method stub
-//		return null;
-//	}
-//
-//
-//	@Override
-//	public List<ObjParam> getPlayerCharParams() {
-//		// TODO Auto-generated method stub
-//		return null;
-//	}
-//
-//
-//	@Override
-//	public List<ObjParam> getSelected() {
-//		// TODO Auto-generated method stub
-//		return null;
-//	}
-//
-//
-//	@Override
-//	public List<ObjParam> getOutcomes() {
-//		// TODO Auto-generated method stub
-//		return null;
-//	}
-//
-//
-//	@Override
-//	public List<ObjParam> getSelectedOutcomes() {
-//		// TODO Auto-generated method stub
-//		return null;
-//	}
-//
-//
-//	@Override
-//	public List<ObjParam> getConditions() {
-//		return null;
-//	}
-//
-//
-//	@Override
-//	public List<ObjParam> getSelectedConditions(List<String> selectedConditions) {
-//		return typeData.getSelectedConditions(selectedConditions);
-//	}
-//
-//
-//	@Override
-//	public void addActionParam(ActionParams param) {
-//		// TODO Auto-generated method stub
-//		
-//	}
 
 }
