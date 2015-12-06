@@ -20,8 +20,7 @@ public class ActionSAXHandler extends DefaultHandler {
 	private List<ActionParams> actionParams = new ArrayList<ActionParams>();
 	private ActionParams actionParam = null;
 
-	public ActionSAXHandler(Set<String> selectedActions){
-		this.selectedActions = selectedActions;
+	public ActionSAXHandler(){
 	}
 
 	public List<ActionParams> getActionParams(){
