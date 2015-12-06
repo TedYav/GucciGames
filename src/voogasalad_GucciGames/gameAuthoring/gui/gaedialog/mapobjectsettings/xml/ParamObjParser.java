@@ -31,7 +31,7 @@ public class ParamObjParser {
 	Set<RuleParams> allRules = new HashSet<RuleParams>();
 	
 	Set<ActionParam> allActions = new HashSet<ActionParam>();
-	
+		
 	private static final String mainPath = "src/voogasalad_GucciGames/gameAuthoring/gui/gaedialog/mapobjectsettings/xml/";
 	private static final String mapObjCharPath = mainPath + "mapObjCharDependencies.xml";
 	private static final String playerCharPath = mainPath + "playerCharDependencies.xml";

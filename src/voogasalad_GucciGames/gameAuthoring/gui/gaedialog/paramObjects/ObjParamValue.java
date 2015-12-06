@@ -3,20 +3,23 @@ package voogasalad_GucciGames.gameAuthoring.gui.gaedialog.paramObjects;
 import java.util.HashMap;
 import java.util.Map;
 
+import voogasalad_GucciGames.gameAuthoring.model.MapObjectType;
+
 public class ObjParamValue {
 	
 	private ObjType type;
 	private String objName;
 	private Map<String, String> paramValues = new HashMap<String, String>();
+	private MapObjectType mapObjectType;
 	
-	public ObjParamValue(String objName, ObjType type){
+	public ObjParamValue(String objName, ObjType type, MapObjectType  mapObjectType){
 		this.objName = objName;
-
+		this.mapObjectType = mapObjectType;
 		this.type = type;		
 	}
 	
-	public ObjParamValue(){
-		
+	public ObjParamValue(MapObjectType mapObjectType){
+		this.mapObjectType = mapObjectType;
 	}
 	
 	public void setObjName(String name){

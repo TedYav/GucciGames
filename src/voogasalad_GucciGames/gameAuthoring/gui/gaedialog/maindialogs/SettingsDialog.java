@@ -37,7 +37,7 @@ public class SettingsDialog extends AGaeDialog implements ISwitchSettingsPane{
 	private ScrollPane scrollPane = new ScrollPane();
 	private MainPane mainPane;
 	private MapObjectType mapObjType;
-	private ActionParamsValue actionParamsValue = new ActionParamsValue();
+	private ActionParamsValue actionParamsValue;
 	private List<ObjParamValue> charParamValues = new ArrayList<ObjParamValue>();
 	
 
@@ -45,6 +45,7 @@ public class SettingsDialog extends AGaeDialog implements ISwitchSettingsPane{
 	@SuppressWarnings("unchecked")
 	public SettingsDialog(IDialogGaeController controller, MapObjectType mapObjType){
 		super();
+		this.actionParamsValue = new ActionParamsValue(mapObjType);
 		this.mapObjType = mapObjType;
 		prop = helper.loadProperties("dialogproperties/actionsettings.properties");			
 		this.controller = controller;

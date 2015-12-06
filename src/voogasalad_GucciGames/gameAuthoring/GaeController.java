@@ -293,5 +293,11 @@ public class GaeController extends AGuiGaeController implements IModelGaeControl
 		return myImageBrowseDialogs.getDialog(type);
 	}
 
+	@Override
+	public List<ObjParam> getAllPlayerCharParams() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 
 }
