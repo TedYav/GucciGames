@@ -18,17 +18,17 @@ import voogasalad_GucciGames.gameplayer.windows.GameWindow;
 import voogasalad_GucciGames.gameplayer.windows.mainwindow.components.MenuAction;
 import voogasalad_GucciGames.gameplayer.windows.mainwindow.components.SplashScreen;
 
-public class SelectGameTypeScene extends GameMenuScene {
+public class NetworkConfigScene extends GameMenuScene {
 	
-	public SelectGameTypeScene(GameSceneManager manager, GameWindow window, String config) {
+	public NetworkConfigScene(GameSceneManager manager, GameWindow window, String config) {
 		super(manager, window, config);
 	}
 	
 	@Override
     protected Map<String, MenuAction> buildOptionMap() {
 		Map<String, MenuAction> optionMap = new LinkedHashMap<>();
-		optionMap.put("Local Game", () -> myManager.sceneFinished());
-		optionMap.put("Network Game", () -> myManager.loadScene("NetworkConfigScene"));
+		optionMap.put("Host Game", () -> {;});
+		optionMap.put("Join Game", () -> {;});
 		optionMap.put("Back", () -> myManager.loadScene(myConfig.getString("PrevScene")));
 		return optionMap;
 	}
