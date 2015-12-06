@@ -49,11 +49,19 @@ public class GameEngineConnectionHandler extends Thread {
 	                // Accept messages from this client and broadcast them.
 	                // Ignore other clients that cannot be broadcasted to.
 	                while (true) {
+	                    System.out.println("waiting for client input");
 	                    String input = in.readLine();
 	                    if (input == null) {
 	                        return;
 	                    }
-	                    if(input.equals("GAMEDATA")){
+	                   
+	                    System.out.println("server has:" + input.substring(0, 7));
+
+	                    
+	                    if(input.startsWith("GAMEDATA")){
+	                    
+	                    System.out.println("OMG SOME DATA ON SERVER");
+	                    	
 	                    input = in.readLine();
 	                    int lengthXML = Integer.parseInt(input);
 

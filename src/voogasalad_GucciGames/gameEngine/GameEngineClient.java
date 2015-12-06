@@ -30,7 +30,7 @@ public class GameEngineClient extends GameEnginePlayer implements Runnable{
 	private PrintWriter myWriterToServer;
     private String name;
 
-	private static int PORT = 6550; //hard code for now
+	private static int PORT = 6555; //hard code for now
 	private static String SERVER_ADDRESS = "10.190.209.220"; //harcode for now
 	
 	public GameEngineClient(GameEngine gameEngine, String ipAddr) {
@@ -50,14 +50,20 @@ public class GameEngineClient extends GameEnginePlayer implements Runnable{
 
 		        // Process all messages from server, according to the protocol.
 		        while (true) {
+                    System.out.println("waiting for server input");
 		            String input = in.readLine();
 		            
                     if (input == null) {
                         return;
                     }
-
-                    if(input.equals("GAMEDATA")){
+                    System.out.println("client has:" + input.substring(0, 7));
+                    if(input.startsWith("GAMEDATA")){
+	                   // input = in.readLine();
+                        System.out.println("OMG SOME DATA ON CLIENT");
+                    	
 	                    input = in.readLine();
+                    	
+                    	
 	                    int lengthXML = Integer.parseInt(input);
 	                    System.out.println("according to input the length is" + lengthXML);
 	                    StringBuilder myBuilder = new StringBuilder();

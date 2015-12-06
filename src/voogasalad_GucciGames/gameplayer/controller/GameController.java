@@ -196,6 +196,7 @@ public class GameController implements GameControllerInterface, GameControllerAd
 
 	public void refreshGUI() {
 		// TODO Auto-generated method stub
+		System.out.println("refresh?");
 		myCurrentEngine.setController(this);
    	 mySceneManager.loadScene("MainGameScene");
 

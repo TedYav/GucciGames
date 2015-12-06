@@ -1,5 +1,6 @@
 package voogasalad_GucciGames.gameData.wrapper;
 
+import java.lang.reflect.Constructor;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
@@ -80,10 +81,13 @@ public class GameEngine implements IGameInfoToGAE, GameEngineToGamePlayerInterfa
 
 	@Override
 	public void changeCurrentLevel(String newGameLevel){
+		
+		myCurrentLevel = newGameLevel;
+
+		
 		if(iAmAPlayer != null){
 		iAmAPlayer.setLevelEngine(getCurrentLevel());
 		}
-		myCurrentLevel = newGameLevel;
 	}
 
 	@Override
@@ -140,7 +144,10 @@ public class GameEngine implements IGameInfoToGAE, GameEngineToGamePlayerInterfa
 
 	@Override
 	public int getTurnPlayerID() {
+		
 		return getCurrentLevel().getTurnPlayerID();
+		
+		
 	}
 
 	@Override
