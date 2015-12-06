@@ -9,16 +9,9 @@ import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.paramObjects.GameSettin
 import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.paramObjects.ObjParam;
 import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.paramObjects.PlayerParams;
 import voogasalad_GucciGames.gameAuthoring.model.MapObjectType;
-import voogasalad_GucciGames.gameAuthoring.properties.ObjectProperty;
 
 public interface IDialogGaeController {
-	public void createCustomMapObject(ObjectProperty p);
-	
-	public void createCustomUnitType(Map<String, String> m);
-	
-	public void createCustomTileType(Map<String, String> m);
-	
-	public void createCustomStructureType(Map<String, String> m);
+	public void createCustomType(MapObjectType object, String type);
 	
 	public ObservableList<MapObjectType> getImmutableTileTypes();
 

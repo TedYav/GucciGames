@@ -28,6 +28,7 @@ import voogasalad_GucciGames.gameAuthoring.AGuiGaeController;
 import voogasalad_GucciGames.gameAuthoring.model.MapObjectType;
 
 public abstract class ATab extends Tab {
+	private static final int GAP = 20;
 	private static final int WIDTH = 4;
 	protected final Pane myPane = new Pane();
 	protected final GridPane myGridPane = new GridPane();
@@ -53,9 +54,9 @@ public abstract class ATab extends Tab {
 	}
 
 	private void setLayout() {
-		myGridPane.setVgap(20);
-		myGridPane.setHgap(20);
-		Insets padding = new Insets(20, 20, 20, 20);
+		myGridPane.setVgap(GAP);
+		myGridPane.setHgap(GAP);
+		Insets padding = new Insets(GAP,GAP,GAP,GAP);
 		myGridPane.setPadding(padding);
 		VBox container = new VBox(myGridPane, myAddButton);
 		container.setPadding(padding);
@@ -81,22 +82,10 @@ public abstract class ATab extends Tab {
 	}
 
 	private void addType(MapObjectType type) {
-		//if() if the type has characteristics, add a border around iimageview
+		ImageView imageView = myController.getMapObjectImage(type);
 		
-		Image image = new Image(getClass().getClassLoader().getResourceAsStream(type.getImagePath()));
-		ImageView imageView = new ImageView(image);
-
-		double width = type.getWidth();
-		double height = type.getHeight();
-
-		double myX1 = type.getX() * width;
-		double myY1 = type.getY() * height;
-
-		Rectangle2D rect = new Rectangle2D(myX1, myY1, width, height);
-		imageView.setViewport(rect);
-
-		imageView.setFitHeight(height);
-		imageView.setFitWidth(width);
+		imageView.setFitHeight(2*GAP);
+		imageView.setFitWidth(2*GAP);
 
 		imageView.setOnMouseClicked(e -> mouseClicked(imageView, e));
 		imageView.setOnDragDetected(e -> dragDetected(imageView, e));
