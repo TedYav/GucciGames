@@ -10,6 +10,7 @@ import java.io.File;
 import java.util.List;
 import java.util.Map;
 
+import javafx.beans.property.BooleanProperty;
 import javafx.collections.ObservableList;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -75,6 +76,8 @@ public interface IGuiGaeController {
 	public int addLevel(String name);
 	
 	public void setDefaultOwner(int ownerID);
+
+	public BooleanProperty getHasGameProperty();
 
 
 }
