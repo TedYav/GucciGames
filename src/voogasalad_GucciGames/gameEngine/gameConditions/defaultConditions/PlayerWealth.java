@@ -12,7 +12,7 @@ import voogasalad_GucciGames.gameEngine.gamePlayer.chars.PlayerWealthChar;
  *
  */
 public class PlayerWealth extends Conditions {
-	private static final String WEALTH = "wealth";
+	private static final String WEALTH = "PlayerWealthChar";
 	private int myValue =0;
 
 	public PlayerWealth(int value) {
