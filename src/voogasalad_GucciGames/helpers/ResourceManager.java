@@ -6,6 +6,7 @@ import java.util.stream.Collectors;
 
 import javafx.scene.image.Image;
 import javafx.scene.paint.Color;
+import voogasalad.util.fxsprite.Sprite;
 import voogasalad_GucciGames.gameData.GameDataManager;
 import voogasalad_GucciGames.gameData.wrapper.GameInfo;
 import voogasalad_GucciGames.gameplayer.controller.GameControllerInterface;
@@ -39,11 +40,12 @@ public class ResourceManager implements GameResourceManagerToGAE, GameResourceMa
 //		g.toggleCopyOnAccess(true);
 //		List<String> dirs = g.listImageDirectories();
 //		List<String> images = g.getImages();
-//		List<String> tiles = g.getImages("tiles");
+//		List<String> tiles = g.getImages("units");
 //		System.out.println(dirs);
 //		System.out.println(images);
 //		System.out.println(tiles);
-//		g.getImage(tiles.get(1));
+//		System.out.println(g.getSprites());
+//		//g.getImage(tiles.get(1));
 //		
 //	}
 	
@@ -87,15 +89,31 @@ public class ResourceManager implements GameResourceManagerToGAE, GameResourceMa
 				.collect(Collectors.toList());
 	}
 
+	@Override
+	public Sprite getSprite(String URI){
+		copyResource(URI, myConfig.getString("SpritePath"));
+		return getResource(URI, mySpriteDatabase, myConfig.getString("SpritePath"));	
+	}
+	
+	private void copyResource(String URI, String path) {
+		if(copyOnAccess){
+			myData.copyResourceToGame(path + URI, myGameName);
+		}
+	}
+
 	public Image getImage(String URI){
-		copyImageIfToggled(URI);
+		copyResource(URI, myConfig.getString("ImagePath"));
+		return getResource(URI, myImageDatabase, myConfig.getString("ImagePath"));
+	}
+
+	private <T> T getResource(String URI, ResourceDatabase<?> database, String path) {
 		//System.out.println("URL REQUESTED" + URI);
-		Image result = null;
+		T result = null;
 		try{
-			result = myImageDatabase.request(myRootDirectory + myConfig.getString("ImagePath") + URI);
+			result = (T) database.request(myRootDirectory + path + URI);
 		}catch(IllegalArgumentException e){
 			try{
-				result = myImageDatabase.request(myConfig.getString("DefaultRoot") + myConfig.getString("ImagePath") + URI);
+				result = (T) database.request(myConfig.getString("DefaultRoot") + path + URI);
 			}
 			catch(IllegalArgumentException e2){
 				throw e2;
@@ -104,19 +122,18 @@ public class ResourceManager implements GameResourceManagerToGAE, GameResourceMa
 		return result;
 	}
 	
-	private void copyImageIfToggled(String URI) {
-		if(copyOnAccess){
-			myData.copyResourceToGame(myConfig.getString("ImagePath") + URI, myGameName);
-		}
-	}
-
 	public Color getImageColor(String URI){
-		copyImageIfToggled(URI);
-		return myImageAverager.request(URI);
+		return getResource(URI, myImageAverager, "");
 	}
 
+	@Override
 	public List<String> getImages(){
 		return filterURIs(myData.getResources(getExtensions(myConfig.getString("ImageExt")), myConfig.getString("ImagePath")), myConfig.getString("ImagePath"));
+	}
+	
+	@Override
+	public List<String> getSprites(){
+		return filterURIs(myData.getResources(getExtensions(myConfig.getString("ImageExt")), myConfig.getString("SpritePath")), myConfig.getString("SpritePath"));
 	}
 	
 	private List<String> filterURIs(List<String> resources, String base) {
@@ -152,6 +169,7 @@ public class ResourceManager implements GameResourceManagerToGAE, GameResourceMa
 	@Override
 	public void changeGameName(String newName) {
 		myData.renameGameDirectory(myGameName, newName);
+		myGameName = newName;
 	}
 	
 }
