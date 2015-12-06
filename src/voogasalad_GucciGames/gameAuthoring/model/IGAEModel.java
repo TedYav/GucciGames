@@ -18,9 +18,9 @@ public interface IGAEModel {
 	public DisplayMapObject addObject(int levelID, GridPoint gridpoint, MapObjectType mapObjType);
 	public void clearMap(int id);
     
-    public void createCustomTileType(Map<String,String> m);
-    public void createCustomUnitType(Map<String,String> m);
-    public void createCustomStructureType(Map<String, String> m);
+    public void createCustomTileType(MapObjectType m);
+    public void createCustomUnitType(MapObjectType m);
+    public void createCustomStructureType(MapObjectType m);
     
     public ObservableList<MapObjectType> getImmutableTileTypes();
     public ObservableList<MapObjectType> getImmutableUnitTypes();

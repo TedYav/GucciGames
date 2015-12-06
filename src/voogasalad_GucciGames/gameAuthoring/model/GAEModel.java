@@ -94,17 +94,6 @@ public class GAEModel implements IGAEModel{
         int owner = mapObj.getOwnerID();
         mapOfPlayers.get(owner).getMapObjects().remove(mapObj);
     }
-
-//    @Override
-//    public DisplayMapObject addObject(int levelID, GridPoint gridpoint, MapObjectType mapObjType, int ownerID) {
-//    	TargetCoordinateSingle targCoordSingle = new TargetCoordinateSingle(gridpoint.getX(), gridpoint.getY());
-//    	int layer = mapObjType.isTile() ? 0 : 1;
-//    	DisplayMapObject mapObject = new DisplayMapObject(mapObjType, targCoordSingle, ownerID,layer);
-//    	//mapOfPlayers.get(ownerID).addMapObject(mapObject);
-//    	levelData.add(levelID, mapObject);
-//    	//Validate with engine, if failed, return null, else return this mapObject
-//    	return mapObject;
-//    }
     
     @Override
 	public List<DisplayMapObject> getMapObjects(int level) {
@@ -117,21 +106,18 @@ public class GAEModel implements IGAEModel{
     }
 
     @Override
-    public void createCustomTileType (Map<String, String> m) {
-    	MapObjectType objType = new DefaultMapObjectType(m.get("name"), m.get("imagePath"));//TODO: properties file
-        typeData.addTileType(objType);
+    public void createCustomTileType (MapObjectType m) {
+    	typeData.addTileType(m);
     }
 
     @Override
-    public void createCustomUnitType (Map<String, String> m) {  
-    	MapObjectType objType = new DefaultMapObjectType(m.get("name"), m.get("imagePath"));//TODO: properties file
-        typeData.addUnitType(objType);
+    public void createCustomUnitType (MapObjectType m) {  
+    	typeData.addUnitType(m);
     }
     
     @Override
-	public void createCustomStructureType(Map<String, String> m) {
-    	MapObjectType objType = new DefaultMapObjectType(m.get("name"), m.get("imagePath"));//TODO: properties file
-        typeData.addStructureType(objType);
+	public void createCustomStructureType(MapObjectType m) {
+    	typeData.addStructureType(m);
 	}
 
     @Override
@@ -218,7 +204,6 @@ public class GAEModel implements IGAEModel{
 		levelData.add(levelID, mapObj);
 		return mapObj;
 	}
-
 
 	@Override
 	public void setDefaultOwner(int ownerID) {

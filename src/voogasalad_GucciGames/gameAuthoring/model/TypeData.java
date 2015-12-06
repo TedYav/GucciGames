@@ -2,8 +2,6 @@ package voogasalad_GucciGames.gameAuthoring.model;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import voogasalad_GucciGames.gameEngine.defaultCharacteristics.TileCharacteristic;
-import voogasalad_GucciGames.gameEngine.mapObject.MapObject;
 
 public class TypeData {
 	private ObservableList<MapObjectType> tileTypes;

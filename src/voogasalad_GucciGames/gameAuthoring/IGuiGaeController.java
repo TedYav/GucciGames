@@ -32,10 +32,6 @@ public interface IGuiGaeController {
 
 	public void clearMap(int id);
 
-	public void createCustomTileType(Map<String, String> m);
-
-	public void createCustomUnitType(Map<String, String> m);
-
 	public ObservableList<MapObjectType> getImmutableTileTypes();
 
 	public ObservableList<MapObjectType> getImmutableUnitTypes();

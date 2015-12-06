@@ -4,7 +4,7 @@ import javafx.scene.control.ButtonType;
 import javafx.scene.control.ButtonBar.ButtonData;
 
 
-public abstract class AGaeDialog extends javafx.scene.control.Dialog {
+public abstract class AGaeDialog<T> extends javafx.scene.control.Dialog<T> {
 	protected final ButtonType mySave;
 	
 	public AGaeDialog(){

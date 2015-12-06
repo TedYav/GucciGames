@@ -24,7 +24,6 @@ import voogasalad_GucciGames.gameAuthoring.model.DisplayMapObject;
 import voogasalad_GucciGames.gameAuthoring.model.GAEModel;
 import voogasalad_GucciGames.gameAuthoring.model.IGAEModel;
 import voogasalad_GucciGames.gameAuthoring.model.MapObjectType;
-import voogasalad_GucciGames.gameAuthoring.properties.ObjectProperty;
 import voogasalad_GucciGames.gameEngine.mapObject.MapObject;
 import voogasalad_GucciGames.helpers.ImageDatabase;
 
@@ -67,11 +66,6 @@ public class GaeController extends AGuiGaeController implements IModelGaeControl
 	public MapObjectType getDragType() {
 		return myDragType;
 	}
-	
-	@Override
-	public void createCustomStructureType(Map<String, String> m) {
-		myModel.createCustomStructureType(m);
-	}
 
 	@Override
 	public void deleteComponent(DisplayMapObject mapObj) {
@@ -91,16 +85,6 @@ public class GaeController extends AGuiGaeController implements IModelGaeControl
 	@Override
 	public void clearMap(int id) {
 		myModel.clearMap(id);
-	}
-
-	@Override
-	public void createCustomTileType(Map<String, String> m) {
-		myModel.createCustomTileType(m);
-	}
-
-	@Override
-	public void createCustomUnitType(Map<String, String> m) {
-		myModel.createCustomUnitType(m);
 	}
 
 	@Override
@@ -127,17 +111,6 @@ public class GaeController extends AGuiGaeController implements IModelGaeControl
 	@Override
 	public void saveToXML( ){
 		myModel.saveToXML();
-	}
-
-	@Override
-	/**
-	 * create custom map object from a property object Access type via type key
-	 */
-	public void createCustomMapObject(ObjectProperty p) {
-		// TODO do something
-		// Debug:
-		p.printProperty();
-
 	}
 
 	@Override
@@ -296,6 +269,23 @@ public class GaeController extends AGuiGaeController implements IModelGaeControl
 	@Override
 	public BooleanProperty getHasGameProperty(){
 		return myHasGameProperty;
+	}
+
+	@Override
+	public void createCustomType(MapObjectType object, String type) {
+		switch (type) {
+		case "tile":
+			myModel.createCustomTileType(object);
+			break;
+		case "structure":
+			myModel.createCustomStructureType(object);
+			break;
+		case "unit":
+			myModel.createCustomUnitType(object);
+			break;
+		default:
+			throw new RuntimeException("No "+type+" type");
+		}
 	}
 
 
