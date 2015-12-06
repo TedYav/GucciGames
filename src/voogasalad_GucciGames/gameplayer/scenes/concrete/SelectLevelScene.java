@@ -41,7 +41,7 @@ public class SelectLevelScene extends GameMenuScene {
 			.map( name -> levels.get(name))
 			.filter( level -> level.isMyChoosability() )
 			.forEach( level -> options.put(level.getLevelName(), () -> loadLevel(level)));
-		options.put("Back", () -> myManager.loadScene("MainMenuScene"));
+		options.put("Back", () -> myManager.loadScene(myConfig.getString("PrevScene")));
 		return options;
 	}
 
