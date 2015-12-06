@@ -22,7 +22,6 @@ import voogasalad_GucciGames.gameAuthoring.model.GAEModel;
 import voogasalad_GucciGames.gameAuthoring.model.IGAEModel;
 import voogasalad_GucciGames.gameAuthoring.model.MapObjectType;
 import voogasalad_GucciGames.gameAuthoring.properties.ObjectProperty;
-import voogasalad_GucciGames.gameData.wrapper.GameInfo;
 import voogasalad_GucciGames.gameEngine.mapObject.MapObject;
 import voogasalad_GucciGames.helpers.ImageDatabase;
 
@@ -93,9 +92,9 @@ public class GaeController extends AGuiGaeController implements IModelGaeControl
 	@Override
 	@Deprecated
 	public void saveToXML(File file) {
-		
+
 	}
-	
+
 	@Override
 	public void saveToXML( ){
 		model.saveToXML();
@@ -198,11 +197,12 @@ public class GaeController extends AGuiGaeController implements IModelGaeControl
 		return getMapObjectImage(object.getType());
 	}
 
+	@Override
 	public void initGame(String name) {
 		//TODO: Add the name somewhere
 		myGui.initGame(name);
 	}
-	
+
 	@Override
 	public LevelTabPane getLevelTabPane(){
 		return myGui.getLevelTabPane();
@@ -218,7 +218,7 @@ public class GaeController extends AGuiGaeController implements IModelGaeControl
 			List<String> allComponents) {
 		model.setGuiComponents(location, allComponents);
 	}
-	
+
 	@Override
 	public int addLevel(String name) {
 		return model.addLevel(name);
@@ -235,7 +235,7 @@ public class GaeController extends AGuiGaeController implements IModelGaeControl
 	}
 
 	@Override
-<<<<<<< HEAD
+
 	public List<ObjParam> getAllMapObjCharParams() {
 		// TODO Auto-generated method stub
 		return null;
@@ -286,11 +286,12 @@ public class GaeController extends AGuiGaeController implements IModelGaeControl
 	@Override
 	public void addActionParam() {
 		// TODO Auto-generated method stub
-		
-=======
+
+	}
+	@Override
 	public void setDefaultOwner(int ownerID) {
 		model.setDefaultOwner(ownerID);
->>>>>>> 6f0cc1cb7b00804b9c66a6aa7b7eae52b75e89e9
+
 	}
 
 
