@@ -19,6 +19,8 @@ public interface IGameInfoToGAE {
 	
 	public List<String> getChoosableLevels();
 
-	public void setEngine(String gameName, GameLevelEngine engine);   
+	public void setEngine(String gameName, GameLevelEngine engine);  
+	
+	public void addTransferableCharacteristic(String name);
 	
 }

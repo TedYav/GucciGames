@@ -9,7 +9,7 @@ public class GameParameters extends CommunicationParameters implements GameParam
     private double mapWidth;
     private double mapHeight;
     private String gameName;
-    private Map<String,Double> score;
+   // private Map<String,Double> score;
     private int currentTurnPlayer;
 
     private GameResult gameResult;
@@ -32,6 +32,7 @@ public class GameParameters extends CommunicationParameters implements GameParam
     public void setGameName (String gameName) {
         this.gameName = gameName;
     }
+   /*
     @Override
 	public Map<String,Double> getScore () {
         return score;
@@ -39,6 +40,7 @@ public class GameParameters extends CommunicationParameters implements GameParam
     public void setScore (Map<String,Double> score) {
         this.score = score;
     }
+    */
     public int getCurrentTurnPlayer () {
         return currentTurnPlayer;
     }

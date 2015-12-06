@@ -9,13 +9,18 @@ import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.dialogcomponents.DropDo
 import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.paramObjects.ObjParam;
 import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.paramObjects.ObjParamValue;
 import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.paramObjects.OutcomeParam;
+import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.paramObjects.OutcomeParamValue;
 import voogasalad_GucciGames.gameAuthoring.model.MapObjectType;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
+import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.GridPane;
+import javafx.scene.text.Font;
 
 public class ConditionOutcomePane extends GridPane {
+	
+	private Label title  = new Label("Add an Outcome to Action");
 	
 	private TextField selectedOutcome = new TextField();
 	
@@ -38,6 +43,7 @@ public class ConditionOutcomePane extends GridPane {
 	
 	public ConditionOutcomePane(IDialogGaeController controller, List<String> conditions, List<String> outcomes, MapObjectType type){
 		super();
+		this.title.setFont(new Font("Arial", 20));
 		this.type = type;
 		this.tableView = new DialogTableView(conditions, "Select Conditions");
 		this.outcomesMenuField = new DropDownMenuField(outcomes);
@@ -75,11 +81,14 @@ public class ConditionOutcomePane extends GridPane {
 		}
 	}
 	
-	protected ObjParamValue getOutcomeValue(){
+	protected OutcomeParamValue getOutcomeValue(){
+		OutcomeParamValue outcomeParam = null;
 		if(objParamPane != null){
-			return objParamPane.getAllInputs() ;
+			
+			outcomeParam = new OutcomeParamValue(selectedOutcome.getText(), type, objParamPane.getAllInputs());
+
 		}
-		return null;
+		return outcomeParam;
 		
 		
 	}

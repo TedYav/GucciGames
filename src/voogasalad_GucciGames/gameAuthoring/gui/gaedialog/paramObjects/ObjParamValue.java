@@ -15,15 +15,43 @@ public class ObjParamValue {
 		this.type = type;		
 	}
 	
+	public ObjParamValue(){
+		
+	}
+	
+	public void setObjName(String name){
+		this.objName = name;
+	}
+	
+	public void setObjType(ObjType type){
+		this.type = type;
+	}
+	
 	public String getName(){
 		return objName;
 	}
 	
-		
-	public void setParamValues(Map<String, String> map){
-		this.paramValues = map;
+	public Map<String, String> getParamValues(){
+		return this.paramValues;
 	}
 	
+		
+	public void setParamValues(Map<String, String> map){
+		System.out.println("setting chars");
+		map.forEach((k,v) -> {
+			System.out.println(k);
+			System.out.println(v);
+			paramValues.put(k, v);
+		});
+	}
+	
+	public int numParams() {
+		return paramValues.size();
+	}
+	
+	public Map<String, String> getMap() {
+		return paramValues;
+	}
 	
 
 }

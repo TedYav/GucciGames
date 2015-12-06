@@ -8,6 +8,8 @@ import voogasalad.util.reflection.Reflection;
 import voogasalad_GucciGames.gameAuthoring.IDialogGaeController;
 import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.dialogcomponents.RadioBtnField;
 import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.maindialogs.ISwitchSettingsPane;
+import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.paramObjects.ActionParamsValue;
+import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.paramObjects.ObjParamValue;
 import voogasalad_GucciGames.gameAuthoring.model.MapObjectType;
 import javafx.geometry.HPos;
 import javafx.geometry.Insets;
@@ -39,13 +41,18 @@ public class MainPane extends GridPane{
 	private Properties prop;
 	private IDialogGaeController dialogController;
 	
+	private ActionParamsValue actionParamsValue;
+	private List<ObjParamValue> charParamValues;
+	
 	public MainPane(ISwitchSettingsPane settingsPaneController, 
-			Properties prop, IDialogGaeController dialogController , MapObjectType type){
+			Properties prop, IDialogGaeController dialogController , MapObjectType type, ActionParamsValue actionParamsValue, List<ObjParamValue> objParamValue){
 		title = new Text("I want to add a new ...");
 		this.type = type;
 		this.settingsPaneController = settingsPaneController;
 		this.prop = prop;
 		this.dialogController = dialogController;
+		this.actionParamsValue = actionParamsValue;
+		this.charParamValues = objParamValue;
 		items.add("Action");
 		items.add("Characteristic");	
 		radioBtnField = new RadioBtnField(items);
@@ -102,8 +109,18 @@ public class MainPane extends GridPane{
 		nextBtn.setOnAction(e -> {
 			selected = radioBtnField.getSelected();	
 			String name = settingsPackagePath + selected + "Pane";
-			settingsPaneController.switchSettingsPane(
-					reflection.createInstance(name, settingsPaneController, dialogController, prop, type));
+			if (selected.equals("Action")){
+				settingsPaneController.switchSettingsPane(
+						reflection.createInstance(name, settingsPaneController,
+								dialogController, prop, type, this.actionParamsValue));
+			} else {
+				settingsPaneController.switchSettingsPane(
+						reflection.createInstance(name, settingsPaneController,
+								dialogController, prop, type, this.charParamValues));
+			}
+			
+			
+			
 		});
 	}
 	

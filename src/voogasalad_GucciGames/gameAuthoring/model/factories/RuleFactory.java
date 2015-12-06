@@ -1,4 +1,4 @@
-package voogasalad_GucciGames.gameEngine.gameRules;
+package voogasalad_GucciGames.gameAuthoring.model.factories;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -8,6 +8,7 @@ import java.util.Properties;
 
 import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.paramObjects.RuleParams;
 import voogasalad_GucciGames.gameEngine.CommunicationParameters.BasicParameters;
+import voogasalad_GucciGames.gameEngine.gameRules.Rules;
 
 /**
  *
@@ -36,6 +37,7 @@ public class RuleFactory {
 		Class<Rules> rule = (Class<Rules>) Class.forName(prop.getProperty(actionName));
 		Constructor<Rules> ruleConstructor = rule.getDeclaredConstructor(RuleParams.class, BasicParameters.class);
 		Rules ruleInstance = ruleConstructor.newInstance(basicParams);
+
 
 		// need to add code for groovy
 		return basicParams;

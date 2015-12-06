@@ -7,6 +7,7 @@ public class ObjParam{
 	
 	private String name;
 	private Map<String, String> params = new HashMap<String, String>();
+	private Map<Integer, String> order = new HashMap<Integer, String>();
 	private ObjType type;
 	private int ownerId;
 	
@@ -43,6 +44,18 @@ public class ObjParam{
 	public String getType() {
 		// TODO Auto-generated method stub
 		return null;
+	}
+	
+	public void addParamOrder(int i, String name) {
+		order.put(i, name);
+	}
+	
+	public Map<Integer, String> getParamOrderMap() {
+		return order;
+	}
+	
+	public Map<String, String> getParamTypeMap() {
+		return params;
 	}
 
 

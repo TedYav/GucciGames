@@ -24,13 +24,16 @@ public class CharacteristicPane extends GridPane {
 	ISwitchSettingsPane switchPane;
 	private List<String> allChars = new ArrayList<String>();
 	private ObjParamVBox objParamVBox;
+	private List<ObjParamValue> allCharParams;
 	
 	
 	public CharacteristicPane(ISwitchSettingsPane switchPane, 
-			IDialogGaeController controller, Properties prop, MapObjectType type){
+			IDialogGaeController controller, Properties prop, MapObjectType type, List<ObjParamValue> charParamValues){
+		
 		super();
 		controller.getPropertiesInterface().getAllMapObjCharParams().
 		forEach(e -> allChars.add(e.getName()));
+		this.allCharParams = charParamValues;
 		
 		this.controller = controller;
 		this.switchPane = switchPane;
@@ -52,12 +55,14 @@ public class CharacteristicPane extends GridPane {
 	
 	private void addSaveAction(){
 		saveBtn.setOnAction(e -> {
+		
 			
 			List<String> data = dialogTableView.getData();
 			List<ObjParam> charParams =
 					controller.getPropertiesInterface().getSelectedMapObjCharParams(data);
-			objParamVBox = new ObjParamVBox(switchPane, charParams);
+			objParamVBox = new ObjParamVBox(switchPane, charParams, this.allCharParams);
 			this.switchPane.switchSettingsPane(objParamVBox);
+			
 		});
 	}
 	
