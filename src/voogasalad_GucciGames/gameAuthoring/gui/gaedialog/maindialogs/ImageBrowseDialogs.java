@@ -15,6 +15,7 @@ public class ImageBrowseDialogs{
 		for(String s:myDialogNames){
 			myDialogs.put(s, new ImageBrowseDialog(resManager, s));
 		}
+		myDialogs.put("sprites", new SpriteBrowseDialog(resManager));
 	}
 
 	public Dialog<String> getDialog(String type){

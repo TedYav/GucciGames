@@ -21,11 +21,11 @@ import voogasalad_GucciGames.helpers.GameResourceManagerToGAE;
 class ImageBrowseDialog extends Dialog<String> {
 	private static int SIZE = 40;
 	private GridPane myGrid;
-	private final GameResourceManagerToGAE myResManager;
+	protected final GameResourceManagerToGAE myResManager;
 	private final IntegerProperty mySelectImg = new SimpleIntegerProperty(-1);
 	private final TwoWayMap<Integer, ImageView> myMap = new TwoWayMap<>();
 	private Rectangle myBound = null;
-	private final int imgPerRow;
+	private int imgPerRow;
 
 	ImageBrowseDialog(GameResourceManagerToGAE resManager, String type) {
 		myResManager = resManager;
@@ -35,8 +35,7 @@ class ImageBrowseDialog extends Dialog<String> {
 		getDialogPane().getButtonTypes().addAll(ok, ButtonType.CANCEL);
 		addGrid();
 		
-		List<String> images = resManager.getImages(type);
-		imgPerRow = (int)Math.sqrt(images.size());
+		List<String> images = getImgs(type);
 		addImgs(images);
 
 		Node okButton = getDialogPane().lookupButton(ok);
@@ -51,18 +50,26 @@ class ImageBrowseDialog extends Dialog<String> {
 			return null;
 		});
 	}
+	
+	protected List<String> getImgs(String type) {
+		return myResManager.getImages(type);
+	}
 
 	private void addImgs(List<String> images) {
+		imgPerRow = (int)Math.sqrt(images.size());
 		for (int i = 0; i < images.size(); i++) {
 			ImageView img = addImg(images.get(i));
 			myMap.put(i, img);
 			myGrid.add(img, i % imgPerRow, i / imgPerRow);
 		}
-
+	}
+	
+	protected ImageView getImgFromDatabase(String URI){
+		return new ImageView(myResManager.getImage(URI));
 	}
 
 	private ImageView addImg(String URI) {
-		ImageView img = new ImageView(myResManager.getImage(URI));
+		ImageView img = getImgFromDatabase(URI);
 		img.setFitHeight(SIZE);
 		img.setFitWidth(SIZE);
 		img.setOnMouseClicked(e -> onClicked(img, e));
