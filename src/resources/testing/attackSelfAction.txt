@@ -1,0 +1,9 @@
+@Override
+protected ChangedParameters executeAction(LocationParameters params){
+		hc = params.getCalledMe().getCharacteristic("HealthCharacteristic");
+		println hc.getHealth();
+		hc.setHealth(hc.getHealth()-10);
+		println hc.getHealth();
+		return null;
+}
+

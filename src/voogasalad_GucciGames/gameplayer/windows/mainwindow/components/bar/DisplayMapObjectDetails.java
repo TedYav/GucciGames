@@ -1,6 +1,7 @@
 package voogasalad_GucciGames.gameplayer.windows.mainwindow.components.bar;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 import java.util.Observable;
@@ -20,12 +21,14 @@ public class DisplayMapObjectDetails extends DisplayComponent implements ListCha
     private ListView<String> listView;
     private List<String> attributeList;
     private ResourceBundle myBundle=PlayerConfig.load("components.Bar");
+    private ResourceBundle myCssBundle = PlayerConfig.load(myBundle.getString("cssclass"));
 
     public DisplayMapObjectDetails(GameScene scene, GameControllerInterface controller) {
         super(scene,controller);
         attributeList= new ArrayList<String>();
         attributeList.add(myBundle.getString("detailplaceholder"));
         listView=new ListView<String>(FXCollections.observableList(attributeList));
+        listView.getStyleClass().add(myCssBundle.getString("listviewdetails"));
         getController().addActiveMOObserver(this);
     }
     @Override
@@ -56,7 +59,8 @@ public class DisplayMapObjectDetails extends DisplayComponent implements ListCha
              attributeList.clear();
              attributeList.add(mapObj.getName());
              for (String s: map.keySet()) {
-                 attributeList.add(map.get(s));
+                 Arrays.asList(map.get(s).split("\n")).forEach(c->System.out.println(":"+c.trim()+":"));
+                 Arrays.asList(map.get(s).split("\n")).forEach(c->attributeList.add(c.trim()));
              }
              listView.setItems(FXCollections.observableList(attributeList));
          }

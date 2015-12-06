@@ -49,7 +49,6 @@ public class CharacteristicsSAXHandler extends DefaultHandler {
 	public void endElement(String uri, String localName,
 			String qName) throws SAXException {
 		if(qName.equalsIgnoreCase("element") && characteristicsParam != null){
-			System.out.println("adding: " + characteristicsParam.getName());
 			this.characteristicsParams.add(characteristicsParam);
 		}
 
