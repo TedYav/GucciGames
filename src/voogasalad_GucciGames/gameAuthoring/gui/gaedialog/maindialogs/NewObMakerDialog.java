@@ -3,6 +3,8 @@ import java.util.Properties;
 
 import voogasalad_GucciGames.gameAuthoring.IDialogGaeController;
 import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.DialogElements;
+import voogasalad_GucciGames.gameAuthoring.model.DefaultMapObjectType;
+import javafx.scene.control.Button;
 import javafx.scene.control.ButtonBar.ButtonData;
 import javafx.scene.control.ButtonType;
 import javafx.scene.layout.GridPane;
@@ -13,7 +15,6 @@ public class NewObMakerDialog extends AGaeDialog{
 	private Properties prop;
 	private IDialogGaeController controller;
 	private GridPane gridPane = new GridPane();
-	
 	
 	public NewObMakerDialog( IDialogGaeController controller){
 		super();
@@ -27,10 +28,14 @@ public class NewObMakerDialog extends AGaeDialog{
 
 
 	@Override
-	protected void setSaveAction() {
-		// TODO Auto-generated method stub
-		
-	}	
+	protected void setSaveAction() {		
+		this.setResultConverter(dialogButton -> {
+		    if (dialogButton == mySave) {
+		        //DefaultMapObjectType mapObjType = new DefaultMapObjectType();
+		    }
+		    return null;
+		});
+	 }	
  
 	 
 

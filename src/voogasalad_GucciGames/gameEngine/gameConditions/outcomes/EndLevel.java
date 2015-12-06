@@ -12,16 +12,19 @@ import voogasalad_GucciGames.gameEngine.gameConditions.Conditions;
  * @author Sally Al
  *
  */
-public class EndGame extends Outcome {
-
-	public EndGame(List<Conditions> conditions, OutcomeParams conditionParams) {
+public class EndLevel extends Outcome {
+	private static final String NEXT_LEVEL="nextLevel";
+	OutcomeParams myParams;
+	public EndLevel(List<Conditions> conditions, OutcomeParams conditionParams) {
 		super(conditions, conditionParams);
+		myParams = conditionParams;
 	}
 
 	@Override
 	ChangedParameters applyOutcome(BasicParameters params,ChangedParameters changedParams, int i) {
-		params.getEngine().setGameWon(true);
-		System.out.println("setgame="+params.getEngine().isGameWon());
+		params.getEngine().setEndLevel(true);
+	//	params.getEngine().changeLevel(myParams.getArgumentValue(NEXT_LEVEL));
+		System.out.println("setgame="+params.getEngine().hasLevelEnded());
 		return changedParams;
 	}
 

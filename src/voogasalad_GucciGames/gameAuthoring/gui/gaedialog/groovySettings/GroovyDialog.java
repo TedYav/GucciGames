@@ -30,9 +30,10 @@ public class GroovyDialog extends AGaeDialog implements ISwitchGroovyPane{
 	private AGroovyParams param;
 	private String nextTitle;
 	
-	@SuppressWarnings("unchecked")
+	//@SuppressWarnings("unchecked")
 	public GroovyDialog(){
 		super();
+		
 		groovyMainPane = new MainPane(this);
 		stackPane.setPrefSize(WIDTH, HEIGHT);
 		stackPane.setPadding(new Insets(15,15,15,15));
@@ -42,10 +43,8 @@ public class GroovyDialog extends AGaeDialog implements ISwitchGroovyPane{
 		
 		stackPane.getChildren().add(groovyMainPane);		
 		this.getDialogPane().setContent(stackPane);
-		setHeaderText("Create Custom Game Components Using Groovy");
 		
-		this.getDialogPane().getButtonTypes().addAll(ButtonType.CLOSE);
-
+		setHeaderText("Create Custom Game Components Using Groovy");		
 
 		
 	}
@@ -58,7 +57,6 @@ public class GroovyDialog extends AGaeDialog implements ISwitchGroovyPane{
 		stackPane.getChildren().add((Node) p);
 
 		setHeaderText(title);
-		StackPane.setMargin((Node) p , new Insets(8,8,8,8));
 		
 	}
 
