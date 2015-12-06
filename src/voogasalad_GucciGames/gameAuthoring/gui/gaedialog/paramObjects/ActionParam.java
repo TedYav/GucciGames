@@ -18,6 +18,11 @@ public class ActionParam {
 		List<String> items = Arrays.asList(rules.split("\\s*,\\s*"));
 		myRules.addAll(items);
 		
+		
+	}
+	
+	public String getName(){
+		return this.name;
 	}
 	
 	public void setCharacteristics(String characteristics){

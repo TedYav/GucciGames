@@ -2,6 +2,7 @@ package voogasalad_GucciGames.gameAuthoring.model;
 
 import java.util.List;
 
+import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.paramObjects.ActionParam;
 import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.paramObjects.ActionParamsValue;
 import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.paramObjects.ObjParam;
 
@@ -24,7 +25,7 @@ public interface IGameProperties {
 	
 	public List<ObjParam> getSelectedConditions(List<String> selectedConditions);
 	
-	public void addActionParam(ActionParamsValue param);
+	public void addActionParam(ActionParam param);
 
 	
 	

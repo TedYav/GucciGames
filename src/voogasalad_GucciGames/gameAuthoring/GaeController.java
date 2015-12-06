@@ -16,12 +16,9 @@ import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
 import voogasalad.util.fxsprite.Sprite;
 import voogasalad_GucciGames.gameAuthoring.gui.GAEGui;
-<<<<<<< HEAD
 import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.paramObjects.ActionParamsValue;
-=======
 import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.maindialogs.ImageBrowseDialogs;
-import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.paramObjects.ActionParams;
->>>>>>> master
+import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.paramObjects.ActionParam;
 import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.paramObjects.GameSettingParams;
 import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.paramObjects.ObjParam;
 import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.paramObjects.PlayerParams;
@@ -266,7 +263,6 @@ public class GaeController extends AGuiGaeController implements IModelGaeControl
 	}
 
 	@Override
-<<<<<<< HEAD
 	public List<ActionParamsValue> getAllActions() {
 		// TODO Auto-generated method stub
 		return null;
@@ -288,7 +284,6 @@ public class GaeController extends AGuiGaeController implements IModelGaeControl
 
 
 
-=======
 	public GameResourceManagerToGAE getResourceManager() {
 		return myResManager;
 	}
@@ -298,6 +293,5 @@ public class GaeController extends AGuiGaeController implements IModelGaeControl
 		return myImageBrowseDialogs.getDialog(type);
 	}
 
->>>>>>> master
 
 }

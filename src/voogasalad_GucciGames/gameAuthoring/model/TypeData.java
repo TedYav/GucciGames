@@ -10,6 +10,7 @@ import java.util.stream.Collectors;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.mapobjectsettings.xml.ParamObjParser;
+import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.paramObjects.ActionParam;
 import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.paramObjects.ActionParamsValue;
 import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.paramObjects.ObjParam;
 import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.paramObjects.RuleParams;
@@ -19,21 +20,12 @@ public class TypeData implements IGameProperties {
 	private ObservableList<MapObjectType> unitTypes;
 	private ObservableList<MapObjectType> structureTypes;
 	
-<<<<<<< HEAD
-	private Map<String, ActionParamsValue> myActionParams = new HashMap<String, ActionParamsValue>();
+	private Map<String, ActionParam> myActionParams = new HashMap<String, ActionParam>();
 	private Map<String, ObjParam> myMapObjectCharParams = new HashMap<String, ObjParam>();
 	private Map<String, RuleParams> myRules = new HashMap<String, RuleParams>();
 	private Map<String, ObjParam> myConditions = new HashMap<String, ObjParam>();
 	private Map<String, ObjParam> myOutcomes = new HashMap<String, ObjParam>();
 	private Map<String, ObjParam> myPlayerCharParams = new HashMap<String, ObjParam>();
-=======
-	private Map<String, ActionParams> myActionParams = new HashMap<>();
-	private Map<String, ObjParam> myMapObjectCharParams = new HashMap<>();
-	private Map<String, RuleParams> myRules = new HashMap<>();
-	private Map<String, ObjParam> myConditions = new HashMap<>();
-	private Map<String, ObjParam> myOutcomes = new HashMap<>();
-	private Map<String, ObjParam> myPlayerCharParams = new HashMap<>();
->>>>>>> master
 
 	public TypeData() {
     	ParamObjParser parser = new ParamObjParser();
@@ -53,8 +45,8 @@ public class TypeData implements IGameProperties {
     	for (RuleParams param: rules){
     		myRules.put(param.getName(), param);
     	}
-    	Set<ActionParamsValue> actions = parser.getActions();
-    	for (ActionParamsValue action: actions){
+    	Set<ActionParam> actions = parser.getActions();
+    	for (ActionParam action: actions){
     		myActionParams.put(action.getName(), action);
     	}
 		
@@ -135,7 +127,7 @@ public class TypeData implements IGameProperties {
 	}
 
 	@Override
-	public void addActionParam(ActionParamsValue param) {
+	public void addActionParam(ActionParam param) {
 		myActionParams.put(param.getName(), param);
 		
 	}

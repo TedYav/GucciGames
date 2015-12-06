@@ -15,12 +15,8 @@ public class NewObjMakerDialog extends AGaeDialog{
 	private GridPane gridPane = new GridPane();
 	private String myType;
 	
-	public NewObjMakerDialog( IDialogGaeController controller, String type){
 
-<<<<<<< HEAD:src/voogasalad_GucciGames/gameAuthoring/gui/gaedialog/maindialogs/NewObjMakerDialog.java
-=======
-	public NewObMakerDialog(AGuiGaeController controller, String type) {
->>>>>>> master:src/voogasalad_GucciGames/gameAuthoring/gui/gaedialog/maindialogs/NewObMakerDialog.java
+	public NewObjMakerDialog(AGuiGaeController controller, String type) {
 		super();
 		myType = type;
 		GaeDialogHelper helper = new GaeDialogHelper();
