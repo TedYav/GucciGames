@@ -1,6 +1,7 @@
 package voogasalad_GucciGames.gameData.wrapper;
 
 import java.util.ArrayList;
+
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
@@ -11,6 +12,10 @@ import voogasalad_GucciGames.gameEngine.GameLevelEngine;
 import voogasalad_GucciGames.gameEngine.PlayerMapObjectInterface;
 import voogasalad_GucciGames.gameEngine.CommunicationParameters.ChangedParameters;
 import voogasalad_GucciGames.gameEngine.CommunicationParameters.GridCoordinateParameters;
+import voogasalad_GucciGames.gameEngine.gamePlayer.AllPlayers;
+import voogasalad_GucciGames.gameEngine.gamePlayer.GamePlayerPerson;
+import voogasalad_GucciGames.gameEngine.gamePlayer.chars.APlayerChars;
+import voogasalad_GucciGames.gameEngine.gamePlayer.chars.PlayerScore;
 import voogasalad_GucciGames.gameEngine.targetCoordinate.ATargetCoordinate;
 import voogasalad_GucciGames.gameplayer.controller.GameParametersInterface;
 
@@ -28,28 +33,64 @@ public class GameEngine implements IGameInfoToGAE, GameEngineToGamePlayerInterfa
 	private Map<String,GameLevelEngine> myLevelsMap;
 	private String myGameName;
 	private String myCurrentLevel;
+	private GameStats myGameStats;
+	private List<String> played;
 
 	private String myInitialLevel;
+	
+	private boolean isChangingLevel;
+	private List<String> transferablePlayerCharacteristics;
 
 
 	public GameEngine(String initialLevel){
-	    myLevelsMap = new HashMap<String,GameLevelEngine>();
-	    this.myInitialLevel = initialLevel;
-	    this.myCurrentLevel = initialLevel;
+		myLevelsMap = new HashMap<String,GameLevelEngine>();
+		this.myInitialLevel = initialLevel;
+		this.myCurrentLevel = initialLevel;
+		this.myGameStats = new GameStats();
 
-	    myGameName = "RandomName";
+		myGameName = "RandomName";
+
+		this.transferablePlayerCharacteristics = new ArrayList<String>();
+		this.transferablePlayerCharacteristics.add("PlayerScore");
+		isChangingLevel = false;
+		this.played = new ArrayList<>();
 
 	}
 
 	public void resetGame(){
+		//then here too
 		myCurrentLevel = myInitialLevel;
 	}
 
 	@Override
 	public void changeCurrentLevel(String newGameLevel){
+		if(this==null){
+			return;
+		}
+		isChangingLevel = true;
+		//Have to have same number of players between levels
 		myCurrentLevel = newGameLevel;
+//		System.out.println("Tina " + newGameLevel);
+//		if (!played.contains(newGameLevel)){
+			setUpGameStats();
+//			System.out.println("here "+newGameLevel);
+//			played.add(newGameLevel);
+//		}
 	}
 
+	private boolean setUpGameStats(){
+		this.getCurrentLevel().setGameStats(myGameStats);
+		AllPlayers players = this.getCurrentLevel().getPlayers();
+		for (Integer id: players.getAllIds()){
+			GamePlayerPerson player = players.getPlayerById(id);
+			for(String ch: transferablePlayerCharacteristics){
+				if(player.hasCharacteristic(ch)){
+					this.myGameStats.addTransferableCharacteristic(id, player.getCharacteristics(ch),ch);
+				}
+			}
+		}
+		return true;
+	}
 
 	public GameEngine(String initialLevel, String gameName){
 		this(initialLevel);
@@ -57,7 +98,6 @@ public class GameEngine implements IGameInfoToGAE, GameEngineToGamePlayerInterfa
 	}
 	@Override
 	public String getGameName() {
-		// TODO Auto-generated method stub
 		return this.myGameName;
 	}
 
@@ -69,31 +109,10 @@ public class GameEngine implements IGameInfoToGAE, GameEngineToGamePlayerInterfa
 	 * @return
 	 */
 	public void addLevel(String levelName, GameLevelEngine myEngine){
-	    myEngine.setName(levelName);
-	    myLevelsMap.put(levelName, myEngine);
+		myEngine.setName(levelName);
+		myLevelsMap.put(levelName, myEngine);
 
-//		return GameLevelEngine;
 	}
-
-
-
-	/*
-	public void swapLevels(int first, int second){
-		if (myLevelsMap.containsKey(first) && myLevelsMap.containsKey(second)){
-			GameLevelEngine gameOne = myLevelsMap.get(first);
-			gameOne.changeID(second);
-
-			GameLevelEngine gameTwo = myLevelsMap.get(second);
-			gameTwo.changeID(first);
-
-			myLevelsMap.put(first, gameTwo);
-			myLevelsMap.put(second, gameOne);
-		}
-		else{
-			System.out.println("One or more level(s) not found");
-		}
-	}
-    */
 
 	// I'm sorry for the code below
 	// Java wouldn't let me modify the return type in the interface, don't know why
@@ -108,9 +127,9 @@ public class GameEngine implements IGameInfoToGAE, GameEngineToGamePlayerInterfa
 		List<String> levelNames = new ArrayList<String>();
 		for (GameLevelEngine engine : myLevelsMap.values()){
 			if(engine.isMyChoosability()){
-			levelNames.add(engine.getLevelName());
+				levelNames.add(engine.getLevelName());
 			}
-			}
+		}
 		return levelNames;
 	}
 
@@ -122,7 +141,25 @@ public class GameEngine implements IGameInfoToGAE, GameEngineToGamePlayerInterfa
 
 	public GameLevelEngine getCurrentLevel() {
 		// TODO Auto-generated method stub
+		if(isChangingLevel){
+			updateTransfer();
+			isChangingLevel = false;
+		}
 		return myLevelsMap.get(myCurrentLevel);
+	}
+	
+	private boolean updateTransfer(){
+		AllPlayers players = this.myLevelsMap.get(myCurrentLevel).getPlayers();
+		for (Integer id: players.getAllIds()){
+			if(this.myGameStats.contains(id)){
+				GamePlayerPerson player = players.getPlayerById(id);
+				Map<String,APlayerChars> map = this.myGameStats.getCharacteristics(id);
+				for(String ch: map.keySet()){
+					player.addCharacterstic(ch, map.get(ch));
+				}
+			}
+		}
+		return true;
 	}
 
 
@@ -177,11 +214,24 @@ public class GameEngine implements IGameInfoToGAE, GameEngineToGamePlayerInterfa
 		// TODO Auto-generated method stub
 		return getCurrentLevel().getGameParameters();
 	}
+	
+	@Override
+	public boolean hasLevelEnded () {
+		return getCurrentLevel().hasLevelEnded();
+	}
 
-    @Override
-    public boolean hasLevelEnded () {
-        return getCurrentLevel().hasLevelEnded();
-    }
+	@Override
+	public APlayerChars getPlayerCharacteristic(String name, int id) {
+		// TODO Auto-generated method stub
+		return this.myLevelsMap.get(myCurrentLevel).getPlayers().getPlayerById(id).getCharacteristics(name);
+	}
+
+	@Override
+	public void addTransferableCharacteristic(String name) {
+		this.transferablePlayerCharacteristics.add(name);
+
+	}
+
 
 
 

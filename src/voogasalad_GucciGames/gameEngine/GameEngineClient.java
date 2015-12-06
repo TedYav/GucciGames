@@ -12,6 +12,7 @@ import com.thoughtworks.xstream.XStream;
 
 import voogasalad_GucciGames.gameEngine.CommunicationParameters.ChangedParameters;
 import voogasalad_GucciGames.gameEngine.CommunicationParameters.GridCoordinateParameters;
+import voogasalad_GucciGames.gameEngine.gamePlayer.chars.APlayerChars;
 import voogasalad_GucciGames.gameEngine.targetCoordinate.ATargetCoordinate;
 import voogasalad_GucciGames.gameplayer.controller.GameParametersInterface;
 
@@ -163,6 +164,12 @@ public class GameEngineClient implements GameEngineToGamePlayerInterface, Runnab
         // TODO Auto-generated method stub
         
     }
+
+	@Override
+	public APlayerChars getPlayerCharacteristic(String name, int id) {
+		// TODO Auto-generated method stub
+		return this.myEngine.getPlayers().getPlayerById(id).getCharacteristics(name);
+	}
 
 	//change to either immutable or just make the methods of this public (and not the full set...)
 
