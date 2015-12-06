@@ -40,7 +40,6 @@ public class ActionSAXHandler extends DefaultHandler {
 			String chars = attributes.getValue("chars");
 			if (selectedActions.contains(displayName)){
 				actionParam = new ActionParams(name);
-				actionParam.setDisplayName(displayName);
 				actionParam.setCharacteristics(chars);
 				actionParam.setRules(rules);
 			} 
@@ -51,7 +50,6 @@ public class ActionSAXHandler extends DefaultHandler {
 	public void endElement(String uri, String localName,
 			String qName) throws SAXException {
 		if(qName.equalsIgnoreCase("action") && actionParam != null){
-			System.out.println("adding: " + actionParam.getDisplayName() + " to list");
 			this.actionParams.add(actionParam);
 		}
 

@@ -53,10 +53,19 @@ public class XStreamGameEngine {
     }
     
     public String gameNameToFileName(String name){
-    	StringBuilder sanitizedName = new StringBuilder();
-    	sanitizedName.append(myConfig.getString("GameStorageLocation")).append(name.replaceAll("[^a-zA-Z0-9\\._]+", "_")).append(myConfig.getString("GameExtension"));
-    	return sanitizedName.toString();
+    	return sanitizeGameName(name).append(myConfig.getString("GameExtension")).toString();
     }
+    
+	public String gameNameToPathName(String name) {
+		return sanitizeGameName(name).append("/").toString();
+	}
+
+	private StringBuilder sanitizeGameName(String name) {
+		StringBuilder sanitizedName = new StringBuilder();
+    	sanitizedName.append(myConfig.getString("GameStorageLocation")).append(name.replaceAll("[^a-zA-Z0-9\\._]+", "_"));
+		return sanitizedName;
+	}
+
 
 //    public GameEngineToGamePlayerInterface loadEngine() {
 //        return loadEngine("");
@@ -89,5 +98,6 @@ public class XStreamGameEngine {
         System.out.println("Load complete.");
         return game;
     }
+
 
 }

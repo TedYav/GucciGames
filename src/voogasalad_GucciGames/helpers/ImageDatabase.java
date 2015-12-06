@@ -14,8 +14,9 @@ public class ImageDatabase implements ResourceDatabase<Image> {
 	}
 	
 	@Override
-	public Image request(String URI) {
+	public Image request(String URI) throws IllegalArgumentException{
 		if(!myImageMap.containsKey(URI)){
+			System.out.println(URI);
 			myImageMap.put(URI, new Image(URI));
 		}
 		return myImageMap.get(URI);

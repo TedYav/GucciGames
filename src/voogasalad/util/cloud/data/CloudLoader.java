@@ -13,7 +13,7 @@ public class CloudLoader<T extends CloudObject> {
 	private List<CloudParameter> myParameters;
 	private List<String> myFields;
 	private CloudObject myTemplate;
-	CloudServer myServer;
+	private CloudServer myServer;
 	
 	public CloudLoader(CloudObject template, CloudServer server){
 		myTemplate = template;

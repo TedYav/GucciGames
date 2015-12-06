@@ -14,7 +14,7 @@ import javax.xml.parsers.SAXParserFactory;
 
 import org.xml.sax.SAXException;
 
-import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.mapobjsettings.CharGridPane;
+import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.mapobjsettings.ObjParamPane;
 import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.paramObjects.ObjParam;
 import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.paramObjects.ObjType;
 
