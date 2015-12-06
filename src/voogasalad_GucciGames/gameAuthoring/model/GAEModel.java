@@ -160,8 +160,8 @@ public class GAEModel implements IGAEModel{
 
 	@Override
 	public int addLevel(String name) {
-		//>>>>>>>>
-		//<<<<<<<<
+		>>>>>>>>
+		<<<<<<<<
 		int newLevelID = nextLevel;
 		myLevels.put(newLevelID, new MapData());
 		nextLevel += 1;

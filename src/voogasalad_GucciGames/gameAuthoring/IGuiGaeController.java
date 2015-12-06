@@ -54,7 +54,7 @@ public interface IGuiGaeController {
 
 	public MapObjectType getDragType();
 
-	public DisplayMapObject addObject(int levelID, GridPoint gridpoint, MapObjectType mapObjType, int ownerID);
+	public DisplayMapObject addObject(int levelID, GridPoint gridpoint, MapObjectType mapObjType);
 
 	public void changeOwner(MapObject mapObject, int playerID);
 
