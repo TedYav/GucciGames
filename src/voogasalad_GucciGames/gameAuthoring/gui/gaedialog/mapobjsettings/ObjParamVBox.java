@@ -19,10 +19,15 @@ public class ObjParamVBox extends VBox{
 	private List<ObjParamPane> objPane = new ArrayList<ObjParamPane>();
 	private Button saveBtn = new Button("Save All");
 	private ISwitchSettingsPane controller;
+	List<ObjParamValue> allCharParams;
 	
-	public ObjParamVBox(ISwitchSettingsPane controller, List<ObjParam> charParams){
+	public ObjParamVBox(ISwitchSettingsPane controller, List<ObjParam> charParams, List<ObjParamValue> allCharParams){
 		this.objParams = charParams;
 		this.controller = controller;
+		this.allCharParams = allCharParams;
+		this.saveBtn.setOnAction(e -> {
+			this.allCharParams.addAll(getAllParam());
+		});
 		setLayout();
 		setContents();
 		controller.addSaveButton(ButtonType.FINISH);
@@ -34,11 +39,12 @@ public class ObjParamVBox extends VBox{
 	}
 	
 	private void setContents(){
-		objParams.forEach(p -> {		
+		objParams.forEach(p -> {	
 			ObjParamPane pane = new ObjParamPane(p);
 			objPane.add(pane);
 			this.getChildren().add(pane);
 		});
+		this.getChildren().add(saveBtn);
 	}
 	
 	protected List<ObjParamValue> getAllParam(){

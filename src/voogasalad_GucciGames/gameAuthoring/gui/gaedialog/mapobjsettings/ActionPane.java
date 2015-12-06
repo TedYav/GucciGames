@@ -53,19 +53,22 @@ public class ActionPane extends GridPane {
 	private ComboBox<String> dropDown = new ComboBox<String>();
 	private String selected = "";
 	private Button addBtn = new Button("Add Action");
-	Button addOutConBtn = new Button("Add Outcome/ Conditions");
-	Button addCharBtn = new Button("Add Characteristics");
+	private Button addOutConBtn = new Button("Add Outcome/ Conditions");
+	private Button addCharBtn = new Button("Add Characteristics");
+	private Button addRuleBtn = new Button("Add Rule");
 	private MapObjectType type;
+	private ActionParamsValue actionParamsValue;
 	
 	private ObservableList<TableElement> data;
 	
 	public ActionPane(ISwitchSettingsPane switchPaneInterface, 
-			IDialogGaeController controller,Properties prop, MapObjectType type){
+			IDialogGaeController controller,Properties prop, MapObjectType type, ActionParamsValue actionParamsValue){
 		super();
 		this.type = type;
 		this.switchPaneInterface = switchPaneInterface;	
 		this.prop = prop;
 		this.controller = controller;
+		this.actionParamsValue = actionParamsValue;
 		
 		//TODO: get all actions
 		
@@ -93,21 +96,30 @@ public class ActionPane extends GridPane {
 		add(addBtn, 2, 0);
 		add(addOutConBtn, 3, 6);
 		add(addCharBtn, 4, 6);
+		add(addRuleBtn, 5 ,6);
 	}
 
 	private void addActionToNextBtn(){				
 		addOutConBtn.setOnAction(e -> {
-			//TODO: show add rules
-		    //switchPaneInterface.switchSettingsPane(new RulesAndCharPane(rules, chars));
-			ConditionOutcomeDialog d = new ConditionOutcomeDialog(controller, switchPaneInterface, type);
+			ConditionOutcomeDialog d = new ConditionOutcomeDialog(controller, switchPaneInterface, type, this.actionParamsValue);
 			d.showAndWait();
 
 		});
 		
 		addCharBtn.setOnAction(e -> {
 			//new dialog for characteristics
-			AddCharacteristicDialog addCharDialog  = new AddCharacteristicDialog(controller, type);
+			AddCharacteristicDialog addCharDialog  = new AddCharacteristicDialog(controller, type, this.actionParamsValue);
 			addCharDialog.showAndWait();
+		});
+		
+		addRuleBtn.setOnAction(e -> {
+			//new dialog for rules
+			List<String> rules = new ArrayList<String>();
+			controller.getPropertiesInterface().getAllRules().forEach(element -> {
+				rules.add(element.getName());
+			});
+			AddRuleDialog ruleDialog = new AddRuleDialog(rules, this.actionParamsValue);
+			ruleDialog.showAndWait();
 		});
 	}
 	
@@ -117,6 +129,8 @@ public class ActionPane extends GridPane {
 			selected = dropDown.getSelectionModel().getSelectedItem();
 			System.out.println("selected: " + selected);
 			this.textField.setText(selected);
+			this.actionParamsValue.setName(selected);
+
 		});
 	}
 
