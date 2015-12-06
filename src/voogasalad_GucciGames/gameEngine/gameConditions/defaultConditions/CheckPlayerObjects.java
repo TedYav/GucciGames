@@ -1,7 +1,5 @@
 package voogasalad_GucciGames.gameEngine.gameConditions.defaultConditions;
 
-import java.util.Map;
-
 import voogasalad_GucciGames.gameEngine.CommunicationParameters.BasicParameters;
 import voogasalad_GucciGames.gameEngine.gameConditions.Conditions;
 import voogasalad_GucciGames.gameEngine.gamePlayer.GamePlayerPerson;
@@ -13,8 +11,7 @@ import voogasalad_GucciGames.gameEngine.gamePlayer.GamePlayerPerson;
  */
 public class CheckPlayerObjects extends Conditions {
 
-	public CheckPlayerObjects(Map<String,Object> condParams) {
-		super(condParams);
+	public CheckPlayerObjects() {
 	}
 
 	@Override

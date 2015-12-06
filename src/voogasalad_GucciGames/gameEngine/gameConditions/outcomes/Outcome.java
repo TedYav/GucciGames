@@ -16,24 +16,23 @@ import voogasalad_GucciGames.gameEngine.gamePlayer.GamePlayerPerson;
  */
 public abstract class Outcome {
 	private List<Conditions> myConditions = new ArrayList<Conditions>();
-	private OutcomeParams myOutcomeParams = new OutcomeParams();
+	private String myAffectedPlayers = "self";
 
-	public Outcome(List<Conditions> conditions, OutcomeParams outcomeParams) {
-		this(outcomeParams);
-		myConditions = conditions;
+	public Outcome(List<Conditions> conditions, String affectedPlayers, String argumentName, String argumentValue) {
+		this(conditions, affectedPlayers);
 	}
 
-	public Outcome(OutcomeParams outcomeParams) {
-		myOutcomeParams = outcomeParams;
+	public Outcome(List<Conditions> conditions, String affectedPlayers, String argumentName, int argumentValue) {
+		this(conditions, affectedPlayers);
+	}
 
+	public Outcome(List<Conditions> conditions, String affectedPlayers) {
+		myConditions = conditions;
+		myAffectedPlayers = affectedPlayers;
 	}
 
 	public Outcome() {
 
-	}
-
-	public OutcomeParams getMyParams() {
-		return myOutcomeParams;
 	}
 
 	abstract ChangedParameters applyOutcome(BasicParameters params, ChangedParameters changedParams, int playerID);
@@ -44,7 +43,8 @@ public abstract class Outcome {
 
 	public final ChangedParameters executeOutcome(BasicParameters params, ChangedParameters changedParams) {
 		// for every affected player, check conditions, then apply outcome.
-		List<Integer> players = myOutcomeParams.getPlayerID();
+		List<Integer> players = createPlayerAffected(params);
+		// myOutcomeParams.getPlayerID();
 		for (int i = 0; i < players.size(); i++) {
 			GamePlayerPerson cur = params.getEngine().getPlayers().getPlayerById(players.get(i));
 			if (checkConditions(params, cur)) {
@@ -53,6 +53,22 @@ public abstract class Outcome {
 		}
 
 		return changedParams;
+	}
+
+	private List<Integer> createPlayerAffected(BasicParameters params) {
+		List<Integer> temp = new ArrayList<Integer>();
+		if (myAffectedPlayers.equals("self")) {
+			temp.add(params.getEngine().getTurnPlayerID());
+
+		} else if (myAffectedPlayers.equals("other")) {
+			List<Integer> list = params.getEngine().getPlayers().getAllIds();
+			for (int i = 0; i < list.size(); i++) {
+				if (params.getEngine().getTurnPlayerID() != list.get(i)) {
+					temp.add(list.get(i));
+				}
+			}
+		}
+		return temp;
 	}
 
 	private Boolean checkConditions(BasicParameters params, GamePlayerPerson player) {

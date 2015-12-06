@@ -10,8 +10,8 @@ public class HealthCharacteristic extends AMapObjectCharacteristic {
 	public HealthCharacteristic() {
 	}
 
-	public HealthCharacteristic(double maxHP) {
-		defineHealthValue(maxHP);
+	public HealthCharacteristic(double maxHealthPoints) {
+		defineHealthValue(maxHealthPoints);
 	}
 
 	public void changeHealth(double healthDiff) {

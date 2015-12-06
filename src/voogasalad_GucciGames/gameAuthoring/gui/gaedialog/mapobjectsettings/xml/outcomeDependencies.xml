@@ -1,21 +1,21 @@
 <outcomeDependencies>
 
-	<element name="endLevel" 
-		 paramNames="nextLevel"
-		 paramTypes="String">
+	<element name="EndLevel" 
+		 paramNames="affectedPlayers, nextLevel, destination"
+		 paramTypes="String,String,String">
 	</element>	
-		<element name="modifyActiveObjectHealth" 
-		 paramNames="health"
-		 paramTypes="int">
+		<element name="ModifyActiveObjectHealth" 
+		 paramNames="affectedPlayers,health,value"
+		 paramTypes="String,String,int">
 	</element>	
-		<element name="modifyWealth" 
-		 paramNames="wealth"
-		 paramTypes="int">
+		<element name="ModifyWealth" 
+		 paramNames="affectedPlayers,wealth,value"
+		 paramTypes="String,String,int">
 	</element>	
 	
-		<element name="removePlayer" 
-		 paramNames=""
-		 paramTypes="">
+		<element name="RemovePlayer" 
+		 paramNames="affectedPlayers"
+		 paramTypes="String">
 	</element>	
 
 </outcomeDependencies>
