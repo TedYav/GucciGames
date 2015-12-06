@@ -6,9 +6,9 @@ public class CloudExample {
 	public static void main(String[] args){
 		
 		Cloud c = new Cloud();
-		String gameName = "Duvall Tag";
-		String playerName = "Superman";
-		double score = 99999999;
+		String gameName = "Enter a game name here to test";
+		String playerName = "Enter a player name here to test";
+		double score = 999999;
 		
 		c.addHighScore(gameName, playerName, score);
 		System.out.println(c.retrieveHighScores(gameName));

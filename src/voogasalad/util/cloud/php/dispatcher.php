@@ -1,7 +1,7 @@
 <?php
 	
 	include 'classes/processor.php';
-	include 'database/VOOGADatabase.php';
+	include 'database/database.php';
 	include 'classes/register.php';
 	include 'classes/highscore.php';
 

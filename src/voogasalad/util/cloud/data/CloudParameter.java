@@ -14,6 +14,14 @@ public class CloudParameter {
 		myValue = value;
 	}
 	
+	public CloudParameter(CloudVariable name, CloudVariable value){
+		this(name.getValue(), value.getValue());
+	}
+	
+	public CloudParameter(CloudVariable name, String value){
+		this(name.getValue(), value);
+	}
+	
 	public String getName(){
 		return myName;
 	}
