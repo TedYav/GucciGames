@@ -37,7 +37,7 @@ public class ParamObjParser {
 	public ParamObjParser(){
 		parseAll();
 	}
-	
+
 	public Set<ObjParam> getMapObjChars(){
 		return allMapObjCharParams;
 	}
@@ -75,18 +75,15 @@ public class ParamObjParser {
 	       list.forEach(e -> {
 	    	   System.out.println("added: " + e.getName());
 	       });
-	       set = new HashSet<ObjParam>(list);
-	       System.out.println("size " + set.size());
+	       set.addAll(list);
 	           
 	    } catch (ParserConfigurationException | SAXException | IOException ex) {
 	        ex.printStackTrace();
 	    }
-	    System.out.println("done");
 	}
 	
 	private void parseMapObjChar(){
 		parse(mapObjCharPath, this.allMapObjCharParams, ObjType.MAP_CHAR);
-		System.out.println("size 2: " + this.allMapObjCharParams.size());
 	}
 	
 	private void parsePlayerChar(){
