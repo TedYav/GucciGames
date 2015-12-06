@@ -14,12 +14,7 @@ public class GroovyLoader extends GroovyClassLoader{
 	}
 	
 	public void add(String name, String groovyCode){
-		try {
-			myMap.put(name, super.loadClass(groovyCode));
-		} catch (ClassNotFoundException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+		myMap.put(name, super.parseClass(groovyCode));
 	}
 	
 	public Class<?> load(String name){

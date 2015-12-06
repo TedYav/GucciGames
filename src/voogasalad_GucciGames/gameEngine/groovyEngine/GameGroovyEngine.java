@@ -3,7 +3,7 @@ package voogasalad_GucciGames.gameEngine.groovyEngine;
 import java.util.List;
 import java.util.ResourceBundle;
 
-public class GroovyEngine {
+public class GameGroovyEngine {
 
 	public static final ResourceBundle RESOURCE = ResourceBundle.getBundle("resources.groovy.groovyStringsMapObjectCharacteristic");
 	
