@@ -26,13 +26,14 @@ public class PlayerDialog extends AGaeDialog {
 	private static final int HEIGHT = 600;	
 	private VBox myContent = new VBox();	
 	private IDialogGaeController controller;
-	private List<PlayerContent> contentList = new ArrayList<PlayerContent>();
+	private List<PlayerContent> playerContentList = new ArrayList<PlayerContent>();
 	private Properties prop;
 	private DialogElements dialogElements;
 	private int numOfPlayers;
-	private Button saveBtn = new Button("Save");
+//	private Button saveBtn = new Button("Save");
 	private ScrollPane scrollPane = new ScrollPane();
 
+	private PlayerContent playerContent;
 
 	public PlayerDialog(IDialogGaeController controller, int numberOfPlayers) {		
 		super();
@@ -41,9 +42,9 @@ public class PlayerDialog extends AGaeDialog {
 		this.controller = controller;
 		this.numOfPlayers = numberOfPlayers;
 		
-		final ButtonType save = new ButtonType("Save", ButtonData.FINISH);		
 		initialize();
-		setScene();	
+		setScene();
+		setSaveAction();
 
 	}
 
@@ -68,39 +69,40 @@ public class PlayerDialog extends AGaeDialog {
 
 
 			while(numOfPlayers  >=  num) {
-				PlayerContent content = new PlayerContent(num, controller, prop);
-				contentList.add(content);
+				playerContent = new PlayerContent(num, controller, prop);
+				playerContentList.add(playerContent);
 				dialogElements = new DialogElements(prop, controller);
-				content.setDialogElements(dialogElements);
-				content.init();
-				myContent.getChildren().add(content);
+				playerContent.setDialogElements(dialogElements);
+				playerContent.init();
+				myContent.getChildren().add(playerContent);
 				num++;
 			}
-			this.myContent.getChildren().add(saveBtn);
+			this.getDialogPane().getButtonTypes().add(mySave);
 		}
-
-		initSaveBtn();
+		
+		
+//		initSaveBtn();
 		myContent.setId("vbox-element");
 
 	}
 
-	private void initSaveBtn(){
-
-		saveBtn.setOnAction(e -> {
-			for(PlayerContent c: contentList){
-				String name = c.getPlayerName();
-				int id = c.getPlayerId();
-				int numMoves = c.getNumMoves();
-				controller.addPlayerToList(name, id);
-				// Save Player
-				PlayerParams params = new PlayerParams(id, name, numMoves);
-				controller.savePlayer(params);
-				this.close();
-			}
-
+	@Override
+	protected void setSaveAction() {
+		this.setResultConverter(dialogButton -> {
+    		if (dialogButton == mySave) {
+    			for(int i=0; i<playerContentList.size(); i++ ){
+    				PlayerContent currPlayerContent = playerContentList.get(i);
+    				int id = currPlayerContent.getPlayerId();
+    				String name = currPlayerContent.getPlayerName();
+    				int numMoves = currPlayerContent.getNumMoves();
+    				controller.addPlayerToList(name, id);
+    				// Save Player
+    				PlayerParams params = new PlayerParams(id, name, numMoves);
+    				controller.savePlayer(params);
+    			}
+    		}
+			return null;
 		});
-
 	}
-
 
 }
