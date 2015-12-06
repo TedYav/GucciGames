@@ -14,6 +14,8 @@ import voogasalad_GucciGames.gameEngine.objectActions.defaultActions.Attack;
 import voogasalad_GucciGames.gameEngine.targetCoordinate.TargetCoordinateSingle;
 
 public class AttackEvent extends Attack {
+	public AttackEvent() {
+	}
 
 	public AttackEvent(String actionName) {
 		super(actionName);

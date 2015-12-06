@@ -17,6 +17,10 @@ public abstract class MapObjectEvent implements IGamePlayerMapObjectAction {
 	private List<Rules> myRuleList = new ArrayList<Rules>();
 	private List<Outcome> myOutcomes = new ArrayList<Outcome>();
 
+
+	public MapObjectEvent() {
+	}
+
 	public MapObjectEvent(String actionName) {
 		myName = actionName;
 	}
@@ -51,16 +55,16 @@ public abstract class MapObjectEvent implements IGamePlayerMapObjectAction {
 	}
 
 	// Must keep final
-	
+
 	/*
 	 * Execution of Attack
 	 */
 	public final ChangedParameters executeAction(LocationParameters params, int playerID) {
 		return checkRules(playerID, params) ? executeOutcome(params,executeAction(params)) : null;
 	}
-	
+
 	protected abstract ChangedParameters executeAction(LocationParameters params);
-	
+
 	private ChangedParameters executeOutcome(BasicParameters basic, ChangedParameters changed){
 		for(Outcome outcome: this.myOutcomes){
 			changed = outcome.executeOutcome(basic, changed);
@@ -76,7 +80,7 @@ public abstract class MapObjectEvent implements IGamePlayerMapObjectAction {
 	}
 
 	protected abstract GridCoordinateParameters executeRequest(BasicParameters params);
-	
+
 	public String getName(){
 		return this.myName;
 	}
