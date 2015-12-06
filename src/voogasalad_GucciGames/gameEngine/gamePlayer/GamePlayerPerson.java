@@ -9,7 +9,7 @@ import java.util.stream.Collectors;
 import voogasalad_GucciGames.gameEngine.defaultCharacteristics.AttackCharacteristic;
 import voogasalad_GucciGames.gameEngine.gameConditions.EndGameConditions;
 import voogasalad_GucciGames.gameEngine.gamePlayer.chars.APlayerChars;
-import voogasalad_GucciGames.gameEngine.gamePlayer.chars.MovablePlayerCharacteristic;
+import voogasalad_GucciGames.gameEngine.gamePlayer.chars.PlayerMovesPerTurn;
 import voogasalad_GucciGames.gameEngine.mapObject.MapObject;
 
 public class GamePlayerPerson {
@@ -19,12 +19,12 @@ public class GamePlayerPerson {
 	private Map<String, APlayerChars> myCharacteristics = new HashMap<String, APlayerChars>();
 
 	private String myStatus = "DRAW";
-	private MovablePlayerCharacteristic myMovable;
+	private PlayerMovesPerTurn myMovable;
 
 	public GamePlayerPerson(int id) {
 		myMapObjects = new ArrayList<MapObject>();
 		myPlayerId = id;
-		myMovable = new MovablePlayerCharacteristic();
+		myMovable = new PlayerMovesPerTurn();
 		myCharacteristics.put(NUM_OF_MOVES, myMovable);
 	}
 
@@ -57,11 +57,11 @@ public class GamePlayerPerson {
 	}
 
 	public int getAllowedMovesPerTurn() {
-		return ((MovablePlayerCharacteristic) myCharacteristics.get(NUM_OF_MOVES)).getMyNumberOfMoves();
+		return ((PlayerMovesPerTurn) myCharacteristics.get(NUM_OF_MOVES)).getMyNumberOfMoves();
 	}
 
 	public int getMovesDoneThisTurn() {
-		return ((MovablePlayerCharacteristic) myCharacteristics.get(NUM_OF_MOVES)).getMoveCount();
+		return ((PlayerMovesPerTurn) myCharacteristics.get(NUM_OF_MOVES)).getMoveCount();
 	}
 
 	public void resetObjects() {
@@ -75,11 +75,11 @@ public class GamePlayerPerson {
 		}
 	}
 
-	public MovablePlayerCharacteristic getMovable() {
-		return ((MovablePlayerCharacteristic) myCharacteristics.get(NUM_OF_MOVES));
+	public PlayerMovesPerTurn getMovable() {
+		return ((PlayerMovesPerTurn) myCharacteristics.get(NUM_OF_MOVES));
 	}
 
-	public void setMovable(MovablePlayerCharacteristic myMovable) {
+	public void setMovable(PlayerMovesPerTurn myMovable) {
 		myCharacteristics.put(NUM_OF_MOVES, myMovable);
 	}
 

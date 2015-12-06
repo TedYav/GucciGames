@@ -9,7 +9,6 @@ import voogasalad_GucciGames.gameEngine.defaultCharacteristics.HealthCharacteris
 import voogasalad_GucciGames.gameEngine.gameConditions.outcomes.Outcome;
 import voogasalad_GucciGames.gameEngine.gamePlayer.GamePlayerPerson;
 import voogasalad_GucciGames.gameEngine.gameRules.Rules;
-import voogasalad_GucciGames.gameEngine.gameRules.defaultRules.AttacksPerTurn;
 import voogasalad_GucciGames.gameEngine.mapObject.MapObject;
 import voogasalad_GucciGames.gameEngine.objectActions.defaultActions.Attack;
 import voogasalad_GucciGames.gameEngine.targetCoordinate.TargetCoordinateSingle;
@@ -18,12 +17,12 @@ public class AttackEvent extends Attack {
 
 	public AttackEvent(String actionName) {
 		super(actionName);
-		getRuleList().add(new AttacksPerTurn());
+
 	}
 
 	public AttackEvent(String actionName, List<Rules> rules, List<Outcome> outcomes) {
 		super(actionName, rules, outcomes);
-		getRuleList().add(new AttacksPerTurn());
+
 	}
 
 	@Override
@@ -31,11 +30,10 @@ public class AttackEvent extends Attack {
 		System.out.println("Attack Action");
 		MapObject calledMe = params.getCalledMe();
 		double damage = 0.0;
-		if(calledMe.containsCharacteristic(ATTACK_CHARACTERISTIC)){
-			 damage= ((AttackCharacteristic) calledMe.getCharacteristic(ATTACK_CHARACTERISTIC)).getDamage();
+		if (calledMe.containsCharacteristic(ATTACK_CHARACTERISTIC)) {
+			damage = ((AttackCharacteristic) calledMe.getCharacteristic(ATTACK_CHARACTERISTIC)).getDamage();
 
-		}
-		else{
+		} else {
 			AttackCharacteristic attackChar = new AttackCharacteristic();
 			damage = attackChar.getDamage();
 		}
@@ -77,6 +75,5 @@ public class AttackEvent extends Attack {
 
 		}
 	}
-
 
 }
