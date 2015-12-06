@@ -41,7 +41,8 @@ public class GameLoader {
         myController.loadGameSave(myData.loadSave(saveName));
         gameLoaded = true;
     }
-    public void saveGame(GamePlayerSave game) {
+    public void saveGame() {
+		GamePlayerSave game = new GamePlayerSave((GameInfo)myController.getGame(), myController.getEngine().getCurrentLevel().getLevelName());
         myData.saveGame(game);
     }
     

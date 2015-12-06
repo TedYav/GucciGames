@@ -2,6 +2,7 @@ package voogasalad_GucciGames.gameplayer.windows.mainwindow.components;
 
 import java.util.ResourceBundle;
 
+import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.StackPane;
 import voogasalad_GucciGames.gameplayer.config.PlayerConfig;
@@ -14,24 +15,35 @@ public class OverlayComponent extends WindowComponent {
 	private ResourceBundle myConfig = PlayerConfig.load("components.OverlayComponent");
 
 	private boolean showing = false;
+	private KeyCode myKeyCode;
 	
 	public OverlayComponent(GameScene scene, GameControllerInterface controller, WindowComponent child) {
 		super(scene, controller);
 		myChild = child;
 		setParent(myChild.getParent());
-		getGameScene().getScene().setOnKeyPressed(e -> handleKey(e));
 	}
 
 	private void handleKey(KeyEvent e) {
-		switch(e.getCode()){
-		case ESCAPE:
+		if(e.getCode().equals(myKeyCode)){
 			if(showing){
-				getGameScene().removeOverlay();			}
+				hide();			}
 			else{
-				getGameScene().addOverlay(this, Double.parseDouble(myConfig.getString("Opacity")));
+				show();
 			}
-			showing = !showing;
 		}
+	}
+
+	public void hide() {
+		getGameScene().removeOverlay();
+	}
+	
+	public void activateKeyHandler(KeyCode code){
+		myKeyCode = code;
+		getGameScene().getScene().setOnKeyPressed(e -> handleKey(e));
+	}
+	
+	public void show(){
+		getGameScene().addOverlay(this, Double.parseDouble(myConfig.getString("Opacity")));
 	}
 
 }

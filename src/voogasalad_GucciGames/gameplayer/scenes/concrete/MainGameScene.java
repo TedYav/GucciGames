@@ -6,6 +6,7 @@ import java.util.ResourceBundle;
 import java.util.stream.Collectors;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.BorderPane;
@@ -79,6 +80,7 @@ public class MainGameScene extends GameScene {
 
     private void initializeOverlays() {
     	myOverlayMenu = new OverlayComponent(this, myController, new MainMenuOverlay(this, myController));
+    	myOverlayMenu.activateKeyHandler(KeyCode.ESCAPE);
 	}
 
 	private void initializePane(){

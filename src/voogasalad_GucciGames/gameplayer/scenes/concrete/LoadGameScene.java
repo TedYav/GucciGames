@@ -20,6 +20,7 @@ public class LoadGameScene extends GameMenuScene {
         for(String s : myManager.getLoader().getAvailableSaves(myManager.getController().getGame().getGameName())){
             optionMap.put(s, () -> selectGame(s));
         }
+        optionMap.put("Back", () -> myManager.loadScene(myConfig.getString("PrevScene")));
     return optionMap;
     }
     

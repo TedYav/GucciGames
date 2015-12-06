@@ -9,6 +9,8 @@ import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.shape.Shape;
 import javafx.stage.Screen;
+import voogasalad_GucciGames.gameData.wrapper.GameInfo;
+import voogasalad_GucciGames.gameData.wrapper.GamePlayerSave;
 import voogasalad_GucciGames.gameplayer.config.PlayerConfig;
 import voogasalad_GucciGames.gameplayer.controller.GameControllerInterface;
 import voogasalad_GucciGames.gameplayer.scenes.GameScene;
@@ -37,7 +39,7 @@ public class MainMenuOverlay extends WindowComponent {
 		Map<String, MenuAction> options = new LinkedHashMap<>();
 		options.put("New Game", () -> getGameScene().getManager().loadScene("MainMenuScene"));
 		options.put("Load Game", () -> getGameScene().getManager().loadScene("LoadGameScene"));
-		options.put("Save Game", () -> getGameScene().getManager().getLoader());
+		options.put("Save Game", () -> getGameScene().getManager().getLoader().saveGame());
 		options.put("View High Scores", () -> getGameScene().getManager().loadScene("HighScoresScene"));
 		options.put("Reload", () -> { getGameScene().getManager().getLoader().loadGame(getGameScene().getManager().getController().getGame().getGameName()); 
 		getGameScene().getManager().loadScene("GameSplashScene"); });
