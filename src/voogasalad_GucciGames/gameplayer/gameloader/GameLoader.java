@@ -37,8 +37,9 @@ public class GameLoader {
         myController.loadGame(myData.loadGame(gameName));
         gameLoaded = true;
     }
-    public void loadGameSave(String saveName){
-        myController.loadGameSave(myData.loadSave(saveName));
+    
+    public void loadGameSave(String saveName, String gameName){
+        myController.loadGameSave(myData.loadSave(saveName, gameName));
         gameLoaded = true;
     }
     public void saveGame(GamePlayerSave game) {
@@ -77,15 +78,15 @@ public class GameLoader {
     		throw new GameDataException("No game selected to load");
     	}
     }
-    public void loadSelectedGameSave() throws GameDataException{
-        if(!mySelectedGame.isEmpty()){
-                loadGameSave(mySelectedGame);
-                mySelectedGame = "";
-        }
-        else{
-                throw new GameDataException("No game selected to load");
-        }
-    }
+//    public void loadSelectedGameSave() throws GameDataException{
+//        if(!mySelectedGame.isEmpty()){
+//                loadGameSave(mySelectedGame);
+//                mySelectedGame = "";
+//        }
+//        else{
+//                throw new GameDataException("No game selected to load");
+//        }
+//    }
 
 	public void loadDefault() {
 		myController.loadGame(myData.loadDefault());

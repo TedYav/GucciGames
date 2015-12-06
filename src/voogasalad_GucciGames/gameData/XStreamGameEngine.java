@@ -119,9 +119,9 @@ public class XStreamGameEngine {
         return game;
     }
 
-    public GamePlayerSave loadGameState (String saveName) {
+    public GamePlayerSave loadGameState (String saveName, String gameName) {
         // TODO Auto-generated method stub
-        File file = new File(saveName);
+        File file = new File(gameNameToPathName(gameName) + myConfig.getString("SaveDirectory") + saveName);
         System.out.println("Loading SAVE."+saveName);
         GamePlayerSave game=null;
         try {

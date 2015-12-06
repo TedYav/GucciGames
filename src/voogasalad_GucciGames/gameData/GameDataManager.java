@@ -161,13 +161,17 @@ public class GameDataManager implements GameDataInterface {
 
     @Override
     public List<String> getAvailableSaves (String gameName) {
-        List<String> result =  myFileHelper.getMatchingFiles(getGamePath(gameName) + myConfig.getString("SaveDirectory"), Arrays.asList(myConfig.getString("SaveExtension")));
+        List<String> result =  filterURIs(myFileHelper.getMatchingFiles(getGamePath(gameName) + myConfig.getString("SaveDirectory"), Arrays.asList(myConfig.getString("SaveExtension"))), getGamePath(gameName) + myConfig.getString("SaveDirectory"));
         return result;
+    }
+    
+    private List<String> filterURIs(List<String> resources, String base) {
+        return resources.stream().map( s -> s.substring(base.length())).collect(Collectors.toList());
     }
 
     @Override
-    public GamePlayerSave loadSave (String saveName) {
-        return myXStream.loadGameState(saveName);
+    public GamePlayerSave loadSave (String saveName, String gameName) {
+        return myXStream.loadGameState(saveName, gameName);
     }
 
 }
