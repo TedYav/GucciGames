@@ -35,7 +35,7 @@ public interface IGAEModel {
 
 	public int addLevel();
 	
-	public void saveToXML(GameInfo game);
+	public void saveToXML();
 
     
 }

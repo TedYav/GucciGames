@@ -23,14 +23,14 @@ import voogasalad_GucciGames.gameEngine.targetCoordinate.TargetCoordinateSingle;
 
 public class GAEModel implements IGAEModel{
     private TypeData typeData;
-    //private MapData mapData;
     private GuiData guiData;
     private IModelGaeController myController;
-	private Map<Integer, GamePlayerPerson> mapOfPlayers;	
+	private Map<Integer, GamePlayerPerson> mapOfPlayers;
+	private GameInfoFactory myFactory;
 	//private List<DisplayMapObject> myMapObjects;
 	// map from level id (unique) to list of map objects
-	private Map<Integer, MapData> myLevels;
-	private int nextLevel;
+	//private Map<Integer, MapData> myLevels;
+	private LevelData levelData;
 
     
     public GAEModel(IModelGaeController controller) {
@@ -38,10 +38,11 @@ public class GAEModel implements IGAEModel{
     	typeData = new TypeData();
     	//mapData = new MapData();
     	mapOfPlayers = new HashMap<>();
+    	myFactory = new GameInfoFactory();
     	//myMapObjects = new ArrayList<>();
     	guiData = new GuiData();
-    	myLevels = new HashMap<>();
-    	nextLevel = 0;
+    	//myLevels = new HashMap<>();
+    	levelData = new LevelData();
     	
     	// Probs need to change this
 		mapOfPlayers.put(-1, new GamePlayerPerson(-1));
@@ -63,19 +64,19 @@ public class GAEModel implements IGAEModel{
     	int layer = mapObjType.isTile() ? 0 : 1;
     	DisplayMapObject mapObject = new DisplayMapObject(mapObjType, targCoordSingle, ownerID,layer);
     	//mapOfPlayers.get(ownerID).addMapObject(mapObject);
-    	myLevels.get(levelID).addToMap(mapObject);
+    	levelData.add(levelID, mapObject);
     	//Validate with engine, if failed, return null, else return this mapObject
     	return mapObject;
     }
     
     @Override
-	public List<DisplayMapObject> getMapObjects(int id) {
-		return myLevels.get(id).getMapObjects();
+	public List<DisplayMapObject> getMapObjects(int level) {
+		return levelData.getLevelMapObjects(level);
 	}
 
     @Override
-    public void clearMap (int id) {
-        myLevels.get(id).clearMap();
+    public void clearMap (int level) {
+        levelData.clearLevelMap(level);
     }
 
     @Override
@@ -104,9 +105,9 @@ public class GAEModel implements IGAEModel{
 	public ObservableList<MapObjectType> getImmutableStructureTypes() {
 		return typeData.getImmutableStructureTypes();
 	}
+    
 
-    @Override
-    public void saveToXML (GameInfo game) {    	
+    private void saveToXML (GameInfo game) {    	
     	System.err.println("IMPLEMENT ME PLZ");
 //    	XStreamGameEngine saver = new XStreamGameEngine();
 //		AllPlayers myPlayers = new AllPlayers(mapOfPlayers);
@@ -128,8 +129,10 @@ public class GAEModel implements IGAEModel{
 //		saver.saveGameInfo(game, file);
 
     }
-    public void saveToXML(String filePath) {
-        
+    
+    public void saveToXML() {
+    	myFactory.create(typeData, levelData, guiData);
+    	
     }
     
     private boolean validate(){ //TODO
@@ -160,10 +163,7 @@ public class GAEModel implements IGAEModel{
 
 	@Override
 	public int addLevel() {
-		int newLevelID = nextLevel;
-		myLevels.put(newLevelID, new MapData());
-		nextLevel += 1;
-		return newLevelID;
+		return levelData.addLevel();
 		
 	}
     
