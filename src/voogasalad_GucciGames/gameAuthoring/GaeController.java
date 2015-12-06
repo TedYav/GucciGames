@@ -20,6 +20,7 @@ import voogasalad_GucciGames.gameAuthoring.gui.levels.LevelTabPane;
 import voogasalad_GucciGames.gameAuthoring.gui.map.GridPoint;
 import voogasalad_GucciGames.gameAuthoring.model.DisplayMapObject;
 import voogasalad_GucciGames.gameAuthoring.model.GAEModel;
+import voogasalad_GucciGames.gameAuthoring.model.IGameProperties;
 import voogasalad_GucciGames.gameAuthoring.model.IGAEModel;
 import voogasalad_GucciGames.gameAuthoring.model.MapObjectType;
 import voogasalad_GucciGames.gameAuthoring.properties.ObjectProperty;
@@ -47,7 +48,8 @@ public class GaeController extends AGuiGaeController implements IModelGaeControl
 
 	@Override
 	public void deleteComponent(DisplayMapObject mapObj) {
-		model.deleteComponent(mapObj);
+		// TODO add levelID
+		//model.deleteComponent(mapObj);
 	}
 
 	@Override
@@ -238,55 +240,16 @@ public class GaeController extends AGuiGaeController implements IModelGaeControl
 	public MapObjectType getDragType() {
 		return myDragType;
 	}
-
-	@Override
-	public List<ObjParam> getAllMapObjCharParams() {
-		return model.getMapCharParams();
-	}
-
-	@Override
-	public List<ObjParam> getSelectedMapObjCharParams(List<String> selectedChar) {
-		return model.getSelectedMapObjCharParams(selectedChar);
-	}
-
-	@Override
-	public List<ObjParam> getAllPlayerCharParams() {
-		return model.getPlayerCharParams();
-	}
-
-	@Override
-	public List<ObjParam> getSelectedPlayerCharParams(List<String> selectedChar) {
-		return model.getSelected();
-	}
-
-	@Override
-	public List<ObjParam> getAllOutcomes() {
-		return model.getOutcomes();
-	}
-
-	@Override
-	public List<ObjParam> getSelectedOutcomes(List<String> selectedOutcomes) {
-		return model.getSelectedOutcomes();
-	}
-
-	@Override
-	public List<ObjParam> getAllConditions() {
-		return model.getConditions();
-	}
-
-	@Override
-	public List<ObjParam> getSelectedConditions(List<String> selectedConditions) {
-		return model.getSelectedConditions(selectedConditions);
-	}
-
-	@Override
-	public void addActionParam(ActionParams param) {
-		model.addActionParam(param);
-	}
-		
+	
 	public void setDefaultOwner(int ownerID) {
 		model.setDefaultOwner(ownerID);
 	}
+
+	@Override
+	public IGameProperties getPropertiesInterface() {
+		return model.getPropertiesInterface();
+	}
+
 
 
 }

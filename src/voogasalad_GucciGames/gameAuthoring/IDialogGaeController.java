@@ -7,6 +7,7 @@ import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.paramObjects.ActionPara
 import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.paramObjects.GameSettingParams;
 import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.paramObjects.ObjParam;
 import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.paramObjects.PlayerParams;
+import voogasalad_GucciGames.gameAuthoring.model.IGameProperties;
 import voogasalad_GucciGames.gameAuthoring.properties.ObjectProperty;
 
 public interface IDialogGaeController {
@@ -31,26 +32,28 @@ public interface IDialogGaeController {
 	public void saveGameSetting(GameSettingParams params);
 	
 	// Getters
-	public List<ObjParam> getAllMapObjCharParams();
+//	public List<ObjParam> getAllMapObjCharParams();
+//	
+//	public List<ObjParam> getSelectedMapObjCharParams(List<String> selectedChar);
+//	
+//	public List<ObjParam> getAllPlayerCharParams();
+//	
+//	public List<ObjParam> getSelectedPlayerCharParams(List<String> selectedChar);
+//	
+//	public List<ObjParam> getAllOutcomes();
+//	
+//	public List<ObjParam> getSelectedOutcomes(List<String> selectedOutcomes);
+//
+//	public List<ObjParam> getAllConditions();
+//	
+//	public List<ObjParam> getSelectedConditions(List<String> selectedConditions);
 	
-	public List<ObjParam> getSelectedMapObjCharParams(List<String> selectedChar);
+	// condense into this method
 	
-	public List<ObjParam> getAllPlayerCharParams();
-	
-	public List<ObjParam> getSelectedPlayerCharParams(List<String> selectedChar);
-	
-	public List<ObjParam> getAllOutcomes();
-	
-	public List<ObjParam> getSelectedOutcomes(List<String> selectedOutcomes);
-
-	public List<ObjParam> getAllConditions();
-	
-	public List<ObjParam> getSelectedConditions(List<String> selectedConditions);
+	public IGameProperties getPropertiesInterface();
 	
 	// Add
-	// action name, list of rules, list of outcomes
-	public void addActionParam(ActionParams param);
-	
+	// action name, list of rules, list of outcomes	
 	//public void add
 	
 	
