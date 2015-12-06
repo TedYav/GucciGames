@@ -4,15 +4,14 @@ import java.util.List;
 import java.util.Map;
 
 import javafx.collections.ObservableList;
-
 import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.paramObjects.ActionParamsValue;
 import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.paramObjects.GameSettingParams;
 import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.paramObjects.ObjParam;
+import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.paramObjects.ObjParamValue;
 import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.paramObjects.PlayerParams;
 import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.paramObjects.RuleParams;
 import voogasalad_GucciGames.gameAuthoring.model.IGameProperties;
 import voogasalad_GucciGames.gameAuthoring.properties.ObjectProperty;
-
 import voogasalad_GucciGames.gameAuthoring.model.MapObjectType;
 
 public interface IDialogGaeController {
@@ -41,7 +40,7 @@ public interface IDialogGaeController {
 //	
 //	public List<ObjParam> getSelectedMapObjCharParams(List<String> selectedChar);
 //	
-	public List<ObjParam> getAllPlayerCharParams();
+//	public List<ObjParam> getAllPlayerCharParams();
 //	
 //	public List<ObjParam> getSelectedPlayerCharParams(List<String> selectedChar);
 //	
@@ -65,6 +64,8 @@ public interface IDialogGaeController {
 	public List<ActionParamsValue> getAllActions();
 	
 	public List<RuleParams> getAllRules();
+
+	public void setPlayerObjParamValues(ObjParamValue objParamValues);
 	
 	// action name, list of rules, list of outcomes	
 

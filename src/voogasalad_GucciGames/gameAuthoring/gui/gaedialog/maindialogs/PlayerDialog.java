@@ -107,16 +107,16 @@ public class PlayerDialog extends AGaeDialog{
 
     			Reflection reflection = new Reflection();
 
-//    			List<ObjParam> allObjParams = controller.getAllPlayerCharParams();
-    			List<ObjParam> allObjParams = new ArrayList<ObjParam>();
-    			ObjParam o = new ObjParam("hi", null, 2);
-    			ObjParam b = new ObjParam("hi2", null, 2);
-
-    			allObjParams.add(o);
-    			allObjParams.add(b);
+    			List<ObjParam> allObjParams = controller.getPropertiesInterface().getAllMapObjCharParams();
+//				List<ObjParam> allObjParams = new ArrayList<ObjParam>();
+//    			ObjParam o = new ObjParam("hi", null, 2);
+//    			ObjParam b = new ObjParam("hi2", null, 2);
+//
+//    			allObjParams.add(o);
+//    			allObjParams.add(b);
     			
     			String name = gaeDialogPath + "PlayerCharDialog";
-    			for(ObjParam objParam : allObjParams) reflection.createInstance(name, objParam);
+    			for(ObjParam objParam : allObjParams) reflection.createInstance(name, objParam, controller);
     		}
 			return null;
 		});

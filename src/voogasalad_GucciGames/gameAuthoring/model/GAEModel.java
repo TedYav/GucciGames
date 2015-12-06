@@ -14,6 +14,7 @@ import voogasalad_GucciGames.gameAuthoring.IModelGaeController;
 import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.mapobjectsettings.xml.ParamObjParser;
 import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.paramObjects.ActionParamsValue;
 import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.paramObjects.ObjParam;
+import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.paramObjects.ObjParamValue;
 import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.paramObjects.RuleParams;
 import voogasalad_GucciGames.gameAuthoring.gui.map.GridPoint;
 import voogasalad_GucciGames.gameAuthoring.model.factories.GameInfoFactory;
@@ -177,6 +178,13 @@ public class GAEModel implements IGAEModel{
 	@Override
 	public IGameProperties getPropertiesInterface() {
 		return typeData;
+	}
+
+
+	@Override
+	public void setPlayerObjParamValues(ObjParamValue objParamValues) {
+		//TODO: 
+		
 	}
 
 }
