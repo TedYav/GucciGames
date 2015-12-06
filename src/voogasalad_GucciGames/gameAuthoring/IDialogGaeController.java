@@ -9,6 +9,12 @@ import voogasalad_GucciGames.gameAuthoring.properties.ObjectProperty;
 public interface IDialogGaeController {
 	public void createCustomMapObject(ObjectProperty p);
 	
+	public void createCustomUnitType(Map<String, String> m);
+	
+	public void createCustomTileType(Map<String, String> m);
+	
+	public void createCustomStructureType(Map<String, String> m);
+	
 	public void setNumberOfPlayers(int n);
 	
 	public int getNumberOfPlayers();
