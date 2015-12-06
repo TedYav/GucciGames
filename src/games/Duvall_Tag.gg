@@ -1,4 +1,4 @@
->DÕˇ⁄üeQﬁí¨≠öN±≤ scxˇö∞†åiËå<voogasalad__GucciGames.gameData.wrapper.GameInfo>
+⁄!~"2Nç[ˇV%ñª‡›C¶‡á£¥ÒÉeq÷©'#<voogasalad__GucciGames.gameData.wrapper.GameInfo>
   <myEngine>
     <myLevelsMap>
       <entry>
@@ -449,7 +449,7 @@
                                 <myConditions>
                                   <voogasalad__GucciGames.gameEngine.gameConditions.defaultConditions.CheckOnePlayerLeft/>
                                 </myConditions>
-                                <myAffectedPlayers>other</myAffectedPlayers>
+                                <myAffectedPlayers>self</myAffectedPlayers>
                                 <myDestination>Hard</myDestination>
                               </voogasalad__GucciGames.gameEngine.gameConditions.outcomes.EndLevel>
                             </myOutcomes>
@@ -2069,7 +2069,7 @@
                                 <myConditions>
                                   <voogasalad__GucciGames.gameEngine.gameConditions.defaultConditions.CheckOnePlayerLeft/>
                                 </myConditions>
-                                <myAffectedPlayers>other</myAffectedPlayers>
+                                <myAffectedPlayers>self</myAffectedPlayers>
                                 <myDestination>Hard</myDestination>
                               </voogasalad__GucciGames.gameEngine.gameConditions.outcomes.EndLevel>
                             </myOutcomes>
@@ -11381,7 +11381,7 @@
                                 <myConditions>
                                   <voogasalad__GucciGames.gameEngine.gameConditions.defaultConditions.CheckOnePlayerLeft/>
                                 </myConditions>
-                                <myAffectedPlayers>other</myAffectedPlayers>
+                                <myAffectedPlayers>self</myAffectedPlayers>
                                 <myDestination>Hard</myDestination>
                               </voogasalad__GucciGames.gameEngine.gameConditions.outcomes.EndLevel>
                             </myOutcomes>
