@@ -30,7 +30,6 @@ public class PlayerDialog extends AGaeDialog {
 	private Properties prop;
 	private DialogElements dialogElements;
 	private int numOfPlayers;
-//	private Button saveBtn = new Button("Save");
 	private ScrollPane scrollPane = new ScrollPane();
 
 	private PlayerContent playerContent;
@@ -80,10 +79,7 @@ public class PlayerDialog extends AGaeDialog {
 			this.getDialogPane().getButtonTypes().add(mySave);
 		}
 		
-		
-//		initSaveBtn();
 		myContent.setId("vbox-element");
-
 	}
 
 	@Override

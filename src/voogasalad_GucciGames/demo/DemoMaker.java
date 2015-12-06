@@ -17,6 +17,7 @@ import voogasalad_GucciGames.gameEngine.defaultCharacteristics.AttackCharacteris
 import voogasalad_GucciGames.gameEngine.defaultCharacteristics.HealthCharacteristic;
 import voogasalad_GucciGames.gameEngine.defaultCharacteristics.HealthCharacteristic;
 import voogasalad_GucciGames.gameEngine.defaultCharacteristics.MovableCharacteristic;
+import voogasalad_GucciGames.gameEngine.defaultCharacteristics.TileCharacteristic;
 import voogasalad_GucciGames.gameEngine.gameConditions.Conditions;
 import voogasalad_GucciGames.gameEngine.gameConditions.defaultConditions.CheckOnePlayerLeft;
 import voogasalad_GucciGames.gameEngine.gameConditions.outcomes.EndLevel;
@@ -93,7 +94,7 @@ public class DemoMaker extends Application{
 		MovableCharacteristic myMovableCharacteristic = new MovableCharacteristic(1, 3);
 		HealthCharacteristic myHealthCharacteristic = new HealthCharacteristic(5);
                 PlayersActivePerTurn moveOwn = new PlayersActivePerTurn();
-
+        TileCharacteristic myTileCharacteristic = new TileCharacteristic(false);
                 List<Rules> moveRules = new ArrayList<Rules>();
                 moveRules.add(moveOwn);
 		MoveEvent myMoveEvent = new MoveEvent("Move",moveRules,new ArrayList<Outcome>());
@@ -126,11 +127,12 @@ public class DemoMaker extends Application{
 			for (int j=0;j<height;j++) {
 				MapObject newObj;
 				if((i+j)%2==0){
-					newObj = new MapObject(new TargetCoordinateSingle(i,j),-1,0,"TileCharacteristic", "tiles/water.jpg");
+					newObj = new MapObject(new TargetCoordinateSingle(i,j),-1,0,"Water", "tiles/water.jpg");
 				}
 				else{
-					newObj = new MapObject(new TargetCoordinateSingle(i,j),-1,0,"TileCharacteristic", "tiles/grass.jpg");
+					newObj = new MapObject(new TargetCoordinateSingle(i,j),-1,0,"Grass", "tiles/grass.jpg");
 				}
+				newObj.addCharacteristic("TileCharacteristic", myTileCharacteristic);
 				newObj.setOwnerID(-1);
 				myMapOfPlayers.get(-1).getMapObjects().add(newObj);
 				if ((i+j)%9==0) {

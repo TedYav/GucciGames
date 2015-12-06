@@ -45,7 +45,11 @@ public class ActionDisplay extends DisplayComponent implements Observer {
     private void updateButtons() {
         List<Button> updatedActions = new ArrayList<>();
         activeMapObject.getActionNames().stream().
-        forEach(action -> updatedActions.add(makeButton(action)));
+        forEach(action -> {
+            if (activeMapObject.getOwnerID()==getController().getEngine().getGameParameters().whoseTurn()) {
+                    updatedActions.add(makeButton(action));
+            }
+        });
         baseButtons = updatedActions;
         buttons.setItems(FXCollections.observableList(baseButtons));
     }

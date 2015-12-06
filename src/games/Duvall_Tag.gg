@@ -1,4 +1,4 @@
-Ú’œºÏpÄ«µéÛõwh‘í$|ÀÚñArıI<voogasalad__GucciGames.gameData.wrapper.GameInfo>
+„“]Í)p∞)ï†RÕ’%WZKk?ıﬂ<6ç‹dª<voogasalad__GucciGames.gameData.wrapper.GameInfo>
   <myEngine>
     <myLevelsMap>
       <entry>
@@ -11341,9 +11341,9 @@
   <guiData>
     <myRightComponents class="java.util.Arrays$ArrayList">
       <a class="string-array">
+        <string>voogasalad_GucciGames.gameplayer.windows.mainwindow.components.bar.EndTurnButton</string>
         <string>voogasalad_GucciGames.gameplayer.windows.mainwindow.components.bar.ActionDisplay</string>
         <string>voogasalad_GucciGames.gameplayer.windows.mainwindow.components.bar.BuildUnitsDisplay</string>
-        <string>voogasalad_GucciGames.gameplayer.windows.mainwindow.components.bar.EndTurnButton</string>
         <string>voogasalad_GucciGames.gameplayer.windows.mainwindow.components.bar.GameStatsDisplay</string>
       </a>
     </myRightComponents>
@@ -11360,6 +11360,7 @@
         <string>voogasalad_GucciGames.gameplayer.windows.mainwindow.components.bar.MainMenuButton</string>
         <string>voogasalad_GucciGames.gameplayer.windows.mainwindow.components.bar.SaveGameButton</string>
         <string>voogasalad_GucciGames.gameplayer.windows.mainwindow.components.bar.LoadGameButton</string>
+        <string>voogasalad_GucciGames.gameplayer.windows.mainwindow.components.bar.PlayerTurnDisplay</string>
       </a>
     </myBottomComponents>
     <myComponents>
@@ -11378,9 +11379,9 @@
         <string>Right</string>
         <java.util.Arrays_-ArrayList>
           <a class="string-array">
+            <string>voogasalad_GucciGames.gameplayer.windows.mainwindow.components.bar.EndTurnButton</string>
             <string>voogasalad_GucciGames.gameplayer.windows.mainwindow.components.bar.ActionDisplay</string>
             <string>voogasalad_GucciGames.gameplayer.windows.mainwindow.components.bar.BuildUnitsDisplay</string>
-            <string>voogasalad_GucciGames.gameplayer.windows.mainwindow.components.bar.EndTurnButton</string>
             <string>voogasalad_GucciGames.gameplayer.windows.mainwindow.components.bar.GameStatsDisplay</string>
           </a>
         </java.util.Arrays_-ArrayList>
@@ -11392,6 +11393,7 @@
             <string>voogasalad_GucciGames.gameplayer.windows.mainwindow.components.bar.MainMenuButton</string>
             <string>voogasalad_GucciGames.gameplayer.windows.mainwindow.components.bar.SaveGameButton</string>
             <string>voogasalad_GucciGames.gameplayer.windows.mainwindow.components.bar.LoadGameButton</string>
+            <string>voogasalad_GucciGames.gameplayer.windows.mainwindow.components.bar.PlayerTurnDisplay</string>
           </a>
         </java.util.Arrays_-ArrayList>
       </entry>

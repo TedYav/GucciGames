@@ -106,6 +106,7 @@ public class GAEModel implements IGAEModel{
     }
 
     @Override
+
     public void createCustomTileType (MapObjectType m) {
     	typeData.addTileType(m);
     }
@@ -116,6 +117,7 @@ public class GAEModel implements IGAEModel{
     }
     
     @Override
+
 	public void createCustomStructureType(MapObjectType m) {
     	typeData.addStructureType(m);
 	}

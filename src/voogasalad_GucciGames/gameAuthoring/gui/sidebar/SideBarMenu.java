@@ -16,8 +16,7 @@ class SideBarMenu extends ContextMenu {
 			public void handle(ActionEvent e) {
 				System.out.println("Edit");
 				SettingsDialog dialog = new SettingsDialog(controller);
-				dialog.show();
-				
+				dialog.show();	
 			}
 		});
 		MenuItem item2 = new MenuItem("Duplicate");

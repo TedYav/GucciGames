@@ -1,14 +1,11 @@
 package voogasalad_GucciGames.gameAuthoring.model;
 
-import java.io.File;
 import java.util.List;
-import java.util.Map;
 
 import javafx.collections.ObservableList;
 import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.paramObjects.ActionParams;
 import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.paramObjects.ObjParam;
 import voogasalad_GucciGames.gameAuthoring.gui.map.GridPoint;
-import voogasalad_GucciGames.gameData.wrapper.GameInfo;
 import voogasalad_GucciGames.gameEngine.mapObject.MapObject;
 
 public interface IGAEModel {

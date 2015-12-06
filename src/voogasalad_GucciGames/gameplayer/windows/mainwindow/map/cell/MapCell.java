@@ -247,14 +247,11 @@ public abstract class MapCell extends Observable implements MapCellInterface {
 					.map( o -> getObjectColors(o)))
 				.flatMap(l -> l.stream())
 				.collect(Collectors.toList());
-		System.out.println("RESULT " + result);
 		return result;
 	}
 	
 	private List<Color> getObjectColors(PlayerMapObjectInterface object){
-		System.out.println("GETTING COLOR FOR " + object + " OWNER " + object.getOwnerID() + " PLAYER " + object.getPlayerID());
 		if(object.getOwnerID() == -1){
-			System.out.println("NEG 1");
 			return Arrays.asList( myController.getResource().getImageColor(object.getImageURI()));
 		}
 		else{
@@ -263,7 +260,6 @@ public abstract class MapCell extends Observable implements MapCellInterface {
 			for(int i=0; i<= Integer.parseInt(myConfig.getString("PlayerMultiplier")); i++){
 				result.add(c);
 			}
-			System.out.println(result);
 			return result;
 		}
 	}
