@@ -3,8 +3,10 @@ package voogasalad_GucciGames.gameAuthoring.gui.gaedialog.maindialogs;
 import javafx.util.Callback;
 import voogasalad_GucciGames.gameAuthoring.IDialogGaeController;
 import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.mapobjsettings.ObjParamPane;
+import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.paramObjects.ActionParamsValue;
 import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.paramObjects.ObjParam;
 import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.paramObjects.ObjParamValue;
+import voogasalad_GucciGames.gameAuthoring.model.MapObjectType;
 
 public class PlayerCharDialog extends AGaeDialog<ObjParamValue>{
 	ObjParamPane objParamPane; 
@@ -27,7 +29,7 @@ public class PlayerCharDialog extends AGaeDialog<ObjParamValue>{
     		if (dialogButton == mySave) {
     			ObjParamValue objParamValue = objParamPane.getAllInputs();
     			//TODO:
-//    			controller.setPlayerObjParamValues(objParamValue);
+//    			controller.addPlayerCharacteristic(int playerID, objParamValue);
     		}
     		return null;
 		});

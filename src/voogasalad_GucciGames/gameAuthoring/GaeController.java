@@ -236,10 +236,20 @@ public class GaeController extends AGuiGaeController implements IModelGaeControl
 	public IGameProperties getPropertiesInterface() {
 		return myModel.getPropertiesInterface();
 	}
+	
+	@Override
+	public void addPlayerCharacteristic(int playerID, ObjParamValue param) {
+		myModel.addPlayerCharacteristic(playerID, param);
+	}
 
 	@Override
-	public void setPlayerObjParamValues(ObjParamValue objParamValues){
-		myModel.setPlayerObjParamValues(objParamValues);
+	public void addMapObjectCharacteristic(MapObjectType type, ObjParamValue param) {
+		myModel.addMapObjectCharacteristic(type, param);
+	}
+
+	@Override
+	public void addActionParamValue(MapObjectType type, ActionParamsValue param) {
+		myModel.addActionParamValue(type, param);
 	}
 	
 	private final BooleanProperty myHasGameProperty = new SimpleBooleanProperty(false);

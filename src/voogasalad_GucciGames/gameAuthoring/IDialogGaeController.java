@@ -57,6 +57,12 @@ public interface IDialogGaeController {
 	
 	public IGameProperties getPropertiesInterface();
 
+	public void addPlayerCharacteristic(int playerID, ObjParamValue param);
+
+	public void addMapObjectCharacteristic(MapObjectType type, ObjParamValue param);
+
+	public void addActionParamValue(MapObjectType type, ActionParamsValue param);
+	
 	public GameResourceManagerToGAE getResourceManager();
 	
 	// Add

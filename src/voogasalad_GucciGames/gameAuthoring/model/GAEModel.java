@@ -179,11 +179,22 @@ public class GAEModel implements IGAEModel{
 	public IGameProperties getPropertiesInterface() {
 		return typeData;
 	}
-
+	
+	@Override
+	public void addPlayerCharacteristic(int playerID, ObjParamValue param) {
+		// TODO Auto-generated method stub
+		
+	}
 
 	@Override
-	public void setPlayerObjParamValues(ObjParamValue objParamValues) {
-		//TODO: 
+	public void addMapObjectCharacteristic(MapObjectType type, ObjParamValue param) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void addActionParamValue(MapObjectType type, ActionParamsValue param) {
+		// TODO Auto-generated method stub
 		
 	}
 

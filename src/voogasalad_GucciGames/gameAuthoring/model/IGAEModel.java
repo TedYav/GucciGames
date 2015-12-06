@@ -61,7 +61,8 @@ public interface IGAEModel {
 	// All consolidated into this interface:
 	
 	public IGameProperties getPropertiesInterface();
-	public void setPlayerObjParamValues(ObjParamValue objParamValues);
-	
+	public void addPlayerCharacteristic(int playerID, ObjParamValue param);
+	public void addMapObjectCharacteristic(MapObjectType type, ObjParamValue param);
+	public void addActionParamValue(MapObjectType type, ActionParamsValue param);	
     
 }
