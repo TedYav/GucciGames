@@ -96,8 +96,8 @@ public class GaeController extends AGuiGaeController implements IModelGaeControl
 	}
 	
 	@Override
-	public void saveToXML(GameInfo game){
-		model.saveToXML(game);
+	public void saveToXML( ){
+		model.saveToXML();
 	}
 
 	@Override

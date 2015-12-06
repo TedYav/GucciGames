@@ -44,7 +44,7 @@ public interface IGuiGaeController {
 	@Deprecated
 	public void saveToXML(File file);
 
-	public void saveToXML(GameInfo game);
+	public void saveToXML();
 	
 	public void setSelectedType(MapObjectType mapType);
 

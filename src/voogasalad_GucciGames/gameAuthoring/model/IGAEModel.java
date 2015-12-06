@@ -35,7 +35,13 @@ public interface IGAEModel {
 
 	public int addLevel(String name);
 	
-	public void saveToXML(GameInfo game);
+	public void saveToXML();
+	
+	/**
+	 * Do some check!!
+	 * @param ownerID
+	 */
+	public void setDefaultOwner(int ownerID);
 
     
 }

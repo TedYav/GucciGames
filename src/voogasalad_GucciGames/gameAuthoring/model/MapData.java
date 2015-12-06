@@ -6,7 +6,12 @@ import voogasalad_GucciGames.gameEngine.mapObject.MapObject;
 
 public class MapData {
 	private List<DisplayMapObject> onMap;
+	private String myName;
 	
+	public MapData(String name) {
+		myName = name; 
+	}
+
 	public void addToMap(DisplayMapObject obj) {
 		onMap.add(obj);
 	}
