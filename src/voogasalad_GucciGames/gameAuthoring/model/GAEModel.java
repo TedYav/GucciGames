@@ -56,7 +56,9 @@ public class GAEModel implements IGAEModel{
     	// load all default properites
     	ParamObjParser parser = new ParamObjParser();
     	Set<ObjParam> objs = parser.getMapObjChars();
-    	System.out.println(objs);
+    	objs.stream().forEach(e -> {
+    		System.out.println(e.getName());
+    	});
     	
     	
     	// Probs need to change this
