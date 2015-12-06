@@ -3,9 +3,11 @@ package voogasalad_GucciGames.gameAuthoring;
 import java.util.List;
 import java.util.Map;
 
+import javafx.collections.ObservableList;
 import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.paramObjects.GameSettingParams;
 import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.paramObjects.ObjParam;
 import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.paramObjects.PlayerParams;
+import voogasalad_GucciGames.gameAuthoring.model.MapObjectType;
 import voogasalad_GucciGames.gameAuthoring.properties.ObjectProperty;
 
 public interface IDialogGaeController {
@@ -16,6 +18,12 @@ public interface IDialogGaeController {
 	public void createCustomTileType(Map<String, String> m);
 	
 	public void createCustomStructureType(Map<String, String> m);
+	
+	public ObservableList<MapObjectType> getImmutableTileTypes();
+
+	public ObservableList<MapObjectType> getImmutableUnitTypes();
+
+	public ObservableList<MapObjectType> getImmutableStructureTypes();
 	
 	public void setNumberOfPlayers(int n);
 	
