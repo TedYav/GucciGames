@@ -1,5 +1,4 @@
 package voogasalad_GucciGames.gameEngine;
-import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
@@ -17,8 +16,6 @@ import voogasalad_GucciGames.gameEngine.gamePlayer.ATurnDecider;
 import voogasalad_GucciGames.gameEngine.gamePlayer.AllPlayers;
 import voogasalad_GucciGames.gameEngine.gamePlayer.DefaultTurnDecider;
 import voogasalad_GucciGames.gameEngine.gamePlayer.TurnCounter;
-import voogasalad_GucciGames.gameEngine.gameRules.RuleFactory;
-import voogasalad_GucciGames.gameEngine.gameRules.RuleParams;
 import voogasalad_GucciGames.gameEngine.targetCoordinate.ATargetCoordinate;
 import voogasalad_GucciGames.gameplayer.controller.GameParametersInterface;
 
@@ -95,20 +92,7 @@ public class GameLevelEngine implements IGameLevelToGamePlayer {
 		endTurn();
 		endTurn();
 	}
-	public void testRules() {
-		System.out.println("create rules");
-		RuleFactory factory = new RuleFactory();
-		RuleParams params = new RuleParams("move", null, null);
-		//BasicParameters comParams = new BasicParameters(myGamePlayers, null, manager);
-		BasicParameters comParams = new BasicParameters(null,this);
-		try {
-			factory.createRule(params, comParams);
-		} catch (NoSuchMethodException | SecurityException | ClassNotFoundException | InstantiationException
-				| IllegalAccessException | IllegalArgumentException | InvocationTargetException e) {
-			e.printStackTrace();
-		}
 
-	}
 	public AllPlayers getPlayers() {
 		// TODO Auto-generated method stub
 		return myGamePlayers;
