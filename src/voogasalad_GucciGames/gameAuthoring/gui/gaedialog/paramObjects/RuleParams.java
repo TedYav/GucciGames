@@ -8,9 +8,10 @@ public class RuleParams {
 		this.name = name;
 		
 	}
-	
-	public String getName(){
-		return this.name;
+
+	public String getName() {
+		return name;
+
 	}
 
 }

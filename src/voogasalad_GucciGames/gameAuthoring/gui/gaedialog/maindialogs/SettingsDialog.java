@@ -33,17 +33,28 @@ public class SettingsDialog extends AGaeDialog implements ISwitchSettingsPane{
 	private GaeDialogHelper helper = new GaeDialogHelper();
 	private ScrollPane scrollPane = new ScrollPane();
 	private MainPane mainPane;
+	private MapObjectType mapObjType;
 
 
-	public SettingsDialog(IDialogGaeController controller){
+	public SettingsDialog(IDialogGaeController controller, MapObjectType mapObjType){
 		super();
+		this.mapObjType = mapObjType;
 		prop = helper.loadProperties("dialogproperties/actionsettings.properties");			
 		this.controller = controller;
-		this.setHeaderText("Settings");
-		this.mainPane = new MainPane(this, prop);
+		this.setHeaderText("Map Object Settings");
+		this.mainPane = new MainPane(this, prop, controller, mapObjType);
 		scrollPane.setContent(mainPane);
 		this.getDialogPane().setContent(scrollPane);
 		this.getDialogPane().setPrefSize(WIDTH, HEIGHT);
+		
+		
+		this.setResultConverter(dialogButton -> {
+		    if (dialogButton == ButtonType.FINISH) {
+		        System.out.println("save");
+		        //TODO: save
+		    }
+		    return null;
+		});
 	}
 
 	@Override
@@ -56,7 +67,6 @@ public class SettingsDialog extends AGaeDialog implements ISwitchSettingsPane{
 
 	@Override
 	public Optional<ButtonType> getDialogButtonResponse() {
-		// TODO Auto-generated method stub
 		return this.showAndWait();
 	}
 
@@ -64,6 +74,12 @@ public class SettingsDialog extends AGaeDialog implements ISwitchSettingsPane{
 	protected void setSaveAction() {
 		// TODO Auto-generated method stub...add some kind of listener
 		ObservableList<MapObjectType> currTileList = controller.getImmutableTileTypes();
+	}
+
+	@Override
+	public void addSaveButton(ButtonType save) {
+		this.getDialogPane().getButtonTypes().add(save);
+		
 	}
 
 

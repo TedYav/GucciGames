@@ -5,7 +5,7 @@ import java.util.Map;
 import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
-import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.paramObjects.ActionParams;
+import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.paramObjects.ActionParamsValue;
 import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.paramObjects.ObjParam;
 import voogasalad_GucciGames.gameAuthoring.gui.map.GridPoint;
 import voogasalad_GucciGames.gameEngine.mapObject.MapObject;
