@@ -11,7 +11,7 @@ import java.util.Map;
  */
 public class TypeMap {
 	// string to class.
-	private Map<String, Class> map;
+	private static Map<String, Class> map;
 
 	public TypeMap() {
 		map = new HashMap<String, Class>();
@@ -22,7 +22,7 @@ public class TypeMap {
 		Collections.unmodifiableMap(map);
 	}
 
-	public Class getType(String name) {
+	public static Class getType(String name) {
 		return map.get(name);
 	}
 
