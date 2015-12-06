@@ -7,6 +7,7 @@ import voogasalad.util.reflection.Reflection;
 import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.dialogcomponents.DropDownMenuField;
 import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.groovySettings.groovyParams.GCharParam;
 import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.paramObjects.Param;
+import voogasalad_GucciGames.gameAuthoring.model.MapObjectType;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.geometry.HPos;
@@ -34,11 +35,13 @@ public class CharacteristicPane extends GridPane{
 	private List<Param> dataList = new ArrayList<Param>();
 	private ObservableList<Param> data;
 	private GCharParam charParam;
+	private MapObjectType type;
 
 	
 
 	public CharacteristicPane(String name, ISwitchGroovyPane controller){
 		super();
+		this.type = type;
 		tableView = new TableView();
 		nameLbl = new Label(name + " Characteristics");
 		nameLbl.setFont(new Font("Arial", 20));

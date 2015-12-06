@@ -13,6 +13,7 @@ import javax.xml.parsers.SAXParserFactory;
 
 import org.xml.sax.SAXException;
 
+import voogasalad_GucciGames.gameAuthoring.IDialogGaeController;
 import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.dialogcomponents.DialogTableView;
 import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.dialogcomponents.TableElement;
 import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.groovySettings.groovyParams.GCharParam;
@@ -24,6 +25,7 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.geometry.Insets;
 import javafx.scene.control.Button;
+import javafx.scene.control.Dialog;
 import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.layout.GridPane;
@@ -31,47 +33,58 @@ import javafx.scene.layout.VBox;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 
-public class RulesAndCharPane extends GridPane{
+public class RulesPane extends GridPane{
 	
-	private Text title = new Text("Rules and Characteristics");
-	private ScrollPane rulesScrollPane = new ScrollPane();
-	private ScrollPane characteristicsScrollPane = new ScrollPane();
-	private Button saveBtn = new Button("Save");
+	private Text title = new Text("Rules");
+	private Button saveBtn = new Button("Save and Next");
 	private List<GCharParam> charParams = new ArrayList<GCharParam>();
 	
-	private Set<String> rules = new HashSet<String>();
-	private Set<String> characteristics = new HashSet<String>();
+	private List<String> rules  = new ArrayList<String>();
+	private DialogTableView tableView;
+	private IDialogGaeController controller;
+
 	
 	private DialogTableView rulesTableView;
 	
-	public RulesAndCharPane(Set<String> rules, Set<String> characteristics){
-		this.rules = rules;
-		this.characteristics = characteristics;
-		loadCharacteristics();
-		loadRules();
+	public RulesPane(IDialogGaeController controller){
+		this.controller = controller;
+		loadRules();		
 		
+		rulesTableView = new DialogTableView(rules, "Add Rules");
+		this.add(rulesTableView, 0, 0);
+		this.add(saveBtn, 3, 3);
+		
+		loadRules();		
 		addActionToSaveBtn();
+		setLayout();
 		
+	}
+	
+	private void setLayout(){
+		this.setHgap(5);
+		this.setVgap(5);
+		this.setPadding(new Insets(5,5,5,5));
 	}
 	
 	private void loadRules(){
+		controller.getAllRules().forEach(rule -> {
+			rules.add(rule.getName());
+		});;
 		
 		
 	}
 	
-	private void loadCharacteristics(){
-		VBox charVBox = new VBox(5);
-		charVBox.setPadding(new Insets(5,5,5,5));
-		Label label = new Label("Characteristics");
-		label.setFont(new Font("Arial", 20));
-		charVBox.getChildren().add(label);
 
-	    this.add(charVBox, 1, 1);
-		
-	}
 	
 	private void addActionToSaveBtn(){
 		this.saveBtn.setOnAction(e -> {
+			List<String> data = tableView.getData();
+			//TODO: add Rules to Action
+			
+			Dialog d = new Dialog();
+			d.showAndWait();
+			
+			
 			
 		});
 	}
