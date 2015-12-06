@@ -31,11 +31,15 @@ public interface IGameProperties {
 	
 	public List<RuleParams> getSelectedRules(List<String> selectedRules);
 	
-	public void addCharacteristic(ObjParam param, MapObjectType type);
-
-	public void addActionParamValue(ActionParamsValue param);
+//	public void addCharacteristic(ObjParam param, MapObjectType type);
 	
-	public void addCharParamValue(ObjParamValue param);
+	public void addPlayerCharacteristic(int playerID, ObjParamValue param);
+	
+	public void addMapObjectCharacteristic(MapObjectType type, ObjParamValue param);
+
+	public void addActionParamValue(MapObjectType type, ActionParamsValue param);
+	
+//	public void addCharParamValue(ObjParamValue param);
 	
 	
 	
