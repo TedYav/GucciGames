@@ -1,4 +1,6 @@
-<game>
-	<name>Duvall Tag</name>
-	<file>Duvall_Tag.gg</file>
-</game>
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><body>
+	<game>
+		<name>Duvall Tag</name>
+		<file>Duvall_Tag.gg</file>
+	</game>
+</body>
