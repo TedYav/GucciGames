@@ -22,7 +22,7 @@ import voogasalad_GucciGames.gameplayer.controller.GameParametersInterface;
  * @author Efe Aras
  *
  */
-public class GameEngineClient implements GameEngineToGamePlayerInterface, Runnable{
+public class GameEngineClient implements Runnable{
 
 	private int myPlayerID;
 	private GameLevelEngine myEngine;
@@ -83,22 +83,7 @@ public class GameEngineClient implements GameEngineToGamePlayerInterface, Runnab
 
 
 	}
-	@Override
-	public String getGameName() {
-		return myEngine.getGameName();
-	}
-
-	@Override
-	public List<PlayerMapObjectInterface> getInitialState() {
-		return myEngine.getInitialState();
-	}
-
-	@Override
-	public GameParametersInterface endTurn() {
-		updateServerGameEngine();
-		return myEngine.endTurn();
-	}
-
+	
 	private void updateServerGameEngine() {
 		// TODO Auto-generated method stub
 		XStream xstream = new XStream();
@@ -110,61 +95,4 @@ public class GameEngineClient implements GameEngineToGamePlayerInterface, Runnab
 
 
 	}
-
-	@Override
-	public int getTurnPlayerID() {
-		return myEngine.getTurnPlayerID();
-	}
-
-
-	@Override
-	public GameParametersInterface getGameParameters() {
-		return myEngine.getGameParameters();
-	}
-
-	@Override
-	public GridCoordinateParameters getPossibleCoordinates(String action, PlayerMapObjectInterface mapObject) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public ChangedParameters performAction(String action, PlayerMapObjectInterface mapObject,
-			ATargetCoordinate target) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public int getMapWidth() {
-		// TODO Auto-generated method stub
-		return 0;
-	}
-
-	@Override
-	public int getMapHeight() {
-		// TODO Auto-generated method stub
-		return 0;
-	}
-
-
-	@Override
-	public boolean hasLevelEnded() {
-		return myEngine.hasLevelEnded();}
-
-	@Override
-	public String getName() {
-		return myEngine.getLevelName();
-
-	}
-
-    @Override
-    public void changeCurrentLevel (String newGameLevel) {
-        // TODO Auto-generated method stub
-        
-    }
-
-	//change to either immutable or just make the methods of this public (and not the full set...)
-
-
 }

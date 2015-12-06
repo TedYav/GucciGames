@@ -8,6 +8,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.TreeMap;
 
+import voogasalad_GucciGames.gameEngine.GameEngineServer;
 import voogasalad_GucciGames.gameEngine.GameEngineToGamePlayerInterface;
 import voogasalad_GucciGames.gameEngine.GameLevelEngine;
 import voogasalad_GucciGames.gameEngine.PlayerMapObjectInterface;
@@ -34,14 +35,23 @@ public class GameEngine implements IGameInfoToGAE, GameEngineToGamePlayerInterfa
 	
 	private String myInitialLevel;
 
-
+	private volatile GameEngineServer iAmAHost;
+	private volatile Thread t;
+	
 	public GameEngine(String initialLevel){
 	    myLevelsMap = new HashMap<String,GameLevelEngine>();
 	    this.myInitialLevel = initialLevel;
 	    this.myCurrentLevel = initialLevel;
 	    
 	    myGameName = "RandomName";
-	    
+	}
+	
+	public void beHost(){
+		
+	}
+	
+	public void beClient(String ipAddr, int port){
+		
 	}
 	
 	public void resetGame(){
@@ -50,6 +60,9 @@ public class GameEngine implements IGameInfoToGAE, GameEngineToGamePlayerInterfa
 	
 	@Override
 	public void changeCurrentLevel(String newGameLevel){
+		if(iAmAHost != null){
+		iAmAHost.setLevelEngine(getCurrentLevel());
+		}
 		myCurrentLevel = newGameLevel;
 	}
 	
@@ -75,32 +88,9 @@ public class GameEngine implements IGameInfoToGAE, GameEngineToGamePlayerInterfa
 	    myEngine.setName(levelName);
 	    myLevelsMap.put(levelName, myEngine);
 		
-//		return GameLevelEngine;
 	}
 
 
-	
-	/*
-	public void swapLevels(int first, int second){
-		if (myLevelsMap.containsKey(first) && myLevelsMap.containsKey(second)){
-			GameLevelEngine gameOne = myLevelsMap.get(first);
-			gameOne.changeID(second);
-			
-			GameLevelEngine gameTwo = myLevelsMap.get(second);
-			gameTwo.changeID(first);
-			
-			myLevelsMap.put(first, gameTwo);
-			myLevelsMap.put(second, gameOne);
-		}
-		else{
-			System.out.println("One or more level(s) not found");
-		}
-	}
-    */
-
-	// I'm sorry for the code below
-	// Java wouldn't let me modify the return type in the interface, don't know why
-	// :(
 	@Override
 	public Map<String, IGameLevelToGamePlayer> getLevelsMap() {
 		return Collections.unmodifiableMap(myLevelsMap);
@@ -141,6 +131,7 @@ public class GameEngine implements IGameInfoToGAE, GameEngineToGamePlayerInterfa
 
 	@Override
 	public GameParametersInterface endTurn() {
+		iAmAHost.updateClientGameEngine();
 		return getCurrentLevel().endTurn();
 	}
 

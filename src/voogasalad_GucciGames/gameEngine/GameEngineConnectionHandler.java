@@ -12,7 +12,7 @@ public class GameEngineConnectionHandler extends Thread {
 	        private Socket socket;
 	        private BufferedReader in;
 	        private PrintWriter out;
-	        private GameEngineServer myServer; //get the instance of a server
+	        private volatile GameEngineServer myServer; //get the instance of a server
 	        
 	        
 	        /**
@@ -20,6 +20,7 @@ public class GameEngineConnectionHandler extends Thread {
 	         * All the interesting work is done in the run method. 
 	         */
 	        public GameEngineConnectionHandler(Socket socket, GameEngineServer server) {
+	        	System.out.println("connectionFormed");
 	            this.socket = socket;
 	            this.myServer = server;
 	        }
@@ -39,30 +40,12 @@ public class GameEngineConnectionHandler extends Thread {
 	                    socket.getInputStream()));
 	                out = new PrintWriter(socket.getOutputStream(), true);
 
-	                // Request a name from this client.  Keep requesting until
-	                // a name is submitted that is not already used.  Note that
-	                // checking for the existence of a name and adding the name
-	                // must be done while locking the set of names.
-	                while (true) {
-	                    out.println("SUBMITNAME");
-	                    name = in.readLine();
-	                    if (name == null) {
-	                        return;
-	                    }
-	                    synchronized (myServer.getNames()) {
-	                        if (!myServer.getNames().contains(name)) {
-	                            myServer.getNames().add(name);
-	                            break;
-	                        }
-	                    }
-	                }
-
-	                // Now that a successful name has been chosen, add the
-	                // socket's print writer to the set of all writers so
-	                // this client can receive broadcast messages.
-	                out.println("NAMEACCEPTED");
+	        
 	                myServer.getWriters().add(out);
-
+	                System.out.println("just added a print writer");
+	                System.out.println(myServer.getWriters().size()+" is size right after add");
+	                System.out.println("memaddr="+myServer);
+	                System.out.println(myServer.getWriters().size());
 	                // Accept messages from this client and broadcast them.
 	                // Ignore other clients that cannot be broadcasted to.
 	                while (true) {
@@ -74,11 +57,15 @@ public class GameEngineConnectionHandler extends Thread {
 	                    input = in.readLine();
 	                    int lengthXML = Integer.parseInt(input);
 	                    
+	                    System.out.println("they told us it is of length" + lengthXML);
+	                    
 	                    StringBuilder myBuilder = new StringBuilder();
 	                    
 	                    for(int i = 0; i < lengthXML; i++){
-	                    	myBuilder.append(in.read());
+	                    	myBuilder.append((char) in.read());
 	                    }
+	                    
+	                    System.out.println("it actually ended up being" + myBuilder.toString().length());
 	                    myServer.updateServerGameEngine(myBuilder.toString());
 	                    
 	                    for (PrintWriter writer : myServer.getWriters()) {
@@ -86,31 +73,24 @@ public class GameEngineConnectionHandler extends Thread {
 	                        writer.println(lengthXML);
 	                        writer.println(myBuilder.toString());
 	                    }
-	                    
-	                    
-	                    
 	                    }
-	                    
-	           
 	                }
 	            } catch (IOException e) {
 	                System.out.println(e);
 	            } finally {
-	                // This client is going down!  Remove its name and its print
-	                // writer from the sets, and close its socket.
-	                if (name != null) {
-	                    myServer.getNames().remove(name);
-	                }
-	                if (out != null) {
-	                    myServer.getWriters().remove(out);
-	                }
-	                try {
-	                    socket.close();
-	                } catch (IOException e) {
-	                }
+	                finish();
 	            }
 	        }
-	    
+	    public void finish() {
+            if (out != null) {
+                myServer.getWriters().remove(out);
+            }
+            try {
+                socket.close();
+                System.out.println("close thread");
+            } catch (IOException e) {
+            }
+	    }
 	
 	
 }
