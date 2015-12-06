@@ -27,8 +27,6 @@ public interface IGuiGaeController {
 
 	public void deleteComponent(DisplayMapObject mapObj);
 
-	public DisplayMapObject addObject(int levelID, GridPoint gridpoint, MapObjectType mapObjType);
-
 	public List<DisplayMapObject> getMapObjects(int id);
 
 	public void clearMap(int id);

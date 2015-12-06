@@ -1,7 +1,7 @@
 package voogasalad_GucciGames.gameAuthoring.gui.sidebar;
 
 import javafx.event.ActionEvent;
-import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.maindialogs.NewObjectMaker;
+import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.maindialogs.NewObMakerDialog;
 
 
 public class TileTab extends ATab {
@@ -17,7 +17,7 @@ public class TileTab extends ATab {
 
 	@Override
 	protected void addNewTypeDialog(ActionEvent e) {
-		NewObjectMaker addNewTileDialog = new NewObjectMaker(myController);
+		NewObMakerDialog addNewTileDialog = new NewObMakerDialog(myController);
 		addNewTileDialog.showAndWait();
 		
 	}

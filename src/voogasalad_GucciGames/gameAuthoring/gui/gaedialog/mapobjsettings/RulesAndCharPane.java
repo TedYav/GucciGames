@@ -1,4 +1,4 @@
-package voogasalad_GucciGames.gameAuthoring.gui.gaedialog.dialogcomponents;
+package voogasalad_GucciGames.gameAuthoring.gui.gaedialog.mapobjsettings;
 
 import java.io.File;
 import java.io.IOException;
@@ -13,9 +13,12 @@ import javax.xml.parsers.SAXParserFactory;
 
 import org.xml.sax.SAXException;
 
+import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.dialogcomponents.DialogTableView;
+import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.dialogcomponents.TableElement;
 import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.groovySettings.groovyParams.GCharParam;
 import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.mapobjectsettings.xml.CharacteristicsSAXHandler;
 import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.mapobjectsettings.xml.RulesSAXHandler;
+import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.paramObjects.ObjParam;
 import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.paramObjects.RuleParams;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -86,12 +89,12 @@ public class RulesAndCharPane extends GridPane{
 	    try {
 	        SAXParser saxParser = saxParserFactory.newSAXParser();
 	 
-	        CharacteristicsSAXHandler handler = new CharacteristicsSAXHandler(characteristics);
+	        CharacteristicsSAXHandler handler = new CharacteristicsSAXHandler();
 	        saxParser.parse(new 
 	        		File("src/voogasalad_GucciGames/gameAuthoring/gui/gaedialog/mapobjectsettings/xml/characteristicsDependencies.xml"), 
 	        		handler);
-	        List<GCharParam> charParams = handler.getCharParams();
-	        for(GCharParam param : charParams){
+	        List<ObjParam> charParams = handler.getObjParams();
+	        for(ObjParam param : charParams){
 	        	CharGridPane p = new CharGridPane(param);
 	        	Label labelChar = new Label(param.getName());
 	        	charVBox.getChildren().add(labelChar);

@@ -30,8 +30,9 @@ public class MainGameEngine implements GameEngineToGamePlayerInterface {
 	private int myMapWidth;
 	private int myMapHeight;
 	private String myName;
-	private boolean gameWon;
+	private boolean hasLevelEnded;
 
+	@Override
 	public String getName() {
 		return myName;
 	}
@@ -205,12 +206,12 @@ public class MainGameEngine implements GameEngineToGamePlayerInterface {
 	}
 
 	@Override
-	public boolean isGameWon() {
-		return gameWon;
+	public boolean hasLevelEnded() {
+		return hasLevelEnded;
 	}
 
-	public void setGameWon(boolean gameWon) {
-		this.gameWon = gameWon;
+	public void setEndLevel(boolean gameWon) {
+		this.hasLevelEnded = gameWon;
 	}
 
 }

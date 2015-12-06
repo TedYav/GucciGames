@@ -1,0 +1,21 @@
+<outcomeDependencies>
+
+	<element name="endLevel" 
+		 paramNames="nextLevel"
+		 paramTypes="String">
+	</element>	
+		<element name="modifyActiveObjectHealth" 
+		 paramNames="health"
+		 paramTypes="int">
+	</element>	
+		<element name="modifyWealth" 
+		 paramNames="wealth"
+		 paramTypes="int">
+	</element>	
+	
+		<element name="removePlayer" 
+		 paramNames=""
+		 paramTypes="">
+	</element>	
+
+</outcomeDependencies>
