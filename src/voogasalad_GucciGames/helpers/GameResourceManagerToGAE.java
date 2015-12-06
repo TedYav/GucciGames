@@ -54,6 +54,10 @@ public interface GameResourceManagerToGAE {
 	 */
 	public void loadGame(String gameName);
 
+	public void copySpriteToGame(String URI);
+
+	public void copyImageToGame(String URI);
+
 	// NOTE: ted will implement this if needed
 	//public void copyImageToGame(String imagePath);
 }

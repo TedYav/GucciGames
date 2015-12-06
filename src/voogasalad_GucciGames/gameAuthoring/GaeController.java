@@ -17,6 +17,7 @@ import javafx.stage.Stage;
 import voogasalad.util.fxsprite.Sprite;
 import voogasalad_GucciGames.gameAuthoring.gui.GAEGui;
 import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.maindialogs.ImageBrowseDialogs;
+import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.maindialogs.SpriteBrowseDialog;
 import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.paramObjects.ActionParams;
 import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.paramObjects.GameSettingParams;
 import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.paramObjects.ObjParam;

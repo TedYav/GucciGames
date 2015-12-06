@@ -10,7 +10,7 @@ import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.paramObjects.ObjParam;
 import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.paramObjects.PlayerParams;
 import voogasalad_GucciGames.gameAuthoring.model.IGameProperties;
 import voogasalad_GucciGames.gameAuthoring.properties.ObjectProperty;
-
+import voogasalad_GucciGames.helpers.GameResourceManagerToGAE;
 import voogasalad_GucciGames.gameAuthoring.model.MapObjectType;
 
 public interface IDialogGaeController {
@@ -54,6 +54,8 @@ public interface IDialogGaeController {
 	// condense into this method
 	
 	public IGameProperties getPropertiesInterface();
+
+	public GameResourceManagerToGAE getResourceManager();
 	
 	// Add
 	// action name, list of rules, list of outcomes	
