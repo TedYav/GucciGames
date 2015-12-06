@@ -12,6 +12,7 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
 import voogasalad_GucciGames.gameAuthoring.gui.GAEGui;
+import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.paramObjects.ActionParams;
 import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.paramObjects.GameSettingParams;
 import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.paramObjects.ObjParam;
 import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.paramObjects.PlayerParams;
@@ -241,55 +242,47 @@ public class GaeController extends AGuiGaeController implements IModelGaeControl
 
 	@Override
 	public List<ObjParam> getAllMapObjCharParams() {
-		// TODO Auto-generated method stub
-		return null;
+		return model.getMapCharParams();
 	}
 
 	@Override
 	public List<ObjParam> getSelectedMapObjCharParams(List<String> selectedChar) {
-		// TODO Auto-generated method stub
-		return null;
+		return model.getSelectedMapObjCharParams(selectedChar);
 	}
 
 	@Override
 	public List<ObjParam> getAllPlayerCharParams() {
-		// TODO Auto-generated method stub
-		return null;
+		return model.getPlayerCharParams();
 	}
 
 	@Override
 	public List<ObjParam> getSelectedPlayerCharParams(List<String> selectedChar) {
-		// TODO Auto-generated method stub
-		return null;
+		return model.getSelected();
 	}
 
 	@Override
 	public List<ObjParam> getAllOutcomes() {
-		// TODO Auto-generated method stub
-		return null;
+		return model.getOutcomes();
 	}
 
 	@Override
 	public List<ObjParam> getSelectedOutcomes(List<String> selectedOutcomes) {
-		// TODO Auto-generated method stub
-		return null;
+		return model.getSelectedOutcomes();
 	}
 
 	@Override
 	public List<ObjParam> getAllConditions() {
-		// TODO Auto-generated method stub
-		return null;
+		return model.getConditions();
 	}
 
 	@Override
 	public List<ObjParam> getSelectedConditions(List<String> selectedConditions) {
-		// TODO Auto-generated method stub
-		return null;
+		return model.getSelectedConditions(selectedConditions);
 	}
 
 	@Override
-	public void addActionParam() {
-		// TODO Auto-generated method stub
+	public void addActionParam(ActionParams param) {
+		model.addActionParam(param);
 	}
 
 	@Override
