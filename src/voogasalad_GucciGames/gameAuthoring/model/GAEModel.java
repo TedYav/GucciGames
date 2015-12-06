@@ -116,7 +116,7 @@ public class GAEModel implements IGAEModel{
 
     private void saveToXML (GameInfo game) {    	
     	XStreamGameEngine saver = new XStreamGameEngine();
-		saver.saveGameInfo(game);
+	saver.saveGameInfo(game);
     }
     
     public void saveToXML() {

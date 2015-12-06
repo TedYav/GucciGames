@@ -10,6 +10,7 @@ import java.util.ResourceBundle;
 import java.util.stream.Collectors;
 
 import voogasalad_GucciGames.gameData.wrapper.GameInfo;
+import voogasalad_GucciGames.gameData.wrapper.GamePlayerSave;
 
 public class GameDataManager implements GameDataInterface {
 
@@ -25,11 +26,11 @@ public class GameDataManager implements GameDataInterface {
     
 //    public static void main(String[] args){
 //    	GameDataManager g = new GameDataManager();
-//    	//g.buildGameDirectories("Duvall Tag");
-//    	g.copyResourceToGame("images/tiles/water.jpg", "Duvall Tag");
-//    	g.copyResourceToGame("images/units/duvall.png", "Duvall Tag");
-//    	g.renameGameDirectory("Duvall Tag", "PWNAGE");
-//    	System.out.println(g.getResources(Arrays.asList("jpg", "png"), "images/tiles/"));
+//    	g.buildGameDirectories("Duvall Tag");
+////    	g.copyResourceToGame("images/tiles/water.jpg", "Duvall Tag");
+////    	g.copyResourceToGame("images/units/duvall.png", "Duvall Tag");
+////    	g.renameGameDirectory("Duvall Tag", "PWNAGE");
+////    	System.out.println(g.getResources(Arrays.asList("jpg", "png"), "images/tiles/"));
 //    }
     
 	public GameDataManager(){
@@ -43,6 +44,10 @@ public class GameDataManager implements GameDataInterface {
 	@Override
 	public GameInfo loadGame(String name) {
 		return myXStream.loadGameByName(name);
+	}
+	@Override
+	public void saveGame(GamePlayerSave game) {
+	    myXStream.saveGameState(game);
 	}
 
 	@Override

@@ -7,6 +7,7 @@ import voogasalad_GucciGames.gameData.GameDataInterface;
 import voogasalad_GucciGames.gameData.GameDataManager;
 import voogasalad_GucciGames.gameData.XStreamGameEngine;
 import voogasalad_GucciGames.gameData.wrapper.GameInfo;
+import voogasalad_GucciGames.gameData.wrapper.GamePlayerSave;
 import voogasalad_GucciGames.gameEngine.GameEngineToGamePlayerInterface;
 import voogasalad_GucciGames.gameplayer.controller.GameController;
 import voogasalad_GucciGames.gameplayer.controller.GameControllerInterface;
@@ -31,6 +32,9 @@ public class GameLoader {
     public void loadGame(String gameName){
     	myController.loadGame(myData.loadGame(gameName));
     	gameLoaded = true;
+    }
+    public void saveGame(GamePlayerSave game) {
+        myData.saveGame(game);
     }
     
     public void loadGameFromFile(String path){
