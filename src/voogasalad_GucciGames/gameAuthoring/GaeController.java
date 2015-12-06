@@ -14,11 +14,9 @@ import javafx.scene.control.Dialog;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
-import voogasalad.util.fxsprite.Sprite;
 import voogasalad_GucciGames.gameAuthoring.gui.GAEGui;
 import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.paramObjects.ActionParamsValue;
 import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.maindialogs.ImageBrowseDialogs;
-import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.paramObjects.ActionParam;
 import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.paramObjects.GameSettingParams;
 import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.paramObjects.ObjParam;
 import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.paramObjects.PlayerParams;
@@ -49,6 +47,7 @@ public class GaeController extends AGuiGaeController implements IModelGaeControl
 		myStage = stage;
 		myModel = new GAEModel(this);
 		myGui = new GAEGui(this, stage);
+		//(new SpriteBrowseDialog(myResManager)).show();
 	}
 	
 	private MapObjectType mySelectedType;

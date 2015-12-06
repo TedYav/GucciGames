@@ -61,6 +61,7 @@ public class ResourceManager implements GameResourceManagerToGAE, GameResourceMa
 	public ResourceManager(String gameName){
 		myImageDatabase = new ImageDatabase();
 		myImageAverager = new ImageAverager(this);
+		mySpriteDatabase = new SpriteDatabase(this);
 		myData = new GameDataManager();
 		myGameName = gameName;
 		setRoot();
@@ -96,19 +97,27 @@ public class ResourceManager implements GameResourceManagerToGAE, GameResourceMa
 
 	@Override
 	public Sprite getSprite(String URI){
-		copyResource(URI, myConfig.getString("SpritePath"));
 		return getResource(URI, mySpriteDatabase, myConfig.getString("SpritePath"));	
 	}
 	
 	private void copyResource(String URI, String path) {
-		if(copyOnAccess){
-			myData.copyResourceToGame(path + URI, myGameName);
-		}
+		System.out.println(path+URI + myGameName + " COPYING");
+		myData.copyResourceToGame(path + URI, myGameName);
+	
 	}
 
 	public Image getImage(String URI){
-		copyResource(URI, myConfig.getString("ImagePath"));
 		return getResource(URI, myImageDatabase, myConfig.getString("ImagePath"));
+	}
+	
+	@Override
+	public void copyImageToGame(String URI){
+		copyResource(URI, myConfig.getString("ImagePath"));
+	}
+	
+	@Override
+	public void copySpriteToGame(String URI){
+		copyResource(URI, myConfig.getString("SpritePath"));
 	}
 
 	private <T> T getResource(String URI, ResourceDatabase<?> database, String path) {

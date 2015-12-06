@@ -43,7 +43,7 @@ class GridMouseTracker {
 	}
 	
 	private void onDragOver(DragEvent e){
-		if(e.getDragboard().hasImage())
+		if(myController.getDragType()!=null)
 			e.acceptTransferModes(TransferMode.ANY);
 	}
 	

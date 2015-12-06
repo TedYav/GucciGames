@@ -12,6 +12,7 @@ import voogasalad.util.fxsprite.Sprite;
 public class SpriteDatabase implements ResourceDatabase<Sprite>{
 
 	private ResourceManager myManager;
+	private ImageDatabase myImageDatabase;
 	private ResourceBundle myConfig = ResourceBundle.getBundle("voogasalad_GucciGames.helpers.config.SpriteDatabase");
 	
 //	public static void main(String[] args){
@@ -21,11 +22,12 @@ public class SpriteDatabase implements ResourceDatabase<Sprite>{
 //	
 	public SpriteDatabase(ResourceManager manager){
 		myManager = manager;
+		myImageDatabase = new ImageDatabase();
 	}
 	
 	@Override
 	public Sprite request(String URI) {
-		Image sheet = myManager.getImage(URI);
+		//Image sheet = myImageDatabase.request(URI);
 		List<Integer> dimensions = getDimensions(URI);
 		Sprite sprite = new Sprite(URI, dimensions.get(0), dimensions.get(1));
 		return sprite;
