@@ -13,6 +13,7 @@ import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
 import voogasalad_GucciGames.gameAuthoring.gui.GAEGui;
 import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.paramObjects.GameSettingParams;
+import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.paramObjects.ObjParam;
 import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.paramObjects.PlayerParams;
 import voogasalad_GucciGames.gameAuthoring.gui.levels.LevelTabPane;
 import voogasalad_GucciGames.gameAuthoring.gui.map.GridPoint;
@@ -235,6 +236,63 @@ public class GaeController extends AGuiGaeController implements IModelGaeControl
 	@Override
 	public MapObjectType getDragType() {
 		return myDragType;
+	}
+
+	@Override
+	public List<ObjParam> getAllMapObjCharParams() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public List<ObjParam> getSelectedMapObjCharParams(List<String> selectedChar) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public List<ObjParam> getAllPlayerCharParams() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public List<ObjParam> getSelectedPlayerCharParams(List<String> selectedChar) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public List<ObjParam> getAllOutcomes() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public List<ObjParam> getSelectedOutcomes(List<String> selectedOutcomes) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public List<ObjParam> getAllConditions() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public List<ObjParam> getSelectedConditions(List<String> selectedConditions) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public void addActionParam() {
+		// TODO Auto-generated method stub
+	}
+		
+	public void setDefaultOwner(int ownerID) {
+		model.setDefaultOwner(ownerID);
 	}
 
 

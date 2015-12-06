@@ -11,7 +11,18 @@ public class MapObjectType {
 	private double myWidth, myHeight, myX, myY;
 	private String myImagePath;
 	private String myName;
+	private int myLayer;
 
+	public MapObjectType(String name, String imagePath, int i, int j, double d, double e, int layer) {
+		myName = name;
+		myImagePath = imagePath;
+		myX = i;
+		myY = j;
+		myWidth = d;
+		myHeight = e;
+		myLayer = layer;
+	}
+	
 	public MapObjectType(String name, String imagePath, int i, int j, double d, double e) {
 		myName = name;
 		myImagePath = imagePath;
@@ -19,6 +30,7 @@ public class MapObjectType {
 		myY = j;
 		myWidth = d;
 		myHeight = e;
+		myLayer = 0;
 	}
 
 	public MapObjectType(String name, String imagePath) {
@@ -54,6 +66,10 @@ public class MapObjectType {
 	
 	public String getName() {
 		return myName;
+	}
+
+	public int getLayer() {
+		return myLayer;
 	}
 
 }
