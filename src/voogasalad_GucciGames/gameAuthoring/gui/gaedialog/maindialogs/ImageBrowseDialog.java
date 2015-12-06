@@ -19,13 +19,13 @@ import voogasalad_GucciGames.datastructures.TwoWayMap;
 import voogasalad_GucciGames.helpers.GameResourceManagerToGAE;
 
 class ImageBrowseDialog extends Dialog<String> {
-	private static int IMG_PER_ROW = 15;
 	private static int SIZE = 40;
 	private GridPane myGrid;
 	private final GameResourceManagerToGAE myResManager;
 	private final IntegerProperty mySelectImg = new SimpleIntegerProperty(-1);
 	private final TwoWayMap<Integer, ImageView> myMap = new TwoWayMap<>();
 	private Rectangle myBound = null;
+	private final int imgPerRow;
 
 	ImageBrowseDialog(GameResourceManagerToGAE resManager, String type) {
 		myResManager = resManager;
@@ -36,6 +36,7 @@ class ImageBrowseDialog extends Dialog<String> {
 		addGrid();
 		
 		List<String> images = resManager.getImages(type);
+		imgPerRow = (int)Math.sqrt(images.size());
 		addImgs(images);
 
 		Node okButton = getDialogPane().lookupButton(ok);
@@ -55,7 +56,7 @@ class ImageBrowseDialog extends Dialog<String> {
 		for (int i = 0; i < images.size(); i++) {
 			ImageView img = addImg(images.get(i));
 			myMap.put(i, img);
-			myGrid.add(img, i % IMG_PER_ROW, i / IMG_PER_ROW);
+			myGrid.add(img, i % imgPerRow, i / imgPerRow);
 		}
 
 	}
@@ -84,7 +85,7 @@ class ImageBrowseDialog extends Dialog<String> {
 		myBound = new Rectangle(SIZE,SIZE);
 		myBound.setFill(Color.rgb(0, 0, 255, 0.4));
 		myBound.setMouseTransparent(true);
-		myGrid.add(myBound, index % IMG_PER_ROW, index / IMG_PER_ROW);
+		myGrid.add(myBound, index % imgPerRow, index / imgPerRow);
 	}
 
 	private void removeBound() {

@@ -281,6 +281,7 @@ public class GaeController extends AGuiGaeController implements IModelGaeControl
 
 	@Override
 	public void createCustomType(MapObjectType object, String type) {
+		System.out.println(object+" "+type);
 		switch (type) {
 		case "tile":
 			myModel.createCustomTileType(object);

@@ -2,6 +2,7 @@ package voogasalad_GucciGames.gameAuthoring.gui.gaedialog.maindialogs;
 
 import java.util.Properties;
 
+import voogasalad_GucciGames.gameAuthoring.AGuiGaeController;
 import voogasalad_GucciGames.gameAuthoring.IDialogGaeController;
 import voogasalad_GucciGames.gameAuthoring.model.MapObjectType;
 import javafx.scene.layout.GridPane;
@@ -12,13 +13,13 @@ public class NewObMakerDialog extends AGaeDialog<MapObjectType> {
 	private GridPane gridPane = new GridPane();
 	private String myType;
 
-	public NewObMakerDialog(IDialogGaeController controller, String type) {
+	public NewObMakerDialog(AGuiGaeController controller, String type) {
 		super();
 		myType = type;
 		GaeDialogHelper helper = new GaeDialogHelper();
 		prop = helper.loadProperties("dialogproperties/tiledialogproperties.properties");
 		this.controller = controller;
-		gridPane = new NewObjMakerPane(prop, type);
+		gridPane = new NewObjMakerPane(controller, prop, type);
 		this.getDialogPane().setContent(gridPane);
 		this.getDialogPane().getButtonTypes().add(mySave);
 	}
