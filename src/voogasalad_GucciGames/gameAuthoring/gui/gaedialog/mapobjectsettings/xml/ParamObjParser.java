@@ -27,7 +27,7 @@ import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.paramObjects.RuleParams
 
 public class ParamObjParser {
 	
-	private Set<ObjParam> allMapObjCharParams = new HashSet<ObjParam>();
+	private Set<ObjParam> allMapObjCharParams /*= new HashSet<ObjParam>()*/;
 	
 	private Set<ObjParam> allPlayerCharParams = new HashSet<ObjParam>();
 	
@@ -97,11 +97,12 @@ public class ParamObjParser {
 	        		File(actionPath), 
 	        		handler);
 	        List<ActionParams> list = handler.getActionParams();	
-	        this.allActions = new HashSet<ActionParams>(list);
+	        allActions = new HashSet<ActionParams>(list);
 	         
 	    } catch (ParserConfigurationException | SAXException | IOException ex) {
 	        ex.printStackTrace();
 	    }
+	    return;
 		
 		
 		
@@ -119,11 +120,12 @@ public class ParamObjParser {
 	        		File(rulePath), 
 	        		handler);
 	        List<RuleParams> list = handler.getRuleParams();	
-	        this.allRules = new HashSet<RuleParams>(list);
+	        allRules = new HashSet<RuleParams>(list);
 	         
 	    } catch (ParserConfigurationException | SAXException | IOException ex) {
 	        ex.printStackTrace();
 	    }
+	    return;
 
 		
 	}
@@ -142,31 +144,34 @@ public class ParamObjParser {
 	    	   System.out.println("added: " + e.getName());
 	       });
 	       set = new HashSet<ObjParam>(list);
-	       System.out.println("size " + set.size());
+	       System.out.println("size: " + set.size());
 	           
 	    } catch (ParserConfigurationException | SAXException | IOException ex) {
 	        ex.printStackTrace();
 	    }
 	    System.out.println("done");
+		System.out.println("size 3: " + allMapObjCharParams.size());
+
+	    return;
 	}
 	
 	private void parseMapObjChar(){
-		parse(mapObjCharPath, this.allMapObjCharParams, ObjType.MAP_CHAR);
+		parse(mapObjCharPath, allMapObjCharParams, ObjType.MAP_CHAR);
 		System.out.println("size 2: " + this.allMapObjCharParams.size());
 	}
 	
 	private void parsePlayerChar(){
-		parse(this.playerCharPath, this.allPlayerCharParams, ObjType.PLAYER_CHAR);
+		parse(this.playerCharPath, allPlayerCharParams, ObjType.PLAYER_CHAR);
 		
 	}
 	
 	private void parseOutcomes(){
-		parse(this.outcomePath, this.allOutcomeParams, ObjType.OUTCOME);
+		parse(this.outcomePath, allOutcomeParams, ObjType.OUTCOME);
 		
 	}
 	
 	private void parseCondition(){
-		parse(this.conditionPath, this.allConditionParams, ObjType.CONDITION);
+		parse(this.conditionPath, allConditionParams, ObjType.CONDITION);
 	}
 	
 	
