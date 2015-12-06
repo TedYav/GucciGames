@@ -54,7 +54,7 @@ public class ConditionOutcomeDialog extends javafx.scene.control.Dialog<Pair<Lis
 		        if(outcomeVal != null){
 		        AddConditionDialog addConditionDialog = 
 		        		new AddConditionDialog(this.switchPaneController, 
-		        				condParam, outcomeVal);
+		        				condParam, outcomeVal, type);
 		        addConditionDialog.showAndWait();
 		        this.actionParamsValue.addOutcome(outcomeVal);
 		        }

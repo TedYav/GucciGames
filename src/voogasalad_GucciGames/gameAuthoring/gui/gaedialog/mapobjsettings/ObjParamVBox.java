@@ -7,6 +7,7 @@ import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.maindialogs.ISwitchSett
 import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.paramObjects.ObjParam;
 import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.paramObjects.ObjParamValue;
 import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.paramObjects.ObjType;
+import voogasalad_GucciGames.gameAuthoring.model.MapObjectType;
 import javafx.geometry.Insets;
 import javafx.scene.control.Button;
 import javafx.scene.control.ButtonBar.ButtonData;
@@ -21,7 +22,15 @@ public class ObjParamVBox extends VBox{
 	private ISwitchSettingsPane controller;
 	List<ObjParamValue> allCharParams;
 	
-	public ObjParamVBox(ISwitchSettingsPane controller, List<ObjParam> charParams, List<ObjParamValue> allCharParams){
+	private MapObjectType mapObjectType;
+	
+
+	public ObjParamVBox(ISwitchSettingsPane controller, List<ObjParam> charParams, List<ObjParamValue> allCharParams, MapObjectType mapObjectType){
+		this.mapObjectType = mapObjectType;
+		init(controller, charParams, allCharParams);
+	}
+	
+	private void init(ISwitchSettingsPane controller, List<ObjParam> charParams, List<ObjParamValue> allCharParams){
 		this.objParams = charParams;
 		this.controller = controller;
 		this.allCharParams = allCharParams;
@@ -38,9 +47,10 @@ public class ObjParamVBox extends VBox{
 		this.setPadding(new Insets(5,5,5,5));
 	}
 	
+	
 	private void setContents(){
 		objParams.forEach(p -> {	
-			ObjParamPane pane = new ObjParamPane(p);
+			ObjParamPane pane = new ObjParamPane(p, this.mapObjectType);
 			objPane.add(pane);
 			this.getChildren().add(pane);
 		});
