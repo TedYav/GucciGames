@@ -32,7 +32,6 @@ public class CheckSteppingOn extends Conditions {
 		List<Integer> ids = params.getEngine().getPlayers().getAllIds();
 		for (Integer id : ids) {
 			List<MapObject> currPlayerObjects = params.getEngine().getPlayers().getPlayerById(id).getMapObjects();
-
 			for (int i = 0; i < currPlayerObjects.size(); i++) {
 				MapObject mo = currPlayerObjects.get(i);
 				if (mo.getCoordinate().equals(myLocation) && mo.getName().equals(myType)) {
