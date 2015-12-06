@@ -52,6 +52,7 @@ public class TypeData implements IGameProperties {
     	Set<ActionParam> actions = parser.getActions();
     	for (ActionParam action: actions){
     		myActionParams.put(action.getName(), action);
+    		System.out.println(action.getName());
     	}
     	Set<ObjParam> playerChar = parser.getPlayerChars();
     	for (ObjParam characteristics: playerChar){
@@ -172,6 +173,11 @@ public class TypeData implements IGameProperties {
 	public void addCharParamValue(ObjParamValue param) {
 		// TODO Auto-generated method stub
 		
+	}
+
+	@Override
+	public List<ActionParam> getAllActions() {
+		return new ArrayList<>(myActionParams.values());
 	}
 
 
