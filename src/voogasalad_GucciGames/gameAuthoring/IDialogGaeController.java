@@ -3,6 +3,7 @@ package voogasalad_GucciGames.gameAuthoring;
 import java.util.List;
 import java.util.Map;
 
+import javafx.collections.ObservableList;
 import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.paramObjects.ActionParams;
 import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.paramObjects.GameSettingParams;
 import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.paramObjects.ObjParam;
@@ -10,14 +11,16 @@ import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.paramObjects.PlayerPara
 import voogasalad_GucciGames.gameAuthoring.model.IGameProperties;
 import voogasalad_GucciGames.gameAuthoring.properties.ObjectProperty;
 
+import voogasalad_GucciGames.gameAuthoring.model.MapObjectType;
+
 public interface IDialogGaeController {
-	public void createCustomMapObject(ObjectProperty p);
+	public void createCustomType(MapObjectType object, String type);
 	
-	public void createCustomUnitType(Map<String, String> m);
-	
-	public void createCustomTileType(Map<String, String> m);
-	
-	public void createCustomStructureType(Map<String, String> m);
+	public ObservableList<MapObjectType> getImmutableTileTypes();
+
+	public ObservableList<MapObjectType> getImmutableUnitTypes();
+
+	public ObservableList<MapObjectType> getImmutableStructureTypes();
 	
 	public void setNumberOfPlayers(int n);
 	

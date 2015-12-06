@@ -10,6 +10,7 @@ import java.util.ResourceBundle;
 import javafx.geometry.Point2D;
 import javafx.scene.Parent;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
@@ -41,6 +42,24 @@ public class MiniMap extends DisplayComponent implements MiniMapInterface, Obser
 		initializeVariables();
 		initializePanes();
 		initializeMap();
+		initializeHandler();
+	}
+
+	private void initializeHandler() {
+		myGrid.setOnMouseDragged( e -> recenter(e));
+	}
+
+	private void recenter(MouseEvent e) {
+		getController().getMap().recenter(xPercent(e.getX()), yPercent(e.getY()));
+	}
+
+	private double yPercent(double x) {
+		return x/(myCellWidth*myWidth);
+	}
+
+	private double xPercent(double y) {
+		return y/(myCellHeight*myHeight);
+
 	}
 
 	private void initializeMap() {
@@ -53,6 +72,7 @@ public class MiniMap extends DisplayComponent implements MiniMapInterface, Obser
 				myShapeMap.get(coord).setFill(cell.getColor());
 				cell.addObserver(this);
 				myGrid.add(myShapeMap.get(coord), x, y);
+				//myShapeMap.get(coord).setOnMouseClicked( e -> recenter(coord));
 			}
 		}
 	}
@@ -72,9 +92,9 @@ public class MiniMap extends DisplayComponent implements MiniMapInterface, Obser
 	private void initializePanes(){
 		myStackPane = new StackPane();
 		myGrid = new GridPane();
-		myOverlayPane = new Pane();
+		//myOverlayPane = new Pane();
 		myStackPane.getChildren().add(myGrid);
-		myStackPane.getChildren().add(myOverlayPane);
+		//myStackPane.getChildren().add(myOverlayPane);
 	}
 	
 	@Override
@@ -88,8 +108,7 @@ public class MiniMap extends DisplayComponent implements MiniMapInterface, Obser
 	}
 
 	public void recenter(Point2D coordinate) {
-		// TODO Auto-generated method stub
-		
+		getController().getMap().recenter(coordinate);
 	}
 
 	public void redraw(){

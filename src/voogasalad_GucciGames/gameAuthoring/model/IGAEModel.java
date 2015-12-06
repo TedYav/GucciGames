@@ -1,6 +1,5 @@
 package voogasalad_GucciGames.gameAuthoring.model;
 
-import java.io.File;
 import java.util.List;
 import java.util.Map;
 import java.util.function.Predicate;
@@ -9,7 +8,6 @@ import javafx.collections.ObservableList;
 import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.paramObjects.ActionParams;
 import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.paramObjects.ObjParam;
 import voogasalad_GucciGames.gameAuthoring.gui.map.GridPoint;
-import voogasalad_GucciGames.gameData.wrapper.GameInfo;
 import voogasalad_GucciGames.gameEngine.mapObject.MapObject;
 
 public interface IGAEModel {
@@ -19,9 +17,9 @@ public interface IGAEModel {
 	public DisplayMapObject addObject(int levelID, GridPoint gridpoint, MapObjectType mapObjType);
 	public void clearMap(int id);
     
-    public void createCustomTileType(Map<String,String> m);
-    public void createCustomUnitType(Map<String,String> m);
-    public void createCustomStructureType(Map<String, String> m);
+    public void createCustomTileType(MapObjectType m);
+    public void createCustomUnitType(MapObjectType m);
+    public void createCustomStructureType(MapObjectType m);
     
     public ObservableList<MapObjectType> getImmutableTileTypes();
     public ObservableList<MapObjectType> getImmutableUnitTypes();

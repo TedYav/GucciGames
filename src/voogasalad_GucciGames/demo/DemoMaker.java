@@ -1,7 +1,6 @@
 package voogasalad_GucciGames.demo;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.TreeMap;
@@ -17,11 +16,11 @@ import voogasalad_GucciGames.gameEngine.defaultCharacteristics.AttackCharacteris
 import voogasalad_GucciGames.gameEngine.defaultCharacteristics.HealthCharacteristic;
 import voogasalad_GucciGames.gameEngine.defaultCharacteristics.HealthCharacteristic;
 import voogasalad_GucciGames.gameEngine.defaultCharacteristics.MovableCharacteristic;
+import voogasalad_GucciGames.gameEngine.defaultCharacteristics.TileCharacteristic;
 import voogasalad_GucciGames.gameEngine.gameConditions.Conditions;
 import voogasalad_GucciGames.gameEngine.gameConditions.defaultConditions.CheckOnePlayerLeft;
 import voogasalad_GucciGames.gameEngine.gameConditions.outcomes.EndLevel;
 import voogasalad_GucciGames.gameEngine.gameConditions.outcomes.Outcome;
-import voogasalad_GucciGames.gameEngine.gameConditions.outcomes.OutcomeParams;
 import voogasalad_GucciGames.gameEngine.gamePlayer.AllPlayers;
 import voogasalad_GucciGames.gameEngine.gamePlayer.GamePlayerPerson;
 import voogasalad_GucciGames.gameEngine.gamePlayer.chars.PlayerMovesPerTurn;
@@ -65,7 +64,7 @@ public class DemoMaker extends Application{
                 game.getGameEngine().addLevel("Easy", level1);
                 game.getGameEngine().addLevel("Medium", level2);
                 game.getGameEngine().addLevel("Hard", level3);
-                
+
                 GuiData gui = new GuiData();
                 game.setGuiData(gui);
 		return game;
@@ -93,20 +92,17 @@ public class DemoMaker extends Application{
 		MovableCharacteristic myMovableCharacteristic = new MovableCharacteristic(1, 3);
 		HealthCharacteristic myHealthCharacteristic = new HealthCharacteristic(5);
                 PlayersActivePerTurn moveOwn = new PlayersActivePerTurn();
-
+        TileCharacteristic myTileCharacteristic = new TileCharacteristic(false);
                 List<Rules> moveRules = new ArrayList<Rules>();
                 moveRules.add(moveOwn);
 		MoveEvent myMoveEvent = new MoveEvent("Move",moveRules,new ArrayList<Outcome>());
 		soldier.addEvent("Move", myMoveEvent);
 
-		Conditions onePlayerLeft = new CheckOnePlayerLeft(new HashMap<String,Object>());
+		Conditions onePlayerLeft = new CheckOnePlayerLeft();
 		List<Conditions> endGameConditions = new ArrayList<Conditions>();
 		endGameConditions.add(onePlayerLeft);
-		OutcomeParams oParams = new OutcomeParams();
-		oParams.addArgument("nextLevel", "Hard");
-		oParams.setPlayerID(0);
-                oParams.setPlayerID(1);
-		Outcome endGame = new EndLevel(endGameConditions, oParams);
+
+		Outcome endGame = new EndLevel(endGameConditions, "other", "nextLevel", "Hard");
 		List<Outcome> attackOutcomes = new ArrayList<Outcome>();
 		attackOutcomes.add(endGame);
 		List<Rules> attackRules = new ArrayList<Rules>();
@@ -126,11 +122,13 @@ public class DemoMaker extends Application{
 			for (int j=0;j<height;j++) {
 				MapObject newObj;
 				if((i+j)%2==0){
-					newObj = new MapObject(new TargetCoordinateSingle(i,j),-1,0,"TileCharacteristic", "tiles/water.jpg");
+					newObj = new MapObject(new TargetCoordinateSingle(i,j),-1,0,"Water", "tiles/water.jpg");
 				}
 				else{
-					newObj = new MapObject(new TargetCoordinateSingle(i,j),-1,0,"TileCharacteristic", "tiles/grass.jpg");
+					newObj = new MapObject(new TargetCoordinateSingle(i,j),-1,0,"Grass", "tiles/grass.jpg");
 				}
+				newObj.addCharacteristic("TileCharacteristic", myTileCharacteristic);
+				newObj.setOwnerID(-1);
 				myMapOfPlayers.get(-1).getMapObjects().add(newObj);
 				if ((i+j)%9==0) {
 					MapObject arch = new MapObject(new TargetCoordinateSingle(i,j),1,1,"Student" , "units/smile.png");

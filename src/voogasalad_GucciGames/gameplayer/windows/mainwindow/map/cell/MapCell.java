@@ -1,6 +1,8 @@
 package voogasalad_GucciGames.gameplayer.windows.mainwindow.map.cell;
 
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collection;
 import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
@@ -24,6 +26,7 @@ import javafx.scene.paint.Color;
 import javafx.scene.shape.Shape;
 import javafx.util.Duration;
 import voogasalad_GucciGames.gameEngine.PlayerMapObjectInterface;
+import voogasalad_GucciGames.gameplayer.config.PlayerConfig;
 import voogasalad_GucciGames.gameplayer.controller.GameControllerInterface;
 import voogasalad_GucciGames.gameplayer.controller.dummy.MapObjectBasicType;
 import voogasalad_GucciGames.gameplayer.eventhandler.MapMouseHandler;
@@ -43,6 +46,7 @@ public abstract class MapCell extends Observable implements MapCellInterface {
 
 	private boolean selected;
 	private boolean active;
+	private boolean fogActive;
 
 	private GameControllerInterface myController;
 
@@ -70,6 +74,7 @@ public abstract class MapCell extends Observable implements MapCellInterface {
 		myLayerMap = new TreeMap<>();
 		selected = false;
 		active = false;
+		fogActive = false;
 	}
 
 	private void initializePanes() {
@@ -219,11 +224,44 @@ public abstract class MapCell extends Observable implements MapCellInterface {
 	}
 
 	public Color getColor(){
+		List<Color> myColors;
+		if(!fogActive)
+			myColors = getColorsByPlayer();
+		else
+			myColors = Arrays.asList(Color.BLACK);
+		return  ColorUtility.average(myColors);
+	}
+
+	private List<Color> getColorsByImage() {
 		List<Color> myColors = getImageList().stream()
 				.map( (s) -> myController.getResource().getImageColor(s) )
 				.collect(Collectors.toList());
-		//TODO: add fog check
-		return  ColorUtility.average(myColors);
+		return myColors;
+	}
+
+	private List<Color> getColorsByPlayer() {
+		List<Color> result = myObjects.values().stream()
+				.filter( l -> !l.isEmpty())
+				.flatMap( l -> 
+					l.stream()
+					.map( o -> getObjectColors(o)))
+				.flatMap(l -> l.stream())
+				.collect(Collectors.toList());
+		return result;
+	}
+	
+	private List<Color> getObjectColors(PlayerMapObjectInterface object){
+		if(object.getOwnerID() == -1){
+			return Arrays.asList( myController.getResource().getImageColor(object.getImageURI()));
+		}
+		else{
+			List<Color> result = new ArrayList<>();
+			Color c = Color.web(PlayerConfig.getResourceNumber(PlayerConfig.globalConfig(), "PlayerColor", object.getOwnerID()));
+			for(int i=0; i<= Integer.parseInt(myConfig.getString("PlayerMultiplier")); i++){
+				result.add(c);
+			}
+			return result;
+		}
 	}
 
 }

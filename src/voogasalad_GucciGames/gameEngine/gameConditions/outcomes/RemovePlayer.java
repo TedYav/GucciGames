@@ -14,8 +14,8 @@ import voogasalad_GucciGames.gameEngine.gameConditions.Conditions;
  */
 public class RemovePlayer extends Outcome {
 
-	public RemovePlayer(List<Conditions> conditions, OutcomeParams conditionParams) {
-		super(conditions, conditionParams);
+	public RemovePlayer(List<Conditions> conditions, String affectedPlayers) {
+		super(conditions, affectedPlayers);
 	}
 
 	@Override

@@ -12,28 +12,11 @@ public class MapObjectType {
 	private String myImagePath;
 	private String myName;
 	private int myLayer;
-
-//	public MapObjectType(String name, String imagePath, int i, int j, double d, double e, int layer) {
-//		myName = name;
-//		myImagePath = imagePath;
-//		myX = i;
-//		myY = j;
-//		myWidth = d;
-//		myHeight = e;
-//		myLayer = layer;
-//	}
 	
 	public MapObjectType(String name, String imagePath, int layer) {
 		myImagePath = imagePath;
 		myName = name;
 		myLayer = layer;
-	}
-
-	public MapObjectType(String name, String imagePath) {
-		myImagePath = imagePath;
-		myName = name;
-		// TODO get layer from front end dialog box
-		myLayer = 0;
 	}
 
 	public boolean isTile() {
