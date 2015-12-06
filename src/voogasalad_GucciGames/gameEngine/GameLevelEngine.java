@@ -5,6 +5,7 @@ import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+
 import voogasalad_GucciGames.gameData.wrapper.IGameLevelToGamePlayer;
 import voogasalad_GucciGames.gameEngine.CommunicationParameters.BasicParameters;
 import voogasalad_GucciGames.gameEngine.CommunicationParameters.ChangedParameters;
@@ -45,13 +46,13 @@ public class GameLevelEngine implements IGameLevelToGamePlayer {
 
 		myName = "Game " + Math.round((Math.random()*10000));
 	}
-	
+
 	@Deprecated
 	public String getGameName() {
 		return myName;
 	}
 
-	
+
 	public GameParametersInterface endTurn() {
 		//check game conditions
 		myCurrentTurnCounter.update();
@@ -68,17 +69,17 @@ public class GameLevelEngine implements IGameLevelToGamePlayer {
 		return myCurrentTurnCounter.getCurrentTurn();
 	}
 
-	
+
 	public List<PlayerMapObjectInterface> getInitialState() {
 		return myGamePlayers.getInitialState();
 	}
 
-	
+
 	public int getTurnPlayerID() {
 		return myTurnDecider.decideTurn();
 	}
 
-	
+
 	public GridCoordinateParameters getPossibleCoordinates(String action, PlayerMapObjectInterface myMapObject) {
 		return null;
 
@@ -121,19 +122,19 @@ public class GameLevelEngine implements IGameLevelToGamePlayer {
 		return mapDimensions;
 	}
 
-	
+
 	public ChangedParameters performAction(String action, PlayerMapObjectInterface mapObject,
 			ATargetCoordinate target) {
 
 		return null;
 
 	}
-	
+
 	public int getMapWidth() {
 		// TODO Auto-generated method stub
 		return myMapWidth;
 	}
-	
+
 	public int getMapHeight() {
 		// TODO Auto-generated method stub
 		return myMapHeight;
@@ -147,7 +148,7 @@ public class GameLevelEngine implements IGameLevelToGamePlayer {
 		myMapHeight = height;
 	}
 
-	
+
 	public GameParametersInterface getGameParameters() {
 		// TODO Auto-generated method stub
 		GameParameters pp= new GameParameters();
@@ -215,6 +216,7 @@ public class GameLevelEngine implements IGameLevelToGamePlayer {
 		this.hasLevelEnded = gameWon;
 	}
 
+	@Override
 	public boolean isMyChoosability() {
 		return myChoosability;
 	}
