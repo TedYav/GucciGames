@@ -5,6 +5,7 @@ import java.util.List;
 import voogasalad_GucciGames.gameEngine.CommunicationParameters.ChangedParameters;
 import voogasalad_GucciGames.gameEngine.CommunicationParameters.GridCoordinateParameters;
 import voogasalad_GucciGames.gameEngine.targetCoordinate.ATargetCoordinate;
+import voogasalad_GucciGames.gameplayer.controller.GameController;
 import voogasalad_GucciGames.gameplayer.controller.GameParametersInterface;
 
 public interface GameEngineToGamePlayerInterface {
@@ -87,4 +88,6 @@ public interface GameEngineToGamePlayerInterface {
 	public void beHost();
 
 	public void beClient(String string);
+	
+	public void setController(GameController myController);
 }

@@ -1,12 +1,10 @@
 package voogasalad_GucciGames.gameData.wrapper;
 
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.TreeMap;
 
 import com.thoughtworks.xstream.annotations.XStreamOmitField;
 
@@ -21,10 +19,9 @@ import voogasalad_GucciGames.gameEngine.CommunicationParameters.GridCoordinatePa
 import voogasalad_GucciGames.gameEngine.targetCoordinate.ATargetCoordinate;
 import voogasalad_GucciGames.gameplayer.controller.GameController;
 import voogasalad_GucciGames.gameplayer.controller.GameParametersInterface;
-import voogasalad_GucciGames.gameplayer.windows.mainwindow.components.DisplayComponent;
 
 /**
- * 
+ *
  * This class will be a wrapper for the game engine
  * and the information to configure the game player
  * gui
@@ -38,6 +35,7 @@ public class GameEngine implements IGameInfoToGAE, GameEngineToGamePlayerInterfa
 
 	private String myGameName;
 	private String myCurrentLevel;
+
 	private String myInitialLevel;
 
 	private volatile GameEnginePlayer iAmAPlayer;
@@ -50,7 +48,7 @@ public class GameEngine implements IGameInfoToGAE, GameEngineToGamePlayerInterfa
 	    myLevelsMap = new HashMap<String,GameLevelEngine>();
 	    this.myInitialLevel = initialLevel;
 	    this.myCurrentLevel = initialLevel;
-	    
+
 	    myGameName = "RandomName";
 	}
 	
@@ -73,12 +71,13 @@ public class GameEngine implements IGameInfoToGAE, GameEngineToGamePlayerInterfa
 		iAmAPlayer = new GameEngineClient(this, ipAddr);
 		t = new Thread(iAmAPlayer);
 		t.start();
+
 	}
-	
+
 	public void resetGame(){
 		myCurrentLevel = myInitialLevel;
 	}
-	
+
 	@Override
 	public void changeCurrentLevel(String newGameLevel){
 		if(iAmAPlayer != null){
@@ -86,17 +85,17 @@ public class GameEngine implements IGameInfoToGAE, GameEngineToGamePlayerInterfa
 		}
 		myCurrentLevel = newGameLevel;
 	}
-	
+
 	@Override
 	public String getGameName() {
 		return this.myGameName;
 	}
-	
+
 	@Override
 	public Map<String, IGameLevelToGamePlayer> getLevelsMap() {
 		return Collections.unmodifiableMap(myLevelsMap);
 	}
-	
+
 	@Override
 	public List<String> getChoosableLevels() {
 		List<String> levelNames = new ArrayList<String>();
@@ -107,19 +106,19 @@ public class GameEngine implements IGameInfoToGAE, GameEngineToGamePlayerInterfa
 			}
 		return levelNames;
 	}
-	
+
 	@Override
 	public void setLevel(String gameName, GameLevelEngine engine) {
 		engine.setName(gameName);
 		myLevelsMap.put(gameName, engine);
-		
+
 	}
 
 	public GameLevelEngine getCurrentLevel() {
 		// TODO Auto-generated method stub
 		return myLevelsMap.get(myCurrentLevel);
 	}
-	
+
 
 	@Override
 	public String getName() {
@@ -181,11 +180,12 @@ public class GameEngine implements IGameInfoToGAE, GameEngineToGamePlayerInterfa
 		myController.refreshGUI();
 	}
 
-	public GameController getMyController() {
+	public GameController getController() {
 		return myController;
 	}
 
-	public void setMyController(GameController myController) {
+	@Override
+	public void setController(GameController myController) {
 		this.myController = myController;
 	}
 

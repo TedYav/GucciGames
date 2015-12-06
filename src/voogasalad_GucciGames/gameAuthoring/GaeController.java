@@ -10,10 +10,13 @@ import javafx.beans.property.BooleanProperty;
 import javafx.beans.property.SimpleBooleanProperty;
 import javafx.collections.ObservableList;
 import javafx.geometry.Rectangle2D;
+import javafx.scene.control.Dialog;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
+import voogasalad.util.fxsprite.Sprite;
 import voogasalad_GucciGames.gameAuthoring.gui.GAEGui;
+import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.maindialogs.ImageBrowseDialogs;
 import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.paramObjects.ActionParams;
 import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.paramObjects.GameSettingParams;
 import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.paramObjects.ObjParam;
@@ -26,7 +29,8 @@ import voogasalad_GucciGames.gameAuthoring.model.IGameProperties;
 import voogasalad_GucciGames.gameAuthoring.model.IGAEModel;
 import voogasalad_GucciGames.gameAuthoring.model.MapObjectType;
 import voogasalad_GucciGames.gameEngine.mapObject.MapObject;
-import voogasalad_GucciGames.helpers.ImageDatabase;
+import voogasalad_GucciGames.helpers.GameResourceManagerToGAE;
+import voogasalad_GucciGames.helpers.ResourceManager;
 
 public class GaeController extends AGuiGaeController implements IModelGaeController {
 
@@ -35,7 +39,8 @@ public class GaeController extends AGuiGaeController implements IModelGaeControl
 	private final Stage myStage;
 	private int numberOfPlayers;
 	private Map<Integer, String> allPlayers = new HashMap<Integer, String>();
-	private ImageDatabase myImageDatabase = new ImageDatabase();
+	private ImageBrowseDialogs myImageBrowseDialogs;
+	private final GameResourceManagerToGAE myResManager = new ResourceManager();
 	//private ArrayList<String> customGamePlayerComponents = new ArrayList<String>();
 
 	public GaeController(Stage stage) {
@@ -168,7 +173,7 @@ public class GaeController extends AGuiGaeController implements IModelGaeControl
 
 	@Override
 	public Image requestImage(String path) {
-		return myImageDatabase.request(path);
+		return myResManager.getImage(path);
 	}
 
 	@Override
@@ -193,6 +198,10 @@ public class GaeController extends AGuiGaeController implements IModelGaeControl
 		//TODO: Add the name somewhere
 		myHasGameProperty.set(true);
 		myGui.initGame();
+		myResManager.loadGame(name);
+		myResManager.toggleCopyOnAccess(true);
+		myImageBrowseDialogs = new ImageBrowseDialogs(myResManager);
+		//System.out.println(myResManager.getImages("units"));
 	}
 
 	@Override
@@ -233,7 +242,7 @@ public class GaeController extends AGuiGaeController implements IModelGaeControl
 	public BooleanProperty getHasGameProperty(){
 		return myHasGameProperty;
 	}
-
+	
 	@Override
 	public void createCustomType(MapObjectType object, String type) {
 		switch (type) {
@@ -249,6 +258,16 @@ public class GaeController extends AGuiGaeController implements IModelGaeControl
 		default:
 			throw new RuntimeException("No "+type+" type");
 		}
+	}
+
+	@Override
+	public GameResourceManagerToGAE getResourceManager() {
+		return myResManager;
+	}
+
+	@Override
+	public Dialog<String> getImageBrowseDialog(String type) {
+		return myImageBrowseDialogs.getDialog(type);
 	}
 
 

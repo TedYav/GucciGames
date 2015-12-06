@@ -102,6 +102,7 @@ public class Cell extends StackPane implements ICell {
 	@Override
 	public boolean add(MapObjectType type) {
 		DisplayMapObject obj = myController.addObject(myGrid.getLevelID(), myPos, type);
+		//myController.getResourceManager().copyImageToGame(type.getImagePath());
 		if (obj != null) {
 			if (type.isTile()) {
 				myTileLayer.add(obj);

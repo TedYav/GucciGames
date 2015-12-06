@@ -60,7 +60,6 @@ public class Main {
 		//engine.endTurn();
 
 		// test rules:
-		engine.testRules();
 
 	}
 
