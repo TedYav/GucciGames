@@ -6,6 +6,7 @@ import voogasalad_GucciGames.gameEngine.CommunicationParameters.ChangedParameter
 import voogasalad_GucciGames.gameEngine.CommunicationParameters.GridCoordinateParameters;
 import voogasalad_GucciGames.gameEngine.gamePlayer.chars.APlayerChars;
 import voogasalad_GucciGames.gameEngine.targetCoordinate.ATargetCoordinate;
+import voogasalad_GucciGames.gameplayer.controller.GameController;
 import voogasalad_GucciGames.gameplayer.controller.GameParametersInterface;
 
 public interface GameEngineToGamePlayerInterface {
@@ -88,6 +89,11 @@ public interface GameEngineToGamePlayerInterface {
 
 	public boolean hasLevelEnded();
 
+	public void beHost();
+
+	public void beClient(String string);
+	
+	public void setController(GameController myController);
 	public APlayerChars getPlayerCharacteristic(String name, int id);
 
 }
