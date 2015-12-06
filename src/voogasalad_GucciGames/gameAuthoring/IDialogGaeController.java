@@ -41,7 +41,7 @@ public interface IDialogGaeController {
 //	
 //	public List<ObjParam> getSelectedMapObjCharParams(List<String> selectedChar);
 //	
-//	public List<ObjParam> getAllPlayerCharParams();
+	public List<ObjParam> getAllPlayerCharParams();
 //	
 //	public List<ObjParam> getSelectedPlayerCharParams(List<String> selectedChar);
 //	
