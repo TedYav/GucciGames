@@ -27,7 +27,7 @@ import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.paramObjects.RuleParams
 
 public class ParamObjParser {
 	
-	private Set<ObjParam> allMapObjCharParams /*= new HashSet<ObjParam>()*/;
+	private Set<ObjParam> allMapObjCharParams = new HashSet<ObjParam>();
 	
 	private Set<ObjParam> allPlayerCharParams = new HashSet<ObjParam>();
 	
@@ -140,9 +140,6 @@ public class ParamObjParser {
 	        		File(path), 
 	        		handler);
 	       List<ObjParam> list = handler.getObjParams();
-	       list.forEach(e -> {
-	    	   System.out.println("added: " + e.getName());
-	       });
 	       set.addAll(list);
 	           
 	    } catch (ParserConfigurationException | SAXException | IOException ex) {
@@ -168,9 +165,7 @@ public class ParamObjParser {
 	private void parseCondition(){
 		parse(this.conditionPath, allConditionParams, ObjType.CONDITION);
 	}
-	
-	
-	
+
 	
 	
 
