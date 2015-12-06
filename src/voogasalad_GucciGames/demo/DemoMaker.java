@@ -131,6 +131,7 @@ public class DemoMaker extends Application{
 				else{
 					newObj = new MapObject(new TargetCoordinateSingle(i,j),-1,0,"TileCharacteristic", "tiles/grass.jpg");
 				}
+				newObj.setOwnerID(-1);
 				myMapOfPlayers.get(-1).getMapObjects().add(newObj);
 				if ((i+j)%9==0) {
 					MapObject arch = new MapObject(new TargetCoordinateSingle(i,j),1,1,"Student" , "units/smile.png");
