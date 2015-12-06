@@ -31,7 +31,7 @@ public class Main {
 
 
 		AllPlayers allPlayers = new AllPlayers(map);
-		MainGameEngine engine = new MainGameEngine(allPlayers);
+		GameLevelEngine engine = new GameLevelEngine(allPlayers);
 		engine.createTestCondition();
 
 		MovableCharacteristic myMovableCharacteristic = new MovableCharacteristic(1, 3);

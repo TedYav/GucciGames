@@ -61,8 +61,9 @@ public class GeneralPane extends GridPane {
 		nextBtn.setOnAction(e -> {
 			Reflection reflection = new Reflection();	
 			this.addDepController.setParams();		
-			controller.switchGroovyPane(reflection.createInstance(path + "DependenciesPane",items, addDepController, name ),
-					title);
+			controller.switchGroovyPane(
+					reflection.createInstance(path + "DependenciesPane", items, addDepController, name), title);
+			
 		});
 		
 		this.add(nextBtn, 3,3);
