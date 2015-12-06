@@ -13,7 +13,6 @@ import voogasalad_GucciGames.gameEngine.gameConditions.outcomes.Outcome;
 import voogasalad_GucciGames.gameEngine.gamePlayer.AllPlayers;
 import voogasalad_GucciGames.gameEngine.gamePlayer.GamePlayerPerson;
 import voogasalad_GucciGames.gameEngine.gameRules.Rules;
-import voogasalad_GucciGames.gameEngine.gameRules.defaultRules.UnitsMovablePerTurn;
 import voogasalad_GucciGames.gameEngine.mapObject.MapObject;
 import voogasalad_GucciGames.gameEngine.targetCoordinate.TargetCoordinateMultiple;
 import voogasalad_GucciGames.gameEngine.targetCoordinate.TargetCoordinateSingle;
@@ -24,9 +23,14 @@ public class MoveEvent extends MapObjectEvent {
 
 	private static final String MOVABLE_CHARACTERISTIC = "MovableCharacteristic";
 
+	public MoveEvent() {
+	}
+	public MoveEvent(String actionName) {
+		super(actionName);
+	}
+
 	public MoveEvent(String actionName, List<Rules> rules, List<Outcome> outcomes) {
 		super(actionName, rules, outcomes);
-		getRuleList().add(new UnitsMovablePerTurn());
 	}
 
 	@Override

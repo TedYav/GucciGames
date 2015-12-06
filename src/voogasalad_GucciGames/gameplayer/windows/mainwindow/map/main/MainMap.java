@@ -149,7 +149,13 @@ public class MainMap extends WindowComponent implements MapInterface {
 
 	@Override
 	public void recenter(Point2D center) {
-		
+		recenter(center.getX()/myCellsWide, center.getY()/myCellsTall);
+	}
+	
+	@Override
+	public void recenter(double xPercent, double yPercent){
+		myFirstLayer.setHvalue(xPercent);
+		myFirstLayer.setVvalue(yPercent);
 	}
 	
 	public void addUnitListener(List<ListChangeListener<PlayerMapObjectInterface>> listeners){
@@ -202,7 +208,7 @@ public class MainMap extends WindowComponent implements MapInterface {
 	public void update(List<PlayerMapObjectInterface> result) {
             result.stream().forEach(u -> redrawUnit(u));
             result.stream().forEach(u ->  {
-                if (u.isDead()) {
+                if (u.isRemoved()) {
                     removeUnitFromMap(u);
                 }
             });

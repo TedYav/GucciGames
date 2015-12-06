@@ -25,20 +25,17 @@ import voogasalad_GucciGames.gameplayer.controller.GameParametersInterface;
  *
  */
 
-public class GameEngineServer implements Runnable {
+public class GameEngineServer extends GameEnginePlayer implements Runnable {
 
 	private int myPlayerID;
-	private GameLevelEngine myEngine;
 	private Set<PrintWriter> writers;
     private Set<String> names;
     
-    private GameEngine mySuperEngine;
 
 	private static int PORT = 6011; //hard code for now
 	
 	public GameEngineServer(GameEngine gameEngine) {
-		// TODO Auto-generated constructor stub
-		mySuperEngine = gameEngine;
+		super(gameEngine);
 		setWriters(new HashSet<PrintWriter>());
 		names = new HashSet<String>();
 	}
@@ -47,18 +44,12 @@ public class GameEngineServer implements Runnable {
 		writers = hashSet;
 	}
 
-	public void setLevelEngine(GameLevelEngine currentLevel) {
-		myEngine = currentLevel;
+
+	public Collection<PrintWriter> getWriters() {
+		return writers;
 	}
 
-	public void updateServerGameEngine(String engineXML) {
-		
-		XStream xstream = new XStream(new DomDriver());
-		myEngine = (GameLevelEngine) xstream.fromXML(engineXML);
-		this.mySuperEngine.addLevel(myEngine.getLevelName(), myEngine);
-		
-	}
-
+	
 	public void updateClientGameEngine() {
 		System.out.println("updateclientge"+writers.size());
 		System.out.println(this);
@@ -66,14 +57,10 @@ public class GameEngineServer implements Runnable {
 			XStream xstream = new XStream(new DomDriver());
 			System.out.println("updating client");
 			e.println("GAMEDATA");
-			String s = xstream.toXML(myEngine);
+			String s = xstream.toXML(getMyEngine());
 			e.println(s.length());
 			e.println(s);
 		});
-	}
-
-	public Collection<PrintWriter> getWriters() {
-		return writers;
 	}
 
 	//add a listener to handle exceptions and report to front end.
@@ -93,11 +80,15 @@ public class GameEngineServer implements Runnable {
         	
         	}
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	     
         		   
+	}
+
+	@Override
+	public void endTurn() {
+		updateClientGameEngine();
 	}
 
 

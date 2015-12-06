@@ -25,7 +25,6 @@ public class CharacteristicsSAXHandler extends DefaultHandler {
 		this.type = type;
 	}
 
-	private boolean bDisplayName = false;
 
 	public List<ObjParam> getObjParams(){
 		return characteristicsParams ;
@@ -49,7 +48,7 @@ public class CharacteristicsSAXHandler extends DefaultHandler {
 	}
 	public void endElement(String uri, String localName,
 			String qName) throws SAXException {
-		if(qName.equalsIgnoreCase("characteristic") && characteristicsParam != null){
+		if(qName.equalsIgnoreCase("element") && characteristicsParam != null){
 			this.characteristicsParams.add(characteristicsParam);
 		}
 

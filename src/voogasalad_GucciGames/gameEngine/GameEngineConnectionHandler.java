@@ -66,7 +66,7 @@ public class GameEngineConnectionHandler extends Thread {
 	                    }
 	                    
 	                    System.out.println("it actually ended up being" + myBuilder.toString().length());
-	                    myServer.updateServerGameEngine(myBuilder.toString());
+	                    myServer.updateGameEngine(myBuilder.toString());
 	                    
 	                    for (PrintWriter writer : myServer.getWriters()) {
 	                        writer.println("GAMEDATA");

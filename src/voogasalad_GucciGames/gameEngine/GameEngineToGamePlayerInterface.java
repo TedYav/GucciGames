@@ -83,4 +83,8 @@ public interface GameEngineToGamePlayerInterface {
 	       public void changeCurrentLevel(String newGameLevel);
 
 	public boolean hasLevelEnded();
+
+	public void beHost();
+
+	public void beClient(String string);
 }

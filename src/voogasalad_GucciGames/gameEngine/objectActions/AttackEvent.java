@@ -14,15 +14,15 @@ import voogasalad_GucciGames.gameEngine.objectActions.defaultActions.Attack;
 import voogasalad_GucciGames.gameEngine.targetCoordinate.TargetCoordinateSingle;
 
 public class AttackEvent extends Attack {
+	public AttackEvent() {
+	}
 
 	public AttackEvent(String actionName) {
 		super(actionName);
-
 	}
 
 	public AttackEvent(String actionName, List<Rules> rules, List<Outcome> outcomes) {
 		super(actionName, rules, outcomes);
-
 	}
 
 	@Override

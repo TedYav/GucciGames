@@ -8,6 +8,8 @@ import java.util.List;
 import java.util.Map;
 import java.util.TreeMap;
 
+import voogasalad_GucciGames.gameEngine.GameEngineClient;
+import voogasalad_GucciGames.gameEngine.GameEnginePlayer;
 import voogasalad_GucciGames.gameEngine.GameEngineServer;
 import voogasalad_GucciGames.gameEngine.GameEngineToGamePlayerInterface;
 import voogasalad_GucciGames.gameEngine.GameLevelEngine;
@@ -35,7 +37,7 @@ public class GameEngine implements IGameInfoToGAE, GameEngineToGamePlayerInterfa
 	
 	private String myInitialLevel;
 
-	private volatile GameEngineServer iAmAHost;
+	private volatile GameEnginePlayer iAmAPlayer;
 	private volatile Thread t;
 	
 	public GameEngine(String initialLevel){
@@ -47,11 +49,12 @@ public class GameEngine implements IGameInfoToGAE, GameEngineToGamePlayerInterfa
 	}
 	
 	public void beHost(){
+		iAmAPlayer = new GameEngineServer(this);
 		
 	}
 	
-	public void beClient(String ipAddr, int port){
-		
+	public void beClient(String ipAddr){
+		iAmAPlayer = new GameEngineClient(this, ipAddr);
 	}
 	
 	public void resetGame(){
@@ -60,8 +63,8 @@ public class GameEngine implements IGameInfoToGAE, GameEngineToGamePlayerInterfa
 	
 	@Override
 	public void changeCurrentLevel(String newGameLevel){
-		if(iAmAHost != null){
-		iAmAHost.setLevelEngine(getCurrentLevel());
+		if(iAmAPlayer != null){
+		iAmAPlayer.setLevelEngine(getCurrentLevel());
 		}
 		myCurrentLevel = newGameLevel;
 	}
@@ -131,7 +134,10 @@ public class GameEngine implements IGameInfoToGAE, GameEngineToGamePlayerInterfa
 
 	@Override
 	public GameParametersInterface endTurn() {
-		iAmAHost.updateClientGameEngine();
+		if(iAmAPlayer != null){
+		iAmAPlayer.endTurn();
+		}
+		//iAmAPlayer.updateClientGameEngine();
 		return getCurrentLevel().endTurn();
 	}
 

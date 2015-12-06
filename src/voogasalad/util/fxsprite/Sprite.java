@@ -25,6 +25,7 @@ public class Sprite extends ImageView{
 	private HashMap<Integer, Integer> rowLengths;
 	private int fps = 8;
 	private SpriteAnimation currentAnimation;
+	private int myNumRows;
 	
 	/**
 	 * Initializes a sprite from a javafx Image. This is not the recommended
@@ -46,6 +47,15 @@ public class Sprite extends ImageView{
 		for(int i=0; i<(int)(this.getImage().getHeight()/this.rect.getHeight()); i++){
 			this.limitRowColumns(i, (int)(this.getImage().getWidth()/this.rect.getWidth()));
 		}
+		myNumRows = ((Double)(this.getImage().getHeight()/this.rect.getHeight())).intValue();
+	}
+	
+	/**
+	 * Returns the number of animations in the sprite - used for animation purposes.
+	 * @return
+	 */
+	public int getNumAnimations(){
+		return myNumRows;
 	}
 	
 	/**

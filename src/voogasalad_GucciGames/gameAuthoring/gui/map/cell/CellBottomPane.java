@@ -16,6 +16,7 @@ public class CellBottomPane extends Pane {
 	}
 
 	public void add(DisplayMapObject tile) {
+		remove();
 		myTile = tile;
 		myTileImage = myController.getMapObjectImage(tile);
 		myTileImage.fitWidthProperty().bind(widthProperty());

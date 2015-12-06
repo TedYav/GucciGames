@@ -10,6 +10,7 @@ import java.util.List;
 
 import com.thoughtworks.xstream.XStream;
 
+import voogasalad_GucciGames.gameData.wrapper.GameEngine;
 import voogasalad_GucciGames.gameEngine.CommunicationParameters.ChangedParameters;
 import voogasalad_GucciGames.gameEngine.CommunicationParameters.GridCoordinateParameters;
 import voogasalad_GucciGames.gameEngine.targetCoordinate.ATargetCoordinate;
@@ -22,23 +23,18 @@ import voogasalad_GucciGames.gameplayer.controller.GameParametersInterface;
  * @author Efe Aras
  *
  */
-public class GameEngineClient implements Runnable{
+public class GameEngineClient extends GameEnginePlayer implements Runnable{
 
 	private int myPlayerID;
-	private GameLevelEngine myEngine;
 	private PrintWriter myWriterToServer;
     private String name;
 
 	private static int PORT = 6550; //hard code for now
-	private static String SERVER_ADDRESS = ""; //harcode for now
-
-	public GameEngineClient(GameLevelEngine engine) {
-		myEngine = engine;
-	}
-
-	public void updateGameEngine(String engineXML) {
-		XStream xstream = new XStream();
-		myEngine = (GameLevelEngine) xstream.fromXML(engineXML);
+	private static String SERVER_ADDRESS = "10.190.209.220"; //harcode for now
+	
+	public GameEngineClient(GameEngine gameEngine, String ipAddr) {
+		super(gameEngine);
+		//ignore the ip address for now;
 	}
 
 	//add a listener to handle exceptions and report to front end. alternatively, make this
@@ -67,10 +63,6 @@ public class GameEngineClient implements Runnable{
 	                    this.updateGameEngine(myBuilder.toString());
 
 		            }
-
-
-
-
 		        }
 
 		} catch (UnknownHostException e) {
@@ -89,10 +81,15 @@ public class GameEngineClient implements Runnable{
 		XStream xstream = new XStream();
 
 		myWriterToServer.println("GAMEDATA");
-		String s = xstream.toXML(myEngine);
+		String s = xstream.toXML(getMyEngine());
 		myWriterToServer.println(s.length());
 		myWriterToServer.println(s);
 
 
+	}
+
+	@Override
+	public void endTurn() {
+		updateServerGameEngine();
 	}
 }

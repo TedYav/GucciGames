@@ -10,6 +10,7 @@ import java.io.File;
 import java.util.List;
 import java.util.Map;
 
+import javafx.beans.property.BooleanProperty;
 import javafx.collections.ObservableList;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -30,10 +31,6 @@ public interface IGuiGaeController {
 	public List<DisplayMapObject> getMapObjects(int id);
 
 	public void clearMap(int id);
-
-	public void createCustomTileType(Map<String, String> m);
-
-	public void createCustomUnitType(Map<String, String> m);
 
 	public ObservableList<MapObjectType> getImmutableTileTypes();
 
@@ -73,6 +70,10 @@ public interface IGuiGaeController {
 	public LevelTabPane getLevelTabPane();
 
 	public int addLevel(String name);
+	
+	public void setDefaultOwner(int ownerID);
+
+	public BooleanProperty getHasGameProperty();
 
 
 }
