@@ -118,19 +118,19 @@ public class GAEModel implements IGAEModel{
 
     @Override
     public void createCustomTileType (Map<String, String> m) {
-    	MapObjectType objType = new DefaultMapObjectType(m.get("name"), m.get("imagePath"));//TODO: properties file
+    	MapObjectType objType = new MapObjectType(m.get("name"), m.get("imagePath"), 0);//TODO: properties file
         typeData.addTileType(objType);
     }
 
     @Override
     public void createCustomUnitType (Map<String, String> m) {  
-    	MapObjectType objType = new DefaultMapObjectType(m.get("name"), m.get("imagePath"));//TODO: properties file
+    	MapObjectType objType = new MapObjectType(m.get("name"), m.get("imagePath"), 2);//TODO: properties file
         typeData.addUnitType(objType);
     }
     
     @Override
 	public void createCustomStructureType(Map<String, String> m) {
-    	MapObjectType objType = new DefaultMapObjectType(m.get("name"), m.get("imagePath"));//TODO: properties file
+    	MapObjectType objType = new MapObjectType(m.get("name"), m.get("imagePath"), 1);//TODO: properties file
         typeData.addStructureType(objType);
 	}
 

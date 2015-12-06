@@ -4,7 +4,7 @@ import java.util.HashMap;
 
 import voogasalad_GucciGames.gameAuthoring.IDialogGaeController;
 import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.DialogElements;
-import voogasalad_GucciGames.gameAuthoring.model.DefaultMapObjectType;
+import voogasalad_GucciGames.gameAuthoring.model.MapObjectType;
 import javafx.scene.control.Button;
 import javafx.scene.control.ButtonBar.ButtonData;
 import javafx.scene.control.ButtonType;
@@ -36,7 +36,7 @@ public class NewObMakerDialog extends AGaeDialog{
 		this.setResultConverter(dialogButton -> {
 		    if (dialogButton == mySave) {
 		    	String[] data = ((NewObjMakerPane) gridPane).getUserInputData();
-		        DefaultMapObjectType mapObjType = new DefaultMapObjectType(data[0], data[1]);
+		        MapObjectType mapObjType = new MapObjectType(data[0], data[1]);
 		        HashMap<String, String> currMap = new HashMap<String, String>();
 		        currMap.put(data[0], data[1]);
 		        //TODO: save map object type

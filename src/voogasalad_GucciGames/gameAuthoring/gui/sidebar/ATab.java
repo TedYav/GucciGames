@@ -81,6 +81,8 @@ public abstract class ATab extends Tab {
 	}
 
 	private void addType(MapObjectType type) {
+		//if() if the type has characteristics, add a border around iimageview
+		
 		Image image = new Image(getClass().getClassLoader().getResourceAsStream(type.getImagePath()));
 		ImageView imageView = new ImageView(image);
 
