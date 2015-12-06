@@ -6,6 +6,7 @@ import voogasalad_GucciGames.gameEngine.gamePlayer.*;
 import voogasalad_GucciGames.gameEngine.gameRules.*;
 import voogasalad_GucciGames.gameEngine.mapObject.*;
 import voogasalad_GucciGames.gameEngine.targetCoordinate.*;
+import voogasalad_GucciGames.gameEngine.objectActions.*;
 
 public class %s extends MapObjectEvent {
 
