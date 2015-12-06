@@ -27,7 +27,7 @@ public class SelectGameTypeScene extends GameMenuScene {
 	@Override
     protected Map<String, MenuAction> buildOptionMap() {
 		Map<String, MenuAction> optionMap = new LinkedHashMap<>();
-		optionMap.put("Local Game", () -> myManager.sceneFinished());
+		optionMap.put("Local Game", () -> myManager.loadScene("SelectLevelScene"));
 		optionMap.put("Network Game", () -> myManager.loadScene("NetworkConfigScene"));
 		optionMap.put("Back", () -> myManager.loadScene(myConfig.getString("PrevScene")));
 		return optionMap;

@@ -44,10 +44,14 @@ public class ConditionOutcomeDialog extends javafx.scene.control.Dialog<Pair<Lis
 		        List<String> conditions = pane.getConditions();
 		        //todo; GET CONDITION NOT WORKING
 		        List<ObjParam> condParam = new ArrayList<ObjParam>();
-		        		//controller.getPropertiesInterface().getSelectedConditions(conditions);
+		        		controller.getPropertiesInterface().getSelectedConditions(conditions);
+		        for(ObjParam o: condParam){
+		        	System.out.println("selected: " + o.getName());
+		        }
 		       
 		        ObjParamValue outcomeVal = pane.getOutcomeValue();
-		        AddConditionDialog addConditionDialog = new AddConditionDialog(this.switchPaneController, condParam);
+		        AddConditionDialog addConditionDialog = 
+		        		new AddConditionDialog(this.switchPaneController, condParam);
 		        addConditionDialog.showAndWait();
 		        List<ObjParamValue> conditionVal = addConditionDialog.getResult();
 		        

@@ -28,5 +28,10 @@ public interface IGameProperties {
 	public void addActionParam(ActionParam param);
 
 	
+	public void addAction(ActionParam params, MapObjectType type);
+	
+	public void addCharacteristic(ObjParam param, MapObjectType type);
+
+	
 	
 }

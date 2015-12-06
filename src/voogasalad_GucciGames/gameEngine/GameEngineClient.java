@@ -164,6 +164,12 @@ public class GameEngineClient implements GameEngineToGamePlayerInterface, Runnab
         
     }
 
+    @Override
+    public GameLevelEngine getCurrentLevel () {
+        // TODO Auto-generated method stub
+        return null;
+    }
+
 	//change to either immutable or just make the methods of this public (and not the full set...)
 
 
