@@ -34,18 +34,18 @@ public class ResourceManager implements GameResourceManagerToGAE, GameResourceMa
 //		ResourceManager r = new ResourceManager("Duvall Tag");
 //	}
 	
-//	public static void main(String[] args){
-//		ResourceManager g = new ResourceManager("Duvall Tag");
-//		g.toggleCopyOnAccess(true);
-//		List<String> dirs = g.listImageDirectories();
-//		List<String> images = g.getImages();
-//		List<String> tiles = g.getImages("tiles");
-//		System.out.println(dirs);
-//		System.out.println(images);
-//		System.out.println(tiles);
-//		g.getImage(tiles.get(1));
-//		
-//	}
+	public static void main(String[] args){
+		ResourceManager g = new ResourceManager("Duvall Tag");
+		g.toggleCopyOnAccess(true);
+		List<String> dirs = g.listImageDirectories();
+		List<String> images = g.getImages();
+		List<String> tiles = g.getImages("tiles");
+		System.out.println(dirs);
+		System.out.println(images);
+		System.out.println(tiles);
+		//g.getImage(tiles.get(1));
+		
+	}
 	
 	public ResourceManager(){
 		this("");
