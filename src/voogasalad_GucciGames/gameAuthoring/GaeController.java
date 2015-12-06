@@ -73,7 +73,7 @@ public class GaeController extends AGuiGaeController implements IModelGaeControl
 	public void createCustomUnitType(Map<String, String> m) {
 		model.createCustomUnitType(m);
 	}
-	
+
 	@Override
 	public void createCustomStructureType(Map<String, String> m) {
 		model.createCustomStructureType(m);
@@ -97,9 +97,9 @@ public class GaeController extends AGuiGaeController implements IModelGaeControl
 	@Override
 	@Deprecated
 	public void saveToXML(File file) {
-		
+
 	}
-	
+
 	@Override
 	public void saveToXML( ){
 		model.saveToXML();
@@ -202,11 +202,12 @@ public class GaeController extends AGuiGaeController implements IModelGaeControl
 		return getMapObjectImage(object.getType());
 	}
 
+	@Override
 	public void initGame(String name) {
 		//TODO: Add the name somewhere
 		myGui.initGame(name);
 	}
-	
+
 	@Override
 	public LevelTabPane getLevelTabPane(){
 		return myGui.getLevelTabPane();
@@ -222,7 +223,7 @@ public class GaeController extends AGuiGaeController implements IModelGaeControl
 			List<String> allComponents) {
 		model.setGuiComponents(location, allComponents);
 	}
-	
+
 	@Override
 	public int addLevel(String name) {
 		return model.addLevel(name);
@@ -290,7 +291,8 @@ public class GaeController extends AGuiGaeController implements IModelGaeControl
 	public void addActionParam() {
 		// TODO Auto-generated method stub
 	}
-		
+
+	@Override
 	public void setDefaultOwner(int ownerID) {
 		model.setDefaultOwner(ownerID);
 	}
