@@ -3,9 +3,11 @@ package voogasalad_GucciGames.gameAuthoring;
 import java.util.List;
 import java.util.Map;
 
+import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.paramObjects.ActionParams;
 import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.paramObjects.GameSettingParams;
 import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.paramObjects.ObjParam;
 import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.paramObjects.PlayerParams;
+import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.paramObjects.RuleParams;
 import voogasalad_GucciGames.gameAuthoring.properties.ObjectProperty;
 
 public interface IDialogGaeController {
@@ -49,6 +51,10 @@ public interface IDialogGaeController {
 	// Add
 	// action name, list of rules, list of outcomes
 	public void addActionParam();
+	
+	public List<ActionParams> getAllActions();
+	
+	public List<RuleParams> getAllRules();
 	
 	//public void add
 	

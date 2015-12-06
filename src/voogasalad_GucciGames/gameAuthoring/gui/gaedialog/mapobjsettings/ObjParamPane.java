@@ -5,24 +5,35 @@ import java.util.Map;
 
 import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.groovySettings.groovyParams.GCharParam;
 import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.paramObjects.ObjParam;
+import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.paramObjects.ObjParamValue;
+import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.paramObjects.ObjType;
 import javafx.geometry.HPos;
 import javafx.geometry.Insets;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.GridPane;
-
+/**
+ * Create a pane for one objParam object
+ * @author yingqi
+ *
+ */
 public class ObjParamPane extends GridPane {
 	
 	private ObjParam param;
 	private Map<Label, TextField> contents = new HashMap<Label, TextField>();
 	private Label name;
+	private String objName;
+	private ObjType type;
 	
 	public ObjParamPane(ObjParam param){
+		this.objName = param.getName();
+		this.type = param.getObjType();
+		this.param = param;	
+		
+		setContent();
 		this.setHgap(5);
 		this.setVgap(5);
 		this.setPadding(new Insets(5,5,5,5));
-		this.param = param;	
-		setContent();
 		
 		
 	}
@@ -41,12 +52,14 @@ public class ObjParamPane extends GridPane {
 		}		
 	}
 	
-	public Map<String, String> getAllInputs(){
+	public ObjParamValue getAllInputs(){
+		ObjParamValue objParamValue = new ObjParamValue(objName, type);
 		Map<String, String> map = new HashMap<String, String>();
 		contents.forEach((k,v) -> {
 			map.put(k.getText(), v.getText());	
 		});
-		return map;
+		objParamValue.setParamValues(map);
+		return objParamValue;
 	}
 
 }

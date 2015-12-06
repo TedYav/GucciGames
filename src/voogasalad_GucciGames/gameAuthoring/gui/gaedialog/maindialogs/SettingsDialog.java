@@ -38,7 +38,7 @@ public class SettingsDialog extends AGaeDialog implements ISwitchSettingsPane{
 		prop = helper.loadProperties("dialogproperties/actionsettings.properties");			
 		this.controller = controller;
 		this.setHeaderText("Settings");
-		this.mainPane = new MainPane(this, prop);
+		this.mainPane = new MainPane(this, prop, controller);
 		scrollPane.setContent(mainPane);
 		this.getDialogPane().setContent(scrollPane);
 		this.getDialogPane().setPrefSize(WIDTH, HEIGHT);

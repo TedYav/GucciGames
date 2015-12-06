@@ -36,6 +36,10 @@ public class ObjParam{
 	public Map<String, String> getAllParams() {
 		return params;
 	}
+	
+	public ObjType getObjType(){
+		return type;
+	}
 
 	public String getType() {
 		// TODO Auto-generated method stub

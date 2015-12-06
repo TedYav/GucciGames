@@ -10,13 +10,9 @@ public class RuleParams {
 		this.name = name;
 		
 	}
-	
-	public void setDisplayName(String n){
-		this.displayName = n;
-	}
-	
-	public String getDisplayName(){
-		return this.displayName;
+
+	public String getName() {
+		return name;
 	}
 
 }

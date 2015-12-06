@@ -7,6 +7,7 @@
 		<element name="modifyActiveObjectHealth" 
 		 paramNames="health"
 		 paramTypes="int">
+	
 	</element>	
 		<element name="modifyWealth" 
 		 paramNames="wealth"

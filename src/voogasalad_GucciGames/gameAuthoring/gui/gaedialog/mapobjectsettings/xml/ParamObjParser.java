@@ -2,24 +2,17 @@ package voogasalad_GucciGames.gameAuthoring.gui.gaedialog.mapobjectsettings.xml;
 
 import java.io.File;
 import java.io.IOException;
-import java.util.ArrayList;
+
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
-import javafx.scene.control.Label;
 
 import javax.xml.parsers.ParserConfigurationException;
 import javax.xml.parsers.SAXParser;
 import javax.xml.parsers.SAXParserFactory;
 
 import org.xml.sax.SAXException;
-
-import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.dialogcomponents.DialogTableView;
-import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.dialogcomponents.TableElement;
-import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.mapobjsettings.ObjParamPane;
 import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.paramObjects.ActionParams;
 import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.paramObjects.ObjParam;
 import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.paramObjects.ObjType;
@@ -27,7 +20,7 @@ import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.paramObjects.RuleParams
 
 public class ParamObjParser {
 	
-	private Set<ObjParam> allMapObjCharParams /*= new HashSet<ObjParam>()*/;
+	private Set<ObjParam> allMapObjCharParams = new HashSet<ObjParam>();
 	
 	private Set<ObjParam> allPlayerCharParams = new HashSet<ObjParam>();
 	

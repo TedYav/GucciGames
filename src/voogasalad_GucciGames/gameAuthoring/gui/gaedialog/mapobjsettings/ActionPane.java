@@ -15,15 +15,21 @@ import org.xml.sax.SAXException;
 
 import javax.xml.parsers.ParserConfigurationException;
 
+import voogasalad_GucciGames.gameAuthoring.IDialogGaeController;
 import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.DialogElements;
 import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.dialogcomponents.DialogTableView;
+import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.dialogcomponents.DropDownMenuField;
 import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.maindialogs.GaeDialogHelper;
 import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.maindialogs.ISwitchSettingsPane;
 import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.mapobjectsettings.xml.ActionSAXHandler;
 import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.paramObjects.ActionParams;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.geometry.Insets;
 import javafx.scene.control.Button;
+import javafx.scene.control.ComboBox;
+import javafx.scene.control.Dialog;
+import javafx.scene.control.TextField;
 import javafx.scene.layout.GridPane;
 import javafx.scene.text.Text;
 
@@ -33,72 +39,67 @@ public class ActionPane extends GridPane {
 	private ISwitchSettingsPane switchPaneInterface;	
 	
 	private List<ActionParams> dataList = new ArrayList<ActionParams>();
-	private ObservableList<ActionParams> data;
 	
 	private ObservableList<ActionParams> actions;
 	private final GaeDialogHelper helper = new GaeDialogHelper();
-	private DialogTableView tableView ;
 	private Properties prop;
+	private IDialogGaeController controller;
+	private TextField textField = new TextField();
+	private ComboBox<String> dropDown = new ComboBox<String>();
+	private String selected = "";
+	private Button addBtn = new Button("Add Action");
+	Button nextBtn = new Button("Next");
 	
-	public ActionPane(ISwitchSettingsPane switchPaneInterface, Properties prop){
+	public ActionPane(ISwitchSettingsPane switchPaneInterface, IDialogGaeController controller,Properties prop){
 		super();
 		this.switchPaneInterface = switchPaneInterface;	
 		this.prop = prop;
-		data = FXCollections.observableArrayList(dataList);
+		this.controller = controller;
 		
+		//TODO: get all actions
 		List<String> items = helper.parseStringToList(prop, 
 				"action_items");
-		tableView = new DialogTableView(items, "Actions");
-		this.add(tableView, 0, 0);
+		ObservableList<String> options = FXCollections.observableArrayList(items);
+		dropDown.setItems(options);	
+		
+		textField.setText(selected);
+		textField.setDisable(true);
 		addActionToNextBtn();
+		addActionToAddBtn();
+		setLayout();
 		
 	}
 	
-
-	private void addActionToNextBtn(){
-		Button nextBtn = new Button("Next");
-		this.add(nextBtn, 1, 1);
-		nextBtn.setOnAction(e -> {
-			Set<String> rules = new HashSet<String>();
-			Set<String> chars = new HashSet<String>();
-			SAXParserFactory saxParserFactory = SAXParserFactory.newInstance();
-			/*
-		    try {
-		        SAXParser saxParser = saxParserFactory.newSAXParser();
-
-		        ActionSAXHandler handler = new ActionSAXHandler(
-		        		new HashSet<String>(tableView.getData()));		        
-		       
-		        saxParser.parse(new 
-		        		File("src/voogasalad_GucciGames/gameAuthoring/gui/gaedialog/mapobjectsettings/xml/actionDependencies.xml"), 
-		        		handler);
-		        List<ActionParams> actionParams = handler.getActionParams();
-		       
-		        for(ActionParams actionParam : actionParams){
-		  
-		  
-		        	rules.addAll(actionParam.getAllRules());
-		        	chars.addAll(actionParam.getAllCharacteristics());
-		        }
-				
-		        for(String s: rules){
-		        	System.out.println("rules: " + s);
-		        }
-		        
-		        for(String s: chars){
-		        	System.out.println("chars: " + s);
-		        }
-		        
-		           
-		    } catch (ParserConfigurationException | SAXException | IOException ex) {
-		        ex.printStackTrace();
-		    }
-		    */
-		    switchPaneInterface.switchSettingsPane(new RulesAndCharPane(rules, chars));
-		    
 	
+	private void setLayout(){
+		this.setPadding(new Insets(5,5,5,5));
+		this.setVgap(10);
+		this.setHgap(10);
+		add(textField, 0, 0);
+		add(dropDown, 1, 0);
+		add(addBtn, 2, 0);
+		add(nextBtn, 10, 10);
+	}
+
+	private void addActionToNextBtn(){				
+		nextBtn.setOnAction(e -> {
+			//TODO: show add rules
+		    //switchPaneInterface.switchSettingsPane(new RulesAndCharPane(rules, chars));
+			ConditionOutcomeDialog d = new ConditionOutcomeDialog(controller);
+			d.showAndWait();
+
 		});
-}
+	}
+	
+	private void addActionToAddBtn(){
+		
+		addBtn.setOnAction(e -> {
+			selected = dropDown.getSelectionModel().getSelectedItem();
+			System.out.println("selected: " + selected);
+			this.textField.setText(selected);
+		});
+	}
+
 		
 	
 

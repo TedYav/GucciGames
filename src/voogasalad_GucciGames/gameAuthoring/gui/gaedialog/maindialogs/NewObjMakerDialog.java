@@ -10,7 +10,7 @@ import javafx.scene.control.ButtonBar.ButtonData;
 import javafx.scene.control.ButtonType;
 import javafx.scene.layout.GridPane;
 
-public class NewObMakerDialog extends AGaeDialog{	
+public class NewObjMakerDialog extends AGaeDialog{	
 	private static final int WIDTH = 600;
 	private static final int HEIGHT = 600;
 	private Properties prop;
@@ -18,7 +18,7 @@ public class NewObMakerDialog extends AGaeDialog{
 	private GridPane gridPane = new GridPane();
 	private String myType;
 	
-	public NewObMakerDialog( IDialogGaeController controller, String type){
+	public NewObjMakerDialog( IDialogGaeController controller, String type){
 		super();
 		myType = type;
 		GaeDialogHelper helper = new GaeDialogHelper();

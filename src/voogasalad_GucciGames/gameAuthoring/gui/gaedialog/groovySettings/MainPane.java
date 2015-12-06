@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.Properties;
 
 import voogasalad.util.reflection.Reflection;
+import voogasalad_GucciGames.gameAuthoring.IDialogGaeController;
 import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.dialogcomponents.RadioBtnField;
 import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.maindialogs.ISwitchSettingsPane;
 import javafx.geometry.HPos;
@@ -34,11 +35,13 @@ public class MainPane extends GridPane{
 	private List<String> items = new ArrayList<String>();
 	private RadioBtnField radioBtnField;
 	private Properties prop;
+	private IDialogGaeController dialogController;
 	
-	public MainPane(ISwitchSettingsPane settingsPaneController, Properties prop){
+	public MainPane(ISwitchSettingsPane settingsPaneController, Properties prop, IDialogGaeController dialogController){
 		title = new Text("I want to add a new ...");
 		this.settingsPaneController = settingsPaneController;
 		this.prop = prop;
+		this.dialogController = dialogController;
 		items.add("Action");
 		items.add("Characteristic");	
 		radioBtnField = new RadioBtnField(items);
@@ -95,7 +98,7 @@ public class MainPane extends GridPane{
 		nextBtn.setOnAction(e -> {
 			selected = radioBtnField.getSelected();	
 			String name = settingsPackagePath + selected + "Pane";
-			settingsPaneController.switchSettingsPane(reflection.createInstance(name,  settingsPaneController, prop));
+			settingsPaneController.switchSettingsPane(reflection.createInstance(name, settingsPaneController, dialogController, prop));
 		});
 	}
 	
