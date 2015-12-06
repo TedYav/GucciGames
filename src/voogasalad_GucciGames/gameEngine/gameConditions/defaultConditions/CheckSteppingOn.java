@@ -1,6 +1,5 @@
 package voogasalad_GucciGames.gameEngine.gameConditions.defaultConditions;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -30,7 +29,7 @@ public class CheckSteppingOn extends Conditions {
 	public Boolean execute(BasicParameters params, GamePlayerPerson player) {
 		MapObject calledMe = params.getCalledMe();
 		TargetCoordinateSingle myLocation = (TargetCoordinateSingle) calledMe.getCoordinate();
-		List<Integer> ids = extractAllPlayersExceptNutral(params);
+		List<Integer> ids = params.getEngine().getPlayers().getAllIds();
 		for (Integer id : ids) {
 			List<MapObject> currPlayerObjects = params.getEngine().getPlayers().getPlayerById(id).getMapObjects();
 
@@ -46,12 +45,5 @@ public class CheckSteppingOn extends Conditions {
 
 	}
 
-	private List<Integer> extractAllPlayersExceptNutral(BasicParameters params) {
-		List<Integer> ids1 = params.getEngine().getPlayers().getAllIds();
-		List<Integer> ids = new ArrayList<Integer>();
-		for (int i = 1; i < ids1.size(); i++) {
-			ids.add(ids1.get(i));
-		}
-		return ids;
-	}
+
 }

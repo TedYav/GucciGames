@@ -17,12 +17,10 @@ public class AttackEvent extends Attack {
 
 	public AttackEvent(String actionName) {
 		super(actionName);
-
 	}
 
 	public AttackEvent(String actionName, List<Rules> rules, List<Outcome> outcomes) {
 		super(actionName, rules, outcomes);
-
 	}
 
 	@Override

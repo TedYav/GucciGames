@@ -5,7 +5,7 @@ import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.maindialogs.NewObMakerD
 
 
 public class TileTab extends ATab {
-
+	private static final String TYPE = "tile";
 	
 	public TileTab(SideBar bar){
 		super(bar);
@@ -17,7 +17,7 @@ public class TileTab extends ATab {
 
 	@Override
 	protected void addNewTypeDialog(ActionEvent e) {
-		NewObMakerDialog addNewTileDialog = new NewObMakerDialog(myController);
+		NewObMakerDialog addNewTileDialog = new NewObMakerDialog(myController, TYPE);
 		addNewTileDialog.showAndWait();
 		
 	}

@@ -29,6 +29,7 @@ public class GameSettingDialog extends AGaeDialog {
 
 
 	public GameSettingDialog(IDialogGaeController dialogGaeController){
+		super();
 		GaeDialogHelper helper = new GaeDialogHelper();
 		this.dialogGaeController = dialogGaeController;
 		prop = helper.loadProperties("/voogasalad_GucciGames/gameAuthoring/gui/gaedialog/maindialogs/dialogproperties/gamedialog.properties");

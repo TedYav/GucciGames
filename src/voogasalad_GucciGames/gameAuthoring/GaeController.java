@@ -75,6 +75,11 @@ public class GaeController extends AGuiGaeController implements IModelGaeControl
 	}
 
 	@Override
+	public void createCustomStructureType(Map<String, String> m) {
+		model.createCustomStructureType(m);
+	}
+
+	@Override
 	public ObservableList<MapObjectType> getImmutableTileTypes() {
 		return model.getImmutableTileTypes();
 	}
@@ -235,7 +240,6 @@ public class GaeController extends AGuiGaeController implements IModelGaeControl
 	}
 
 	@Override
-
 	public List<ObjParam> getAllMapObjCharParams() {
 		// TODO Auto-generated method stub
 		return null;
@@ -286,12 +290,11 @@ public class GaeController extends AGuiGaeController implements IModelGaeControl
 	@Override
 	public void addActionParam() {
 		// TODO Auto-generated method stub
-
 	}
+
 	@Override
 	public void setDefaultOwner(int ownerID) {
 		model.setDefaultOwner(ownerID);
-
 	}
 
 
