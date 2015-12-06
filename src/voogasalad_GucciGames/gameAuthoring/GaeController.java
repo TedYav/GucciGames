@@ -285,7 +285,10 @@ public class GaeController extends AGuiGaeController implements IModelGaeControl
 	@Override
 	public void addActionParam() {
 		// TODO Auto-generated method stub
+	}
 		
+	public void setDefaultOwner(int ownerID) {
+		model.setDefaultOwner(ownerID);
 	}
 
 
