@@ -1,11 +1,8 @@
 
 package voogasalad_GucciGames.gameEngine.gameConditions.outcomes;
 
-import java.util.List;
-
 import voogasalad_GucciGames.gameEngine.CommunicationParameters.BasicParameters;
 import voogasalad_GucciGames.gameEngine.CommunicationParameters.ChangedParameters;
-import voogasalad_GucciGames.gameEngine.gameConditions.Conditions;
 
 /**
  *
@@ -16,8 +13,7 @@ public class EndLevel extends Outcome {
 	private static final String NEXT_LEVEL="nextLevel";
 	private String myDestination;
 
-	public EndLevel(List<Conditions> conditions,String affectedPlayers, String nextLevel, String destination) {
-		super(conditions, affectedPlayers);
+	public EndLevel(String affectedPlayers,String destination) {
 		myDestination = destination;
 	}
 

@@ -17,7 +17,7 @@ public class CheckSteppingOn extends Conditions {
 	private static final String TARGET_TYPE = "targetType";
 	private String myType;
 
-	public CheckSteppingOn(String name, String value) {
+	public CheckSteppingOn(String value) {
 		myType = value;
 	}
 
