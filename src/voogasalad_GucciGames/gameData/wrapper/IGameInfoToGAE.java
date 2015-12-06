@@ -3,27 +3,22 @@ package voogasalad_GucciGames.gameData.wrapper;
 import java.util.List;
 import java.util.Map;
 
-import voogasalad_GucciGames.gameEngine.MainGameEngine;
+import voogasalad_GucciGames.gameEngine.GameLevelEngine;
 
 public interface IGameInfoToGAE {
 	
-	public void addLevel(String gameName, boolean chooseable);
-
-	public GameLevel addLevel(String levelName);
 
 	
 //	public void editLevel(String gameName);
 	
-	public void deleteLevel(int levelID);
 	
-	public void swapLevels(int first, int second);
 	
 	public String getGameName();
 		
-	public Map<Integer, GameLevel> getLevelsMap();
+	public Map<String, IGameLevelToGamePlayer> getLevelsMap();
 	
 	public List<String> getChoosableLevels();
 
-	public void setEngine(String gameName, MainGameEngine engine);   
+	public void setEngine(String gameName, GameLevelEngine engine);   
 	
 }

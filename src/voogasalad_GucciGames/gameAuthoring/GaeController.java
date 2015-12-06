@@ -49,14 +49,9 @@ public class GaeController extends AGuiGaeController implements IModelGaeControl
 		model.deleteComponent(mapObj);
 	}
 
-//	@Override
-//	public DisplayMapObject addObject( int levelID, GridPoint gridpoint, MapObjectType mapObjType) {
-//		return model.addObject(levelID, gridpoint, mapObjType, defaultOwnerID);
-//	}
-
 	@Override
-	public DisplayMapObject addObject(int levelID, GridPoint gridpoint, MapObjectType mapObjType, int ownerID) {
-		return model.addObject(levelID, gridpoint, mapObjType, ownerID);
+	public DisplayMapObject addObject(int levelID, GridPoint gridpoint, MapObjectType mapObjType) {
+		return model.addObject(levelID, gridpoint, mapObjType);
 	}
 
 	@Override
@@ -202,8 +197,9 @@ public class GaeController extends AGuiGaeController implements IModelGaeControl
 		return getMapObjectImage(object.getType());
 	}
 
-	public void initGrid(int width, int height) {
-		myGui.initializeMap(width, height);
+	public void initGame(String name) {
+		//TODO: Add the name somewhere
+		myGui.initGame(name);
 	}
 	
 	@Override
@@ -223,8 +219,8 @@ public class GaeController extends AGuiGaeController implements IModelGaeControl
 	}
 	
 	@Override
-	public int addLevel() {
-		return model.addLevel();
+	public int addLevel(String name) {
+		return model.addLevel(name);
 	}
 
 	@Override

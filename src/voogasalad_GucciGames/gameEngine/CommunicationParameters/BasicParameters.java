@@ -1,6 +1,6 @@
 package voogasalad_GucciGames.gameEngine.CommunicationParameters;
 
-import voogasalad_GucciGames.gameEngine.MainGameEngine;
+import voogasalad_GucciGames.gameEngine.GameLevelEngine;
 import voogasalad_GucciGames.gameEngine.mapObject.MapObject;
 
 public class BasicParameters extends CommunicationParameters {
@@ -8,14 +8,14 @@ public class BasicParameters extends CommunicationParameters {
 	// Classes which extend this will be used to share information between the
 	// front and back end
 	private MapObject myCalledMe;
-	private MainGameEngine myEngine;
+	private GameLevelEngine myEngine;
 
-	public BasicParameters(MapObject calledMe, MainGameEngine engine) {
+	public BasicParameters(MapObject calledMe, GameLevelEngine engine) {
 		this.myCalledMe = calledMe;
 		this.myEngine = engine;
 	}
 
-	public BasicParameters(MainGameEngine engine) {
+	public BasicParameters(GameLevelEngine engine) {
 		this.myCalledMe = null;
 		this.myEngine = engine;
 	}
@@ -28,7 +28,7 @@ public class BasicParameters extends CommunicationParameters {
 		this(params, params.getCalledMe());
 	}
 
-	public MainGameEngine getEngine() {
+	public GameLevelEngine getEngine() {
 		return this.myEngine;
 	}
 

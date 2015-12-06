@@ -13,7 +13,7 @@ public interface IGAEModel {
 
     public void deleteComponent(DisplayMapObject mapObj);
 	public List<DisplayMapObject> getMapObjects(int id);
-	public DisplayMapObject addObject(int levelID, GridPoint gridpoint, MapObjectType mapObjType, int ownerID);
+	public DisplayMapObject addObject(int levelID, GridPoint gridpoint, MapObjectType mapObjType);
 	public void clearMap(int id);
     
     public void createCustomTileType(Map<String,String> m);
@@ -33,7 +33,7 @@ public interface IGAEModel {
     
 	public void changeOwner(MapObject mapObject, int playerID);
 
-	public int addLevel();
+	public int addLevel(String name);
 	
 	public void saveToXML();
 

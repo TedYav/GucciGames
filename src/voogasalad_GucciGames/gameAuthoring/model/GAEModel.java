@@ -15,7 +15,7 @@ import voogasalad_GucciGames.gameAuthoring.gui.map.GridPoint;
 import voogasalad_GucciGames.gameData.XStreamGameEngine;
 import voogasalad_GucciGames.gameData.wrapper.GameInfo;
 import voogasalad_GucciGames.gameData.wrapper.GuiData;
-import voogasalad_GucciGames.gameEngine.MainGameEngine;
+import voogasalad_GucciGames.gameEngine.GameLevelEngine;
 import voogasalad_GucciGames.gameEngine.gamePlayer.AllPlayers;
 import voogasalad_GucciGames.gameEngine.gamePlayer.GamePlayerPerson;
 import voogasalad_GucciGames.gameEngine.mapObject.MapObject;
@@ -162,21 +162,18 @@ public class GAEModel implements IGAEModel{
 
 
 	@Override
+<<<<<<< HEAD
 	public int addLevel() {
 		return levelData.addLevel();
+=======
+	public int addLevel(String name) {
+		>>>>>>>>
+		<<<<<<<<
+		int newLevelID = nextLevel;
+		myLevels.put(newLevelID, new MapData());
+		nextLevel += 1;
+		return newLevelID;
+>>>>>>> 52c7a8a1f7caf0cf8c4683bf1e6ee7b2683074ba
 		
 	}
-    
-//	public static void main(String[] args){
-//		Map<Integer, GamePlayerPerson> mapOfPlayers = new HashMap<Integer, GamePlayerPerson>();	
-////		List<GamePlayerPerson> listOfPlayers = new ArrayList<GamePlayerPerson>();	
-//		AllPlayers myPlayers = new AllPlayers(mapOfPlayers);
-//		MainGameEngine engine = new MainGameEngine(myPlayers, null, null);
-//		System.out.println("made game engine");
-//		XMLWriter writer = new XMLWriter();
-//		writer.write(engine);
-//		
-//	}
-
-
 }

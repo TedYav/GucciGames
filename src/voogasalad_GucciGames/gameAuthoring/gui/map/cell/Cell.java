@@ -10,7 +10,6 @@ import voogasalad_GucciGames.gameAuthoring.gui.map.GridPoint;
 import voogasalad_GucciGames.gameAuthoring.gui.map.ICellGrid;
 import voogasalad_GucciGames.gameAuthoring.model.DisplayMapObject;
 import voogasalad_GucciGames.gameAuthoring.model.MapObjectType;
-import voogasalad_GucciGames.gameEngine.mapObject.MapObject;
 
 public class Cell extends StackPane implements ICell {
 
@@ -102,7 +101,7 @@ public class Cell extends StackPane implements ICell {
 
 	@Override
 	public boolean add(MapObjectType type) {
-		DisplayMapObject obj = myController.addObject(myPos, type);
+		DisplayMapObject obj = myController.addObject(myGrid.getLevelID(), myPos, type);
 		if (obj != null) {
 			if (type.isTile()) {
 				myTileLayer.add(obj);
@@ -116,11 +115,10 @@ public class Cell extends StackPane implements ICell {
 
 	@Override
 	public boolean remove(DisplayMapObject obj) {
-		if (obj.getType().isTile()) {
+		if (obj.getType().isTile())
 			return myTileLayer.remove();
-		} else {
+		else
 			return myMidLayer.remove(obj);
-		}
 	}
 
 	@Override

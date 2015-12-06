@@ -15,17 +15,18 @@ public class DependenciesPane extends GridPane {
 	private List<String> availableItems;
 	private String title;
 	private IDependencies addDepController;
-	private IAddMapObjParam addParamController;
 	private Button saveBtn ;
+	
 	
 	public DependenciesPane(List<String> availableItems, IDependencies controller, String title){
 		super();
+		this.availableItems = availableItems;
+		this.title = title;
 		this.addDepController = controller;
 		init();
 	}
 	
 	private void init(){
-		this.availableItems = availableItems;
 		this.title = title;
 		this.setHgap(5);
 		this.setVgap(5);

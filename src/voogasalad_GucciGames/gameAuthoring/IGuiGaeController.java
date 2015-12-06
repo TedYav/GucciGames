@@ -23,16 +23,11 @@ public interface IGuiGaeController {
 	 * @param mapObj
 	 */
 
-	public void initGrid(int width, int height);
+	public void initGame(String name);
 
 	public void deleteComponent(DisplayMapObject mapObj);
 
-//	public DisplayMapObject addObject(int levelID, GridPoint gridpoint, MapObjectType mapObjType);
-
 	public List<DisplayMapObject> getMapObjects(int id);
-
-	// public int getMapObjectListPosAtPoint(ObservableList<MapObject>
-	// mapObjectList, GridPoint gridPoint);
 
 	public void clearMap(int id);
 
@@ -59,7 +54,7 @@ public interface IGuiGaeController {
 
 	public MapObjectType getDragType();
 
-	public DisplayMapObject addObject(int levelID, GridPoint gridpoint, MapObjectType mapObjType, int ownerID);
+	public DisplayMapObject addObject(int levelID, GridPoint gridpoint, MapObjectType mapObjType);
 
 	public void changeOwner(MapObject mapObject, int playerID);
 
@@ -77,7 +72,7 @@ public interface IGuiGaeController {
 
 	public LevelTabPane getLevelTabPane();
 
-	public int addLevel();
+	public int addLevel(String name);
 
 
 }
