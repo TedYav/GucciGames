@@ -14,7 +14,7 @@ import voogasalad_GucciGames.gameEngine.mapObject.AMapObjectCharacteristic;
 
 public class CharacteristicFactory {
 	private TypeMap typeMap = new TypeMap();
-	private static final String PATH_TO_RULE_PROPERTIES = "MapObjectCharacteristics.properties";
+	private static final String PATH_TO_RULE_PROPERTIES = "MapObjectCharacteristicsPath.properties";
 	private InputStream inputStream;
 	private Properties prop;
 	

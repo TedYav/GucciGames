@@ -1,5 +1,6 @@
 package voogasalad_GucciGames.gameAuthoring.model;
 
+import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -63,6 +64,38 @@ public class TypeData implements IGameProperties {
 		tileTypes.add(objType2);
 		
 		unitTypes = FXCollections.observableArrayList();
+		
+		characteristicFactory = new CharacteristicFactory();
+		ObjParamValue objParamVal = new ObjParamValue();
+		objParamVal.setObjName("MovableCharacteristic" );
+		Map<String, String> map = new HashMap<>();
+		map.put("range", "1");
+		map.put("maxNumOfMoves", "4");
+		objParamVal.setParamValues(map);
+		try {
+			characteristicFactory.create(myMapObjectCharParams, objParamVal);
+		} catch (NoSuchMethodException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (SecurityException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (ClassNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (InstantiationException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IllegalAccessException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IllegalArgumentException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (InvocationTargetException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 	
 	public void addTileType(MapObjectType type) {
@@ -132,20 +165,12 @@ public class TypeData implements IGameProperties {
 				.collect(Collectors.toList());	
 	}
 
-
-
-
-	@Override
-	public void addCharacteristic(ObjParam param, MapObjectType type) {
-		// TODO Auto-generated method stub
-		
-	}
-
 	@Override
 	public List<RuleParams> getAllRules() {
 		// TODO Auto-generated method stub
 		return new ArrayList<>(myRules.values());
 	}
+
 
 	@Override
 	public List<RuleParams> getSelectedRules(List<String> selectedRules) {
@@ -153,6 +178,12 @@ public class TypeData implements IGameProperties {
 		return myRules.values().stream()
 				.filter(c -> selectedRules.contains(c.getName()))
 				.collect(Collectors.toList());	
+	}
+	
+	@Override
+	public void addCharacteristic(ObjParam param, MapObjectType type) {
+		// TODO Auto-generated method stub
+		
 	}
 
 	@Override

@@ -31,8 +31,6 @@ public interface IGameProperties {
 	
 	public List<RuleParams> getSelectedRules(List<String> selectedRules);
 	
-
-	
 	public void addCharacteristic(ObjParam param, MapObjectType type);
 
 	public void addActionParamValue(ActionParamsValue param);
