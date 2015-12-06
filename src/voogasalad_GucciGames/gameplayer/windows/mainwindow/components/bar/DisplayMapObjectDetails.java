@@ -59,7 +59,6 @@ public class DisplayMapObjectDetails extends DisplayComponent implements ListCha
              attributeList.clear();
              attributeList.add(mapObj.getName());
              for (String s: map.keySet()) {
-                 Arrays.asList(map.get(s).split("\n")).forEach(c->System.out.println(":"+c.trim()+":"));
                  Arrays.asList(map.get(s).split("\n")).forEach(c->attributeList.add(c.trim()));
              }
              listView.setItems(FXCollections.observableList(attributeList));
