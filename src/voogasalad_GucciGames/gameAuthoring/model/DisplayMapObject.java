@@ -27,6 +27,10 @@ public class DisplayMapObject {
 		return myOwnerID;
 	}
 	
+	public GridPoint getCoordinate() {
+		return myCoord;
+	}
+	
 	
 	
 

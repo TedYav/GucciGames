@@ -1,16 +1,19 @@
 package voogasalad_GucciGames.gameplayer.windows.mainwindow.map.main;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.ResourceBundle;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ListChangeListener;
 import javafx.collections.ObservableList;
+import javafx.event.EventHandler;
 import javafx.geometry.Point2D;
 import javafx.scene.Parent;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.control.ScrollPane.ScrollBarPolicy;
+import javafx.scene.input.ScrollEvent;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
@@ -60,9 +63,9 @@ public class MainMap extends WindowComponent implements MapInterface {
 		initializePanes();
 		initializeVariables();
 		initializeMap();
+		fogCells();
 		drawMap(getController().getInitialState());
 	}
-
 
 	private void initializeVariables() {
 		myCellsWide = getController().getEngine().getMapWidth();
@@ -236,5 +239,14 @@ public class MainMap extends WindowComponent implements MapInterface {
 	@Override
 	public MapCellInterface getCell(Point2D coordinate) {
 		return myCellMap.get(coordinate);
+	}
+	
+	@Override
+	public List<Double> getVisibleArea(){
+		double numCellsWide = (Screen.getPrimary().getBounds().getWidth() - Double.parseDouble(myConfig.getString("MapHBorder")))/myCellSize;
+		double numCellsTall = (Screen.getPrimary().getBounds().getHeight() - Double.parseDouble(myConfig.getString("MapVBorder")))/myCellSize;
+		double myPercentWide = numCellsWide/myCellsWide;
+		double myPercentTall = numCellsTall/myCellsTall;
+		return Arrays.asList(myPercentWide, myPercentTall);
 	}
 }

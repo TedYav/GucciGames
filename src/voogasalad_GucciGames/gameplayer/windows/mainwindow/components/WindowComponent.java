@@ -41,7 +41,7 @@ public abstract class WindowComponent{
     	myParent.getStyleClass().add("gametext");
 	}
 
-	public GameScene getScene () {
+	public GameScene getGameScene () {
         return myScene;
     }
 

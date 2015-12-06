@@ -11,6 +11,7 @@ import com.thoughtworks.xstream.XStream;
 
 import voogasalad_GucciGames.gameEngine.CommunicationParameters.ChangedParameters;
 import voogasalad_GucciGames.gameEngine.CommunicationParameters.GridCoordinateParameters;
+import voogasalad_GucciGames.gameEngine.gamePlayer.chars.APlayerChars;
 import voogasalad_GucciGames.gameEngine.targetCoordinate.ATargetCoordinate;
 import voogasalad_GucciGames.gameplayer.controller.GameParametersInterface;
 
@@ -155,6 +156,18 @@ public class GameEngineServer implements GameEngineToGamePlayerInterface, Runnab
     public void changeCurrentLevel (String newGameLevel) {
         // TODO Auto-generated method stub
         
+    }
+
+	@Override
+	public APlayerChars getPlayerCharacteristic(String name, int id) {
+		// TODO Auto-generated method stub
+		return this.myEngine.getPlayers().getPlayerById(id).getCharacteristics(name);
+	}
+
+    @Override
+    public GameLevelEngine getCurrentLevel () {
+        // TODO Auto-generated method stub
+        return null;
     }
 
 }

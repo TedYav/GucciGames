@@ -1,10 +1,12 @@
 package voogasalad_GucciGames.gameEngine;
 import java.util.ArrayList;
+
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import voogasalad_GucciGames.gameData.wrapper.GameStats;
 import voogasalad_GucciGames.gameData.wrapper.IGameLevelToGamePlayer;
 import voogasalad_GucciGames.gameEngine.CommunicationParameters.BasicParameters;
 import voogasalad_GucciGames.gameEngine.CommunicationParameters.ChangedParameters;
@@ -15,9 +17,12 @@ import voogasalad_GucciGames.gameEngine.gameConditions.EndGameConditions;
 import voogasalad_GucciGames.gameEngine.gamePlayer.ATurnDecider;
 import voogasalad_GucciGames.gameEngine.gamePlayer.AllPlayers;
 import voogasalad_GucciGames.gameEngine.gamePlayer.DefaultTurnDecider;
+import voogasalad_GucciGames.gameEngine.gamePlayer.GamePlayerPerson;
 import voogasalad_GucciGames.gameEngine.gamePlayer.TurnCounter;
+import voogasalad_GucciGames.gameEngine.gamePlayer.chars.PlayerScore;
 import voogasalad_GucciGames.gameEngine.targetCoordinate.ATargetCoordinate;
 import voogasalad_GucciGames.gameplayer.controller.GameParametersInterface;
+
 
 public class GameLevelEngine implements IGameLevelToGamePlayer {
 
@@ -30,6 +35,9 @@ public class GameLevelEngine implements IGameLevelToGamePlayer {
 	private String myName;
 	private boolean myChoosability;
 	private boolean hasLevelEnded;
+	private GameStats myGameStats;
+	
+	private List<Double> scoresList;
 
 	@Override
 	public String getLevelName() {
@@ -134,6 +142,7 @@ public class GameLevelEngine implements IGameLevelToGamePlayer {
 
 
 	public GameParametersInterface getGameParameters() {
+
 		// TODO Auto-generated method stub
 		GameParameters pp= new GameParameters();
 		if(myGamePlayers.getNumberOfPlayers() != 2){
@@ -150,18 +159,28 @@ public class GameLevelEngine implements IGameLevelToGamePlayer {
 		pp.setMapHeight(8);
 		pp.setMapWidth(8);
 
-		Map<String, Double> score = new HashMap<String, Double>();
-		Map<String, Integer> scoreID = new HashMap<String, Integer>();
+		//Map<String, Double> score = new HashMap<String, Double>();
+		//Map<String, Integer> scoreID = new HashMap<String, Integer>();
 
 		List<Integer> myIDs = myGamePlayers.getAllIds();
 		Collections.sort(myIDs);
 
 		for(int i = 1; i < myIDs.size(); i++){
-			score.put("Player" + myIDs.get(i), myGamePlayers.getActivePlayer(myIDs.get(i)).getMapObjects().size() * 500.0);
-			scoreID.put("Player" + myIDs.get(i), myGamePlayers.getActivePlayer(myIDs.get(i)).getMapObjects().size() * 500);		}
+			//score.put("Player" + myIDs.get(i), myGamePlayers.getActivePlayer(myIDs.get(i)).getMapObjects().size() * 500.0);
+			//scoreID.put("Player" + myIDs.get(i), myGamePlayers.getActivePlayer(myIDs.get(i)).getMapObjects().size() * 500);
+			GamePlayerPerson gp = myGamePlayers.getPlayerById(myIDs.get(i));
+			if (gp.hasCharacteristic("PlayerScore") && myGameStats.contains(myIDs.get(i))){	
+				double score = ((PlayerScore) myGameStats.getCharacteristics(myIDs.get(i)).get("PlayerScore")).getScore();
+				((PlayerScore) gp.getCharacteristics("PlayerScore")).setScore(score+myGamePlayers.getActivePlayer(myIDs.get(i)).getMapObjects().size() * 500);
+			}
+			else{
+				gp.addCharacterstic("PlayerScore", new PlayerScore(myGamePlayers.getActivePlayer(myIDs.get(i)).getMapObjects().size() * 500));
+			}
+			
+		}
 
 
-		pp.setScore(score);
+		//pp.setScore(score);
 
 		GameResult game = new GameResult();
 
@@ -173,7 +192,7 @@ public class GameLevelEngine implements IGameLevelToGamePlayer {
 
 
 		game.setPlayerConditions(myConds);
-		game.setFinalScores(scoreID);
+		//game.setFinalScores(scoreID);
 
 		for(int i = 1; i < myIDs.size(); i++){
 			if(myConds.get(myIDs.get(i)).equals(EndGameConditions.WIN)){
@@ -208,4 +227,9 @@ public class GameLevelEngine implements IGameLevelToGamePlayer {
 	public void setMyChoosability(boolean myChoosability) {
 		this.myChoosability = myChoosability;
 	}
+	
+	public void setGameStats(GameStats clazz){
+		this.myGameStats = clazz;
+	}
+	
 }

@@ -4,6 +4,7 @@ import java.util.List;
 
 import voogasalad_GucciGames.gameEngine.CommunicationParameters.ChangedParameters;
 import voogasalad_GucciGames.gameEngine.CommunicationParameters.GridCoordinateParameters;
+import voogasalad_GucciGames.gameEngine.gamePlayer.chars.APlayerChars;
 import voogasalad_GucciGames.gameEngine.targetCoordinate.ATargetCoordinate;
 import voogasalad_GucciGames.gameplayer.controller.GameParametersInterface;
 
@@ -22,7 +23,7 @@ public interface GameEngineToGamePlayerInterface {
 	 * @return
 	 */
 	public String getName();
-	
+
 	// make this list unmodifiable later on.
 	/**
 	 * This returns the list of map objects that the author has created, and it
@@ -80,7 +81,13 @@ public interface GameEngineToGamePlayerInterface {
 
 	public GameParametersInterface getGameParameters();
 
-	       public void changeCurrentLevel(String newGameLevel);
+	public void changeCurrentLevel(String newGameLevel);
+
+	public GameLevelEngine getCurrentLevel();
+
 
 	public boolean hasLevelEnded();
+
+	public APlayerChars getPlayerCharacteristic(String name, int id);
+
 }

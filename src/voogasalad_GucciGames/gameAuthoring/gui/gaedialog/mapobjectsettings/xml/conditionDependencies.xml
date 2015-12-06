@@ -9,8 +9,13 @@
 		 paramTypes="">
 	</element>	
 		<element name="checkPlayerWealth" 
-		 paramNames="condParams"
-		 paramTypes="">
+			paramNames=""
+			paramTypes="">
+
 	</element>	
+		<element name="CheckSteppingOn" 
+		 paramNames="value"
+		 paramTypes="String">
+	</element>
 
 </conditionDependencies>

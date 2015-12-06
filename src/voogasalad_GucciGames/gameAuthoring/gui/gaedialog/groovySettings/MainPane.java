@@ -5,8 +5,12 @@ import java.util.List;
 import java.util.Properties;
 
 import voogasalad.util.reflection.Reflection;
+import voogasalad_GucciGames.gameAuthoring.IDialogGaeController;
 import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.dialogcomponents.RadioBtnField;
 import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.maindialogs.ISwitchSettingsPane;
+import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.paramObjects.ActionParamsValue;
+import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.paramObjects.ObjParamValue;
+import voogasalad_GucciGames.gameAuthoring.model.MapObjectType;
 import javafx.geometry.HPos;
 import javafx.geometry.Insets;
 import javafx.geometry.VPos;
@@ -29,16 +33,26 @@ public class MainPane extends GridPane{
 	private Text title;
 	
 	private String selected;
+	private MapObjectType type;
 
 	
 	private List<String> items = new ArrayList<String>();
 	private RadioBtnField radioBtnField;
 	private Properties prop;
+	private IDialogGaeController dialogController;
 	
-	public MainPane(ISwitchSettingsPane settingsPaneController, Properties prop){
+	private ActionParamsValue actionParamsValue;
+	private List<ObjParamValue> charParamValues;
+	
+	public MainPane(ISwitchSettingsPane settingsPaneController, 
+			Properties prop, IDialogGaeController dialogController , MapObjectType type, ActionParamsValue actionParamsValue, List<ObjParamValue> objParamValue){
 		title = new Text("I want to add a new ...");
+		this.type = type;
 		this.settingsPaneController = settingsPaneController;
 		this.prop = prop;
+		this.dialogController = dialogController;
+		this.actionParamsValue = actionParamsValue;
+		this.charParamValues = objParamValue;
 		items.add("Action");
 		items.add("Characteristic");	
 		radioBtnField = new RadioBtnField(items);
@@ -83,9 +97,9 @@ public class MainPane extends GridPane{
 		Reflection reflection = new Reflection();
 		nextBtn.setOnAction(e -> {
 			selected = radioBtnField.getSelected();
-	
 			String name = groovyPackagePath + "NamePane";
-			groovyPaneController.switchGroovyPane(reflection.createInstance(name,  selected, groovyPaneController), "Custom " + selected);
+			groovyPaneController.switchGroovyPane(
+					reflection.createInstance(name,  selected, groovyPaneController), "Custom " + selected);
 		});
 		
 	}
@@ -95,7 +109,18 @@ public class MainPane extends GridPane{
 		nextBtn.setOnAction(e -> {
 			selected = radioBtnField.getSelected();	
 			String name = settingsPackagePath + selected + "Pane";
-			settingsPaneController.switchSettingsPane(reflection.createInstance(name,  settingsPaneController, prop));
+			if (selected.equals("Action")){
+				settingsPaneController.switchSettingsPane(
+						reflection.createInstance(name, settingsPaneController,
+								dialogController, prop, type, this.actionParamsValue));
+			} else {
+				settingsPaneController.switchSettingsPane(
+						reflection.createInstance(name, settingsPaneController,
+								dialogController, prop, type, this.charParamValues));
+			}
+			
+			
+			
 		});
 	}
 	

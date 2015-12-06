@@ -18,17 +18,16 @@ public abstract class Outcome {
 	private List<Conditions> myConditions = new ArrayList<Conditions>();
 	private String myAffectedPlayers = "self";
 
-	public Outcome(List<Conditions> conditions, String affectedPlayers, String argumentName, String argumentValue) {
-		this(conditions, affectedPlayers);
+	public Outcome(String affectedPlayers, String argumentValue) {
+		this(affectedPlayers);
 	}
 
-	public Outcome(List<Conditions> conditions, String affectedPlayers, String argumentName, int argumentValue) {
-		this(conditions, affectedPlayers);
+	public Outcome(String affectedPlayers, int argumentValue) {
+		this(affectedPlayers);
 	}
 
-	public Outcome(List<Conditions> conditions, String affectedPlayers) {
-		myConditions = conditions;
-		myAffectedPlayers = affectedPlayers;
+	public Outcome(String affectedPlayers) {
+		myAffectedPlayers = (affectedPlayers);
 	}
 
 	public Outcome() {

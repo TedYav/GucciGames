@@ -7,13 +7,13 @@ import voogasalad_GucciGames.gameAuthoring.IDialogGaeController;
 import voogasalad_GucciGames.gameAuthoring.model.MapObjectType;
 import javafx.scene.layout.GridPane;
 
-public class NewObMakerDialog extends AGaeDialog<MapObjectType> {
+public class NewObjMakerDialog extends AGaeDialog<MapObjectType> {
 	private Properties prop;
 	private IDialogGaeController controller;
 	private GridPane gridPane = new GridPane();
 	private String myType;
 
-	public NewObMakerDialog(AGuiGaeController controller, String type) {
+	public NewObjMakerDialog(AGuiGaeController controller, String type) {
 		super();
 		myType = type;
 		GaeDialogHelper helper = new GaeDialogHelper();

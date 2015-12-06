@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.paramObjects.AParams;
-import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.paramObjects.ActionParams;
+import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.paramObjects.ActionParamsValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.geometry.Insets;

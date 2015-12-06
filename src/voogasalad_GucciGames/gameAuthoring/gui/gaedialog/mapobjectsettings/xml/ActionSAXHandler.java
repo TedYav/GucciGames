@@ -11,20 +11,21 @@ import java.util.Stack;
 
 import org.xml.sax.helpers.DefaultHandler;
 
-import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.paramObjects.ActionParams;
+import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.paramObjects.ActionParam;
+import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.paramObjects.ActionParamsValue;
 import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.paramObjects.RuleParams;
 
 public class ActionSAXHandler extends DefaultHandler {
 
 	private Set<String> selectedActions = new HashSet<String>();
-	private List<ActionParams> actionParams = new ArrayList<ActionParams>();
-	private ActionParams actionParam = null;
+	private List<ActionParam> actionParams = new ArrayList<ActionParam>();
+	private ActionParam actionParam = null;
 
 	public ActionSAXHandler(){
 		
 	}
 
-	public List<ActionParams> getActionParams(){
+	public List<ActionParam> getActionParams(){
 		return actionParams;
 	}
 
@@ -39,7 +40,7 @@ public class ActionSAXHandler extends DefaultHandler {
 			String rules = attributes.getValue("rules");
 			String chars = attributes.getValue("chars");
 			if (selectedActions.contains(displayName)){
-				actionParam = new ActionParams(name);
+				actionParam = new ActionParam(name);
 				actionParam.setCharacteristics(chars);
 				actionParam.setRules(rules);
 			} 

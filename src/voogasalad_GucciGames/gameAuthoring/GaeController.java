@@ -14,14 +14,13 @@ import javafx.scene.control.Dialog;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
-import voogasalad.util.fxsprite.Sprite;
 import voogasalad_GucciGames.gameAuthoring.gui.GAEGui;
+import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.paramObjects.ActionParamsValue;
 import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.maindialogs.ImageBrowseDialogs;
-import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.maindialogs.SpriteBrowseDialog;
-import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.paramObjects.ActionParams;
 import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.paramObjects.GameSettingParams;
 import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.paramObjects.ObjParam;
 import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.paramObjects.PlayerParams;
+import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.paramObjects.RuleParams;
 import voogasalad_GucciGames.gameAuthoring.gui.levels.LevelTabPane;
 import voogasalad_GucciGames.gameAuthoring.gui.map.GridPoint;
 import voogasalad_GucciGames.gameAuthoring.model.DisplayMapObject;
@@ -263,6 +262,27 @@ public class GaeController extends AGuiGaeController implements IModelGaeControl
 	}
 
 	@Override
+	public List<ActionParamsValue> getAllActions() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public List<RuleParams> getAllRules() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+
+
+	@Override
+	public void addActionParam() {
+		// TODO Auto-generated method stub
+		
+	}
+
+
+
 	public GameResourceManagerToGAE getResourceManager() {
 		return myResManager;
 	}
@@ -270,6 +290,12 @@ public class GaeController extends AGuiGaeController implements IModelGaeControl
 	@Override
 	public Dialog<String> getImageBrowseDialog(String type) {
 		return myImageBrowseDialogs.getDialog(type);
+	}
+
+	@Override
+	public List<ObjParam> getAllPlayerCharParams() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 
