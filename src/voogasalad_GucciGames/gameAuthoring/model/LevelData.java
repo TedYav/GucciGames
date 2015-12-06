@@ -26,9 +26,9 @@ public class LevelData {
 		myLevels.get(levelID).addToMap(mapObject);
 	}
 
-	public int addLevel() {
+	public int addLevel(String name) {
 		int newLevelID = nextLevel;
-		myLevels.put(newLevelID, new MapData());
+		myLevels.put(newLevelID, new MapData(name));
 		nextLevel += 1;
 		return newLevelID;
 		
