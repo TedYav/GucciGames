@@ -179,4 +179,16 @@ public class GameController implements GameControllerInterface, GameControllerAd
 	public GameLoader getLoader() {
 		return myLoader;
 	}
+
+	@Override
+	public void loadDefaultLevel(){
+		String defaultLevel = myGame.getLevels().keySet().stream().findFirst().get();
+		myCurrentEngine.changeCurrentLevel(defaultLevel);
+		
+	}
+
+	public void refreshGUI() {
+		// TODO Auto-generated method stub
+		
+	}
 }

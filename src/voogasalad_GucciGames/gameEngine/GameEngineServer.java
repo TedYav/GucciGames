@@ -32,7 +32,7 @@ public class GameEngineServer extends GameEnginePlayer implements Runnable {
     private Set<String> names;
     
 
-	private static int PORT = 6011; //hard code for now
+	private static int PORT = 6550; //hard code for now
 	
 	public GameEngineServer(GameEngine gameEngine) {
 		super(gameEngine);
@@ -51,15 +51,19 @@ public class GameEngineServer extends GameEnginePlayer implements Runnable {
 
 	
 	public void updateClientGameEngine() {
-		System.out.println("updateclientge"+writers.size());
+		System.out.println("updateclientSize"+writers.size());
 		System.out.println(this);
 		getWriters().stream().forEach(e -> {
+			System.out.println("is this called?");
 			XStream xstream = new XStream(new DomDriver());
-			System.out.println("updating client");
-			e.println("GAMEDATA");
 			String s = xstream.toXML(getMyEngine());
+			System.out.println("updating all the clients");
+			System.out.println(s.length());
+        	e.print("GAMEDATA\n" + s.length() + "\n" + s + "\n");
+
+		/*	e.println("GAMEDATA");
 			e.println(s.length());
-			e.println(s);
+			e.println(s); */
 		});
 	}
 

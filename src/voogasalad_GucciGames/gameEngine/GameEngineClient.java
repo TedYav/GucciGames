@@ -9,6 +9,7 @@ import java.net.UnknownHostException;
 import java.util.List;
 
 import com.thoughtworks.xstream.XStream;
+import com.thoughtworks.xstream.io.xml.DomDriver;
 
 import voogasalad_GucciGames.gameData.wrapper.GameEngine;
 import voogasalad_GucciGames.gameEngine.CommunicationParameters.ChangedParameters;
@@ -50,16 +51,24 @@ public class GameEngineClient extends GameEnginePlayer implements Runnable{
 		        // Process all messages from server, according to the protocol.
 		        while (true) {
 		            String input = in.readLine();
+		            
+                    if (input == null) {
+                        return;
+                    }
 
-		            if(input.equals("GAMEDATA")){
+                    if(input.equals("GAMEDATA")){
 	                    input = in.readLine();
 	                    int lengthXML = Integer.parseInt(input);
-
+	                    System.out.println("according to input the length is" + lengthXML);
 	                    StringBuilder myBuilder = new StringBuilder();
 
 	                    for(int i = 0; i < lengthXML; i++){
-	                    	myBuilder.append(in.read());
+	                    	myBuilder.append((char) in.read());
 	                    }
+	                    
+	                    System.out.println("actual input is" + myBuilder.toString().length());
+
+	                    
 	                    this.updateGameEngine(myBuilder.toString());
 
 		            }
@@ -78,12 +87,12 @@ public class GameEngineClient extends GameEnginePlayer implements Runnable{
 	
 	private void updateServerGameEngine() {
 		// TODO Auto-generated method stub
-		XStream xstream = new XStream();
 
-		myWriterToServer.println("GAMEDATA");
+		XStream xstream = new XStream(new DomDriver());
 		String s = xstream.toXML(getMyEngine());
-		myWriterToServer.println(s.length());
-		myWriterToServer.println(s);
+		System.out.println("updating all the clients");
+		System.out.println(s.length());
+    	myWriterToServer.print("GAMEDATA\n" + s.length() + "\n" + s + "\n");
 
 
 	}

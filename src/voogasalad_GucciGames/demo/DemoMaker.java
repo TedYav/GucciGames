@@ -60,9 +60,9 @@ public class DemoMaker extends Application{
 //                level1.setName("Easy");
 
 		GameInfo game = new GameInfo("Duvall Tag");
-                game.getGameEngine().addLevel("Easy", level1);
-                game.getGameEngine().addLevel("Medium", level2);
-                game.getGameEngine().addLevel("Hard", level3);
+                game.getGameEngine().setLevel("Easy", level1);
+                game.getGameEngine().setLevel("Medium", level2);
+                game.getGameEngine().setLevel("Hard", level3);
 
                 GuiData gui = new GuiData();
                 game.setGuiData(gui);

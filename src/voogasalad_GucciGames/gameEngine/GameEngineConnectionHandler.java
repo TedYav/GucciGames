@@ -56,22 +56,22 @@ public class GameEngineConnectionHandler extends Thread {
 	                    if(input.equals("GAMEDATA")){
 	                    input = in.readLine();
 	                    int lengthXML = Integer.parseInt(input);
-	                    
-	                    System.out.println("they told us it is of length" + lengthXML);
-	                    
+
 	                    StringBuilder myBuilder = new StringBuilder();
 	                    
 	                    for(int i = 0; i < lengthXML; i++){
 	                    	myBuilder.append((char) in.read());
 	                    }
 	                    
-	                    System.out.println("it actually ended up being" + myBuilder.toString().length());
 	                    myServer.updateGameEngine(myBuilder.toString());
 	                    
 	                    for (PrintWriter writer : myServer.getWriters()) {
-	                        writer.println("GAMEDATA");
-	                        writer.println(lengthXML);
-	                        writer.println(myBuilder.toString());
+	                    	
+	                    	System.out.println("connection handler thinks the size is" + myBuilder.toString().length());
+	                    	writer.print("GAMEDATA\n" + lengthXML + "\n" + myBuilder.toString() + "\n");
+	                       // writer.println("GAMEDATA");
+	                       // writer.println(lengthXML);
+	                       // writer.println(myBuilder.toString());
 	                    }
 	                    }
 	                }

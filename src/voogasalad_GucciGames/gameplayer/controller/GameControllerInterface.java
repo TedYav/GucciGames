@@ -55,4 +55,5 @@ public interface GameControllerInterface{
 	public void performActionInProgress(Point2D target);
 	public ResourceManager getResource();
 	void loadLevel(String levelID);
+	public void loadDefaultLevel();
 }

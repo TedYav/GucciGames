@@ -28,8 +28,10 @@ public class NetworkConfigScene extends GameMenuScene {
     protected Map<String, MenuAction> buildOptionMap() {
 		Map<String, MenuAction> optionMap = new LinkedHashMap<>();
 		optionMap.put("Host Game", () -> {getManager().getController().getEngine().beHost();
-											getManager().sceneFinished();});
+											getManager().getController().loadDefaultLevel();
+										getManager().sceneFinished();});
 		optionMap.put("Join Game", () -> {getManager().getController().getEngine().beClient("10.190.209.220");
+		getManager().getController().loadDefaultLevel();
 		getManager().sceneFinished();;});
 		optionMap.put("Back", () -> myManager.loadScene(myConfig.getString("PrevScene")));
 		return optionMap;

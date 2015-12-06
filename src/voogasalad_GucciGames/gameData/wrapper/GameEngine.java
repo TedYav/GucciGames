@@ -8,6 +8,8 @@ import java.util.List;
 import java.util.Map;
 import java.util.TreeMap;
 
+import com.thoughtworks.xstream.annotations.XStreamOmitField;
+
 import voogasalad_GucciGames.gameEngine.GameEngineClient;
 import voogasalad_GucciGames.gameEngine.GameEnginePlayer;
 import voogasalad_GucciGames.gameEngine.GameEngineServer;
@@ -17,6 +19,7 @@ import voogasalad_GucciGames.gameEngine.PlayerMapObjectInterface;
 import voogasalad_GucciGames.gameEngine.CommunicationParameters.ChangedParameters;
 import voogasalad_GucciGames.gameEngine.CommunicationParameters.GridCoordinateParameters;
 import voogasalad_GucciGames.gameEngine.targetCoordinate.ATargetCoordinate;
+import voogasalad_GucciGames.gameplayer.controller.GameController;
 import voogasalad_GucciGames.gameplayer.controller.GameParametersInterface;
 import voogasalad_GucciGames.gameplayer.windows.mainwindow.components.DisplayComponent;
 
@@ -32,13 +35,16 @@ import voogasalad_GucciGames.gameplayer.windows.mainwindow.components.DisplayCom
 public class GameEngine implements IGameInfoToGAE, GameEngineToGamePlayerInterface {
 	private static final int MAINMENU = -1;
 	private Map<String,GameLevelEngine> myLevelsMap;
+
 	private String myGameName;
 	private String myCurrentLevel;
-	
 	private String myInitialLevel;
 
 	private volatile GameEnginePlayer iAmAPlayer;
 	private volatile Thread t;
+	
+	@XStreamOmitField
+	private GameController myController; 
 	
 	public GameEngine(String initialLevel){
 	    myLevelsMap = new HashMap<String,GameLevelEngine>();
@@ -48,13 +54,25 @@ public class GameEngine implements IGameInfoToGAE, GameEngineToGamePlayerInterfa
 	    myGameName = "RandomName";
 	}
 	
+	public void setCurrentLevel(String level){
+		myCurrentLevel = level;
+	}
+	
+	public GameEngine(String initialLevel, String gameName){
+		this(initialLevel);
+		myGameName = gameName;
+	}
+	
 	public void beHost(){
 		iAmAPlayer = new GameEngineServer(this);
-		
+		t = new Thread(iAmAPlayer);
+		t.start();
 	}
 	
 	public void beClient(String ipAddr){
 		iAmAPlayer = new GameEngineClient(this, ipAddr);
+		t = new Thread(iAmAPlayer);
+		t.start();
 	}
 	
 	public void resetGame(){
@@ -69,31 +87,11 @@ public class GameEngine implements IGameInfoToGAE, GameEngineToGamePlayerInterfa
 		myCurrentLevel = newGameLevel;
 	}
 	
-	
-	public GameEngine(String initialLevel, String gameName){
-		this(initialLevel);
-		myGameName = gameName;
-	}
 	@Override
 	public String getGameName() {
-		// TODO Auto-generated method stub
 		return this.myGameName;
 	}
 	
-		
-	
-	/**
-	 * Adds a new level and returns a reference to it.
-	 * @param gameName======
-	 * @return
-	 */	
-	public void addLevel(String levelName, GameLevelEngine myEngine){
-	    myEngine.setName(levelName);
-	    myLevelsMap.put(levelName, myEngine);
-		
-	}
-
-
 	@Override
 	public Map<String, IGameLevelToGamePlayer> getLevelsMap() {
 		return Collections.unmodifiableMap(myLevelsMap);
@@ -111,7 +109,8 @@ public class GameEngine implements IGameInfoToGAE, GameEngineToGamePlayerInterfa
 	}
 	
 	@Override
-	public void setEngine(String gameName, GameLevelEngine engine) {
+	public void setLevel(String gameName, GameLevelEngine engine) {
+		engine.setName(gameName);
 		myLevelsMap.put(gameName, engine);
 		
 	}
@@ -137,7 +136,6 @@ public class GameEngine implements IGameInfoToGAE, GameEngineToGamePlayerInterfa
 		if(iAmAPlayer != null){
 		iAmAPlayer.endTurn();
 		}
-		//iAmAPlayer.updateClientGameEngine();
 		return getCurrentLevel().endTurn();
 	}
 
@@ -149,32 +147,27 @@ public class GameEngine implements IGameInfoToGAE, GameEngineToGamePlayerInterfa
 	@Override
 	public GridCoordinateParameters getPossibleCoordinates(String action,
 			PlayerMapObjectInterface mapObject) {
-		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
 	public ChangedParameters performAction(String action,
 			PlayerMapObjectInterface mapObject, ATargetCoordinate target) {
-		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
 	public int getMapWidth() {
-		// TODO Auto-generated method stub
 		return getCurrentLevel().getMapWidth();
 	}
 
 	@Override
 	public int getMapHeight() {
-		// TODO Auto-generated method stub
 		return getCurrentLevel().getMapHeight();
 	}
 
 	@Override
 	public GameParametersInterface getGameParameters() {
-		// TODO Auto-generated method stub
 		return getCurrentLevel().getGameParameters();
 	}
 
@@ -182,6 +175,19 @@ public class GameEngine implements IGameInfoToGAE, GameEngineToGamePlayerInterfa
     public boolean hasLevelEnded () {
         return getCurrentLevel().hasLevelEnded();
     }
+
+	public void refreshGUI() {
+		// TODO Auto-generated method stub
+		myController.refreshGUI();
+	}
+
+	public GameController getMyController() {
+		return myController;
+	}
+
+	public void setMyController(GameController myController) {
+		this.myController = myController;
+	}
 
 
 
