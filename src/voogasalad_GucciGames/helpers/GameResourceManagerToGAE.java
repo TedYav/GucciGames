@@ -4,6 +4,7 @@ import java.util.List;
 
 import javafx.scene.image.Image;
 import javafx.scene.paint.Color;
+import voogasalad.util.fxsprite.Sprite;
 import voogasalad_GucciGames.gameData.wrapper.GameInfo;
 
 public interface GameResourceManagerToGAE {
@@ -32,5 +33,18 @@ public interface GameResourceManagerToGAE {
 	 */
 	public void toggleCopyOnAccess(boolean copy);
 	
-	public void changeGameName(String newName);	
+	public void changeGameName(String newName);
+
+	/**
+	 * Returns a sprite with the requested URI
+	 * @param URI
+	 * @return
+	 */
+	public Sprite getSprite(String URI);
+
+	/**
+	 * Returns a list of sprites available.
+	 * @return
+	 */
+	public List<String> getSprites();	
 }
