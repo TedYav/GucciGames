@@ -33,7 +33,7 @@ public class GaeController extends AGuiGaeController implements IModelGaeControl
 	private MapObjectType myDragType;
 	private Stage myStage;
 	private int numberOfPlayers;
-	private int defaultOwnerID = -1;
+//	private int defaultOwnerID = -1;
 	private Map<Integer, String> allPlayers = new HashMap<Integer, String>();
 	private ImageDatabase myImageDatabase = new ImageDatabase();
 	//private ArrayList<String> customGamePlayerComponents = new ArrayList<String>();
@@ -50,23 +50,18 @@ public class GaeController extends AGuiGaeController implements IModelGaeControl
 	}
 
 	@Override
-	public DisplayMapObject addObject(GridPoint gridpoint, MapObjectType mapObjType) {
-		return model.addObject(gridpoint, mapObjType, defaultOwnerID);
+	public DisplayMapObject addObject(int levelID, GridPoint gridpoint, MapObjectType mapObjType) {
+		return model.addObject(levelID, gridpoint, mapObjType);
 	}
 
 	@Override
-	public DisplayMapObject addObject(GridPoint gridpoint, MapObjectType mapObjType, int ownerID) {
-		return model.addObject(gridpoint, mapObjType, ownerID);
+	public List<DisplayMapObject> getMapObjects(int id) {
+		return model.getMapObjects(id);
 	}
 
 	@Override
-	public List<DisplayMapObject> getMapObjects() {
-		return model.getMapObjects();
-	}
-
-	@Override
-	public void clearMap() {
-		model.clearMap();
+	public void clearMap(int id) {
+		model.clearMap(id);
 	}
 
 	@Override
@@ -101,8 +96,8 @@ public class GaeController extends AGuiGaeController implements IModelGaeControl
 	}
 	
 	@Override
-	public void saveToXML(GameInfo game){
-		model.saveToXML(game);
+	public void saveToXML( ){
+		model.saveToXML();
 	}
 
 	@Override
@@ -202,8 +197,9 @@ public class GaeController extends AGuiGaeController implements IModelGaeControl
 		return getMapObjectImage(object.getType());
 	}
 
-	public void initGrid(int width, int height) {
-		myGui.initializeMap(width, height);
+	public void initGame(String name) {
+		//TODO: Add the name somewhere
+		myGui.initGame(name);
 	}
 	
 	@Override
@@ -223,8 +219,8 @@ public class GaeController extends AGuiGaeController implements IModelGaeControl
 	}
 	
 	@Override
-	public void addLevel(String name) {
-		model.addLevel(name);
+	public int addLevel(String name) {
+		return model.addLevel(name);
 	}
 
 	@Override

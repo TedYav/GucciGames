@@ -1,17 +1,24 @@
 package voogasalad_GucciGames.gameAuthoring.gui.menubar.menuitem;
 
 import voogasalad_GucciGames.gameAuthoring.AGuiGaeController;
-import javafx.scene.control.Menu;
+import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.maindialogs.NewLevelDialog;
 
-public class AddLevelItem extends Menu{
+import java.util.Map;
+
+import javafx.scene.control.Dialog;
+import javafx.scene.control.MenuItem;
+
+class AddLevelItem extends MenuItem {
 
 	AddLevelItem(String name, AGuiGaeController controller) {
 		super(name);
 		setOnAction(e -> {
-			controller.getLevelTabPane().createNewTab();
-			//controller.saveToXML();
-			//TODO
+			Dialog<Map<String, String>> dialog = new NewLevelDialog(controller);
+			dialog.showAndWait().ifPresent(map -> {
+				controller.getLevelTabPane().createNewTab(map.get("name"), Integer.parseInt(map.get("width")),
+						Integer.parseInt(map.get("height")));
+			});
 		});
 	}
-	
+
 }
