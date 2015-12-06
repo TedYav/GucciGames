@@ -28,4 +28,5 @@ public interface MapInterface {
 	public Point2D getCellCoordinate(MapCellInterface cell);
 	public MapCellInterface getCell(Point2D coordinate);
 	public void recenter(double xPercent, double yPercent);
+	public List<Double> getVisibleArea();
 }

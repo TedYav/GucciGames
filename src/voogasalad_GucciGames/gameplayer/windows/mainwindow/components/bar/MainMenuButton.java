@@ -15,7 +15,7 @@ public class MainMenuButton extends DisplayComponent{
         super(scene,controller);
         endTurn=new Button(myBundle.getString("mainmenu"));
         endTurn.setOnMouseClicked(e->{
-            getScene().getManager().loadScene("MainMenuScene");
+            getGameScene().getManager().loadScene("MainMenuScene");
         });
     }
 

@@ -107,7 +107,7 @@ public class SplashScreen extends WindowComponent {
 		if(myDuration > 0){
 			Timeline timeline = new Timeline(new KeyFrame(
 			        Duration.millis(myDuration),
-			        e -> getScene().getManager().sceneFinished()));
+			        e -> getGameScene().getManager().sceneFinished()));
 			timeline.play();
 		}
 		
