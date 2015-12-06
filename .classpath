@@ -13,6 +13,6 @@
 	<classpathentry kind="lib" path="lib/xstream-1.4.8.jar"/>
 	<classpathentry kind="lib" path="lib/xstream-doc.jar"/>
 	<classpathentry kind="lib" path="lib/xstream-src.jar"/>
-	<classpathentry kind="con" path="org.eclipse.jdt.junit.JUNIT_CONTAINER/3"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.junit.JUNIT_CONTAINER/4"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

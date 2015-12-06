@@ -13,35 +13,31 @@ public class MapObjectType {
 	private String myName;
 	private int myLayer;
 
-	public MapObjectType(String name, String imagePath, int i, int j, double d, double e, int layer) {
-		myName = name;
-		myImagePath = imagePath;
-		myX = i;
-		myY = j;
-		myWidth = d;
-		myHeight = e;
-		myLayer = layer;
-	}
+//	public MapObjectType(String name, String imagePath, int i, int j, double d, double e, int layer) {
+//		myName = name;
+//		myImagePath = imagePath;
+//		myX = i;
+//		myY = j;
+//		myWidth = d;
+//		myHeight = e;
+//		myLayer = layer;
+//	}
 	
-	public MapObjectType(String name, String imagePath, int i, int j, double d, double e) {
-		myName = name;
+	public MapObjectType(String name, String imagePath, int layer) {
 		myImagePath = imagePath;
-		myX = i;
-		myY = j;
-		myWidth = d;
-		myHeight = e;
-		myLayer = 0;
+		myName = name;
+		myLayer = layer;
 	}
 
 	public MapObjectType(String name, String imagePath) {
 		myImagePath = imagePath;
 		myName = name;
+		// TODO get layer from front end dialog box
+		myLayer = 0;
 	}
 
 	public boolean isTile() {
-		// TODO Auto-generated method stub
-		// Need to add this once characteristics are added?
-		return false;
+		return myLayer == 0;
 	}
 	
 	public double getWidth() {

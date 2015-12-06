@@ -28,6 +28,10 @@ public abstract class Outcome {
 
 	}
 
+	public Outcome() {
+
+	}
+
 	public OutcomeParams getMyParams() {
 		return myOutcomeParams;
 	}

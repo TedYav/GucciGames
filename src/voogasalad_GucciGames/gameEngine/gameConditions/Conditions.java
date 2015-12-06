@@ -13,7 +13,8 @@ import voogasalad_GucciGames.gameEngine.gamePlayer.GamePlayerPerson;
  */
 public abstract class Conditions {
 	private Map<String, Object> myParams;
-
+	public Conditions() {
+	}
 	public Conditions(Map<String,Object> condParams) {
 		myParams = condParams;
 	}

@@ -14,7 +14,9 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
 import voogasalad_GucciGames.gameAuthoring.gui.GAEGui;
+import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.paramObjects.ActionParams;
 import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.paramObjects.GameSettingParams;
+import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.paramObjects.ObjParam;
 import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.paramObjects.PlayerParams;
 import voogasalad_GucciGames.gameAuthoring.gui.levels.LevelTabPane;
 import voogasalad_GucciGames.gameAuthoring.gui.map.GridPoint;
@@ -23,7 +25,6 @@ import voogasalad_GucciGames.gameAuthoring.model.GAEModel;
 import voogasalad_GucciGames.gameAuthoring.model.IGAEModel;
 import voogasalad_GucciGames.gameAuthoring.model.MapObjectType;
 import voogasalad_GucciGames.gameAuthoring.properties.ObjectProperty;
-import voogasalad_GucciGames.gameData.wrapper.GameInfo;
 import voogasalad_GucciGames.gameEngine.mapObject.MapObject;
 import voogasalad_GucciGames.helpers.ImageDatabase;
 
@@ -65,6 +66,11 @@ public class GaeController extends AGuiGaeController implements IModelGaeControl
 	@Override
 	public MapObjectType getDragType() {
 		return myDragType;
+	}
+	
+	@Override
+	public void createCustomStructureType(Map<String, String> m) {
+		myModel.createCustomStructureType(m);
 	}
 
 	@Override
@@ -207,12 +213,13 @@ public class GaeController extends AGuiGaeController implements IModelGaeControl
 		return getMapObjectImage(object.getType());
 	}
 
+	@Override
 	public void initGame(String name) {
 		//TODO: Add the name somewhere
 		myHasGameProperty.set(true);
 		myGui.initGame();
 	}
-	
+
 	@Override
 	public LevelTabPane getLevelTabPane(){
 		return myGui.getLevelTabPane();
@@ -228,10 +235,55 @@ public class GaeController extends AGuiGaeController implements IModelGaeControl
 			List<String> allComponents) {
 		myModel.setGuiComponents(location, allComponents);
 	}
-	
+
 	@Override
 	public int addLevel(String name) {
 		return myModel.addLevel(name);
+	}
+
+	@Override
+	public List<ObjParam> getAllMapObjCharParams() {
+		return myModel.getMapCharParams();
+	}
+
+	@Override
+	public List<ObjParam> getSelectedMapObjCharParams(List<String> selectedChar) {
+		return myModel.getSelectedMapObjCharParams(selectedChar);
+	}
+
+	@Override
+	public List<ObjParam> getAllPlayerCharParams() {
+		return myModel.getPlayerCharParams();
+	}
+
+	@Override
+	public List<ObjParam> getSelectedPlayerCharParams(List<String> selectedChar) {
+		return myModel.getSelected();
+	}
+
+	@Override
+	public List<ObjParam> getAllOutcomes() {
+		return myModel.getOutcomes();
+	}
+
+	@Override
+	public List<ObjParam> getSelectedOutcomes(List<String> selectedOutcomes) {
+		return myModel.getSelectedOutcomes();
+	}
+
+	@Override
+	public List<ObjParam> getAllConditions() {
+		return myModel.getConditions();
+	}
+
+	@Override
+	public List<ObjParam> getSelectedConditions(List<String> selectedConditions) {
+		return myModel.getSelectedConditions(selectedConditions);
+	}
+
+	@Override
+	public void addActionParam(ActionParams param) {
+		myModel.addActionParam(param);
 	}
 
 	@Override

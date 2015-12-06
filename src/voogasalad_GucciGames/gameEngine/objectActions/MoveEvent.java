@@ -26,7 +26,6 @@ public class MoveEvent extends MapObjectEvent {
 
 	public MoveEvent(String actionName, List<Rules> rules, List<Outcome> outcomes) {
 		super(actionName, rules, outcomes);
-		getRuleList().add(new UnitsMovablePerTurn());
 	}
 
 	@Override
