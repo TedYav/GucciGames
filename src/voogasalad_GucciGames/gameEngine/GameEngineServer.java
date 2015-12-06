@@ -158,6 +158,7 @@ public class GameEngineServer implements GameEngineToGamePlayerInterface, Runnab
         
     }
 
+<<<<<<< HEAD
 
 	@Override
 	public APlayerChars getPlayerCharacteristic(String name, int id) {
@@ -165,11 +166,16 @@ public class GameEngineServer implements GameEngineToGamePlayerInterface, Runnab
 		return this.myEngine.getPlayers().getPlayerById(id).getCharacteristics(name);
 	}
 
+=======
+>>>>>>> f957b246df6d71fd1f02b54fee0be89fde753ec7
     @Override
     public GameLevelEngine getCurrentLevel () {
         // TODO Auto-generated method stub
         return null;
     }
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> f957b246df6d71fd1f02b54fee0be89fde753ec7
 }
