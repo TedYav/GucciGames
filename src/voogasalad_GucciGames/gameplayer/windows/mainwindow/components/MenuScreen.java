@@ -34,6 +34,7 @@ public class MenuScreen extends WindowComponent {
 	private Map<String, MenuAction> myOptions;
 	private List<Text> myText;
 	private String myTitle;
+	private Text myTitleText;
 	
 	private ResourceBundle myConfig = PlayerConfig.load("components.MenuScreen");
 	
@@ -52,6 +53,11 @@ public class MenuScreen extends WindowComponent {
 		sizeMenu();
 	}
 	
+	public void setTitle(String title){
+		myTitle = title;
+		myTitleText.setText(title);
+	}
+	
 
 	private void drawTitle() {
 		if(!myTitle.isEmpty()){
@@ -59,6 +65,7 @@ public class MenuScreen extends WindowComponent {
 			t.getStyleClass().addAll( "menutitle");
 			myMenu.getChildren().add(t);
 			myText.add(t);
+			myTitleText = t;
 		}
 	}
 

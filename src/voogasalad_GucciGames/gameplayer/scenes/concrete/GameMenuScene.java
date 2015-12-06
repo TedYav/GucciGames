@@ -40,8 +40,7 @@ public abstract class GameMenuScene extends GameScene {
 		System.out.println("LOADED " + getName());
 		
 		myMenu = new MenuScreen(this, myManager.getController(), buildOptionMap(), myTitle);
-		myScene = new Scene(myMenu.getParent());
-		loadScene(myScene);
+		loadParent(myMenu.getParent());
 	}
 
     protected abstract Map<String, MenuAction> buildOptionMap();
