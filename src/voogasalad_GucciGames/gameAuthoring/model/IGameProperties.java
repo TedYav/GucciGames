@@ -25,13 +25,14 @@ public interface IGameProperties {
 	
 	public List<ObjParam> getSelectedConditions(List<String> selectedConditions);
 	
-	public void addActionParam(ActionParam param);
 
-	
-	public void addAction(ActionParam params, MapObjectType type);
 	
 	public void addCharacteristic(ObjParam param, MapObjectType type);
 
+	public void addActionParam(ActionParam param);
+	
+	public void addAction(ActionParam params, MapObjectType type);
+	
 	
 	
 }
