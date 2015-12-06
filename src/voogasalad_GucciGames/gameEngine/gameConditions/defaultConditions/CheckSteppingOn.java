@@ -1,7 +1,6 @@
 package voogasalad_GucciGames.gameEngine.gameConditions.defaultConditions;
 
 import java.util.List;
-import java.util.Map;
 
 import voogasalad_GucciGames.gameEngine.CommunicationParameters.BasicParameters;
 import voogasalad_GucciGames.gameEngine.gameConditions.Conditions;
@@ -18,11 +17,8 @@ public class CheckSteppingOn extends Conditions {
 	private static final String TARGET_TYPE = "targetType";
 	private String myType;
 
-	public CheckSteppingOn(Map<String, Object> condParams) {
-		super(condParams);
-		if (condParams.containsKey(TARGET_TYPE)) {
-			myType = (String) condParams.get(TARGET_TYPE);
-		}
+	public CheckSteppingOn(String name, String value) {
+		myType = value;
 	}
 
 	@Override
@@ -43,6 +39,5 @@ public class CheckSteppingOn extends Conditions {
 		return false;
 
 	}
-
 
 }
