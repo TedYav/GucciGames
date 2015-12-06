@@ -14,4 +14,6 @@ public interface ICellGrid {
 	
 	public boolean deselectCell(ICell cell);
 	
+	public int getLevelID();
+	
 }

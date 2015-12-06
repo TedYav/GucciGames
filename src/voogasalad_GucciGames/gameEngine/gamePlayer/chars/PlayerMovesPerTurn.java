@@ -1,17 +1,17 @@
 package voogasalad_GucciGames.gameEngine.gamePlayer.chars;
 
-public class MovablePlayerCharacteristic extends APlayerChars {
+public class PlayerMovesPerTurn extends APlayerChars {
 	private int myNumberOfMoves = 1000;// if game user does not define number of
 										// moves allowed for a player per game,
 										// then the player gets default number
 										// of moves = 1000
 	private int moveCount = 0;
 
-	public MovablePlayerCharacteristic() {
+	public PlayerMovesPerTurn() {
 	}
 
-	public MovablePlayerCharacteristic(int numMoves) {
-		myNumberOfMoves = numMoves;
+	public PlayerMovesPerTurn(int numofMoves) {
+		myNumberOfMoves = numofMoves;
 	}
 
 

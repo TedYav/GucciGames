@@ -7,6 +7,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.ResourceBundle;
 
+
 public class GuiData {
 	private transient ResourceBundle namesBundle = ResourceBundle.getBundle("voogasalad_GucciGames.gameData.config.GuiComponents");
 	private List<String> myRightComponents;	// hold class names

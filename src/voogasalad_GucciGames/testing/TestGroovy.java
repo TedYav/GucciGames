@@ -15,7 +15,6 @@ import javax.script.ScriptEngineManager;
 import javax.script.ScriptException;
 
 import junit.framework.TestCase;
-import voogasalad_GucciGames.gameEngine.MainGameEngine;
 import voogasalad_GucciGames.gameEngine.CommunicationParameters.BasicParameters;
 import voogasalad_GucciGames.gameEngine.groovyEngine.AGroovyCustomObject;
 import voogasalad_GucciGames.gameEngine.groovyEngine.GameGroovyEngine;

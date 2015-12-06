@@ -9,12 +9,12 @@ public class ActionParams extends AParams{
 	
 	private Set<String> myRules;
 	private Set<String> myCharacteristics;
+	private Set<String> myOutcomes;
 	
 	private String name;
-	private String displayName;
 	
-	public ActionParams(String displayName){
-		this.displayName = displayName;
+	public ActionParams(String name){
+		this.name = name;
 	}
 	
 	public void setRules(String rules){
@@ -34,6 +34,14 @@ public class ActionParams extends AParams{
 	public void addCharacteristics(String characteristics){
 		myCharacteristics.add(characteristics);
 	}
+	
+	public void addOutcome(String outcomeName){
+		myOutcomes.add(outcomeName);
+	}
+	
+	public Set<String> getAllOutcomes(){
+		return myOutcomes;
+	}
 	public Set<String> getAllRules(){
 		return myRules;
 	}
@@ -44,29 +52,18 @@ public class ActionParams extends AParams{
 	
 	@Override
 	public String getName() {
-		// TODO Auto-generated method stub
 		return name;
 	}
 
 	@Override
 	public void setName(String name) {
-		// TODO Auto-generated method stub
-		this.name = name;
-		
+		this.name = name;		
 	}
-	
-	public String getDisplayName(){
-		return displayName;
-	}
-	
-	public void setDisplayName(String displayName){
-		this.displayName = displayName;
-	}
+
 
 	@Override
 	public void print() {
-		// TODO Auto-generated method stub
-		System.out.println("displayName: " + this.displayName);
+		System.out.println("name: " + this.name);
 		
 	}
 

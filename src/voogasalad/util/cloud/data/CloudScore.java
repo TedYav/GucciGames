@@ -6,14 +6,17 @@ import java.util.Map;
 import java.util.ResourceBundle;
 import java.util.function.Supplier;
 
-public class CloudScore extends CloudObject{
+import voogasalad.util.cloud.config.ConfigLoader;
+
+public class CloudScore extends CloudObject implements GameScore{
 
 	private String myPlayerName;
 	private Double myScore;
 	private String myTitle;
 	
 	public CloudScore(Map<String, String> map){
-		this(map.get("gamename"), map.get("playername"), Double.parseDouble(map.get("score")), map.get("title"));
+		this(map.get(CloudVariable.GAMENAME.getValue()), map.get(CloudVariable.PLAYERNAME.getValue()), Double.parseDouble(map.get(CloudVariable.SCORE.getValue())), map.get(CloudVariable.TITLE.getValue()));
+		
 	}
 	
 	public CloudScore(String gameName){
@@ -30,31 +33,39 @@ public class CloudScore extends CloudObject{
 		myPlayerName = playerName;
 		myScore = score;
 		myTitle = title;
-		setParameter("gamename", getGameName());
-		setParameter("playername", myPlayerName);
-		setParameter("score", myScore.toString());
+		setParameter(CloudVariable.GAMENAME.getValue(), getGameName());
+		setParameter(CloudVariable.PLAYERNAME.getValue(), myPlayerName);
+		setParameter(CloudVariable.SCORE.getValue(), myScore.toString());
 	}
 
+	@Override
 	public Double getScore(){
 		return myScore;
 	}
 	
+	@Override
 	public String getTitle(){
 		return myTitle;
 	}
 	
+	@Override
 	public String getPlayerName(){
 		return myPlayerName;
+	}
+	
+	@Override
+	public String toString(){
+		return myPlayerName + " -- " + myScore;
 	}
 
 	@Override
 	public CloudParameter requestString(){
-		return new CloudParameter("action", "highscore");
+		return new CloudParameter(CloudVariable.ACTION, CloudVariable.HIGHSCORE);
 	}
 	
 	@Override
 	public List<String> getFields(){
-		return Arrays.asList("gamename", "playername", "score", "title");
+		return Arrays.asList(CloudVariable.GAMENAME.getValue(), CloudVariable.PLAYERNAME.getValue(), CloudVariable.SCORE.getValue(), CloudVariable.TITLE.getValue());
 	}
 
 	@Override

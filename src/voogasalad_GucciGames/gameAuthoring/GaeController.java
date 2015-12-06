@@ -13,6 +13,7 @@ import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
 import voogasalad_GucciGames.gameAuthoring.gui.GAEGui;
 import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.paramObjects.GameSettingParams;
+import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.paramObjects.ObjParam;
 import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.paramObjects.PlayerParams;
 import voogasalad_GucciGames.gameAuthoring.gui.levels.LevelTabPane;
 import voogasalad_GucciGames.gameAuthoring.gui.map.GridPoint;
@@ -21,7 +22,6 @@ import voogasalad_GucciGames.gameAuthoring.model.GAEModel;
 import voogasalad_GucciGames.gameAuthoring.model.IGAEModel;
 import voogasalad_GucciGames.gameAuthoring.model.MapObjectType;
 import voogasalad_GucciGames.gameAuthoring.properties.ObjectProperty;
-import voogasalad_GucciGames.gameData.wrapper.GameInfo;
 import voogasalad_GucciGames.gameEngine.mapObject.MapObject;
 import voogasalad_GucciGames.helpers.ImageDatabase;
 
@@ -33,7 +33,7 @@ public class GaeController extends AGuiGaeController implements IModelGaeControl
 	private MapObjectType myDragType;
 	private Stage myStage;
 	private int numberOfPlayers;
-	private int defaultOwnerID = -1;
+//	private int defaultOwnerID = -1;
 	private Map<Integer, String> allPlayers = new HashMap<Integer, String>();
 	private ImageDatabase myImageDatabase = new ImageDatabase();
 	//private ArrayList<String> customGamePlayerComponents = new ArrayList<String>();
@@ -50,23 +50,18 @@ public class GaeController extends AGuiGaeController implements IModelGaeControl
 	}
 
 	@Override
-	public DisplayMapObject addObject(GridPoint gridpoint, MapObjectType mapObjType) {
-		return model.addObject(gridpoint, mapObjType, defaultOwnerID);
+	public DisplayMapObject addObject(int levelID, GridPoint gridpoint, MapObjectType mapObjType) {
+		return model.addObject(levelID, gridpoint, mapObjType);
 	}
 
 	@Override
-	public DisplayMapObject addObject(GridPoint gridpoint, MapObjectType mapObjType, int ownerID) {
-		return model.addObject(gridpoint, mapObjType, ownerID);
+	public List<DisplayMapObject> getMapObjects(int id) {
+		return model.getMapObjects(id);
 	}
 
 	@Override
-	public List<DisplayMapObject> getMapObjects() {
-		return model.getMapObjects();
-	}
-
-	@Override
-	public void clearMap() {
-		model.clearMap();
+	public void clearMap(int id) {
+		model.clearMap(id);
 	}
 
 	@Override
@@ -77,6 +72,11 @@ public class GaeController extends AGuiGaeController implements IModelGaeControl
 	@Override
 	public void createCustomUnitType(Map<String, String> m) {
 		model.createCustomUnitType(m);
+	}
+	
+	@Override
+	public void createCustomStructureType(Map<String, String> m) {
+		model.createCustomStructureType(m);
 	}
 
 	@Override
@@ -101,8 +101,8 @@ public class GaeController extends AGuiGaeController implements IModelGaeControl
 	}
 	
 	@Override
-	public void saveToXML(GameInfo game){
-		model.saveToXML(game);
+	public void saveToXML( ){
+		model.saveToXML();
 	}
 
 	@Override
@@ -202,8 +202,9 @@ public class GaeController extends AGuiGaeController implements IModelGaeControl
 		return getMapObjectImage(object.getType());
 	}
 
-	public void initGrid(int width, int height) {
-		myGui.initializeMap(width, height);
+	public void initGame(String name) {
+		//TODO: Add the name somewhere
+		myGui.initGame(name);
 	}
 	
 	@Override
@@ -223,8 +224,8 @@ public class GaeController extends AGuiGaeController implements IModelGaeControl
 	}
 	
 	@Override
-	public void addLevel(String name) {
-		model.addLevel(name);
+	public int addLevel(String name) {
+		return model.addLevel(name);
 	}
 
 	@Override
@@ -235,6 +236,63 @@ public class GaeController extends AGuiGaeController implements IModelGaeControl
 	@Override
 	public MapObjectType getDragType() {
 		return myDragType;
+	}
+
+	@Override
+	public List<ObjParam> getAllMapObjCharParams() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public List<ObjParam> getSelectedMapObjCharParams(List<String> selectedChar) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public List<ObjParam> getAllPlayerCharParams() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public List<ObjParam> getSelectedPlayerCharParams(List<String> selectedChar) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public List<ObjParam> getAllOutcomes() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public List<ObjParam> getSelectedOutcomes(List<String> selectedOutcomes) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public List<ObjParam> getAllConditions() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public List<ObjParam> getSelectedConditions(List<String> selectedConditions) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public void addActionParam() {
+		// TODO Auto-generated method stub
+	}
+		
+	public void setDefaultOwner(int ownerID) {
+		model.setDefaultOwner(ownerID);
 	}
 
 
