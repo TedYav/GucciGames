@@ -61,6 +61,7 @@ public class TypeData implements IGameProperties {
     	Set<ActionParam> actions = parser.getActions();
     	for (ActionParam action: actions){
     		myActionParams.put(action.getName(), action);
+    		System.out.println(action.getName());
     	}
     	Set<ObjParam> playerChar = parser.getPlayerChars();
     	for (ObjParam characteristics: playerChar){
@@ -232,6 +233,11 @@ public class TypeData implements IGameProperties {
 		
 	}
 
+	@Override
+	public List<ActionParam> getAllActions() {
+		return new ArrayList<>(myActionParams.values());
+	}	
+
 	public void changeOwner(MapObject mapObject, int playerID) {
 		int oldID = mapObject.getPlayerID(); 
 		mapOfPlayers.get(oldID).getMapObjects().remove(mapObject);
@@ -241,6 +247,7 @@ public class TypeData implements IGameProperties {
 
 	public Map<Integer, GamePlayerPerson> getMapOfPlayers() {
 		return mapOfPlayers;
+
 	}
 
 

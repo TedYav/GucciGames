@@ -29,6 +29,8 @@ public interface IGameProperties {
 	
 	public List<RuleParams> getAllRules();
 	
+	public List<ActionParam> getAllActions();
+	
 	public List<RuleParams> getSelectedRules(List<String> selectedRules);
 	
 //	public void addCharacteristic(ObjParam param, MapObjectType type);
