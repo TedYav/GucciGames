@@ -8,6 +8,7 @@ import javafx.geometry.Point2D;
 import voogasalad_GucciGames.datastructures.Coordinate;
 import voogasalad_GucciGames.gameData.wrapper.GameInfo;
 import voogasalad_GucciGames.gameData.wrapper.GameInfoToGamePlayer;
+import voogasalad_GucciGames.gameData.wrapper.GamePlayerSave;
 import voogasalad_GucciGames.gameEngine.GameEngineToGamePlayerInterface;
 import voogasalad_GucciGames.gameEngine.PlayerMapObjectInterface;
 import voogasalad_GucciGames.gameEngine.CommunicationParameters.ChangedParameters;
@@ -53,6 +54,12 @@ public class GameController implements GameControllerInterface, GameControllerAd
 		myCurrentEngine=myGame.getEngineInterface();
 		loadLevel("1");
 	}
+	       @Override
+	        public void loadGameSave(GamePlayerSave game){
+	                myGame=game.getInfo();
+	                myCurrentEngine=myGame.getEngineInterface();
+	                loadLevel(game.getCurrentLevel());
+	       }
 
 	@Override
 	public void loadLevel(String levelID){

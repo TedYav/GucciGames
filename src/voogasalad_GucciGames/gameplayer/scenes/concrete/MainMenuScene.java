@@ -36,7 +36,7 @@ public class MainMenuScene extends GameMenuScene {
 		Map<String, MenuAction> options = new LinkedHashMap<>();
 		options.put("New Game", () -> myManager.sceneFinished());
 		options.put("Load Game", () -> myManager.loadScene("LoadGameScene"));
-		options.put("Save Game", () -> myManager.getLoader().saveGame(new GamePlayerSave((GameInfo)myManager.getController().getGame(),"TEMP")));
+		options.put("Save Game", () -> myManager.getLoader().saveGame(new GamePlayerSave((GameInfo)myManager.getController().getGame(),myManager.getController().getEngine().getCurrentLevel().getLevelName())));
 		options.put("View High Scores", () -> myManager.loadScene("HighScoresScene"));
 		options.put("Reload", () -> { myManager.getLoader().loadGame(myManager.getController().getGame().getGameName()); 
 										myManager.loadScene("GameSplashScene"); });

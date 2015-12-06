@@ -15,5 +15,9 @@ public interface GameDataInterface {
 	public GameInfo loadGameFromFile(String path) throws GameDataException;
 
 	public GameInfo loadDefault();
+	
+	public List<String> getAvailableSaves(String gameName);
+	
+	public GamePlayerSave loadSave(String saveName);
 
 }

@@ -1,6 +1,7 @@
 package voogasalad_GucciGames.gameData;
 
 import java.io.File;
+import java.text.DateFormat;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
@@ -67,9 +68,8 @@ public class XStreamGameEngine {
         }
     }
     public void saveGameState(GamePlayerSave game){
-        Date date = new Date();
-        saveGameState(game, new File(gameNameToPathName(game.getInfo().getGameName()) + myConfig.getString("SaveDirectory") + date.getTime() + myConfig.getString("SaveExtension")));
-        System.out.println("SAVED"+date);
+        saveGameState(game, new File(gameNameToPathName(game.getInfo().getGameName()) + myConfig.getString("SaveDirectory") + DateFormat.getDateInstance().format(new Date()) +" "+ DateFormat.getTimeInstance().format(new Date()).replace(':', '-') + myConfig.getString("SaveExtension")));
+        System.out.println("SAVED");
     }
     
     public String gameNameToFileName(String name){
@@ -111,6 +111,22 @@ public class XStreamGameEngine {
         try {
             String gameXML = myLoader.read(file);
             game = (GameInfo) serializer.fromXML(gameXML);
+        }
+        catch (Exception e) {
+            e.printStackTrace();
+        }
+        System.out.println("Load complete.");
+        return game;
+    }
+
+    public GamePlayerSave loadGameState (String saveName) {
+        // TODO Auto-generated method stub
+        File file = new File(saveName);
+        System.out.println("Loading SAVE."+saveName);
+        GamePlayerSave game=null;
+        try {
+            String gameXML = myLoader.read(file);
+            game = (GamePlayerSave) serializer.fromXML(gameXML);
         }
         catch (Exception e) {
             e.printStackTrace();
