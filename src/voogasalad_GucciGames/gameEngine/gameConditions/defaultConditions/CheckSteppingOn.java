@@ -1,10 +1,14 @@
 package voogasalad_GucciGames.gameEngine.gameConditions.defaultConditions;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
 
 import voogasalad_GucciGames.gameEngine.CommunicationParameters.BasicParameters;
 import voogasalad_GucciGames.gameEngine.gameConditions.Conditions;
 import voogasalad_GucciGames.gameEngine.gamePlayer.GamePlayerPerson;
+import voogasalad_GucciGames.gameEngine.mapObject.MapObject;
+import voogasalad_GucciGames.gameEngine.targetCoordinate.TargetCoordinateSingle;
 
 /**
  *
@@ -24,7 +28,30 @@ public class CheckSteppingOn extends Conditions {
 
 	@Override
 	public Boolean execute(BasicParameters params, GamePlayerPerson player) {
-		return null;
+		MapObject calledMe = params.getCalledMe();
+		TargetCoordinateSingle myLocation = (TargetCoordinateSingle) calledMe.getCoordinate();
+		List<Integer> ids = extractAllPlayersExceptNutral(params);
+		for (Integer id : ids) {
+			List<MapObject> currPlayerObjects = params.getEngine().getPlayers().getPlayerById(id).getMapObjects();
+
+			for (int i = 0; i < currPlayerObjects.size(); i++) {
+				MapObject mo = currPlayerObjects.get(i);
+				if (mo.getCoordinate().equals(myLocation) && mo.getName().equals(myType)) {
+
+					return true;
+				}
+			}
+		}
+		return false;
+
 	}
 
+	private List<Integer> extractAllPlayersExceptNutral(BasicParameters params) {
+		List<Integer> ids1 = params.getEngine().getPlayers().getAllIds();
+		List<Integer> ids = new ArrayList<Integer>();
+		for (int i = 1; i < ids1.size(); i++) {
+			ids.add(ids1.get(i));
+		}
+		return ids;
+	}
 }
