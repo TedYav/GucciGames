@@ -22,6 +22,7 @@ public class NewObMakerDialog extends AGaeDialog<MapObjectType> {
 		gridPane = new NewObjMakerPane(controller, prop, type);
 		this.getDialogPane().setContent(gridPane);
 		this.getDialogPane().getButtonTypes().add(mySave);
+		setSaveAction();
 	}
 
 	@Override

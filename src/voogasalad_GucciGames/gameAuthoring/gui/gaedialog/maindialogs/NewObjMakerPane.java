@@ -67,7 +67,7 @@ public class NewObjMakerPane extends GridPane {
 		String[] data = new String[3];
 		data[0] = name.getTextInput();
 		data[1] = myImgPath.get();
-		data[3] = type.equals("tile")?"0":layer.getTextInput();
+		data[2] = type.equals("tile")?"0":layer.getTextInput();
 		return data;
 	}
 

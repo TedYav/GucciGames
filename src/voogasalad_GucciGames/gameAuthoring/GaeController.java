@@ -14,6 +14,7 @@ import javafx.scene.control.Dialog;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
+import voogasalad.util.fxsprite.Sprite;
 import voogasalad_GucciGames.gameAuthoring.gui.GAEGui;
 import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.maindialogs.ImageBrowseDialogs;
 import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.paramObjects.ActionParams;
@@ -278,10 +279,9 @@ public class GaeController extends AGuiGaeController implements IModelGaeControl
 	public BooleanProperty getHasGameProperty(){
 		return myHasGameProperty;
 	}
-
+	
 	@Override
 	public void createCustomType(MapObjectType object, String type) {
-		System.out.println(object+" "+type);
 		switch (type) {
 		case "tile":
 			myModel.createCustomTileType(object);
