@@ -1,10 +1,14 @@
 <conditionDependencies>
+	<element name="PlayerMovesPerTurn" 
+		 paramNames="numofMoves"
+		 paramTypes="int">
+	</element>	
+	<element name="PlayerScore" 
+		 paramNames="score"
+		 paramTypes="double">
+	</element>	
 	<element name="PlayerWealthChar" 
 		 paramNames="wealth"
 		 paramTypes="int">
-	</element>	
-	<element name="PlayerMovesPerTurn" 
-		 paramNames="numOfMoves"
-		 paramTypes="int">
-	</element>	
+	</element>
 	</conditionDependencies>
