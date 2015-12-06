@@ -53,6 +53,11 @@ public class TypeData implements IGameProperties {
     	for (ActionParam action: actions){
     		myActionParams.put(action.getName(), action);
     	}
+    	Set<ObjParam> playerChar = parser.getPlayerChars();
+    	for (ObjParam characteristics: playerChar){
+    		myPlayerCharParams.put(characteristics.getName(), characteristics);
+    	}
+    	
 		
 		tileTypes = FXCollections.observableArrayList();
 	

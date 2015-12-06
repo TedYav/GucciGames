@@ -5,6 +5,8 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
+import voogasalad_GucciGames.gameAuthoring.model.MapObjectType;
+
 public class ActionParamsValue extends AParams{
 	
 	private Set<String> myRules = new HashSet<String>();
@@ -12,9 +14,10 @@ public class ActionParamsValue extends AParams{
 	private Set<OutcomeParamValue> myOutcomes = new HashSet<OutcomeParamValue>();
 	
 	private String name;
+	private MapObjectType mapObjectType;
 	
-	public ActionParamsValue(){
-		
+	public ActionParamsValue(MapObjectType mapObjectType){
+		this.mapObjectType = mapObjectType;
 	}
 	
 	public ActionParamsValue(String name){
