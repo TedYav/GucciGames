@@ -13,13 +13,8 @@ import voogasalad_GucciGames.gameAuthoring.IModelGaeController;
 import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.mapobjectsettings.xml.ParamObjParser;
 import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.paramObjects.ObjParam;
 import voogasalad_GucciGames.gameAuthoring.gui.map.GridPoint;
-//import voogasalad_GucciGames.gameData.GameInfo;
-//import voogasalad_GucciGames.gameData.XMLWriter;
-import voogasalad_GucciGames.gameData.XStreamGameEngine;
 import voogasalad_GucciGames.gameData.wrapper.GameInfo;
 import voogasalad_GucciGames.gameData.wrapper.GuiData;
-import voogasalad_GucciGames.gameEngine.GameLevelEngine;
-import voogasalad_GucciGames.gameEngine.gamePlayer.AllPlayers;
 import voogasalad_GucciGames.gameEngine.gamePlayer.GamePlayerPerson;
 import voogasalad_GucciGames.gameEngine.mapObject.MapObject;
 import voogasalad_GucciGames.gameEngine.targetCoordinate.TargetCoordinateSingle;
@@ -108,6 +103,12 @@ public class GAEModel implements IGAEModel{
     	MapObjectType objType = new DefaultMapObjectType(m.get("name"), m.get("imagePath"));//TODO: properties file
         typeData.addUnitType(objType);
     }
+    
+    @Override
+	public void createCustomStructureType(Map<String, String> m) {
+    	MapObjectType objType = new DefaultMapObjectType(m.get("name"), m.get("imagePath"));//TODO: properties file
+        typeData.addStructureType(objType);
+	}
 
     @Override
     public ObservableList<MapObjectType> getImmutableTileTypes () {

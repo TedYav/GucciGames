@@ -22,7 +22,6 @@ import voogasalad_GucciGames.gameAuthoring.model.GAEModel;
 import voogasalad_GucciGames.gameAuthoring.model.IGAEModel;
 import voogasalad_GucciGames.gameAuthoring.model.MapObjectType;
 import voogasalad_GucciGames.gameAuthoring.properties.ObjectProperty;
-import voogasalad_GucciGames.gameData.wrapper.GameInfo;
 import voogasalad_GucciGames.gameEngine.mapObject.MapObject;
 import voogasalad_GucciGames.helpers.ImageDatabase;
 
@@ -73,6 +72,11 @@ public class GaeController extends AGuiGaeController implements IModelGaeControl
 	@Override
 	public void createCustomUnitType(Map<String, String> m) {
 		model.createCustomUnitType(m);
+	}
+	
+	@Override
+	public void createCustomStructureType(Map<String, String> m) {
+		model.createCustomStructureType(m);
 	}
 
 	@Override
