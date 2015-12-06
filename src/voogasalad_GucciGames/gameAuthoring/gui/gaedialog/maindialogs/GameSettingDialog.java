@@ -16,7 +16,6 @@ import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.paramObjects.GameSettin
 
 
 public class GameSettingDialog extends AGaeDialog {
-
 	private VBox myContent = new VBox();
 	private Properties prop;
 	private IDialogGaeController dialogGaeController;

@@ -24,6 +24,7 @@ public class NewObMakerDialog extends AGaeDialog{
 		DialogElements dialogElements = new DialogElements(prop, controller);	
 		gridPane = new NewObjMakerPane(prop);		
 		this.getDialogPane().setContent(gridPane);
+		this.getDialogPane().getButtonTypes().add(mySave);
 	 }
 
 
@@ -31,7 +32,9 @@ public class NewObMakerDialog extends AGaeDialog{
 	protected void setSaveAction() {		
 		this.setResultConverter(dialogButton -> {
 		    if (dialogButton == mySave) {
-		        //DefaultMapObjectType mapObjType = new DefaultMapObjectType();
+		    	String[] data = ((NewObjMakerPane) gridPane).getUserInputData();
+		        DefaultMapObjectType mapObjType = new DefaultMapObjectType(data[0], data[1]);
+		        //TODO: save map object type
 		    }
 		    return null;
 		});

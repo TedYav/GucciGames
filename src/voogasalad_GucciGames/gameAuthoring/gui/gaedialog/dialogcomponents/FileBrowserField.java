@@ -49,9 +49,9 @@ public class FileBrowserField extends DialogComponent{
 	private void addActionHandlerForBrowseBtn(){
 		browseBtn.setOnAction(e -> {
 			FileChooser fileChooser = new FileChooser();
-			fileChooser.setTitle(dialogElements.getDialogProperties().getProperty(fileChooserKey));
-//			fileChooser.getExtensionFilters().add(
-//			         new ExtensionFilter("Image Files", "*.png", "*.jpg", "*.gif"));	         
+			fileChooser.setTitle(prop.getProperty(fileChooserKey));
+			fileChooser.getExtensionFilters().add(
+			         new ExtensionFilter("Image Files", "*.png", "*.jpg", "*.gif"));	         
 			File selectedFile  = fileChooser.showOpenDialog(null);
 			pathTextField.setText(selectedFile.getAbsolutePath());
 		});
