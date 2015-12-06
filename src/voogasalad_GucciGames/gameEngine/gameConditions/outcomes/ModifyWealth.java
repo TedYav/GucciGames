@@ -14,7 +14,7 @@ import voogasalad_GucciGames.gameEngine.gamePlayer.chars.PlayerWealthChar;
  *
  */
 public class ModifyWealth extends Outcome {
-	private static final String WEALTH = "wealth";
+	private static final String WEALTH = "AttackCharacteristic";
 	private int delta = 0;
 
 	public ModifyWealth(List<Conditions> conditions,String affectedPlayers,String wealth, int value) {
