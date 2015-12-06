@@ -13,6 +13,7 @@ import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.mapobjectsettings.xml.P
 import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.paramObjects.ActionParam;
 import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.paramObjects.ActionParamsValue;
 import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.paramObjects.ObjParam;
+import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.paramObjects.ObjParamValue;
 import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.paramObjects.RuleParams;
 import voogasalad_GucciGames.gameAuthoring.model.factories.CharacteristicFactory;
 
@@ -131,20 +132,37 @@ public class TypeData implements IGameProperties {
 				.collect(Collectors.toList());	
 	}
 
-	@Override
-	public void addActionParam(ActionParam param) {
-		myActionParams.put(param.getName(), param);
-		
-	}
 
-	@Override
-	public void addAction(ActionParam params, MapObjectType type) {
-		
-	}
 
 
 	@Override
 	public void addCharacteristic(ObjParam param, MapObjectType type) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public List<RuleParams> getAllRules() {
+		// TODO Auto-generated method stub
+		return new ArrayList<>(myRules.values());
+	}
+
+	@Override
+	public List<RuleParams> getSelectedRules(List<String> selectedRules) {
+		// TODO Auto-generated method stub
+		return myRules.values().stream()
+				.filter(c -> selectedRules.contains(c.getName()))
+				.collect(Collectors.toList());	
+	}
+
+	@Override
+	public void addActionParamValue(ActionParamsValue param) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void addCharParamValue(ObjParamValue param) {
 		// TODO Auto-generated method stub
 		
 	}

@@ -9,7 +9,9 @@ import javafx.util.Pair;
 import voogasalad_GucciGames.gameAuthoring.IDialogGaeController;
 import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.maindialogs.AGaeDialog;
 import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.maindialogs.ISwitchSettingsPane;
+import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.paramObjects.ActionParamsValue;
 import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.paramObjects.ObjParamValue;
+import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.paramObjects.OutcomeParamValue;
 import voogasalad_GucciGames.gameAuthoring.model.MapObjectType;
 import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.paramObjects.ObjParam;
 
@@ -20,12 +22,14 @@ public class ConditionOutcomeDialog extends javafx.scene.control.Dialog<Pair<Lis
 	private ConditionOutcomePane pane;
 	private MapObjectType type;
 	private ISwitchSettingsPane switchPaneController;
+	private ActionParamsValue actionParamsValue;
 
 	
 	public ConditionOutcomeDialog(IDialogGaeController controller, 
-			ISwitchSettingsPane switchPaneController, MapObjectType type){
+			ISwitchSettingsPane switchPaneController, MapObjectType type, ActionParamsValue actionParamsValue){
 		this.type = type;
 		this.switchPaneController = switchPaneController;
+		this.actionParamsValue = actionParamsValue;
 		
 		controller.getPropertiesInterface().getAllConditions().forEach(p -> {
 			conditions.add(p.getName());
@@ -41,24 +45,19 @@ public class ConditionOutcomeDialog extends javafx.scene.control.Dialog<Pair<Lis
 		
 		this.setResultConverter(dialogButton -> {
 		    if (dialogButton == save) {
-		        List<String> conditions = pane.getConditions();
-		        //todo; GET CONDITION NOT WORKING
-		        List<ObjParam> condParam = new ArrayList<ObjParam>();
-		        		controller.getPropertiesInterface().getSelectedConditions(conditions);
-		        for(ObjParam o: condParam){
-		        	System.out.println("selected: " + o.getName());
-		        }
-		       
-		        ObjParamValue outcomeVal = pane.getOutcomeValue();
-		        AddConditionDialog addConditionDialog = 
-		        		new AddConditionDialog(this.switchPaneController, condParam);
-		        addConditionDialog.showAndWait();
-		        List<ObjParamValue> conditionVal = addConditionDialog.getResult();
+		        List<String> conditions = this.pane.getConditions();
 		        
-		        for(ObjParamValue o: conditionVal){
-		        	System.out.println(o.getName());
+		        List<ObjParam> condParam = controller.getPropertiesInterface().getSelectedConditions(conditions);
+
+		        OutcomeParamValue outcomeVal = pane.getOutcomeValue();
+		        
+		        if(outcomeVal != null){
+		        AddConditionDialog addConditionDialog = 
+		        		new AddConditionDialog(this.switchPaneController, 
+		        				condParam, outcomeVal);
+		        addConditionDialog.showAndWait();
+		        this.actionParamsValue.addOutcome(outcomeVal);
 		        }
-		        return new Pair<>(conditions, outcomeVal);
 		    }
 		    return null;
 		});
