@@ -24,6 +24,13 @@ public class ObjParamValue {
 		this.paramValues = map;
 	}
 	
+	public int numParams() {
+		return paramValues.size();
+	}
+	
+	public Map<String, String> getMap() {
+		return paramValues;
+	}
 	
 
 }
