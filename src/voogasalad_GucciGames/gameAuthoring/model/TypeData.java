@@ -1,6 +1,7 @@
 package voogasalad_GucciGames.gameAuthoring.model;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
@@ -12,20 +13,18 @@ import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.mapobjectsettings.xml.P
 import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.paramObjects.ActionParams;
 import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.paramObjects.ObjParam;
 import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.paramObjects.RuleParams;
-import voogasalad_GucciGames.gameEngine.defaultCharacteristics.TileCharacteristic;
-import voogasalad_GucciGames.gameEngine.mapObject.MapObject;
 
 public class TypeData implements IGameProperties {
 	private ObservableList<MapObjectType> tileTypes;
 	private ObservableList<MapObjectType> unitTypes;
 	private ObservableList<MapObjectType> structureTypes;
 	
-	private Map<String, ActionParams> myActionParams;
-	private Map<String, ObjParam> myMapObjectCharParams;
-	private Map<String, RuleParams> myRules;
-	private Map<String, ObjParam> myConditions;
-	private Map<String, ObjParam> myOutcomes;
-	private Map<String, ObjParam> myPlayerCharParams;
+	private Map<String, ActionParams> myActionParams = new HashMap<>();
+	private Map<String, ObjParam> myMapObjectCharParams = new HashMap<>();
+	private Map<String, RuleParams> myRules = new HashMap<>();
+	private Map<String, ObjParam> myConditions = new HashMap<>();
+	private Map<String, ObjParam> myOutcomes = new HashMap<>();
+	private Map<String, ObjParam> myPlayerCharParams = new HashMap<>();
 
 	public TypeData() {
     	ParamObjParser parser = new ParamObjParser();
