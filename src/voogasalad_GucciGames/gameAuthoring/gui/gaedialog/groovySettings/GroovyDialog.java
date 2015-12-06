@@ -2,6 +2,7 @@ package voogasalad_GucciGames.gameAuthoring.gui.gaedialog.groovySettings;
 import java.util.Optional;
 
 import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.groovySettings.groovyParams.AGroovyParams;
+import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.maindialogs.AGaeDialog;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Node;
@@ -18,7 +19,7 @@ import javafx.scene.paint.Color;
 import javafx.scene.paint.Paint;
 import javafx.stage.Stage;
 
-public class GroovyDialog extends javafx.scene.control.Dialog implements ISwitchGroovyPane{
+public class GroovyDialog extends AGaeDialog implements ISwitchGroovyPane{
 	
 	private static final int WIDTH = 700;
 	private static final int HEIGHT = 500;
@@ -29,10 +30,11 @@ public class GroovyDialog extends javafx.scene.control.Dialog implements ISwitch
 	private AGroovyParams param;
 	private String nextTitle;
 	
-	@SuppressWarnings("unchecked")
+	//@SuppressWarnings("unchecked")
 	public GroovyDialog(){
 		super();
-		groovyMainPane = new MainPane(this, WIDTH, HEIGHT);
+		
+		groovyMainPane = new MainPane(this);
 		stackPane.setPrefSize(WIDTH, HEIGHT);
 		stackPane.setPadding(new Insets(15,15,15,15));
 		
@@ -41,10 +43,8 @@ public class GroovyDialog extends javafx.scene.control.Dialog implements ISwitch
 		
 		stackPane.getChildren().add(groovyMainPane);		
 		this.getDialogPane().setContent(stackPane);
-		setHeaderText("Create Custom Game Components Using Groovy");
 		
-		this.getDialogPane().getButtonTypes().addAll(ButtonType.CLOSE);
-
+		setHeaderText("Create Custom Game Components Using Groovy");		
 
 		
 	}
@@ -57,14 +57,6 @@ public class GroovyDialog extends javafx.scene.control.Dialog implements ISwitch
 		stackPane.getChildren().add((Node) p);
 
 		setHeaderText(title);
-		StackPane.setMargin((Node) p , new Insets(8,8,8,8));
-		
-	}
-
-
-	@Override
-	public void addBtn(ButtonType t) {
-		this.getDialogPane().getButtonTypes().add(t);
 		
 	}
 
@@ -82,6 +74,13 @@ public class GroovyDialog extends javafx.scene.control.Dialog implements ISwitch
 		this.nextPane = p;
 		
 		this.nextTitle = title;
+	}
+
+
+	@Override
+	protected void setSaveAction() {
+		// TODO Auto-generated method stub
+		
 	}
 
 

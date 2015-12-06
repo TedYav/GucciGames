@@ -1,0 +1,33 @@
+<characteristicDependencies>
+	<element name="health" 
+		 paramNames="minHealth, maxHealth"
+		 paramTypes="double, double">
+	</element>	
+	<element 
+		name="movementRange" 
+		 paramNames="minRange, maxRange"
+		 paramTypes="double, double">
+	</element>
+	<element 
+		name="wealth" 
+		 paramNames="min, max"
+		 paramTypes="double, double">		
+	</element>
+	<element
+		 name="attackDamage"
+		 paramNames="min, max"
+		 paramTypes="double, double">	
+	</element>
+	<element name="attackRange" 
+		 paramNames="min, max"
+		 paramTypes="double, double">	
+	</element>
+	<element name="numAttacksPerTurn"
+		 paramNames="min, max"
+		 paramTypes="double, double">	
+	</element>
+	<element name="transferrable"
+		paramNames="Is Transferrable"
+		paramTypes="boolean">
+	</element>	
+</characteristicDependencies>

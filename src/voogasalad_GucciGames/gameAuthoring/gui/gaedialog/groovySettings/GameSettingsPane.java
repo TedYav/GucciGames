@@ -34,5 +34,9 @@ public class GameSettingsPane extends GridPane {
 		this.add(fogOfWar, 0, 2);
 		this.add(numPlayer, 0, 3);
 	}
+	
+	public int getNumPlayers(){
+		return (int) numPlayer.getSelectedDouble();
+	}
 
 }

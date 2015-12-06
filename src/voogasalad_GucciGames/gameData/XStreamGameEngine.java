@@ -8,7 +8,7 @@ import java.util.ResourceBundle;
 import com.thoughtworks.xstream.XStream;
 import com.thoughtworks.xstream.io.xml.DomDriver;
 
-import voogasalad_GucciGames.gameData.wrapper.GameEngine;
+import voogasalad_GucciGames.gameData.wrapper.GameInfo;
 import voogasalad_GucciGames.gameEngine.GameEngineToGamePlayerInterface;
 
 public class XStreamGameEngine {
@@ -25,7 +25,7 @@ public class XStreamGameEngine {
     public XStreamGameEngine(){
     }
     
-    public void saveGameInfo(GameEngine game, File file) {
+    public void saveGameInfo(GameInfo game, File file) {
         try {
             String gameXML = serializer.toXML(game);
             myLoader.save(file, gameXML);
@@ -40,7 +40,7 @@ public class XStreamGameEngine {
      * @param game
      * @param filePath
      */
-    public void saveGameInfo(GameEngine game, String filePath) {
+    public void saveGameInfo(GameInfo game, String filePath) {
         saveGameInfo(game, new File(filePath));
     }
     
@@ -48,40 +48,49 @@ public class XStreamGameEngine {
      * Saves the GameInfo automatically based on the specified game's name.
      * @param game
      */
-    public void saveGameInfo(GameEngine game){
+    public void saveGameInfo(GameInfo game){
     	saveGameInfo(game, new File(gameNameToFileName(game.getGameName())));
     }
     
     public String gameNameToFileName(String name){
-    	StringBuilder sanitizedName = new StringBuilder();
-    	sanitizedName.append(myConfig.getString("GameStorageLocation")).append(name.replaceAll("[^a-zA-Z0-9\\._]+", "_")).append(myConfig.getString("GameExtension"));
-    	return sanitizedName.toString();
+    	return sanitizeGameName(name).append(myConfig.getString("GameExtension")).toString();
     }
+    
+	public String gameNameToPathName(String name) {
+		return sanitizeGameName(name).append("/").toString();
+	}
+
+	private StringBuilder sanitizeGameName(String name) {
+		StringBuilder sanitizedName = new StringBuilder();
+    	sanitizedName.append(myConfig.getString("GameStorageLocation")).append(name.replaceAll("[^a-zA-Z0-9\\._]+", "_"));
+		return sanitizedName;
+	}
+
 
 //    public GameEngineToGamePlayerInterface loadEngine() {
 //        return loadEngine("");
 //    }
 
-    public GameEngine loadGameByName(String name){
+    public GameInfo loadGameByName(String name){
     	return loadGameInfo(new File(gameNameToFileName(name)));
     }
     
-    public GameEngine loadGameInfo(String path) {
+    public GameInfo loadGameInfo(String path) {
 //        if (path.isEmpty()) {
 //            path=defaultEngineLocation;
 //        }
         return loadGameInfo(new File(path));
     }
 
-    public GameEngine loadGameInfo(File file) {
+    public GameInfo loadGameInfo(File file) {
 //        if (file==null || !file.canRead()) {
 //            file = new File(defaultEngineLocation);
 //        }
         System.out.println("Loading engine.");
-        GameEngine game=null;
+        GameInfo game=null;
         try {
             String gameXML = myLoader.read(file);
-            game = (GameEngine) serializer.fromXML(gameXML);
+            game = (GameInfo) serializer.fromXML(gameXML);
         }
         catch (Exception e) {
             e.printStackTrace();
@@ -89,5 +98,6 @@ public class XStreamGameEngine {
         System.out.println("Load complete.");
         return game;
     }
+
 
 }

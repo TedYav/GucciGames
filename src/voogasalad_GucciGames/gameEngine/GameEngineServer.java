@@ -25,13 +25,13 @@ import voogasalad_GucciGames.gameplayer.controller.GameParametersInterface;
 public class GameEngineServer implements GameEngineToGamePlayerInterface, Runnable {
 
 	private int myPlayerID;
-	private MainGameEngine myEngine;
+	private GameLevelEngine myEngine;
 	private Set<PrintWriter> writers;
     private Set<String> names;
 
 	private static int PORT = 6550; //hard code for now
 
-	public GameEngineServer(MainGameEngine engine) {
+	public GameEngineServer(GameLevelEngine engine) {
 		myEngine = engine;
 		setWriters(new HashSet<PrintWriter>());
 		names = new HashSet<String>();
@@ -39,7 +39,7 @@ public class GameEngineServer implements GameEngineToGamePlayerInterface, Runnab
 
 	public void updateServerGameEngine(String engineXML) {
 		XStream xstream = new XStream();
-		myEngine = (MainGameEngine) xstream.fromXML(engineXML);
+		myEngine = (GameLevelEngine) xstream.fromXML(engineXML);
 	}
 
 	public void updateClientGameEngine() {
@@ -140,20 +140,21 @@ public class GameEngineServer implements GameEngineToGamePlayerInterface, Runnab
 
 
 	@Override
-	public boolean isGameWon() {
-		return myEngine.isGameWon();
+	public boolean hasLevelEnded() {
+		return myEngine.hasLevelEnded();
 	}
 
 
 
 	@Override
 	public String getName() {
-		return myEngine.getName();
+		return myEngine.getLevelName();
 	}
 
-
-
-
-
+    @Override
+    public void changeCurrentLevel (String newGameLevel) {
+        // TODO Auto-generated method stub
+        
+    }
 
 }

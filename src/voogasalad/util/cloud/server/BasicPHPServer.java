@@ -14,6 +14,7 @@ import java.util.stream.Collectors;
 
 import voogasalad.util.cloud.config.ConfigLoader;
 import voogasalad.util.cloud.data.CloudParameter;
+import voogasalad.util.cloud.data.CloudVariable;
 import voogasalad.util.cloud.exception.CloudException;
 
 import org.apache.commons.httpclient.*;
@@ -53,9 +54,9 @@ public class BasicPHPServer implements CloudServer {
 
 	private int requestID(String name) throws CloudException{
 		List<CloudParameter> myParameters = new ArrayList<>();
-		myParameters.add(new CloudParameter("action", "register"));
-		myParameters.add(new CloudParameter("process", "add"));
-		myParameters.add(new CloudParameter("name", name));
+		myParameters.add(new CloudParameter(CloudVariable.ACTION, CloudVariable.REGISTER));
+		myParameters.add(new CloudParameter(CloudVariable.PROCESS, CloudVariable.ADD));
+		myParameters.add(new CloudParameter(CloudVariable.NAME, name));
 		String result = request(getRequestString(myParameters));
 		return Integer.parseInt(parseResult(result, Arrays.asList("ID")).get(0).get("ID"));
 	}
@@ -86,7 +87,7 @@ public class BasicPHPServer implements CloudServer {
 	@Override
 	public void upload(List<CloudParameter> parameters){
 		appendID(parameters);
-		parameters.add(new CloudParameter("process","add"));
+		parameters.add(new CloudParameter(CloudVariable.PROCESS,CloudVariable.ADD));
 		String request = buildRequestString(parameters);
 		String result = request(request);
 		if(!result.isEmpty()){
@@ -97,7 +98,7 @@ public class BasicPHPServer implements CloudServer {
 	@Override
 	public List<Map<String,String>> retrieve(List<CloudParameter> parameters, List<String> values){
 		appendID(parameters);
-		parameters.add(new CloudParameter("process", "retrieve"));
+		parameters.add(new CloudParameter(CloudVariable.PROCESS, CloudVariable.RETRIEVE));
 		String result = request(getRequestString(parameters));
 //		System.out.println(parameters);
 //		System.out.println(getRequestString(parameters));
@@ -153,7 +154,7 @@ public class BasicPHPServer implements CloudServer {
 	}
 	
 	private String buildRequestString(List<CloudParameter> parameters){
-		parameters.add(new CloudParameter("id", myConfig.getString("GroupID")));
+		parameters.add(new CloudParameter("id", myGlobalConfig.getString("GroupID")));
 		StringBuilder request = new StringBuilder();
 		request.append(myServerAddress)
 			.append(myServerTarget)

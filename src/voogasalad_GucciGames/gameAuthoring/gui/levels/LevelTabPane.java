@@ -3,41 +3,42 @@ package voogasalad_GucciGames.gameAuthoring.gui.levels;
 import java.util.ArrayList;
 
 import voogasalad_GucciGames.gameAuthoring.AGuiGaeController;
-import voogasalad_GucciGames.gameAuthoring.gui.statusbar.StatusBar;
+import voogasalad_GucciGames.gameAuthoring.gui.map.GuiMap;
 import javafx.scene.control.TabPane;
+import javafx.scene.input.KeyEvent;
 
-public class LevelTabPane extends TabPane{
-	ArrayList<LevelTab> myTabs = new ArrayList<LevelTab>();
-	AGuiGaeController myController;
-	StatusBar myStatusBar;
-	
-	public LevelTabPane(AGuiGaeController controller, StatusBar statusBar){
-		LevelTab levelTab = new LevelTab(controller, statusBar, 1);
-		levelTab.setClosable(false);
-		this.getTabs().add(levelTab);
+public class LevelTabPane extends TabPane {
+	private final ArrayList<LevelTab> myTabs = new ArrayList<LevelTab>();
+	private final AGuiGaeController myController;
+	private int myTabCount = 0;
+
+	@SuppressWarnings("static-access")
+	public LevelTabPane(AGuiGaeController controller) {
 		myController = controller;
-		myStatusBar = statusBar;
-		myTabs.add(levelTab);
+		addEventHandler(KeyEvent.ANY, e -> {
+			if (!(e.getTarget() instanceof GuiMap))
+				e.fireEvent(getCurrTab().getMap(), e.copyFor(this, getCurrTab().getMap()));
+			e.consume();
+		});
 	}
 	
-//	public void addTab(LevelTab levelTab) {
-//		myTabs.add(levelTab);
-//	}
-	
+	public int levelCount(){
+		return myTabCount;
+	}
+
 	public LevelTab getCurrTab() {
 		int ind = getSelectionModel().getSelectedIndex();
 		return myTabs.get(ind);
 	}
 
-	public LevelTab createNewTab() {
-		int id = myTabs.size() + 1;
-		LevelTab newTab = new LevelTab(myController, myStatusBar,id);
+	public LevelTab createNewTab(String name, int width, int height) {
+		int id = myController.addLevel(name);
+		LevelTab newTab = new LevelTab(myController, id, name);
 		this.getTabs().add(newTab);
+		newTab.setClosable(false);
+		newTab.initGrid(width, height);
 		myTabs.add(newTab);
+		myTabCount++;
 		return newTab;
-	}
-	
-	public void initializeMap(int width, int height, LevelTab levelTab) {
-		levelTab.initGrid(width, height);
 	}
 }

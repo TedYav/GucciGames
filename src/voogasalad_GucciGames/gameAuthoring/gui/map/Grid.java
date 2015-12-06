@@ -12,6 +12,7 @@ import javafx.scene.layout.Pane;
 import voogasalad_GucciGames.gameAuthoring.AGuiGaeController;
 import voogasalad_GucciGames.gameAuthoring.gui.map.cell.Cell;
 import voogasalad_GucciGames.gameAuthoring.gui.map.cell.ICell;
+import voogasalad_GucciGames.gameAuthoring.model.MapObjectType;
 
 class Grid extends Pane implements ICellGrid{
 
@@ -20,8 +21,10 @@ class Grid extends Pane implements ICellGrid{
 	private final Set<ICell> selectedCells = new HashSet<>();
 	private final Map<GridPoint, ICell> myCells = new HashMap<>();
 	private final AGuiGaeController myController;
+	private final int myLevelID;
 
-	public Grid(DoubleProperty cellSize, AGuiGaeController controller) {
+	public Grid(DoubleProperty cellSize, AGuiGaeController controller, int id) {
+		myLevelID = id;
 		myController = controller;
 		myBackground = new ImageView();
 		getChildren().setAll(myBackground);
@@ -39,12 +42,6 @@ class Grid extends Pane implements ICellGrid{
 		maxHeightProperty().bind(myCellSize.multiply(height));
 		minWidthProperty().bind(myCellSize.multiply(width));
 		minHeightProperty().bind(myCellSize.multiply(height));
-		// Pane pane = new Pane();
-		// getChildren().setAll(myBackground, pane);
-		// pane.minWidthProperty().bind(widthProperty());
-		// pane.maxWidthProperty().bind(widthProperty());
-		// pane.minHeightProperty().bind(heightProperty());
-		// pane.maxHeightProperty().bind(heightProperty());
 		for (int x = 0; x < width; x++) {
 			for (int y = 0; y < height; y++) {
 				Cell cell = new Cell(this, x, y);
@@ -74,6 +71,10 @@ class Grid extends Pane implements ICellGrid{
 		Set<ICell> set = new HashSet<>(selectedCells);
 		set.forEach(cell->cell.clear());
 	}
+	
+	public void addTypeToSelectedCells(MapObjectType type){
+		selectedCells.forEach(cell->cell.add(type));
+	}
 
 	public ICell getCell(GridPoint pt) {
 		return myCells.get(pt);
@@ -82,5 +83,11 @@ class Grid extends Pane implements ICellGrid{
 	public AGuiGaeController getController() {
 		return myController;
 	}
+
+	@Override
+	public int getLevelID() {
+		return myLevelID;
+	}
+	
 
 }

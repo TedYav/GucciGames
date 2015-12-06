@@ -6,15 +6,15 @@ import java.util.Map;
 
 import javafx.collections.ObservableList;
 import voogasalad_GucciGames.gameAuthoring.gui.map.GridPoint;
-import voogasalad_GucciGames.gameData.wrapper.GameEngine;
+import voogasalad_GucciGames.gameData.wrapper.GameInfo;
 import voogasalad_GucciGames.gameEngine.mapObject.MapObject;
 
 public interface IGAEModel {
 
     public void deleteComponent(DisplayMapObject mapObj);
-    public List<DisplayMapObject> getMapObjects();
-    public DisplayMapObject addObject(GridPoint gridpoint, MapObjectType mapObjType, int ownerID);
-    public void clearMap();
+	public List<DisplayMapObject> getMapObjects(int id);
+	public DisplayMapObject addObject(int levelID, GridPoint gridpoint, MapObjectType mapObjType);
+	public void clearMap(int id);
     
     public void createCustomTileType(Map<String,String> m);
     public void createCustomUnitType(Map<String,String> m);
@@ -33,9 +33,15 @@ public interface IGAEModel {
     
 	public void changeOwner(MapObject mapObject, int playerID);
 
-	public void addLevel(String name);
+	public int addLevel(String name);
 	
-	void saveToXML(GameEngine game);
+	public void saveToXML();
+	
+	/**
+	 * Do some check!!
+	 * @param ownerID
+	 */
+	public void setDefaultOwner(int ownerID);
 
     
 }

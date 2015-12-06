@@ -4,12 +4,9 @@ import voogasalad_GucciGames.gameAuthoring.gui.levels.LevelTabPane;
 import voogasalad_GucciGames.gameAuthoring.gui.map.GridPoint;
 import voogasalad_GucciGames.gameAuthoring.model.DisplayMapObject;
 import voogasalad_GucciGames.gameAuthoring.model.MapObjectType;
-import voogasalad_GucciGames.gameAuthoring.properties.ObjectProperty;
-import voogasalad_GucciGames.gameAuthoring.properties.Property;
-import voogasalad_GucciGames.gameData.wrapper.GameEngine;
+import voogasalad_GucciGames.gameData.wrapper.GameInfo;
 
 import java.io.File;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -26,18 +23,13 @@ public interface IGuiGaeController {
 	 * @param mapObj
 	 */
 
-	public void initGrid(int width, int height);
+	public void initGame(String name);
 
 	public void deleteComponent(DisplayMapObject mapObj);
 
-	public DisplayMapObject addObject(GridPoint gridpoint, MapObjectType mapObjType);
+	public List<DisplayMapObject> getMapObjects(int id);
 
-	public List<DisplayMapObject> getMapObjects();
-
-	// public int getMapObjectListPosAtPoint(ObservableList<MapObject>
-	// mapObjectList, GridPoint gridPoint);
-
-	public void clearMap();
+	public void clearMap(int id);
 
 	public void createCustomTileType(Map<String, String> m);
 
@@ -52,17 +44,17 @@ public interface IGuiGaeController {
 	@Deprecated
 	public void saveToXML(File file);
 
-	public void saveToXML(GameEngine game);
+	public void saveToXML();
 	
-	public void setMapObjectTypeToMap(MapObjectType mapType);
+	public void setSelectedType(MapObjectType mapType);
 
-	public MapObjectType getMapObjectTypeToMap();
+	public MapObjectType getSelectedType();
+	
+	public void setDragType(MapObjectType mapType);
 
-	public Image getCurrSelectedImage();
+	public MapObjectType getDragType();
 
-	public void setCurrDraggedImage(Image draggedImage);
-
-	public DisplayMapObject addObject(GridPoint gridpoint, MapObjectType mapObjType, int ownerID);
+	public DisplayMapObject addObject(int levelID, GridPoint gridpoint, MapObjectType mapObjType);
 
 	public void changeOwner(MapObject mapObject, int playerID);
 
@@ -74,25 +66,13 @@ public interface IGuiGaeController {
 
 	public ImageView getMapObjectImage(DisplayMapObject object);
 
-//
-//	public List<String> getCustomGamePlayerLeftComponents();
-//
-//	public void setCustomGamePlayerLeftComponents(List<String> allComponents);    
-//
-//	public List<String> getCustomGamePlayerRightComponents();
-//
-//	public void setCustomGamePlayerRightComponents(List<String> allComponents);    
-//
-//	public List<String> getCustomGamePlayerBottomComponents();
-//
-//	public void setCustomGamePlayerBottomComponents(List<String> allComponents);
-
 	public List<String> getCustomGamePlayerComponents(String location);
 
 	public void setCustomGamePlayerComponents(String location, List<String> allComponents);
 
 	public LevelTabPane getLevelTabPane();
 
-	public void addLevel(String name);
+	public int addLevel(String name);
+
 
 }

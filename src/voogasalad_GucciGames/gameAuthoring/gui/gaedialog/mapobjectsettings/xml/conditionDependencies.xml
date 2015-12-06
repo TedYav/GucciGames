@@ -1,0 +1,16 @@
+<conditionDependencies>
+
+	<element name="checkOnePlayerLeft" 
+		 paramNames=""
+		 paramTypes="">
+	</element>	
+		<element name="checkPlayerObjects" 
+		 paramNames=""
+		 paramTypes="">
+	</element>	
+		<element name="checkPlayerWealth" 
+		 paramNames="wealth"
+		 paramTypes="int">
+	</element>	
+
+</conditionDependencies>

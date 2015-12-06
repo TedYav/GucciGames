@@ -13,13 +13,9 @@ import voogasalad_GucciGames.gameAuthoring.gui.map.GridPoint;
 //import voogasalad_GucciGames.gameData.GameInfo;
 //import voogasalad_GucciGames.gameData.XMLWriter;
 import voogasalad_GucciGames.gameData.XStreamGameEngine;
-<<<<<<< HEAD
-import voogasalad_GucciGames.gameData.wrapper.GameEngine;
-=======
 import voogasalad_GucciGames.gameData.wrapper.GameInfo;
 import voogasalad_GucciGames.gameData.wrapper.GuiData;
->>>>>>> 7193ebf3fa5242a17f1527500d5991846afb27c0
-import voogasalad_GucciGames.gameEngine.MainGameEngine;
+import voogasalad_GucciGames.gameEngine.GameLevelEngine;
 import voogasalad_GucciGames.gameEngine.gamePlayer.AllPlayers;
 import voogasalad_GucciGames.gameEngine.gamePlayer.GamePlayerPerson;
 import voogasalad_GucciGames.gameEngine.mapObject.MapObject;
@@ -27,22 +23,29 @@ import voogasalad_GucciGames.gameEngine.targetCoordinate.TargetCoordinateSingle;
 
 public class GAEModel implements IGAEModel{
     private TypeData typeData;
-    private MapData mapData;
     private GuiData guiData;
-    private List<String> levels;
     private IModelGaeController myController;
-	private Map<Integer, GamePlayerPerson> mapOfPlayers;	
-	private List<DisplayMapObject> myMapObjects;
+	private Map<Integer, GamePlayerPerson> mapOfPlayers;
+	private GameInfoFactory myFactory;
+	private int myOwnerID;
+	//private List<DisplayMapObject> myMapObjects;
+	// map from level id (unique) to list of map objects
+	//private Map<Integer, MapData> myLevels;
+	private LevelData levelData;
 
     
     public GAEModel(IModelGaeController controller) {
     	myController = controller;
     	typeData = new TypeData();
-    	mapData = new MapData();
+    	//mapData = new MapData();
     	mapOfPlayers = new HashMap<>();
-    	myMapObjects = new ArrayList<>();
+    	myFactory = new GameInfoFactory();
+    	//myMapObjects = new ArrayList<>();
     	guiData = new GuiData();
-    	levels = new ArrayList<>();
+    	//myLevels = new HashMap<>();
+    	levelData = new LevelData();
+    	myOwnerID = 0;
+    	
     	// Probs need to change this
 		mapOfPlayers.put(-1, new GamePlayerPerson(-1));
 		mapOfPlayers.put(0, new GamePlayerPerson(0));
@@ -56,26 +59,26 @@ public class GAEModel implements IGAEModel{
         int owner = mapObj.getOwnerID();
         mapOfPlayers.get(owner).getMapObjects().remove(mapObj);
     }
+
+//    @Override
+//    public DisplayMapObject addObject(int levelID, GridPoint gridpoint, MapObjectType mapObjType, int ownerID) {
+//    	TargetCoordinateSingle targCoordSingle = new TargetCoordinateSingle(gridpoint.getX(), gridpoint.getY());
+//    	int layer = mapObjType.isTile() ? 0 : 1;
+//    	DisplayMapObject mapObject = new DisplayMapObject(mapObjType, targCoordSingle, ownerID,layer);
+//    	//mapOfPlayers.get(ownerID).addMapObject(mapObject);
+//    	levelData.add(levelID, mapObject);
+//    	//Validate with engine, if failed, return null, else return this mapObject
+//    	return mapObject;
+//    }
     
     @Override
-    public DisplayMapObject addObject(GridPoint gridpoint, MapObjectType mapObjType, int ownerID) {
-    	TargetCoordinateSingle targCoordSingle = new TargetCoordinateSingle(gridpoint.getX(), gridpoint.getY());
-    	int layer = mapObjType.isTile() ? 0 : 1;
-    	DisplayMapObject mapObject = new DisplayMapObject(mapObjType, targCoordSingle, ownerID,layer);
-    	//mapOfPlayers.get(ownerID).addMapObject(mapObject);
-    	myMapObjects.add(mapObject);
-    	//Validate with engine, if failed, return null, else return this mapObject
-    	return mapObject;
-    }
-    
-    @Override
-	public List<DisplayMapObject> getMapObjects() {
-		return mapData.getMapObjects();
+	public List<DisplayMapObject> getMapObjects(int level) {
+		return levelData.getLevelMapObjects(level);
 	}
 
     @Override
-    public void clearMap () {
-        mapData.clearMap();
+    public void clearMap (int level) {
+        levelData.clearLevelMap(level);
     }
 
     @Override
@@ -104,9 +107,9 @@ public class GAEModel implements IGAEModel{
 	public ObservableList<MapObjectType> getImmutableStructureTypes() {
 		return typeData.getImmutableStructureTypes();
 	}
+    
 
-    @Override
-    public void saveToXML (GameEngine game) {    	
+    private void saveToXML (GameInfo game) {    	
     	System.err.println("IMPLEMENT ME PLZ");
 //    	XStreamGameEngine saver = new XStreamGameEngine();
 //		AllPlayers myPlayers = new AllPlayers(mapOfPlayers);
@@ -128,21 +131,15 @@ public class GAEModel implements IGAEModel{
 //		saver.saveGameInfo(game, file);
 
     }
-    public void saveToXML(String filePath) {
-        
+    
+    public void saveToXML() {
+    	myFactory.create(typeData, levelData, guiData);
+    	
     }
     
     private boolean validate(){ //TODO
         return false;
     }
-
-
-    public void addComponent (Map<String,String> objParams) {
-        DisplayMapObject mapObj = new DisplayMapObject(null, null, 0, 0);// TODO:MapObject(objParams);
-        validate();
-        mapData.addToMap(mapObj);
-    }
-
 
 	@Override
 	public void changeOwner(MapObject mapObject, int playerID) {
@@ -167,20 +164,21 @@ public class GAEModel implements IGAEModel{
 
 
 	@Override
-	public void addLevel(String name) {
-		levels.add(name);
+	public int addLevel(String name) {
+		return levelData.addLevel(name);
+		
 	}
-    
-//	public static void main(String[] args){
-//		Map<Integer, GamePlayerPerson> mapOfPlayers = new HashMap<Integer, GamePlayerPerson>();	
-////		List<GamePlayerPerson> listOfPlayers = new ArrayList<GamePlayerPerson>();	
-//		AllPlayers myPlayers = new AllPlayers(mapOfPlayers);
-//		MainGameEngine engine = new MainGameEngine(myPlayers, null, null);
-//		System.out.println("made game engine");
-//		XMLWriter writer = new XMLWriter();
-//		writer.write(engine);
-//		
-//	}
 
 
+	@Override
+	public DisplayMapObject addObject(int levelID, GridPoint gridpoint, MapObjectType mapObjType) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+
+	@Override
+	public void setDefaultOwner(int ownerID) {
+		myOwnerID = ownerID;
+	}
 }
