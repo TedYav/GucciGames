@@ -23,14 +23,14 @@ public class GameDataManager implements GameDataInterface {
 
     private String myBasePath;
     
-    public static void main(String[] args){
-    	GameDataManager g = new GameDataManager();
-    	//g.buildGameDirectories("Duvall Tag");
-    	g.copyResourceToGame("images/tiles/water.jpg", "Duvall Tag");
-    	g.copyResourceToGame("images/units/duvall.png", "Duvall Tag");
-    	g.renameGameDirectory("Duvall Tag", "PWNAGE");
-    	System.out.println(g.getResources(Arrays.asList("jpg", "png"), "images/tiles/"));
-    }
+//    public static void main(String[] args){
+//    	GameDataManager g = new GameDataManager();
+//    	//g.buildGameDirectories("Duvall Tag");
+//    	g.copyResourceToGame("images/tiles/water.jpg", "Duvall Tag");
+//    	g.copyResourceToGame("images/units/duvall.png", "Duvall Tag");
+//    	g.renameGameDirectory("Duvall Tag", "PWNAGE");
+//    	System.out.println(g.getResources(Arrays.asList("jpg", "png"), "images/tiles/"));
+//    }
     
 	public GameDataManager(){
 		myXStream = new XStreamGameEngine();

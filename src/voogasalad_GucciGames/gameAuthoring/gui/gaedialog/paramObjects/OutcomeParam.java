@@ -5,7 +5,7 @@ import java.util.List;
 
 public class OutcomeParam {
 	
-	private List<String> conditions;
+	private List<ObjParam> conditions;
 	private ObjParam objParam;
 	
 	private String name;
@@ -13,10 +13,10 @@ public class OutcomeParam {
 	public OutcomeParam(String name, int ownerId, ObjParam objParam){
 		this.name = name;
 		this.objParam = objParam;
-		this.conditions = new ArrayList<String>();		
+		this.conditions = new ArrayList<ObjParam>();		
 	}
 	
-	public void setConditions(List<String> items){
+	public void setConditions(List<ObjParam> items){
 		this.conditions.addAll(items);
 	}
 

@@ -13,7 +13,7 @@ public class EndTurnButton extends DisplayComponent{
     private ResourceBundle myBundle=PlayerConfig.load("components.EndTurnButton");
     public EndTurnButton(GameScene scene, GameControllerInterface controller) {
         super(scene,controller);
-        endTurn=new Button(myBundle.getString("player") + getController().getEngine().getGameParameters().whoseTurn()+myBundle.getString("endturn"));
+        endTurn=new Button(myBundle.getString("endturn"));
         endTurn.setOnMouseClicked(e->{
             controller.endTurn();
         });
@@ -21,7 +21,7 @@ public class EndTurnButton extends DisplayComponent{
     
     @Override
     public void updateDisplay() {
-        endTurn.setText(myBundle.getString("player") + getController().getEngine().getGameParameters().whoseTurn()+myBundle.getString("endturn"));
+        endTurn.setText(myBundle.getString("endturn"));
     }
 
     @Override

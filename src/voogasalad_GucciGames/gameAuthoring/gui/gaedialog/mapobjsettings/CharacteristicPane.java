@@ -10,6 +10,7 @@ import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.dialogcomponents.Dialog
 import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.groovySettings.DependenciesPane;
 import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.maindialogs.ISwitchSettingsPane;
 import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.paramObjects.ObjParam;
+import voogasalad_GucciGames.gameAuthoring.model.MapObjectType;
 import javafx.geometry.Insets;
 import javafx.scene.control.Button;
 import javafx.scene.layout.GridPane;
@@ -20,11 +21,15 @@ public class CharacteristicPane extends GridPane {
 	private DialogTableView dialogTableView;
 	private IDialogGaeController controller;
 	ISwitchSettingsPane switchPane;
+	private List<String> allChars = new ArrayList<String>();
 	
 	
-	public CharacteristicPane(ISwitchSettingsPane switchPane, IDialogGaeController controller, Properties prop){
+	public CharacteristicPane(ISwitchSettingsPane switchPane, 
+			IDialogGaeController controller, Properties prop,  MapObjectType type){
 		super();
-		List<String> allChars = new ArrayList<String>();
+		controller.getPropertiesInterface().getAllMapObjCharParams().
+		forEach(e -> allChars.add(e.getName()));
+		
 		this.controller = controller;
 		this.switchPane = switchPane;
 		dialogTableView = new DialogTableView(allChars, "Characteristics");
@@ -45,10 +50,9 @@ public class CharacteristicPane extends GridPane {
 		saveBtn.setOnAction(e -> {
 			
 			List<String> data = dialogTableView.getData();
-			List<ObjParam> charParams = new ArrayList<ObjParam>();
-			//TODO; waiting on daniel
-			//List<ObjParam> charParams = controller.getSelectedMapObjCharParams(data);
-			ObjParamVBox objParamVBox = new ObjParamVBox(charParams);
+			List<ObjParam> charParams =
+					controller.getPropertiesInterface().getSelectedMapObjCharParams(data);
+			ObjParamVBox objParamVBox = new ObjParamVBox(switchPane, charParams);
 			this.switchPane.switchSettingsPane(objParamVBox);
 			
 			// TODO: save

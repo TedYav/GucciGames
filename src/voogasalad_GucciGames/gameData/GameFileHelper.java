@@ -16,20 +16,20 @@ import java.util.List;
 
 public class GameFileHelper {
 //	
-	public static void main(String[] args) {
-		GameFileHelper g = new GameFileHelper();
-		try {
-			g.copyResource("resources/images/units/duvall.png", "./src/games/Duvall_Tag/resources/images/units/duvall.png");
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		//g.renameDirectory("./src/games/Duvall_Tag/", "./src/games/PWNAGE/");
-		ArrayList<String> files = new ArrayList<>();
-		g.listf("resources/images/", files, Arrays.asList("jpg", "png"));
-		System.out.println(files);
-	}
-	
+//	public static void main(String[] args) {
+//		GameFileHelper g = new GameFileHelper();
+//		try {
+//			g.copyResource("resources/images/units/duvall.png", "./src/games/Duvall_Tag/resources/images/units/duvall.png");
+//		} catch (IOException e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//		}
+//		//g.renameDirectory("./src/games/Duvall_Tag/", "./src/games/PWNAGE/");
+//		ArrayList<String> files = new ArrayList<>();
+//		g.listf("resources/images/", files, Arrays.asList("jpg", "png"));
+//		System.out.println(files);
+//	}
+//	
 	public void copyResource(String sourceURI, String destURI) throws IOException, NoSuchFileException {
 		File source = new File(sourceURI);
 		File dest = new File(destURI);

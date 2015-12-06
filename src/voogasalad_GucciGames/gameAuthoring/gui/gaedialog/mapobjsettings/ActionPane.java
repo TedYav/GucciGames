@@ -19,17 +19,22 @@ import voogasalad_GucciGames.gameAuthoring.IDialogGaeController;
 import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.DialogElements;
 import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.dialogcomponents.DialogTableView;
 import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.dialogcomponents.DropDownMenuField;
+import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.dialogcomponents.TableElement;
 import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.maindialogs.GaeDialogHelper;
 import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.maindialogs.ISwitchSettingsPane;
 import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.mapobjectsettings.xml.ActionSAXHandler;
-import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.paramObjects.ActionParams;
+import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.paramObjects.ActionParamsValue;
+import voogasalad_GucciGames.gameAuthoring.model.MapObjectType;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.geometry.Insets;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Dialog;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.GridPane;
 import javafx.scene.text.Text;
 
@@ -38,9 +43,9 @@ public class ActionPane extends GridPane {
 	private Text title = new Text("Select Actions");		
 	private ISwitchSettingsPane switchPaneInterface;	
 	
-	private List<ActionParams> dataList = new ArrayList<ActionParams>();
+	private List<ActionParamsValue> dataList = new ArrayList<ActionParamsValue>();
 	
-	private ObservableList<ActionParams> actions;
+	private ObservableList<ActionParamsValue> actions;
 	private final GaeDialogHelper helper = new GaeDialogHelper();
 	private Properties prop;
 	private IDialogGaeController controller;
@@ -48,15 +53,22 @@ public class ActionPane extends GridPane {
 	private ComboBox<String> dropDown = new ComboBox<String>();
 	private String selected = "";
 	private Button addBtn = new Button("Add Action");
-	Button nextBtn = new Button("Next");
+	Button nextBtn = new Button("Add Outcome/ Conditions");
+	private MapObjectType type;
 	
-	public ActionPane(ISwitchSettingsPane switchPaneInterface, IDialogGaeController controller,Properties prop){
+	private TableView tableView = new TableView();
+	private ObservableList<TableElement> data;
+	
+	public ActionPane(ISwitchSettingsPane switchPaneInterface, 
+			IDialogGaeController controller,Properties prop, MapObjectType type){
 		super();
+		this.type = type;
 		this.switchPaneInterface = switchPaneInterface;	
 		this.prop = prop;
 		this.controller = controller;
 		
 		//TODO: get all actions
+		
 		List<String> items = helper.parseStringToList(prop, 
 				"action_items");
 		ObservableList<String> options = FXCollections.observableArrayList(items);
@@ -70,6 +82,18 @@ public class ActionPane extends GridPane {
 		
 	}
 	
+	private void setTableView(){
+		data = FXCollections.observableArrayList(new ArrayList<TableElement>());
+		tableView.setItems(data);
+		TableColumn outcomeCol = new TableColumn("Outcome Name");
+		outcomeCol.setCellValueFactory(
+				new PropertyValueFactory<TableElement, String>("name"));
+		TableColumn conditionCol = new TableColumn("Conditions");
+		conditionCol.setCellFactory(
+				new PropertyValueFactory<TableElement, String>("type"));
+		tableView.getColumns().addAll(outcomeCol, conditionCol);
+	}
+	
 	
 	private void setLayout(){
 		this.setPadding(new Insets(5,5,5,5));
@@ -78,6 +102,7 @@ public class ActionPane extends GridPane {
 		add(textField, 0, 0);
 		add(dropDown, 1, 0);
 		add(addBtn, 2, 0);
+		add(tableView, 1, 1);
 		add(nextBtn, 10, 10);
 	}
 
@@ -85,7 +110,7 @@ public class ActionPane extends GridPane {
 		nextBtn.setOnAction(e -> {
 			//TODO: show add rules
 		    //switchPaneInterface.switchSettingsPane(new RulesAndCharPane(rules, chars));
-			ConditionOutcomeDialog d = new ConditionOutcomeDialog(controller);
+			ConditionOutcomeDialog d = new ConditionOutcomeDialog(controller, type);
 			d.showAndWait();
 
 		});

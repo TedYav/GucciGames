@@ -42,7 +42,8 @@ public class ObjParamPane extends GridPane {
 		int i  = 1;
 		for (Map.Entry<String, String> entry : param.getAllParams().entrySet()) {
 			Label label = new Label(entry.getKey()); 
-			label.setPrefWidth(100);
+			
+			label.setPrefWidth(200);
 			TextField textField = new TextField();
 			contents.put(label, textField);
 			this.add(label, 0, i);

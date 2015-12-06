@@ -13,7 +13,7 @@ import javax.xml.parsers.SAXParser;
 import javax.xml.parsers.SAXParserFactory;
 
 import org.xml.sax.SAXException;
-import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.paramObjects.ActionParams;
+import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.paramObjects.ActionParamsValue;
 import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.paramObjects.ObjParam;
 import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.paramObjects.ObjType;
 import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.paramObjects.RuleParams;
@@ -30,7 +30,7 @@ public class ParamObjParser {
 	
 	Set<RuleParams> allRules = new HashSet<RuleParams>();
 	
-	Set<ActionParams> allActions = new HashSet<ActionParams>();
+	Set<ActionParamsValue> allActions = new HashSet<ActionParamsValue>();
 	
 	private static final String mainPath = "src/voogasalad_GucciGames/gameAuthoring/gui/gaedialog/mapobjectsettings/xml/";
 	private static final String mapObjCharPath = mainPath + "mapObjCharDependencies.xml";
@@ -64,7 +64,7 @@ public class ParamObjParser {
 		return allRules;
 	}
 	
-	public Set<ActionParams> getActions(){
+	public Set<ActionParamsValue> getActions(){
 		return allActions;
 	}
 	
@@ -89,7 +89,7 @@ public class ParamObjParser {
 	        saxParser.parse(new 
 	        		File(actionPath), 
 	        		handler);
-	        List<ActionParams> list = handler.getActionParams();
+	        List<ActionParamsValue> list = handler.getActionParams();
 	        allActions.addAll(list);
 	         
 	    } catch (ParserConfigurationException | SAXException | IOException ex) {
@@ -133,7 +133,6 @@ public class ParamObjParser {
 	        		File(path), 
 	        		handler);
 	       List<ObjParam> list = handler.getObjParams();
-
 	       set.addAll(list);
 
 	           
@@ -161,9 +160,7 @@ public class ParamObjParser {
 	private void parseCondition(){
 		parse(this.conditionPath, allConditionParams, ObjType.CONDITION);
 	}
-	
-	
-	
+
 	
 	
 

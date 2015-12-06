@@ -21,7 +21,6 @@ public class GameSceneManager implements SceneManager{
 	private ResourceBundle myConfig;
 	private GameScene myCurrentScene;
 	private GameWindowInterface myWindow;
-	private XStreamGameEngine myData;
 	private GameController myController;
 	
 	public GameSceneManager(String config, GameWindowInterface window, GameController controller){
@@ -29,7 +28,6 @@ public class GameSceneManager implements SceneManager{
 		myController = controller;
 		myWindow = window;
 		myScenes = generateScenes();
-		myData = new XStreamGameEngine();
 		myCurrentScene = myScenes.get(myConfig.getString("DefaultScene"));
 		myCurrentScene.load();
 	}

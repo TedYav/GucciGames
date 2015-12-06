@@ -1,11 +1,19 @@
 <actionDependencies>
-	<action displayName="Attack" name="attack" 
-	rules = "numAttacksPerTurn" 
-	chars = "attackRange, attackDamage, numAttacksPerTurn"
+	<action displayName="Attack" name="AttackEvent" 
+	rules = "" 
+	chars = "AttackCharacteristic"
 	outcomes = "">
 	</action>
 	
-	<action displayName="Move" name="move" 
-	rules="numMovesPerTurn" chars="movementRange">
+	<action displayName="Move" name="MoveEvent" 
+	rules=""
+	chars = "MovableCharacteristic"
+	outcomes = "">
+	</action>
+	
+	<action displayName="Change Owner Attack" name="PowerfulAttack" 
+	rules = "" 
+	chars = "AttackCharacteristic"
+	outcomes = "">
 	</action>
 </actionDependencies>
