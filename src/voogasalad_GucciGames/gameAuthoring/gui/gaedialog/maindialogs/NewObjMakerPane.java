@@ -33,7 +33,7 @@ public class NewObjMakerPane extends GridPane{
 		
 	}
 	
-	public String[] getUserData(){
+	public String[] getUserInputData(){
 		String[] data = new String[2];
 		data[0] = name.getTextInput();
 		data[1] = fileBrowser.getPath();
