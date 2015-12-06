@@ -7,7 +7,7 @@ import voogasalad_GucciGames.gameEngine.PlayerMapObjectInterface;
 
 public class ChangedParameters extends CommunicationParameters {
 	private List<Integer> playersChangedIDs;
-
+	private String level;
 	private List<PlayerMapObjectInterface> changedUnits;
 
 	public ChangedParameters() {
@@ -30,6 +30,14 @@ public class ChangedParameters extends CommunicationParameters {
 
 	public List<PlayerMapObjectInterface> getChangedUnits() {
 		return changedUnits;
+	}
+
+	public String getLevel() {
+		return level;
+	}
+
+	public void setLevel(String level) {
+		this.level = level;
 	}
 
 }

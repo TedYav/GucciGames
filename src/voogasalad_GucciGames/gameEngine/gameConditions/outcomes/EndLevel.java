@@ -14,16 +14,18 @@ import voogasalad_GucciGames.gameEngine.gameConditions.Conditions;
  */
 public class EndLevel extends Outcome {
 	private static final String NEXT_LEVEL="nextLevel";
-	OutcomeParams myParams;
-	public EndLevel(List<Conditions> conditions, OutcomeParams conditionParams) {
-		super(conditions, conditionParams);
-		myParams = conditionParams;
+	private String myDestination;
+
+	public EndLevel(List<Conditions> conditions,String affectedPlayers, String nextLevel, String destination) {
+		super(conditions, affectedPlayers);
+		myDestination = destination;
 	}
 
 	@Override
 	ChangedParameters applyOutcome(BasicParameters params,ChangedParameters changedParams, int i) {
 		params.getEngine().setEndLevel(true);
-	//	params.getEngine().changeLevel(myParams.getArgumentValue(NEXT_LEVEL));
+		changedParams.setLevel(myDestination);
+		//params.getEngine().changeLevel(myDestination);
 		System.out.println("setgame="+params.getEngine().hasLevelEnded());
 		return changedParams;
 	}

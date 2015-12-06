@@ -19,6 +19,7 @@ public class XStreamGameEngine {
     XStream serializer = new XStream(new DomDriver());
     String currentTurn = "Current Turn: ";
     private static FileLoader myLoader = new FileLoader();
+    private GameListManager myManager = new GameListManager();
 
     private final ResourceBundle myConfig = ResourceBundle.getBundle("voogasalad_GucciGames.gameData.config.GameData");
     
@@ -29,6 +30,7 @@ public class XStreamGameEngine {
         try {
             String gameXML = serializer.toXML(game);
             myLoader.save(file, gameXML);
+            myManager.addGame(game.getGameName(), sanitizeGameName(game.getGameName())+ myConfig.getString("GameExtension"));
         }
         catch (Exception e) {
             e.printStackTrace();

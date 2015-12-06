@@ -1,8 +1,6 @@
 
 package voogasalad_GucciGames.gameEngine.gameConditions.defaultConditions;
 
-import java.util.Map;
-
 import voogasalad_GucciGames.gameEngine.CommunicationParameters.BasicParameters;
 import voogasalad_GucciGames.gameEngine.gameConditions.Conditions;
 import voogasalad_GucciGames.gameEngine.gamePlayer.GamePlayerPerson;
@@ -15,15 +13,16 @@ import voogasalad_GucciGames.gameEngine.gamePlayer.chars.PlayerWealthChar;
  */
 public class PlayerWealth extends Conditions {
 	private static final String WEALTH = "wealth";
+	private int myValue =0;
 
-	public PlayerWealth(Map<String, Object> condParams) {
-		super(condParams);
+	public PlayerWealth(String name, int value) {
+		myValue = value;
 	}
 
 	@Override
 	public Boolean execute(BasicParameters params,GamePlayerPerson player) {
 		PlayerWealthChar playerWealth = (PlayerWealthChar)player.getMyCharacteristics(WEALTH);
-		return (playerWealth.getWealth() == (int) getMyParams().get(WEALTH));
+		return (playerWealth.getWealth() == myValue);
 	}
 
 }

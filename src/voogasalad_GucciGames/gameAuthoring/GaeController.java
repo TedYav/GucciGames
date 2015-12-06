@@ -25,6 +25,7 @@ import voogasalad_GucciGames.gameAuthoring.gui.levels.LevelTabPane;
 import voogasalad_GucciGames.gameAuthoring.gui.map.GridPoint;
 import voogasalad_GucciGames.gameAuthoring.model.DisplayMapObject;
 import voogasalad_GucciGames.gameAuthoring.model.GAEModel;
+import voogasalad_GucciGames.gameAuthoring.model.IGameProperties;
 import voogasalad_GucciGames.gameAuthoring.model.IGAEModel;
 import voogasalad_GucciGames.gameAuthoring.model.MapObjectType;
 import voogasalad_GucciGames.gameEngine.mapObject.MapObject;
@@ -50,7 +51,7 @@ public class GaeController extends AGuiGaeController implements IModelGaeControl
 	
 	private MapObjectType mySelectedType;
 
-	@Override
+	
 	public void setSelectedType(MapObjectType mapType) {
 		mySelectedType = mapType;
 	}
@@ -74,7 +75,8 @@ public class GaeController extends AGuiGaeController implements IModelGaeControl
 
 	@Override
 	public void deleteComponent(DisplayMapObject mapObj) {
-		myModel.deleteComponent(mapObj);
+		// TODO add levelID
+		//model.deleteComponent(mapObj);
 	}
 
 	@Override
@@ -223,55 +225,16 @@ public class GaeController extends AGuiGaeController implements IModelGaeControl
 		return myModel.addLevel(name);
 	}
 
-	@Override
-	public List<ObjParam> getAllMapObjCharParams() {
-		return myModel.getMapCharParams();
-	}
-
-	@Override
-	public List<ObjParam> getSelectedMapObjCharParams(List<String> selectedChar) {
-		return myModel.getSelectedMapObjCharParams(selectedChar);
-	}
-
-	@Override
-	public List<ObjParam> getAllPlayerCharParams() {
-		return myModel.getPlayerCharParams();
-	}
-
-	@Override
-	public List<ObjParam> getSelectedPlayerCharParams(List<String> selectedChar) {
-		return myModel.getSelected();
-	}
-
-	@Override
-	public List<ObjParam> getAllOutcomes() {
-		return myModel.getOutcomes();
-	}
-
-	@Override
-	public List<ObjParam> getSelectedOutcomes(List<String> selectedOutcomes) {
-		return myModel.getSelectedOutcomes();
-	}
-
-	@Override
-	public List<ObjParam> getAllConditions() {
-		return myModel.getConditions();
-	}
-
-	@Override
-	public List<ObjParam> getSelectedConditions(List<String> selectedConditions) {
-		return myModel.getSelectedConditions(selectedConditions);
-	}
-
-	@Override
-	public void addActionParam(ActionParams param) {
-		myModel.addActionParam(param);
-	}
-
-	@Override
+	
 	public void setDefaultOwner(int ownerID) {
 		myModel.setDefaultOwner(ownerID);
 	}
+
+	@Override
+	public IGameProperties getPropertiesInterface() {
+		return myModel.getPropertiesInterface();
+	}
+
 	
 	private final BooleanProperty myHasGameProperty = new SimpleBooleanProperty(false);
 	

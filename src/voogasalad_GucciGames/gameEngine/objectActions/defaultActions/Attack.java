@@ -24,6 +24,10 @@ public abstract class Attack extends MapObjectEvent {
 	protected static final String ATTACK_CHARACTERISTIC = "AttackCharacteristic";
 	protected static final String HEALTH_CHARACTERISTIC = "HealthCharacteristic";
 
+
+	public Attack() {
+
+	}
 	public Attack(String actionName) {
 		super(actionName);
 	}
@@ -35,7 +39,6 @@ public abstract class Attack extends MapObjectEvent {
 	protected List<Integer> extractAllPlayersExceptNutral(LocationParameters params) {
 		List<Integer> ids1 = params.getEngine().getPlayers().getAllIds();
 
-		// a hacky way to remove the neutral player
 		List<Integer> ids = new ArrayList<Integer>();
 		for (int i = 1; i < ids1.size(); i++) {
 			ids.add(ids1.get(i));

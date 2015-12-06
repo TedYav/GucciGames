@@ -16,8 +16,10 @@ import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.paramObjects.ActionPara
 import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.paramObjects.ObjParam;
 import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.paramObjects.RuleParams;
 import voogasalad_GucciGames.gameAuthoring.gui.map.GridPoint;
+import voogasalad_GucciGames.gameData.XStreamGameEngine;
 import voogasalad_GucciGames.gameData.wrapper.GameInfo;
 import voogasalad_GucciGames.gameData.wrapper.GuiData;
+import voogasalad_GucciGames.gameEngine.gamePlayer.AllPlayers;
 import voogasalad_GucciGames.gameEngine.gamePlayer.GamePlayerPerson;
 import voogasalad_GucciGames.gameEngine.mapObject.MapObject;
 import voogasalad_GucciGames.gameEngine.targetCoordinate.TargetCoordinateSingle;
@@ -30,11 +32,7 @@ public class GAEModel implements IGAEModel{
 	private GameInfoFactory myFactory;
 	private int myOwnerID;
 	
-	private Map<String, ActionParams> myActions;
-	private Map<String, ObjParam> myMapObjectCharacteristics;
-	private Map<String, RuleParams> myRules;
-	private Map<String, ObjParam> myConditions;
-	private Map<String, ObjParam> myOutcomes;
+
 
 	//private List<DisplayMapObject> myMapObjects;
 	// map from level id (unique) to list of map objects
@@ -45,39 +43,16 @@ public class GAEModel implements IGAEModel{
     public GAEModel(IModelGaeController controller) {
     	myController = controller;
     	typeData = new TypeData();
-    	//mapData = new MapData();
     	mapOfPlayers = new HashMap<>();
     	myFactory = new GameInfoFactory();
-    	//myMapObjects = new ArrayList<>();
     	guiData = new GuiData();
-    	//myLevels = new HashMap<>();
     	levelData = new LevelData();
     	myOwnerID = 0;
     	
     	
     	// load all default properites
-    	ParamObjParser parser = new ParamObjParser();
     	//myActions = parser.getActions().stream().collect(Collectors.groupingBy(ObjParam::getName, ));
-//    	Set<ActionParams> actions = parser.getActions();
-//    	for (ActionParams action: actions){
-//    		myActions.put(action.getName(), action);
-//    	}
-//    	Set<ObjParam> mapObjCharacteristcs = parser.getMapObjChars();
-//    	for (ObjParam param: mapObjCharacteristcs){
-//    		myMapObjectCharacteristics.put(param.getName(), param);
-//    	}    
-//    	Set<ObjParam> conditions = parser.getConditions();
-//    	for (ObjParam param: conditions){
-//    		myConditions.put(param.getName(), param);
-//    	}
-//    	Set<ObjParam> outcomes = parser.getOutcomes();
-//    	for (ObjParam param: outcomes){
-//    		myOutcomes.put(param.getName(), param);
-//    	}  
-//    	Set<RuleParams> rules = parser.getRules();
-//    	for (RuleParams param: rules){
-//    		myRules.put(param.getName(), param);
-//    	}      	
+   	
     	
     	
     	// Probs need to change this
@@ -90,9 +65,10 @@ public class GAEModel implements IGAEModel{
     
 
     @Override
-    public void deleteComponent (DisplayMapObject mapObj) {
-        int owner = mapObj.getOwnerID();
-        mapOfPlayers.get(owner).getMapObjects().remove(mapObj);
+    public void deleteComponent (int levelID, DisplayMapObject mapObj) {
+//        int owner = mapObj.getOwnerID();
+//        mapOfPlayers.get(owner).getMapObjects().remove(mapObj);
+        levelData.deleteObject(levelID, mapObj);
     }
     
     @Override
@@ -139,29 +115,13 @@ public class GAEModel implements IGAEModel{
     
 
     private void saveToXML (GameInfo game) {    	
-    	System.err.println("IMPLEMENT ME PLZ");
-//    	XStreamGameEngine saver = new XStreamGameEngine();
-//		AllPlayers myPlayers = new AllPlayers(mapOfPlayers);
-//		MainGameEngine engine = new MainGameEngine(myPlayers);
-//		//TODO: saving GameInfo instead of MainGameEngine
-//		if (guiData.numberOfComponents() == 0) {
-//			guiData.addLeftComponent("voogasalad_GucciGames.gameplayer.windows.mainwindow.components.bar.DisplayMapObjectImage");
-//			guiData.addLeftComponent("voogasalad_GucciGames.gameplayer.windows.mainwindow.components.bar.DisplayMapObjectDetails");
-//			guiData.addLeftComponent("voogasalad_GucciGames.gameplayer.windows.mainwindow.components.bar.DisplayChat");
-//			guiData.addRightComponent("voogasalad_GucciGames.gameplayer.windows.mainwindow.components.bar.ActionDisplay");
-//			guiData.addRightComponent("voogasalad_GucciGames.gameplayer.windows.mainwindow.components.bar.GameStatsDisplay");
-//			guiData.addRightComponent("voogasalad_GucciGames.gameplayer.windows.mainwindow.components.bar.EndTurnButton");
-//		}
-//
-//		//ASK ABOUT THIS, might not need engine to be passed into game info anymore
-//
-//		GameInfo game = new GameInfo();
-//
-//		saver.saveGameInfo(game, file);
-
+    	XStreamGameEngine saver = new XStreamGameEngine();
+		saver.saveGameInfo(game);
     }
     
     public void saveToXML() {
+//      AllPlayers myPlayers = new AllPlayers(mapOfPlayers);
+//      MainGameEngine engine = new MainGameEngine(myPlayers);
     	myFactory.create(typeData, levelData, guiData);
     	
     }
@@ -214,64 +174,71 @@ public class GAEModel implements IGAEModel{
 
 
 	@Override
-	public List<ObjParam> getMapCharParams() {
-		// TODO Auto-generated method stub
-		return null;
+	public IGameProperties getPropertiesInterface() {
+		return typeData;
 	}
+	
+	
 
 
-	@Override
-	public List<ObjParam> getSelectedMapObjCharParams(List<String> selectedChar) {
-		// TODO Auto-generated method stub
-		return null;
-	}
+//	@Override
+//	public List<ObjParam> getMapCharParams() {
+//		// TODO Auto-generated method stub
+//		return null;
+//	}
+//
+//
+//	@Override
+//	public List<ObjParam> getSelectedMapObjCharParams(List<String> selectedChar) {
+//		// TODO Auto-generated method stub
+//		return null;
+//	}
+//
+//
+//	@Override
+//	public List<ObjParam> getPlayerCharParams() {
+//		// TODO Auto-generated method stub
+//		return null;
+//	}
+//
+//
+//	@Override
+//	public List<ObjParam> getSelected() {
+//		// TODO Auto-generated method stub
+//		return null;
+//	}
+//
+//
+//	@Override
+//	public List<ObjParam> getOutcomes() {
+//		// TODO Auto-generated method stub
+//		return null;
+//	}
+//
+//
+//	@Override
+//	public List<ObjParam> getSelectedOutcomes() {
+//		// TODO Auto-generated method stub
+//		return null;
+//	}
+//
+//
+//	@Override
+//	public List<ObjParam> getConditions() {
+//		return null;
+//	}
+//
+//
+//	@Override
+//	public List<ObjParam> getSelectedConditions(List<String> selectedConditions) {
+//		return typeData.getSelectedConditions(selectedConditions);
+//	}
+//
+//
+//	@Override
+//	public void addActionParam(ActionParams param) {
+//		// TODO Auto-generated method stub
+//		
+//	}
 
-
-	@Override
-	public List<ObjParam> getPlayerCharParams() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-
-	@Override
-	public List<ObjParam> getSelected() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-
-	@Override
-	public List<ObjParam> getOutcomes() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-
-	@Override
-	public List<ObjParam> getSelectedOutcomes() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-
-	@Override
-	public List<ObjParam> getConditions() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-
-	@Override
-	public List<ObjParam> getSelectedConditions(List<String> selectedConditions) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-
-	@Override
-	public void addActionParam(ActionParams param) {
-		// TODO Auto-generated method stub
-		
-	}
 }

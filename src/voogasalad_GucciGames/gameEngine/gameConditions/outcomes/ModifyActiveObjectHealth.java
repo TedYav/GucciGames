@@ -14,12 +14,12 @@ import voogasalad_GucciGames.gameEngine.mapObject.MapObject;
  *
  */
 public class ModifyActiveObjectHealth extends Outcome {
-	private static final String HEALTH = "health";
+	private static final String HEALTH = "HealthCharacteristic";
 	private int deltaHealth = 0;
 
-	public ModifyActiveObjectHealth(List<Conditions> conditions, OutcomeParams conditionParams) {
-		super(conditions, conditionParams);
-		deltaHealth = (int) this.getMyParams().getArgumentValue(HEALTH);
+	public ModifyActiveObjectHealth(List<Conditions> conditions, String affectedPlayers, String health, int value) {
+		super(conditions, affectedPlayers);
+		deltaHealth = value;
 	}
 
 	@Override

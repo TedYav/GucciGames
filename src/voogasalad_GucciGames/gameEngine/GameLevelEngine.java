@@ -1,10 +1,10 @@
 package voogasalad_GucciGames.gameEngine;
-import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+
 import voogasalad_GucciGames.gameData.wrapper.IGameLevelToGamePlayer;
 import voogasalad_GucciGames.gameEngine.CommunicationParameters.BasicParameters;
 import voogasalad_GucciGames.gameEngine.CommunicationParameters.ChangedParameters;
@@ -16,8 +16,6 @@ import voogasalad_GucciGames.gameEngine.gamePlayer.ATurnDecider;
 import voogasalad_GucciGames.gameEngine.gamePlayer.AllPlayers;
 import voogasalad_GucciGames.gameEngine.gamePlayer.DefaultTurnDecider;
 import voogasalad_GucciGames.gameEngine.gamePlayer.TurnCounter;
-import voogasalad_GucciGames.gameEngine.gameRules.RuleFactory;
-import voogasalad_GucciGames.gameEngine.gameRules.RuleParams;
 import voogasalad_GucciGames.gameEngine.targetCoordinate.ATargetCoordinate;
 import voogasalad_GucciGames.gameplayer.controller.GameParametersInterface;
 
@@ -45,13 +43,13 @@ public class GameLevelEngine implements IGameLevelToGamePlayer {
 
 		myName = "Game " + Math.round((Math.random()*10000));
 	}
-	
+
 	@Deprecated
 	public String getGameName() {
 		return myName;
 	}
 
-	
+
 	public GameParametersInterface endTurn() {
 		//check game conditions
 		myCurrentTurnCounter.update();
@@ -68,17 +66,17 @@ public class GameLevelEngine implements IGameLevelToGamePlayer {
 		return myCurrentTurnCounter.getCurrentTurn();
 	}
 
-	
+
 	public List<PlayerMapObjectInterface> getInitialState() {
 		return myGamePlayers.getInitialState();
 	}
 
-	
+
 	public int getTurnPlayerID() {
 		return myTurnDecider.decideTurn();
 	}
 
-	
+
 	public GridCoordinateParameters getPossibleCoordinates(String action, PlayerMapObjectInterface myMapObject) {
 		return null;
 
@@ -94,20 +92,7 @@ public class GameLevelEngine implements IGameLevelToGamePlayer {
 		endTurn();
 		endTurn();
 	}
-	public void testRules() {
-		System.out.println("create rules");
-		RuleFactory factory = new RuleFactory();
-		RuleParams params = new RuleParams("move", null, null);
-		//BasicParameters comParams = new BasicParameters(myGamePlayers, null, manager);
-		BasicParameters comParams = new BasicParameters(null,this);
-		try {
-			factory.createRule(params, comParams);
-		} catch (NoSuchMethodException | SecurityException | ClassNotFoundException | InstantiationException
-				| IllegalAccessException | IllegalArgumentException | InvocationTargetException e) {
-			e.printStackTrace();
-		}
 
-	}
 	public AllPlayers getPlayers() {
 		// TODO Auto-generated method stub
 		return myGamePlayers;
@@ -121,19 +106,19 @@ public class GameLevelEngine implements IGameLevelToGamePlayer {
 		return mapDimensions;
 	}
 
-	
+
 	public ChangedParameters performAction(String action, PlayerMapObjectInterface mapObject,
 			ATargetCoordinate target) {
 
 		return null;
 
 	}
-	
+
 	public int getMapWidth() {
 		// TODO Auto-generated method stub
 		return myMapWidth;
 	}
-	
+
 	public int getMapHeight() {
 		// TODO Auto-generated method stub
 		return myMapHeight;
@@ -147,7 +132,7 @@ public class GameLevelEngine implements IGameLevelToGamePlayer {
 		myMapHeight = height;
 	}
 
-	
+
 	public GameParametersInterface getGameParameters() {
 		// TODO Auto-generated method stub
 		GameParameters pp= new GameParameters();
@@ -215,6 +200,7 @@ public class GameLevelEngine implements IGameLevelToGamePlayer {
 		this.hasLevelEnded = gameWon;
 	}
 
+	@Override
 	public boolean isMyChoosability() {
 		return myChoosability;
 	}

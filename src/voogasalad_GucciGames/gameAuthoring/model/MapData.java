@@ -25,4 +25,9 @@ public class MapData {
 		return onMap;
 	}
 
+	public void deleteObject(DisplayMapObject mapObj) {
+		onMap.remove(mapObj);
+		
+	}
+
 }

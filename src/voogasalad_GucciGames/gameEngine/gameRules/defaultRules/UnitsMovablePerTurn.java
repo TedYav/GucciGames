@@ -2,7 +2,6 @@ package voogasalad_GucciGames.gameEngine.gameRules.defaultRules;
 
 import voogasalad_GucciGames.gameEngine.CommunicationParameters.BasicParameters;
 import voogasalad_GucciGames.gameEngine.gamePlayer.GamePlayerPerson;
-import voogasalad_GucciGames.gameEngine.gameRules.RuleParams;
 import voogasalad_GucciGames.gameEngine.gameRules.Rules;
 
 /**
@@ -11,12 +10,7 @@ import voogasalad_GucciGames.gameEngine.gameRules.Rules;
  *
  */
 public class UnitsMovablePerTurn extends Rules {
-	private RuleParams myParams;
 
-	public UnitsMovablePerTurn(RuleParams ruleParams) {
-		super(ruleParams);
-		myParams = ruleParams;
-	}
 
 	public UnitsMovablePerTurn() {
 	}
