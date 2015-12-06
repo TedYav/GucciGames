@@ -9,8 +9,8 @@
 		 paramTypes="">
 	</element>	
 		<element name="checkPlayerWealth" 
-		 paramNames="wealth"
-		 paramTypes="int">
+		 paramNames="condParams"
+		 paramTypes="">
 	</element>	
 
 </conditionDependencies>

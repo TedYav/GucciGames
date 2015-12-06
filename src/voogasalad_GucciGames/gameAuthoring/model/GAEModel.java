@@ -7,14 +7,19 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 import javafx.collections.ObservableList;
 import voogasalad_GucciGames.gameAuthoring.IModelGaeController;
 import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.mapobjectsettings.xml.ParamObjParser;
+import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.paramObjects.ActionParams;
 import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.paramObjects.ObjParam;
+import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.paramObjects.RuleParams;
 import voogasalad_GucciGames.gameAuthoring.gui.map.GridPoint;
+import voogasalad_GucciGames.gameData.XStreamGameEngine;
 import voogasalad_GucciGames.gameData.wrapper.GameInfo;
 import voogasalad_GucciGames.gameData.wrapper.GuiData;
+import voogasalad_GucciGames.gameEngine.gamePlayer.AllPlayers;
 import voogasalad_GucciGames.gameEngine.gamePlayer.GamePlayerPerson;
 import voogasalad_GucciGames.gameEngine.mapObject.MapObject;
 import voogasalad_GucciGames.gameEngine.targetCoordinate.TargetCoordinateSingle;
@@ -27,9 +32,8 @@ public class GAEModel implements IGAEModel{
 	private GameInfoFactory myFactory;
 	private int myOwnerID;
 	
-	private Map<String, ObjParam> myActions;
-	private Map<String, ObjParam> myCharacteristics;
-	private Map<String, ObjParam> myRules;
+
+
 	//private List<DisplayMapObject> myMapObjects;
 	// map from level id (unique) to list of map objects
 	//private Map<Integer, MapData> myLevels;
@@ -39,18 +43,17 @@ public class GAEModel implements IGAEModel{
     public GAEModel(IModelGaeController controller) {
     	myController = controller;
     	typeData = new TypeData();
-    	//mapData = new MapData();
     	mapOfPlayers = new HashMap<>();
     	myFactory = new GameInfoFactory();
-    	//myMapObjects = new ArrayList<>();
     	guiData = new GuiData();
-    	//myLevels = new HashMap<>();
     	levelData = new LevelData();
     	myOwnerID = 0;
     	
+    	
     	// load all default properites
-    	ParamObjParser parser = new ParamObjParser();
-    	Set<ObjParam> objs = parser.getMapObjChars();
+    	//myActions = parser.getActions().stream().collect(Collectors.groupingBy(ObjParam::getName, ));
+   	
+    	
     	
     	// Probs need to change this
 		mapOfPlayers.put(-1, new GamePlayerPerson(-1));
@@ -62,21 +65,11 @@ public class GAEModel implements IGAEModel{
     
 
     @Override
-    public void deleteComponent (DisplayMapObject mapObj) {
-        int owner = mapObj.getOwnerID();
-        mapOfPlayers.get(owner).getMapObjects().remove(mapObj);
+    public void deleteComponent (int levelID, DisplayMapObject mapObj) {
+//        int owner = mapObj.getOwnerID();
+//        mapOfPlayers.get(owner).getMapObjects().remove(mapObj);
+        levelData.deleteObject(levelID, mapObj);
     }
-
-//    @Override
-//    public DisplayMapObject addObject(int levelID, GridPoint gridpoint, MapObjectType mapObjType, int ownerID) {
-//    	TargetCoordinateSingle targCoordSingle = new TargetCoordinateSingle(gridpoint.getX(), gridpoint.getY());
-//    	int layer = mapObjType.isTile() ? 0 : 1;
-//    	DisplayMapObject mapObject = new DisplayMapObject(mapObjType, targCoordSingle, ownerID,layer);
-//    	//mapOfPlayers.get(ownerID).addMapObject(mapObject);
-//    	levelData.add(levelID, mapObject);
-//    	//Validate with engine, if failed, return null, else return this mapObject
-//    	return mapObject;
-//    }
     
     @Override
 	public List<DisplayMapObject> getMapObjects(int level) {
@@ -89,21 +82,20 @@ public class GAEModel implements IGAEModel{
     }
 
     @Override
-    public void createCustomTileType (Map<String, String> m) {
-    	MapObjectType objType = new DefaultMapObjectType(m.get("name"), m.get("imagePath"));//TODO: properties file
-        typeData.addTileType(objType);
+
+    public void createCustomTileType (MapObjectType m) {
+    	typeData.addTileType(m);
     }
 
     @Override
-    public void createCustomUnitType (Map<String, String> m) {  
-    	MapObjectType objType = new DefaultMapObjectType(m.get("name"), m.get("imagePath"));//TODO: properties file
-        typeData.addUnitType(objType);
+    public void createCustomUnitType (MapObjectType m) {  
+    	typeData.addUnitType(m);
     }
     
     @Override
-	public void createCustomStructureType(Map<String, String> m) {
-    	MapObjectType objType = new DefaultMapObjectType(m.get("name"), m.get("imagePath"));//TODO: properties file
-        typeData.addStructureType(objType);
+
+	public void createCustomStructureType(MapObjectType m) {
+    	typeData.addStructureType(m);
 	}
 
     @Override
@@ -123,29 +115,13 @@ public class GAEModel implements IGAEModel{
     
 
     private void saveToXML (GameInfo game) {    	
-    	System.err.println("IMPLEMENT ME PLZ");
-//    	XStreamGameEngine saver = new XStreamGameEngine();
-//		AllPlayers myPlayers = new AllPlayers(mapOfPlayers);
-//		MainGameEngine engine = new MainGameEngine(myPlayers);
-//		//TODO: saving GameInfo instead of MainGameEngine
-//		if (guiData.numberOfComponents() == 0) {
-//			guiData.addLeftComponent("voogasalad_GucciGames.gameplayer.windows.mainwindow.components.bar.DisplayMapObjectImage");
-//			guiData.addLeftComponent("voogasalad_GucciGames.gameplayer.windows.mainwindow.components.bar.DisplayMapObjectDetails");
-//			guiData.addLeftComponent("voogasalad_GucciGames.gameplayer.windows.mainwindow.components.bar.DisplayChat");
-//			guiData.addRightComponent("voogasalad_GucciGames.gameplayer.windows.mainwindow.components.bar.ActionDisplay");
-//			guiData.addRightComponent("voogasalad_GucciGames.gameplayer.windows.mainwindow.components.bar.GameStatsDisplay");
-//			guiData.addRightComponent("voogasalad_GucciGames.gameplayer.windows.mainwindow.components.bar.EndTurnButton");
-//		}
-//
-//		//ASK ABOUT THIS, might not need engine to be passed into game info anymore
-//
-//		GameInfo game = new GameInfo();
-//
-//		saver.saveGameInfo(game, file);
-
+    	XStreamGameEngine saver = new XStreamGameEngine();
+		saver.saveGameInfo(game);
     }
     
     public void saveToXML() {
+//      AllPlayers myPlayers = new AllPlayers(mapOfPlayers);
+//      MainGameEngine engine = new MainGameEngine(myPlayers);
     	myFactory.create(typeData, levelData, guiData);
     	
     }
@@ -191,9 +167,78 @@ public class GAEModel implements IGAEModel{
 		return mapObj;
 	}
 
-
 	@Override
 	public void setDefaultOwner(int ownerID) {
 		myOwnerID = ownerID;
 	}
+
+
+	@Override
+	public IGameProperties getPropertiesInterface() {
+		return typeData;
+	}
+	
+	
+
+
+//	@Override
+//	public List<ObjParam> getMapCharParams() {
+//		// TODO Auto-generated method stub
+//		return null;
+//	}
+//
+//
+//	@Override
+//	public List<ObjParam> getSelectedMapObjCharParams(List<String> selectedChar) {
+//		// TODO Auto-generated method stub
+//		return null;
+//	}
+//
+//
+//	@Override
+//	public List<ObjParam> getPlayerCharParams() {
+//		// TODO Auto-generated method stub
+//		return null;
+//	}
+//
+//
+//	@Override
+//	public List<ObjParam> getSelected() {
+//		// TODO Auto-generated method stub
+//		return null;
+//	}
+//
+//
+//	@Override
+//	public List<ObjParam> getOutcomes() {
+//		// TODO Auto-generated method stub
+//		return null;
+//	}
+//
+//
+//	@Override
+//	public List<ObjParam> getSelectedOutcomes() {
+//		// TODO Auto-generated method stub
+//		return null;
+//	}
+//
+//
+//	@Override
+//	public List<ObjParam> getConditions() {
+//		return null;
+//	}
+//
+//
+//	@Override
+//	public List<ObjParam> getSelectedConditions(List<String> selectedConditions) {
+//		return typeData.getSelectedConditions(selectedConditions);
+//	}
+//
+//
+//	@Override
+//	public void addActionParam(ActionParams param) {
+//		// TODO Auto-generated method stub
+//		
+//	}
+
 }

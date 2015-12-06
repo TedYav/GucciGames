@@ -14,6 +14,8 @@ import voogasalad_GucciGames.gameEngine.objectActions.defaultActions.Attack;
 import voogasalad_GucciGames.gameEngine.targetCoordinate.TargetCoordinateSingle;
 
 public class AttackEvent extends Attack {
+	public AttackEvent() {
+	}
 
 	public AttackEvent(String actionName) {
 		super(actionName);
@@ -44,6 +46,7 @@ public class AttackEvent extends Attack {
 			for (MapObject mo : params.getEngine().getPlayers().getPlayerById(id).getMapObjects()) {
 				if (mo.getCoordinate().equals(target)) {
 					doDamage(params, damage, parameters, mo);
+					parameters.addPlayer(id);
 					break; // can only attack one
 				}
 			}

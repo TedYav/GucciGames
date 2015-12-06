@@ -1,12 +1,10 @@
 package voogasalad_GucciGames.gameData.wrapper;
 
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.TreeMap;
 
 import voogasalad_GucciGames.gameEngine.GameEngineToGamePlayerInterface;
 import voogasalad_GucciGames.gameEngine.GameLevelEngine;
@@ -15,10 +13,9 @@ import voogasalad_GucciGames.gameEngine.CommunicationParameters.ChangedParameter
 import voogasalad_GucciGames.gameEngine.CommunicationParameters.GridCoordinateParameters;
 import voogasalad_GucciGames.gameEngine.targetCoordinate.ATargetCoordinate;
 import voogasalad_GucciGames.gameplayer.controller.GameParametersInterface;
-import voogasalad_GucciGames.gameplayer.windows.mainwindow.components.DisplayComponent;
 
 /**
- * 
+ *
  * This class will be a wrapper for the game engine
  * and the information to configure the game player
  * gui
@@ -31,7 +28,7 @@ public class GameEngine implements IGameInfoToGAE, GameEngineToGamePlayerInterfa
 	private Map<String,GameLevelEngine> myLevelsMap;
 	private String myGameName;
 	private String myCurrentLevel;
-	
+
 	private String myInitialLevel;
 
 
@@ -39,21 +36,21 @@ public class GameEngine implements IGameInfoToGAE, GameEngineToGamePlayerInterfa
 	    myLevelsMap = new HashMap<String,GameLevelEngine>();
 	    this.myInitialLevel = initialLevel;
 	    this.myCurrentLevel = initialLevel;
-	    
+
 	    myGameName = "RandomName";
-	    
+
 	}
-	
+
 	public void resetGame(){
 		myCurrentLevel = myInitialLevel;
 	}
-	
+
 	@Override
 	public void changeCurrentLevel(String newGameLevel){
 		myCurrentLevel = newGameLevel;
 	}
-	
-	
+
+
 	public GameEngine(String initialLevel, String gameName){
 		this(initialLevel);
 		myGameName = gameName;
@@ -63,32 +60,32 @@ public class GameEngine implements IGameInfoToGAE, GameEngineToGamePlayerInterfa
 		// TODO Auto-generated method stub
 		return this.myGameName;
 	}
-	
-		
-	
+
+
+
 	/**
 	 * Adds a new level and returns a reference to it.
 	 * @param gameName======
 	 * @return
-	 */	
+	 */
 	public void addLevel(String levelName, GameLevelEngine myEngine){
 	    myEngine.setName(levelName);
 	    myLevelsMap.put(levelName, myEngine);
-		
+
 //		return GameLevelEngine;
 	}
 
 
-	
+
 	/*
 	public void swapLevels(int first, int second){
 		if (myLevelsMap.containsKey(first) && myLevelsMap.containsKey(second)){
 			GameLevelEngine gameOne = myLevelsMap.get(first);
 			gameOne.changeID(second);
-			
+
 			GameLevelEngine gameTwo = myLevelsMap.get(second);
 			gameTwo.changeID(first);
-			
+
 			myLevelsMap.put(first, gameTwo);
 			myLevelsMap.put(second, gameOne);
 		}
@@ -105,7 +102,7 @@ public class GameEngine implements IGameInfoToGAE, GameEngineToGamePlayerInterfa
 	public Map<String, IGameLevelToGamePlayer> getLevelsMap() {
 		return Collections.unmodifiableMap(myLevelsMap);
 	}
-	
+
 	@Override
 	public List<String> getChoosableLevels() {
 		List<String> levelNames = new ArrayList<String>();
@@ -116,18 +113,18 @@ public class GameEngine implements IGameInfoToGAE, GameEngineToGamePlayerInterfa
 			}
 		return levelNames;
 	}
-	
+
 	@Override
 	public void setEngine(String gameName, GameLevelEngine engine) {
 		myLevelsMap.put(gameName, engine);
-		
+
 	}
 
 	public GameLevelEngine getCurrentLevel() {
 		// TODO Auto-generated method stub
 		return myLevelsMap.get(myCurrentLevel);
 	}
-	
+
 
 	@Override
 	public String getName() {

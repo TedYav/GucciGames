@@ -70,6 +70,9 @@
 	-fx-spacing: 10;
 	-fx-padding: 5;
 }
+.listview-details{
+	-fx-font: 12pt "Palatino Linotype";
+}
 .vbox-chat{
 	-fx-font: 12pt "Palatino Linotype";
 	-fx-background-color: #BFB79F;

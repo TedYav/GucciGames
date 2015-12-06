@@ -6,12 +6,18 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import javafx.beans.property.BooleanProperty;
+import javafx.beans.property.SimpleBooleanProperty;
 import javafx.collections.ObservableList;
 import javafx.geometry.Rectangle2D;
+import javafx.scene.control.Dialog;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
+import voogasalad.util.fxsprite.Sprite;
 import voogasalad_GucciGames.gameAuthoring.gui.GAEGui;
+import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.maindialogs.ImageBrowseDialogs;
+import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.paramObjects.ActionParams;
 import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.paramObjects.GameSettingParams;
 import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.paramObjects.ObjParam;
 import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.paramObjects.PlayerParams;
@@ -19,93 +25,33 @@ import voogasalad_GucciGames.gameAuthoring.gui.levels.LevelTabPane;
 import voogasalad_GucciGames.gameAuthoring.gui.map.GridPoint;
 import voogasalad_GucciGames.gameAuthoring.model.DisplayMapObject;
 import voogasalad_GucciGames.gameAuthoring.model.GAEModel;
+import voogasalad_GucciGames.gameAuthoring.model.IGameProperties;
 import voogasalad_GucciGames.gameAuthoring.model.IGAEModel;
 import voogasalad_GucciGames.gameAuthoring.model.MapObjectType;
-import voogasalad_GucciGames.gameAuthoring.properties.ObjectProperty;
 import voogasalad_GucciGames.gameEngine.mapObject.MapObject;
-import voogasalad_GucciGames.helpers.ImageDatabase;
+import voogasalad_GucciGames.helpers.GameResourceManagerToGAE;
+import voogasalad_GucciGames.helpers.ResourceManager;
 
 public class GaeController extends AGuiGaeController implements IModelGaeController {
 
-	private IGAEModel model;
-	private GAEGui myGui;
-	private MapObjectType mySelectedType;
-	private MapObjectType myDragType;
-	private Stage myStage;
+	private final IGAEModel myModel;
+	private final GAEGui myGui;
+	private final Stage myStage;
 	private int numberOfPlayers;
-//	private int defaultOwnerID = -1;
 	private Map<Integer, String> allPlayers = new HashMap<Integer, String>();
-	private ImageDatabase myImageDatabase = new ImageDatabase();
+	private ImageBrowseDialogs myImageBrowseDialogs;
+	private final GameResourceManagerToGAE myResManager = new ResourceManager();
 	//private ArrayList<String> customGamePlayerComponents = new ArrayList<String>();
 
 	public GaeController(Stage stage) {
 		myStage = stage;
-		model = new GAEModel(this);
+		myModel = new GAEModel(this);
 		myGui = new GAEGui(this, stage);
 	}
+	
+	private MapObjectType mySelectedType;
 
-	@Override
-	public void deleteComponent(DisplayMapObject mapObj) {
-		model.deleteComponent(mapObj);
-	}
-
-	@Override
-	public DisplayMapObject addObject(int levelID, GridPoint gridpoint, MapObjectType mapObjType) {
-		return model.addObject(levelID, gridpoint, mapObjType);
-	}
-
-	@Override
-	public List<DisplayMapObject> getMapObjects(int id) {
-		return model.getMapObjects(id);
-	}
-
-	@Override
-	public void clearMap(int id) {
-		model.clearMap(id);
-	}
-
-	@Override
-	public void createCustomTileType(Map<String, String> m) {
-		model.createCustomTileType(m);
-	}
-
-	@Override
-	public void createCustomUnitType(Map<String, String> m) {
-		model.createCustomUnitType(m);
-	}
-
-	@Override
-	public void createCustomStructureType(Map<String, String> m) {
-		model.createCustomStructureType(m);
-	}
-
-	@Override
-	public ObservableList<MapObjectType> getImmutableTileTypes() {
-		return model.getImmutableTileTypes();
-	}
-
-	@Override
-	public ObservableList<MapObjectType> getImmutableUnitTypes() {
-		return model.getImmutableUnitTypes();
-	}
-
-	@Override
-	public ObservableList<MapObjectType> getImmutableStructureTypes() {
-		return model.getImmutableStructureTypes();
-	}
-
-	@Override
-	@Deprecated
-	public void saveToXML(File file) {
-
-	}
-
-	@Override
-	public void saveToXML( ){
-		model.saveToXML();
-	}
-
-	@Override
+	
 	public void setSelectedType(MapObjectType mapType) {
 		mySelectedType = mapType;
 	}
@@ -114,17 +60,64 @@ public class GaeController extends AGuiGaeController implements IModelGaeControl
 	public MapObjectType getSelectedType() {
 		return mySelectedType;
 	}
+	
+	private MapObjectType myDragType;
+	
+	@Override
+	public void setDragType(MapObjectType mapType) {
+		myDragType = mapType;
+	}
 
 	@Override
-	/**
-	 * create custom map object from a property object Access type via type key
-	 */
-	public void createCustomMapObject(ObjectProperty p) {
-		// TODO do something
-		// Debug:
-		System.out.println("saving");
-		p.printProperty();
+	public MapObjectType getDragType() {
+		return myDragType;
+	}
 
+	@Override
+	public void deleteComponent(DisplayMapObject mapObj) {
+		// TODO add levelID
+		//model.deleteComponent(mapObj);
+	}
+
+	@Override
+	public DisplayMapObject addObject(int levelID, GridPoint gridpoint, MapObjectType mapObjType) {
+		return myModel.addObject(levelID, gridpoint, mapObjType);
+	}
+
+	@Override
+	public List<DisplayMapObject> getMapObjects(int id) {
+		return myModel.getMapObjects(id);
+	}
+
+	@Override
+	public void clearMap(int id) {
+		myModel.clearMap(id);
+	}
+
+	@Override
+	public ObservableList<MapObjectType> getImmutableTileTypes() {
+		return myModel.getImmutableTileTypes();
+	}
+
+	@Override
+	public ObservableList<MapObjectType> getImmutableUnitTypes() {
+		return myModel.getImmutableUnitTypes();
+	}
+
+	@Override
+	public ObservableList<MapObjectType> getImmutableStructureTypes() {
+		return myModel.getImmutableStructureTypes();
+	}
+
+	@Override
+	@Deprecated
+	public void saveToXML(File file) {
+		
+	}
+	
+	@Override
+	public void saveToXML( ){
+		myModel.saveToXML();
 	}
 
 	@Override
@@ -152,7 +145,7 @@ public class GaeController extends AGuiGaeController implements IModelGaeControl
 
 	@Override
 	public void changeOwner(MapObject mapObject, int playerID) {
-		model.changeOwner(mapObject, playerID);
+		myModel.changeOwner(mapObject, playerID);
 
 	}
 
@@ -172,8 +165,6 @@ public class GaeController extends AGuiGaeController implements IModelGaeControl
 
 	}
 
-
-
 	@Override
 	public Stage getStage() {
 		return myStage;
@@ -182,7 +173,7 @@ public class GaeController extends AGuiGaeController implements IModelGaeControl
 
 	@Override
 	public Image requestImage(String path) {
-		return myImageDatabase.request(path);
+		return myResManager.getImage(path);
 	}
 
 	@Override
@@ -205,7 +196,12 @@ public class GaeController extends AGuiGaeController implements IModelGaeControl
 	@Override
 	public void initGame(String name) {
 		//TODO: Add the name somewhere
-		myGui.initGame(name);
+		myHasGameProperty.set(true);
+		myGui.initGame();
+		myResManager.loadGame(name);
+		myResManager.toggleCopyOnAccess(true);
+		myImageBrowseDialogs = new ImageBrowseDialogs(myResManager);
+		//System.out.println(myResManager.getImages("units"));
 	}
 
 	@Override
@@ -215,86 +211,63 @@ public class GaeController extends AGuiGaeController implements IModelGaeControl
 
 	@Override
 	public List<String> getCustomGamePlayerComponents(String location) {
-		return model.getComponents(location);
+		return myModel.getComponents(location);
 	}
 
 	@Override
 	public void setCustomGamePlayerComponents(String location,
 			List<String> allComponents) {
-		model.setGuiComponents(location, allComponents);
+		myModel.setGuiComponents(location, allComponents);
 	}
 
 	@Override
 	public int addLevel(String name) {
-		return model.addLevel(name);
+		return myModel.addLevel(name);
 	}
 
-	@Override
-	public void setDragType(MapObjectType mapType) {
-		myDragType = mapType;
-	}
-
-	@Override
-	public MapObjectType getDragType() {
-		return myDragType;
-	}
-
-	@Override
-	public List<ObjParam> getAllMapObjCharParams() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public List<ObjParam> getSelectedMapObjCharParams(List<String> selectedChar) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public List<ObjParam> getAllPlayerCharParams() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public List<ObjParam> getSelectedPlayerCharParams(List<String> selectedChar) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public List<ObjParam> getAllOutcomes() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public List<ObjParam> getSelectedOutcomes(List<String> selectedOutcomes) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public List<ObjParam> getAllConditions() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public List<ObjParam> getSelectedConditions(List<String> selectedConditions) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public void addActionParam() {
-		// TODO Auto-generated method stub
-	}
-
-	@Override
+	
 	public void setDefaultOwner(int ownerID) {
-		model.setDefaultOwner(ownerID);
+		myModel.setDefaultOwner(ownerID);
+	}
+
+	@Override
+	public IGameProperties getPropertiesInterface() {
+		return myModel.getPropertiesInterface();
+	}
+
+	
+	private final BooleanProperty myHasGameProperty = new SimpleBooleanProperty(false);
+	
+	@Override
+	public BooleanProperty getHasGameProperty(){
+		return myHasGameProperty;
+	}
+	
+	@Override
+	public void createCustomType(MapObjectType object, String type) {
+		switch (type) {
+		case "tile":
+			myModel.createCustomTileType(object);
+			break;
+		case "structure":
+			myModel.createCustomStructureType(object);
+			break;
+		case "unit":
+			myModel.createCustomUnitType(object);
+			break;
+		default:
+			throw new RuntimeException("No "+type+" type");
+		}
+	}
+
+	@Override
+	public GameResourceManagerToGAE getResourceManager() {
+		return myResManager;
+	}
+
+	@Override
+	public Dialog<String> getImageBrowseDialog(String type) {
+		return myImageBrowseDialogs.getDialog(type);
 	}
 
 
