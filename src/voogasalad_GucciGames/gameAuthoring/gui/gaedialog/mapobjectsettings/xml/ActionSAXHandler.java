@@ -21,6 +21,7 @@ public class ActionSAXHandler extends DefaultHandler {
 	private ActionParams actionParam = null;
 
 	public ActionSAXHandler(){
+		
 	}
 
 	public List<ActionParams> getActionParams(){
