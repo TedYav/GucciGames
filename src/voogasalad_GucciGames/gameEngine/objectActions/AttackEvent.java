@@ -46,6 +46,7 @@ public class AttackEvent extends Attack {
 			for (MapObject mo : params.getEngine().getPlayers().getPlayerById(id).getMapObjects()) {
 				if (mo.getCoordinate().equals(target)) {
 					doDamage(params, damage, parameters, mo);
+					parameters.addPlayer(id);
 					break; // can only attack one
 				}
 			}

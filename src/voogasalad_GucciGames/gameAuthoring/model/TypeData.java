@@ -13,20 +13,27 @@ import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.mapobjectsettings.xml.P
 import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.paramObjects.ActionParamsValue;
 import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.paramObjects.ObjParam;
 import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.paramObjects.RuleParams;
-import voogasalad_GucciGames.gameEngine.defaultCharacteristics.TileCharacteristic;
-import voogasalad_GucciGames.gameEngine.mapObject.MapObject;
 
 public class TypeData implements IGameProperties {
 	private ObservableList<MapObjectType> tileTypes;
 	private ObservableList<MapObjectType> unitTypes;
 	private ObservableList<MapObjectType> structureTypes;
 	
+<<<<<<< HEAD
 	private Map<String, ActionParamsValue> myActionParams = new HashMap<String, ActionParamsValue>();
 	private Map<String, ObjParam> myMapObjectCharParams = new HashMap<String, ObjParam>();
 	private Map<String, RuleParams> myRules = new HashMap<String, RuleParams>();
 	private Map<String, ObjParam> myConditions = new HashMap<String, ObjParam>();
 	private Map<String, ObjParam> myOutcomes = new HashMap<String, ObjParam>();
 	private Map<String, ObjParam> myPlayerCharParams = new HashMap<String, ObjParam>();
+=======
+	private Map<String, ActionParams> myActionParams = new HashMap<>();
+	private Map<String, ObjParam> myMapObjectCharParams = new HashMap<>();
+	private Map<String, RuleParams> myRules = new HashMap<>();
+	private Map<String, ObjParam> myConditions = new HashMap<>();
+	private Map<String, ObjParam> myOutcomes = new HashMap<>();
+	private Map<String, ObjParam> myPlayerCharParams = new HashMap<>();
+>>>>>>> master
 
 	public TypeData() {
     	ParamObjParser parser = new ParamObjParser();
@@ -53,8 +60,8 @@ public class TypeData implements IGameProperties {
 		
 		tileTypes = FXCollections.observableArrayList();
 	
-		MapObjectType objType = new MapObjectType("AllTiles", "player/images/allTiles.jpg", 0);
-		MapObjectType objType2 = new MapObjectType("AllTiles2", "player/images/allTiles.jpg", 0);
+		MapObjectType objType = new MapObjectType("Tile1", "tiles/water.jpg", 0);
+		MapObjectType objType2 = new MapObjectType("Tile2", "tiles/sand.jpg", 0);
 
 		tileTypes.add(objType);
 		tileTypes.add(objType2);

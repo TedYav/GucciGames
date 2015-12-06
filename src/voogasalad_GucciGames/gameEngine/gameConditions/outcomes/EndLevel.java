@@ -24,7 +24,8 @@ public class EndLevel extends Outcome {
 	@Override
 	ChangedParameters applyOutcome(BasicParameters params,ChangedParameters changedParams, int i) {
 		params.getEngine().setEndLevel(true);
-	//	params.getEngine().changeLevel(myDestination);
+		changedParams.setLevel(myDestination);
+		//params.getEngine().changeLevel(myDestination);
 		System.out.println("setgame="+params.getEngine().hasLevelEnded());
 		return changedParams;
 	}
