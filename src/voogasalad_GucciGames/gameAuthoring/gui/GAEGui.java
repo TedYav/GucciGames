@@ -64,7 +64,7 @@ public class GAEGui extends BorderPane {
 		myLevelTabPane.setOnMouseMoved(e -> statusBar.update(e));
 	}
 
-	public void initGame(String name) {
+	public void initGame() {
 		Dialog<Map<String, String>> dialog = new NewLevelDialog(myController);
 		dialog.showAndWait().ifPresent(map -> {
 			myController.getLevelTabPane().createNewTab(map.get("name"), Integer.parseInt(map.get("width")),

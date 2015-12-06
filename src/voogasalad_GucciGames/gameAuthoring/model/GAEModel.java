@@ -7,11 +7,14 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 import javafx.collections.ObservableList;
 import voogasalad_GucciGames.gameAuthoring.IModelGaeController;
 import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.mapobjectsettings.xml.ParamObjParser;
+import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.paramObjects.ActionParams;
 import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.paramObjects.ObjParam;
+import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.paramObjects.RuleParams;
 import voogasalad_GucciGames.gameAuthoring.gui.map.GridPoint;
 import voogasalad_GucciGames.gameData.wrapper.GameInfo;
 import voogasalad_GucciGames.gameData.wrapper.GuiData;
@@ -27,9 +30,12 @@ public class GAEModel implements IGAEModel{
 	private GameInfoFactory myFactory;
 	private int myOwnerID;
 	
-	private Map<String, ObjParam> myActions;
-	private Map<String, ObjParam> myCharacteristics;
-	private Map<String, ObjParam> myRules;
+	private Map<String, ActionParams> myActions;
+	private Map<String, ObjParam> myMapObjectCharacteristics;
+	private Map<String, RuleParams> myRules;
+	private Map<String, ObjParam> myConditions;
+	private Map<String, ObjParam> myOutcomes;
+
 	//private List<DisplayMapObject> myMapObjects;
 	// map from level id (unique) to list of map objects
 	//private Map<Integer, MapData> myLevels;
@@ -48,9 +54,31 @@ public class GAEModel implements IGAEModel{
     	levelData = new LevelData();
     	myOwnerID = 0;
     	
+    	
     	// load all default properites
     	ParamObjParser parser = new ParamObjParser();
-    	Set<ObjParam> objs = parser.getMapObjChars();
+    	//myActions = parser.getActions().stream().collect(Collectors.groupingBy(ObjParam::getName, ));
+//    	Set<ActionParams> actions = parser.getActions();
+//    	for (ActionParams action: actions){
+//    		myActions.put(action.getName(), action);
+//    	}
+//    	Set<ObjParam> mapObjCharacteristcs = parser.getMapObjChars();
+//    	for (ObjParam param: mapObjCharacteristcs){
+//    		myMapObjectCharacteristics.put(param.getName(), param);
+//    	}    
+//    	Set<ObjParam> conditions = parser.getConditions();
+//    	for (ObjParam param: conditions){
+//    		myConditions.put(param.getName(), param);
+//    	}
+//    	Set<ObjParam> outcomes = parser.getOutcomes();
+//    	for (ObjParam param: outcomes){
+//    		myOutcomes.put(param.getName(), param);
+//    	}  
+//    	Set<RuleParams> rules = parser.getRules();
+//    	for (RuleParams param: rules){
+//    		myRules.put(param.getName(), param);
+//    	}      	
+    	
     	
     	// Probs need to change this
 		mapOfPlayers.put(-1, new GamePlayerPerson(-1));
@@ -195,5 +223,68 @@ public class GAEModel implements IGAEModel{
 	@Override
 	public void setDefaultOwner(int ownerID) {
 		myOwnerID = ownerID;
+	}
+
+
+	@Override
+	public List<ObjParam> getMapCharParams() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+
+	@Override
+	public List<ObjParam> getSelectedMapObjCharParams(List<String> selectedChar) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+
+	@Override
+	public List<ObjParam> getPlayerCharParams() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+
+	@Override
+	public List<ObjParam> getSelected() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+
+	@Override
+	public List<ObjParam> getOutcomes() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+
+	@Override
+	public List<ObjParam> getSelectedOutcomes() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+
+	@Override
+	public List<ObjParam> getConditions() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+
+	@Override
+	public List<ObjParam> getSelectedConditions(List<String> selectedConditions) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+
+	@Override
+	public void addActionParam(ActionParams param) {
+		// TODO Auto-generated method stub
+		
 	}
 }
