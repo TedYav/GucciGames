@@ -56,6 +56,7 @@ public class CharacteristicFactory {
         Constructor c = Class.forName(prop.getProperty(objParamValue.getName())).getConstructor(myParameters);
 
 		Object myCharacteristic = c.newInstance(initargs );
+		System.out.println(((AMapObjectCharacteristic) myCharacteristic).getClass().toString());
         return (AMapObjectCharacteristic) myCharacteristic;
 
 	}
