@@ -1,6 +1,7 @@
 package voogasalad_GucciGames.gameplayer.scenes.concrete;
 
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.Map;
 import voogasalad_GucciGames.gameData.GameDataException;
 import voogasalad_GucciGames.gameplayer.scenes.GameScene;
@@ -16,7 +17,7 @@ public class LoadGameScene extends GameMenuScene {
 
     @Override
     protected Map<String, MenuAction> buildOptionMap () {
-        Map<String, MenuAction> optionMap = new HashMap<>();
+        Map<String, MenuAction> optionMap = new LinkedHashMap<>();
         for(String s : myManager.getLoader().getAvailableSaves(myManager.getController().getGame().getGameName())){
             optionMap.put(s, () -> selectGameSave(s));
         }
