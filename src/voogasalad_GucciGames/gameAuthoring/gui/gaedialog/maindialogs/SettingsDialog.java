@@ -58,6 +58,12 @@ public class SettingsDialog extends AGaeDialog implements ISwitchSettingsPane{
 		return this.showAndWait();
 	}
 
+	@Override
+	protected void setSaveAction() {
+		// TODO Auto-generated method stub
+		
+	}
+
 
 
 

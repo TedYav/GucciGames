@@ -5,6 +5,7 @@ import voogasalad_GucciGames.gameplayer.config.PlayerConfig;
 import voogasalad_GucciGames.gameplayer.controller.GameControllerInterface;
 import voogasalad_GucciGames.gameplayer.scenes.GameScene;
 import voogasalad_GucciGames.gameplayer.windows.mainwindow.components.DisplayComponent;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
@@ -66,9 +67,12 @@ public class DisplayMapObjectImage extends DisplayComponent implements ListChang
      * @param url
      */
     private void showImagePlaceholder(String url) {
-        buffer = new Image(url,Integer.parseInt(myBundle.getString("imagefitwidth")),0,true,false,true);
-        imgView=new ImageView(buffer);
-        imgView.setOnMouseClicked(e->{
+        //buffer = new Image(url,Integer.parseInt(myBundle.getString("imagefitwidth")),0,true,false,true);
+        buffer = getController().getResource().getImage(url);
+    	imgView=new ImageView(buffer);
+    	imgView.setFitWidth(Integer.parseInt(myBundle.getString("imagefitwidth")));
+    	imgView.setPreserveRatio(true);
+    	imgView.setOnMouseClicked(e->{
             updateActiveMapObject(null);
         });
         display.getChildren().add(imgView);

@@ -33,36 +33,31 @@ public class MapObject implements PlayerMapObjectInterface {
 	private String myImagePath;
 	private Map<String, AMapObjectCharacteristic> myCharacteristics;
 	private MapObjectEventHandler myEventHandler;
-	private Map<String, MapObjectEvent> myEvents; // test
-	private double myWidth, myHeight;
+	private Map<String, MapObjectEvent> myEvents; //test
 
-	public MapObject(ATargetCoordinate coor, int id, int layer, String name, String imagePath, double width,
-			double height) {
+	public MapObject(ATargetCoordinate coor, int id, int layer, 
+			String name, String imagePath){
+
 		this.myCoordinate = coor;
 		this.myOwnerID = id;
 		this.myLayer = layer;
 		this.myName = name;
 		this.myImagePath = imagePath;
-		this.myHeight = height;
-		this.myWidth = width;
+
 		this.myCharacteristics = new TreeMap<>();
 		this.myEvents = new HashMap<>();
 	}
 
-	public MapObject(String name, String imagePath) {
-		this(null, -1, 0, name, imagePath, 0, 0);
+	public MapObject(String name, String imagePath){
+		this(null,-1,0,name,imagePath);
 	}
 
 	public MapObject(MapObject obj, ATargetCoordinate coor, int id) {
 		this(obj, coor, id, 0);
 	}
 
-	public MapObject(MapObject obj, ATargetCoordinate coor, int id, int layer) {
-		this(coor, id, layer, obj.getName(), obj.getImagePath(), obj.getWidth(), obj.getHeight());
-	}
-
-	public MapObject(ATargetCoordinate coor, int id, int layer, String name, String imagePath) {
-		this(coor, id, layer, name, imagePath, 0, 0);
+	public MapObject(MapObject obj, ATargetCoordinate coor, int id, int layer){
+		this(coor,id,layer,obj.getName(),obj.getImagePath());
 	}
 
 	public MapObject(ATargetCoordinate coor, int ownerID) {
@@ -205,21 +200,8 @@ public class MapObject implements PlayerMapObjectInterface {
 		return this.myEvents.containsKey(name);
 	}
 
-	public double getWidth() {
-		return this.myWidth;
-	}
-
-	public double getHeight() {
-		return this.myHeight;
-	}
-
-	public void setWidthHeight(double width, double height) {
-		this.myWidth = width;
-		this.myHeight = height;
-	}
-
-	public void setMapObjectEventHandler(MapObjectEventHandler handler) {
-		this.myEventHandler = handler;
+public void setMapObjectEventHandler(MapObjectEventHandler handler){
+	this.myEventHandler = handler;
 	}
 
 	@Override

@@ -7,7 +7,6 @@ import java.util.ResourceBundle;
 
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.ButtonBar.ButtonData;
-import javafx.scene.control.Dialog;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
@@ -18,10 +17,9 @@ import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.DialogElements;
 import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.dialogcomponents.CheckBoxField;
 import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.paramObjects.GameSettingParams;
 
-//<<<<<<< HEAD
 //public class CustomGPlayerDialog extends GaeDialog{
 	
-public class CustomGPlayerDialog extends Dialog{
+public class CustomGPlayerDialog extends AGaeDialog{
 
     private ResourceBundle namesBundle = ResourceBundle.getBundle("voogasalad_GucciGames.gameData.config.GuiComponents");
     private Stage gameSettingDialog = new Stage();
@@ -40,7 +38,6 @@ public class CustomGPlayerDialog extends Dialog{
     private int numBars;
     private int maxBars=3; //assume there are only 3 bars: left, bottom, right
     private int maxComponents;
-    private final ButtonType mySave = new ButtonType("Save", ButtonData.FINISH);
 
     public CustomGPlayerDialog(IDialogGaeController dialogGaeController, IGuiGaeController guiGaeController){
     	super();
@@ -69,7 +66,8 @@ public class CustomGPlayerDialog extends Dialog{
 
     }
     
-    private void setSaveAction(){
+    @Override
+    protected void setSaveAction(){
     	this.setResultConverter(dialogButton -> {
     		if (dialogButton == mySave) {
     			for (List<CheckBoxField> cb: checkBoxFields) {

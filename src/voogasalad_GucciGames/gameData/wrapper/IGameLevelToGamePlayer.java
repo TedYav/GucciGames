@@ -3,15 +3,13 @@ package voogasalad_GucciGames.gameData.wrapper;
 import voogasalad_GucciGames.gameEngine.GameEngineToGamePlayerInterface;
 
 public interface IGameLevelToGamePlayer {
-	
-	public int getID();
-	
-	public int getNextLevel();
-	
-	public boolean isChoosable();
+		
+	public boolean isMyChoosability();
 	
 	public String getLevelName();
+	
+	public boolean hasLevelEnded();
 
-	public GameEngineToGamePlayerInterface getGameEngine();
+	//public GameEngineToGamePlayerInterface getGameEngine();
 
 }
