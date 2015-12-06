@@ -115,23 +115,13 @@ public class GAEModel implements IGAEModel{
     
 
     private void saveToXML (GameInfo game) {    	
-    	System.err.println("IMPLEMENT ME PLZ");
     	XStreamGameEngine saver = new XStreamGameEngine();
-//		AllPlayers myPlayers = new AllPlayers(mapOfPlayers);
-//		MainGameEngine engine = new MainGameEngine(myPlayers);
-		//TODO: saving GameInfo instead of MainGameEngine
-
-
-		//ASK ABOUT THIS, might not need engine to be passed into game info anymore
-
-		//GameInfo game = new GameInfo();
-		
-
 		saver.saveGameInfo(game);
-
     }
     
     public void saveToXML() {
+//      AllPlayers myPlayers = new AllPlayers(mapOfPlayers);
+//      MainGameEngine engine = new MainGameEngine(myPlayers);
     	myFactory.create(typeData, levelData, guiData);
     	
     }
