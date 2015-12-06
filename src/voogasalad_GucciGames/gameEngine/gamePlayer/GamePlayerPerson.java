@@ -95,11 +95,11 @@ public class GamePlayerPerson {
 		}
 	}
 
-	public APlayerChars getMyCharacteristics(String name) {
+	public APlayerChars getCharacteristics(String name) {
 		return myCharacteristics.get(name);
 	}
 
-	public Boolean hasCharerctristic(String name) {
+	public Boolean hasCharacteristic(String name) {
 		return myCharacteristics.containsKey(name);
 	}
 

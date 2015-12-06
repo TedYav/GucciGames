@@ -45,6 +45,13 @@ public class ObjParamValue {
 		});
 	}
 	
+	public int numParams() {
+		return paramValues.size();
+	}
+	
+	public Map<String, String> getMap() {
+		return paramValues;
+	}
 	
 
 }

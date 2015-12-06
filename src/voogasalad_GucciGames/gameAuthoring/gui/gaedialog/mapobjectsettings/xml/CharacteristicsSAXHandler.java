@@ -42,6 +42,7 @@ public class CharacteristicsSAXHandler extends DefaultHandler {
 					attributes.getValue("paramTypes"));
 			for(int i = 0; i < paramNames.size(); i++){
 				characteristicsParam.addParam(paramTypes.get(i), paramNames.get(i));
+				characteristicsParam.addParamOrder(i, paramNames.get(i));
 			}
 
 		}           

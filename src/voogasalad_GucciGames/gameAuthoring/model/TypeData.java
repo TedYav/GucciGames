@@ -15,6 +15,7 @@ import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.paramObjects.ActionPara
 import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.paramObjects.ObjParam;
 import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.paramObjects.ObjParamValue;
 import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.paramObjects.RuleParams;
+import voogasalad_GucciGames.gameAuthoring.model.factories.CharacteristicFactory;
 
 public class TypeData implements IGameProperties {
 	private ObservableList<MapObjectType> tileTypes;
@@ -27,6 +28,8 @@ public class TypeData implements IGameProperties {
 	private Map<String, ObjParam> myConditions = new HashMap<String, ObjParam>();
 	private Map<String, ObjParam> myOutcomes = new HashMap<String, ObjParam>();
 	private Map<String, ObjParam> myPlayerCharParams = new HashMap<String, ObjParam>();
+	
+	private CharacteristicFactory characteristicFactory = new CharacteristicFactory();
 
 	public TypeData() {
     	ParamObjParser parser = new ParamObjParser();
