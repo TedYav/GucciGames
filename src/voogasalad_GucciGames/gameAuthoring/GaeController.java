@@ -233,5 +233,10 @@ public class GaeController extends AGuiGaeController implements IModelGaeControl
 		return myDragType;
 	}
 
+	@Override
+	public void setDefaultOwner(int ownerID) {
+		model.setDefaultOwner(ownerID);
+	}
+
 
 }
