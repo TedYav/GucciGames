@@ -11,13 +11,13 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.GridPane;
 
-public class CharGridPane extends GridPane {
+public class ObjParamPane extends GridPane {
 	
 	private ObjParam param;
 	private Map<Label, TextField> contents = new HashMap<Label, TextField>();
 	private Label name;
 	
-	public CharGridPane(ObjParam param){
+	public ObjParamPane(ObjParam param){
 		this.setHgap(5);
 		this.setVgap(5);
 		this.setPadding(new Insets(5,5,5,5));
