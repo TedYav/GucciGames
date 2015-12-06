@@ -52,8 +52,8 @@ public class TypeData implements IGameProperties {
 		
 		tileTypes = FXCollections.observableArrayList();
 	
-		MapObjectType objType = new MapObjectType("AllTiles", "player/images/allTiles.jpg", 0);
-		MapObjectType objType2 = new MapObjectType("AllTiles2", "player/images/allTiles.jpg", 0);
+		MapObjectType objType = new MapObjectType("Tile1", "tiles/water.jpg", 0);
+		MapObjectType objType2 = new MapObjectType("Tile2", "tiles/sand.jpg", 0);
 
 		tileTypes.add(objType);
 		tileTypes.add(objType2);
