@@ -16,8 +16,6 @@ import voogasalad_GucciGames.gameAuthoring.IGuiGaeController;
 import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.DialogElements;
 import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.dialogcomponents.CheckBoxField;
 import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.paramObjects.GameSettingParams;
-
-//public class CustomGPlayerDialog extends GaeDialog{
 	
 public class CustomGPlayerDialog extends AGaeDialog{
 
@@ -51,7 +49,7 @@ public class CustomGPlayerDialog extends AGaeDialog{
             allCheckedBoxes.add(new ArrayList<String>());
         }
 
-		this.getDialogPane().getButtonTypes().addAll(mySave, ButtonType.CLOSE);
+		this.getDialogPane().getButtonTypes().addAll(mySave);
 		setSaveAction();
 		  
         prop.forEach((key,value) -> {

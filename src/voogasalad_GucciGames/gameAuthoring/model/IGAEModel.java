@@ -18,6 +18,7 @@ public interface IGAEModel {
     
     public void createCustomTileType(Map<String,String> m);
     public void createCustomUnitType(Map<String,String> m);
+    public void createCustomStructureType(Map<String, String> m);
     
     public ObservableList<MapObjectType> getImmutableTileTypes();
     public ObservableList<MapObjectType> getImmutableUnitTypes();
@@ -42,6 +43,5 @@ public interface IGAEModel {
 	 * @param ownerID
 	 */
 	public void setDefaultOwner(int ownerID);
-
     
 }
