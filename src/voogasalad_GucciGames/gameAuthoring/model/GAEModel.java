@@ -6,9 +6,12 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 import javafx.collections.ObservableList;
 import voogasalad_GucciGames.gameAuthoring.IModelGaeController;
+import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.mapobjectsettings.xml.ParamObjParser;
+import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.paramObjects.ObjParam;
 import voogasalad_GucciGames.gameAuthoring.gui.map.GridPoint;
 //import voogasalad_GucciGames.gameData.GameInfo;
 //import voogasalad_GucciGames.gameData.XMLWriter;
@@ -28,6 +31,10 @@ public class GAEModel implements IGAEModel{
 	private Map<Integer, GamePlayerPerson> mapOfPlayers;
 	private GameInfoFactory myFactory;
 	private int myOwnerID;
+	
+	private Map<String, ObjParam> myActions;
+	private Map<String, ObjParam> myCharacteristics;
+	private Map<String, ObjParam> myRules;
 	//private List<DisplayMapObject> myMapObjects;
 	// map from level id (unique) to list of map objects
 	//private Map<Integer, MapData> myLevels;
@@ -46,11 +53,18 @@ public class GAEModel implements IGAEModel{
     	levelData = new LevelData();
     	myOwnerID = 0;
     	
+    	// load all default properites
+    	ParamObjParser parser = new ParamObjParser();
+    	Set<ObjParam> actions = parser.getMapObjChars();
+    	System.out.println(actions);
+    	
+    	
     	// Probs need to change this
 		mapOfPlayers.put(-1, new GamePlayerPerson(-1));
 		mapOfPlayers.put(0, new GamePlayerPerson(0));
 		mapOfPlayers.put(1, new GamePlayerPerson(1));
 		mapOfPlayers.put(2, new GamePlayerPerson(2));
+		
     }
     
 
