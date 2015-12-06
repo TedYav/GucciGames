@@ -33,10 +33,10 @@ public class GameFileHelper {
 	public void copyResource(String sourceURI, String destURI) throws IOException, NoSuchFileException {
 		File source = new File(sourceURI);
 		File dest = new File(destURI);
-		System.out.println("TRYING TO COPY " + sourceURI + " TO " + destURI);
+		//System.out.println("TRYING TO COPY " + sourceURI + " TO " + destURI);
 		if(!dest.exists()){
 			Files.copy(source.toPath(), dest.toPath());
-			System.out.println("COPIED " + sourceURI + " TO " + destURI);
+			//System.out.println("COPIED " + sourceURI + " TO " + destURI);
 		}
 	}
 
@@ -48,16 +48,16 @@ public class GameFileHelper {
 
 	public void makeDirectory(String path) {
 		File directory = new File(path);
-		System.out.println("TRYING TO MAKE DIRECTORY " + path);
+		//System.out.println("TRYING TO MAKE DIRECTORY " + path);
 		if(!directory.exists()){
 			directory.mkdir();
-			System.out.println("CREATED DIRECTORY " + path);
+			//System.out.println("CREATED DIRECTORY " + path);
 		}
 	}
 	
 	public void listf(String directoryName, List<String> files, List<String> extensions) {
 	    File directory = new File(directoryName);
-	    System.out.println("STARTING IN DIRECTORY " + directoryName);
+	    //System.out.println("STARTING IN DIRECTORY " + directoryName);
 	    // get all the files from a directory
 	    File[] fList = directory.listFiles();
 	    if(fList.length > 0){

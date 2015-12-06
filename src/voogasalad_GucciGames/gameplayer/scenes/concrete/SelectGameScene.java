@@ -12,6 +12,7 @@ import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import javafx.util.Duration;
+import voogasalad_GucciGames.gameData.GameDataException;
 import voogasalad_GucciGames.gameplayer.gameloader.GameLoader;
 import voogasalad_GucciGames.gameplayer.scenes.GameSceneManager;
 import voogasalad_GucciGames.gameplayer.windows.GameWindow;
@@ -36,6 +37,11 @@ public class SelectGameScene extends GameMenuScene {
     
     private void selectGame(String gameName){
     	myManager.getLoader().selectGame(gameName);
+    	try {
+            myManager.getLoader().loadSelectedGame();
+        }
+        catch (GameDataException e) {
+        }
     	myManager.sceneFinished();
     }
 }

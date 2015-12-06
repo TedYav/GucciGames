@@ -39,5 +39,9 @@ public class LevelData {
 		
 	}
 	
+	public Map<Integer, MapData> getMap() {
+		return myLevels;
+	}
+	
 
 }

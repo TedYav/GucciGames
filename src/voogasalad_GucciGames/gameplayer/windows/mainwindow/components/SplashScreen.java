@@ -100,6 +100,8 @@ public class SplashScreen extends WindowComponent {
 			myImage.setFitHeight(Screen.getPrimary().getBounds().getHeight());
 			myImage.setPreserveRatio(true);
 			myPane.getChildren().add(myImage);
+		}else{
+			myPane.setBackground(new Background(new BackgroundFill(Color.WHITE, CornerRadii.EMPTY, Insets.EMPTY)));
 		}
 	}
 	
@@ -107,7 +109,7 @@ public class SplashScreen extends WindowComponent {
 		if(myDuration > 0){
 			Timeline timeline = new Timeline(new KeyFrame(
 			        Duration.millis(myDuration),
-			        e -> getScene().getManager().sceneFinished()));
+			        e -> getGameScene().getManager().sceneFinished()));
 			timeline.play();
 		}
 		

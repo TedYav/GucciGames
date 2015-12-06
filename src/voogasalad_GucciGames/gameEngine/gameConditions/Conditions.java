@@ -14,10 +14,10 @@ public abstract class Conditions {
 	public Conditions() {
 	}
 
-	public Conditions(String name, String value) {
+	public Conditions(String value) {
 	}
 
-	public Conditions(String name, int value) {
+	public Conditions(int value) {
 	}
 
 	public abstract Boolean execute(BasicParameters params, GamePlayerPerson player);

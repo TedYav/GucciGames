@@ -15,12 +15,13 @@ public class DropDownMenuField  extends DialogComponent{
 	private Properties prop;
 	private String propKey;
 	private String itemsKey;
-	private Text label;
+	private Text label = new Text();
 	private List<String> propertiesList = new ArrayList<String>();
 	private ComboBox<String> dropDown = new ComboBox<String>();
 	
 	public DropDownMenuField(Properties prop, String propKey, 
 			String itemsKey){
+		super();
 		this.prop = prop;
 		this.propKey = propKey;
 		this.itemsKey = itemsKey;
@@ -40,6 +41,7 @@ public class DropDownMenuField  extends DialogComponent{
 	protected void makeDropDownList(){	
 		ObservableList<String> options = FXCollections.observableArrayList(propertiesList);
 		dropDown.setItems(options);	
+		
 		this.add(label, 0, 0);
 		this.add(dropDown, 1 , 0);
 		

@@ -4,10 +4,12 @@ import java.util.List;
 
 import voogasalad_GucciGames.gameAuthoring.model.holder.ActionHolder;
 import voogasalad_GucciGames.gameAuthoring.model.holder.CharacteristicHolder;
+import voogasalad_GucciGames.gameEngine.mapObject.AMapObjectCharacteristic;
+import voogasalad_GucciGames.gameEngine.objectActions.MapObjectEvent;
 
 public class MapObjectType {
-	private List<CharacteristicHolder> myCharacteristics;
-	private List<ActionHolder> myActions;
+	private List<AMapObjectCharacteristic> myCharacteristics;
+	private List<MapObjectEvent> myEvents;
 	private double myWidth, myHeight, myX, myY;
 	private String myImagePath;
 	private String myName;
@@ -49,6 +51,14 @@ public class MapObjectType {
 
 	public int getLayer() {
 		return myLayer;
+	}
+
+	public List<AMapObjectCharacteristic> getCharacteristics() {
+		return myCharacteristics;
+	}
+
+	public List<MapObjectEvent> getEvents() {
+		return myEvents;
 	}
 
 }

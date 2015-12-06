@@ -15,13 +15,13 @@ public class PlayerWealth extends Conditions {
 	private static final String WEALTH = "wealth";
 	private int myValue =0;
 
-	public PlayerWealth(String name, int value) {
+	public PlayerWealth(int value) {
 		myValue = value;
 	}
 
 	@Override
 	public Boolean execute(BasicParameters params,GamePlayerPerson player) {
-		PlayerWealthChar playerWealth = (PlayerWealthChar)player.getMyCharacteristics(WEALTH);
+		PlayerWealthChar playerWealth = (PlayerWealthChar)player.getCharacteristics(WEALTH);
 		return (playerWealth.getWealth() == myValue);
 	}
 

@@ -1,6 +1,9 @@
 package voogasalad_GucciGames.gameEngine.CommunicationParameters;
 
+import java.util.List;
+
 import voogasalad_GucciGames.gameEngine.GameLevelEngine;
+import voogasalad_GucciGames.gameEngine.gamePlayer.chars.APlayerChars;
 import voogasalad_GucciGames.gameEngine.mapObject.MapObject;
 
 public class BasicParameters extends CommunicationParameters {
@@ -9,6 +12,7 @@ public class BasicParameters extends CommunicationParameters {
 	// front and back end
 	private MapObject myCalledMe;
 	private GameLevelEngine myEngine;
+	private List<APlayerChars> transfers;
 
 	public BasicParameters(MapObject calledMe, GameLevelEngine engine) {
 		this.myCalledMe = calledMe;
@@ -40,4 +44,7 @@ public class BasicParameters extends CommunicationParameters {
 		return myCalledMe;
 	}
 
+	public List<APlayerChars> getTransfers(){
+		return this.transfers;
+	}
 }

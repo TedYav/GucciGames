@@ -23,9 +23,10 @@ import voogasalad_GucciGames.gameplayer.windows.mainwindow.components.DisplayCom
 public class GameInfo implements GameInfoToGamePlayer{
 	private GameEngine myEngine;
 	private GuiData guiData;
+	private GameStats myStats;
 	
 	public GameInfo(){
-	          myEngine=new GameEngine("TEMP");
+	    myEngine=new GameEngine("TEMP");
 	}
 	public GameInfo(String gameName) {
 	    myEngine=new GameEngine("TEMP",gameName);

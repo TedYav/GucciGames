@@ -10,7 +10,7 @@ import org.xml.sax.SAXException;
 import org.xml.sax.helpers.DefaultHandler;
 
 import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.maindialogs.GaeDialogHelper;
-import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.paramObjects.ActionParams;
+import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.paramObjects.ActionParamsValue;
 import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.paramObjects.ObjParam;
 import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.paramObjects.ObjType;
 
@@ -42,6 +42,7 @@ public class CharacteristicsSAXHandler extends DefaultHandler {
 					attributes.getValue("paramTypes"));
 			for(int i = 0; i < paramNames.size(); i++){
 				characteristicsParam.addParam(paramTypes.get(i), paramNames.get(i));
+				characteristicsParam.addParamOrder(i, paramNames.get(i));
 			}
 
 		}           

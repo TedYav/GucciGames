@@ -10,26 +10,31 @@ import java.util.stream.Collectors;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.mapobjectsettings.xml.ParamObjParser;
-import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.paramObjects.ActionParams;
+import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.paramObjects.ActionParam;
+import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.paramObjects.ActionParamsValue;
 import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.paramObjects.ObjParam;
+import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.paramObjects.ObjParamValue;
 import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.paramObjects.RuleParams;
+import voogasalad_GucciGames.gameAuthoring.model.factories.CharacteristicFactory;
 
 public class TypeData implements IGameProperties {
 	private ObservableList<MapObjectType> tileTypes;
 	private ObservableList<MapObjectType> unitTypes;
 	private ObservableList<MapObjectType> structureTypes;
 	
-	private Map<String, ActionParams> myActionParams = new HashMap<>();
-	private Map<String, ObjParam> myMapObjectCharParams = new HashMap<>();
-	private Map<String, RuleParams> myRules = new HashMap<>();
-	private Map<String, ObjParam> myConditions = new HashMap<>();
-	private Map<String, ObjParam> myOutcomes = new HashMap<>();
-	private Map<String, ObjParam> myPlayerCharParams = new HashMap<>();
+	private Map<String, ActionParam> myActionParams = new HashMap<String, ActionParam>();
+	private Map<String, ObjParam> myMapObjectCharParams = new HashMap<String, ObjParam>();
+	private Map<String, RuleParams> myRules = new HashMap<String, RuleParams>();
+	private Map<String, ObjParam> myConditions = new HashMap<String, ObjParam>();
+	private Map<String, ObjParam> myOutcomes = new HashMap<String, ObjParam>();
+	private Map<String, ObjParam> myPlayerCharParams = new HashMap<String, ObjParam>();
+	
+	private CharacteristicFactory characteristicFactory = new CharacteristicFactory();
 
 	public TypeData() {
     	ParamObjParser parser = new ParamObjParser();
-    	Set<ObjParam> mapObjCharacteristcs = parser.getMapObjChars();
-    	for (ObjParam param: mapObjCharacteristcs){
+    	Set<ObjParam> mapObjCharacteristics = parser.getMapObjChars();
+    	for (ObjParam param: mapObjCharacteristics){
     		myMapObjectCharParams.put(param.getName(), param);
     	}    
     	Set<ObjParam> conditions = parser.getConditions();
@@ -44,8 +49,8 @@ public class TypeData implements IGameProperties {
     	for (RuleParams param: rules){
     		myRules.put(param.getName(), param);
     	}
-    	Set<ActionParams> actions = parser.getActions();
-    	for (ActionParams action: actions){
+    	Set<ActionParam> actions = parser.getActions();
+    	for (ActionParam action: actions){
     		myActionParams.put(action.getName(), action);
     	}
 		
@@ -122,14 +127,46 @@ public class TypeData implements IGameProperties {
 
 	@Override
 	public List<ObjParam> getSelectedConditions(List<String> selectedConditions) {
-		return null;
+		return myConditions.values().stream()
+				.filter(c -> selectedConditions.contains(c.getName()))
+				.collect(Collectors.toList());	
+	}
+
+
+
+
+	@Override
+	public void addCharacteristic(ObjParam param, MapObjectType type) {
+		// TODO Auto-generated method stub
+		
 	}
 
 	@Override
-	public void addActionParam(ActionParams param) {
-		myActionParams.put(param.getName(), param);
+	public List<RuleParams> getAllRules() {
+		// TODO Auto-generated method stub
+		return new ArrayList<>(myRules.values());
+	}
+
+	@Override
+	public List<RuleParams> getSelectedRules(List<String> selectedRules) {
+		// TODO Auto-generated method stub
+		return myRules.values().stream()
+				.filter(c -> selectedRules.contains(c.getName()))
+				.collect(Collectors.toList());	
+	}
+
+	@Override
+	public void addActionParamValue(ActionParamsValue param) {
+		// TODO Auto-generated method stub
 		
 	}
+
+	@Override
+	public void addCharParamValue(ObjParamValue param) {
+		// TODO Auto-generated method stub
+		
+	}
+
 
 	
 
