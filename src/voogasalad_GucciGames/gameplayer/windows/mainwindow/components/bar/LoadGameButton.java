@@ -15,7 +15,7 @@ public class LoadGameButton extends DisplayComponent{
         super(scene,controller);
         loadGame=new Button(myBundle.getString("loadgame"));
         loadGame.setOnMouseClicked(e->{
-            //getScene().getManager().loadScene("MainMenuScene");
+            getGameScene().getManager().loadScene("LoadGameScene");
         });
     }
 

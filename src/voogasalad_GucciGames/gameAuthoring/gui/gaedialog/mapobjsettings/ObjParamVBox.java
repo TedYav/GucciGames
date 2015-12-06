@@ -20,7 +20,7 @@ public class ObjParamVBox extends VBox{
 	private List<ObjParamPane> objPane = new ArrayList<ObjParamPane>();
 	private Button saveBtn = new Button("Save All");
 	private ISwitchSettingsPane controller;
-	List<ObjParamValue> allCharParams;
+	private List<ObjParamValue> allCharParams;
 	
 	private MapObjectType mapObjectType;
 	

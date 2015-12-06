@@ -1,5 +1,6 @@
 package voogasalad_GucciGames.gameAuthoring.model;
 
+import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -66,8 +67,45 @@ public class TypeData implements IGameProperties {
 
 		tileTypes.add(objType);
 		tileTypes.add(objType2);
-		
 		unitTypes = FXCollections.observableArrayList();
+		
+		
+//		characteristicFactory = new CharacteristicFactory();
+//		MapObjectType type = new MapObjectType("student", "./", 0);
+//		ObjParamValue objParamVal = new ObjParamValue(type);
+//		objParamVal.setObjName("MovableCharacteristic" );
+//		Map<String, String> map = new HashMap<>();
+//		map.put("range", "1");
+//		map.put("maxNumOfMoves", "4");
+//		objParamVal.setParamValues(map);
+//		try {
+//			characteristicFactory.create(myMapObjectCharParams, objParamVal);
+//		} catch (NoSuchMethodException e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//		} catch (SecurityException e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//		} catch (ClassNotFoundException e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//		} catch (InstantiationException e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//		} catch (IllegalAccessException e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//		} catch (IllegalArgumentException e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//		} catch (InvocationTargetException e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//		}
+
+		
+		structureTypes = FXCollections.observableArrayList();
+
 	}
 	
 	public void addTileType(MapObjectType type) {
@@ -137,20 +175,12 @@ public class TypeData implements IGameProperties {
 				.collect(Collectors.toList());	
 	}
 
-
-
-
-	@Override
-	public void addCharacteristic(ObjParam param, MapObjectType type) {
-		// TODO Auto-generated method stub
-		
-	}
-
 	@Override
 	public List<RuleParams> getAllRules() {
 		// TODO Auto-generated method stub
 		return new ArrayList<>(myRules.values());
 	}
+
 
 	@Override
 	public List<RuleParams> getSelectedRules(List<String> selectedRules) {
@@ -159,15 +189,21 @@ public class TypeData implements IGameProperties {
 				.filter(c -> selectedRules.contains(c.getName()))
 				.collect(Collectors.toList());	
 	}
-
+	
 	@Override
-	public void addActionParamValue(ActionParamsValue param) {
+	public void addPlayerCharacteristic(int playerID, ObjParamValue param) {
 		// TODO Auto-generated method stub
 		
 	}
 
 	@Override
-	public void addCharParamValue(ObjParamValue param) {
+	public void addMapObjectCharacteristic(MapObjectType type, ObjParamValue param) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void addActionParamValue(MapObjectType type, ActionParamsValue param) {
 		// TODO Auto-generated method stub
 		
 	}

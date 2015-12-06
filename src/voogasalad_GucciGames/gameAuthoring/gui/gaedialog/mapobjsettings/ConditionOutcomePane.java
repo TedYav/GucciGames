@@ -44,15 +44,18 @@ public class ConditionOutcomePane extends GridPane {
 	public ConditionOutcomePane(IDialogGaeController controller, List<String> conditions, List<String> outcomes, MapObjectType type){
 		super();
 		this.title.setFont(new Font("Arial", 20));
+		this.title.setMinWidth(200);
 		this.type = type;
 		this.tableView = new DialogTableView(conditions, "Select Conditions");
 		this.outcomesMenuField = new DropDownMenuField(outcomes);
 		this.selectedOutcome.setDisable(true);
 		this.controller = controller;
-		this.add(selectedOutcome, 0, 0);
-		this.add(outcomesMenuField, 1, 0);
-		this.add(addOutcome, 2, 0);
-		this.add(tableView, 0, 1);
+		
+		this.getChildren().add(title);
+		this.add(selectedOutcome, 1, 1);
+		this.add(outcomesMenuField, 2, 1);
+		this.add(addOutcome, 3, 1);
+		this.add(tableView, 1, 2);
 		setActionForAddCondition();
 
 		
@@ -76,7 +79,7 @@ public class ConditionOutcomePane extends GridPane {
 		if(this.outcomeParam != null){
 			this.getChildren().remove(objParamPane);
 			objParamPane  = new ObjParamPane(outcomeParam);
-			this.add(objParamPane, 1, 1);
+			this.add(objParamPane, 3, 2);
 			
 		}
 	}

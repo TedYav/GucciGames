@@ -107,9 +107,4 @@ public class SettingsDialog extends AGaeDialog implements ISwitchSettingsPane{
 		
 	}
 
-
-
-
-
-
 }
