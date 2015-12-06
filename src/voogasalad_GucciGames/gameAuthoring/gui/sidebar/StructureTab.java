@@ -8,7 +8,7 @@ public class StructureTab extends ATab {
 	public StructureTab(SideBar bar) {
 		super(bar);
 		setText("Structures");
-		//init(myController.getImmutableStructureTypes());
+		init(myController.getImmutableStructureTypes());
 	}
 
 	@Override
