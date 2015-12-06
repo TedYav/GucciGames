@@ -15,7 +15,7 @@ public class SaveGameButton extends DisplayComponent{
         super(scene,controller);
         saveGame=new Button(myBundle.getString("savegame"));
         saveGame.setOnMouseClicked(e->{
-            //getScene().getManager().loadScene("MainMenuScene");
+            getGameScene().getManager().getLoader().saveGame();
         });
     }
 
