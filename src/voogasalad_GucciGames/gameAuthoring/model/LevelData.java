@@ -33,6 +33,11 @@ public class LevelData {
 		return newLevelID;
 		
 	}
+
+	public void deleteObject(int levelID, DisplayMapObject mapObj) {
+		myLevels.get(levelID).deleteObject(mapObj);
+		
+	}
 	
 
 }

@@ -1,21 +1,60 @@
 package voogasalad_GucciGames.gameAuthoring.model;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
+import java.util.stream.Collectors;
+
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.mapobjectsettings.xml.ParamObjParser;
+import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.paramObjects.ActionParams;
+import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.paramObjects.ObjParam;
+import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.paramObjects.RuleParams;
+import voogasalad_GucciGames.gameEngine.defaultCharacteristics.TileCharacteristic;
+import voogasalad_GucciGames.gameEngine.mapObject.MapObject;
 
-public class TypeData {
+public class TypeData implements IGameProperties {
 	private ObservableList<MapObjectType> tileTypes;
 	private ObservableList<MapObjectType> unitTypes;
 	private ObservableList<MapObjectType> structureTypes;
-//	private List<MapObject> onMap;
+	
+	private Map<String, ActionParams> myActionParams;
+	private Map<String, ObjParam> myMapObjectCharParams;
+	private Map<String, RuleParams> myRules;
+	private Map<String, ObjParam> myConditions;
+	private Map<String, ObjParam> myOutcomes;
+	private Map<String, ObjParam> myPlayerCharParams;
 
 	public TypeData() {
+    	ParamObjParser parser = new ParamObjParser();
+    	Set<ObjParam> mapObjCharacteristcs = parser.getMapObjChars();
+    	for (ObjParam param: mapObjCharacteristcs){
+    		myMapObjectCharParams.put(param.getName(), param);
+    	}    
+    	Set<ObjParam> conditions = parser.getConditions();
+    	for (ObjParam param: conditions){
+    		myConditions.put(param.getName(), param);
+    	}
+    	Set<ObjParam> outcomes = parser.getOutcomes();
+    	for (ObjParam param: outcomes){
+    		myOutcomes.put(param.getName(), param);
+    	}  
+    	Set<RuleParams> rules = parser.getRules();
+    	for (RuleParams param: rules){
+    		myRules.put(param.getName(), param);
+    	}
+    	Set<ActionParams> actions = parser.getActions();
+    	for (ActionParams action: actions){
+    		myActionParams.put(action.getName(), action);
+    	}
+		
 		tileTypes = FXCollections.observableArrayList();
 	
 		MapObjectType objType = new MapObjectType("AllTiles", "player/images/allTiles.jpg", 0);
 		MapObjectType objType2 = new MapObjectType("AllTiles2", "player/images/allTiles.jpg", 0);
 
-		
 		tileTypes.add(objType);
 		tileTypes.add(objType2);
 		
@@ -40,4 +79,60 @@ public class TypeData {
 	public ObservableList<MapObjectType> getImmutableStructureTypes() {
 		return FXCollections.unmodifiableObservableList(structureTypes);
 	}
+
+	@Override
+	public List<ObjParam> getAllMapObjCharParams() {
+		return new ArrayList<>(myMapObjectCharParams.values());
+	}
+
+	@Override
+	public List<ObjParam> getSelectedMapObjCharParams(List<String> selectedChar) {
+		return myMapObjectCharParams.values().stream()
+				.filter(c -> selectedChar.contains(c.getName()))
+				.collect(Collectors.toList());
+	}
+
+	@Override
+	public List<ObjParam> getAllPlayerCharParams() {
+		return new ArrayList<>(myPlayerCharParams.values());
+	}
+
+	@Override
+	public List<ObjParam> getSelectedPlayerCharParams(List<String> selectedChar) {
+		return myPlayerCharParams.values().stream()
+				.filter(c -> selectedChar.contains(c.getName()))
+				.collect(Collectors.toList());		
+	}
+
+	@Override
+	public List<ObjParam> getAllOutcomes() {
+		return new ArrayList<>(myOutcomes.values());
+	}
+
+	@Override
+	public List<ObjParam> getSelectedOutcomes(List<String> selectedOutcomes) {
+		return myOutcomes.values().stream()
+				.filter(c -> selectedOutcomes.contains(c.getName()))
+				.collect(Collectors.toList());		
+	}
+
+	@Override
+	public List<ObjParam> getAllConditions() {
+		return new ArrayList<>(myConditions.values());
+	}
+
+	@Override
+	public List<ObjParam> getSelectedConditions(List<String> selectedConditions) {
+		return null;
+	}
+
+	@Override
+	public void addActionParam(ActionParams param) {
+		myActionParams.put(param.getName(), param);
+		
+	}
+
+	
+
+
 }
