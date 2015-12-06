@@ -9,7 +9,9 @@ import java.net.UnknownHostException;
 import java.util.List;
 
 import com.thoughtworks.xstream.XStream;
+import com.thoughtworks.xstream.io.xml.DomDriver;
 
+import voogasalad_GucciGames.gameData.wrapper.GameEngine;
 import voogasalad_GucciGames.gameEngine.CommunicationParameters.ChangedParameters;
 import voogasalad_GucciGames.gameEngine.CommunicationParameters.GridCoordinateParameters;
 import voogasalad_GucciGames.gameEngine.gamePlayer.chars.APlayerChars;
@@ -23,23 +25,18 @@ import voogasalad_GucciGames.gameplayer.controller.GameParametersInterface;
  * @author Efe Aras
  *
  */
-public class GameEngineClient implements GameEngineToGamePlayerInterface, Runnable{
+public class GameEngineClient extends GameEnginePlayer implements Runnable{
 
 	private int myPlayerID;
-	private GameLevelEngine myEngine;
 	private PrintWriter myWriterToServer;
     private String name;
 
-	private static int PORT = 6550; //hard code for now
-	private static String SERVER_ADDRESS = ""; //harcode for now
-
-	public GameEngineClient(GameLevelEngine engine) {
-		myEngine = engine;
-	}
-
-	public void updateGameEngine(String engineXML) {
-		XStream xstream = new XStream();
-		myEngine = (GameLevelEngine) xstream.fromXML(engineXML);
+	private static int PORT = 6555; //hard code for now
+	private static String SERVER_ADDRESS = "10.190.209.220"; //harcode for now
+	
+	public GameEngineClient(GameEngine gameEngine, String ipAddr) {
+		super(gameEngine);
+		//ignore the ip address for now;
 	}
 
 	//add a listener to handle exceptions and report to front end. alternatively, make this
@@ -54,24 +51,34 @@ public class GameEngineClient implements GameEngineToGamePlayerInterface, Runnab
 
 		        // Process all messages from server, according to the protocol.
 		        while (true) {
+                    System.out.println("waiting for server input");
 		            String input = in.readLine();
-
-		            if(input.equals("GAMEDATA")){
+		            
+                    if (input == null) {
+                        return;
+                    }
+                    System.out.println("client has:" + input);
+                    if(input.startsWith("GAMEDATA")){
+	                   // input = in.readLine();
+                        System.out.println("OMG SOME DATA ON CLIENT");
+                    	
 	                    input = in.readLine();
+                    	
+                    	
 	                    int lengthXML = Integer.parseInt(input);
-
+	                    System.out.println("according to input the length is" + lengthXML);
 	                    StringBuilder myBuilder = new StringBuilder();
 
 	                    for(int i = 0; i < lengthXML; i++){
-	                    	myBuilder.append(in.read());
+	                    	myBuilder.append((char) in.read());
 	                    }
+	                    
+	                    System.out.println("actual input is" + myBuilder.toString().length());
+
+	                    
 	                    this.updateGameEngine(myBuilder.toString());
 
 		            }
-
-
-
-
 		        }
 
 		} catch (UnknownHostException e) {
@@ -84,100 +91,21 @@ public class GameEngineClient implements GameEngineToGamePlayerInterface, Runnab
 
 
 	}
-	@Override
-	public String getGameName() {
-		return myEngine.getGameName();
-	}
-
-	@Override
-	public List<PlayerMapObjectInterface> getInitialState() {
-		return myEngine.getInitialState();
-	}
-
-	@Override
-	public GameParametersInterface endTurn() {
-		updateServerGameEngine();
-		return myEngine.endTurn();
-	}
-
+	
 	private void updateServerGameEngine() {
 		// TODO Auto-generated method stub
-		XStream xstream = new XStream();
 
-		myWriterToServer.println("GAMEDATA");
-		String s = xstream.toXML(myEngine);
-		myWriterToServer.println(s.length());
-		myWriterToServer.println(s);
+		XStream xstream = new XStream(new DomDriver());
+		String s = xstream.toXML(getMyEngine());
+		System.out.println("updating all the clients");
+		System.out.println(s.length());
+    	myWriterToServer.print("GAMEDATA\n" + s.length() + "\n" + s + "\n");
 
 
 	}
 
 	@Override
-	public int getTurnPlayerID() {
-		return myEngine.getTurnPlayerID();
+	public void endTurn() {
+		updateServerGameEngine();
 	}
-
-
-	@Override
-	public GameParametersInterface getGameParameters() {
-		return myEngine.getGameParameters();
-	}
-
-	@Override
-	public GridCoordinateParameters getPossibleCoordinates(String action, PlayerMapObjectInterface mapObject) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public ChangedParameters performAction(String action, PlayerMapObjectInterface mapObject,
-			ATargetCoordinate target) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public int getMapWidth() {
-		// TODO Auto-generated method stub
-		return 0;
-	}
-
-	@Override
-	public int getMapHeight() {
-		// TODO Auto-generated method stub
-		return 0;
-	}
-
-
-	@Override
-	public boolean hasLevelEnded() {
-		return myEngine.hasLevelEnded();}
-
-	@Override
-	public String getName() {
-		return myEngine.getLevelName();
-
-	}
-
-    @Override
-    public void changeCurrentLevel (String newGameLevel) {
-        // TODO Auto-generated method stub
-        
-    }
-
-	@Override
-	public APlayerChars getPlayerCharacteristic(String name, int id) {
-		// TODO Auto-generated method stub
-		return this.myEngine.getPlayers().getPlayerById(id).getCharacteristics(name);
-	}
-	
-    @Override
-    public GameLevelEngine getCurrentLevel () {
-        // TODO Auto-generated method stub
-        return null;
-    }
-
-	//change to either immutable or just make the methods of this public (and not the full set...)
-
-
 }

@@ -14,18 +14,19 @@ import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 
 public class NewObjMakerPane extends GridPane {
-	private final Properties prop;
-	private final StringProperty myImgPath = new SimpleStringProperty();
-	private TextInputField name;
-	private TextInputField layer;
-	private final String type;
-	private final AGuiGaeController myController;
+	protected final Properties prop;
+	protected final StringProperty myImgPath = new SimpleStringProperty();
+	protected TextInputField name;
+	protected TextInputField layer;
+	protected final String type;
+	protected final AGuiGaeController myController;
+	protected GridPane myPane;
 
 	public NewObjMakerPane(AGuiGaeController controller, Properties prop, String type) {
 		this.prop = prop;
-		initContent(type);
 		this.type = type;
 		myController = controller;
+		initContent(type);
 	}
 
 	private void initContent(String type) {
@@ -34,7 +35,8 @@ public class NewObjMakerPane extends GridPane {
 		name = new TextInputField(prop, "name");
 		add(title, 0, 0);
 		add(name, 0, 1);
-		add(getImgBrowser(),0,2);
+		myPane = getImgBrowser();
+		add(myPane,0,2);
 		if (!type.equals("tile")) {
 			layer = new TextInputField(prop, "layer");
 			add(layer, 0, 3);
@@ -42,7 +44,7 @@ public class NewObjMakerPane extends GridPane {
 
 	}
 	
-	private Pane getImgBrowser(){
+	protected GridPane getImgBrowser(){
 		GridPane pane = new GridPane();
 		pane.setHgap(20);
 		ImageView imgBrowser = new ImageView();
@@ -55,7 +57,7 @@ public class NewObjMakerPane extends GridPane {
 				imgBrowser.setImage(myController.getResourceManager().getImage(nV));
 		});
 		pane.add(imgBrowser, 0, 0);
-		Button btn = new Button("Select Image");
+		Button btn = new Button("Image");
 		btn.setOnAction(e -> {
 			myController.getImageBrowseDialog(type+"s").showAndWait().ifPresent(s->myImgPath.set(s));
 		});

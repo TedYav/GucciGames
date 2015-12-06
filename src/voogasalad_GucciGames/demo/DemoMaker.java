@@ -48,7 +48,6 @@ public class DemoMaker extends Application {
 	public static void main(String[] args) {
 		launch(args);
 	}
-
 	private static GameInfo createGame() {
 		GameLevelEngine level1 = makeLevel(4, 4);
 		level1.setMyChoosability(true);

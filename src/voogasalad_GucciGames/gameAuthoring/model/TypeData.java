@@ -68,6 +68,8 @@ public class TypeData implements IGameProperties {
 		tileTypes.add(objType2);
 		
 		unitTypes = FXCollections.observableArrayList();
+		
+		structureTypes = FXCollections.observableArrayList();
 	}
 	
 	public void addTileType(MapObjectType type) {
