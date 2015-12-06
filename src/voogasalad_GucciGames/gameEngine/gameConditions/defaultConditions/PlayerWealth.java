@@ -21,7 +21,7 @@ public class PlayerWealth extends Conditions {
 
 	@Override
 	public Boolean execute(BasicParameters params,GamePlayerPerson player) {
-		PlayerWealthChar playerWealth = (PlayerWealthChar)player.getMyCharacteristics(WEALTH);
+		PlayerWealthChar playerWealth = (PlayerWealthChar)player.getCharacteristics(WEALTH);
 		return (playerWealth.getWealth() == myValue);
 	}
 

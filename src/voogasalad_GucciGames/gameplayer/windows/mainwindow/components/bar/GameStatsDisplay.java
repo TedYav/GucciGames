@@ -8,6 +8,7 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.scene.Parent;
 import javafx.scene.control.ListView;
+import voogasalad_GucciGames.gameEngine.gamePlayer.chars.PlayerScore;
 import voogasalad_GucciGames.gameplayer.config.PlayerConfig;
 import voogasalad_GucciGames.gameplayer.controller.GameControllerInterface;
 import voogasalad_GucciGames.gameplayer.scenes.GameScene;
@@ -35,7 +36,9 @@ public class GameStatsDisplay extends DisplayComponent {
         if (levelEnd) {
             observeStats.add(myBundle.getString("statswin"));
         }
-        observeStats.add(myBundle.getString("statsscore")+getController().getEngine().getGameParameters().getScore().get("Player" + myID));
+        //System.out.println(myBundle.getString("statsscore")+getController().getEngine().getGameParameters().getScore().get("Player" + myID));
+        double score = ((PlayerScore) getController().getEngine().getPlayerCharacteristic("PlayerScore", myID)).getScore();
+        observeStats.add(myBundle.getString("statsscore")+score);
     }
 
     @Override

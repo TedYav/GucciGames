@@ -38,6 +38,7 @@ public class RuleFactory {
 		Constructor<Rules> ruleConstructor = rule.getDeclaredConstructor(RuleParams.class, BasicParameters.class);
 		Rules ruleInstance = ruleConstructor.newInstance(basicParams);
 
+
 		// need to add code for groovy
 		return basicParams;
 	}
