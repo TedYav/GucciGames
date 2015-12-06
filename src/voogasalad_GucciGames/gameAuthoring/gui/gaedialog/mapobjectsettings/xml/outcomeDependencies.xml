@@ -4,6 +4,7 @@
 		 paramNames="affectedPlayers, destination"
 		 paramTypes="String,String,String">
 	</element>	
+<<<<<<< HEAD
 		<element name="ModifyActiveObjectHealth" 
 		 paramNames="affectedPlayers,value"
 		 paramTypes="String,int">
@@ -11,9 +12,25 @@
 		<element name="ModifyWealth" 
 		 paramNames="affectedPlayers,value"
 		 paramTypes="String,int">
+=======
+	<element name="modifyActiveObjectHealth" 
+		 paramNames="health"
+		 paramTypes="int">
+	</element>
+	
+	
+	
+	<element name="ModifyActiveObjectHealth" 
+		 paramNames="affectedPlayers, health,value"
+		 paramTypes="String, String, int">
+	</element>	
+	<element name="ModifyWealth" 
+		 paramNames="affectedPlayers,wealth,value"
+		 paramTypes="String,String,int">
+>>>>>>> b1a2b6463a41c12c8147d1b5317466484deab4f4
 	</element>	
 	
-		<element name="RemovePlayer" 
+	<element name="RemovePlayer" 
 		 paramNames="affectedPlayers"
 		 paramTypes="String">
 	</element>	

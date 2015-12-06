@@ -98,7 +98,9 @@ public class DemoMaker extends Application {
 		TileCharacteristic myTileCharacteristic = new TileCharacteristic(false);
 		List<Rules> moveRules = new ArrayList<Rules>();
 		moveRules.add(moveOwn);
+
 		MoveEvent myMoveEvent = new MoveEvent("Move", moveRules, new ArrayList<Outcome>());
+
 		soldier.addEvent("Move", myMoveEvent);
 
 		Conditions onePlayerLeft = new CheckOnePlayerLeft();

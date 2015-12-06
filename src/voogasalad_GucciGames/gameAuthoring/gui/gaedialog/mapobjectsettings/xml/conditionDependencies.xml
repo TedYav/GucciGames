@@ -9,8 +9,13 @@
 		 paramTypes="">
 	</element>	
 		<element name="checkPlayerWealth" 
+<<<<<<< HEAD
 		 paramNames="value"
 		 paramTypes="int">
+=======
+		 paramNames="condParams"
+		 paramTypes="">
+>>>>>>> b1a2b6463a41c12c8147d1b5317466484deab4f4
 	</element>	
 		<element name="CheckSteppingOn" 
 		 paramNames="value"

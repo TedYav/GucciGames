@@ -4,7 +4,7 @@ import javafx.application.Application;
 import javafx.stage.Stage;
 import voogasalad_GucciGames.gameAuthoring.GaeController;
 
-public class Main extends Application {
+public class GaeMain extends Application {
 
 	@Override
 	public void start(Stage stage) throws Exception {

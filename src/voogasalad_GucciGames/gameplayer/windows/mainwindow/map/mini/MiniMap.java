@@ -1,5 +1,6 @@
 package voogasalad_GucciGames.gameplayer.windows.mainwindow.map.mini;
 
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -8,8 +9,10 @@ import java.util.Observer;
 import java.util.ResourceBundle;
 
 import javafx.geometry.Point2D;
+import javafx.scene.Cursor;
 import javafx.scene.Parent;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseDragEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
@@ -37,19 +40,60 @@ public class MiniMap extends DisplayComponent implements MiniMapInterface, Obser
 	private int myWidth, myHeight;
 	private int myCellWidth, myCellHeight;
 	
+	private double myOverlayWidth;
+	private double myOverlayHeight;
+	
+	
 	public MiniMap(GameScene scene, GameControllerInterface controller) {
 		super(scene, controller);
 		initializeVariables();
 		initializePanes();
 		initializeMap();
+		initializeOverlay();
 		initializeHandler();
 	}
 
+	private void initializeOverlay() {
+		myOverlayPane = new Pane();
+		List<Double> overlayDimensions = getOverlaySize();
+		myOverlayWidth = overlayDimensions.get(0);
+		myOverlayHeight = overlayDimensions.get(1);
+		myOverlay = new Rectangle(myOverlayWidth, myOverlayHeight);
+		double maxSize = Double.parseDouble(myConfig.getString("MaxOverlaySize"));
+		double opacity = (myOverlayWidth > maxSize && myOverlayHeight > maxSize)?0.0:Double.parseDouble(myConfig.getString("OverlayOpacity"));
+		myOverlay.setFill(Color.web(myConfig.getString("OverlayColor"), opacity));
+		myStackPane.getChildren().add(myOverlayPane);
+		myOverlayPane.getChildren().add(myOverlay);
+	}
+
+	private List<Double> getOverlaySize() {
+		List<Double> overlays = getController().getMap().getVisibleArea();
+		return Arrays.asList(overlays.get(0)*myWidth*myCellWidth, overlays.get(1)*myHeight*myCellHeight);
+	}
+
 	private void initializeHandler() {
-		myGrid.setOnMouseDragged( e -> recenter(e));
+		myOverlayPane.setOnMouseDragged( e -> recenter(e));
+		myOverlayPane.setOnMouseDragReleased( e -> endDrag(e));
+	}
+
+	private void endDrag(MouseDragEvent e) {
+		getGameScene().getScene().setCursor(Cursor.DEFAULT);
+
 	}
 
 	private void recenter(MouseEvent e) {
+		//getGameScene().getScene().setCursor(Cursor.NONE);
+
+        double myXTranslateLimit =  ((myWidth*myCellWidth)-myOverlayWidth);
+		double myYTranslateLimit = ((myHeight*myCellHeight)-myOverlayHeight);
+		double percX = xPercent(e.getX());
+		double percY = yPercent(e.getY());
+		if(percX <= 1.1 && percX >= -.1)
+			myOverlay.setTranslateX( percX  * myXTranslateLimit);
+		if(percY <= 1.1 && percY >= -.1)
+			myOverlay.setTranslateY( percY * myYTranslateLimit);
+		
+		
 		getController().getMap().recenter(xPercent(e.getX()), yPercent(e.getY()));
 	}
 
@@ -72,7 +116,6 @@ public class MiniMap extends DisplayComponent implements MiniMapInterface, Obser
 				myShapeMap.get(coord).setFill(cell.getColor());
 				cell.addObserver(this);
 				myGrid.add(myShapeMap.get(coord), x, y);
-				//myShapeMap.get(coord).setOnMouseClicked( e -> recenter(coord));
 			}
 		}
 	}
