@@ -24,6 +24,8 @@ import voogasalad_GucciGames.gameplayer.windows.GameWindowInterface;
 import voogasalad_GucciGames.gameplayer.windows.mainwindow.components.BottomBar;
 import voogasalad_GucciGames.gameplayer.windows.mainwindow.components.DisplayComponent;
 import voogasalad_GucciGames.gameplayer.windows.mainwindow.components.LeftBar;
+import voogasalad_GucciGames.gameplayer.windows.mainwindow.components.MainMenuOverlay;
+import voogasalad_GucciGames.gameplayer.windows.mainwindow.components.OverlayComponent;
 import voogasalad_GucciGames.gameplayer.windows.mainwindow.components.RightBar;
 import voogasalad_GucciGames.gameplayer.windows.mainwindow.components.bar.ActionDisplay;
 import voogasalad_GucciGames.gameplayer.windows.mainwindow.components.bar.DisplayChat;
@@ -52,6 +54,7 @@ public class MainGameScene extends GameScene {
     private List<DisplayComponent> bottomComponents;
     private GameMenuBar myMenuBar;
     private MainMap myMap;
+    private OverlayComponent myOverlayMenu;
 
     private TopBar myTopBar;
 
@@ -69,13 +72,17 @@ public class MainGameScene extends GameScene {
         initializePane();
         loadGameData();
         showGame();
-        loadScene(myScene);
+        loadParent(myPane);
+        initializeOverlays();
 
     }
 
-    private void initializePane(){
+    private void initializeOverlays() {
+    	myOverlayMenu = new OverlayComponent(this, myController, new MainMenuOverlay(this, myController));
+	}
+
+	private void initializePane(){
         myPane = new BorderPane();
-        myScene = new Scene(myPane);
     }
 
     private void showGame(){

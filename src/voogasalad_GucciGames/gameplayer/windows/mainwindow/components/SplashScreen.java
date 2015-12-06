@@ -100,6 +100,8 @@ public class SplashScreen extends WindowComponent {
 			myImage.setFitHeight(Screen.getPrimary().getBounds().getHeight());
 			myImage.setPreserveRatio(true);
 			myPane.getChildren().add(myImage);
+		}else{
+			myPane.setBackground(new Background(new BackgroundFill(Color.WHITE, CornerRadii.EMPTY, Insets.EMPTY)));
 		}
 	}
 	

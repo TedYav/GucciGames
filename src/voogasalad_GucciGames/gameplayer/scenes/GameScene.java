@@ -5,10 +5,14 @@ import java.util.ResourceBundle;
 import javafx.event.Event;
 import javafx.event.EventHandler;
 import javafx.event.EventType;
+import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.layout.Pane;
+import javafx.scene.layout.StackPane;
 import voogasalad_GucciGames.gameplayer.config.PlayerConfig;
 import voogasalad_GucciGames.gameplayer.gameloader.GameLoader;
 import voogasalad_GucciGames.gameplayer.windows.GameWindowInterface;
+import voogasalad_GucciGames.gameplayer.windows.mainwindow.components.WindowComponent;
 
 public abstract class GameScene implements GameSceneInterface{
 
@@ -20,11 +24,15 @@ public abstract class GameScene implements GameSceneInterface{
 	protected ResourceBundle myCSS = PlayerConfig.load("scenes.CssClasses");
 	protected ResourceBundle myGuiNames = ResourceBundle.getBundle("voogasalad_GucciGames.gameData.config.GuiComponents");
 	protected Scene myScene;
+	protected StackPane myParent;
+	private Parent myOverlay;
 	
 	public GameScene(GameSceneManager manager, GameWindowInterface window, String config){
 		myManager = manager;
 		myWindow = window;
 		myConfig = PlayerConfig.load(config);
+		myParent = new StackPane();
+		myScene = new Scene(myParent);
 		readConfig();
 	}
 	
@@ -33,8 +41,9 @@ public abstract class GameScene implements GameSceneInterface{
 		myNext = myConfig.getString("NextScene");
 	}
 	
-	protected void loadScene(Scene scene){
-		myScene = scene;
+	protected void loadParent(Parent parent){
+		myParent.getChildren().clear();
+		myParent.getChildren().add(parent);
 		myWindow.loadScene(myScene);
 		loadStyleSheets();
 	}
@@ -94,6 +103,17 @@ public abstract class GameScene implements GameSceneInterface{
 	@Override
 	public <T extends Event> void addEventFilter(EventType<T> eventType, EventHandler<T> eventFilter) {
 		myScene.addEventFilter(eventType, eventFilter);
+	}
+	
+	public void addOverlay(WindowComponent overlay, double opacity){
+		myOverlay = overlay.getParent();
+		myOverlay.setOpacity(opacity);
+		myParent.getChildren().add(myOverlay);
+	}
+
+	public void removeOverlay() {
+		if(myOverlay != null)
+			myParent.getChildren().remove(myOverlay);
 	}
 
 	

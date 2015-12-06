@@ -67,6 +67,7 @@ public class MainMap extends WindowComponent implements MapInterface {
 		initializePanes();
 		initializeVariables();
 		initializeMap();
+		fogCells();
 		drawMap(getController().getInitialState());
 	}
 	
@@ -132,7 +133,7 @@ public class MainMap extends WindowComponent implements MapInterface {
 	}
 
 	private void fogCells() {
-		
+		;
 	}
 	
 	@Override

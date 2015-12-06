@@ -34,10 +34,8 @@ public class GameSplashScene extends GameScene {
 		
 		LoaderComponent loader = new LoaderComponent(this, getManager().getController(), myConfig.getBaseBundleName());
 		splash.addChild(loader);
-		
-		myScene = new Scene(splash.getParent());
-				
-		loadScene(myScene);
+						
+		loadParent(splash.getParent());
 		try {
 			myManager.getLoader().loadSelectedGame();
 		} catch (GameDataException e1) {
