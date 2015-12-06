@@ -19,7 +19,10 @@ public class NewObMakerDialog extends AGaeDialog<MapObjectType> {
 		GaeDialogHelper helper = new GaeDialogHelper();
 		prop = helper.loadProperties("dialogproperties/tiledialogproperties.properties");
 		this.controller = controller;
-		gridPane = new NewObjMakerPane(controller, prop, type);
+		if(type.equals("unit"))
+			gridPane = new NewUnitMakerPane(controller, prop, type);
+		else
+			gridPane = new NewObjMakerPane(controller, prop, type);
 		this.getDialogPane().setContent(gridPane);
 		this.getDialogPane().getButtonTypes().add(mySave);
 		setSaveAction();
