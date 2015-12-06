@@ -73,6 +73,8 @@ public interface IGuiGaeController {
 	public LevelTabPane getLevelTabPane();
 
 	public int addLevel(String name);
+	
+	public void setDefaultOwner(int ownerID);
 
 
 }
