@@ -16,7 +16,8 @@ public class PlayerFactory extends AFactory {
 
 	@Override
 	protected InputStream getStream() {
-		return null;
+		return getClass().getResourceAsStream(PATH_TO_PLAYER_CHARS);
+
 	}
 
 }
