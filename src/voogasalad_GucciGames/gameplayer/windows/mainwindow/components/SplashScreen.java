@@ -95,7 +95,7 @@ public class SplashScreen extends WindowComponent {
 	
 	private void initializeImage(String image) {
 		if(!image.isEmpty()){
-			Image splash = new Image(image);
+			Image splash = getController().getResource().getImage(image);
 			myImage = new ImageView(splash);
 			myImage.setFitHeight(Screen.getPrimary().getBounds().getHeight());
 			myImage.setPreserveRatio(true);
