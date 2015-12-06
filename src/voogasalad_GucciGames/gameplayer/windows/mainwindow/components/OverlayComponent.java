@@ -35,6 +35,7 @@ public class OverlayComponent extends WindowComponent {
 
 	public void hide() {
 		getGameScene().removeOverlay();
+		showing = false;
 	}
 	
 	public void activateKeyHandler(KeyCode code){
@@ -44,6 +45,7 @@ public class OverlayComponent extends WindowComponent {
 	
 	public void show(){
 		getGameScene().addOverlay(this, Double.parseDouble(myConfig.getString("Opacity")));
+		showing = true;
 	}
 
 }

@@ -106,6 +106,7 @@ public abstract class GameScene implements GameSceneInterface{
 	}
 	
 	public void addOverlay(WindowComponent overlay, double opacity){
+		myParent.getChildren().remove(myOverlay);
 		myOverlay = overlay.getParent();
 		myOverlay.setOpacity(opacity);
 		myParent.getChildren().add(myOverlay);
