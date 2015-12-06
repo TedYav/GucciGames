@@ -1,5 +1,6 @@
 package voogasalad_GucciGames.gameAuthoring.model;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import voogasalad_GucciGames.gameEngine.mapObject.MapObject;
@@ -10,6 +11,7 @@ public class MapData {
 	
 	public MapData(String name) {
 		myName = name; 
+		onMap = new ArrayList<>();
 	}
 
 	public void addToMap(DisplayMapObject obj) {

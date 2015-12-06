@@ -1,17 +1,18 @@
 package voogasalad_GucciGames.gameAuthoring.model;
 
+import voogasalad_GucciGames.gameAuthoring.gui.map.GridPoint;
 import voogasalad_GucciGames.gameEngine.targetCoordinate.TargetCoordinateSingle;
 
 public class DisplayMapObject {
 	private MapObjectType myType;
 	private int myOwnerID;
-	private TargetCoordinateSingle myCoord;
+	private GridPoint myCoord;
 	private int myLayer;
 	
 	public DisplayMapObject(MapObjectType mapObjType, 
-			TargetCoordinateSingle targCoordSingle, int ownerID, int layer) {
+			GridPoint gridPoint, int ownerID, int layer) {
 		myType = mapObjType;
-		myCoord = targCoordSingle;
+		myCoord = gridPoint;
 		myOwnerID = ownerID;
 		myLayer = layer;
 		
