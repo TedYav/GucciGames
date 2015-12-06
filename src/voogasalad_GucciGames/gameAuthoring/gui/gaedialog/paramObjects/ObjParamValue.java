@@ -15,6 +15,10 @@ public class ObjParamValue {
 		this.type = type;		
 	}
 	
+	public String getName(){
+		return objName;
+	}
+	
 		
 	public void setParamValues(Map<String, String> map){
 		this.paramValues = map;

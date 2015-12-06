@@ -53,10 +53,10 @@ public class ActionPane extends GridPane {
 	private ComboBox<String> dropDown = new ComboBox<String>();
 	private String selected = "";
 	private Button addBtn = new Button("Add Action");
-	Button nextBtn = new Button("Add Outcome/ Conditions");
+	Button addOutConBtn = new Button("Add Outcome/ Conditions");
+	Button addCharBtn = new Button("Add Characteristics");
 	private MapObjectType type;
 	
-	private TableView tableView = new TableView();
 	private ObservableList<TableElement> data;
 	
 	public ActionPane(ISwitchSettingsPane switchPaneInterface, 
@@ -81,18 +81,7 @@ public class ActionPane extends GridPane {
 		setLayout();
 		
 	}
-	
-	private void setTableView(){
-		data = FXCollections.observableArrayList(new ArrayList<TableElement>());
-		tableView.setItems(data);
-		TableColumn outcomeCol = new TableColumn("Outcome Name");
-		outcomeCol.setCellValueFactory(
-				new PropertyValueFactory<TableElement, String>("name"));
-		TableColumn conditionCol = new TableColumn("Conditions");
-		conditionCol.setCellFactory(
-				new PropertyValueFactory<TableElement, String>("type"));
-		tableView.getColumns().addAll(outcomeCol, conditionCol);
-	}
+
 	
 	
 	private void setLayout(){
@@ -102,17 +91,23 @@ public class ActionPane extends GridPane {
 		add(textField, 0, 0);
 		add(dropDown, 1, 0);
 		add(addBtn, 2, 0);
-		add(tableView, 1, 1);
-		add(nextBtn, 10, 10);
+		add(addOutConBtn, 3, 6);
+		add(addCharBtn, 4, 6);
 	}
 
 	private void addActionToNextBtn(){				
-		nextBtn.setOnAction(e -> {
+		addOutConBtn.setOnAction(e -> {
 			//TODO: show add rules
 		    //switchPaneInterface.switchSettingsPane(new RulesAndCharPane(rules, chars));
-			ConditionOutcomeDialog d = new ConditionOutcomeDialog(controller, type);
+			ConditionOutcomeDialog d = new ConditionOutcomeDialog(controller, switchPaneInterface, type);
 			d.showAndWait();
 
+		});
+		
+		addCharBtn.setOnAction(e -> {
+			//new dialog for characteristics
+			AddCharacteristicDialog addCharDialog  = new AddCharacteristicDialog(controller, type);
+			addCharDialog.showAndWait();
 		});
 	}
 	

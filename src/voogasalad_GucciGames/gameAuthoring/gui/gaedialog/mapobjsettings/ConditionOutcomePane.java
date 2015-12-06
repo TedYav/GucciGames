@@ -76,7 +76,11 @@ public class ConditionOutcomePane extends GridPane {
 	}
 	
 	protected ObjParamValue getOutcomeValue(){
-		return objParamPane.getAllInputs() ;
+		if(objParamPane != null){
+			return objParamPane.getAllInputs() ;
+		}
+		return null;
+		
 		
 	}
 	

@@ -41,7 +41,7 @@ public class SettingsDialog extends AGaeDialog implements ISwitchSettingsPane{
 		this.mapObjType = mapObjType;
 		prop = helper.loadProperties("dialogproperties/actionsettings.properties");			
 		this.controller = controller;
-		this.setHeaderText("Settings");
+		this.setHeaderText("Map Object Settings");
 		this.mainPane = new MainPane(this, prop, controller, mapObjType);
 		scrollPane.setContent(mainPane);
 		this.getDialogPane().setContent(scrollPane);
