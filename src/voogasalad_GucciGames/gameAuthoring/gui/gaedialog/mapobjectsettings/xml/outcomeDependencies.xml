@@ -1,16 +1,16 @@
 <outcomeDependencies>
 
 	<element name="EndLevel" 
-		 paramNames="affectedPlayers, nextLevel, destination"
+		 paramNames="affectedPlayers, destination"
 		 paramTypes="String,String,String">
 	</element>	
 		<element name="ModifyActiveObjectHealth" 
-		 paramNames="affectedPlayers,health,value"
-		 paramTypes="String,String,int">
+		 paramNames="affectedPlayers,value"
+		 paramTypes="String,int">
 	</element>	
 		<element name="ModifyWealth" 
-		 paramNames="affectedPlayers,wealth,value"
-		 paramTypes="String,String,int">
+		 paramNames="affectedPlayers,value"
+		 paramTypes="String,int">
 	</element>	
 	
 		<element name="RemovePlayer" 
