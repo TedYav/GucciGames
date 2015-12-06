@@ -1,4 +1,4 @@
-package voogasalad_GucciGames.gameAuthoring.gui.gaedialog.mapobjsettings;
+ package voogasalad_GucciGames.gameAuthoring.gui.gaedialog.mapobjsettings;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashSet;

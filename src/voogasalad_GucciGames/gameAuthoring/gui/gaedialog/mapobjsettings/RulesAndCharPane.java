@@ -56,25 +56,6 @@ public class RulesAndCharPane extends GridPane{
 	
 	private void loadRules(){
 		
-		SAXParserFactory saxParserFactory = SAXParserFactory.newInstance();
-		List<RuleParams> rulesParams = new ArrayList<RuleParams>();
-	    try {
-	        SAXParser saxParser = saxParserFactory.newSAXParser();
-	 
-	        RulesSAXHandler handler = new RulesSAXHandler(rules);
-	        saxParser.parse(new 
-	        		File("src/voogasalad_GucciGames/gameAuthoring/gui/gaedialog/mapobjectsettings/xml/ruleDependencies.xml"), 
-	        		handler);
-	        rulesParams = handler.getRuleParams();	       
-	          
-	    } catch (ParserConfigurationException | SAXException | IOException ex) {
-	        ex.printStackTrace();
-	    }
-	    List<TableElement> tableElements = new ArrayList<TableElement>();
-	    rulesParams.stream().forEach(p -> tableElements.add(new TableElement(p.getDisplayName(), "rule")));
-	    ObservableList<TableElement> data = FXCollections.observableArrayList(tableElements);
-	    this.rulesTableView = new DialogTableView(data, "Rules");
-	    this.add(rulesTableView, 0, 1);
 		
 	}
 	
@@ -84,27 +65,7 @@ public class RulesAndCharPane extends GridPane{
 		Label label = new Label("Characteristics");
 		label.setFont(new Font("Arial", 20));
 		charVBox.getChildren().add(label);
-		/*
-		SAXParserFactory saxParserFactory = SAXParserFactory.newInstance();
-	    try {
-	        SAXParser saxParser = saxParserFactory.newSAXParser();
-	 
-	        CharacteristicsSAXHandler handler = new CharacteristicsSAXHandler();
-	        saxParser.parse(new 
-	        		File("src/voogasalad_GucciGames/gameAuthoring/gui/gaedialog/mapobjectsettings/xml/characteristicsDependencies.xml"), 
-	        		handler);
-	        List<ObjParam> charParams = handler.getObjParams();
-	        for(ObjParam param : charParams){
-	        	CharGridPane p = new CharGridPane(param);
-	        	Label labelChar = new Label(param.getName());
-	        	charVBox.getChildren().add(labelChar);
-	        	charVBox.getChildren().add(p);
-	        }
-	           
-	    } catch (ParserConfigurationException | SAXException | IOException ex) {
-	        ex.printStackTrace();
-	    }
-	    */
+
 	    this.add(charVBox, 1, 1);
 		
 	}
