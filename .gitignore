@@ -6,7 +6,8 @@
 .idea/
 out/
 local.properties
-.gg
+*.gg
+*.ggs
 
 # Generic Android ignores #
 ###########################

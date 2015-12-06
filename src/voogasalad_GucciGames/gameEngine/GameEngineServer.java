@@ -157,4 +157,10 @@ public class GameEngineServer implements GameEngineToGamePlayerInterface, Runnab
         
     }
 
+    @Override
+    public GameLevelEngine getCurrentLevel () {
+        // TODO Auto-generated method stub
+        return null;
+    }
+
 }

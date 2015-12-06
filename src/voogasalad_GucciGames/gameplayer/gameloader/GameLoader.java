@@ -7,6 +7,7 @@ import voogasalad_GucciGames.gameData.GameDataInterface;
 import voogasalad_GucciGames.gameData.GameDataManager;
 import voogasalad_GucciGames.gameData.XStreamGameEngine;
 import voogasalad_GucciGames.gameData.wrapper.GameInfo;
+import voogasalad_GucciGames.gameData.wrapper.GamePlayerSave;
 import voogasalad_GucciGames.gameEngine.GameEngineToGamePlayerInterface;
 import voogasalad_GucciGames.gameplayer.controller.GameController;
 import voogasalad_GucciGames.gameplayer.controller.GameControllerInterface;
@@ -28,9 +29,20 @@ public class GameLoader {
     	return myData.getAvailableGames();
     }
     
+    public List<String> getAvailableSaves(String gameName){
+        return myData.getAvailableSaves(gameName);
+    }
+    
     public void loadGame(String gameName){
-    	myController.loadGame(myData.loadGame(gameName));
-    	gameLoaded = true;
+        myController.loadGame(myData.loadGame(gameName));
+        gameLoaded = true;
+    }
+    public void loadGameSave(String saveName){
+        myController.loadGameSave(myData.loadSave(saveName));
+        gameLoaded = true;
+    }
+    public void saveGame(GamePlayerSave game) {
+        myData.saveGame(game);
     }
     
     public void loadGameFromFile(String path){
@@ -64,6 +76,15 @@ public class GameLoader {
     	else{
     		throw new GameDataException("No game selected to load");
     	}
+    }
+    public void loadSelectedGameSave() throws GameDataException{
+        if(!mySelectedGame.isEmpty()){
+                loadGameSave(mySelectedGame);
+                mySelectedGame = "";
+        }
+        else{
+                throw new GameDataException("No game selected to load");
+        }
     }
 
 	public void loadDefault() {

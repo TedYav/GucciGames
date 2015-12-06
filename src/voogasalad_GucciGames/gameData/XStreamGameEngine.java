@@ -1,6 +1,8 @@
 package voogasalad_GucciGames.gameData;
 
 import java.io.File;
+import java.text.DateFormat;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.ResourceBundle;
@@ -9,6 +11,7 @@ import com.thoughtworks.xstream.XStream;
 import com.thoughtworks.xstream.io.xml.DomDriver;
 
 import voogasalad_GucciGames.gameData.wrapper.GameInfo;
+import voogasalad_GucciGames.gameData.wrapper.GamePlayerSave;
 import voogasalad_GucciGames.gameEngine.GameEngineToGamePlayerInterface;
 
 public class XStreamGameEngine {
@@ -54,6 +57,21 @@ public class XStreamGameEngine {
     	saveGameInfo(game, new File(gameNameToFileName(game.getGameName())));
     }
     
+    public void saveGameState(GamePlayerSave game, File file) {
+        try {
+            String gameXML = serializer.toXML(game);
+            myLoader.save(file, gameXML);
+            //myManager.addGame(game.getGameName(), sanitizeGameName(game.getGameName())+ myConfig.getString("GameExtension"));
+        }
+        catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+    public void saveGameState(GamePlayerSave game){
+        saveGameState(game, new File(gameNameToPathName(game.getInfo().getGameName()) + myConfig.getString("SaveDirectory") + DateFormat.getDateInstance().format(new Date()) +" "+ DateFormat.getTimeInstance().format(new Date()).replace(':', '-') + myConfig.getString("SaveExtension")));
+        System.out.println("SAVED");
+    }
+    
     public String gameNameToFileName(String name){
     	return sanitizeGameName(name).append(myConfig.getString("GameExtension")).toString();
     }
@@ -93,6 +111,22 @@ public class XStreamGameEngine {
         try {
             String gameXML = myLoader.read(file);
             game = (GameInfo) serializer.fromXML(gameXML);
+        }
+        catch (Exception e) {
+            e.printStackTrace();
+        }
+        System.out.println("Load complete.");
+        return game;
+    }
+
+    public GamePlayerSave loadGameState (String saveName) {
+        // TODO Auto-generated method stub
+        File file = new File(saveName);
+        System.out.println("Loading SAVE."+saveName);
+        GamePlayerSave game=null;
+        try {
+            String gameXML = myLoader.read(file);
+            game = (GamePlayerSave) serializer.fromXML(gameXML);
         }
         catch (Exception e) {
             e.printStackTrace();

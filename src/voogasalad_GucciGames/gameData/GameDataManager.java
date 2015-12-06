@@ -10,6 +10,7 @@ import java.util.ResourceBundle;
 import java.util.stream.Collectors;
 
 import voogasalad_GucciGames.gameData.wrapper.GameInfo;
+import voogasalad_GucciGames.gameData.wrapper.GamePlayerSave;
 
 public class GameDataManager implements GameDataInterface {
 
@@ -25,11 +26,11 @@ public class GameDataManager implements GameDataInterface {
     
 //    public static void main(String[] args){
 //    	GameDataManager g = new GameDataManager();
-//    	//g.buildGameDirectories("Duvall Tag");
-//    	g.copyResourceToGame("images/tiles/water.jpg", "Duvall Tag");
-//    	g.copyResourceToGame("images/units/duvall.png", "Duvall Tag");
-//    	g.renameGameDirectory("Duvall Tag", "PWNAGE");
-//    	System.out.println(g.getResources(Arrays.asList("jpg", "png"), "images/tiles/"));
+//    	g.buildGameDirectories("Duvall Tag");
+////    	g.copyResourceToGame("images/tiles/water.jpg", "Duvall Tag");
+////    	g.copyResourceToGame("images/units/duvall.png", "Duvall Tag");
+////    	g.renameGameDirectory("Duvall Tag", "PWNAGE");
+////    	System.out.println(g.getResources(Arrays.asList("jpg", "png"), "images/tiles/"));
 //    }
     
 	public GameDataManager(){
@@ -43,6 +44,10 @@ public class GameDataManager implements GameDataInterface {
 	@Override
 	public GameInfo loadGame(String name) {
 		return myXStream.loadGameByName(name);
+	}
+	@Override
+	public void saveGame(GamePlayerSave game) {
+	    myXStream.saveGameState(game);
 	}
 
 	@Override
@@ -112,7 +117,6 @@ public class GameDataManager implements GameDataInterface {
 			myFileHelper.copyResource(basePath + URI, getGamePath(gameName) + myConfig.getString("ResourcePath") + URI);
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
-			System.out.println("Couldn't copy file " + URI + " it doesn't exist. Sorry.");
 			return false;
 		}
 		return true;
@@ -143,7 +147,7 @@ public class GameDataManager implements GameDataInterface {
 	}
 
 	public void renameGameDirectory(String oldName, String newName) {
-		System.out.println("RENAMING " + oldName + " TO " + newName);
+		//System.out.println("RENAMING " + oldName + " TO " + newName);
 		buildGameDirectories(newName);
 		recopyResources(oldName, newName);
 	}
@@ -154,5 +158,16 @@ public class GameDataManager implements GameDataInterface {
 			copyResource(URI, newName, getGamePath(oldName) + myConfig.getString("ResourcePath"));
 		}
 	}
+
+    @Override
+    public List<String> getAvailableSaves (String gameName) {
+        List<String> result =  myFileHelper.getMatchingFiles(getGamePath(gameName) + myConfig.getString("SaveDirectory"), Arrays.asList(myConfig.getString("SaveExtension")));
+        return result;
+    }
+
+    @Override
+    public GamePlayerSave loadSave (String saveName) {
+        return myXStream.loadGameState(saveName);
+    }
 
 }

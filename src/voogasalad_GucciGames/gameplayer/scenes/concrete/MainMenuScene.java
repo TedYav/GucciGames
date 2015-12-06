@@ -11,6 +11,8 @@ import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import javafx.util.Duration;
+import voogasalad_GucciGames.gameData.wrapper.GameInfo;
+import voogasalad_GucciGames.gameData.wrapper.GamePlayerSave;
 import voogasalad_GucciGames.gameplayer.gameloader.GameLoader;
 import voogasalad_GucciGames.gameplayer.scenes.GameScene;
 import voogasalad_GucciGames.gameplayer.scenes.GameSceneManager;
@@ -34,6 +36,7 @@ public class MainMenuScene extends GameMenuScene {
 		Map<String, MenuAction> options = new LinkedHashMap<>();
 		options.put("New Game", () -> myManager.sceneFinished());
 		options.put("Load Game", () -> myManager.loadScene("LoadGameScene"));
+		options.put("Save Game", () -> myManager.getLoader().saveGame(new GamePlayerSave((GameInfo)myManager.getController().getGame(),myManager.getController().getEngine().getCurrentLevel().getLevelName())));
 		options.put("View High Scores", () -> myManager.loadScene("HighScoresScene"));
 		options.put("Reload", () -> { myManager.getLoader().loadGame(myManager.getController().getGame().getGameName()); 
 										myManager.loadScene("GameSplashScene"); });
