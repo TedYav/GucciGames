@@ -235,6 +235,7 @@ public class GaeController extends AGuiGaeController implements IModelGaeControl
 	}
 
 	@Override
+<<<<<<< HEAD
 	public List<ObjParam> getAllMapObjCharParams() {
 		// TODO Auto-generated method stub
 		return null;
@@ -286,6 +287,10 @@ public class GaeController extends AGuiGaeController implements IModelGaeControl
 	public void addActionParam() {
 		// TODO Auto-generated method stub
 		
+=======
+	public void setDefaultOwner(int ownerID) {
+		model.setDefaultOwner(ownerID);
+>>>>>>> 6f0cc1cb7b00804b9c66a6aa7b7eae52b75e89e9
 	}
 
 

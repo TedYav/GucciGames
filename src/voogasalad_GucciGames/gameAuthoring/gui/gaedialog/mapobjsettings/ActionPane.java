@@ -62,7 +62,7 @@ public class ActionPane extends GridPane {
 			Set<String> rules = new HashSet<String>();
 			Set<String> chars = new HashSet<String>();
 			SAXParserFactory saxParserFactory = SAXParserFactory.newInstance();
-			
+			/*
 		    try {
 		        SAXParser saxParser = saxParserFactory.newSAXParser();
 
@@ -93,7 +93,7 @@ public class ActionPane extends GridPane {
 		    } catch (ParserConfigurationException | SAXException | IOException ex) {
 		        ex.printStackTrace();
 		    }
-		    
+		    */
 		    switchPaneInterface.switchSettingsPane(new RulesAndCharPane(rules, chars));
 		    
 	

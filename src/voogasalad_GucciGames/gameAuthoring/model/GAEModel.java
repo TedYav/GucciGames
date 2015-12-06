@@ -172,8 +172,10 @@ public class GAEModel implements IGAEModel{
 
 	@Override
 	public DisplayMapObject addObject(int levelID, GridPoint gridpoint, MapObjectType mapObjType) {
-		// TODO Auto-generated method stub
-		return null;
+		
+		DisplayMapObject mapObj = new DisplayMapObject(mapObjType, gridpoint, levelID , mapObjType.getLayer());
+		levelData.add(levelID, mapObj);
+		return mapObj;
 	}
 
 
