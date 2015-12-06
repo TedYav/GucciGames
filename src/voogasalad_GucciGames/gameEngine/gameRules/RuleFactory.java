@@ -6,6 +6,7 @@ import java.lang.reflect.Constructor;
 import java.lang.reflect.InvocationTargetException;
 import java.util.Properties;
 
+import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.paramObjects.RuleParams;
 import voogasalad_GucciGames.gameEngine.CommunicationParameters.BasicParameters;
 
 /**
@@ -15,7 +16,7 @@ import voogasalad_GucciGames.gameEngine.CommunicationParameters.BasicParameters;
  */
 public class RuleFactory {
 	private static final String PATH_TO_RULE_PROPERTIES = "rulePath.properties";
-	InputStream inputStream ;
+	InputStream inputStream;
 	private Properties prop;
 
 	public RuleFactory() {
@@ -28,15 +29,15 @@ public class RuleFactory {
 		}
 	}
 
-	public BasicParameters createRule(RuleParams ruleParams, BasicParameters basicParams) throws NoSuchMethodException, SecurityException, ClassNotFoundException, InstantiationException, IllegalAccessException, IllegalArgumentException, InvocationTargetException {
-		String actionName=ruleParams.getActionName();
-		if(prop.containsKey(actionName)){
-			Class<Rules> rule = (Class<Rules>) Class.forName(prop.getProperty(actionName));
-			Constructor<Rules> ruleConstructor = rule.getDeclaredConstructor(RuleParams.class,BasicParameters.class);
-			Rules ruleInstance = ruleConstructor.newInstance(ruleParams,basicParams );
+	public BasicParameters createRule(BasicParameters basicParams)
+			throws NoSuchMethodException, SecurityException, ClassNotFoundException, InstantiationException,
+			IllegalAccessException, IllegalArgumentException, InvocationTargetException {
+		String actionName = "";
+		Class<Rules> rule = (Class<Rules>) Class.forName(prop.getProperty(actionName));
+		Constructor<Rules> ruleConstructor = rule.getDeclaredConstructor(RuleParams.class, BasicParameters.class);
+		Rules ruleInstance = ruleConstructor.newInstance(basicParams);
 
-		}
-		//need to add code for groovy
+		// need to add code for groovy
 		return basicParams;
 	}
 

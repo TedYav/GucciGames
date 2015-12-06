@@ -10,7 +10,7 @@
 	</element>	
 		<element name="checkPlayerWealth" 
 		 paramNames="condParams"
-		 paramTypes="Map<String, Object>">
+		 paramTypes="">
 	</element>	
 
 </conditionDependencies>

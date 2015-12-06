@@ -82,6 +82,11 @@ public class ResourceManager implements GameResourceManagerToGAE, GameResourceMa
 		setRoot();
 	}
 	
+	@Override
+	public void loadGame(String gameName){
+		myGameName = gameName;
+	}
+	
 	private List<String> getExtensions(String type) {
 		return myConfig.keySet().stream()
 				.filter( s -> s.startsWith(type))
