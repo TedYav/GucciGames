@@ -22,12 +22,12 @@ import voogasalad_GucciGames.gameEngine.targetCoordinate.TargetCoordinateSingle;
 
 public class GameInfoFactory {
 
-	public GameInfo create(Map<Integer, GamePlayerPerson> mapOfPlayers, TypeData typeData, 
+	public GameInfo create(TypeData typeData, 
 			LevelData levelData, GuiData guiData) {
 		Map<Integer, MapData> map = levelData.getMap();
 		List<GameLevelEngine> levels = new ArrayList<GameLevelEngine>();
 		for (int levelid: map.keySet()) {
-			levels.add(makeLevelEngine(mapOfPlayers, typeData, map.get(levelid)));
+			levels.add(makeLevelEngine(typeData.getMapOfPlayers(), typeData, map.get(levelid)));
 		}
 		//GameInfo game = new GameInfo(levels.get(0));
 		return null;
