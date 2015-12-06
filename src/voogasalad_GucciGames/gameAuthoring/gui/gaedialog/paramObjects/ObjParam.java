@@ -17,7 +17,6 @@ public class ObjParam{
 		this.ownerId = ownerId;
 	}
 
-
 	public String getName() {
 		return name;
 	}
