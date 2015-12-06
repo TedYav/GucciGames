@@ -50,12 +50,14 @@ public class GameController implements GameControllerInterface, GameControllerAd
 
 	@Override
 	public void loadGame(GameInfo game){
+	    System.out.println("LOADGAME-GAMEINFO");
 		myGame=game;
 		myCurrentEngine=myGame.getEngineInterface();
 		loadLevel("1");
 	}
 	       @Override
 	        public void loadGameSave(GamePlayerSave game){
+	           System.out.println("LOADGAMESAVE");
 	                myGame=game.getInfo();
 	                myCurrentEngine=myGame.getEngineInterface();
 	                loadLevel(game.getCurrentLevel());
@@ -185,6 +187,7 @@ public class GameController implements GameControllerInterface, GameControllerAd
 	}
 	@Override
 	public GameInfoToGamePlayer getGame() {
+	    System.out.println("GETGAME");
 	    return myGame;
 	}
 

@@ -18,14 +18,14 @@ public class LoadGameScene extends GameMenuScene {
     protected Map<String, MenuAction> buildOptionMap () {
         Map<String, MenuAction> optionMap = new HashMap<>();
         for(String s : myManager.getLoader().getAvailableSaves(myManager.getController().getGame().getGameName())){
-            optionMap.put(s, () -> selectGame(s));
+            optionMap.put(s, () -> selectGameSave(s));
         }
         optionMap.put("Back", () -> myManager.loadScene(myConfig.getString("PrevScene")));
     return optionMap;
     }
     
-    private void selectGame(String gameName){
-        myManager.getLoader().loadGameSave(gameName);
+    private void selectGameSave(String saveName){
+        myManager.getLoader().loadGameSave(saveName, myManager.getController().getGame().getGameName());
         myManager.sceneFinished();
     }
 }

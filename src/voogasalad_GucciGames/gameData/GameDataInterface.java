@@ -18,6 +18,6 @@ public interface GameDataInterface {
 	
 	public List<String> getAvailableSaves(String gameName);
 	
-	public GamePlayerSave loadSave(String saveName);
+	public GamePlayerSave loadSave(String saveName, String gameName);
 
 }
