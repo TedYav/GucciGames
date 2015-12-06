@@ -61,7 +61,7 @@
 	-fx-background-radius: 5.0;
 	-fx-padding: 0;
 	-fx-spacing: 15;
-	-fx-background: #9FA18D;
+	-fx-background: #FFFFFF;
 }
 
 .sidevbox{
@@ -149,4 +149,8 @@
 	-fx-background-color: #BFB79F;
 	-fx-spacing: 10;
 	-fx-padding: 5;
+}
+
+.overlay-background{
+	-fx-fill: #ffffff;
 }

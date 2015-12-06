@@ -14,8 +14,6 @@ import voogasalad_GucciGames.gameplayer.windows.GameWindow;
 import voogasalad_GucciGames.gameplayer.windows.mainwindow.components.SplashScreen;
 
 public class InitialScene extends GameScene {
-
-        private Scene myScene;
 	
 	public InitialScene(GameSceneManager manager, GameWindow window, String config) {
 		super(manager, window, config);
@@ -29,9 +27,8 @@ public class InitialScene extends GameScene {
 	@Override
 	public void load() {
 		SplashScreen splash = new SplashScreen(this, getManager().getController(), myConfig.getBaseBundleName());
-		myScene = new Scene(splash.getParent());
 		myScene.addEventHandler(KeyEvent.KEY_PRESSED, (e)->myManager.sceneFinished());
-		loadScene(myScene);
+		loadParent(splash.getParent());
 	}
 
     @Override

@@ -91,10 +91,10 @@ public class DemoMaker extends Application{
 
 		MovableCharacteristic myMovableCharacteristic = new MovableCharacteristic(1, 3);
 		HealthCharacteristic myHealthCharacteristic = new HealthCharacteristic(5);
-                PlayersActivePerTurn moveOwn = new PlayersActivePerTurn();
-        TileCharacteristic myTileCharacteristic = new TileCharacteristic(false);
-                List<Rules> moveRules = new ArrayList<Rules>();
-                moveRules.add(moveOwn);
+		PlayersActivePerTurn moveOwn = new PlayersActivePerTurn();
+		TileCharacteristic myTileCharacteristic = new TileCharacteristic(false);
+		List<Rules> moveRules = new ArrayList<Rules>();
+		moveRules.add(moveOwn);
 		MoveEvent myMoveEvent = new MoveEvent("Move",moveRules,new ArrayList<Outcome>());
 		soldier.addEvent("Move", myMoveEvent);
 
