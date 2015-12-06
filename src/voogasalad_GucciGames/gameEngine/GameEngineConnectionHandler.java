@@ -55,7 +55,7 @@ public class GameEngineConnectionHandler extends Thread {
 	                        return;
 	                    }
 	                   
-	                    System.out.println("server has:" + input.substring(0, 7));
+	                    System.out.println("server has:" + input);
 
 	                    
 	                    if(input.startsWith("GAMEDATA")){

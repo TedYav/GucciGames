@@ -57,7 +57,7 @@ public class GameEngineClient extends GameEnginePlayer implements Runnable{
                     if (input == null) {
                         return;
                     }
-                    System.out.println("client has:" + input.substring(0, 7));
+                    System.out.println("client has:" + input);
                     if(input.startsWith("GAMEDATA")){
 	                   // input = in.readLine();
                         System.out.println("OMG SOME DATA ON CLIENT");

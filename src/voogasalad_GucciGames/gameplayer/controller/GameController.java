@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Observer;
 
+import javafx.application.Platform;
 import javafx.geometry.Point2D;
 import voogasalad_GucciGames.datastructures.Coordinate;
 import voogasalad_GucciGames.gameData.wrapper.GameInfo;
@@ -206,9 +207,17 @@ public class GameController implements GameControllerInterface, GameControllerAd
 
 	public void refreshGUI() {
 		// TODO Auto-generated method stub
-		System.out.println("refresh?");
-		myCurrentEngine.setController(this);
-   	 mySceneManager.loadScene("MainGameScene");
+		System.out.println("refresh? PLEASE");
+		
+		Platform.runLater(new Runnable() {
+			   @Override
+			   public void run() {
+			      // Update/Query the FX classes here
+				   	 mySceneManager.loadScene("MainGameScene");
+
+			   }
+			});
+//   	 mySceneManager.loadScene("MainGameScene");
 
 	}
 	/**
