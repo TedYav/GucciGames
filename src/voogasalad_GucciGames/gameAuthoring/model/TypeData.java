@@ -10,6 +10,8 @@ import java.util.stream.Collectors;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.groovySettings.groovyParams.GActionParams;
+import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.groovySettings.groovyParams.GCharParam;
 import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.mapobjectsettings.xml.ParamObjParser;
 import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.paramObjects.ActionParam;
 import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.paramObjects.ActionParamsValue;
@@ -36,7 +38,14 @@ public class TypeData implements IGameProperties {
 	private Map<String, ObjParam> myConditions = new HashMap<String, ObjParam>();
 	private Map<String, ObjParam> myOutcomes = new HashMap<String, ObjParam>();
 	private Map<String, ObjParam> myPlayerCharParams = new HashMap<String, ObjParam>();
+
 	private Map<String, ObjParam> myGroovyChars = new HashMap<String, ObjParam>();
+
+
+
+	private Map<String, ActionParam> myGroovyActionParams = new HashMap<String, ActionParam>();
+	private Map<String, ObjParam> myGroovyMapObjectCharParams = new HashMap<String, ObjParam>();
+
 
 	private CharacteristicMapFactory mapCharacteristicFactory = new CharacteristicMapFactory();
 	private PlayerFactory playerCharacteristicFactory = new PlayerFactory();
@@ -217,9 +226,9 @@ public class TypeData implements IGameProperties {
 	}
 
 	@Override
-	public void addMapObjectCharacteristic(MapObjectType type, ObjParamValue param) {
+	public void addMapObjectCharacteristic(ObjParamValue param) {
 		try {
-			type.addCharacteristic((AMapObjectCharacteristic)mapCharacteristicFactory.create(myMapObjectCharParams, param));
+			param.getMapObjectType().addCharacteristic((AMapObjectCharacteristic)mapCharacteristicFactory.create(myMapObjectCharParams, param));
 		} catch (NoSuchMethodException | SecurityException | ClassNotFoundException | InstantiationException
 				| IllegalAccessException | IllegalArgumentException | InvocationTargetException e) {
 			e.printStackTrace();
@@ -229,7 +238,7 @@ public class TypeData implements IGameProperties {
 	}
 
 	@Override
-	public void addActionParamValue(MapObjectType type, ActionParamsValue param) {
+	public void addActionParamValue(ActionParamsValue param) {
 		// TODO Auto-generated method stub
 
 	}
@@ -251,5 +260,16 @@ public class TypeData implements IGameProperties {
 
 	}
 
+	@Override
+	public void addGroovyCharacteristic(GCharParam param) {
+		// TODO Auto-generated method stub
+
+	}
+
+	@Override
+	public void addGroovyAction(GActionParams param) {
+		// TODO Auto-generated method stub
+
+	}
 
 }

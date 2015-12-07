@@ -42,7 +42,7 @@ public abstract class AFactory {
 
 		}
 
-		Constructor c = makeConstractor(mapObjectParams, objParamValue, myParameters);
+		Constructor<?> c = makeConstractor(mapObjectParams, objParamValue, myParameters);
 		Object myObject = c.newInstance(initargs);
 
 		return myObject;

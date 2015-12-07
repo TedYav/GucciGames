@@ -99,7 +99,7 @@ public class MainPane extends GridPane{
 			selected = radioBtnField.getSelected();
 			String name = groovyPackagePath + "NamePane";
 			groovyPaneController.switchGroovyPane(
-					reflection.createInstance(name,  selected, groovyPaneController), "Custom " + selected);
+					Reflection.createInstance(name,  selected, groovyPaneController), "Custom " + selected);
 		});
 		
 	}
@@ -111,7 +111,7 @@ public class MainPane extends GridPane{
 			String name = settingsPackagePath + selected + "Pane";
 			if (selected.equals("Action")){
 				settingsPaneController.switchSettingsPane(
-						reflection.createInstance(name, settingsPaneController,
+						Reflection.createInstance(name, settingsPaneController,
 								dialogController, prop, type, this.actionParamsValue));
 			} else {
 				settingsPaneController.switchSettingsPane(

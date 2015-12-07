@@ -43,7 +43,7 @@ public class MainMenuOverlay extends WindowComponent {
 		options.put("View High Scores", () -> getGameScene().getManager().loadScene("HighScoresScene"));
 		options.put("Reload", () -> { getGameScene().getManager().getLoader().loadGame(getGameScene().getManager().getController().getGame().getGameName()); 
 		getGameScene().getManager().loadScene("GameSplashScene"); });
-		options.put("Quit", () -> getGameScene().getManager().loadScene("SelectGameScene"));
+		options.put("Quit", () -> getGameScene().getManager().loadScene("MainMenuScene"));
 		return options;
 	}
 	

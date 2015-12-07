@@ -44,8 +44,6 @@ public class GameEngineConnectionHandler extends Thread {
 	                myServer.getWriters().add(out);
 	                System.out.println("just added a print writer");
 	                System.out.println(myServer.getWriters().size()+" is size right after add");
-	                System.out.println("memaddr="+myServer);
-	                System.out.println(myServer.getWriters().size());
 	                // Accept messages from this client and broadcast them.
 	                // Ignore other clients that cannot be broadcasted to.
 	                while (true) {
@@ -54,10 +52,7 @@ public class GameEngineConnectionHandler extends Thread {
 	                    if (input == null) {
 	                        return;
 	                    }
-	                   
-	                    System.out.println("server has:" + input);
-
-	                    
+                   
 	                    if(input.startsWith("GAMEDATA")){
 	                    
 	                    System.out.println("OMG SOME DATA ON SERVER");
@@ -72,14 +67,12 @@ public class GameEngineConnectionHandler extends Thread {
 	                    }
 	                    
 	                    myServer.updateGameEngine(myBuilder.toString());
-	                    
+
 	                    for (PrintWriter writer : myServer.getWriters()) {
 	                    	
 	                    	System.out.println("connection handler thinks the size is" + myBuilder.toString().length());
 	                    	writer.print("GAMEDATA\n" + lengthXML + "\n" + myBuilder.toString() + "\n");
-	                       // writer.println("GAMEDATA");
-	                       // writer.println(lengthXML);
-	                       // writer.println(myBuilder.toString());
+	                    	writer.flush();
 	                    }
 	                    }
 	                }

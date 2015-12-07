@@ -56,5 +56,9 @@ public class ObjParamValue {
 		return paramValues;
 	}
 	
+	public MapObjectType getMapObjectType() {
+		return mapObjectType;
+	}
+	
 
 }

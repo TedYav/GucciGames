@@ -4,10 +4,10 @@ import java.util.List;
 import java.util.Map;
 
 import javafx.collections.ObservableList;
-
 import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.paramObjects.ActionParamsValue;
 import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.paramObjects.GameSettingParams;
 import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.paramObjects.ObjParam;
+import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.paramObjects.ObjParamValue;
 import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.paramObjects.PlayerParams;
 import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.paramObjects.RuleParams;
 import voogasalad_GucciGames.gameAuthoring.model.IGameProperties;
@@ -41,7 +41,7 @@ public interface IDialogGaeController {
 //	
 //	public List<ObjParam> getSelectedMapObjCharParams(List<String> selectedChar);
 //	
-	public List<ObjParam> getAllPlayerCharParams();
+//	public List<ObjParam> getAllPlayerCharParams();
 //	
 //	public List<ObjParam> getSelectedPlayerCharParams(List<String> selectedChar);
 //	
@@ -57,6 +57,12 @@ public interface IDialogGaeController {
 	
 	public IGameProperties getPropertiesInterface();
 
+	public void addPlayerCharacteristic(int playerID, ObjParamValue param);
+
+	public void addMapObjectCharacteristic(MapObjectType type, ObjParamValue param);
+
+	public void addActionParamValue(MapObjectType type, ActionParamsValue param);
+	
 	public GameResourceManagerToGAE getResourceManager();
 	
 	// Add

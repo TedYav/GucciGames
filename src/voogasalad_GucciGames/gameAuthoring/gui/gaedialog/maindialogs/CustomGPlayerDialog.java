@@ -17,7 +17,7 @@ import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.DialogElements;
 import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.dialogcomponents.CheckBoxField;
 import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.paramObjects.GameSettingParams;
 	
-public class CustomGPlayerDialog extends AGaeDialog{
+public class CustomGPlayerDialog<T> extends AGaeDialog<T>{
 
     private ResourceBundle namesBundle = ResourceBundle.getBundle("voogasalad_GucciGames.gameData.config.GuiComponents");
     private Stage gameSettingDialog = new Stage();
