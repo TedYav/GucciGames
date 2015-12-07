@@ -25,7 +25,7 @@ import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
-public class PlayerDialog extends AGaeDialog{
+public class PlayerDialog extends AGaeDialog<PlayerCharDialog>{
 	private static final String gaeDialogPath = "voogasalad_GucciGames.gameAuthoring.gui.gaedialog.maindialogs.";
 	private static final String settingsPackagePath = "voogasalad_GucciGames.gameAuthoring.gui.gaedialog.mapobjsettings.";
 
@@ -103,13 +103,21 @@ public class PlayerDialog extends AGaeDialog{
     				// Save Player
     				PlayerParams params = new PlayerParams(id, name, numMoves);
     				controller.savePlayer(params);
+    				
+    				Reflection reflection = new Reflection();
+        			List<ObjParam> allObjParams = controller.getPropertiesInterface().getAllPlayerCharParams();
+        			
+        			String name2 = gaeDialogPath + "PlayerCharDialog";
+        			for(ObjParam objParam : allObjParams) Reflection.createInstance(name2, objParam, controller, i);
+    				
     			}
 
-    			Reflection reflection = new Reflection();
-    			List<ObjParam> allObjParams = controller.getPropertiesInterface().getAllPlayerCharParams();
-    			
-    			String name = gaeDialogPath + "PlayerCharDialog";
-    			for(ObjParam objParam : allObjParams) reflection.createInstance(name, objParam, controller);
+//    			Reflection reflection = new Reflection();
+//    			List<ObjParam> allObjParams = controller.getPropertiesInterface().getAllPlayerCharParams();
+//    			
+//    			String name = gaeDialogPath + "PlayerCharDialog";
+//    			for(ObjParam objParam : allObjParams) Reflection.createInstance(name, objParam, controller, i);
+//    			Reflection.createInstance(name, allObjParams, controller, i);
     		}
 			return null;
 		});
