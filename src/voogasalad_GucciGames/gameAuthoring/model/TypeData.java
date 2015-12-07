@@ -40,11 +40,8 @@ public class TypeData implements IGameProperties {
 	private Map<String, ObjParam> myConditions = new HashMap<String, ObjParam>();
 	private Map<String, ObjParam> myOutcomes = new HashMap<String, ObjParam>();
 
-	private Map<String, ObjParam> myGroovyChars = new HashMap<String, ObjParam>();
-
-
-	private Map<String, ActionParam> myGroovyActionParams = new HashMap<String, ActionParam>();
-	private Map<String, ObjParam> myGroovyMapObjectCharParams = new HashMap<String, ObjParam>();
+	private Map<String, GActionParams> myGroovyActionParams = new HashMap<String, GActionParams>();
+	private Map<String, GCharParam> myGroovyMapObjectCharParams = new HashMap<String, GCharParam>();
 
 
 	private CharacteristicMapFactory mapCharacteristicFactory = new CharacteristicMapFactory();
@@ -272,6 +269,7 @@ public class TypeData implements IGameProperties {
 
 	@Override
 	public void addGroovyCharacteristic(GCharParam param) {
+
 		// TODO Auto-generated method stub
 
 	}
