@@ -3,10 +3,8 @@ package voogasalad_GucciGames.gameAuthoring.model.factories;
 import java.io.IOException;
 import java.io.InputStream;
 import java.lang.reflect.Constructor;
-import java.util.Map;
 import java.util.Properties;
 
-import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.paramObjects.ObjParam;
 import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.paramObjects.ObjParamValue;
 
 /**
@@ -29,7 +27,7 @@ public abstract class DefaultFactory extends AFactory{
 
 	protected abstract InputStream getStream();
 	@Override
-	protected Constructor makeConstractor(Map<String, ObjParam> mapObjectParams,ObjParamValue objParamValue, Class<?>[] myParameters) throws NoSuchMethodException, SecurityException, ClassNotFoundException {
+	protected Constructor makeConstractor(ObjParamValue objParamValue, Class<?>[] myParameters) throws NoSuchMethodException, SecurityException, ClassNotFoundException {
 			Constructor c = Class.forName(prop.getProperty(objParamValue.getName())).getConstructor(myParameters);
 			return c;
 		}
