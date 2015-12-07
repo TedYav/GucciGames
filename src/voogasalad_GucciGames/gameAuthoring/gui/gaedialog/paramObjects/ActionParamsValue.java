@@ -82,5 +82,13 @@ public class ActionParamsValue extends AParams{
 		return mapObjectType;
 	}
 	
+	public Set<OutcomeParamValue> getOutcomes() {
+		return myOutcomes;
+	}
+	
+	public Set<String> getRules() {
+		return myRules;
+	}
+	
 
 }
