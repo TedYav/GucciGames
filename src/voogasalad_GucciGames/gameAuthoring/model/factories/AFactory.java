@@ -1,11 +1,8 @@
 package voogasalad_GucciGames.gameAuthoring.model.factories;
 
-import java.io.IOException;
-import java.io.InputStream;
 import java.lang.reflect.Constructor;
 import java.lang.reflect.InvocationTargetException;
 import java.util.Map;
-import java.util.Properties;
 
 import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.paramObjects.ObjParam;
 import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.paramObjects.ObjParamValue;
@@ -16,26 +13,17 @@ import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.paramObjects.ObjParamVa
  *
  */
 public abstract class AFactory {
-	private Properties prop;
-
-	public AFactory() {
-		prop = new Properties();
-		try {
-			prop.load(getStream());
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-	}
-	protected abstract InputStream getStream();
 
 
-	public Object create(Map<String, ObjParam> mapObjectCharParams, ObjParamValue objParamValue)
+
+
+	public Object create(Map<String, ObjParam> mapObjectParams, ObjParamValue objParamValue)
 			throws NoSuchMethodException, SecurityException, ClassNotFoundException, InstantiationException,
 			IllegalAccessException, IllegalArgumentException, InvocationTargetException {
 		// param name to type
-		Map<String, String> typeMap = mapObjectCharParams.get(objParamValue.getName()).getParamTypeMap();
+		Map<String, String> typeMap = mapObjectParams.get(objParamValue.getName()).getParamTypeMap();
 		// order to param name
-		Map<Integer, String> orderMap = mapObjectCharParams.get(objParamValue.getName()).getParamOrderMap();
+		Map<Integer, String> orderMap = mapObjectParams.get(objParamValue.getName()).getParamOrderMap();
 		// param name to value
 		Map<String, String> valueMap = objParamValue.getMap();
 
@@ -54,12 +42,14 @@ public abstract class AFactory {
 
 		}
 
-		Constructor c = Class.forName(prop.getProperty(objParamValue.getName())).getConstructor(myParameters);
-
+		Constructor<?> c = makeConstractor(mapObjectParams, objParamValue, myParameters);
 		Object myObject = c.newInstance(initargs);
+
 		return myObject;
 
 	}
+
+	protected abstract Constructor makeConstractor(Map<String, ObjParam> mapObjectParams,ObjParamValue objParamValue, Class<?>[] myParameters) throws NoSuchMethodException, SecurityException, ClassNotFoundException;
 
 	private Object getTranslatedValue(String type, String value) {
 		if (type.equals("int"))

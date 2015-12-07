@@ -64,9 +64,15 @@ public class SettingsDialog extends AGaeDialog implements ISwitchSettingsPane{
 		        	//TODO: charParamValue
 		        	charParamValues.forEach(e -> {
 		        		System.out.println("char saving: " + e.getName());
+		        		System.out.println("map obj type: "  + e.getMapObjectType());
 		        		e.getParamValues().forEach((k,v) -> {
 		        			System.out.println("Saved k: " + k);
+		        			
+		        			
 		        		});
+		        		this.controller.getPropertiesInterface().addMapObjectCharacteristic(e);
+		        		
+		        		
 		        	});
 		        	
 		        }

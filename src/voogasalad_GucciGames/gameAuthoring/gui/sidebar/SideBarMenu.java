@@ -19,6 +19,7 @@ class SideBarMenu extends ContextMenu {
 			public void handle(ActionEvent e) {
 				System.out.println("Edit");
 				//TODO: getId
+			
 				
 				SettingsDialog dialog = new SettingsDialog(controller, myType);
 				dialog.show();	
