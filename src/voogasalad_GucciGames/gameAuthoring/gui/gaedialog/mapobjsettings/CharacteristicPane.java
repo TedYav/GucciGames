@@ -29,10 +29,11 @@ public class CharacteristicPane extends GridPane {
 	
 	
 	public CharacteristicPane(ISwitchSettingsPane switchPane, 
-			IDialogGaeController controller, Properties prop, MapObjectType type, List<ObjParamValue> charParamValues){
+			IDialogGaeController controller, Properties prop, MapObjectType mapObjectType, List<ObjParamValue> charParamValues){
 		
 		super();
 		this.mapObjectType = mapObjectType;
+		System.out.print("mapobjecttype: " + this.mapObjectType);
 		controller.getPropertiesInterface().getAllMapObjCharParams().
 		forEach(e -> allChars.add(e.getName()));
 		this.allCharParams = charParamValues;
@@ -63,6 +64,7 @@ public class CharacteristicPane extends GridPane {
 			List<ObjParam> charParams =
 					controller.getPropertiesInterface().getSelectedMapObjCharParams(data);
 			objParamVBox = new ObjParamVBox(switchPane, charParams, this.allCharParams, this.mapObjectType);
+			
 			this.switchPane.switchSettingsPane(objParamVBox);
 			
 		});

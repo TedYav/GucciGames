@@ -28,14 +28,12 @@ public class ObjParamPane extends GridPane {
 	private MapObjectType mapObjectType;
 	
 	public ObjParamPane(ObjParam param){
+		System.out.println("name : " + param.getName());
 		this.objName = param.getName();
 		this.type = param.getObjType();
 		this.param = param;	
 		
-		setContent();
-		this.setHgap(5);
-		this.setVgap(5);
-		this.setPadding(new Insets(5,5,5,5));
+
 		
 		init();
 		
@@ -44,6 +42,7 @@ public class ObjParamPane extends GridPane {
 	
 	public ObjParamPane(ObjParam param, MapObjectType mapObjectType){
 		this.mapObjectType = mapObjectType;
+		this.objName = param.getName();
 		this.param = param;
 		this.type = param.getObjType();
 		init();
@@ -80,6 +79,7 @@ public class ObjParamPane extends GridPane {
 			map.put(k.getText(), v.getText());	
 		});
 		objParamValue.setParamValues(map);
+		System.out.println("Param: " + objParamValue.getName());
 		return objParamValue;
 	}
 

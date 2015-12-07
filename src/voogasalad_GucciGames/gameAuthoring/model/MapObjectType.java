@@ -1,5 +1,6 @@
 package voogasalad_GucciGames.gameAuthoring.model;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import voogasalad_GucciGames.gameAuthoring.model.holder.ActionHolder;
@@ -8,7 +9,7 @@ import voogasalad_GucciGames.gameEngine.mapObject.AMapObjectCharacteristic;
 import voogasalad_GucciGames.gameEngine.objectActions.MapObjectEvent;
 
 public class MapObjectType {
-	private List<AMapObjectCharacteristic> myCharacteristics;
+	private List<AMapObjectCharacteristic> myCharacteristics = new ArrayList<AMapObjectCharacteristic>();
 	private List<MapObjectEvent> myEvents;
 	private double myWidth, myHeight, myX, myY;
 	private String myImagePath;
