@@ -109,11 +109,7 @@ public class PlayerDialog extends AGaeDialog<PlayerCharDialog> {
 					List<ObjParam> allObjParams = controller
 							.getPropertiesInterface().getAllPlayerCharParams();
 
-					String name2 = gaeDialogPath + "PlayerCharDialog";
-					/*for (ObjParam objParam : allObjParams) {
-						Reflection.createInstance(name2, objParam, controller,
-								i);
-					}*/
+					String className = gaeDialogPath + "PlayerCharDialog";
 					
 //					try {
 //						Class c = Class.forName(name2);
@@ -123,20 +119,9 @@ public class PlayerDialog extends AGaeDialog<PlayerCharDialog> {
 //						// TODO Auto-generated catch block
 //						e.printStackTrace();
 //					}
-					
-					
 					Reflection
-							.createInstance(name2, allObjParams, controller, i);
+							.createInstance(className, allObjParams, controller, i);
 				}
-
-				// Reflection reflection = new Reflection();
-				// List<ObjParam> allObjParams =
-				// controller.getPropertiesInterface().getAllPlayerCharParams();
-				//
-				// String name = gaeDialogPath + "PlayerCharDialog";
-				// for(ObjParam objParam : allObjParams)
-				// Reflection.createInstance(name, objParam, controller, i);
-				// Reflection.createInstance(name, allObjParams, controller, i);
 			}
 			return null;
 		});

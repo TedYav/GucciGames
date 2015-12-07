@@ -19,7 +19,7 @@ import javafx.scene.layout.GridPane;
  * @author yingqi
  *
  */
-public class ObjParamPane2 extends GridPane {
+public class ObjParamListPane extends GridPane {
 	
 	private List<ObjParam> param;
 	private Map<Label, TextField> contents = new HashMap<Label, TextField>();
@@ -28,7 +28,7 @@ public class ObjParamPane2 extends GridPane {
 	
 	private MapObjectType mapObjectType;
 	
-	public ObjParamPane2(List<ObjParam> param){
+	public ObjParamListPane(List<ObjParam> param){
 		for (ObjParam eachObjParam : param){
 			String paramName = eachObjParam.getName();
 			objName.add(paramName);
@@ -49,33 +49,32 @@ public class ObjParamPane2 extends GridPane {
 		
 	}
 	
-	public ObjParamPane2(ObjParam param, MapObjectType mapObjectType){
-		this.mapObjectType = mapObjectType;
-		this.param.add(param);
-		this.type.add(param.getObjType());
-		init();
-	}
-	
-	public ObjParamPane2(List<ObjParam> param, MapObjectType mapObjectType){
-		for (ObjParam eachObjParam : param){
-			String paramName = eachObjParam.getName();
-			objName.add(paramName);
-			
-			ObjType objType = eachObjParam.getObjType();
-			type.add(objType);
-		}
-		
-		this.param = param;
-		init();
-		
-	}
+//	public ObjParamListPane(ObjParam param, MapObjectType mapObjectType){
+//		this.mapObjectType = mapObjectType;
+//		this.param.add(param);
+//		this.type.add(param.getObjType());
+//		init();
+//	}
+//	
+//	public ObjParamListPane(List<ObjParam> param, MapObjectType mapObjectType){
+//		for (ObjParam eachObjParam : param){
+//			String paramName = eachObjParam.getName();
+//			objName.add(paramName);
+//			
+//			ObjType objType = eachObjParam.getObjType();
+//			type.add(objType);
+//		}
+//		
+//		this.param = param;
+//		init();
+//		
+//	}
 	
 	private void init(){
 		setContent();
 		this.setHgap(5);
 		this.setVgap(5);
-		this.setPadding(new Insets(5,5,5,5));
-		
+		this.setPadding(new Insets(5,5,5,5));	
 	}
 	
 	private void setContent(){
@@ -94,10 +93,9 @@ public class ObjParamPane2 extends GridPane {
 				i++;
 			}		
 		}
-		
 	}
 	
-	public List<ObjParamValue> getAllInputs(){
+	public List<ObjParamValue> getAllInputsList(){
 		List<ObjParamValue> allObjParamValues = new ArrayList<ObjParamValue>();
 		for(int i=0; i<objName.size(); i++){
 			String currObjName = objName.get(i);
