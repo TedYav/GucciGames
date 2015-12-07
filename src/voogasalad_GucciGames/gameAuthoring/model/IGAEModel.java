@@ -7,6 +7,7 @@ import java.util.function.Predicate;
 import javafx.collections.ObservableList;
 import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.paramObjects.ActionParamsValue;
 import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.paramObjects.ObjParam;
+import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.paramObjects.ObjParamValue;
 import voogasalad_GucciGames.gameAuthoring.gui.map.GridPoint;
 import voogasalad_GucciGames.gameEngine.mapObject.MapObject;
 
@@ -60,6 +61,8 @@ public interface IGAEModel {
 	// All consolidated into this interface:
 	
 	public IGameProperties getPropertiesInterface();
-	
+	public void addPlayerCharacteristic(int playerID, ObjParamValue param);
+	public void addMapObjectCharacteristic(MapObjectType type, ObjParamValue param);
+	public void addActionParamValue(MapObjectType type, ActionParamsValue param);	
     
 }

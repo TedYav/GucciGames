@@ -19,6 +19,7 @@ import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.paramObjects.ActionPara
 import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.maindialogs.ImageBrowseDialogs;
 import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.paramObjects.GameSettingParams;
 import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.paramObjects.ObjParam;
+import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.paramObjects.ObjParamValue;
 import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.paramObjects.PlayerParams;
 import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.paramObjects.RuleParams;
 import voogasalad_GucciGames.gameAuthoring.gui.levels.LevelTabPane;
@@ -235,7 +236,21 @@ public class GaeController extends AGuiGaeController implements IModelGaeControl
 	public IGameProperties getPropertiesInterface() {
 		return myModel.getPropertiesInterface();
 	}
+	
+	@Override
+	public void addPlayerCharacteristic(int playerID, ObjParamValue param) {
+		myModel.addPlayerCharacteristic(playerID, param);
+	}
 
+	@Override
+	public void addMapObjectCharacteristic(MapObjectType type, ObjParamValue param) {
+		myModel.addMapObjectCharacteristic(type, param);
+	}
+
+	@Override
+	public void addActionParamValue(MapObjectType type, ActionParamsValue param) {
+		myModel.addActionParamValue(type, param);
+	}
 	
 	private final BooleanProperty myHasGameProperty = new SimpleBooleanProperty(false);
 	
@@ -281,8 +296,6 @@ public class GaeController extends AGuiGaeController implements IModelGaeControl
 		
 	}
 
-
-
 	public GameResourceManagerToGAE getResourceManager() {
 		return myResManager;
 	}
@@ -290,12 +303,6 @@ public class GaeController extends AGuiGaeController implements IModelGaeControl
 	@Override
 	public Dialog<String> getImageBrowseDialog(String type) {
 		return myImageBrowseDialogs.getDialog(type);
-	}
-
-	@Override
-	public List<ObjParam> getAllPlayerCharParams() {
-		// TODO Auto-generated method stub
-		return null;
 	}
 
 
