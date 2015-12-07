@@ -1,27 +1,19 @@
 package voogasalad_GucciGames.gameplayer.scenes.concrete;
 
-import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
-import javafx.scene.input.KeyEvent;
-import javafx.scene.layout.StackPane;
+import javafx.scene.input.KeyCode;
 import javafx.scene.layout.VBox;
-import javafx.scene.paint.Color;
-import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
-import javafx.util.Duration;
-import voogasalad_GucciGames.gameplayer.gameloader.GameLoader;
-import voogasalad_GucciGames.gameplayer.scenes.GameScene;
 import voogasalad_GucciGames.gameplayer.scenes.GameSceneManager;
 import voogasalad_GucciGames.gameplayer.windows.GameWindow;
 import voogasalad_GucciGames.gameplayer.windows.mainwindow.components.MenuAction;
-import voogasalad_GucciGames.gameplayer.windows.mainwindow.components.SplashScreen;
 
 public class NetworkConfigScene extends GameMenuScene {
 	String hostIP;
@@ -36,7 +28,7 @@ public class NetworkConfigScene extends GameMenuScene {
                     dialog.initOwner(window.getStage());
                     VBox dialogVbox = new VBox(20);
                     TextField input = new TextField();
-                    Button enter = new Button("OK");
+                    Button enter = new Button(myConfig.getString("Ok"));
                     enter.setOnAction(eh->{
                         hostIP=input.getText();
                         System.out.println("IP"+hostIP);
@@ -50,10 +42,14 @@ public class NetworkConfigScene extends GameMenuScene {
                         }
                         dialog.close();
                     });
-                    dialogVbox.getChildren().add(new Text("Enter IP Address of Host (\'x.x.x.x\'):"));
+                    dialogVbox.getChildren().add(new Text(myConfig.getString("IPPrompt")));
                     dialogVbox.getChildren().add(input);
                     dialogVbox.getChildren().add(enter);
-                    Scene dialogScene = new Scene(dialogVbox, 300, 200);
+                    dialogVbox.setOnKeyPressed(key->{if (key.getCode().equals(KeyCode.ENTER)){
+                        enter.fire();
+                    }
+                    });
+                    Scene dialogScene = new Scene(dialogVbox, Integer.parseInt(myConfig.getString("DialogWidth")), Integer.parseInt(myConfig.getString("DialogHeight")));
                     dialog.setScene(dialogScene);
                     dialog.show();
 		});
@@ -65,9 +61,7 @@ public class NetworkConfigScene extends GameMenuScene {
 		optionMap.put("Host Game", () -> {getManager().getController().getEngine().beHost();
 											getManager().getController().loadDefaultLevel();
 										getManager().sceneFinished();});
-                //optionMap.put("Join Game", () -> {getManager().getController().getEngine().beClient("10.190.209.220");
-                optionMap.put("Join Game", () -> {ipDialog.fire();
-                });
+                optionMap.put("Join Game", () -> ipDialog.fire());
 		optionMap.put("Back", () -> myManager.loadScene(myConfig.getString("PrevScene")));
 		return optionMap;
 	}
