@@ -33,7 +33,7 @@ public class MainPane extends GridPane{
 	private Text title;
 	
 	private String selected;
-	private MapObjectType type;
+	private MapObjectType mapObjectType;
 
 	
 	private List<String> items = new ArrayList<String>();
@@ -47,7 +47,9 @@ public class MainPane extends GridPane{
 	public MainPane(ISwitchSettingsPane settingsPaneController, 
 			Properties prop, IDialogGaeController dialogController , MapObjectType type, ActionParamsValue actionParamsValue, List<ObjParamValue> objParamValue){
 		title = new Text("I want to add a new ...");
-		this.type = type;
+		
+		this.mapObjectType = type;
+		
 		this.settingsPaneController = settingsPaneController;
 		this.prop = prop;
 		this.dialogController = dialogController;
@@ -109,14 +111,15 @@ public class MainPane extends GridPane{
 		nextBtn.setOnAction(e -> {
 			selected = radioBtnField.getSelected();	
 			String name = settingsPackagePath + selected + "Pane";
+			System.out.println("map obj: " + this.mapObjectType);
 			if (selected.equals("Action")){
 				settingsPaneController.switchSettingsPane(
 						Reflection.createInstance(name, settingsPaneController,
-								dialogController, prop, type, this.actionParamsValue));
+								dialogController, prop, mapObjectType, this.actionParamsValue));
 			} else {
 				settingsPaneController.switchSettingsPane(
 						reflection.createInstance(name, settingsPaneController,
-								dialogController, prop, type, this.charParamValues));
+								dialogController, prop, mapObjectType, this.charParamValues));
 			}
 			
 			

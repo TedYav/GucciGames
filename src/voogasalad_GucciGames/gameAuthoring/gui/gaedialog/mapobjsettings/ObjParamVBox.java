@@ -35,7 +35,13 @@ public class ObjParamVBox extends VBox{
 		this.controller = controller;
 		this.allCharParams = allCharParams;
 		this.saveBtn.setOnAction(e -> {
+			System.out.println("saving char params");
+			getAllParam().forEach(element -> {System.out.println("Saving: " + element.getName());});
 			this.allCharParams.addAll(getAllParam());
+			allCharParams.forEach(element -> {
+				System.out.println("saving: " + element.getName());
+			});
+			
 		});
 		setLayout();
 		setContents();
