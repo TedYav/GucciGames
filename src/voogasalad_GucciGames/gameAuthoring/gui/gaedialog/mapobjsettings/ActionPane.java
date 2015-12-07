@@ -72,8 +72,12 @@ public class ActionPane extends GridPane {
 		
 		//TODO: get all actions
 		
-		List<String> items = helper.parseStringToList(prop, 
-				"action_items");
+		List<String> items = new ArrayList<String>();
+				//helper.parseStringToList(prop, "action_items");
+		
+		controller.getPropertiesInterface().getAllActions().forEach(e -> {
+			items.add(e.getName());
+		});
 		ObservableList<String> options = FXCollections.observableArrayList(items);
 		dropDown.setItems(options);	
 		

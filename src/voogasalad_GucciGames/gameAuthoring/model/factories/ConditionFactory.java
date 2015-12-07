@@ -9,7 +9,7 @@ import java.io.InputStream;
  */
 public class ConditionFactory extends AFactory{
 
-	private static final String PATH_TO_Condition = "conditionsPath	.properties";
+	private static final String PATH_TO_Condition = "conditionsPath.properties";
 	InputStream inputStream;
 
 	@Override

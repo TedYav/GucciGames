@@ -60,5 +60,9 @@ public class MapObjectType {
 	public List<MapObjectEvent> getEvents() {
 		return myEvents;
 	}
+	
+	public void addCharacteristic(AMapObjectCharacteristic characteristic) {
+		myCharacteristics.add(characteristic);
+	}
 
 }

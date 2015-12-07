@@ -35,15 +35,14 @@ public class ActionSAXHandler extends DefaultHandler {
 	public void startElement(String uri, String localName,
 			String qName, Attributes attributes) throws SAXException {
 		if("action".equals(qName)){
-			String displayName = attributes.getValue("displayName");
 			String name = attributes.getValue("name");
 			String rules = attributes.getValue("rules");
 			String chars = attributes.getValue("chars");
-			if (selectedActions.contains(displayName)){
-				actionParam = new ActionParam(name);
-				actionParam.setCharacteristics(chars);
-				actionParam.setRules(rules);
-			} 
+			
+			actionParam = new ActionParam(name);
+			actionParam.setCharacteristics(chars);
+			actionParam.setRules(rules);
+			
 		}
 
 

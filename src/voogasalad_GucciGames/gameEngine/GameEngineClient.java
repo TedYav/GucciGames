@@ -36,10 +36,8 @@ public class GameEngineClient extends GameEnginePlayer implements Runnable{
 	
 	public GameEngineClient(GameEngine gameEngine, String ipAddr) {
 		super(gameEngine);
-		//ignore the ip address for now;
 	}
 
-	//add a listener to handle exceptions and report to front end. alternatively, make this
 	@Override
 	public void run(){
 
@@ -49,7 +47,6 @@ public class GameEngineClient extends GameEnginePlayer implements Runnable{
 		            socket.getInputStream()));
 		       myWriterToServer = new PrintWriter(socket.getOutputStream(), true);
 
-		        // Process all messages from server, according to the protocol.
 		        while (true) {
                     System.out.println("waiting for server input");
 		            String input = in.readLine();
@@ -97,9 +94,10 @@ public class GameEngineClient extends GameEnginePlayer implements Runnable{
 
 		XStream xstream = new XStream(new DomDriver());
 		String s = xstream.toXML(getMyEngine());
-		System.out.println("updating all the clients");
+		System.out.println("updating the server");
 		System.out.println(s.length());
     	myWriterToServer.print("GAMEDATA\n" + s.length() + "\n" + s + "\n");
+    	myWriterToServer.flush();
 
 
 	}

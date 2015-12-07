@@ -30,7 +30,6 @@ public class GAEModel implements IGAEModel{
     private TypeData typeData;
     private GuiData guiData;
     private IModelGaeController myController;
-	private Map<Integer, GamePlayerPerson> mapOfPlayers;
 	private GameInfoFactory myFactory;
 	private int myOwnerID;
 	
@@ -45,7 +44,6 @@ public class GAEModel implements IGAEModel{
     public GAEModel(IModelGaeController controller) {
     	myController = controller;
     	typeData = new TypeData();
-    	mapOfPlayers = new HashMap<>();
     	myFactory = new GameInfoFactory();
     	guiData = new GuiData();
     	levelData = new LevelData();
@@ -54,14 +52,6 @@ public class GAEModel implements IGAEModel{
     	
     	// load all default properites
     	//myActions = parser.getActions().stream().collect(Collectors.groupingBy(ObjParam::getName, ));
-   	
-    	
-    	
-    	// Probs need to change this
-		mapOfPlayers.put(-1, new GamePlayerPerson(-1));
-		mapOfPlayers.put(0, new GamePlayerPerson(0));
-		mapOfPlayers.put(1, new GamePlayerPerson(1));
-		mapOfPlayers.put(2, new GamePlayerPerson(2));
 		
     }
     
@@ -124,7 +114,7 @@ public class GAEModel implements IGAEModel{
     public void saveToXML() {
 //      AllPlayers myPlayers = new AllPlayers(mapOfPlayers);
 //      MainGameEngine engine = new MainGameEngine(myPlayers);
-    	myFactory.create(mapOfPlayers, typeData, levelData, guiData);
+    	myFactory.create(typeData, levelData, guiData);
     	
     }
     
@@ -134,11 +124,10 @@ public class GAEModel implements IGAEModel{
 
 	@Override
 	public void changeOwner(MapObject mapObject, int playerID) {
-		int oldID = mapObject.getPlayerID(); 
-		mapOfPlayers.get(oldID).getMapObjects().remove(mapObject);
-		mapObject.setOwnerID(playerID);
-		mapOfPlayers.get(playerID).addMapObject(mapObject);
+		typeData.changeOwner(mapObject, playerID);
+
 	}
+	
 
 
 	@Override

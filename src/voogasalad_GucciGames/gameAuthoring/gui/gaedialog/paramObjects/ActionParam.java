@@ -7,7 +7,7 @@ import java.util.List;
 public class ActionParam {
 	
 	private List<String> myRules = new ArrayList<String>();
-	private List<String> myCharacteristics;
+	private List<String> myCharacteristics = new ArrayList<String>();
 	String name;
 	
 	public ActionParam(String name){
