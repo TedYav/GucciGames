@@ -216,10 +216,13 @@ public class GameEngine implements IGameInfoToGAE, GameEngineToGamePlayerInterfa
 
 	@Override
 	public GameParametersInterface endTurn() {
+		
+		GameParametersInterface myParams = getCurrentLevel().endTurn();
+		
 		if (iAmAPlayer != null) {
 			iAmAPlayer.endTurn();
 		}
-		return getCurrentLevel().endTurn();
+		return myParams;
 	}
 
 	@Override
