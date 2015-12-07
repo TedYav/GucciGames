@@ -77,5 +77,10 @@ public class ActionParamsValue extends AParams{
 		});
 		
 	}
+	
+	public MapObjectType getMapObjectType() {
+		return mapObjectType;
+	}
+	
 
 }

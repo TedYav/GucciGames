@@ -2,6 +2,8 @@ package voogasalad_GucciGames.gameAuthoring.model;
 
 import java.util.List;
 
+import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.groovySettings.groovyParams.GActionParams;
+import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.groovySettings.groovyParams.GCharParam;
 import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.paramObjects.ActionParam;
 import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.paramObjects.ActionParamsValue;
 import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.paramObjects.ObjParam;
@@ -37,9 +39,13 @@ public interface IGameProperties {
 	
 	public void addPlayerCharacteristic(int playerID, ObjParamValue param);
 	
-	public void addMapObjectCharacteristic(MapObjectType type, ObjParamValue param);
+	public void addMapObjectCharacteristic(ObjParamValue param);
 
-	public void addActionParamValue(MapObjectType type, ActionParamsValue param);
+	public void addActionParamValue(ActionParamsValue param);
+	
+	public void addGroovyCharacteristic(GCharParam param);
+	
+	public void addGroovyAction(GActionParams param);
 	
 //	public void addCharParamValue(ObjParamValue param);
 	
