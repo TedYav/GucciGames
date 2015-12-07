@@ -51,5 +51,7 @@ public class PlayerCharDialog extends AGaeDialog<ObjParamValue>{
     		return null;
 		});
 	}
+	
+	
 
 }

@@ -1,11 +1,12 @@
 package voogasalad_GucciGames.gameAuthoring.gui.gaedialog.mapobjsettings;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.groovySettings.groovyParams.GCharParam;
 import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.paramObjects.ObjParam;
+import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.paramObjects.ObjParamValue;
 import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.paramObjects.ObjType;
 import voogasalad_GucciGames.gameAuthoring.model.MapObjectType;
 import javafx.geometry.HPos;
@@ -22,7 +23,6 @@ public class ObjParamPane2 extends GridPane {
 	
 	private List<ObjParam> param;
 	private Map<Label, TextField> contents = new HashMap<Label, TextField>();
-//	private Label name;
 	private List<String> objName;
 	private List<ObjType> type;
 	
@@ -49,19 +49,26 @@ public class ObjParamPane2 extends GridPane {
 		
 	}
 	
-//	public ObjParamPane2(List<ObjParam> param, MapObjectType mapObjectType){
-//		for (ObjParam eachObjParam : param){
-//			String paramName = eachObjParam.getName();
-//			objName.add(paramName);
-//			
-//			ObjType objType = eachObjParam.getObjType();
-//			type.add(objType);
-//		}
-//		
-//		this.param = param;
-//		init();
-//		
-//	}
+	public ObjParamPane2(ObjParam param, MapObjectType mapObjectType){
+		this.mapObjectType = mapObjectType;
+		this.param.add(param);
+		this.type.add(param.getObjType());
+		init();
+	}
+	
+	public ObjParamPane2(List<ObjParam> param, MapObjectType mapObjectType){
+		for (ObjParam eachObjParam : param){
+			String paramName = eachObjParam.getName();
+			objName.add(paramName);
+			
+			ObjType objType = eachObjParam.getObjType();
+			type.add(objType);
+		}
+		
+		this.param = param;
+		init();
+		
+	}
 	
 	private void init(){
 		setContent();
@@ -88,6 +95,25 @@ public class ObjParamPane2 extends GridPane {
 			}		
 		}
 		
+	}
+	
+	public List<ObjParamValue> getAllInputs(){
+		List<ObjParamValue> allObjParamValues = new ArrayList<ObjParamValue>();
+		for(int i=0; i<objName.size(); i++){
+			String currObjName = objName.get(i);
+			ObjType currObjType = type.get(i);
+			ObjParamValue currObjParamValue = new ObjParamValue(currObjName, currObjType, mapObjectType);
+			
+			Map<String, String> map = new HashMap<String, String>();
+			contents.forEach((k,v) -> {
+				map.put(k.getText(), v.getText());	
+			});
+			currObjParamValue.setParamValues(map);
+			
+			allObjParamValues.add(currObjParamValue);
+		}
+		
+		return allObjParamValues;
 	}
 	
 //	public ObjParamValue getAllInputs(){
