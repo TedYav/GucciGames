@@ -4,15 +4,20 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.lang.reflect.Constructor;
 import java.lang.reflect.InvocationTargetException;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.Properties;
 import java.util.Set;
 
 import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.mapobjectsettings.xml.ParamObjParser;
 import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.paramObjects.ActionParam;
+import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.paramObjects.ActionParamsValue;
 import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.paramObjects.ObjParam;
+import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.paramObjects.OutcomeParamValue;
 import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.paramObjects.RuleParams;
+import voogasalad_GucciGames.gameEngine.gameConditions.outcomes.Outcome;
 import voogasalad_GucciGames.gameEngine.gameRules.Rules;
 import voogasalad_GucciGames.gameEngine.objectActions.MapObjectEvent;
 
@@ -58,19 +63,30 @@ public class ActionFactory {
 		return getClass().getResourceAsStream(PATH_TO_RULE_PROPERTIES);
 	}
 	
-	public void createAction(ActionParam param) throws ClassNotFoundException, NoSuchMethodException, 
+	public MapObjectEvent createAction(Map<String, ActionParam> params, ActionParamsValue value) throws ClassNotFoundException, NoSuchMethodException, 
 	SecurityException, InstantiationException, IllegalAccessException, IllegalArgumentException, 
 	InvocationTargetException {
 		
-		Class<MapObjectEvent> action = (Class<MapObjectEvent>) Class.forName(prop.getProperty(param.getName()));
+		// constructs empty Action object
+		Class<MapObjectEvent> action = (Class<MapObjectEvent>) Class.forName(prop.getProperty(value.getName()));
 		Constructor<MapObjectEvent> actionConstructor = action.getDeclaredConstructor();
 		MapObjectEvent actionInstance = actionConstructor.newInstance();
+
+		ActionParam actionParam = params.get(value.getName());
+
+		// construct and add rules
+		for(String ruleName: value.getAllRules()) {
+			actionInstance.addRule(ruleFactory.createRule(ruleName));
+		}
+
+		System.err.println("ACTION FACTORY NOT IMPLEMENTED");
 		
+//		// construct and add outcomes
+//		for (OutcomeParamValue param: value.getAllOutcomes()) {
+//			actionInstance.addOutcome(outcomeFactory.create(myOutcomes, param));
+//		}	
 		
-		
-		
-		
-		
+		return actionInstance;
 		
 	}
 

@@ -19,6 +19,7 @@ import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.paramObjects.ActionPara
 import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.paramObjects.ObjParam;
 import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.paramObjects.ObjParamValue;
 import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.paramObjects.RuleParams;
+import voogasalad_GucciGames.gameAuthoring.model.factories.ActionFactory;
 import voogasalad_GucciGames.gameAuthoring.model.factories.CharacteristicMapFactory;
 import voogasalad_GucciGames.gameAuthoring.model.factories.PlayerFactory;
 import voogasalad_GucciGames.gameEngine.gamePlayer.GamePlayerPerson;
@@ -46,6 +47,7 @@ public class TypeData implements IGameProperties {
 	
 	private CharacteristicMapFactory mapCharacteristicFactory = new CharacteristicMapFactory();
 	private PlayerFactory playerCharacteristicFactory = new PlayerFactory();
+	private ActionFactory actionFactory = new ActionFactory();
 
 	public TypeData() {
 		tileTypes = FXCollections.observableArrayList();
@@ -235,8 +237,13 @@ public class TypeData implements IGameProperties {
 
 	@Override
 	public void addActionParamValue(ActionParamsValue param) {
-		// TODO Auto-generated method stub
-		
+		try {
+			param.getMapObjectType().addAction(actionFactory.createAction(myActionParams, param));
+		} catch (ClassNotFoundException | NoSuchMethodException | SecurityException | InstantiationException
+				| IllegalAccessException | IllegalArgumentException | InvocationTargetException e) {
+			e.printStackTrace();
+			System.err.println("FAILED TO ADD ACTION");
+		}
 	}
 
 	@Override
