@@ -8,6 +8,7 @@ import java.util.Observable;
 import java.util.Observer;
 import java.util.ResourceBundle;
 
+import javafx.beans.value.ObservableValue;
 import javafx.geometry.Point2D;
 import javafx.scene.Cursor;
 import javafx.scene.Parent;
@@ -51,6 +52,20 @@ public class MiniMap extends DisplayComponent implements MiniMapInterface, Obser
 		initializeMap();
 		initializeOverlay();
 		initializeHandler();
+		initializeListeners();
+	}
+
+	private void initializeListeners() {
+		getController().getMap().addHListener( (o, ov, nv) -> scrollH(o, ov, nv));
+		getController().getMap().addVListener( (o, ov, nv) -> scrollV(o, ov, nv));
+	}
+
+	private void scrollV(ObservableValue<? extends Number> o, Number ov, Number nv) {
+		myOverlay.setTranslateY(nv.doubleValue()*yTranslateLimit());
+	}
+
+	private void scrollH(ObservableValue<? extends Number> o, Number ov, Number nv) {
+		myOverlay.setTranslateX(nv.doubleValue()*xTranslateLimit());
 	}
 
 	private void initializeOverlay() {
@@ -84,17 +99,24 @@ public class MiniMap extends DisplayComponent implements MiniMapInterface, Obser
 	private void recenter(MouseEvent e) {
 		//getGameScene().getScene().setCursor(Cursor.NONE);
 
-        double myXTranslateLimit =  ((myWidth*myCellWidth)-myOverlayWidth);
-		double myYTranslateLimit = ((myHeight*myCellHeight)-myOverlayHeight);
 		double percX = xPercent(e.getX());
 		double percY = yPercent(e.getY());
 		if(percX <= 1.1 && percX >= -.1)
-			myOverlay.setTranslateX( percX  * myXTranslateLimit);
+			myOverlay.setTranslateX( percX  * xTranslateLimit());
 		if(percY <= 1.1 && percY >= -.1)
-			myOverlay.setTranslateY( percY * myYTranslateLimit);
+			myOverlay.setTranslateY( percY * yTranslateLimit());
 		
 		
 		getController().getMap().recenter(xPercent(e.getX()), yPercent(e.getY()));
+	}
+
+	private double yTranslateLimit() {
+		return (myHeight*myCellHeight)-myOverlayHeight;
+	}
+
+	private double xTranslateLimit() {
+		double myXTranslateLimit =  ((myWidth*myCellWidth)-myOverlayWidth);
+		return myXTranslateLimit;
 	}
 
 	private double yPercent(double x) {

@@ -5,6 +5,7 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.ResourceBundle;
 
+import javafx.beans.value.ChangeListener;
 import javafx.collections.FXCollections;
 import javafx.collections.ListChangeListener;
 import javafx.collections.ObservableList;
@@ -34,8 +35,6 @@ import voogasalad_GucciGames.gameplayer.windows.mainwindow.map.cell.MapCellInter
 import voogasalad_GucciGames.gameplayer.windows.mainwindow.map.mini.MiniMap;
 
 public class MainMap extends WindowComponent implements MapInterface {
-
-	private MiniMap myMiniMap;
 
         private ResourceBundle myConfig = PlayerConfig.load("components.Map");
         private ResourceBundle myCssBundle = PlayerConfig.load("scenes.CssClasses");
@@ -248,5 +247,15 @@ public class MainMap extends WindowComponent implements MapInterface {
 		double myPercentWide = numCellsWide/myCellsWide;
 		double myPercentTall = numCellsTall/myCellsTall;
 		return Arrays.asList(myPercentWide, myPercentTall);
+	}
+	
+	@Override
+	public void addHListener(ChangeListener <? super Number> listener){
+		myFirstLayer.hvalueProperty().addListener(listener);
+	}
+
+	@Override
+	public void addVListener(ChangeListener<? super Number> listener) {
+		myFirstLayer.vvalueProperty().addListener(listener);
 	}
 }
