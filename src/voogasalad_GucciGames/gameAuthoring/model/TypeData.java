@@ -35,10 +35,10 @@ public class TypeData implements IGameProperties {
 	
 	private Map<String, ActionParam> myActionParams = new HashMap<String, ActionParam>();
 	private Map<String, ObjParam> myMapObjectCharParams = new HashMap<String, ObjParam>();
+	private Map<String, ObjParam> myPlayerCharParams = new HashMap<String, ObjParam>();
 	private Map<String, RuleParams> myRules = new HashMap<String, RuleParams>();
 	private Map<String, ObjParam> myConditions = new HashMap<String, ObjParam>();
 	private Map<String, ObjParam> myOutcomes = new HashMap<String, ObjParam>();
-	private Map<String, ObjParam> myPlayerCharParams = new HashMap<String, ObjParam>();
 	
 	private Map<String, ActionParam> myGroovyActionParams = new HashMap<String, ActionParam>();
 	private Map<String, ObjParam> myGroovyMapObjectCharParams = new HashMap<String, ObjParam>();
@@ -48,11 +48,23 @@ public class TypeData implements IGameProperties {
 	private PlayerFactory playerCharacteristicFactory = new PlayerFactory();
 
 	public TypeData() {
+		tileTypes = FXCollections.observableArrayList();
+		unitTypes = FXCollections.observableArrayList();
+		structureTypes = FXCollections.observableArrayList();
     	ParamObjParser parser = new ParamObjParser();
     	Set<ObjParam> mapObjCharacteristics = parser.getMapObjChars();
     	for (ObjParam param: mapObjCharacteristics){
     		myMapObjectCharParams.put(param.getName(), param);
     	}    
+    	Set<ActionParam> actions = parser.getActions();
+    	for (ActionParam action: actions){
+    		myActionParams.put(action.getName(), action);
+    		System.out.println(action.getName());
+    	}
+    	Set<ObjParam> playerChar = parser.getPlayerChars();
+    	for (ObjParam characteristics: playerChar){
+    		myPlayerCharParams.put(characteristics.getName(), characteristics);
+    	}
     	Set<ObjParam> conditions = parser.getConditions();
     	for (ObjParam param: conditions){
     		myConditions.put(param.getName(), param);
@@ -65,22 +77,9 @@ public class TypeData implements IGameProperties {
     	for (RuleParams param: rules){
     		myRules.put(param.getName(), param);
     	}
-    	Set<ActionParam> actions = parser.getActions();
-    	for (ActionParam action: actions){
-    		myActionParams.put(action.getName(), action);
-    		System.out.println(action.getName());
-    	}
-    	Set<ObjParam> playerChar = parser.getPlayerChars();
-    	for (ObjParam characteristics: playerChar){
-    		myPlayerCharParams.put(characteristics.getName(), characteristics);
-    	}
+    	
     	
     	mapOfPlayers = new HashMap<>();
-
-		
-		tileTypes = FXCollections.observableArrayList();
-		unitTypes = FXCollections.observableArrayList();
-		structureTypes = FXCollections.observableArrayList();
 	
 		MapObjectType objType = new MapObjectType("Tile1", "tiles/water.jpg", 0);
 		MapObjectType objType2 = new MapObjectType("Tile2", "tiles/sand.jpg", 0);
