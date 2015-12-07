@@ -64,5 +64,9 @@ public class MapObjectType {
 	public void addCharacteristic(AMapObjectCharacteristic characteristic) {
 		myCharacteristics.add(characteristic);
 	}
+	
+	public void addAction(MapObjectEvent action) {
+		myEvents.add(action);
+	}
 
 }
