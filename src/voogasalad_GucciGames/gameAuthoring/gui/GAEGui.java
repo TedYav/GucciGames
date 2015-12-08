@@ -12,6 +12,7 @@ import javafx.stage.Stage;
 import voogasalad_GucciGames.gameAuthoring.AGuiGaeController;
 import voogasalad_GucciGames.gameAuthoring.gui.sidebar.SideBar;
 import voogasalad_GucciGames.gameAuthoring.gui.statusbar.StatusBar;
+import voogasalad_GucciGames.gameAuthoring.guiexceptions.ErrorDialog;
 import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.maindialogs.NewLevelDialog;
 import voogasalad_GucciGames.gameAuthoring.gui.levels.LevelTabPane;
 import voogasalad_GucciGames.gameAuthoring.gui.menubar.GAEMenuBar;
@@ -26,33 +27,31 @@ public class GAEGui extends BorderPane {
 
 	private AGuiGaeController myController;
 	private LevelTabPane myLevelTabPane;
+	private StatusBar myStatusBar;
+	private GAEMenuBar myMenuBar;
 
 	public GAEGui(AGuiGaeController controller, Stage stage) {
 		myController = controller;
 		stage.setScene(new Scene(this));
-
 		Rectangle2D screenBounds = Screen.getPrimary().getVisualBounds();
 		stage.setWidth(screenBounds.getWidth());
 		stage.setHeight(screenBounds.getHeight());
-		initLayout(stage);
+		
+		// Add Menu Bar
+		myMenuBar = new GAEMenuBar(myController);
+		setTop(myMenuBar);
+		// Add Status Bar
+		myStatusBar = new StatusBar(myController);
+		setBottom(myStatusBar);
+
 		stage.show();
 	}
 
-	private void initLayout(Stage stage) {
-
-		// Add Menu Bar
-		try {
-			GAEMenuBar menuBar = new GAEMenuBar(myController);
-			setTop(menuBar);
-		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		// Add Status Bar
-		StatusBar statusBar = new StatusBar(myController);
-		setBottom(statusBar);
-
+	private void initLayout() {
 		// Add Side Bar
+		getChildren().clear();
+		setTop(myMenuBar);
+		setBottom(myStatusBar);
 		TabPane sideBar = (new SideBar(myController)).getPane();
 		sideBar.maxWidthProperty().bind(widthProperty().divide(4));
 		sideBar.minWidthProperty().bind(widthProperty().divide(4));
@@ -61,10 +60,12 @@ public class GAEGui extends BorderPane {
 		// Add Map
 		myLevelTabPane = new LevelTabPane(myController);
 		setCenter(myLevelTabPane);
-		myLevelTabPane.setOnMouseMoved(e -> statusBar.update(e));
+		myLevelTabPane.setOnMouseMoved(e -> myStatusBar.update(e));
 	}
 
 	public void initGame() {
+		throwException(new NullPointerException("Errrrr"));
+		initLayout();
 		Dialog<Map<String, String>> dialog = new NewLevelDialog(myController);
 		dialog.showAndWait().ifPresent(map -> {
 			myController.getLevelTabPane().createNewTab(map.get("name"), Integer.parseInt(map.get("width")),
@@ -88,6 +89,10 @@ public class GAEGui extends BorderPane {
 
 	public AGuiGaeController getController() {
 		return myController;
+	}
+
+	public void throwException(Exception e) {
+		new ErrorDialog(e);
 	}
 
 }

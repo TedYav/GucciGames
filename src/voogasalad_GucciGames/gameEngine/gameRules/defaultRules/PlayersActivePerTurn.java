@@ -12,7 +12,7 @@ public class PlayersActivePerTurn extends Rules {
 
 	@Override
 	public Boolean executeRules(BasicParameters communicationParams) {
-		int currentPlayerID = communicationParams.getEngine().getActivePlayer();
+		int currentPlayerID = communicationParams.getLevelEngine().getActivePlayer();
 		int currentObjectOwnerID = communicationParams.getCalledMe().getOwnerID();
 		return (currentPlayerID == currentObjectOwnerID);
 	}
