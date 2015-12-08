@@ -79,6 +79,9 @@ public interface IDialogGaeController {
 	//public void add
 	
 	
+	public void throwException(Exception e);
+	
+	
 	
 	
 

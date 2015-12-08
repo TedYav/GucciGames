@@ -76,7 +76,7 @@ public class GaeController extends AGuiGaeController implements IModelGaeControl
 	}
 
 	@Override
-	public void deleteComponent(DisplayMapObject mapObj) {
+	public void deleteComponent(DisplayMapObject mapObj, int levelID) {
 		// TODO add levelID
 		//model.deleteComponent(mapObj);
 	}
@@ -305,5 +305,9 @@ public class GaeController extends AGuiGaeController implements IModelGaeControl
 		return myImageBrowseDialogs.getDialog(type);
 	}
 
+	@Override
+	public void throwException(Exception e) {
+		myGui.throwException(e);
+	}
 
 }
