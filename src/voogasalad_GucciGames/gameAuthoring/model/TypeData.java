@@ -18,6 +18,7 @@ import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.paramObjects.ActionPara
 import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.paramObjects.ObjParam;
 import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.paramObjects.ObjParamValue;
 import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.paramObjects.RuleParams;
+import voogasalad_GucciGames.gameAuthoring.model.factories.ActionFactory;
 import voogasalad_GucciGames.gameAuthoring.model.factories.CharacteristicMapFactory;
 import voogasalad_GucciGames.gameAuthoring.model.factories.PlayerFactory;
 import voogasalad_GucciGames.gameEngine.gamePlayer.GamePlayerPerson;
@@ -34,27 +35,36 @@ public class TypeData implements IGameProperties {
 
 	private Map<String, ActionParam> myActionParams = new HashMap<String, ActionParam>();
 	private Map<String, ObjParam> myMapObjectCharParams = new HashMap<String, ObjParam>();
+	private Map<String, ObjParam> myPlayerCharParams = new HashMap<String, ObjParam>();
 	private Map<String, RuleParams> myRules = new HashMap<String, RuleParams>();
 	private Map<String, ObjParam> myConditions = new HashMap<String, ObjParam>();
 	private Map<String, ObjParam> myOutcomes = new HashMap<String, ObjParam>();
-	private Map<String, ObjParam> myPlayerCharParams = new HashMap<String, ObjParam>();
 
-	private Map<String, ObjParam> myGroovyChars = new HashMap<String, ObjParam>();
-
-
-
-	private Map<String, ActionParam> myGroovyActionParams = new HashMap<String, ActionParam>();
-	private Map<String, ObjParam> myGroovyMapObjectCharParams = new HashMap<String, ObjParam>();
+	private Map<String, GActionParams> myGroovyActionParams = new HashMap<String, GActionParams>();
+	private Map<String, GCharParam> myGroovyMapObjectCharParams = new HashMap<String, GCharParam>();
 
 
 	private CharacteristicMapFactory mapCharacteristicFactory = new CharacteristicMapFactory();
 	private PlayerFactory playerCharacteristicFactory = new PlayerFactory();
+	private ActionFactory actionFactory = new ActionFactory();
 
 	public TypeData() {
+		tileTypes = FXCollections.observableArrayList();
+		unitTypes = FXCollections.observableArrayList();
+		structureTypes = FXCollections.observableArrayList();
     	ParamObjParser parser = new ParamObjParser();
     	Set<ObjParam> mapObjCharacteristics = parser.getMapObjChars();
     	for (ObjParam param: mapObjCharacteristics){
     		myMapObjectCharParams.put(param.getName(), param);
+    	}    
+    	Set<ActionParam> actions = parser.getActions();
+    	for (ActionParam action: actions){
+    		myActionParams.put(action.getName(), action);
+    		System.out.println(action.getName());
+    	}
+    	Set<ObjParam> playerChar = parser.getPlayerChars();
+    	for (ObjParam characteristics: playerChar){
+    		myPlayerCharParams.put(characteristics.getName(), characteristics);
     	}
     	Set<ObjParam> conditions = parser.getConditions();
     	for (ObjParam param: conditions){
@@ -67,15 +77,6 @@ public class TypeData implements IGameProperties {
     	Set<RuleParams> rules = parser.getRules();
     	for (RuleParams param: rules){
     		myRules.put(param.getName(), param);
-    	}
-    	Set<ActionParam> actions = parser.getActions();
-    	for (ActionParam action: actions){
-    		myActionParams.put(action.getName(), action);
-    		System.out.println(action.getName());
-    	}
-    	Set<ObjParam> playerChar = parser.getPlayerChars();
-    	for (ObjParam characteristics: playerChar){
-    		myPlayerCharParams.put(characteristics.getName(), characteristics);
     	}
 
     	mapOfPlayers = new HashMap<>();
@@ -239,7 +240,13 @@ public class TypeData implements IGameProperties {
 
 	@Override
 	public void addActionParamValue(ActionParamsValue param) {
-		// TODO Auto-generated method stub
+		try {
+			param.getMapObjectType().addAction(actionFactory.createAction(myActionParams, param));
+		} catch (ClassNotFoundException | NoSuchMethodException | SecurityException | InstantiationException
+				| IllegalAccessException | IllegalArgumentException | InvocationTargetException e) {
+			e.printStackTrace();
+			System.err.println("FAILED TO ADD ACTION");
+		}
 
 	}
 
@@ -262,6 +269,7 @@ public class TypeData implements IGameProperties {
 
 	@Override
 	public void addGroovyCharacteristic(GCharParam param) {
+
 		// TODO Auto-generated method stub
 
 	}

@@ -42,14 +42,14 @@ public abstract class AFactory {
 
 		}
 
-		Constructor<?> c = makeConstractor(mapObjectParams, objParamValue, myParameters);
+		Constructor<?> c = makeConstractor(objParamValue, myParameters);
 		Object myObject = c.newInstance(initargs);
 
 		return myObject;
 
 	}
 
-	protected abstract Constructor makeConstractor(Map<String, ObjParam> mapObjectParams,ObjParamValue objParamValue, Class<?>[] myParameters) throws NoSuchMethodException, SecurityException, ClassNotFoundException;
+	protected abstract Constructor makeConstractor(ObjParamValue objParamValue, Class<?>[] myParameters) throws NoSuchMethodException, SecurityException, ClassNotFoundException;
 
 	private Object getTranslatedValue(String type, String value) {
 		if (type.equals("int"))
