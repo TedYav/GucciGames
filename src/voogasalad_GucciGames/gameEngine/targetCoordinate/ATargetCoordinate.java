@@ -20,4 +20,5 @@ public abstract class ATargetCoordinate {
 		.map((coor) -> "(" + coor.getCenterX() + ", " + coor.getCenterY()+ ")")
 		.reduce((coor,str) -> coor + "\n" + str).get();
 	}
+	
 }

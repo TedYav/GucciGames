@@ -2,24 +2,25 @@ package voogasalad_GucciGames.gameEngine.CommunicationParameters;
 
 import java.util.List;
 
+import voogasalad_GucciGames.gameData.wrapper.GameEngine;
 import voogasalad_GucciGames.gameEngine.GameLevelEngine;
 import voogasalad_GucciGames.gameEngine.gamePlayer.chars.APlayerChars;
 import voogasalad_GucciGames.gameEngine.mapObject.MapObject;
 
-public class BasicParameters extends CommunicationParameters {
+public class BasicParameters extends CommunicationParameters implements Cloneable{
 
 	// Classes which extend this will be used to share information between the
 	// front and back end
 	private MapObject myCalledMe;
-	private GameLevelEngine myEngine;
+	private GameEngine myEngine;
 	private List<APlayerChars> transfers;
 
-	public BasicParameters(MapObject calledMe, GameLevelEngine engine) {
+	public BasicParameters(MapObject calledMe, GameEngine engine) {
 		this.myCalledMe = calledMe;
 		this.myEngine = engine;
 	}
 
-	public BasicParameters(GameLevelEngine engine) {
+	public BasicParameters(GameEngine engine) {
 		this.myCalledMe = null;
 		this.myEngine = engine;
 	}
@@ -32,12 +33,16 @@ public class BasicParameters extends CommunicationParameters {
 		this(params, params.getCalledMe());
 	}
 
-	public GameLevelEngine getEngine() {
-		return this.myEngine;
+	public GameLevelEngine getLevelEngine() {
+		return this.myEngine.getCurrentLevel();
 	}
 
+	public GameEngine getEngine(){
+		return this.myEngine;
+	}
+	
 	public int getTurn() {
-		return myEngine.getTurn();
+		return this.myEngine.getCurrentLevel().getTurn();
 	}
 
 	public MapObject getCalledMe() {
@@ -47,4 +52,16 @@ public class BasicParameters extends CommunicationParameters {
 	public List<APlayerChars> getTransfers(){
 		return this.transfers;
 	}
+	
+	public BasicParameters clone(MapObject mo) {
+        try {
+        	BasicParameters basic = (BasicParameters) super.clone();
+        	basic.myCalledMe = mo;
+        	return basic;
+        }
+        catch (CloneNotSupportedException e) {
+            // This should never happen
+            throw new InternalError(e.toString());
+        }
+    }
 }
