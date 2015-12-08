@@ -9,18 +9,16 @@ import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.maindialogs.SettingsDia
 import voogasalad_GucciGames.gameAuthoring.model.MapObjectType;
 
 class SideBarMenu extends ContextMenu {
-	private AGuiGaeController myController;
+	private final AGuiGaeController myController;
 	private MapObjectType myType;
+	private final String myTypeName;
 	
-	SideBarMenu(AGuiGaeController controller){
+	SideBarMenu(AGuiGaeController controller, String typeName){
 		myController = controller;
+		myTypeName = typeName;
 		MenuItem item1 = new MenuItem("Edit");
 		item1.setOnAction(new EventHandler<ActionEvent>() {
 			public void handle(ActionEvent e) {
-				System.out.println("Edit");
-				//TODO: getId
-			
-				
 				SettingsDialog dialog = new SettingsDialog(controller, myType);
 				dialog.show();	
 			}
@@ -28,7 +26,7 @@ class SideBarMenu extends ContextMenu {
 		MenuItem item2 = new MenuItem("Duplicate");
 		item2.setOnAction(new EventHandler<ActionEvent>() {
 			public void handle(ActionEvent e) {
-				System.out.println("Duplicate");
+				controller.createCustomType(myType.makeCopy(), myTypeName);
 			}
 		});
 		MenuItem item3 = new MenuItem("Remove");
