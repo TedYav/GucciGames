@@ -11,13 +11,13 @@ public class BuildSoldierEvent extends MapObjectEvent{
 	@Override
 	protected ChangedParameters executeAction(LocationParameters params) {
 		// TODO Auto-generated method stub
-		return (new Builder()).build("Soldier", params);
+		return (new MapObjectBuilder()).build("Soldier", params);
 	}
 
 	@Override
 	protected GridCoordinateParameters executeRequest(BasicParameters params) {
 		// TODO Auto-generated method stub
-		return (new Builder()).request(params);
+		return (new MapObjectBuilder()).request(params);
 	}
 
 }
