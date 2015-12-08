@@ -8,7 +8,7 @@ public class TileTab extends ATab {
 	private static final String TYPE = "tile";
 	
 	public TileTab(SideBar bar){
-		super(bar);
+		super(bar, TYPE);
 
 		setText("Tiles");
 		
