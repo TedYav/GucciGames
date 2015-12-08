@@ -41,9 +41,9 @@ public class GameEngine implements IGameInfoToGAE, GameEngineToGamePlayerInterfa
 	private List<String> played;
 
 	private String myInitialLevel;
-
 	private boolean isChangingLevel;
 	private List<String> transferablePlayerCharacteristics;
+	private boolean levelComplete;
 
 	private volatile GameEnginePlayer iAmAPlayer;
 	private volatile Thread t;
@@ -64,6 +64,7 @@ public class GameEngine implements IGameInfoToGAE, GameEngineToGamePlayerInterfa
 		this.transferablePlayerCharacteristics = new ArrayList<String>();
 		this.transferablePlayerCharacteristics.add("PlayerScore");
 		isChangingLevel = false;
+		levelComplete = false;
 		this.played = new ArrayList<>();
 
 	}
@@ -76,7 +77,7 @@ public class GameEngine implements IGameInfoToGAE, GameEngineToGamePlayerInterfa
 		this(initialLevel);
 		myGameName = gameName;
 	}
-
+	
 	public void beHost() {
 		iAmAPlayer = new GameEngineServer(this);
 		t = new Thread(iAmAPlayer);
@@ -90,8 +91,7 @@ public class GameEngine implements IGameInfoToGAE, GameEngineToGamePlayerInterfa
 
 	}
 
-	public void resetGame() {
-		// then here too
+	public void resetGame() {		
 		myCurrentLevel = myInitialLevel;
 	}
 
@@ -102,21 +102,31 @@ public class GameEngine implements IGameInfoToGAE, GameEngineToGamePlayerInterfa
 			return;
 		}
 
-		myCurrentLevel = newGameLevel;
-
+		System.out.println(levelComplete);
+		if (levelComplete){
+			myCurrentLevel = newGameLevel;
+			levelComplete = false;
+		}
+		else{
+			System.out.println("JK level has NOT changed");
+		}
+		
 		if (iAmAPlayer != null) {
 			iAmAPlayer.setLevelEngine(getCurrentLevel());
 		}
 
 		isChangingLevel = true;
+		
+		//if string returned is empty, assume game "won"
+		if (myCurrentLevel == ""){
+			getCurrentLevel().setEndLevel(true);
+			levelComplete = true;
+		}
 		// Have to have same number of players between levels
-		myCurrentLevel = newGameLevel;
-		// System.out.println("Tina " + newGameLevel);
-		// if (!played.contains(newGameLevel)){
+//		myCurrentLevel = newGameLevel;
+
 		setUpGameStats();
-		// System.out.println("here "+newGameLevel);
-		// played.add(newGameLevel);
-		// }
+
 	}
 
 	private boolean setUpGameStats() {
@@ -261,8 +271,20 @@ public class GameEngine implements IGameInfoToGAE, GameEngineToGamePlayerInterfa
 
 	@Override
 	public boolean hasLevelEnded() {
+		levelComplete = true;
 		return getCurrentLevel().hasLevelEnded();
 	}
+	
+	@Override
+	public void levelStart(){
+		System.out.println("levelStart "+levelComplete);
+		levelComplete = true;
+	}
+	
+//	public void setLevelStart(){
+//		getCurrentLevel().setStartLevel();
+//	}
+
 
 	@Override
 	public APlayerChars getPlayerCharacteristic(String name, int id) {

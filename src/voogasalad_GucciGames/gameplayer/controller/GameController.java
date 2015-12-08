@@ -68,6 +68,10 @@ public class GameController implements GameControllerInterface, GameControllerAd
 	@Override
 	public void loadLevel(String levelID){
 		if(myGame.getLevels().containsKey(levelID)){
+			/**
+			 * NEED CHECK HERE to see if level should be changed
+			 */
+			myCurrentEngine.levelStart();
 			System.out.println("level changed");
 		    myCurrentEngine.changeCurrentLevel(levelID);
 		    //myCurrentLevelEngine = myGame.getLevels().get(levelID).getGameEngine();

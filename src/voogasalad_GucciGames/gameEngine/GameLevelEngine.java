@@ -48,6 +48,7 @@ public class GameLevelEngine implements IGameLevelToGamePlayer {
 		myGamePlayers = gamePlayers;
 		myCurrentTurnCounter = new TurnCounter();
 		myTurnDecider = new DefaultTurnDecider(myGamePlayers, myCurrentTurnCounter);
+//		hasLevelEnded = false;
 
 		myName = "Game " + Math.round((Math.random()*10000));
 	}
@@ -217,6 +218,14 @@ public class GameLevelEngine implements IGameLevelToGamePlayer {
 		return hasLevelEnded;
 	}
 
+//	public void setStartLevel(){
+//		hasLevelEnded = true;
+//	}
+//	
+//	public void endStartLevel(){
+//		hasLevelEnded = false;
+//	}
+	
 	public void setEndLevel(boolean gameWon) {
 		this.hasLevelEnded = gameWon;
 	}
