@@ -9,12 +9,12 @@ import java.util.TreeMap;
 import javafx.application.Application;
 import javafx.stage.Stage;
 import voogasalad_GucciGames.gameData.XStreamGameEngine;
+import voogasalad_GucciGames.gameData.wrapper.GameEngine;
 import voogasalad_GucciGames.gameData.wrapper.GameInfo;
 import voogasalad_GucciGames.gameData.wrapper.GuiData;
 import voogasalad_GucciGames.gameEngine.GameLevelEngine;
 import voogasalad_GucciGames.gameEngine.CommunicationParameters.BasicParameters;
 import voogasalad_GucciGames.gameEngine.defaultCharacteristics.AttackCharacteristic;
-import voogasalad_GucciGames.gameEngine.defaultCharacteristics.HealthCharacteristic;
 import voogasalad_GucciGames.gameEngine.defaultCharacteristics.HealthCharacteristic;
 import voogasalad_GucciGames.gameEngine.defaultCharacteristics.MovableCharacteristic;
 import voogasalad_GucciGames.gameEngine.defaultCharacteristics.TileCharacteristic;
@@ -71,16 +71,31 @@ public class DemoMaker extends Application {
 		resourceManager.copyImageToGame("units/duvall.jpg");
 		resourceManager.copyImageToGame("units/smile.jpg");
 
-		
 		GameInfo game = new GameInfo("Duvall Tag");
+		
+		setEventHandler(level1.getPlayers().getPlayersMap(),game.getGameEngine());
+		setEventHandler(level2.getPlayers().getPlayersMap(),game.getGameEngine());
+		setEventHandler(level3.getPlayers().getPlayersMap(),game.getGameEngine());
+		setEventHandler(level4.getPlayers().getPlayersMap(),game.getGameEngine());
+		
 		game.getGameEngine().addLevel("Easy", level1);
 		game.getGameEngine().addLevel("Medium", level2);
 		game.getGameEngine().addLevel("Hard", level3);
 		game.getGameEngine().addLevel("Ultra", level4);
+		
 
 		GuiData gui = new GuiData();
 		game.setGuiData(gui);
 		return game;
+	}
+	
+	private static void setEventHandler(Map<Integer, GamePlayerPerson> myMapOfPlayers, GameEngine gameEngine){
+		for (Integer key : myMapOfPlayers.keySet()) {
+			myMapOfPlayers.get(key).getMapObjects().stream().forEach(mo -> {
+				mo.setMapObjectEventHandler(new MapObjectEventHandler(new BasicParameters(null, gameEngine)));
+				;
+			});
+		}
 	}
 
 	private static GameLevelEngine makeLevel(int width, int height, int numDuvalls) {
@@ -169,12 +184,6 @@ public class DemoMaker extends Application {
 		GameLevelEngine engine = new GameLevelEngine(myPlayers);
 		engine.setMapHeight(height);
 		engine.setMapWidth(width);
-		for (Integer key : myMapOfPlayers.keySet()) {
-			myMapOfPlayers.get(key).getMapObjects().stream().forEach(mo -> {
-				mo.setMapObjectEventHandler(new MapObjectEventHandler(new BasicParameters(null, engine)));
-				;
-			});
-		}
 		return engine;
 	}
 

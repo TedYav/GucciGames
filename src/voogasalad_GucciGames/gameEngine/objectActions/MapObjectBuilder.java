@@ -9,7 +9,7 @@ import voogasalad_GucciGames.gameEngine.CommunicationParameters.LocationParamete
 import voogasalad_GucciGames.gameEngine.mapObject.MapObject;
 import voogasalad_GucciGames.gameEngine.targetCoordinate.TargetCoordinateMultiple;
 
-public class Builder {
+public class MapObjectBuilder {
 	
 	public ChangedParameters build(String name, LocationParameters params){
 		MapObject mo = params.getEngine().getBuild().get(name).clone();
