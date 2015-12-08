@@ -21,10 +21,10 @@ import javafx.scene.layout.GridPane;
  */
 public class ObjParamListPane extends GridPane {
 	
-	private List<ObjParam> param;
+	private List<ObjParam> param = new ArrayList<ObjParam>();
 	private Map<Label, TextField> contents = new HashMap<Label, TextField>();
-	private List<String> objName;
-	private List<ObjType> type;
+	private List<String> objName = new ArrayList<String>();
+	private List<ObjType> type = new ArrayList<ObjType>();
 	
 	private MapObjectType mapObjectType;
 	
