@@ -34,7 +34,7 @@ public class MapObject implements PlayerMapObjectInterface {
 	private Map<String, AMapObjectCharacteristic> myCharacteristics;
 	private MapObjectEventHandler myEventHandler;
 	private Map<String, MapObjectEvent> myEvents; //test
-
+	
 	public MapObject(ATargetCoordinate coor, int id, int layer, 
 			String name, String imagePath){
 
@@ -71,10 +71,6 @@ public class MapObject implements PlayerMapObjectInterface {
 	@Override
 	public AMapObjectCharacteristic getCharacteristic(String name) {
 		return this.myCharacteristics.get(name);
-	}
-
-	public Boolean containsCharacteristic(String name) {
-		return this.myCharacteristics.containsKey(name);
 	}
 
 	public void addCharacteristic(String name, AMapObjectCharacteristic characteristic) {
@@ -226,6 +222,37 @@ public void setMapObjectEventHandler(MapObjectEventHandler handler){
 		List<String> list = new ArrayList<>(set);
 		Collections.sort(list);
 		return list;
-
 	}
+	
+	public MapObject clone(){
+		MapObject result = new MapObject(this.myCoordinate.clone(),this.myOwnerID,this.myLayer,this.myName,this.myImagePath);
+		result.myCharacteristics = new HashMap<>();
+		for(String key: this.myCharacteristics.keySet()){
+			result.myCharacteristics.put(key, this.myCharacteristics.get(key).clone());
+		}
+		result.myEventHandler = this.myEventHandler.clone(this);
+		result.myEvents = new HashMap<>(this.myEvents);
+		return result;
+	}
+
+	@Override
+	public Boolean containsCharacteristic(String name) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+	
+	/*
+	public static void main(String[] args){
+		MapObject mo = new MapObject(new TargetCoordinateSingle(50,50),0,0,"test","test");
+		mo.addCharacteristic("HealthCharacteristic", new HealthCharacteristic());
+		HealthCharacteristic hc = (HealthCharacteristic) mo.getCharacteristic("HealthCharacteristic");
+		System.out.println(hc.getCurrentHealth());
+		MapObject mo1 = mo.clone();
+		HealthCharacteristic hc1 = (HealthCharacteristic) mo1.getCharacteristic("HealthCharacteristic");
+		System.out.println(hc1.getCurrentHealth());
+		hc1.changeHealth(50);
+		System.out.println(hc1.getCurrentHealth());
+		System.out.println(hc.getCurrentHealth());
+	}
+	*/
 }

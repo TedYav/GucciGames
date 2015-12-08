@@ -45,7 +45,7 @@ public abstract class Outcome {
 		List<Integer> players = createPlayerAffected(params);
 		// myOutcomeParams.getPlayerID();
 		for (int i = 0; i < players.size(); i++) {
-			GamePlayerPerson cur = params.getEngine().getPlayers().getPlayerById(players.get(i));
+			GamePlayerPerson cur = params.getLevelEngine().getPlayers().getPlayerById(players.get(i));
 			if (checkConditions(params, cur)) {
 				changedParams = applyOutcome(params, changedParams, players.get(i));
 			}
@@ -57,12 +57,12 @@ public abstract class Outcome {
 	private List<Integer> createPlayerAffected(BasicParameters params) {
 		List<Integer> temp = new ArrayList<Integer>();
 		if (myAffectedPlayers.equals("self")) {
-			temp.add(params.getEngine().getTurnPlayerID());
+			temp.add(params.getLevelEngine().getTurnPlayerID());
 
 		} else if (myAffectedPlayers.equals("other")) {
-			List<Integer> list = params.getEngine().getPlayers().getAllIds();
+			List<Integer> list = params.getLevelEngine().getPlayers().getAllIds();
 			for (int i = 0; i < list.size(); i++) {
-				if (params.getEngine().getTurnPlayerID() != list.get(i)) {
+				if (params.getLevelEngine().getTurnPlayerID() != list.get(i)) {
 					temp.add(list.get(i));
 				}
 			}
