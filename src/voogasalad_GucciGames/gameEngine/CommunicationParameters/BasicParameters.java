@@ -1,8 +1,8 @@
 package voogasalad_GucciGames.gameEngine.CommunicationParameters;
 
 import java.util.List;
+import java.util.Map;
 
-import voogasalad_GucciGames.gameData.wrapper.GameEngine;
 import voogasalad_GucciGames.gameEngine.GameLevelEngine;
 import voogasalad_GucciGames.gameEngine.gamePlayer.chars.APlayerChars;
 import voogasalad_GucciGames.gameEngine.mapObject.MapObject;
@@ -12,15 +12,16 @@ public class BasicParameters extends CommunicationParameters implements Cloneabl
 	// Classes which extend this will be used to share information between the
 	// front and back end
 	private MapObject myCalledMe;
-	private GameEngine myEngine;
+	private GameLevelEngine myEngine;
 	private List<APlayerChars> transfers;
+	private Map<String,MapObject> myBuild;
 
-	public BasicParameters(MapObject calledMe, GameEngine engine) {
+	public BasicParameters(MapObject calledMe, GameLevelEngine engine) {
 		this.myCalledMe = calledMe;
 		this.myEngine = engine;
 	}
 
-	public BasicParameters(GameEngine engine) {
+	public BasicParameters(GameLevelEngine engine) {
 		this.myCalledMe = null;
 		this.myEngine = engine;
 	}
@@ -33,16 +34,20 @@ public class BasicParameters extends CommunicationParameters implements Cloneabl
 		this(params, params.getCalledMe());
 	}
 
-	public GameLevelEngine getLevelEngine() {
-		return this.myEngine.getCurrentLevel();
-	}
-
-	public GameEngine getEngine(){
-		return this.myEngine;
+	public void setBuild(Map<String,MapObject> build){
+		this.myBuild = build;
 	}
 	
+	public Map<String,MapObject> getBuild(){
+		return this.myBuild;
+	}
+	
+	public GameLevelEngine getEngine() {
+		return this.myEngine;
+	}
+
 	public int getTurn() {
-		return this.myEngine.getCurrentLevel().getTurn();
+		return myEngine.getTurn();
 	}
 
 	public MapObject getCalledMe() {
@@ -56,7 +61,7 @@ public class BasicParameters extends CommunicationParameters implements Cloneabl
 	public BasicParameters clone(MapObject mo) {
         try {
         	BasicParameters basic = (BasicParameters) super.clone();
-        	basic.myCalledMe = mo;
+        	basic.myCalledMe = mo.clone();
         	return basic;
         }
         catch (CloneNotSupportedException e) {
