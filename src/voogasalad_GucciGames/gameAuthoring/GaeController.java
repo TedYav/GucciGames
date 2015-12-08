@@ -275,6 +275,23 @@ public class GaeController extends AGuiGaeController implements IModelGaeControl
 			throw new RuntimeException("No "+type+" type");
 		}
 	}
+	
+	@Override
+	public void deleteMapObjectType(MapObjectType object, String type){
+		switch (type) {
+		case "tile":
+			myModel.deleteTileType(object);
+			break;
+		case "structure":
+			myModel.deleteStructureType(object);
+			break;
+		case "unit":
+			myModel.deleteUnitType(object);
+			break;
+		default:
+			throw new RuntimeException("No "+type+" type");
+		}
+	}
 
 	@Override
 	public List<ActionParamsValue> getAllActions() {
