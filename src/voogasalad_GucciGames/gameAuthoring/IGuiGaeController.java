@@ -18,15 +18,10 @@ import javafx.stage.Stage;
 import voogasalad_GucciGames.gameEngine.mapObject.MapObject;
 
 public interface IGuiGaeController {
-	/**
-	 * Add Map Object
-	 * 
-	 * @param mapObj
-	 */
 
 	public void initGame(String name);
 
-	public void deleteComponent(DisplayMapObject mapObj);
+	public void deleteComponent(DisplayMapObject mapObj, int levelID);
 
 	public List<DisplayMapObject> getMapObjects(int id);
 
@@ -78,6 +73,7 @@ public interface IGuiGaeController {
 	public GameResourceManagerToGAE getResourceManager();
 	
 	public Dialog<String> getImageBrowseDialog(String type);
-
+	
+	public void throwException(Exception e);
 
 }
