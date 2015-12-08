@@ -1,8 +1,6 @@
 package voogasalad_GucciGames.gameData.wrapper;
 
-import java.lang.reflect.Constructor;
 import java.util.ArrayList;
-
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
@@ -21,7 +19,7 @@ import voogasalad_GucciGames.gameEngine.CommunicationParameters.GridCoordinatePa
 import voogasalad_GucciGames.gameEngine.gamePlayer.AllPlayers;
 import voogasalad_GucciGames.gameEngine.gamePlayer.GamePlayerPerson;
 import voogasalad_GucciGames.gameEngine.gamePlayer.chars.APlayerChars;
-import voogasalad_GucciGames.gameEngine.gamePlayer.chars.PlayerScore;
+import voogasalad_GucciGames.gameEngine.mapObject.MapObject;
 import voogasalad_GucciGames.gameEngine.targetCoordinate.ATargetCoordinate;
 import voogasalad_GucciGames.gameplayer.controller.GameController;
 import voogasalad_GucciGames.gameplayer.controller.GameParametersInterface;
@@ -52,6 +50,8 @@ public class GameEngine implements IGameInfoToGAE, GameEngineToGamePlayerInterfa
 
 	@XStreamOmitField
 	private GameController myController;
+	
+	private Map<String,MapObject> myBuild;
 
 	public GameEngine(String initialLevel) {
 		myLevelsMap = new HashMap<String, GameLevelEngine>();
@@ -296,7 +296,14 @@ public class GameEngine implements IGameInfoToGAE, GameEngineToGamePlayerInterfa
 	@Override
 	public void setEngine(String gameName, GameLevelEngine engine) {
 		myLevelsMap.put(gameName, engine);
-		
+	}
+	
+	public void addToBuild(String name, MapObject mo){
+		this.myBuild.put(name, mo);
+	}
+	
+	public Map<String,MapObject> getBuild(){
+		return this.myBuild;
 	}
 
 }

@@ -14,6 +14,7 @@ import voogasalad_GucciGames.gameEngine.targetCoordinate.TargetCoordinateSingle;
 
 public class Main {
 
+	/*
 	public static void main(String[] args) {
 		// test conditions:
 		GamePlayerPerson p0 = new GamePlayerPerson(0);
@@ -63,9 +64,10 @@ public class Main {
 
 	}
 
-
+*/
 
 }
+
 
 /*
  * public class Main {
