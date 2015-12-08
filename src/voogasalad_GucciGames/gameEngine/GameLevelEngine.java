@@ -37,7 +37,7 @@ public class GameLevelEngine implements IGameLevelToGamePlayer {
 	private boolean hasLevelEnded;
 	private GameStats myGameStats;
 	
-	private List<Double> scoresList;
+	//private List<Double> scoresList;
 
 	@Override
 	public String getLevelName() {

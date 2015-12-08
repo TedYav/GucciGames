@@ -62,8 +62,8 @@ public class DemoMaker extends Application {
 		GameLevelEngine level3 = makeLevel(20, 20, 1);
 		level3.setMyChoosability(true);
 		// level1.setName("Easy");
-		GameLevelEngine level4 = makeLevel(40, 40, 20);
-		level4.setMyChoosability(true);
+		//GameLevelEngine level4 = makeLevel(40, 40, 20);
+		//level4.setMyChoosability(true);
 
 		resourceManager.copyImageToGame("tiles/lava.jpg");
 		resourceManager.copyImageToGame("tiles/water.jpg");
@@ -76,7 +76,7 @@ public class DemoMaker extends Application {
 		game.getGameEngine().addLevel("Easy", level1);
 		game.getGameEngine().addLevel("Medium", level2);
 		game.getGameEngine().addLevel("Hard", level3);
-		game.getGameEngine().addLevel("Ultra", level4);
+		//game.getGameEngine().addLevel("Ultra", level4);
 
 		GuiData gui = new GuiData();
 		game.setGuiData(gui);

@@ -31,6 +31,7 @@ public class XStreamGameEngine {
     
     public void saveGameInfo(GameInfo game, File file) {
         try {
+            System.out.println("SAVING GAME");
             String gameXML = serializer.toXML(game);
             myLoader.save(file, gameXML);
             myManager.addGame(game.getGameName(), sanitizeGameName(game.getGameName())+ myConfig.getString("GameExtension"));
@@ -59,6 +60,7 @@ public class XStreamGameEngine {
     
     public void saveGameState(GamePlayerSave game, File file) {
         try {
+            System.out.println("SAVING STATE");
             String gameXML = serializer.toXML(game);
             myLoader.save(file, gameXML);
             //myManager.addGame(game.getGameName(), sanitizeGameName(game.getGameName())+ myConfig.getString("GameExtension"));

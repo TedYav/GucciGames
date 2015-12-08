@@ -34,13 +34,13 @@ import voogasalad_GucciGames.gameplayer.controller.GameParametersInterface;
  */
 
 public class GameEngine implements IGameInfoToGAE, GameEngineToGamePlayerInterface {
-	private static final int MAINMENU = -1;
+	//private static final int MAINMENU = -1;
 	private Map<String, GameLevelEngine> myLevelsMap;
 
 	private String myGameName;
 	private String myCurrentLevel;
 	private GameStats myGameStats;
-	private List<String> played;
+	//private List<String> played;
 
 	private String myInitialLevel;
 
@@ -48,7 +48,7 @@ public class GameEngine implements IGameInfoToGAE, GameEngineToGamePlayerInterfa
 	private List<String> transferablePlayerCharacteristics;
 
 	private volatile GameEnginePlayer iAmAPlayer;
-	private volatile Thread t;
+	private transient volatile Thread t;
 
 	@XStreamOmitField
 	private GameController myController;
@@ -64,7 +64,7 @@ public class GameEngine implements IGameInfoToGAE, GameEngineToGamePlayerInterfa
 		this.transferablePlayerCharacteristics = new ArrayList<String>();
 		this.transferablePlayerCharacteristics.add("PlayerScore");
 		isChangingLevel = false;
-		this.played = new ArrayList<>();
+		//this.played = new ArrayList<>();
 
 	}
 
