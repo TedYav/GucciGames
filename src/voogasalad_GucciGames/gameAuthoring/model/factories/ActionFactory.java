@@ -72,21 +72,22 @@ public class ActionFactory {
 		Constructor<MapObjectEvent> actionConstructor = action.getDeclaredConstructor();
 		MapObjectEvent actionInstance = actionConstructor.newInstance();
 
-		ActionParam actionParam = params.get(value.getName());
+		// NOT USING BECAUSE NOT ENFORCING CREATION OF CERTAIN CHARS
+		//ActionParam actionParam = params.get(value.getName());
 
 		// construct and add rules
 		for(String ruleName: value.getAllRules()) {
 			actionInstance.addRule(ruleFactory.createRule(ruleName));
 		}
 
-		System.err.println("ACTION FACTORY NOT IMPLEMENTED");
+		System.err.println("OUTCOME FACTORY NOT IMPLEMENTED");
 		
-//		// construct and add outcomes
-//		for (OutcomeParamValue param: value.getAllOutcomes()) {
-//			actionInstance.addOutcome(outcomeFactory.create(myOutcomes, param));
-//		}	
+		// construct and add outcomes
+		for (OutcomeParamValue param: value.getAllOutcomes()) {
+			actionInstance.addOutcome(outcomeFactory.createOutcome(myOutcomes, param));
+		}	
 		
-		return actionInstance;
+		return (MapObjectEvent)actionInstance;
 		
 	}
 

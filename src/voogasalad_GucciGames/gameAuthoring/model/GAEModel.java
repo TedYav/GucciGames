@@ -187,4 +187,25 @@ public class GAEModel implements IGAEModel{
 		
 	}
 
+
+	@Override
+	public void deleteTileType(MapObjectType object) {
+		// TODO Auto-generated method stub
+		
+	}
+
+
+	@Override
+	public void deleteStructureType(MapObjectType object) {
+		// TODO Auto-generated method stub
+		
+	}
+
+
+	@Override
+	public void deleteUnitType(MapObjectType object) {
+		// TODO Auto-generated method stub
+		
+	}
+
 }

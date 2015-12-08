@@ -21,5 +21,13 @@ public class OutcomeParamValue {
 	public void setConditions(List<ObjParamValue> items){
 		this.conditions.addAll(items);
 	}
+	
+	public List<ObjParamValue> getConditions() {
+		return conditions;
+	}
+	
+	public String getName() {
+		return name;
+	}
 
 }

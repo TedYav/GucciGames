@@ -63,6 +63,9 @@ public interface IGAEModel {
 	public IGameProperties getPropertiesInterface();
 	public void addPlayerCharacteristic(int playerID, ObjParamValue param);
 	public void addMapObjectCharacteristic(MapObjectType type, ObjParamValue param);
-	public void addActionParamValue(MapObjectType type, ActionParamsValue param);	
+	public void addActionParamValue(MapObjectType type, ActionParamsValue param);
+	public void deleteTileType(MapObjectType object);
+	public void deleteStructureType(MapObjectType object);
+	public void deleteUnitType(MapObjectType object);	
     
 }
