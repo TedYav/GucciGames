@@ -48,7 +48,6 @@ public class ResultsScene extends GameScene{
 			myManager.loadScene("MainMenuScene");
 		}
 		else{
-			System.out.println("DONE");
 			myManager.getController().getEngine().changeCurrentLevel(myManager.getController().getEngine().getCurrentLevel().getNextLevel());
 			myManager.sceneFinished();
 		}
@@ -60,18 +59,16 @@ public class ResultsScene extends GameScene{
 		results.getResults().getEachPlayerConditions().keySet().forEach( s -> addPlayerResults(s));
 	}
 
-	private void addPlayerResults(Integer s) {
-		double score = ((PlayerScore) myManager.getController().getEngine().getPlayerCharacteristic("PlayerScore", s)).getScore();
-		myInfoMap.put("Player " + s, ((Double)score).toString() + " " + playerState(s));
+	private void addPlayerResults(Integer id) {
+		double score = ((PlayerScore) myManager.getController().getEngine().getPlayerCharacteristic("PlayerScore", id)).getScore();
+		myInfoMap.put("Player " + id, ((Double)score).toString() + " " + playerState(id));
+		if(gameOver()){
+			myManager.getController().uploadScore("Player" + id, score);
+		}
 	}
 
 	private String playerState(Integer s) {
-		if(gameOver()){
-			return getOutcomeText(myManager.getController().getEndLevelParams().getResults().getEachPlayerConditions().get(s));
-		}
-		else{
-			return "";
-		}
+		return gameOver() ? getOutcomeText(myManager.getController().getEndLevelParams().getResults().getEachPlayerConditions().get(s)) : "";
 	}
 
 	private String getOutcomeText(EndGameConditions endGameConditions) {
