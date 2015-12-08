@@ -92,6 +92,7 @@ public class MenuScreen extends WindowComponent {
 			moveDown();
 			break;
 		case ENTER:
+		    System.out.println("MENUSCREEN ENTERRRRRRRRRRRRRRRRR");
 			done = true;
 			getGameScene().getScene().removeEventFilter(KeyEvent.KEY_PRESSED, event -> handleKeys(event));
 			myOptions.get(myText.get(mySelectedIndex).getText()).activate();

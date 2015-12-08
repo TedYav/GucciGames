@@ -38,7 +38,7 @@ public class GameController implements GameControllerInterface, GameControllerAd
 	private PlayerMapObjectInterface activeMapObject;
 	private List<Observer> activeMOObservers;
 	private List<TargetCoordinateSingle> possibleMoves;
-	
+	private List<Observer> chatObservers;
 	private GameParametersInterface endLevelParams;
 
 	private GameLoader myLoader;
@@ -52,6 +52,7 @@ public class GameController implements GameControllerInterface, GameControllerAd
 		activeMOObservers=new ArrayList<Observer>();
 		possibleMoves = new ArrayList<TargetCoordinateSingle>();
 		myLoader = new GameLoader(this);
+		chatObservers = new ArrayList<Observer>();
 	}
 
 	@Override
@@ -184,6 +185,17 @@ public class GameController implements GameControllerInterface, GameControllerAd
             o.update(null, activeMapObject);
         }
     }
+    
+    @Override
+    public void addChatObserver (Observer o) {
+        chatObservers.add(o);
+    }
+    
+    private void notifyChatObservers(String chatLine) {
+        for (Observer o: chatObservers) {
+            o.update(null, chatLine);
+        }
+    }
 
 	@Override
 	public GameEngineToGamePlayerInterface getEngine() {
@@ -231,6 +243,34 @@ public class GameController implements GameControllerInterface, GameControllerAd
 	}
 
 	@Override
+	public void updateChat(String string) {
+		
+		Platform.runLater(new Runnable() {
+			   @Override
+			   public void run() {
+			      // Update/Query the FX classes here
+
+				    notifyChatObservers(string);
+
+			   }
+			});
+		
+			}
+
+    @Override
+    public void sendMessage (String s) {
+    	
+    	Platform.runLater(new Runnable() {
+			   @Override
+			   public void run() {
+			      // Update/Query the FX classes here
+
+			        myCurrentEngine.sendMessage(s);
+			   
+			   }
+			});
+    	
+    	 }
 	public void loadNextLevel() {
 		// TODO Auto-generated method stub
 		

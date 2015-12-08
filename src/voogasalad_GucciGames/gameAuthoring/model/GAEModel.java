@@ -171,17 +171,17 @@ public class GAEModel implements IGAEModel{
 		typeData.addPlayerCharacteristic(playerID, param);
 	}
 
-	@Override
-	public void addMapObjectCharacteristic(MapObjectType type, ObjParamValue param) {
-		// TODO Auto-generated method stub
-		
-	}
+//	@Override
+//	public void addMapObjectCharacteristic(MapObjectType type, ObjParamValue param) {
+//		// TODO Auto-generated method stub
+//		
+//	}
 
-	@Override
-	public void addActionParamValue(MapObjectType type, ActionParamsValue param) {
-		// TODO Auto-generated method stub
-		
-	}
+//	@Override
+//	public void addActionParamValue(MapObjectType type, ActionParamsValue param) {
+//		// TODO Auto-generated method stub
+//		
+//	}
 
 
 	@Override

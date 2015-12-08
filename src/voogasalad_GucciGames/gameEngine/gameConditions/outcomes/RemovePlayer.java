@@ -21,7 +21,7 @@ public class RemovePlayer extends Outcome {
 
 	@Override
 	ChangedParameters applyOutcome(BasicParameters params, ChangedParameters changedParams, int id) {
-		if (params.getEngine().getPlayers().getAllIds().contains(id)) {
+		if (params.getEngine().getPlayers().getAllExistingIds().contains(id)) {
 			params.getEngine().getPlayers().removePlayer(id);
 			changedParams.addPlayer(id);
 		}

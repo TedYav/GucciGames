@@ -89,6 +89,20 @@ public class GameEngineServer extends GameEnginePlayer implements Runnable {
 		updateClientGameEngine();
 	}
 
+	@Override
+	public void sendMessage(String string) {
+		sendClientsIncomingMessage(string);
+	}
+
+	private void sendClientsIncomingMessage(String string) {
+		// TODO Auto-generated method stub
+		getWriters().stream().forEach(e -> {
+        	e.print("CHAT\n" + string.length() + "\n" + string + "\n");
+        	e.flush();
+
+		});
+	}
+
 
 
 }

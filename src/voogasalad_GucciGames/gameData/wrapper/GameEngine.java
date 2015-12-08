@@ -45,6 +45,8 @@ public class GameEngine implements IGameInfoToGAE, GameEngineToGamePlayerInterfa
 	private boolean isChangingLevel;
 	private List<String> transferablePlayerCharacteristics;
 	private boolean isEndTurn;
+	
+	private int playerID;
 
 	private transient volatile GameEnginePlayer iAmAPlayer;
 	private transient volatile Thread t;
@@ -130,7 +132,7 @@ public class GameEngine implements IGameInfoToGAE, GameEngineToGamePlayerInterfa
 	private boolean setUpGameStats() {
 		this.getCurrentLevel().setGameStats(myGameStats);
 		AllPlayers players = this.getCurrentLevel().getPlayers();
-		for (Integer id : players.getAllIds()) {
+		for (Integer id : players.getAllExistingIds()) {
 			GamePlayerPerson player = players.getPlayerById(id);
 			for (String ch : transferablePlayerCharacteristics) {
 				if (player.hasCharacteristic(ch)) {
@@ -200,7 +202,7 @@ public class GameEngine implements IGameInfoToGAE, GameEngineToGamePlayerInterfa
 
 	private boolean updateTransfer() {
 		AllPlayers players = this.myLevelsMap.get(myCurrentLevel).getPlayers();
-		for (Integer id : players.getAllIds()) {
+		for (Integer id : players.getAllExistingIds()) {
 			if (this.myGameStats.contains(id)) {
 				GamePlayerPerson player = players.getPlayerById(id);
 				Map<String, APlayerChars> map = this.myGameStats.getCharacteristics(id);
@@ -322,4 +324,19 @@ public class GameEngine implements IGameInfoToGAE, GameEngineToGamePlayerInterfa
 		return this.myBuild;
 	}
 
+	public void updateChat(int playerID2, String string) {
+		myController.updateChat("Player" + playerID2 + ": " + string);
+	}
+	
+	public void sendMessage(String string){
+	    if (iAmAPlayer==null) {
+	        myController.updateChat("Player" + getCurrentLevel().getGameParameters().whoseTurn() + ": " + string);
+	    }
+	    else {
+		iAmAPlayer.sendMessage(string);
+	    }
+	    if (iAmAPlayer.getClass().getSimpleName().equals(GameEngineServer.class.getSimpleName())) {
+	        myController.updateChat("Player" + getCurrentLevel().getGameParameters().whoseTurn() + ": " + string);
+	    }
+	}
 }
