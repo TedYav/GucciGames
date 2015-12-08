@@ -109,7 +109,10 @@ public class SettingsDialog extends AGaeDialog implements ISwitchSettingsPane{
 
 	@Override
 	public void addSaveButton(ButtonType save) {
-		this.getDialogPane().getButtonTypes().add(save);
+		if(!this.getDialogPane().getButtonTypes().contains(save)){
+			this.getDialogPane().getButtonTypes().add(save);
+		}
+		
 		
 	}
 
