@@ -6,7 +6,7 @@ public class StructureTab extends ATab {
 	private static final String TYPE = "structure";
 
 	public StructureTab(SideBar bar) {
-		super(bar);
+		super(bar, TYPE);
 		setText("Structures");
 		init(myController.getImmutableStructureTypes());
 	}
