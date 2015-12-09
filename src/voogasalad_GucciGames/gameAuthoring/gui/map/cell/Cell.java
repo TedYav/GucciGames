@@ -151,5 +151,9 @@ public class Cell extends StackPane implements ICell {
 		pane.maxHeightProperty().bind(heightProperty());
 		pane.prefHeightProperty().bind(heightProperty());
 	}
+	
+	public void setOwner(int id){
+		myMidLayer.setOwner(id);
+	}
 
 }

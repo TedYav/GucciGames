@@ -29,7 +29,6 @@ import voogasalad_GucciGames.gameAuthoring.model.GAEModel;
 import voogasalad_GucciGames.gameAuthoring.model.IGameProperties;
 import voogasalad_GucciGames.gameAuthoring.model.IGAEModel;
 import voogasalad_GucciGames.gameAuthoring.model.MapObjectType;
-import voogasalad_GucciGames.gameEngine.mapObject.MapObject;
 import voogasalad_GucciGames.helpers.GameResourceManagerToGAE;
 import voogasalad_GucciGames.helpers.ResourceManager;
 
@@ -145,12 +144,6 @@ public class GaeController extends AGuiGaeController implements IModelGaeControl
 		allPlayers.put(id, name);
 		// TODO DEBUG:
 		allPlayers.forEach((k, v) -> System.out.println("k: " + k + " " + " v: " + v));
-
-	}
-
-	@Override
-	public void changeOwner(MapObject mapObject, int playerID) {
-		myModel.changeOwner(mapObject, playerID);
 
 	}
 

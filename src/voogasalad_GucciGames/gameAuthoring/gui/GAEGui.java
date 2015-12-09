@@ -14,6 +14,7 @@ import voogasalad_GucciGames.gameAuthoring.AGuiGaeController;
 import voogasalad_GucciGames.gameAuthoring.gui.sidebar.SideBar;
 import voogasalad_GucciGames.gameAuthoring.gui.statusbar.StatusBar;
 import voogasalad_GucciGames.gameAuthoring.gui.util.GAEPreloader;
+import voogasalad_GucciGames.gameAuthoring.gui.util.ShortcutAdder;
 import voogasalad_GucciGames.gameAuthoring.gui.util.WelcomeScreen;
 import voogasalad_GucciGames.gameAuthoring.guiexceptions.ErrorDialog;
 import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.maindialogs.NewLevelDialog;
@@ -60,6 +61,7 @@ public class GAEGui extends BorderPane {
 		setBottom(myStatusBar);
 		setCenter(myWelcomeScreen);
 		stage.show();
+		new ShortcutAdder(myController, this);
 	}
 
 	private void initLayout() {
