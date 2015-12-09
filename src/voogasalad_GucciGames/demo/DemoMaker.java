@@ -112,7 +112,7 @@ public class DemoMaker extends Application {
 		MoveEvent myMoveEvent = new MoveEvent("Move", moveRules, new ArrayList<Outcome>());
 
 
-		Conditions onePlayerLeft = new CheckOnePlayerLeft();
+		Conditions onePlayerLeft = new CheckOnePlayerLeft(1);
 		List<Conditions> endGameConditions = new ArrayList<Conditions>();
 		endGameConditions.add(onePlayerLeft);
 
