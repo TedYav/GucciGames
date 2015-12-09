@@ -226,8 +226,8 @@ public class TypeData implements IGameProperties {
 				e.printStackTrace();
 				System.err.println("FAILED TO ADD GROOVY ACTION");
 			}
-			
-			
+
+
 		}
 		else {
 			try {
@@ -280,9 +280,17 @@ public class TypeData implements IGameProperties {
 	}
 
 	public Map<String, GActionParams> getGroovyActionParams() {
-	    return myGroovyActionParams;
+		return myGroovyActionParams;
 	}
-        public Map<String, GCharParam> getGroovyMapObjectCharParams() {
-            return myGroovyMapObjectCharParams;
-        }
+	public Map<String, GCharParam> getGroovyMapObjectCharParams() {
+		return myGroovyMapObjectCharParams;
+	}
+	
+	public List<MapObjectType> getAllMapObjectTypes() {
+        List<MapObjectType> list = new ArrayList<>();
+        list.addAll(tileTypes);
+        list.addAll(structureTypes);
+        list.addAll(unitTypes);
+        return list;
+    }
 }

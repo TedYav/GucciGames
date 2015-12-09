@@ -97,7 +97,8 @@ public class GAEModel implements IGAEModel{
     public void saveToXML() {
 //      AllPlayers myPlayers = new AllPlayers(mapOfPlayers);
 //      MainGameEngine engine = new MainGameEngine(myPlayers);
-    	saveToXML(myFactory.create(typeData, levelData, guiData, gameName));
+    	List<MapObjectType> mapObjectTypeList = typeData.getAllMapObjectTypes();
+    	saveToXML(myFactory.create(typeData, levelData, guiData, mapObjectTypeList, gameName));
     	
     	
     }

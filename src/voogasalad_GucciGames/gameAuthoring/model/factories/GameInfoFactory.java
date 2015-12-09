@@ -23,7 +23,7 @@ import voogasalad_GucciGames.gameEngine.targetCoordinate.TargetCoordinateSingle;
 public class GameInfoFactory {
 
 	public GameInfo create(TypeData typeData, 
-			LevelData levelData, GuiData guiData, String name) {
+			LevelData levelData, GuiData guiData, List<MapObjectType> mapObjectTypeList, String name) {
 		
 		GameInfo game = new GameInfo(name);
 		
@@ -36,7 +36,37 @@ public class GameInfoFactory {
 			game.getGameEngine().addLevel(level.getName(),makeLevel(typeData.getMapOfPlayers(), typeData, level));
 		}
 		
+		Map<String, MapObject> allMapObjects = makeMapObjects(mapObjectTypeList);
+		
+		game.getGameEngine().addMapObjects(allMapObjects);
+		
 		return game;
+	}
+	
+	
+	private Map<String, MapObject> makeMapObjects (List<MapObjectType> mapObjectTypeList) {
+	       Map<String, MapObject> mapObjects = new HashMap<>();
+	       
+	       mapObjectTypeList.stream().forEach(type -> {
+	           
+	               List<AMapObjectCharacteristic> characteristics = type.getCharacteristics();
+	               List<MapObjectEvent> events = type.getEvents();
+	               //                TargetCoordinateSingle coord = new TargetCoordinateSingle(obj.getCoordinate().getX(),
+	               //                                obj.getCoordinate().getY());
+	               MapObject mapObject = new MapObject(null, -1, 
+	                                                   type.getLayer(), type.getName(), type.getImagePath());            
+	               characteristics.stream().forEach(a -> {
+	                   mapObject.addCharacteristic(a.getClass().getSimpleName(), a);
+	               });
+	               events.stream().forEach(a -> {
+	                   mapObject.addEvent(a.getClass().getSimpleName(), a);
+	               }); 
+	               mapObjects.put(type.getName(), mapObject);
+
+	       });
+	       
+	       
+	       return mapObjects;
 	}
 
 	private GameLevelEngine makeLevel(Map<Integer, GamePlayerPerson> mapOfPlayers, 
