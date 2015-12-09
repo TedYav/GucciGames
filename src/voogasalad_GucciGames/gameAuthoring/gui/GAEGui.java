@@ -25,10 +25,11 @@ import voogasalad_GucciGames.gameAuthoring.gui.menubar.GAEMenuBar;
  */
 public class GAEGui extends BorderPane {
 
-	private AGuiGaeController myController;
+	private final AGuiGaeController myController;
 	private LevelTabPane myLevelTabPane;
-	private StatusBar myStatusBar;
-	private GAEMenuBar myMenuBar;
+	private final StatusBar myStatusBar;
+	private final GAEMenuBar myMenuBar;
+	private final WelcomeScreen myWelcomeScreen = new WelcomeScreen();
 
 	public GAEGui(AGuiGaeController controller, Stage stage) {
 		myController = controller;
@@ -43,7 +44,7 @@ public class GAEGui extends BorderPane {
 		// Add Status Bar
 		myStatusBar = new StatusBar(myController);
 		setBottom(myStatusBar);
-
+		setCenter(myWelcomeScreen);
 		stage.show();
 	}
 
