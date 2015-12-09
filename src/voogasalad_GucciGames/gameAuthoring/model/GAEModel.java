@@ -10,7 +10,6 @@ import voogasalad_GucciGames.gameAuthoring.model.factories.GameInfoFactory;
 import voogasalad_GucciGames.gameData.XStreamGameEngine;
 import voogasalad_GucciGames.gameData.wrapper.GameInfo;
 import voogasalad_GucciGames.gameData.wrapper.GuiData;
-import voogasalad_GucciGames.gameEngine.mapObject.MapObject;
 
 public class GAEModel implements IGAEModel{
     private TypeData typeData;
@@ -102,13 +101,6 @@ public class GAEModel implements IGAEModel{
     private boolean validate(){ //TODO
         return false;
     }
-
-	@Override
-	public void changeOwner(MapObject mapObject, int playerID) {
-		typeData.changeOwner(mapObject, playerID);
-
-	}
-	
 
 
 	@Override

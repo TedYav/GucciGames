@@ -16,7 +16,6 @@ import javafx.collections.ObservableList;
 import javafx.scene.control.Dialog;
 import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
-import voogasalad_GucciGames.gameEngine.mapObject.MapObject;
 
 public interface IGuiGaeController {
 
@@ -48,8 +47,6 @@ public interface IGuiGaeController {
 	public MapObjectType getDragType();
 
 	public DisplayMapObject addObject(int levelID, GridPoint gridpoint, MapObjectType mapObjType);
-
-	public void changeOwner(MapObject mapObject, int playerID);
 
 	public Stage getStage();
 
