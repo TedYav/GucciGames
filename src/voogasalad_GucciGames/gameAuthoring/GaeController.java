@@ -7,7 +7,9 @@ import java.util.List;
 import java.util.Map;
 
 import javafx.beans.property.BooleanProperty;
+import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.SimpleBooleanProperty;
+import javafx.beans.property.SimpleIntegerProperty;
 import javafx.collections.ObservableList;
 import javafx.scene.control.Dialog;
 import javafx.scene.image.ImageView;
@@ -36,7 +38,7 @@ public class GaeController extends AGuiGaeController implements IModelGaeControl
 	private final IGAEModel myModel;
 	private final GAEGui myGui;
 	private final Stage myStage;
-	private int numberOfPlayers;
+	private final IntegerProperty numberOfPlayers = new SimpleIntegerProperty(0);
 	private Map<Integer, String> allPlayers = new HashMap<Integer, String>();
 	private ImageBrowseDialogs myImageBrowseDialogs;
 	private final GameResourceManagerToGAE myResManager = new ResourceManager();
@@ -46,7 +48,8 @@ public class GaeController extends AGuiGaeController implements IModelGaeControl
 		myStage = stage;
 		myGui = new GAEGui(this, stage);
 		myModel = new GAEModel(this);
-		
+		setNumberOfPlayers(1);
+		setDefaultOwner(0);
 	}
 	
 	private MapObjectType mySelectedType;
@@ -122,11 +125,17 @@ public class GaeController extends AGuiGaeController implements IModelGaeControl
 
 	@Override
 	public void setNumberOfPlayers(int n) {
-		numberOfPlayers = n;
+		numberOfPlayers.set(n);
+		myModel.setNumberOfPlayers(n);
 	}
 
 	@Override
 	public int getNumberOfPlayers() {
+		return numberOfPlayers.get();
+	}
+	
+	@Override
+	public IntegerProperty getNumberOfPlayersProperty() {
 		return numberOfPlayers;
 	}
 
@@ -230,9 +239,14 @@ public class GaeController extends AGuiGaeController implements IModelGaeControl
 		return myModel.addLevel(name, width, height);
 	}
 
-	
+	@Override
 	public void setDefaultOwner(int ownerID) {
 		myModel.setDefaultOwner(ownerID);
+	}
+	
+	@Override
+	public int getDefaultOwner() {
+		return myModel.getDefaultOwner();
 	}
 
 	@Override

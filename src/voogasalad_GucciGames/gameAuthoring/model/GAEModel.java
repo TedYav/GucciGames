@@ -31,7 +31,7 @@ public class GAEModel implements IGAEModel{
     private GuiData guiData;
     private IModelGaeController myController;
 	private GameInfoFactory myFactory;
-	private int myOwnerID;
+	private int defaultOwnerID;
 	private LevelData levelData;
 
     
@@ -41,7 +41,7 @@ public class GAEModel implements IGAEModel{
     	myFactory = new GameInfoFactory();
     	guiData = new GuiData();
     	levelData = new LevelData();
-    	myOwnerID = 0;
+    	defaultOwnerID = 0;
     	
     	
     	// load all default properites
@@ -148,16 +148,18 @@ public class GAEModel implements IGAEModel{
 	@Override
 	public DisplayMapObject addObject(int levelID, GridPoint gridpoint, MapObjectType mapObjType) {
 		
-		DisplayMapObject mapObj = new DisplayMapObject(mapObjType, gridpoint, levelID , mapObjType.getLayer());
+		DisplayMapObject mapObj = new DisplayMapObject(mapObjType, gridpoint, defaultOwnerID , mapObjType.getLayer());
 		levelData.add(levelID, mapObj);
 		return mapObj;
 	}
 
 	@Override
 	public void setDefaultOwner(int ownerID) {
-		myOwnerID = ownerID;
+		defaultOwnerID = ownerID;
 	}
 
+	
+	
 
 	@Override
 	public IGameProperties getPropertiesInterface() {
@@ -200,6 +202,24 @@ public class GAEModel implements IGAEModel{
 	public void deleteUnitType(MapObjectType object) {
 		// TODO Auto-generated method stub
 		
+	}
+
+
+	@Override
+	public void setNumberOfPlayers(int n) {
+		typeData.setNumberOfPlayers(n);
+	}
+
+
+	@Override
+	public int getNumberOfPlayers() {
+		return typeData.getNumberOfPlayers();
+	}
+
+
+	@Override
+	public int getDefaultOwner() {
+		return defaultOwnerID;
 	}
 
 }
