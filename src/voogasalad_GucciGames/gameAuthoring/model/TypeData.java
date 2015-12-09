@@ -17,14 +17,18 @@ import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.paramObjects.ActionPara
 import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.paramObjects.ActionParamsValue;
 import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.paramObjects.ObjParam;
 import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.paramObjects.ObjParamValue;
+import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.paramObjects.ObjType;
 import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.paramObjects.RuleParams;
 import voogasalad_GucciGames.gameAuthoring.model.factories.ActionFactory;
 import voogasalad_GucciGames.gameAuthoring.model.factories.CharacteristicMapFactory;
+import voogasalad_GucciGames.gameAuthoring.model.factories.GroovyActionFactory;
+import voogasalad_GucciGames.gameAuthoring.model.factories.GroovyMapChars;
 import voogasalad_GucciGames.gameAuthoring.model.factories.PlayerFactory;
 import voogasalad_GucciGames.gameEngine.gamePlayer.GamePlayerPerson;
 import voogasalad_GucciGames.gameEngine.gamePlayer.chars.APlayerChars;
 import voogasalad_GucciGames.gameEngine.mapObject.AMapObjectCharacteristic;
 import voogasalad_GucciGames.gameEngine.mapObject.MapObject;
+import voogasalad_GucciGames.gameEngine.objectActions.MapObjectEvent;
 
 public class TypeData implements IGameProperties {
 	private ObservableList<MapObjectType> tileTypes;
@@ -45,6 +49,8 @@ public class TypeData implements IGameProperties {
 
 
 	private CharacteristicMapFactory mapCharacteristicFactory = new CharacteristicMapFactory();
+	private GroovyMapChars groovyMapCharacteristicFactory = new GroovyMapChars();
+	private GroovyActionFactory groovyActionFactory = new GroovyActionFactory();
 	private PlayerFactory playerCharacteristicFactory = new PlayerFactory();
 	private ActionFactory actionFactory = new ActionFactory();
 
@@ -52,75 +58,75 @@ public class TypeData implements IGameProperties {
 		tileTypes = FXCollections.observableArrayList();
 		unitTypes = FXCollections.observableArrayList();
 		structureTypes = FXCollections.observableArrayList();
-    	ParamObjParser parser = new ParamObjParser();
-    	Set<ObjParam> mapObjCharacteristics = parser.getMapObjChars();
-    	for (ObjParam param: mapObjCharacteristics){
-    		myMapObjectCharParams.put(param.getName(), param);
-    	}    
-    	Set<ActionParam> actions = parser.getActions();
-    	for (ActionParam action: actions){
-    		myActionParams.put(action.getName(), action);
-    		System.out.println(action.getName());
-    	}
-    	Set<ObjParam> playerChar = parser.getPlayerChars();
-    	for (ObjParam characteristics: playerChar){
-    		myPlayerCharParams.put(characteristics.getName(), characteristics);
-    	}
-    	Set<ObjParam> conditions = parser.getConditions();
-    	for (ObjParam param: conditions){
-    		myConditions.put(param.getName(), param);
-    	}
-    	Set<ObjParam> outcomes = parser.getOutcomes();
-    	for (ObjParam param: outcomes){
-    		myOutcomes.put(param.getName(), param);
-    	}
-    	Set<RuleParams> rules = parser.getRules();
-    	for (RuleParams param: rules){
-    		myRules.put(param.getName(), param);
-    	}
+		ParamObjParser parser = new ParamObjParser();
+		Set<ObjParam> mapObjCharacteristics = parser.getMapObjChars();
+		for (ObjParam param: mapObjCharacteristics){
+			myMapObjectCharParams.put(param.getName(), param);
+		}    
+		Set<ActionParam> actions = parser.getActions();
+		for (ActionParam action: actions){
+			myActionParams.put(action.getName(), action);
+			System.out.println(action.getName());
+		}
+		Set<ObjParam> playerChar = parser.getPlayerChars();
+		for (ObjParam characteristics: playerChar){
+			myPlayerCharParams.put(characteristics.getName(), characteristics);
+		}
+		Set<ObjParam> conditions = parser.getConditions();
+		for (ObjParam param: conditions){
+			myConditions.put(param.getName(), param);
+		}
+		Set<ObjParam> outcomes = parser.getOutcomes();
+		for (ObjParam param: outcomes){
+			myOutcomes.put(param.getName(), param);
+		}
+		Set<RuleParams> rules = parser.getRules();
+		for (RuleParams param: rules){
+			myRules.put(param.getName(), param);
+		}
 
-    	mapOfPlayers = new HashMap<>();
-    	// add neutral player
+		mapOfPlayers = new HashMap<>();
+		// add neutral player
 		mapOfPlayers.put(-1, new GamePlayerPerson(-1));
-		
-		
+
+
 		tileTypes = FXCollections.observableArrayList();
 		unitTypes = FXCollections.observableArrayList();
 		structureTypes = FXCollections.observableArrayList();
 
 
-//		characteristicFactory = new CharacteristicFactory();
-//		MapObjectType type = new MapObjectType("student", "./", 0);
-//		ObjParamValue objParamVal = new ObjParamValue(type);
-//		objParamVal.setObjName("MovableCharacteristic" );
-//		Map<String, String> map = new HashMap<>();
-//		map.put("range", "1");
-//		map.put("maxNumOfMoves", "4");
-//		objParamVal.setParamValues(map);
-//		try {
-//			characteristicFactory.create(myMapObjectCharParams, objParamVal);
-//		} catch (NoSuchMethodException e) {
-//			// TODO Auto-generated catch block
-//			e.printStackTrace();
-//		} catch (SecurityException e) {
-//			// TODO Auto-generated catch block
-//			e.printStackTrace();
-//		} catch (ClassNotFoundException e) {
-//			// TODO Auto-generated catch block
-//			e.printStackTrace();
-//		} catch (InstantiationException e) {
-//			// TODO Auto-generated catch block
-//			e.printStackTrace();
-//		} catch (IllegalAccessException e) {
-//			// TODO Auto-generated catch block
-//			e.printStackTrace();
-//		} catch (IllegalArgumentException e) {
-//			// TODO Auto-generated catch block
-//			e.printStackTrace();
-//		} catch (InvocationTargetException e) {
-//			// TODO Auto-generated catch block
-//			e.printStackTrace();
-//		}
+		//		characteristicFactory = new CharacteristicFactory();
+		//		MapObjectType type = new MapObjectType("student", "./", 0);
+		//		ObjParamValue objParamVal = new ObjParamValue(type);
+		//		objParamVal.setObjName("MovableCharacteristic" );
+		//		Map<String, String> map = new HashMap<>();
+		//		map.put("range", "1");
+		//		map.put("maxNumOfMoves", "4");
+		//		objParamVal.setParamValues(map);
+		//		try {
+		//			characteristicFactory.create(myMapObjectCharParams, objParamVal);
+		//		} catch (NoSuchMethodException e) {
+		//			// TODO Auto-generated catch block
+		//			e.printStackTrace();
+		//		} catch (SecurityException e) {
+		//			// TODO Auto-generated catch block
+		//			e.printStackTrace();
+		//		} catch (ClassNotFoundException e) {
+		//			// TODO Auto-generated catch block
+		//			e.printStackTrace();
+		//		} catch (InstantiationException e) {
+		//			// TODO Auto-generated catch block
+		//			e.printStackTrace();
+		//		} catch (IllegalAccessException e) {
+		//			// TODO Auto-generated catch block
+		//			e.printStackTrace();
+		//		} catch (IllegalArgumentException e) {
+		//			// TODO Auto-generated catch block
+		//			e.printStackTrace();
+		//		} catch (InvocationTargetException e) {
+		//			// TODO Auto-generated catch block
+		//			e.printStackTrace();
+		//		}
 
 	}
 
@@ -219,12 +225,24 @@ public class TypeData implements IGameProperties {
 
 	@Override
 	public void addMapObjectCharacteristic(ObjParamValue param) {
-		try {
-			param.getMapObjectType().addCharacteristic((AMapObjectCharacteristic)mapCharacteristicFactory.create(myMapObjectCharParams, param));
-		} catch (NoSuchMethodException | SecurityException | ClassNotFoundException | InstantiationException
-				| IllegalAccessException | IllegalArgumentException | InvocationTargetException e) {
-			e.printStackTrace();
-			System.err.println("FAILED TO ADD CHARACTERISTIC");
+		if (myGroovyMapObjectCharParams.containsKey(param.getName())) {
+			try {
+				param.getMapObjectType().addCharacteristic((AMapObjectCharacteristic)groovyMapCharacteristicFactory.create(myGroovyMapObjectCharParams, param));
+			} catch (NoSuchMethodException | SecurityException | ClassNotFoundException | InstantiationException
+					| IllegalAccessException | IllegalArgumentException | InvocationTargetException e) {
+				e.printStackTrace();
+				System.err.println("FAILED TO ADD GROOVY CHARACTERISTIC");
+			}
+
+		}
+		else {
+			try {
+				param.getMapObjectType().addCharacteristic((AMapObjectCharacteristic)mapCharacteristicFactory.create(myMapObjectCharParams, param));
+			} catch (NoSuchMethodException | SecurityException | ClassNotFoundException | InstantiationException
+					| IllegalAccessException | IllegalArgumentException | InvocationTargetException e) {
+				e.printStackTrace();
+				System.err.println("FAILED TO ADD CHARACTERISTIC");
+			}
 		}
 
 	}
@@ -232,12 +250,25 @@ public class TypeData implements IGameProperties {
 	@Override
 	public void addActionParamValue(ActionParamsValue param) {
 		System.out.println("adding action in type data");
-		try {
-			param.getMapObjectType().addAction(actionFactory.createAction(myActionParams, param));
-		} catch (ClassNotFoundException | NoSuchMethodException | SecurityException | InstantiationException
-				| IllegalAccessException | IllegalArgumentException | InvocationTargetException e) {
-			e.printStackTrace();
-			System.err.println("FAILED TO ADD ACTION");
+		if (myGroovyActionParams.containsKey(param.getName())) {
+			try {
+				param.getMapObjectType().addAction((MapObjectEvent)groovyActionFactory.create(myGroovyActionParams, param));
+			} catch (NoSuchMethodException | SecurityException | InstantiationException | IllegalAccessException
+					| IllegalArgumentException | InvocationTargetException e) {
+				e.printStackTrace();
+				System.err.println("FAILED TO ADD GROOVY ACTION");
+			}
+			
+			
+		}
+		else {
+			try {
+				param.getMapObjectType().addAction(actionFactory.createAction(myActionParams, param));
+			} catch (ClassNotFoundException | NoSuchMethodException | SecurityException | InstantiationException
+					| IllegalAccessException | IllegalArgumentException | InvocationTargetException e) {
+				e.printStackTrace();
+				System.err.println("FAILED TO ADD ACTION");
+			}
 		}
 
 	}
@@ -256,19 +287,24 @@ public class TypeData implements IGameProperties {
 
 	public Map<Integer, GamePlayerPerson> getMapOfPlayers() {
 		return mapOfPlayers;
-
 	}
 
 	@Override
 	public void addGroovyCharacteristic(GCharParam param) {
-		// TODO Auto-generated method stub
+		myGroovyMapObjectCharParams.put(param.getName(), param);
+		ObjParam charparam = new ObjParam(param.getName(), ObjType.MAP_CHAR, 0);
+		param.getAllParams().keySet().stream().forEach(key -> {
+			charparam.addParam(param.getAllParams().get(key), key);
+		});
+		myMapObjectCharParams.put(param.getName(), charparam);
 
 	}
 
 	@Override
 	public void addGroovyAction(GActionParams param) {
-		// TODO Auto-generated method stub
-
+		myGroovyActionParams.put(param.getName(), param);
+		ActionParam actionParam = new ActionParam(param.getName());
+		myActionParams.put(param.getName(), actionParam);
 	}
 
 	public void setNumberOfPlayers(int n) {

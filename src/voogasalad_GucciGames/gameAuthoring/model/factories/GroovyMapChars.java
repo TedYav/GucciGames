@@ -41,6 +41,11 @@ public class GroovyMapChars extends GroovyFactory {
 		ArrayList<String> myTypes = new ArrayList<String>();
 		myTypes.addAll(typeMap.keySet());
 		Collections.sort(myTypes);
+		
+		List<String> paramKeys = new ArrayList<>(typeMap.keySet());
+		for (int i = 0; i < paramKeys.size(); i ++) {
+			myParameters[i] = TypeMap.getType(typeMap.get(paramKeys.get(i)));
+		}
 
 		for (int i = 0; i < initargs.length; i++) {
 			Class<?> constr = myParameters[i];
