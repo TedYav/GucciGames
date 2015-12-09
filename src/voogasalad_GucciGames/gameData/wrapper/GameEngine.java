@@ -335,5 +335,8 @@ public class GameEngine implements IGameInfoToGAE, GameEngineToGamePlayerInterfa
 	    else {
 		iAmAPlayer.sendMessage(string);
 	    }
+	    if (iAmAPlayer.getClass().getSimpleName().equals(GameEngineServer.class.getSimpleName())) {
+	        myController.updateChat("Player" + getCurrentLevel().getGameParameters().whoseTurn() + ": " + string);
+	    }
 	}
 }
