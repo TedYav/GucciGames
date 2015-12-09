@@ -30,6 +30,8 @@ class GridSelector {
 		myGrid.addEventHandler(MouseDragEvent.MOUSE_DRAG_RELEASED, e -> dragEnd(e));
 		myGrid.addEventHandler(MouseDragEvent.MOUSE_DRAG_EXITED, e -> dragAbort(e));
 	}
+	
+
 
 	/**
 	 * Update location of the rectangle proving two defining point (along the

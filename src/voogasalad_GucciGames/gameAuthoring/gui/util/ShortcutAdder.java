@@ -49,7 +49,7 @@ public class ShortcutAdder {
 	private void addUnits(int n){
 		List<String> list = myController.getResourceManager().getImages("units");
 		for(int i=0;i<list.size() && i<n;i++){
-			MapObjectType type = new MapObjectType(list.get(i), list.get(i), 0);
+			MapObjectType type = new MapObjectType(list.get(i), list.get(i), 2);
 			myController.getResourceManager().copyImageToGame(list.get(i));
 			myController.createCustomType(type, "unit");
 		}
@@ -58,7 +58,7 @@ public class ShortcutAdder {
 	private void addSprites(int n){
 		List<String> list = myController.getResourceManager().getSprites();
 		for(int i=0;i<list.size() && i<n;i++){
-			MapObjectType type = new MapObjectType(list.get(i), list.get(i)+":0", 0);
+			MapObjectType type = new MapObjectType(list.get(i), list.get(i)+":0", 2);
 			myController.getResourceManager().copyImageToGame(list.get(i));
 			myController.createCustomType(type, "unit");
 		}
@@ -67,7 +67,7 @@ public class ShortcutAdder {
 	private void addStructs(int n){
 		List<String> list = myController.getResourceManager().getImages("structures");
 		for(int i=0;i<list.size() && i<n;i++){
-			MapObjectType type = new MapObjectType(list.get(i), list.get(i), 0);
+			MapObjectType type = new MapObjectType(list.get(i), list.get(i), 1);
 			myController.getResourceManager().copyImageToGame(list.get(i));
 			myController.createCustomType(type, "structure");
 		}
