@@ -21,7 +21,7 @@
 	chars = ""
 	outcomes = "">
 	</action>
-	<action displayName="Build a Archer" name="BuildArcher" 
+	<action displayName="Build a Archer" name="BuildArcherEvent" 
 	rules = "" 
 	chars = ""
 	outcomes = "">
