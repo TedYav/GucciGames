@@ -54,5 +54,4 @@ public interface IGAEModel {
 	public int getNumberOfPlayers();
 
 	public int getDefaultOwner();
-
 }

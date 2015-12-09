@@ -46,6 +46,9 @@ public class GaeController extends AGuiGaeController implements IModelGaeControl
 		myStage = stage;
 		myGui = new GAEGui(this, stage);
 		myModel = new GAEModel(this);
+//		setNumberOfPlayers(1);
+		//setDefaultOwner(0);
+
 	}
 	
 	private MapObjectType mySelectedType;
@@ -205,6 +208,7 @@ public class GaeController extends AGuiGaeController implements IModelGaeControl
 		myResManager.loadGame(name);
 		myResManager.toggleCopyOnAccess(true);
 		myImageBrowseDialogs = new ImageBrowseDialogs(myResManager);
+		//myModel.setGameName(name);
 	}
 
 	@Override

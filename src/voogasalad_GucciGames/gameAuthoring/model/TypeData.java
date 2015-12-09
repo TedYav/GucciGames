@@ -179,6 +179,9 @@ public class TypeData implements IGameProperties {
 	public void addPlayerCharacteristic(int playerID, ObjParamValue param) {
 		try {
 			System.out.println(playerID + " HI");
+			System.out.println(this.mapOfPlayers.size());
+			System.out.println(mapOfPlayers.get(playerID)==null);
+			System.out.println(param.getName());
 			mapOfPlayers.get(playerID).addCharacterstic(param.getName(), (APlayerChars)playerCharacteristicFactory.create(myPlayerCharParams, param));
 		} catch (NoSuchMethodException | SecurityException | ClassNotFoundException | InstantiationException
 				| IllegalAccessException | IllegalArgumentException | InvocationTargetException e) {
@@ -267,7 +270,8 @@ public class TypeData implements IGameProperties {
 
 	public void setNumberOfPlayers(int n) {
 		for (int i = 0; i < n; i ++) {
-			mapOfPlayers.put(n, new GamePlayerPerson(n));
+			System.out.println("Adding to map!");
+			mapOfPlayers.put(i, new GamePlayerPerson(i));
 		}
 	}
 
@@ -275,4 +279,10 @@ public class TypeData implements IGameProperties {
 		return mapOfPlayers.size() - 1;
 	}
 
+	public Map<String, GActionParams> getGroovyActionParams() {
+	    return myGroovyActionParams;
+	}
+        public Map<String, GCharParam> getGroovyMapObjectCharParams() {
+            return myGroovyMapObjectCharParams;
+        }
 }

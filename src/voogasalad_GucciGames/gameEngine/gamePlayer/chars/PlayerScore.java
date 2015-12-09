@@ -4,6 +4,10 @@ public class PlayerScore extends APlayerChars{
 
 	private double myScore;
 	
+	public PlayerScore(){
+		this.myScore = 0;
+	}
+	
 	public PlayerScore(double score){
 		this.myScore = score;
 	}

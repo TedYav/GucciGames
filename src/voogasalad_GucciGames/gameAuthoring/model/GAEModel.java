@@ -9,6 +9,7 @@ import voogasalad_GucciGames.gameAuthoring.gui.map.GridPoint;
 import voogasalad_GucciGames.gameAuthoring.model.factories.GameInfoFactory;
 import voogasalad_GucciGames.gameData.XStreamGameEngine;
 import voogasalad_GucciGames.gameData.wrapper.GameInfo;
+import voogasalad_GucciGames.gameData.wrapper.GroovyLoaderData;
 import voogasalad_GucciGames.gameData.wrapper.GuiData;
 
 public class GAEModel implements IGAEModel{
@@ -18,6 +19,7 @@ public class GAEModel implements IGAEModel{
 	private GameInfoFactory myFactory;
 	private int defaultOwnerID;
 	private LevelData levelData;
+	private String gameName;
 
     
     public GAEModel(IModelGaeController controller) {
@@ -87,13 +89,15 @@ public class GAEModel implements IGAEModel{
 
     private void saveToXML (GameInfo game) {    	
     	XStreamGameEngine saver = new XStreamGameEngine();
+    	GroovyLoaderData gLoaderData = new GroovyLoaderData(typeData.getGroovyActionParams(),typeData.getGroovyMapObjectCharParams());
+    	saver.saveGameLoader(gLoaderData,game);
 	saver.saveGameInfo(game);
     }
     
     public void saveToXML() {
 //      AllPlayers myPlayers = new AllPlayers(mapOfPlayers);
 //      MainGameEngine engine = new MainGameEngine(myPlayers);
-    	saveToXML(myFactory.create(typeData, levelData, guiData));
+    	saveToXML(myFactory.create(typeData, levelData, guiData, gameName));
     	
     	
     }
@@ -198,6 +202,11 @@ public class GAEModel implements IGAEModel{
 	@Override
 	public int getDefaultOwner() {
 		return defaultOwnerID;
+	}
+
+
+	public void setGameName(String name) {
+		gameName = name;
 	}
 
 }

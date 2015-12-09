@@ -47,8 +47,7 @@ public class PlayerDialog extends AGaeDialog<PlayerCharDialog> {
 	public PlayerDialog(IDialogGaeController controller, int numberOfPlayers) {
 		super();
 		GaeDialogHelper helper = new GaeDialogHelper();
-		prop = helper
-				.loadProperties("dialogproperties/playerdialogproperties.properties");
+		prop = helper.loadProperties("dialogproperties/playerdialogproperties.properties");
 		this.controller = controller;
 		this.numOfPlayers = numberOfPlayers;
 		this.myAllObjParams = controller.getPropertiesInterface().getAllPlayerCharParams();
@@ -106,21 +105,10 @@ public class PlayerDialog extends AGaeDialog<PlayerCharDialog> {
 					// Save Player
 					PlayerParams params = new PlayerParams(id, name, numMoves);
 					controller.savePlayer(params);
-
-					Reflection reflection = new Reflection();
 					List<ObjParam> currObjParams = currPlayerContent.getAllCheckedPlayerChars();
 					String className = gaeDialogPath + "PlayerCharDialog";
-					
-//					try {
-//						Class c = Class.forName(name2);
-//						Constructor con = c.getConstructor(List.class, IDialogGaeController.class, int.class);
-//						con.newInstance(allObjParams, controller, i);						
-//					} catch (Exception e) {
-//						// TODO Auto-generated catch block
-//						e.printStackTrace();
-//					}
-					Reflection
-							.createInstance(className, currObjParams, controller, i);
+
+					Reflection.createInstance(className, currObjParams, controller, i);
 				}
 			}
 			return null;
