@@ -38,6 +38,10 @@ public abstract class AFactory {
 		for (int i = 0; i < initargs.length; i++) {
 			Class<?> constr = myParameters[i];
 			initargs[i] = (valueMap.get(orderMap.get(i)));
+			System.out.println("in AFactory");
+			System.out.println("typemap " + typeMap);
+			System.out.println("type " + typeMap.get(orderMap.get(i)));
+			System.out.println("value " + valueMap.get(orderMap.get(i)));
 			initargs[i] = getTranslatedValue(typeMap.get(orderMap.get(i)), valueMap.get(orderMap.get(i)));
 
 		}
