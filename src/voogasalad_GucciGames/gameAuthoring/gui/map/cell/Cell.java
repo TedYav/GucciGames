@@ -105,6 +105,8 @@ public class Cell extends StackPane implements ICell {
 		//myController.getResourceManager().copyImageToGame(type.getImagePath());
 		if (obj != null) {
 			if (type.isTile()) {
+				if(myTileLayer.getTile()!=null)
+					myController.deleteComponent(myTileLayer.getTile(), myGrid.getLevelID());
 				myTileLayer.add(obj);
 			} else {
 				myMidLayer.add(obj);
