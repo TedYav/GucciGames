@@ -138,7 +138,9 @@ public class XStreamGameEngine {
             System.out.println("LOADING LOADER FROMMMMMMM "+dname);
             List<String> temp = Arrays.asList(dname.split(Pattern.quote(System.getProperty("file.separator"))));
             String namedd = temp.get(temp.size()-1);
-            String name = namedd.split("//.")[1];
+            String name=namedd.substring(0, namedd.length()-3);
+            System.out.println(name);
+            //String name = namedd.split("//.")[1];
             String loaderXML = myLoader.read(new File(gameNameToLoaderName(name)));
             loader = (GroovyLoaderData) serializer.fromXML(loaderXML);
             //loader stuff
@@ -163,7 +165,7 @@ public class XStreamGameEngine {
             Thread.currentThread().setContextClassLoader(gLoader);
         }
         catch (Exception e) {
-            e.printStackTrace();
+            //e.printStackTrace();
         }
         System.out.println("Loading engine.");
         try {
