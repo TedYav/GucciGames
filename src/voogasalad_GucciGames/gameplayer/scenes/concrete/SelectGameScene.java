@@ -39,8 +39,10 @@ public class SelectGameScene extends GameMenuScene {
     	myManager.getLoader().selectGame(gameName);
     	try {
             myManager.getLoader().loadSelectedGame();
+            System.out.println("loaded "+gameName);
         }
         catch (GameDataException e) {
+        	System.out.println("ERROR LOADING");
         }
     	myManager.sceneFinished();
     }

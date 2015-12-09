@@ -43,6 +43,7 @@ public class GAEGui extends BorderPane {
 	}
 	
 	private void init(){
+		//throwException(new IllegalAccessException("Today's a nice day to have a nice day"));
 		Stage stage = new Stage(StageStyle.DECORATED);
 		stage.setScene(new Scene(this));
 		Rectangle2D screenBounds = Screen.getPrimary().getVisualBounds();

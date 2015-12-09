@@ -47,6 +47,10 @@ public class DropDownMenuField  extends DialogComponent{
 		
 	}
 	
+	public ComboBox<String> getDropDown(){
+		return dropDown;
+	}
+	
 
 	@Override
 	public void setSelected(String s) {

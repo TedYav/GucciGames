@@ -41,6 +41,7 @@ public class PlayerDialog extends AGaeDialog<PlayerCharDialog> {
 	private int numOfPlayers;
 	private ScrollPane scrollPane = new ScrollPane();
 
+	List<ObjParam> myAllObjParams;
 	private PlayerContent playerContent;
 
 	public PlayerDialog(IDialogGaeController controller, int numberOfPlayers) {
@@ -50,6 +51,7 @@ public class PlayerDialog extends AGaeDialog<PlayerCharDialog> {
 				.loadProperties("dialogproperties/playerdialogproperties.properties");
 		this.controller = controller;
 		this.numOfPlayers = numberOfPlayers;
+		this.myAllObjParams = controller.getPropertiesInterface().getAllPlayerCharParams();
 
 		initialize();
 		setScene();
@@ -77,7 +79,7 @@ public class PlayerDialog extends AGaeDialog<PlayerCharDialog> {
 		} else {
 
 			while (numOfPlayers >= num) {
-				playerContent = new PlayerContent(num, controller, prop);
+				playerContent = new PlayerContent(num, controller, prop, myAllObjParams);
 				playerContentList.add(playerContent);
 				dialogElements = new DialogElements(prop, controller);
 				playerContent.setDialogElements(dialogElements);
@@ -106,9 +108,7 @@ public class PlayerDialog extends AGaeDialog<PlayerCharDialog> {
 					controller.savePlayer(params);
 
 					Reflection reflection = new Reflection();
-					List<ObjParam> allObjParams = controller
-							.getPropertiesInterface().getAllPlayerCharParams();
-
+					List<ObjParam> currObjParams = currPlayerContent.getAllCheckedPlayerChars();
 					String className = gaeDialogPath + "PlayerCharDialog";
 					
 //					try {
@@ -120,7 +120,7 @@ public class PlayerDialog extends AGaeDialog<PlayerCharDialog> {
 //						e.printStackTrace();
 //					}
 					Reflection
-							.createInstance(className, allObjParams, controller, i);
+							.createInstance(className, currObjParams, controller, i);
 				}
 			}
 			return null;

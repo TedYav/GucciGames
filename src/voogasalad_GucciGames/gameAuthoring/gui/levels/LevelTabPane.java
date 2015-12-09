@@ -32,7 +32,7 @@ public class LevelTabPane extends TabPane {
 	}
 
 	public LevelTab createNewTab(String name, int width, int height) {
-		int id = myController.addLevel(name);
+		int id = myController.addLevel(name, width, height);
 		LevelTab newTab = new LevelTab(myController, id, name);
 		this.getTabs().add(newTab);
 		newTab.setClosable(false);

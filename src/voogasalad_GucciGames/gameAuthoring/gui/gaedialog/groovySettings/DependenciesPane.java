@@ -8,7 +8,6 @@ import voogasalad_GucciGames.gameAuthoring.IDialogGaeController;
 import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.dialogcomponents.DialogTableView;
 import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.groovySettings.groovyParams.AGroovyParams;
 import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.groovySettings.groovyParams.GActionParams;
-import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.mapobjsettings.IAddMapObjParam;
 import javafx.geometry.Insets;
 import javafx.scene.control.Button;
 import javafx.scene.control.Dialog;
