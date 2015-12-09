@@ -58,11 +58,11 @@ public class GeneralPane extends GridPane {
 	private void addDefaultTextToActionPane(){
 		content.forEach((k, v) -> {
 			if (k.getText().equals("Action")){
-				v.setText("protected ChangedParameters executeAction(LocationParameters params) {}");
+				v.setText("@Override protected ChangedParameters executeAction(LocationParameters params) {}");
 			} 
 			
 			if(k.getText().equals("Request")){
-				v.setText("protected GridCoordinateParameters executeRequest(BasicParameters params) {}");
+				v.setText("@Override protected GridCoordinateParameters executeRequest(BasicParameters params) {}");
 			}
 			data.put(k.getText(), v.getText());
 		});

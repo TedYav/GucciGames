@@ -1,11 +1,8 @@
 package voogasalad_GucciGames.gameAuthoring.gui.menubar.menuitem;
 
-import java.io.File;
 
 import javafx.scene.control.MenuItem;
 import javafx.scene.input.KeyCombination;
-import javafx.stage.FileChooser;
-import javafx.stage.FileChooser.ExtensionFilter;
 import voogasalad_GucciGames.gameAuthoring.AGuiGaeController;
 
 class SaveItem extends MenuItem {

@@ -27,12 +27,8 @@ public class GameInfoFactory {
 		
 		GameInfo game = new GameInfo("GAETestGame");
 		
-		// set gui components
-//		Map<String, List<String>> guiMap = guiData.getComponentsMap();
-//		guiMap.keySet().stream().forEach(c -> {
-//			game.setGuiComponents(c, guiMap.get(c));
-//		});
 		game.setGuiData(guiData);
+		
 				
 		Map<Integer, MapData> levelMap = levelData.getMap();
 		for (int levelid: levelMap.keySet()) {
@@ -41,12 +37,11 @@ public class GameInfoFactory {
 		}
 		
 		return game;
-		
 	}
 
 	private GameLevelEngine makeLevel(Map<Integer, GamePlayerPerson> mapOfPlayers, 
 			TypeData typeData, MapData mapData) {
-		HashMap copyMapOfPlayers = new HashMap<>(mapOfPlayers);
+		Map<Integer, GamePlayerPerson> copyMapOfPlayers = new HashMap<>(mapOfPlayers);
 		for (DisplayMapObject obj: mapData.getMapObjects()) {
 			MapObjectType type = obj.getType();
 			List<AMapObjectCharacteristic> characteristics = type.getCharacteristics();
@@ -55,17 +50,22 @@ public class GameInfoFactory {
 					obj.getCoordinate().getY());
 			MapObject mapObject = new MapObject(coord, obj.getOwnerID(), 
 					type.getLayer(), type.getName(), type.getImagePath());
+			System.out.println("loading characteristics: " + characteristics.size()  + " " + characteristics);
+			System.out.println("loading events: " + events.size() + "  " + events);
 			characteristics.stream().forEach(a -> {
 				mapObject.addCharacteristic(a.getClass().getSimpleName(), a);
 			});
 			events.stream().forEach(a -> {
 				mapObject.addEvent(a.getClass().getSimpleName(), a);
 			});
-			copyMapOfPlayers.get(obj.getOwnerID());
+			copyMapOfPlayers.get(obj.getOwnerID()).addMapObject(mapObject);
 			
 		}
 		AllPlayers allplayers = new AllPlayers(copyMapOfPlayers);
 		GameLevelEngine level = new GameLevelEngine(allplayers);
+		
+		level.setMapHeight(mapData.getHeight());
+		level.setMapWidth(mapData.getWidth());
 		level.setMyChoosability(true);
 		return level;
 		
