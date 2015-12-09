@@ -278,9 +278,6 @@ public class GameEngine implements IGameInfoToGAE, GameEngineToGamePlayerInterfa
 	}
 
 	public void refreshGUI() {
-		System.out.println("NOW I AM ASKING GUI TO REFRESH");
-		
-		
 		myController.refreshGUI();
 	}
 
