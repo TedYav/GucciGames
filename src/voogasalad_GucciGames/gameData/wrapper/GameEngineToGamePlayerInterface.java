@@ -1,13 +1,16 @@
-package voogasalad_GucciGames.gameEngine;
+package voogasalad_GucciGames.gameData.wrapper;
 
 import java.util.List;
-
+import java.util.Map;
+import voogasalad_GucciGames.gameEngine.GameEnginePlayer;
+import voogasalad_GucciGames.gameEngine.GameLevelEngine;
+import voogasalad_GucciGames.gameEngine.PlayerMapObjectInterface;
 import voogasalad_GucciGames.gameEngine.CommunicationParameters.ChangedParameters;
 import voogasalad_GucciGames.gameEngine.CommunicationParameters.GridCoordinateParameters;
 import voogasalad_GucciGames.gameEngine.gamePlayer.chars.APlayerChars;
+import voogasalad_GucciGames.gameEngine.mapObject.MapObject;
 import voogasalad_GucciGames.gameEngine.targetCoordinate.ATargetCoordinate;
 import voogasalad_GucciGames.gameplayer.controller.GameController;
-import voogasalad_GucciGames.gameplayer.controller.GameControllerEngineInterface;
 import voogasalad_GucciGames.gameplayer.controller.GameParametersInterface;
 
 public interface GameEngineToGamePlayerInterface {
@@ -94,8 +97,31 @@ public interface GameEngineToGamePlayerInterface {
 
 	public void beClient(String string);
 	
+	public void setController(GameController myController);
 	public APlayerChars getPlayerCharacteristic(String name, int id);
 
-    void setController (GameControllerEngineInterface myController);
 
+	       public Map<String, GameLevelEngine> getMyLevelsMap ();
+
+	       public String getMyGameName ();
+
+	       public String getMyCurrentLevel ();
+
+	       public GameStats getMyGameStats ();
+
+	       public List<String> getPlayed ();
+
+	       public String getMyInitialLevel ();
+
+	       public boolean isChangingLevel ();
+
+	       public List<String> getTransferablePlayerCharacteristics ();
+
+	       public GameEnginePlayer getiAmAPlayer ();
+
+	       public Thread getT ();
+
+	       public GameController getMyController ();
+
+	       public Map<String, MapObject> getMyBuild ();
 }
