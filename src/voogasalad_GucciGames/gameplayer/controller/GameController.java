@@ -6,6 +6,7 @@ import java.util.Observer;
 
 import javafx.application.Platform;
 import javafx.geometry.Point2D;
+import voogasalad.util.cloud.Cloud;
 import voogasalad_GucciGames.datastructures.Coordinate;
 import voogasalad_GucciGames.gameData.wrapper.GameInfo;
 import voogasalad_GucciGames.gameData.wrapper.GameInfoToGamePlayer;
@@ -41,6 +42,8 @@ public class GameController implements GameControllerInterface, GameControllerAd
 	private GameParametersInterface endLevelParams;
 
 	private GameLoader myLoader;
+	
+	private Cloud myCloud;
 
 	public GameController(GameWindowManager manager){
 		myManager = manager;
@@ -276,6 +279,14 @@ public class GameController implements GameControllerInterface, GameControllerAd
 	@Override
 	public GameParametersInterface getEndLevelParams() {
 		return endLevelParams;
+	}
+	
+	@Override
+	public void uploadScore(String playername, double score){
+		if(myCloud == null){
+			myCloud= new Cloud();
+		}
+		myCloud.addHighScore(myGame.getGameName(), playername, score);
 	}
 
 }
