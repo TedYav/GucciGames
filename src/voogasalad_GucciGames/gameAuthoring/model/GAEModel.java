@@ -139,8 +139,8 @@ public class GAEModel implements IGAEModel{
 
 
 	@Override
-	public int addLevel(String name) {
-		return levelData.addLevel(name);
+	public int addLevel(String name, int width, int height) {
+		return levelData.addLevel(name, width, height);
 		
 	}
 

@@ -50,6 +50,8 @@ public class GameInfoFactory {
 					obj.getCoordinate().getY());
 			MapObject mapObject = new MapObject(coord, obj.getOwnerID(), 
 					type.getLayer(), type.getName(), type.getImagePath());
+			System.out.println("loading characteristics: " + characteristics.size()  + " " + characteristics);
+			System.out.println("loading events: " + events.size() + "  " + events);
 			characteristics.stream().forEach(a -> {
 				mapObject.addCharacteristic(a.getClass().getSimpleName(), a);
 			});
@@ -62,9 +64,8 @@ public class GameInfoFactory {
 		AllPlayers allplayers = new AllPlayers(copyMapOfPlayers);
 		GameLevelEngine level = new GameLevelEngine(allplayers);
 		
-		// TODO receive height and width
-		level.setMapHeight(10);
-		level.setMapWidth(10);
+		level.setMapHeight(mapData.getHeight());
+		level.setMapWidth(mapData.getWidth());
 		level.setMyChoosability(true);
 		return level;
 		
