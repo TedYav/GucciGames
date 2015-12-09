@@ -61,9 +61,4 @@ public class HighScoresScene extends GameMenuScene {
 		myMenu.setTitle(String.format(myConfig.getString("MenuTitle"), myManager.getController().getGame().getGameName()));
 	}
 
-	private void loadLevel(IGameLevelToGamePlayer level) {
-	    System.out.println("loading"+level.getLevelName());
-		getManager().getController().loadLevel(level.getLevelName());
-		myManager.sceneFinished();
-	}
 }

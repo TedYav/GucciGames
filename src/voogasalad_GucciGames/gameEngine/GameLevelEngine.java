@@ -20,6 +20,7 @@ import voogasalad_GucciGames.gameEngine.gamePlayer.DefaultTurnDecider;
 import voogasalad_GucciGames.gameEngine.gamePlayer.GamePlayerPerson;
 import voogasalad_GucciGames.gameEngine.gamePlayer.TurnCounter;
 import voogasalad_GucciGames.gameEngine.gamePlayer.chars.PlayerScore;
+import voogasalad_GucciGames.gameEngine.mapObject.MapObject;
 import voogasalad_GucciGames.gameEngine.targetCoordinate.ATargetCoordinate;
 import voogasalad_GucciGames.gameplayer.controller.GameParametersInterface;
 
@@ -33,23 +34,39 @@ public class GameLevelEngine implements IGameLevelToGamePlayer {
 	private int myMapWidth;
 	private int myMapHeight;
 	private String myName;
+	private String myNextLevelName;
 	private boolean myChoosability;
 	private boolean hasLevelEnded;
 	private GameStats myGameStats;
 	
 	private List<Double> scoresList;
+	private Map<String, MapObject> allObjects;
 
+	
+	public void setLevelName(String name){
+		myName = name;
+	}
+	
 	@Override
 	public String getLevelName() {
 		return myName;
+	}
+	
+	public void setNextLevelName(String lname){
+		this.myNextLevelName = lname;
+	}
+	
+	public String getNextLevel(){
+		return this.myNextLevelName;
 	}
 
 	public GameLevelEngine(AllPlayers gamePlayers) {
 		myGamePlayers = gamePlayers;
 		myCurrentTurnCounter = new TurnCounter();
 		myTurnDecider = new DefaultTurnDecider(myGamePlayers, myCurrentTurnCounter);
+		hasLevelEnded = false;
 
-		myName = "Game " + Math.round((Math.random()*10000));
+//		myName = "Game " + Math.round((Math.random()*10000));
 	}
 
 	@Deprecated
@@ -164,7 +181,7 @@ public class GameLevelEngine implements IGameLevelToGamePlayer {
 		//Map<String, Double> score = new HashMap<String, Double>();
 		//Map<String, Integer> scoreID = new HashMap<String, Integer>();
 
-		List<Integer> myIDs = myGamePlayers.getAllIds();
+		List<Integer> myIDs = myGamePlayers.getAllExistingIds();
 		Collections.sort(myIDs);
 
 		for(int i = 1; i < myIDs.size(); i++){
@@ -208,19 +225,24 @@ public class GameLevelEngine implements IGameLevelToGamePlayer {
 
 		return pp;
 	}
-	public void setName(String name) {
-		myName = name;
-	}
 
 	@Override
 	public boolean hasLevelEnded() {
 		return hasLevelEnded;
 	}
 
+//	public void setStartLevel(){
+//		hasLevelEnded = true;
+//	}
+//	
+//	public void endStartLevel(){
+//		hasLevelEnded = false;
+//	}
+	
 	public void setEndLevel(boolean gameWon) {
 		this.hasLevelEnded = gameWon;
 	}
-
+	
 	@Override
 	public boolean isMyChoosability() {
 		return myChoosability;
@@ -232,6 +254,20 @@ public class GameLevelEngine implements IGameLevelToGamePlayer {
 	
 	public void setGameStats(GameStats clazz){
 		this.myGameStats = clazz;
+	}
+
+	public void addMapObjectsForLevels(Map<String, MapObject> allMapObjects) {
+		// TODO Auto-generated method stub
+		setAllObjects(allMapObjects);
+	}
+
+	public void setAllObjects(Map<String, MapObject> allMapObjects) {
+		// TODO Auto-generated method stub
+		this.allObjects = allMapObjects;
+	}
+	
+	public Map<String, MapObject> getAllObjections(){
+		return allObjects;
 	}
 	
 }

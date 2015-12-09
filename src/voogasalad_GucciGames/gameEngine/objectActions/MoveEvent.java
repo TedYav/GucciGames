@@ -62,7 +62,7 @@ public class MoveEvent extends MapObjectEvent {
 		} else {
 			mc = new MovableCharacteristic();
 		}
-		double range = mc.getRange();
+		double range = mc.getMoveRange();
 		// going through neutral player
 		TargetCoordinateSingle caller = (TargetCoordinateSingle) calledMe.getCoordinate();
 		Set<TargetCoordinateSingle> otherCoor = new HashSet<>();

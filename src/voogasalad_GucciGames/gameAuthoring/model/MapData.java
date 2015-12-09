@@ -8,9 +8,13 @@ import voogasalad_GucciGames.gameEngine.mapObject.MapObject;
 public class MapData {
 	private List<DisplayMapObject> onMap;
 	private String myName;
+	private int myWidth;
+	private int myHeight;
 	
-	public MapData(String name) {
+	public MapData(String name, int width, int height) {
 		myName = name; 
+		myWidth = width;
+		myHeight = height;
 		onMap = new ArrayList<>();
 	}
 
@@ -27,7 +31,18 @@ public class MapData {
 
 	public void deleteObject(DisplayMapObject mapObj) {
 		onMap.remove(mapObj);
-		
+	}
+	
+	public String getName() {
+		return myName;
+	}
+	
+	public int getWidth() {
+		return myWidth;
+	}
+	
+	public int getHeight() {
+		return myHeight;
 	}
 
 }

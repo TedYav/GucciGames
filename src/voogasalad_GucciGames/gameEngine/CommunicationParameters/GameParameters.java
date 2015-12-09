@@ -11,6 +11,8 @@ public class GameParameters extends CommunicationParameters implements GameParam
     private String gameName;
    // private Map<String,Double> score;
     private int currentTurnPlayer;
+    
+    private boolean turnEnded;
 
     private GameResult gameResult;
 
@@ -62,4 +64,13 @@ public class GameParameters extends CommunicationParameters implements GameParam
     public GameResultInterface getResults () {
         return getGameResult();
     }
+	public boolean isTurnEnded() {
+		return turnEnded;
+	}
+	
+	public void setTurnEnded(boolean turnEnded) {
+		this.turnEnded = turnEnded;
+	}
+    
+    
 }

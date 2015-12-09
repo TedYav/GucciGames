@@ -8,6 +8,7 @@ public class PlayerMovesPerTurn extends APlayerChars {
 	private int moveCount = 0;
 
 	public PlayerMovesPerTurn() {
+		this.myNumberOfMoves = 3;
 	}
 
 	public PlayerMovesPerTurn(int numofMoves) {

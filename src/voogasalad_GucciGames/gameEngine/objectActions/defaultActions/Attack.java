@@ -37,7 +37,7 @@ public abstract class Attack extends MapObjectEvent {
 	}
 
 	protected List<Integer> extractAllPlayersExceptNutral(LocationParameters params) {
-		List<Integer> ids1 = params.getEngine().getPlayers().getAllIds();
+		List<Integer> ids1 = params.getEngine().getPlayers().getAllExistingIds();
 
 		List<Integer> ids = new ArrayList<Integer>();
 		for (int i = 1; i < ids1.size(); i++) {
@@ -63,11 +63,11 @@ public abstract class Attack extends MapObjectEvent {
 		} else {
 			ac = new AttackCharacteristic();
 		}
-		double range = ac.getRange();
+		double range = ac.getAttackRange();
 
 		TargetCoordinateSingle caller = (TargetCoordinateSingle) calledMe.getCoordinate();
 
-		players.getAllIds().stream().forEach(id -> {
+		players.getAllExistingIds().stream().forEach(id -> {
 			players.getPlayerById(id).getMapObjects().stream().forEach(mo -> {
 				if (mo.hasCharacteristic(HEALTH_CHARACTERISTIC)) {
 					TargetCoordinateSingle single = (TargetCoordinateSingle) mo.getCoordinate();

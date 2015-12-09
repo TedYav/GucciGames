@@ -230,7 +230,7 @@ public void setMapObjectEventHandler(MapObjectEventHandler handler){
 		for(String key: this.myCharacteristics.keySet()){
 			result.myCharacteristics.put(key, this.myCharacteristics.get(key).clone());
 		}
-		result.myEventHandler = this.myEventHandler.clone(this);
+		result.myEventHandler = this.myEventHandler;
 		result.myEvents = new HashMap<>(this.myEvents);
 		return result;
 	}

@@ -47,6 +47,7 @@ public class MiniMap extends DisplayComponent implements MiniMapInterface, Obser
 	
 	public MiniMap(GameScene scene, GameControllerInterface controller) {
 		super(scene, controller);
+		
 		initializeVariables();
 		initializePanes();
 		initializeMap();
@@ -75,8 +76,13 @@ public class MiniMap extends DisplayComponent implements MiniMapInterface, Obser
 		myOverlayHeight = overlayDimensions.get(1);
 		myOverlay = new Rectangle(myOverlayWidth, myOverlayHeight);
 		double maxSize = Double.parseDouble(myConfig.getString("MaxOverlaySize"));
-		double opacity = (myOverlayWidth > maxSize && myOverlayHeight > maxSize)?0.0:Double.parseDouble(myConfig.getString("OverlayOpacity"));
-		myOverlay.setFill(Color.web(myConfig.getString("OverlayColor"), opacity));
+		//double opacity = (myOverlayWidth > maxSize && myOverlayHeight > maxSize)?0.0:Double.parseDouble(myConfig.getString("OverlayOpacity"));
+		//myOverlay.setFill(Color.web(myConfig.getString("OverlayColor"), opacity));
+		if(!(myOverlayWidth > maxSize && myOverlayHeight > maxSize)){
+			myOverlay.getStyleClass().add("minimap-overlay");
+		}else{
+			myOverlay.setOpacity(0.0);
+		}
 		myStackPane.getChildren().add(myOverlayPane);
 		myOverlayPane.getChildren().add(myOverlay);
 	}
@@ -133,7 +139,9 @@ public class MiniMap extends DisplayComponent implements MiniMapInterface, Obser
 		for(int x=0; x<myWidth; x++){
 			for(int y=0; y<myHeight; y++){
 				Point2D coord = new Point2D(x,y);
-				MapCellInterface cell = getController().getMap().getCell(coord);				
+				MapCellInterface cell = getController().getMap().getCell(coord);	
+				if(coord == null)
+					continue;
 				myShapeMap.put(coord, new Rectangle(myCellWidth, myCellHeight));
 				myShapeMap.get(coord).setFill(cell.getColor());
 				cell.addObserver(this);

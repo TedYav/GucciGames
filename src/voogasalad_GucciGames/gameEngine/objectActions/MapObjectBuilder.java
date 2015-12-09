@@ -12,10 +12,16 @@ import voogasalad_GucciGames.gameEngine.targetCoordinate.TargetCoordinateMultipl
 public class MapObjectBuilder {
 	
 	public ChangedParameters build(String name, LocationParameters params){
-		MapObject mo = params.getBuild().get(name).clone();
+		MapObject mo = params.getEngine().getAllObjections().get(name).clone();
+		//MapObject mo = params.getBuild().get(name).clone();
 		mo.setCoordinate(params.getNewLocation());
 		ChangedParameters result = new ChangedParameters();
 		result.addUnit(mo);
+		
+		int myOwnerID = 		params.getCalledMe().getOwnerID();
+		
+		params.getEngine().getPlayers().getPlayerById(myOwnerID).addMapObject(mo);
+		
 		return result;
 	}
 	

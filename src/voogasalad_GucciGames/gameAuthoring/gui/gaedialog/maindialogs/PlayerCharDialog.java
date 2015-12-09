@@ -28,6 +28,7 @@ public class PlayerCharDialog extends AGaeDialog<ObjParamValue>{
 		this.setResultConverter(dialogButton -> {
     		if (dialogButton == mySave) {
     			List<ObjParamValue> objParamValues = objParamListPane.getAllInputsList();
+    			objParamValues.stream().forEach(o -> System.err.println("OPV" + o.getName() + o.getParamValues()));
     			for(int i=0; i<objParamValues.size(); i++){
 //    				System.out.println(playerid);
 //    				System.out.println(objParamValues.get(i).getName());

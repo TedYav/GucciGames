@@ -3,4 +3,4 @@
 		<name>Duvall Tag</name>
 		<file>Duvall_Tag.gg</file>
 	</game>
-</body>
+<game><name>Civ</name><file>./src/games/Civ.gg</file></game></body>

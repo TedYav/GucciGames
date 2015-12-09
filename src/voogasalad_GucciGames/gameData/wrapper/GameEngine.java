@@ -42,9 +42,11 @@ public class GameEngine implements IGameInfoToGAE, GameEngineToGamePlayerInterfa
 	private List<String> played;
 
 	private String myInitialLevel;
-
 	private boolean isChangingLevel;
 	private List<String> transferablePlayerCharacteristics;
+	private boolean isEndTurn;
+	
+	private int playerID;
 
 	private transient volatile GameEnginePlayer iAmAPlayer;
 	private transient volatile Thread t;
@@ -65,6 +67,7 @@ public class GameEngine implements IGameInfoToGAE, GameEngineToGamePlayerInterfa
 		this.transferablePlayerCharacteristics = new ArrayList<String>();
 		this.transferablePlayerCharacteristics.add("PlayerScore");
 		isChangingLevel = false;
+		isEndTurn = false;
 		this.played = new ArrayList<>();
 
 	}
@@ -77,7 +80,7 @@ public class GameEngine implements IGameInfoToGAE, GameEngineToGamePlayerInterfa
 		this(initialLevel);
 		myGameName = gameName;
 	}
-
+	
 	public void beHost() {
 		iAmAPlayer = new GameEngineServer(this);
 		t = new Thread(iAmAPlayer);
@@ -91,8 +94,7 @@ public class GameEngine implements IGameInfoToGAE, GameEngineToGamePlayerInterfa
 
 	}
 
-	public void resetGame() {
-		// then here too
+	public void resetGame() {		
 		myCurrentLevel = myInitialLevel;
 	}
 
@@ -103,27 +105,34 @@ public class GameEngine implements IGameInfoToGAE, GameEngineToGamePlayerInterfa
 			return;
 		}
 
+//		System.out.println(levelComplete);
 		myCurrentLevel = newGameLevel;
+//		else{
+//			System.out.println("JK level has NOT changed");
+//		}
 
+		
 		if (iAmAPlayer != null) {
 			iAmAPlayer.setLevelEngine(getCurrentLevel());
 		}
 
 		isChangingLevel = true;
+		
+		//if string returned is empty, assume game "won"
+		if (myCurrentLevel == ""){
+			getCurrentLevel().setEndLevel(true);
+		}
 		// Have to have same number of players between levels
-		myCurrentLevel = newGameLevel;
-		// System.out.println("Tina " + newGameLevel);
-		// if (!played.contains(newGameLevel)){
+//		myCurrentLevel = newGameLevel;
+
 		setUpGameStats();
-		// System.out.println("here "+newGameLevel);
-		// played.add(newGameLevel);
-		// }
+
 	}
 
 	private boolean setUpGameStats() {
 		this.getCurrentLevel().setGameStats(myGameStats);
 		AllPlayers players = this.getCurrentLevel().getPlayers();
-		for (Integer id : players.getAllIds()) {
+		for (Integer id : players.getAllExistingIds()) {
 			GamePlayerPerson player = players.getPlayerById(id);
 			for (String ch : transferablePlayerCharacteristics) {
 				if (player.hasCharacteristic(ch)) {
@@ -149,7 +158,7 @@ public class GameEngine implements IGameInfoToGAE, GameEngineToGamePlayerInterfa
 	 * @return
 	 */
 	public void addLevel(String levelName, GameLevelEngine myEngine) {
-		myEngine.setName(levelName);
+		myEngine.setLevelName(levelName);
 		myLevelsMap.put(levelName, myEngine);
 
 	}
@@ -177,7 +186,7 @@ public class GameEngine implements IGameInfoToGAE, GameEngineToGamePlayerInterfa
 
 	@Override
 	public void setLevel(String gameName, GameLevelEngine engine) {
-		engine.setName(gameName);
+		engine.setLevelName(gameName);
 		myLevelsMap.put(gameName, engine);
 
 	}
@@ -193,7 +202,7 @@ public class GameEngine implements IGameInfoToGAE, GameEngineToGamePlayerInterfa
 
 	private boolean updateTransfer() {
 		AllPlayers players = this.myLevelsMap.get(myCurrentLevel).getPlayers();
-		for (Integer id : players.getAllIds()) {
+		for (Integer id : players.getAllExistingIds()) {
 			if (this.myGameStats.contains(id)) {
 				GamePlayerPerson player = players.getPlayerById(id);
 				Map<String, APlayerChars> map = this.myGameStats.getCharacteristics(id);
@@ -217,6 +226,7 @@ public class GameEngine implements IGameInfoToGAE, GameEngineToGamePlayerInterfa
 
 	@Override
 	public GameParametersInterface endTurn() {
+		
 		
 		GameParametersInterface myParams = getCurrentLevel().endTurn();
 		
@@ -264,6 +274,17 @@ public class GameEngine implements IGameInfoToGAE, GameEngineToGamePlayerInterfa
 	public boolean hasLevelEnded() {
 		return getCurrentLevel().hasLevelEnded();
 	}
+	
+//	@Override
+//	public void levelStart(){
+//		System.out.println("levelStart "+levelComplete);
+//		levelComplete = true;
+//	}
+	
+//	public void setLevelStart(){
+//		getCurrentLevel().setStartLevel();
+//	}
+
 
 	@Override
 	public APlayerChars getPlayerCharacteristic(String name, int id) {
@@ -303,4 +324,26 @@ public class GameEngine implements IGameInfoToGAE, GameEngineToGamePlayerInterfa
 		return this.myBuild;
 	}
 
+	public void updateChat(int playerID2, String string) {
+		myController.updateChat("Player" + playerID2 + ": " + string);
+	}
+	
+	public void sendMessage(String string){
+	    if (iAmAPlayer==null) {
+	        myController.updateChat("Player" + getCurrentLevel().getGameParameters().whoseTurn() + ": " + string);
+	    }
+	    else {
+		iAmAPlayer.sendMessage(string);
+	    }
+	    if (iAmAPlayer.getClass().getSimpleName().equals(GameEngineServer.class.getSimpleName())) {
+	        myController.updateChat("Player" + getCurrentLevel().getGameParameters().whoseTurn() + ": " + string);
+	    }
+	}
+
+	public void addMapObjects(Map<String, MapObject> allMapObjects) {
+		for (String s : myLevelsMap.keySet()) {
+			myLevelsMap.get(s).addMapObjectsForLevels(allMapObjects);
+		}
+		
+	}
 }

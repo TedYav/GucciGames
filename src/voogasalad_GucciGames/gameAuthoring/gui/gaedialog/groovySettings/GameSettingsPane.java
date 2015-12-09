@@ -26,13 +26,14 @@ public class GameSettingsPane extends GridPane {
 	private void init(){
 		Text titleElement = new Text();
 		titleElement.setText(prop.getProperty("title"));
-		nameText = new TextInputField(prop, "name");
+		//nameText = new TextInputField(prop, "name");
 		fogOfWar = new DropDownMenuField(prop, "fogofwar", "fogofwar_items");
 		numPlayer = new ScrollBarField(prop, "numplayer", "numplayer_items");
 		this.getChildren().add(titleElement);
-		this.add(nameText, 0, 1);
+		//this.add(nameText, 0, 1);
 		this.add(fogOfWar, 0, 2);
 		this.add(numPlayer, 0, 3);
+		
 	}
 	
 	public int getNumPlayers(){
