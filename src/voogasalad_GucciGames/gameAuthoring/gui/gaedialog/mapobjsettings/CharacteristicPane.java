@@ -23,7 +23,7 @@ public class CharacteristicPane extends GridPane {
 	private IDialogGaeController controller;
 	ISwitchSettingsPane switchPane;
 	private List<String> allChars = new ArrayList<String>();
-	private ObjParamVBox objParamVBox;
+	private AllObjParamPane objParamVBox;
 	private List<ObjParamValue> allCharParams;
 	private MapObjectType mapObjectType;
 	
@@ -63,7 +63,7 @@ public class CharacteristicPane extends GridPane {
 			List<String> data = dialogTableView.getData();
 			List<ObjParam> charParams =
 					controller.getPropertiesInterface().getSelectedMapObjCharParams(data);
-			objParamVBox = new ObjParamVBox(switchPane, charParams, this.allCharParams, this.mapObjectType);
+			objParamVBox = new AllObjParamPane(switchPane, charParams, this.allCharParams, this.mapObjectType);
 			
 			this.switchPane.switchSettingsPane(objParamVBox);
 			

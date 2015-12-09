@@ -23,7 +23,13 @@ import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.dialogcomponents.TableE
 import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.maindialogs.GaeDialogHelper;
 import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.maindialogs.ISwitchSettingsPane;
 import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.mapobjectsettings.xml.ActionSAXHandler;
+import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.mapobjsettings.actionsubdialogs.AddConditionToOutcomeDialog;
+import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.mapobjsettings.actionsubdialogs.OutcomeDialog;
+import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.mapobjsettings.actionsubdialogs.OutcomeParamsDialog;
 import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.paramObjects.ActionParamsValue;
+import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.paramObjects.ObjParam;
+import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.paramObjects.ObjParamValue;
+import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.paramObjects.OutcomeParamValue;
 import voogasalad_GucciGames.gameAuthoring.model.MapObjectType;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -69,11 +75,9 @@ public class ActionPane extends GridPane {
 		this.prop = prop;
 		this.controller = controller;
 		this.actionParamsValue = actionParamsValue;
-		
-		//TODO: get all actions
-		
+
 		List<String> items = new ArrayList<String>();
-				//helper.parseStringToList(prop, "action_items");
+
 		
 		controller.getPropertiesInterface().getAllActions().forEach(e -> {
 			items.add(e.getName());
@@ -105,8 +109,32 @@ public class ActionPane extends GridPane {
 
 	private void addActionToNextBtn(){				
 		addOutConBtn.setOnAction(e -> {
-			ConditionOutcomeDialog d = new ConditionOutcomeDialog(controller, switchPaneInterface, type, this.actionParamsValue);
-			d.showAndWait();
+			//ConditionOutcomeDialog d = new ConditionOutcomeDialog(controller, switchPaneInterface, type, this.actionParamsValue);
+			List<String> outcomes = new ArrayList<String>();
+			controller.getPropertiesInterface().getAllOutcomes().forEach(p -> {
+				outcomes.add(p.getName());
+			});
+			
+			OutcomeDialog outcomeDialog = new OutcomeDialog(controller, outcomes, type);
+						
+			List<String> outcomeNames = new ArrayList<String>();
+			outcomeNames.add(outcomeDialog.showAndWait().get());
+			
+			ObjParam outcomeParam = controller.getPropertiesInterface().getSelectedOutcomes(outcomeNames).get(0);
+			OutcomeParamsDialog outcomeParamsDialog = 
+					new OutcomeParamsDialog(outcomeParam);
+			ObjParamValue paramValue = outcomeParamsDialog.showAndWait().get();
+			OutcomeParamValue outcomeParamValue;
+			if(paramValue != null){
+				outcomeParamValue =
+						new OutcomeParamValue(selected, type, outcomeParamsDialog.getResult());
+				// add condition to outcomeParamValue
+				AddConditionToOutcomeDialog addConditionDialog = new AddConditionToOutcomeDialog(controller);
+				addConditionDialog.showAndWait();
+				//outcomeParamValue.setConditions(items);
+			}
+			
+			
 
 		});
 		
