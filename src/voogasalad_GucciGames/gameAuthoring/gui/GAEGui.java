@@ -64,7 +64,6 @@ public class GAEGui extends BorderPane {
 	}
 
 	public void initGame() {
-		throwException(new NullPointerException("Errrrr"));
 		initLayout();
 		Dialog<Map<String, String>> dialog = new NewLevelDialog(myController);
 		dialog.showAndWait().ifPresent(map -> {
