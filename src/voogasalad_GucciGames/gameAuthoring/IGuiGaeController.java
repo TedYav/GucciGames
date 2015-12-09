@@ -10,9 +10,9 @@ import java.io.File;
 import java.util.List;
 
 import javafx.beans.property.BooleanProperty;
+import javafx.beans.property.IntegerProperty;
 import javafx.collections.ObservableList;
 import javafx.scene.control.Dialog;
-import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
 import voogasalad_GucciGames.gameEngine.mapObject.MapObject;
@@ -75,5 +75,9 @@ public interface IGuiGaeController {
 	public Dialog<String> getImageBrowseDialog(String type);
 	
 	public void throwException(Exception e);
+
+	public IntegerProperty getNumberOfPlayersProperty();
+
+	public int getDefaultOwner();
 
 }
