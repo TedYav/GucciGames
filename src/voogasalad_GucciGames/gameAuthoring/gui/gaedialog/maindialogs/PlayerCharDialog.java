@@ -14,22 +14,20 @@ public class PlayerCharDialog extends AGaeDialog<ObjParamValue>{
 	
 	public PlayerCharDialog(List<ObjParam> param, IDialogGaeController controller, int playerid){
 		super();
-		objParamListPane = new ObjParamListPane(param);
+		objParamListPane = new ObjParamListPane(param, playerid);
 		this.controller = controller;
 		this.playerid = playerid;
 		this.getDialogPane().setContent(objParamListPane);
 		this.getDialogPane().getButtonTypes().add(mySave);
 		setSaveAction();
-		this.show();
+		this.showAndWait();
 	}
 
 	@Override
 	protected void setSaveAction() {
-		// TODO Auto-generated method stub
 		this.setResultConverter(dialogButton -> {
     		if (dialogButton == mySave) {
     			List<ObjParamValue> objParamValues = objParamListPane.getAllInputsList();
-    			//TODO:
     			for(int i=0; i<objParamValues.size(); i++){
         			controller.addPlayerCharacteristic(playerid, objParamValues.get(i));
     			}

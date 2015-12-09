@@ -21,8 +21,8 @@ public class ModifyWealth extends Outcome {
 
 	@Override
 	ChangedParameters applyOutcome(BasicParameters params, ChangedParameters changedParams, int playerID) {
-		if (params.getLevelEngine().getPlayers().getActivePlayer(playerID).hasCharacteristic(WEALTH)) {
-			PlayerWealthChar playerWealth = (PlayerWealthChar) params.getLevelEngine().getPlayers().getActivePlayer(playerID)
+		if (params.getEngine().getPlayers().getActivePlayer(playerID).hasCharacteristic(WEALTH)) {
+			PlayerWealthChar playerWealth = (PlayerWealthChar) params.getEngine().getPlayers().getActivePlayer(playerID)
 					.getCharacteristics(WEALTH);
 			playerWealth.modifyWealth(delta);
 			changedParams.addPlayer(playerID);

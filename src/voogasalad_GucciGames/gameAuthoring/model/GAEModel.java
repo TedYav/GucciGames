@@ -114,7 +114,8 @@ public class GAEModel implements IGAEModel{
     public void saveToXML() {
 //      AllPlayers myPlayers = new AllPlayers(mapOfPlayers);
 //      MainGameEngine engine = new MainGameEngine(myPlayers);
-    	myFactory.create(typeData, levelData, guiData);
+    	saveToXML(myFactory.create(typeData, levelData, guiData));
+    	
     	
     }
     
@@ -183,6 +184,27 @@ public class GAEModel implements IGAEModel{
 
 	@Override
 	public void addActionParamValue(MapObjectType type, ActionParamsValue param) {
+		// TODO Auto-generated method stub
+		
+	}
+
+
+	@Override
+	public void deleteTileType(MapObjectType object) {
+		// TODO Auto-generated method stub
+		
+	}
+
+
+	@Override
+	public void deleteStructureType(MapObjectType object) {
+		// TODO Auto-generated method stub
+		
+	}
+
+
+	@Override
+	public void deleteUnitType(MapObjectType object) {
 		// TODO Auto-generated method stub
 		
 	}

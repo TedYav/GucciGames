@@ -37,7 +37,7 @@ public abstract class Attack extends MapObjectEvent {
 	}
 
 	protected List<Integer> extractAllPlayersExceptNutral(LocationParameters params) {
-		List<Integer> ids1 = params.getLevelEngine().getPlayers().getAllIds();
+		List<Integer> ids1 = params.getEngine().getPlayers().getAllIds();
 
 		List<Integer> ids = new ArrayList<Integer>();
 		for (int i = 1; i < ids1.size(); i++) {
@@ -49,13 +49,14 @@ public abstract class Attack extends MapObjectEvent {
 	@Override
 	protected GridCoordinateParameters executeRequest(BasicParameters params) {
 		System.out.println("Attack Request");
-		AllPlayers players = params.getLevelEngine().getPlayers();
+		AllPlayers players = params.getEngine().getPlayers();
 
 		TargetCoordinateMultiple result = new TargetCoordinateMultiple();
 
 		// getting the range
 		MapObject calledMe = params.getCalledMe();
 		AttackCharacteristic ac;
+		System.out.println(calledMe.containsCharacteristic(ATTACK_CHARACTERISTIC));
 		if (calledMe.containsCharacteristic(ATTACK_CHARACTERISTIC)) {
 			ac = (AttackCharacteristic) calledMe.getCharacteristic(ATTACK_CHARACTERISTIC);
 

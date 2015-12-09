@@ -9,10 +9,10 @@ import voogasalad_GucciGames.gameEngine.CommunicationParameters.LocationParamete
 import voogasalad_GucciGames.gameEngine.mapObject.MapObject;
 import voogasalad_GucciGames.gameEngine.targetCoordinate.TargetCoordinateMultiple;
 
-public class Builder {
+public class MapObjectBuilder {
 	
 	public ChangedParameters build(String name, LocationParameters params){
-		MapObject mo = params.getEngine().getBuild().get(name).clone();
+		MapObject mo = params.getBuild().get(name).clone();
 		mo.setCoordinate(params.getNewLocation());
 		ChangedParameters result = new ChangedParameters();
 		result.addUnit(mo);
@@ -20,7 +20,7 @@ public class Builder {
 	}
 	
 	public GridCoordinateParameters request(BasicParameters params){
-		List<MapObject> allMapObjects = params.getEngine().getCurrentLevel().getPlayers().getAllUnits();
+		List<MapObject> allMapObjects = params.getEngine().getPlayers().getAllUnits();
 		TargetCoordinateMultiple result = new TargetCoordinateMultiple();
 		allMapObjects.stream().forEach(mo -> {
 			if(mo.hasCharacteristic("TileCharacteristic") || mo.getName().equals("TileCharacteristic")){

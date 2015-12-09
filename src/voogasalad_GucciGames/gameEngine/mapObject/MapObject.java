@@ -238,7 +238,7 @@ public void setMapObjectEventHandler(MapObjectEventHandler handler){
 	@Override
 	public Boolean containsCharacteristic(String name) {
 		// TODO Auto-generated method stub
-		return null;
+		return this.myCharacteristics.containsKey(name);
 	}
 	
 	/*

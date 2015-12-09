@@ -32,7 +32,7 @@ class SideBarMenu extends ContextMenu {
 		MenuItem item3 = new MenuItem("Remove");
 		item3.setOnAction(new EventHandler<ActionEvent>() {
 			public void handle(ActionEvent e) {
-				System.out.println("Remove");
+				controller.deleteMapObjectType(myType, myTypeName);
 			}
 		});
 		

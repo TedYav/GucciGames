@@ -35,19 +35,19 @@ public class PowerfulAttack extends Attack {
 		ChangedParameters parameters = new ChangedParameters();
 		List<MapObject> objectsToTransfer = new ArrayList<MapObject>();
 		for (Integer id : ids) {
-			List<MapObject> currPlayerObjects = params.getLevelEngine().getPlayers().getPlayerById(id).getMapObjects();
+			List<MapObject> currPlayerObjects = params.getEngine().getPlayers().getPlayerById(id).getMapObjects();
 
 			for (int i = 0; i < currPlayerObjects.size(); i++) {
 				MapObject mo = currPlayerObjects.get(i);
 				if (mo.getCoordinate().equals(target)) {
-					params.getLevelEngine().getPlayers().getPlayerById(id).getMapObjects().remove(i);
+					params.getEngine().getPlayers().getPlayerById(id).getMapObjects().remove(i);
 					objectsToTransfer.add(mo);
 					parameters.addUnit(mo);
 					break;
 				}
 			}
 			for (int i = 0; i < currPlayerObjects.size(); i++) {
-				params.getLevelEngine().getPlayers().getPlayerById(newOwnerId).getMapObjects().add(currPlayerObjects.get(i));
+				params.getEngine().getPlayers().getPlayerById(newOwnerId).getMapObjects().add(currPlayerObjects.get(i));
 			}
 		}
 		return parameters;

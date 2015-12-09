@@ -44,7 +44,6 @@ public abstract class AFactory {
 
 		Constructor<?> c = makeConstractor(objParamValue, myParameters);
 		Object myObject = c.newInstance(initargs);
-
 		return myObject;
 
 	}
