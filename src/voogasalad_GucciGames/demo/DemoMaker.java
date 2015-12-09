@@ -183,7 +183,8 @@ public class DemoMaker extends Application {
 				"units/smile.png");
 		arch.addCharacteristic("HealthCharacteristic", new HealthCharacteristic(10));
 		arch.addCharacteristic("AttackCharacteristic", new AttackCharacteristic(3, 5, 2));
-		arch.addCharacteristic("MovableCharacteristic", new MovableCharacteristic(5, 1));
+		arch.addCharacteristic("MovableCha"
+				+ "racteristic", new MovableCharacteristic(5, 1));
 		arch.addEvent("Move", myMoveEvent);
 
 		arch.addEvent("Attack", myAttackEvent);
