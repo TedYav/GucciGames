@@ -166,8 +166,7 @@ public class GAEModel implements IGAEModel{
 	
 	@Override
 	public void addPlayerCharacteristic(int playerID, ObjParamValue param) {
-		// TODO Auto-generated method stub
-		
+		typeData.addPlayerCharacteristic(playerID, param);
 	}
 
 	@Override
