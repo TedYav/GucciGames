@@ -27,12 +27,8 @@ public class GameInfoFactory {
 		
 		GameInfo game = new GameInfo("GAETestGame");
 		
-		// set gui components
-//		Map<String, List<String>> guiMap = guiData.getComponentsMap();
-//		guiMap.keySet().stream().forEach(c -> {
-//			game.setGuiComponents(c, guiMap.get(c));
-//		});
 		game.setGuiData(guiData);
+		
 				
 		Map<Integer, MapData> levelMap = levelData.getMap();
 		for (int levelid: levelMap.keySet()) {
@@ -41,12 +37,11 @@ public class GameInfoFactory {
 		}
 		
 		return game;
-		
 	}
 
 	private GameLevelEngine makeLevel(Map<Integer, GamePlayerPerson> mapOfPlayers, 
 			TypeData typeData, MapData mapData) {
-		HashMap copyMapOfPlayers = new HashMap<>(mapOfPlayers);
+		Map<Integer, GamePlayerPerson> copyMapOfPlayers = new HashMap<>(mapOfPlayers);
 		for (DisplayMapObject obj: mapData.getMapObjects()) {
 			MapObjectType type = obj.getType();
 			List<AMapObjectCharacteristic> characteristics = type.getCharacteristics();
@@ -61,11 +56,15 @@ public class GameInfoFactory {
 			events.stream().forEach(a -> {
 				mapObject.addEvent(a.getClass().getSimpleName(), a);
 			});
-			copyMapOfPlayers.get(obj.getOwnerID());
+			copyMapOfPlayers.get(obj.getOwnerID()).addMapObject(mapObject);
 			
 		}
 		AllPlayers allplayers = new AllPlayers(copyMapOfPlayers);
 		GameLevelEngine level = new GameLevelEngine(allplayers);
+		
+		// TODO receive height and width
+		level.setMapHeight(10);
+		level.setMapWidth(10);
 		level.setMyChoosability(true);
 		return level;
 		

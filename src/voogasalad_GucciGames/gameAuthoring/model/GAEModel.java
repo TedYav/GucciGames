@@ -32,12 +32,6 @@ public class GAEModel implements IGAEModel{
     private IModelGaeController myController;
 	private GameInfoFactory myFactory;
 	private int myOwnerID;
-	
-
-
-	//private List<DisplayMapObject> myMapObjects;
-	// map from level id (unique) to list of map objects
-	// private Map<Integer, MapData> myLevels;
 	private LevelData levelData;
 
     
