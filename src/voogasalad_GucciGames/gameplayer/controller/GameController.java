@@ -243,6 +243,7 @@ public class GameController implements GameControllerInterface, GameControllerAd
 
 	@Override
 	public void updateChat(String string) {
+	    notifyChatObservers(string);
 	}
 
     @Override
