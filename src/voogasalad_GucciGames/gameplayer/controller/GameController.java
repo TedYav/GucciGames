@@ -57,16 +57,16 @@ public class GameController implements GameControllerInterface, GameControllerAd
 		myCurrentEngine.setController(this);
 		loadLevel("1");
 	}
-	       @Override
-	        public void loadGameSave(GamePlayerSave game){
-	           System.out.println("LOADGAMESAVE");
-	                myGame=game.getInfo();
-	                myCurrentEngine=myGame.getEngineInterface();
-	                loadLevel(game.getCurrentLevel());
-	       }
-
+   
 	@Override
-	public void loadLevel(String levelID){
+    public void loadGameSave(GamePlayerSave game){
+       System.out.println("LOADGAMESAVE");
+            myGame=game.getInfo();
+            myCurrentEngine=myGame.getEngineInterface();
+            loadLevel(game.getCurrentLevel());
+   }
+
+	private void loadLevel(String levelID){
 		if(myGame.getLevels().containsKey(levelID)){
 			System.out.println("level changed");
 		    myCurrentEngine.changeCurrentLevel(levelID);
@@ -100,23 +100,16 @@ public class GameController implements GameControllerInterface, GameControllerAd
 		ChangedParameters params;// = myEngine.performAction(myActionInProgress, activeMapObject, Coordinate.PointToCoordinate(target));
 		//cancelAction();
 
-		System.out.println("PERFORMING ACTION");
 		//// SORRY FOR THE TIME BEING
 
 	        for (TargetCoordinateSingle coord: possibleMoves) {
-	        	System.out.println("CHECKING COORDINATE: " + coord);
 	            if (target.getX()==coord.getCenterX() && target.getY()==coord.getCenterY()) {
 	                 params = activeMapObject.performAction(myActionInProgress, Coordinate.PointToCoordinate(target));
 	                 cancelAction();
 	                 List<PlayerMapObjectInterface> result;
 
-	            		result = params.getChangedUnits();
-	            		System.out.println(result);
-	                 if (params.getLevel()!=null) {
-	                	 System.out.println("nextlevel="+params.getLevel());
-	                	 loadLevel(params.getLevel());
-	                	 mySceneManager.loadScene("MainGameScene");
-	                 }
+	            	result = params.getChangedUnits();
+	            		
 	                 myMap.update(result);
 	                 myManager.refresh();
 	                 break;
@@ -151,8 +144,18 @@ public class GameController implements GameControllerInterface, GameControllerAd
 	@Override
 	public void endTurn() {
 		// TODO Auto-generated method stub
-	        myCurrentEngine.endTurn();
+	        GameParametersInterface params = myCurrentEngine.endTurn();
 	        myManager.refresh();
+	        myCurrentEngine.getCurrentLevel().getLevelName();
+	        if(myCurrentEngine.hasLevelEnded()){
+	        	
+	        }
+	        GameResultInterface result = params.getResults();
+	        result.getEachPlayerConditions().get(1);
+	        if(myCurrentEngine.getCurrentLevel().hasLevelEnded()){
+	        	
+	        	
+	        }
 	}
 
 	@Override
@@ -225,5 +228,11 @@ public class GameController implements GameControllerInterface, GameControllerAd
 	 */
 	public void setSceneManager(GameSceneManager sceneManager) {
 		mySceneManager=sceneManager;
+	}
+
+	@Override
+	public void loadNextLevel() {
+		// TODO Auto-generated method stub
+		
 	}
 }
