@@ -42,14 +42,14 @@ public class Civ extends Application {
 
 	private static String defaultGameLocation = "./src/games/demo.xml";
 
-	private static ResourceManager resourceManager = new ResourceManager("Duvall Tag");
+	private static ResourceManager resourceManager = new ResourceManager("Civ");
 	
 	@Override
 	public void start(Stage stage) throws Exception {
 		XStreamGameEngine xStream = new XStreamGameEngine();
 		System.out.println("Creating and saving engine.");
 		xStream.saveGameInfo(createGame());
-		GameWindowManager windowmanager = new GameWindowManager("Duvall Tag");
+		GameWindowManager windowmanager = new GameWindowManager("Civ");
 	}
 
 	public static void main(String[] args) {
