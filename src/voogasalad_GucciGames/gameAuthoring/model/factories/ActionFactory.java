@@ -66,8 +66,9 @@ public class ActionFactory {
 	public MapObjectEvent createAction(Map<String, ActionParam> params, ActionParamsValue value) throws ClassNotFoundException, NoSuchMethodException, 
 	SecurityException, InstantiationException, IllegalAccessException, IllegalArgumentException, 
 	InvocationTargetException {
-		
+				
 		// constructs empty Action object
+		System.out.println(value.getName() + "at" + prop.getProperty(value.getName()));
 		Class<MapObjectEvent> action = (Class<MapObjectEvent>) Class.forName(prop.getProperty(value.getName()));
 		Constructor<MapObjectEvent> actionConstructor = action.getDeclaredConstructor();
 		MapObjectEvent actionInstance = actionConstructor.newInstance();
@@ -79,13 +80,14 @@ public class ActionFactory {
 		for(String ruleName: value.getAllRules()) {
 			actionInstance.addRule(ruleFactory.createRule(ruleName));
 		}
-
-		System.err.println("OUTCOME FACTORY NOT IMPLEMENTED");
 		
 		// construct and add outcomes
 		for (OutcomeParamValue param: value.getAllOutcomes()) {
 			actionInstance.addOutcome(outcomeFactory.createOutcome(myOutcomes, param));
-		}	
+		}
+		
+		System.out.println("Adding action in factory");
+		System.out.println(actionInstance);
 		
 		return (MapObjectEvent)actionInstance;
 		

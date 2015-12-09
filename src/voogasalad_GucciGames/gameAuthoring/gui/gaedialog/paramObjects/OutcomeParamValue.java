@@ -28,9 +28,5 @@ public class OutcomeParamValue {
 	public List<ObjParamValue> getConditions() {
 		return conditions;
 	}
-	
-	public String getName() {
-		return name;
-	}
 
 }
