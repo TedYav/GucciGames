@@ -58,5 +58,4 @@ public class ObjParam{
 		return params;
 	}
 
-
 }

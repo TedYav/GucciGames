@@ -14,6 +14,7 @@ import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.dialogcomponents.TextIn
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.geometry.HPos;
+import javafx.geometry.Insets;
 import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.Label;
@@ -39,12 +40,8 @@ public class PlayerContent extends GridPane{
 	private IDialogGaeController controller;
 	
 	private List<ObjParam> myAllObjParams;
-	
 	private List<CheckBox> allCheckedBoxes = new ArrayList<CheckBox>();
-	private List<String> allCheckedStrings = new ArrayList<String>();
-	
-//	private Button nextBtn = new Button("Next");
-	
+	private List<String> allCheckedStrings = new ArrayList<String>();	
 	
 	public PlayerContent(int playerNumber, IDialogGaeController controller, Properties prop, List<ObjParam> objParamList){
 		this.playerNumber = playerNumber;
@@ -52,19 +49,7 @@ public class PlayerContent extends GridPane{
 		this.prop = prop;
 		this.myAllObjParams = objParamList;
 		init();
-//		addNextBtnAction();
 	}
-	
-//	private void addNextBtnAction() {
-//		// TODO Auto-generated method stub
-//		Reflection reflection = new Reflection();
-//		nextBtn.setOnAction(e -> {
-//			List<ObjParam> allObjParams = controller.getAllPlayerCharParams();
-//			
-//			String name = settingsPackagePath + "PlayerCharDialog";
-//			reflection.createInstance(name, allObjParams);
-//		});
-//	}
 
 	protected void init(){
 		Text title = new Text ("Player " + playerNumber);
@@ -88,13 +73,17 @@ public class PlayerContent extends GridPane{
 				CheckBox cb = new CheckBox(entry.getKey());
 				allCheckedBoxes.add(cb);
 				this.add(cb, 0, i);
-//				this.setHalignment(textField, HPos.RIGHT);
 				i++;
 			}		
 		}
 		setCheckBoxListeners();
-//		this.setHalignment(nextBtn, HPos.RIGHT);
-//		this.add(nextBtn, 0, 4);
+		setPaddings();
+	}
+	
+	private void setPaddings(){
+		this.setHgap(5);
+		this.setVgap(5);
+		this.setPadding(new Insets(5,5,5,5));	
 	}
 	
 	protected String getPlayerName(){
