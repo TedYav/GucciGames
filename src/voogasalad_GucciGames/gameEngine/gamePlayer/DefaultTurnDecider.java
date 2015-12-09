@@ -42,7 +42,7 @@ public class DefaultTurnDecider extends ATurnDecider {
 
 	@Override
 	public int decideTurn() {
-		return myPlayers.getAllIds().get((turnCounter.getCurrentTurn() % (myPlayers.getNumberOfPlayers() - 1)) + 1);
+		return myPlayers.getAllExistingIds().get((turnCounter.getCurrentTurn() % (myPlayers.getNumberOfPlayers() - 1)) + 1);
 	}
 
 }

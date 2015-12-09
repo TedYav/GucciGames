@@ -12,10 +12,11 @@ import voogasalad_GucciGames.gameEngine.mapObject.MapObject;
 public class AllPlayers {
 
 	private Map<Integer, GamePlayerPerson> myMapOfPlayers;
-
+	private Map<Integer, GamePlayerPerson> myMapOFAllPlayers;
 	public AllPlayers(Map<Integer, GamePlayerPerson> players) {
 
 		myMapOfPlayers = players;
+		
 	}
 
 	public AllPlayers() {
@@ -63,7 +64,7 @@ public class AllPlayers {
 		}
 	}
 
-	public List<Integer> getAllIds() {
+	public List<Integer> getAllExistingIds() {
 		/*
 		 * List<Integer> result = new ArrayList<>(); for(GamePlayerPerson
 		 * player: this.myMapOfPlayers){ result.add(player.getMyPlayerId()); }
@@ -73,6 +74,7 @@ public class AllPlayers {
 		Collections.sort(result);
 		return result;
 	}
+	
 
 	// make the following collections unmodifiable
 	public List<PlayerMapObjectInterface> getInitialState() {

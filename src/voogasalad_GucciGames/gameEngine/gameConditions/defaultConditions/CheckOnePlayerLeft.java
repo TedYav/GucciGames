@@ -16,7 +16,7 @@ public class CheckOnePlayerLeft extends Conditions {
 
 	@Override
 	public Boolean execute(BasicParameters params, GamePlayerPerson player) {
-		return (params.getEngine().getPlayers().getAllIds().size() == 2);
+		return (params.getEngine().getPlayers().getAllExistingIds().size() == 2);
 
 	}
 
