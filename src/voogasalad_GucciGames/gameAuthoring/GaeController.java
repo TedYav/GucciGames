@@ -211,7 +211,6 @@ public class GaeController extends AGuiGaeController implements IModelGaeControl
 		myResManager.loadGame(name);
 		myResManager.toggleCopyOnAccess(true);
 		myImageBrowseDialogs = new ImageBrowseDialogs(myResManager);
-		//System.out.println(myResManager.getImages("units"));
 	}
 
 	@Override

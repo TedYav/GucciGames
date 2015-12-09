@@ -61,7 +61,6 @@ public class SettingsDialog extends AGaeDialog implements ISwitchSettingsPane{
 		
 		this.setResultConverter(dialogButton -> {
 		    if (dialogButton == ButtonType.FINISH) {
-		        System.out.println("save");
 		        if(this.charParamValues.size() != 0){
 		        	//TODO: charParamValue
 		        	charParamValues.forEach(e -> {

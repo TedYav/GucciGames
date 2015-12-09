@@ -60,18 +60,6 @@ public class GAEPreloader {
 		new Thread(task).start();
 	}
 
-//	private void showMainStage(ReadOnlyObjectProperty<ObservableList<String>> friends) {
-//		mainStage = new Stage(StageStyle.DECORATED);
-//		mainStage.setTitle("My Friends");
-//		mainStage.getIcons().add(new Image(APPLICATION_ICON));
-//
-//		final ListView<String> peopleView = new ListView<>();
-//		peopleView.itemsProperty().bind(friends);
-//
-//		mainStage.setScene(new Scene(peopleView));
-//		mainStage.show();
-//	}
-
 	private void showSplash(final Stage initStage, Task<?> task, InitCompletionHandler initCompletionHandler) {
 		progressText.textProperty().bind(task.messageProperty());
 		loadProgress.progressProperty().bind(task.progressProperty());
