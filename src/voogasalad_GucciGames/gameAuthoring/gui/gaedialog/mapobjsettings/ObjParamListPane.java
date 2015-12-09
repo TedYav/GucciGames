@@ -15,20 +15,21 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.GridPane;
 /**
- * Create a pane for one objParam object
- * @author yingqi
+ * Create a pane for all objParam object
+ * @author 
  *
  */
 public class ObjParamListPane extends GridPane {
 	
-	private List<ObjParam> param;
+	private List<ObjParam> param = new ArrayList<ObjParam>();
 	private Map<Label, TextField> contents = new HashMap<Label, TextField>();
-	private List<String> objName;
-	private List<ObjType> type;
+	private List<String> objName = new ArrayList<String>();
+	private List<ObjType> type = new ArrayList<ObjType>();
 	
 	private MapObjectType mapObjectType;
+	private int playerId;
 	
-	public ObjParamListPane(List<ObjParam> param){
+	public ObjParamListPane(List<ObjParam> param, int playerId){
 		for (ObjParam eachObjParam : param){
 			String paramName = eachObjParam.getName();
 			objName.add(paramName);
@@ -38,37 +39,11 @@ public class ObjParamListPane extends GridPane {
 		}
 		
 		this.param = param;	
+		this.playerId = playerId;
 		
 		setContent();
-		this.setHgap(5);
-		this.setVgap(5);
-		this.setPadding(new Insets(5,5,5,5));
-		
 		init();
-		
-		
 	}
-	
-//	public ObjParamListPane(ObjParam param, MapObjectType mapObjectType){
-//		this.mapObjectType = mapObjectType;
-//		this.param.add(param);
-//		this.type.add(param.getObjType());
-//		init();
-//	}
-//	
-//	public ObjParamListPane(List<ObjParam> param, MapObjectType mapObjectType){
-//		for (ObjParam eachObjParam : param){
-//			String paramName = eachObjParam.getName();
-//			objName.add(paramName);
-//			
-//			ObjType objType = eachObjParam.getObjType();
-//			type.add(objType);
-//		}
-//		
-//		this.param = param;
-//		init();
-//		
-//	}
 	
 	private void init(){
 		setContent();
@@ -78,12 +53,14 @@ public class ObjParamListPane extends GridPane {
 	}
 	
 	private void setContent(){
-		int i  = 1;
+		int i  = 2;
+		
+		Label playerLabel = new Label("Player " + playerId);
+		this.add(playerLabel, 0, 1);
 		
 		for (ObjParam eachObjParam : param){
 			for (Map.Entry<String, String> entry : eachObjParam.getAllParams().entrySet()) {
 				Label label = new Label(entry.getKey()); 
-				
 				label.setPrefWidth(200);
 				TextField textField = new TextField();
 				contents.put(label, textField);
@@ -113,15 +90,5 @@ public class ObjParamListPane extends GridPane {
 		
 		return allObjParamValues;
 	}
-	
-//	public ObjParamValue getAllInputs(){
-//		ObjParamValue objParamValue = new ObjParamValue(objName, type, mapObjectType);
-//		Map<String, String> map = new HashMap<String, String>();
-//		contents.forEach((k,v) -> {
-//			map.put(k.getText(), v.getText());	
-//		});
-//		objParamValue.setParamValues(map);
-//		return objParamValue;
-//	}
 
 }

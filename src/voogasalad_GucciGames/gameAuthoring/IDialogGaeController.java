@@ -18,6 +18,8 @@ import voogasalad_GucciGames.gameAuthoring.model.MapObjectType;
 public interface IDialogGaeController {
 	public void createCustomType(MapObjectType object, String type);
 	
+	public void deleteMapObjectType(MapObjectType object, String type);
+	
 	public ObservableList<MapObjectType> getImmutableTileTypes();
 
 	public ObservableList<MapObjectType> getImmutableUnitTypes();
@@ -77,6 +79,9 @@ public interface IDialogGaeController {
 	// action name, list of rules, list of outcomes	
 
 	//public void add
+	
+	
+	public void throwException(Exception e);
 	
 	
 	

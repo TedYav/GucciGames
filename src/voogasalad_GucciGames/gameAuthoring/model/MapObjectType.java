@@ -67,5 +67,10 @@ public class MapObjectType {
 	public void addAction(MapObjectEvent action) {
 		myEvents.add(action);
 	}
+	
+	public MapObjectType makeCopy(){
+		MapObjectType type = new MapObjectType(myName, myImagePath, myLayer);
+		return type;
+	}
 
 }

@@ -76,7 +76,7 @@ public class GaeController extends AGuiGaeController implements IModelGaeControl
 	}
 
 	@Override
-	public void deleteComponent(DisplayMapObject mapObj) {
+	public void deleteComponent(DisplayMapObject mapObj, int levelID) {
 		// TODO add levelID
 		//model.deleteComponent(mapObj);
 	}
@@ -275,6 +275,23 @@ public class GaeController extends AGuiGaeController implements IModelGaeControl
 			throw new RuntimeException("No "+type+" type");
 		}
 	}
+	
+	@Override
+	public void deleteMapObjectType(MapObjectType object, String type){
+		switch (type) {
+		case "tile":
+			myModel.deleteTileType(object);
+			break;
+		case "structure":
+			myModel.deleteStructureType(object);
+			break;
+		case "unit":
+			myModel.deleteUnitType(object);
+			break;
+		default:
+			throw new RuntimeException("No "+type+" type");
+		}
+	}
 
 	@Override
 	public List<ActionParamsValue> getAllActions() {
@@ -305,5 +322,9 @@ public class GaeController extends AGuiGaeController implements IModelGaeControl
 		return myImageBrowseDialogs.getDialog(type);
 	}
 
+	@Override
+	public void throwException(Exception e) {
+		myGui.throwException(e);
+	}
 
 }

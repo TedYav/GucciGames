@@ -90,6 +90,7 @@ public class GameLevelEngine implements IGameLevelToGamePlayer {
 
 	}
 	////////
+	/*
 	public void createTestCondition() {
 		List<Integer> pl = new ArrayList<Integer>();
 		pl.add(0);
@@ -100,6 +101,7 @@ public class GameLevelEngine implements IGameLevelToGamePlayer {
 		endTurn();
 		endTurn();
 	}
+	*/
 
 	public AllPlayers getPlayers() {
 		// TODO Auto-generated method stub

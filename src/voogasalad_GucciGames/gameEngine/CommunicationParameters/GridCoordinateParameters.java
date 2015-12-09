@@ -13,7 +13,6 @@ public class GridCoordinateParameters extends CommunicationParameters{
 		super();
 		listOfCoordinates = coord;
 	}
-	
 
 	public List<TargetCoordinateSingle> getListOfCoordinates() {
 		return listOfCoordinates.getListOfCoordinates();
