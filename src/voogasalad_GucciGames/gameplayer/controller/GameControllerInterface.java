@@ -61,4 +61,5 @@ public interface GameControllerInterface{
 	public void loadNextLevel();
 	public void loadLevel(String levelName);
 	public GameParametersInterface getEndLevelParams();
+	void uploadScore(String playername, double score);
 }

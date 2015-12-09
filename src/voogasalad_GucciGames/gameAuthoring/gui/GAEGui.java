@@ -13,6 +13,8 @@ import javafx.stage.StageStyle;
 import voogasalad_GucciGames.gameAuthoring.AGuiGaeController;
 import voogasalad_GucciGames.gameAuthoring.gui.sidebar.SideBar;
 import voogasalad_GucciGames.gameAuthoring.gui.statusbar.StatusBar;
+import voogasalad_GucciGames.gameAuthoring.gui.util.GAEPreloader;
+import voogasalad_GucciGames.gameAuthoring.gui.util.WelcomeScreen;
 import voogasalad_GucciGames.gameAuthoring.guiexceptions.ErrorDialog;
 import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.maindialogs.NewLevelDialog;
 import voogasalad_GucciGames.gameAuthoring.gui.levels.LevelTabPane;

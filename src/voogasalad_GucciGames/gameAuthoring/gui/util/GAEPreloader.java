@@ -1,4 +1,4 @@
-package voogasalad_GucciGames.gameAuthoring.gui;
+package voogasalad_GucciGames.gameAuthoring.gui.util;
 
 import javafx.animation.FadeTransition;
 import javafx.concurrent.Task;
@@ -19,7 +19,7 @@ import javafx.stage.StageStyle;
 import javafx.util.Duration;
 
 public class GAEPreloader {
-	private static final String PATH = "voogasalad_GucciGames/gameAuthoring/gui/guccigames.png";
+	private static final String PATH = "voogasalad_GucciGames/gameAuthoring/gui/util/guccigames.png";
 	private Pane splashLayout;
 	private ProgressBar loadProgress;
 	private Label progressText;
