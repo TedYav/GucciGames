@@ -9,6 +9,7 @@ import voogasalad_GucciGames.gameAuthoring.gui.map.GridPoint;
 import voogasalad_GucciGames.gameAuthoring.model.factories.GameInfoFactory;
 import voogasalad_GucciGames.gameData.XStreamGameEngine;
 import voogasalad_GucciGames.gameData.wrapper.GameInfo;
+import voogasalad_GucciGames.gameData.wrapper.GroovyLoaderData;
 import voogasalad_GucciGames.gameData.wrapper.GuiData;
 import voogasalad_GucciGames.gameEngine.mapObject.MapObject;
 
@@ -88,7 +89,8 @@ public class GAEModel implements IGAEModel{
 
     private void saveToXML (GameInfo game) {    	
     	XStreamGameEngine saver = new XStreamGameEngine();
-    	saver.saveGameLoader();
+    	GroovyLoaderData gLoaderData = new GroovyLoaderData(typeData.getGroovyActionParams(),typeData.getGroovyMapObjectCharParams());
+    	saver.saveGameLoader(gLoaderData,game);
 	saver.saveGameInfo(game);
     }
     

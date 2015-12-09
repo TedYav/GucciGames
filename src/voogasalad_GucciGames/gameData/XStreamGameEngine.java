@@ -2,6 +2,7 @@ package voogasalad_GucciGames.gameData;
 
 import java.io.File;
 import java.text.DateFormat;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Date;
 import java.util.HashMap;
@@ -11,10 +12,18 @@ import java.util.ResourceBundle;
 
 import com.thoughtworks.xstream.XStream;
 import com.thoughtworks.xstream.io.xml.DomDriver;
-
+import groovy.lang.GroovyClassLoader;
+import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.groovySettings.groovyParams.GActionParams;
+import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.groovySettings.groovyParams.GCharParam;
 import voogasalad_GucciGames.gameData.wrapper.GameInfo;
 import voogasalad_GucciGames.gameData.wrapper.GamePlayerSave;
+import voogasalad_GucciGames.gameData.wrapper.GroovyLoaderData;
 import voogasalad_GucciGames.gameEngine.GameEngineToGamePlayerInterface;
+import voogasalad_GucciGames.gameEngine.groovyEngine.AGroovyCustomObject;
+import voogasalad_GucciGames.gameEngine.groovyEngine.GameGroovyEngine;
+import voogasalad_GucciGames.gameEngine.groovyEngine.GroovyCustomCharacteristic;
+import voogasalad_GucciGames.gameEngine.groovyEngine.GroovyCustomEvent;
+import voogasalad_GucciGames.gameEngine.groovyEngine.GroovyLoader;
 
 public class XStreamGameEngine {
 
@@ -25,7 +34,7 @@ public class XStreamGameEngine {
     String currentTurn = "Current Turn: ";
     private static FileLoader myLoader = new FileLoader();
     private GameListManager myManager = new GameListManager();
-    private Object loader;
+    private GroovyLoaderData loader;
     private final ResourceBundle myConfig = ResourceBundle.getBundle("voogasalad_GucciGames.gameData.config.GameData");
     
     public XStreamGameEngine(){
@@ -59,7 +68,7 @@ public class XStreamGameEngine {
     	saveGameInfo(game, new File(gameNameToFileName(game.getGameName())));
     }
     
-    public void saveGameLoader(Object loader, GameInfo game) {
+    public void saveGameLoader(GroovyLoaderData loader, GameInfo game) {
         try {
         String gameXML = serializer.toXML(loader);
         myLoader.save(new File(gameNameToLoaderName(game.getGameName())), gameXML);
@@ -126,8 +135,28 @@ public class XStreamGameEngine {
             List<String> path = Arrays.asList(file.getPath().split(File.separator));
             String name=path.get(path.size()-1);
             System.out.println("LOADING LOADER FROMMMMMMM "+name);
-            loader = myLoader.read(new File(gameNameToLoaderName(name)));
+            String loaderXML = myLoader.read(new File(gameNameToLoaderName(name)));
+            loader = (GroovyLoaderData) serializer.fromXML(loaderXML);
             //loader stuff
+            GameGroovyEngine engine = new GameGroovyEngine();
+            List<AGroovyCustomObject> groovyCustoms = new ArrayList<AGroovyCustomObject>();
+            AGroovyCustomObject custom;
+            Map<String,GCharParam> cMap = loader.getGroovyMapObjectCharParams();
+            System.out.println("STARTING LOAD CUSTOM CHARACTERISTICS");
+            for (String s: cMap.keySet()) {
+                custom = new GroovyCustomCharacteristic(s,cMap.get(s).getAllParams());
+                groovyCustoms.add(custom);
+            }
+            System.out.println("FINISHED, STARING LOAD CUSTOM ACTIONS");
+            Map<String,GActionParams> aMap = loader.getGroovyActionParams();
+            for (String s: aMap.keySet()) {
+                custom = new GroovyCustomEvent(s,aMap.get(s).getRequest(),aMap.get(s).getAction());
+                groovyCustoms.add(custom);
+            }
+            System.out.println("FINISHED ACTIONS, CREATING GLOADER");
+            GroovyLoader gLoader = engine.createLoader(groovyCustoms);
+            serializer.setClassLoader(gLoader);
+            Thread.currentThread().setContextClassLoader(gLoader);
         }
         catch (Exception e) {
             e.printStackTrace();

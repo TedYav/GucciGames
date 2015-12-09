@@ -283,4 +283,10 @@ public class TypeData implements IGameProperties {
 		return mapOfPlayers.size() - 1;
 	}
 
+	public Map<String, GActionParams> getGroovyActionParams() {
+	    return myGroovyActionParams;
+	}
+        public Map<String, GCharParam> getGroovyMapObjectCharParams() {
+            return myGroovyMapObjectCharParams;
+        }
 }
