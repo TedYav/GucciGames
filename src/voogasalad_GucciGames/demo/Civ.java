@@ -38,7 +38,7 @@ import voogasalad_GucciGames.gameEngine.targetCoordinate.TargetCoordinateSingle;
 import voogasalad_GucciGames.gameplayer.windows.GameWindowManager;
 import voogasalad_GucciGames.helpers.ResourceManager;
 
-public class DemoMaker extends Application {
+public class Civ extends Application {
 
 	private static String defaultGameLocation = "./src/games/demo.xml";
 
@@ -56,30 +56,30 @@ public class DemoMaker extends Application {
 		launch(args);
 	}
 	private static GameInfo createGame() {
-		GameLevelEngine level1 = makeLevel(4, 4, 1);
+		GameLevelEngine level1 = makeLevel(4, 4, 5);
 		level1.setMyChoosability(true);
 		// level1.setName("Easy");
-		GameLevelEngine level2 = makeLevel(8, 8, 1);
+		GameLevelEngine level2 = makeLevel(8, 8, 5);
 		level2.setMyChoosability(true);
 		// level1.setName("Easy");
-		GameLevelEngine level3 = makeLevel(20, 20, 1);
+		GameLevelEngine level3 = makeLevel(20, 20, 8);
 		level3.setMyChoosability(true);
 		// level1.setName("Easy");
 		GameLevelEngine level4 = makeLevel(40, 40, 20);
 		level4.setMyChoosability(true);
 
-		resourceManager.copyImageToGame("tiles/lava.jpg");
-		resourceManager.copyImageToGame("tiles/water.jpg");
-		resourceManager.copyImageToGame("tiles/grass.jpg");
-		resourceManager.copyImageToGame("units/duvall.jpg");
-		resourceManager.copyImageToGame("units/smile.jpg");
+		resourceManager.copyImageToGame("tiles/stones3.jpg");
+		resourceManager.copyImageToGame("tiles/hedge.jpg");
+		resourceManager.copyImageToGame("tiles/sand.jpg");
+		resourceManager.copyImageToGame("units/mace_windu___02-0.png");
+		resourceManager.copyImageToGame("units/droideka-0.png");
 
 		
 		GameInfo game = new GameInfo("Civ");
 		game.getGameEngine().addLevel("Easy", level1);
 		game.getGameEngine().addLevel("Medium", level2);
 		game.getGameEngine().addLevel("Hard", level3);
-		game.getGameEngine().addLevel("Ultra", level4);
+		game.getGameEngine().addLevel("Capitalist", level4);
 
 		GuiData gui = new GuiData();
 		game.setGuiData(gui);
@@ -114,7 +114,6 @@ public class DemoMaker extends Application {
 
 		MoveEvent myMoveEvent = new MoveEvent("Move", moveRules, new ArrayList<Outcome>());
 
-		BuildSoldierEvent myBuildEvent = new BuildSoldierEvent();
 		
 		Map<String, MapObject> myAllMapObjects = new HashMap<String, MapObject>();
 
@@ -135,7 +134,9 @@ public class DemoMaker extends Application {
 		AttackEvent myAttackEvent = new AttackEvent("Attack", attackRules, attackOutcomes);
 
 		MapObject soldier = makeSoldier(myMoveEvent, myAttackEvent, 1, 0);
-		soldier.addEvent("buildItself", myBuildEvent);
+		BuildSoldierEvent myBuildEvent = new BuildSoldierEvent();
+
+		soldier.addEvent("BuildItself", myBuildEvent);
 		
 		myAllMapObjects.put("Soldier", soldier);
 		
@@ -147,12 +148,12 @@ public class DemoMaker extends Application {
 				MapObject newObj;
 				if(numDuvalls == 0){
 				if ((i + j) % 2 == 0) {
-					newObj = new MapObject(new TargetCoordinateSingle(i, j), -1, 0, "Water", "tiles/water.jpg");
+					newObj = new MapObject(new TargetCoordinateSingle(i, j), -1, 0, "Stones", "tiles/stones3.jpg");
 				} else {
-					newObj = new MapObject(new TargetCoordinateSingle(i, j), -1, 0, "Grass", "tiles/grass.jpg");
+					newObj = new MapObject(new TargetCoordinateSingle(i, j), -1, 0, "Sand", "tiles/sand.jpg");
 				}}
 				else{
-					newObj = new MapObject(new TargetCoordinateSingle(i, j), -1, 0, "Lava", "tiles/lava.jpg");
+					newObj = new MapObject(new TargetCoordinateSingle(i, j), -1, 0, "Hedge", "tiles/hedge.jpg");
 				}
 				newObj.addCharacteristic("TileCharacteristic", myTileCharacteristic);
 				newObj.setOwnerID(-1);
@@ -162,16 +163,19 @@ public class DemoMaker extends Application {
 					Random rand = new Random();
 					if(rand.nextInt(width*height) < numDuvalls){
 						MapObject littlesoldier = makeSoldier(myMoveEvent, myAttackEvent, i, j);
+						littlesoldier.addEvent("BuildItself", myBuildEvent);
 						myMapOfPlayers.get(0).getMapObjects().add(littlesoldier);
 						numDuvalls--;
 					}
 				}
 				
-				if ((i + j) % 9 == 0) {
-					MapObject arch = makeArcher(myMoveEvent, myAttackEvent, i, j);
+				if ((i%4==0 || j%5==0)) {
+					//if (myMapOfPlayers.get(0).getMapObjects().isEmpty()){
+						MapObject arch = makeArcher(myMoveEvent, myAttackEvent, i, j);
 
-					myMapOfPlayers.get(1).getMapObjects().add(arch);
-				}
+						myMapOfPlayers.get(1).getMapObjects().add(arch);
+					//}
+				}	
 			}
 		}
 
@@ -194,8 +198,8 @@ public class DemoMaker extends Application {
 	}
 
 	private static MapObject makeArcher(MoveEvent myMoveEvent, AttackEvent myAttackEvent, int i, int j) {
-		MapObject arch = new MapObject(new TargetCoordinateSingle(i, j), 1, 1, "Student",
-				"units/smile.png");
+		MapObject arch = new MapObject(new TargetCoordinateSingle(i, j), 1, 1, "Empire",
+				"units/droideka-0.png");
 		arch.addCharacteristic("HealthCharacteristic", new HealthCharacteristic(10));
 		arch.addCharacteristic("AttackCharacteristic", new AttackCharacteristic(3, 5, 2));
 		arch.addCharacteristic("MovableCha"
@@ -210,7 +214,7 @@ public class DemoMaker extends Application {
 		
 		MovableCharacteristic myMovableCharacteristic = new MovableCharacteristic(1, 3);
 		HealthCharacteristic myHealthCharacteristic = new HealthCharacteristic(5);
-		MapObject soldier = new MapObject(new TargetCoordinateSingle(i, j), 0, 1, "Duvall", "units/duvall.png");
+		MapObject soldier = new MapObject(new TargetCoordinateSingle(i, j), 0, 1, "Soldier", "units/mace_windu___02-0.png");
 
 		soldier.addEvent("Move", moveEvent);
 		
