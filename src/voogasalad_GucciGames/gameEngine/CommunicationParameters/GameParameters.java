@@ -64,15 +64,11 @@ public class GameParameters extends CommunicationParameters implements GameParam
     public GameResultInterface getResults () {
         return getGameResult();
     }
-	@Override
-	public boolean isTurnEnded() {
-		// TODO Auto-generated method stub
-		return false;
-	}
 
-//	public boolean isTurnEnded() {
-//		return turnEnded;
-//	}
+
+	public boolean isTurnEnded() {
+		return turnEnded;
+	}
 	
     
 }

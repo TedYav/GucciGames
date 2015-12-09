@@ -44,7 +44,6 @@ public class GameEngine implements IGameInfoToGAE, GameEngineToGamePlayerInterfa
 	private String myInitialLevel;
 	private boolean isChangingLevel;
 	private List<String> transferablePlayerCharacteristics;
-	private boolean gameOver;
 
 	private transient volatile GameEnginePlayer iAmAPlayer;
 	private transient volatile Thread t;
@@ -65,7 +64,6 @@ public class GameEngine implements IGameInfoToGAE, GameEngineToGamePlayerInterfa
 		this.transferablePlayerCharacteristics = new ArrayList<String>();
 		this.transferablePlayerCharacteristics.add("PlayerScore");
 		isChangingLevel = false;
-		gameOver = false;
 		this.played = new ArrayList<>();
 
 	}
@@ -117,18 +115,12 @@ public class GameEngine implements IGameInfoToGAE, GameEngineToGamePlayerInterfa
 		isChangingLevel = true;
 		
 		//if string returned is empty, assume game "won"
-		if (myCurrentLevel == ""){
-			gameOver = true;
-		}
+
 		// Have to have same number of players between levels
 //		myCurrentLevel = newGameLevel;
 
 		setUpGameStats();
 
-	}
-	
-	public boolean gameOver(){
-		return gameOver;
 	}
 
 	private boolean setUpGameStats() {
