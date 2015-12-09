@@ -1,30 +1,16 @@
 package voogasalad_GucciGames.gameAuthoring.model;
 
-
-import java.io.File;
-import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
-import java.util.Set;
-import java.util.stream.Collectors;
 
 import javafx.collections.ObservableList;
 import voogasalad_GucciGames.gameAuthoring.IModelGaeController;
-import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.mapobjectsettings.xml.ParamObjParser;
-import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.paramObjects.ActionParamsValue;
-import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.paramObjects.ObjParam;
 import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.paramObjects.ObjParamValue;
-import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.paramObjects.RuleParams;
 import voogasalad_GucciGames.gameAuthoring.gui.map.GridPoint;
 import voogasalad_GucciGames.gameAuthoring.model.factories.GameInfoFactory;
 import voogasalad_GucciGames.gameData.XStreamGameEngine;
 import voogasalad_GucciGames.gameData.wrapper.GameInfo;
+import voogasalad_GucciGames.gameData.wrapper.GroovyLoaderData;
 import voogasalad_GucciGames.gameData.wrapper.GuiData;
-import voogasalad_GucciGames.gameEngine.gamePlayer.AllPlayers;
-import voogasalad_GucciGames.gameEngine.gamePlayer.GamePlayerPerson;
-import voogasalad_GucciGames.gameEngine.mapObject.MapObject;
-import voogasalad_GucciGames.gameEngine.targetCoordinate.TargetCoordinateSingle;
 
 public class GAEModel implements IGAEModel{
     private TypeData typeData;
@@ -33,6 +19,7 @@ public class GAEModel implements IGAEModel{
 	private GameInfoFactory myFactory;
 	private int defaultOwnerID;
 	private LevelData levelData;
+	private String gameName;
 
     
     public GAEModel(IModelGaeController controller) {
@@ -41,7 +28,7 @@ public class GAEModel implements IGAEModel{
     	myFactory = new GameInfoFactory();
     	guiData = new GuiData();
     	levelData = new LevelData();
-    	defaultOwnerID = 0;
+    	defaultOwnerID = -1;
     	
     	
     	// load all default properites
@@ -102,13 +89,15 @@ public class GAEModel implements IGAEModel{
 
     private void saveToXML (GameInfo game) {    	
     	XStreamGameEngine saver = new XStreamGameEngine();
+    	GroovyLoaderData gLoaderData = new GroovyLoaderData(typeData.getGroovyActionParams(),typeData.getGroovyMapObjectCharParams());
+    	saver.saveGameLoader(gLoaderData,game);
 	saver.saveGameInfo(game);
     }
     
     public void saveToXML() {
 //      AllPlayers myPlayers = new AllPlayers(mapOfPlayers);
 //      MainGameEngine engine = new MainGameEngine(myPlayers);
-    	saveToXML(myFactory.create(typeData, levelData, guiData));
+    	saveToXML(myFactory.create(typeData, levelData, guiData, gameName));
     	
     	
     }
@@ -116,13 +105,6 @@ public class GAEModel implements IGAEModel{
     private boolean validate(){ //TODO
         return false;
     }
-
-	@Override
-	public void changeOwner(MapObject mapObject, int playerID) {
-		typeData.changeOwner(mapObject, playerID);
-
-	}
-	
 
 
 	@Override
@@ -171,17 +153,17 @@ public class GAEModel implements IGAEModel{
 		typeData.addPlayerCharacteristic(playerID, param);
 	}
 
-	@Override
-	public void addMapObjectCharacteristic(MapObjectType type, ObjParamValue param) {
-		// TODO Auto-generated method stub
-		
-	}
+//	@Override
+//	public void addMapObjectCharacteristic(MapObjectType type, ObjParamValue param) {
+//		// TODO Auto-generated method stub
+//		
+//	}
 
-	@Override
-	public void addActionParamValue(MapObjectType type, ActionParamsValue param) {
-		// TODO Auto-generated method stub
-		
-	}
+//	@Override
+//	public void addActionParamValue(MapObjectType type, ActionParamsValue param) {
+//		// TODO Auto-generated method stub
+//		
+//	}
 
 
 	@Override
@@ -220,6 +202,11 @@ public class GAEModel implements IGAEModel{
 	@Override
 	public int getDefaultOwner() {
 		return defaultOwnerID;
+	}
+
+
+	public void setGameName(String name) {
+		gameName = name;
 	}
 
 }

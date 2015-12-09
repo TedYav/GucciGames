@@ -1,7 +1,6 @@
 package voogasalad_GucciGames.gameAuthoring.model;
 
 import voogasalad_GucciGames.gameAuthoring.gui.map.GridPoint;
-import voogasalad_GucciGames.gameEngine.targetCoordinate.TargetCoordinateSingle;
 
 public class DisplayMapObject {
 	private MapObjectType myType;
@@ -19,6 +18,10 @@ public class DisplayMapObject {
 	
 	}
 	
+	public void setOwnerID(int id){
+		myOwnerID = id;
+	}
+	
 	public MapObjectType getType(){
 		return myType;
 	}
@@ -31,7 +34,8 @@ public class DisplayMapObject {
 		return myCoord;
 	}
 	
-	
-	
+	public int getLayer(){
+		return myLayer;
+	}
 
 }

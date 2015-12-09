@@ -1,4 +1,4 @@
-package voogasalad_GucciGames.gameAuthoring.gui;
+package voogasalad_GucciGames.gameAuthoring.gui.util;
 
 import javafx.animation.FadeTransition;
 import javafx.concurrent.Task;
@@ -12,14 +12,18 @@ import javafx.scene.effect.DropShadow;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
+import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
+import javafx.scene.paint.Color;
+import javafx.scene.shape.Rectangle;
+import javafx.scene.text.Text;
 import javafx.stage.Screen;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import javafx.util.Duration;
 
 public class GAEPreloader {
-	private static final String PATH = "voogasalad_GucciGames/gameAuthoring/gui/guccigames.png";
+	private static final String PATH = "voogasalad_GucciGames/gameAuthoring/gui/util/guccigames.png";
 	private Pane splashLayout;
 	private ProgressBar loadProgress;
 	private Label progressText;
@@ -31,10 +35,16 @@ public class GAEPreloader {
 		splash.setFitWidth(SPLASH_WIDTH);
 		splash.setFitHeight(SPLASH_HEIGHT - 20);
 		loadProgress = new ProgressBar();
-		loadProgress.setPrefWidth(SPLASH_WIDTH - 20);
+		loadProgress.setPrefWidth(SPLASH_WIDTH);
 		progressText = new Label("Loading . . .");
 		splashLayout = new VBox();
-		splashLayout.getChildren().addAll(splash, loadProgress, progressText);
+		StackPane pane = new StackPane();
+		Rectangle rect = new Rectangle(SPLASH_WIDTH, 40);
+		rect.setFill(Color.BLACK);
+		Text text = new Text("Authors:\tEfe Aras John Dai Karen Li Tina Liang Mike Ma Daniel Mckee\n\t\tSally Merza Joy Patel Ying Qi Ted Yavuzkurt");
+		text.setFill(Color.WHITE);
+		pane.getChildren().addAll(rect,text);
+		splashLayout.getChildren().addAll(splash,pane, loadProgress, progressText);
 		progressText.setAlignment(Pos.CENTER);
 		splashLayout.setEffect(new DropShadow());
 	}

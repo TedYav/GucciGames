@@ -89,5 +89,15 @@ class Grid extends Pane implements ICellGrid{
 		return myLevelID;
 	}
 	
+	protected void selectAll(){
+		if(myCells.size()==selectedCells.size()){
+			myCells.forEach((g,c)->c.deselect());
+		}else{
+			myCells.forEach((g,c)->c.select());
+		}
+	}
+	
+	
+	
 
 }

@@ -23,9 +23,9 @@ import voogasalad_GucciGames.gameEngine.targetCoordinate.TargetCoordinateSingle;
 public class GameInfoFactory {
 
 	public GameInfo create(TypeData typeData, 
-			LevelData levelData, GuiData guiData) {
+			LevelData levelData, GuiData guiData, String name) {
 		
-		GameInfo game = new GameInfo("GAETestGame");
+		GameInfo game = new GameInfo(name);
 		
 		game.setGuiData(guiData);
 		

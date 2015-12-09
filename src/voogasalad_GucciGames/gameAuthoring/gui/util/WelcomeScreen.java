@@ -1,4 +1,4 @@
-package voogasalad_GucciGames.gameAuthoring.gui;
+package voogasalad_GucciGames.gameAuthoring.gui.util;
 
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;

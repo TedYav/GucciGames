@@ -98,4 +98,6 @@ public interface GameEngineToGamePlayerInterface {
 
     void setController (GameControllerEngineInterface myController);
 
+    public abstract void sendMessage(String string);
+
 }

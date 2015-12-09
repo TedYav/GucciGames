@@ -179,7 +179,7 @@ public class GameLevelEngine implements IGameLevelToGamePlayer {
 		//Map<String, Double> score = new HashMap<String, Double>();
 		//Map<String, Integer> scoreID = new HashMap<String, Integer>();
 
-		List<Integer> myIDs = myGamePlayers.getAllIds();
+		List<Integer> myIDs = myGamePlayers.getAllExistingIds();
 		Collections.sort(myIDs);
 
 		for(int i = 1; i < myIDs.size(); i++){
