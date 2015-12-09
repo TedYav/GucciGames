@@ -52,7 +52,7 @@ public interface IGuiGaeController {
 
 	public Stage getStage();
 
-	public Image requestImage(String path);
+	public ImageView requestImage(String path);
 
 	public ImageView getMapObjectImage(MapObjectType object);
 

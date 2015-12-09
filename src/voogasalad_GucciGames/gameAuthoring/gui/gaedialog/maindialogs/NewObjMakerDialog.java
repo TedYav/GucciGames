@@ -33,9 +33,17 @@ public class NewObjMakerDialog extends AGaeDialog<MapObjectType> {
 		this.setResultConverter(dialogButton -> {
 			if (dialogButton == mySave) {
 				String[] data = ((NewObjMakerPane) gridPane).getUserInputData();
-				MapObjectType mapObjType = new MapObjectType(data[0], data[1], Integer.parseInt(data[2]));
-				controller.getResourceManager().copyImageToGame(data[1]);
-				controller.createCustomType(mapObjType, myType);
+				try{
+					int n = Integer.parseInt(data[2]);
+					if(data[0].isEmpty() || data[1].isEmpty())
+						throw new IllegalArgumentException("Empty String");
+					MapObjectType mapObjType = new MapObjectType(data[0], data[1], n);
+					controller.getResourceManager().copyImageToGame(data[1]);
+					controller.createCustomType(mapObjType, myType);
+					return mapObjType;
+				}catch(Exception e){
+					controller.throwException(e);
+				}
 			}
 			return null;
 		});

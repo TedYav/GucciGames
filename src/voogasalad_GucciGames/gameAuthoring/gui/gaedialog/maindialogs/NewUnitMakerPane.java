@@ -10,7 +10,6 @@ import javafx.scene.control.RadioMenuItem;
 import javafx.scene.control.ToggleGroup;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.GridPane;
-import voogasalad.util.fxsprite.Sprite;
 import voogasalad_GucciGames.gameAuthoring.AGuiGaeController;
 
 public class NewUnitMakerPane extends NewObjMakerPane {
@@ -24,8 +23,10 @@ public class NewUnitMakerPane extends NewObjMakerPane {
 		myRow.addListener((ch, oV, nV) -> {
 			if (myImgPath.get()==null)
 				removeImg();
-			else
+			else{
+				myImgPath.set(myImgPath.get().split(":")[0]+(nV.intValue()<0?"":":"+nV));
 				addImg(myImgPath.get());
+			}
 		});
 	}
 
@@ -45,7 +46,7 @@ public class NewUnitMakerPane extends NewObjMakerPane {
 		btn = new Button("Sprite");
 		btn.setOnAction(e -> {
 			myController.getImageBrowseDialog("sprites").showAndWait().ifPresent(s -> {
-				myImgPath.set(s);
+				myImgPath.set(s+":0");
 				myRow.set(0);
 				addImg(myImgPath.get());
 			});
@@ -62,14 +63,10 @@ public class NewUnitMakerPane extends NewObjMakerPane {
 	private void addImg(String URI) {
 		if (myImgBrowser != null)
 			removeImg();
-		if (myRow.get()==-1) {
-			myImgBrowser = new ImageView(myController.getResourceManager().getImage(URI));
-		} else {
-			Sprite s = myController.getResourceManager().getSprite(URI);
-			s.play();
-			myImgBrowser = s;
-			myMenu = new SelectMenu(4); // I dont think s.getNumAnimation works. So just hard coded something
-			s.setOnMousePressed(e->{
+		myImgBrowser = myController.requestImage(URI);
+		if(URI.contains(":")){
+			myMenu = new SelectMenu(4, myRow.get()); // I don't think s.getNumAnimation works. So just hard coded something
+			myImgBrowser.setOnMousePressed(e->{
 				if(e.isSecondaryButtonDown()){
 					myMenu.show(myImgBrowser, e.getScreenX(),e.getScreenY());
 				}	
@@ -78,27 +75,16 @@ public class NewUnitMakerPane extends NewObjMakerPane {
 		myImgBrowser.setFitHeight(40);
 		myImgBrowser.setFitWidth(40);
 		myPane.add(myImgBrowser, 0, 0);
-		
-	}
-
-	@Override
-	public String[] getUserInputData() {
-		String[] data = new String[4];
-		data[0] = name.getTextInput();
-		data[1] = myImgPath.get();
-		data[2] = type.equals("tile") ? "0" : layer.getTextInput();
-		data[3] = myRow.getValue().toString();
-		return data;
 	}
 	
 	private class SelectMenu extends ContextMenu{
-		public SelectMenu(int n) {
+		public SelectMenu(int n, int sel) {
 			ToggleGroup group = new ToggleGroup();
 			for(int i = 0;i<n;i++){
 				RadioMenuItem item = new RadioMenuItem("Animation "+i);
 				item.setUserData(i);
 				item.setToggleGroup(group);
-				if(i==0)
+				if(i==sel)
 					item.setSelected(true);
 				getItems().add(item);
 			}
