@@ -30,6 +30,7 @@ public class RuleFactory {
 
 	public Rules createRule(String ruleName) throws NoSuchMethodException, SecurityException, ClassNotFoundException,
 			InstantiationException, IllegalAccessException, IllegalArgumentException, InvocationTargetException {
+		System.out.println("Rule: " + ruleName);
 		Class<Rules> rule = (Class<Rules>) Class.forName(prop.getProperty(ruleName));
 		Constructor<Rules> ruleConstructor = rule.getDeclaredConstructor();
 		Rules ruleInstance = ruleConstructor.newInstance();

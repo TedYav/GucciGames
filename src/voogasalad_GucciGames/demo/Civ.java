@@ -117,7 +117,7 @@ public class Civ extends Application {
 		
 		Map<String, MapObject> myAllMapObjects = new HashMap<String, MapObject>();
 
-		Conditions onePlayerLeft = new CheckOnePlayerLeft();
+		Conditions onePlayerLeft = new CheckOnePlayerLeft(0);
 		List<Conditions> endGameConditions = new ArrayList<Conditions>();
 		endGameConditions.add(onePlayerLeft);
 

@@ -175,6 +175,8 @@ public abstract class MapCell extends Observable implements MapCellInterface {
 		int count = myObjects.get(layer).size();
 		myLayerMap.get(layer).getChildren().clear();
 		if(count > 0){
+			// I'm sorry. I'm really sorry.
+			if(layer == 0) count = 1;
 			double countPerRow = Math.ceil(Math.sqrt(count));
 			for(int i=0, total=0; i<countPerRow; i++){
 				for(int j=0; j<countPerRow; j++, total++){

@@ -10,6 +10,10 @@ import voogasalad_GucciGames.gameEngine.gamePlayer.GamePlayerPerson;
  *
  */
 public class CheckOnePlayerLeft extends Conditions {
+	
+	public CheckOnePlayerLeft(int i ) {
+		
+	}
 
 
 	@Override

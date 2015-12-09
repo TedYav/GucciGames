@@ -118,7 +118,7 @@ public class DemoMaker extends Application {
 		
 		Map<String, MapObject> myAllMapObjects = new HashMap<String, MapObject>();
 
-		Conditions onePlayerLeft = new CheckOnePlayerLeft();
+		Conditions onePlayerLeft = new CheckOnePlayerLeft(1);
 		List<Conditions> endGameConditions = new ArrayList<Conditions>();
 		endGameConditions.add(onePlayerLeft);
 

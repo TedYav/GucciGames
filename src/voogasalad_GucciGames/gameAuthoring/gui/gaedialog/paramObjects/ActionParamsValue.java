@@ -60,6 +60,7 @@ public class ActionParamsValue extends AParams{
 
 	@Override
 	public void print() {
+	
 		System.out.println("name: " + this.name);
 		System.out.println("Characteristics: ");
 		myCharacteristics.forEach(e -> {
@@ -75,6 +76,19 @@ public class ActionParamsValue extends AParams{
 		myOutcomes.forEach(e -> {
 			System.out.println(e.getName());
 		});
+		
+		System.out.println("Condition: ");
+		this.myOutcomes.forEach(outcome -> {
+			outcome.getConditions().forEach(con -> {
+				System.out.println("condition name: " + con.getName());
+				con.getParamValues().forEach((k,v) -> {
+					System.out.println("condition k: " + "condition v" + v);
+				});
+			});
+			
+			
+		});
+		
 		
 	}
 	
