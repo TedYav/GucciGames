@@ -66,11 +66,6 @@ public class GameInfo implements GameInfoToGamePlayer{
     public GameEngineToGamePlayerInterface getEngineInterface () {
         return myEngine;
     }
-
-	
-	
-	
-	
 	
 	
 }

@@ -41,6 +41,7 @@ public class GameSplashScene extends GameScene {
 		try {
 			myManager.getLoader().loadSelectedGame();
 		} catch (GameDataException e1) {
+			e1.printStackTrace();
 			myManager.getLoader().loadDefault();
 		}
 	}

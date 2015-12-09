@@ -27,7 +27,10 @@ public class MapData {
 
 	public void deleteObject(DisplayMapObject mapObj) {
 		onMap.remove(mapObj);
-		
+	}
+	
+	public String getName() {
+		return myName;
 	}
 
 }
