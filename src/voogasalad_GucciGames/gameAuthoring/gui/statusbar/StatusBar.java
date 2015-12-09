@@ -1,6 +1,5 @@
 package voogasalad_GucciGames.gameAuthoring.gui.statusbar;
 
-import javafx.animation.Animation;
 import javafx.animation.Animation.Status;
 import javafx.animation.PauseTransition;
 import javafx.animation.Transition;
@@ -17,12 +16,10 @@ import voogasalad_GucciGames.gameAuthoring.AGuiGaeController;
 
 public class StatusBar extends HBox{
 	
-	private AGuiGaeController myController;
 	private Text myText;
 	private Transition myTextTransition;
 	
 	public StatusBar(AGuiGaeController controller){
-		myController = controller;
 		setPrefHeight(30);
 		
 		setBackground(
