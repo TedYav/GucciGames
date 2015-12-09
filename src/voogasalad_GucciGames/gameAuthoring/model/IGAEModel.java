@@ -1,12 +1,9 @@
 package voogasalad_GucciGames.gameAuthoring.model;
 
 import java.util.List;
-import java.util.Map;
-import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
 import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.paramObjects.ActionParamsValue;
-import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.paramObjects.ObjParam;
 import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.paramObjects.ObjParamValue;
 import voogasalad_GucciGames.gameAuthoring.gui.map.GridPoint;
 import voogasalad_GucciGames.gameEngine.mapObject.MapObject;
@@ -31,7 +28,7 @@ public interface IGAEModel {
     
 	public void changeOwner(MapObject mapObject, int playerID);
 
-	public int addLevel(String name);
+	public int addLevel(String name, int width, int height);
 	
 	public void saveToXML();
 	
@@ -67,5 +64,10 @@ public interface IGAEModel {
 	public void deleteTileType(MapObjectType object);
 	public void deleteStructureType(MapObjectType object);
 	public void deleteUnitType(MapObjectType object);	
+	
+	public void setNumberOfPlayers(int n);
+	
+	public int getNumberOfPlayers();
+	public int getDefaultOwner();
     
 }

@@ -4,19 +4,18 @@ import voogasalad_GucciGames.gameEngine.mapObject.AMapObjectCharacteristic;
 
 public class VisionCharacteristic extends AMapObjectCharacteristic{
 
-	private int myVision;
-	
+	private int Vision;
+
 	public VisionCharacteristic(int vision){
-		this.myVision = vision;
+		this.Vision = vision;
 	}
-	
-	
-		public int getVision(){
-			return myVision;
-		}
-	
-		public void setVision(int vis){
-			myVision = vis;
-		}
-	
+
+	public int getVision(){
+		return Vision;
+	}
+
+	public void setVision(int vis){
+		Vision = vis;
+	}
+
 }

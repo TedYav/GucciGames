@@ -1,14 +1,10 @@
-package voogasalad_GucciGames.gameData.wrapper;
-
-import voogasalad_GucciGames.gameEngine.GameEngineToGamePlayerInterface;
+package voogasalad_GucciGames.gameEngine;
 
 public interface IGameLevelToGamePlayer {
 		
 	public boolean isMyChoosability();
 	
 	public String getLevelName();
-	
-	public String getNextLevel();
 	
 	public boolean hasLevelEnded();
 

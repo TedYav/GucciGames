@@ -1,11 +1,13 @@
 package voogasalad_GucciGames.gameEngine.defaultCharacteristics;
 
+import java.lang.reflect.Field;
+
 import voogasalad_GucciGames.gameEngine.mapObject.AMapObjectCharacteristic;
 
 public class HealthCharacteristic extends AMapObjectCharacteristic {
 
-	private double myCurrentHealth;
-	private double myMaxHealth = 100;
+	private double CurrentHealth;
+	private double MaxHealth = 100;
 
 	public HealthCharacteristic() {
 	}
@@ -15,31 +17,38 @@ public class HealthCharacteristic extends AMapObjectCharacteristic {
 	}
 
 	public void changeHealth(double healthDiff) {
-		myCurrentHealth -= healthDiff;
+		CurrentHealth -= healthDiff;
 	}
 
 	public void resetHealth() {
-		myCurrentHealth = myMaxHealth;
+		CurrentHealth = MaxHealth;
 	}
 
 	public double getCurrentHealth() {
-		return myCurrentHealth;
+		return CurrentHealth;
+	}
+	
+	public double getMaxHealth(){
+		return MaxHealth;
 	}
 
 	public void defineHealthValue(double healthValue) {
-		myMaxHealth = healthValue;
-		myCurrentHealth = healthValue;
+		MaxHealth = healthValue;
+		CurrentHealth = healthValue;
 
 	}
 
 	public boolean isDead() {
-		return myCurrentHealth <= 0;
+		return CurrentHealth <= 0;
 	}
 
+	/*
 	@Override
 	public String toString() {
 		// TODO Auto-generated method stub
 		return "Current Health = " + myCurrentHealth;
 	}
+	*/
+	
 
 }

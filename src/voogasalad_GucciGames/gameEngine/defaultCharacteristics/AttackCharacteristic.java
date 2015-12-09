@@ -5,54 +5,49 @@ import java.util.List;
 import voogasalad_GucciGames.gameEngine.mapObject.AMapObjectCharacteristic;
 
 public class AttackCharacteristic extends AMapObjectCharacteristic {
-	private double myRange = 1;
-	private double myDamage = 1;
-	private int maxNumberOfAttacks = 1;
-	private int currentNumberOfAttacks = 0;
+	private double AttackRange = 1;
+	private double Damage = 1;
+	private int MaxNumberOfAttacks = 1;
+	private int CurrentNumberOfAttacks = 0;
 
 	public AttackCharacteristic() {
 
 	}
 
 	public AttackCharacteristic(double range, double damage, int maxNum) {
-		myRange = range;
-		myDamage = damage;
-		maxNumberOfAttacks = maxNum;
+		AttackRange = range;
+		Damage = damage;
+		MaxNumberOfAttacks = maxNum;
 	}
 
-	public double getRange() {
-		return myRange;
+	public double getAttackRange() {
+		return AttackRange;
 	}
 
 	public double getDamage() {
-		return myDamage;
+		return Damage;
 	}
 
 	public int getCurrentNumberOfAttacks() {
-		return currentNumberOfAttacks;
+		return CurrentNumberOfAttacks;
 	}
 
-	public int getMaxAttacks() {
-		return maxNumberOfAttacks;
+	public int getMaxNumberOfAttacks() {
+		return MaxNumberOfAttacks;
 	}
 
 	public void updateAttackCount() {
-		currentNumberOfAttacks++;
+		CurrentNumberOfAttacks++;
 	}
 
 	public void reset() {
-		currentNumberOfAttacks = 0;
+		CurrentNumberOfAttacks = 0;
 	}
 
 	public void set(List<Integer> values) {
-		myRange = values.get(0);
-		myDamage = values.get(1);
-		maxNumberOfAttacks = values.get(2);
-	}
-
-	@Override
-	public String toString() {
-		return "Range = " + myRange + "\n Damage = " + myDamage;
+		AttackRange = values.get(0);
+		Damage = values.get(1);
+		MaxNumberOfAttacks = values.get(2);
 	}
 
 }

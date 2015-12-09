@@ -12,6 +12,10 @@ import voogasalad_GucciGames.gameEngine.CommunicationParameters.ChangedParameter
 public class EndLevel extends Outcome {
 	private static final String NEXT_LEVEL="nextLevel";
 	private String myDestination;
+	
+	public EndLevel() {
+		
+	}
 
 	public EndLevel(String affectedPlayers,String destination) {
 		myDestination = destination;
@@ -20,7 +24,7 @@ public class EndLevel extends Outcome {
 	@Override
 	ChangedParameters applyOutcome(BasicParameters params,ChangedParameters changedParams, int i) {
 		params.getEngine().setEndLevel(true);
-		changedParams.setLevel(myDestination);
+		changedParams.setNextLevel(myDestination);
 		//params.getEngine().changeLevel(myDestination);
 		System.out.println("setgame="+params.getEngine().hasLevelEnded());
 		return changedParams;

@@ -64,6 +64,7 @@ public class SettingsDialog extends AGaeDialog implements ISwitchSettingsPane{
 		this.setResultConverter(dialogButton -> {
 		    if (dialogButton == saveBtn) {
 		        System.out.println("save");
+
 		        if(this.charParamValues.size() != 0){
 		        	//TODO: charParamValue
 		        	charParamValues.forEach(e -> {
@@ -80,8 +81,7 @@ public class SettingsDialog extends AGaeDialog implements ISwitchSettingsPane{
 		        if(this.actionParamsValue.getName() != null){
 		        	System.out.println("----------------Saving Action --------------");
 		        	actionParamsValue.print();
-		        	this.controller.getPropertiesInterface().addActionParamValue(actionParamsValue);
-		       
+		        	this.controller.getPropertiesInterface().addActionParamValue(actionParamsValue);		       
 		        }  
 
 		    }

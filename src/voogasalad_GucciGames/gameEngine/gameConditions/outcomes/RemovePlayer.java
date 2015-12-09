@@ -10,6 +10,10 @@ import voogasalad_GucciGames.gameEngine.CommunicationParameters.ChangedParameter
  *
  */
 public class RemovePlayer extends Outcome {
+	
+	public RemovePlayer () {
+		
+	}
 
 	public RemovePlayer(String affectedPlayers) {
 		super(affectedPlayers);

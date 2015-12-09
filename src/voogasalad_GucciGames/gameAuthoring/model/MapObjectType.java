@@ -8,7 +8,7 @@ import voogasalad_GucciGames.gameEngine.objectActions.MapObjectEvent;
 
 public class MapObjectType {
 	private List<AMapObjectCharacteristic> myCharacteristics = new ArrayList<AMapObjectCharacteristic>();
-	private List<MapObjectEvent> myEvents;
+	private List<MapObjectEvent> myEvents = new ArrayList<>();
 	private double myWidth, myHeight, myX, myY;
 	private String myImagePath;
 	private String myName;
