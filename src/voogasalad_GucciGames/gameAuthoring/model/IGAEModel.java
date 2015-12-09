@@ -69,5 +69,6 @@ public interface IGAEModel {
 	
 	public int getNumberOfPlayers();
 	public int getDefaultOwner();
+	public void setGameName(String name);
     
 }

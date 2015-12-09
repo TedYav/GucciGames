@@ -3,4 +3,4 @@
 		<name>Duvall Tag</name>
 		<file>Duvall_Tag.gg</file>
 	</game>
-<game><name>RandomName</name><file>./src/games/RandomName.gg</file></game><game><name>GAETestGame</name><file>./src/games/GAETestGame.gg</file></game></body>
+<game><name>RandomName</name><file>./src/games/RandomName.gg</file></game><game><name>GAETestGame</name><file>./src/games/GAETestGame.gg</file></game><game><name>DEFAULT NAME</name><file>./src/games/DEFAULT_NAME.gg</file></game><game><name>aa</name><file>./src/games/aa.gg</file></game></body>

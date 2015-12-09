@@ -33,6 +33,7 @@ public class GAEModel implements IGAEModel{
 	private GameInfoFactory myFactory;
 	private int defaultOwnerID;
 	private LevelData levelData;
+	private String gameName;
 
     
     public GAEModel(IModelGaeController controller) {
@@ -42,6 +43,7 @@ public class GAEModel implements IGAEModel{
     	guiData = new GuiData();
     	levelData = new LevelData();
     	defaultOwnerID = 0;
+    	gameName = "DEFAULT NAME";
     	
     	
     	// load all default properites
@@ -108,7 +110,7 @@ public class GAEModel implements IGAEModel{
     public void saveToXML() {
 //      AllPlayers myPlayers = new AllPlayers(mapOfPlayers);
 //      MainGameEngine engine = new MainGameEngine(myPlayers);
-    	saveToXML(myFactory.create(typeData, levelData, guiData));
+    	saveToXML(myFactory.create(typeData, levelData, guiData, gameName));
     	
     	
     }
@@ -220,6 +222,12 @@ public class GAEModel implements IGAEModel{
 	@Override
 	public int getDefaultOwner() {
 		return defaultOwnerID;
+	}
+
+
+	@Override
+	public void setGameName(String name) {
+		gameName = name;
 	}
 
 }

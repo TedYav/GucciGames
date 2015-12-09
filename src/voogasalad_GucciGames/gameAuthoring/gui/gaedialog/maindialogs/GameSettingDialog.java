@@ -44,6 +44,7 @@ public class GameSettingDialog extends AGaeDialog {
 	protected void setSaveAction(){
     	this.setResultConverter(dialogButton -> {
     		if (dialogButton == mySave) {
+    			System.out.println(myPane.getNumPlayers());
     			dialogGaeController.setNumberOfPlayers(myPane.getNumPlayers());
     			this.close();
     		}
