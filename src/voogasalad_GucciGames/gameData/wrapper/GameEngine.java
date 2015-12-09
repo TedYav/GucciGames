@@ -22,6 +22,7 @@ import voogasalad_GucciGames.gameEngine.gamePlayer.chars.APlayerChars;
 import voogasalad_GucciGames.gameEngine.mapObject.MapObject;
 import voogasalad_GucciGames.gameEngine.targetCoordinate.ATargetCoordinate;
 import voogasalad_GucciGames.gameplayer.controller.GameController;
+import voogasalad_GucciGames.gameplayer.controller.GameControllerEngineInterface;
 import voogasalad_GucciGames.gameplayer.controller.GameParametersInterface;
 
 /**
@@ -45,11 +46,11 @@ public class GameEngine implements IGameInfoToGAE, GameEngineToGamePlayerInterfa
 	private boolean isChangingLevel;
 	private List<String> transferablePlayerCharacteristics;
 
-	private volatile GameEnginePlayer iAmAPlayer;
-	private volatile Thread t;
+	private transient volatile GameEnginePlayer iAmAPlayer;
+	private transient volatile Thread t;
 
 	@XStreamOmitField
-	private GameController myController;
+	private transient GameControllerEngineInterface myController;
 	
 	private Map<String,MapObject> myBuild;
 
@@ -280,12 +281,12 @@ public class GameEngine implements IGameInfoToGAE, GameEngineToGamePlayerInterfa
 		myController.refreshGUI();
 	}
 
-	public GameController getController() {
+	public GameControllerEngineInterface getController() {
 		return myController;
 	}
 
 	@Override
-	public void setController(GameController myController) {
+	public void setController(GameControllerEngineInterface myController) {
 		this.myController = myController;
 	}
 
