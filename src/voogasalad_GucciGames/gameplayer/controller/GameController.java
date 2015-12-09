@@ -227,4 +227,10 @@ public class GameController implements GameControllerInterface, GameControllerAd
 	public void setSceneManager(GameSceneManager sceneManager) {
 		mySceneManager=sceneManager;
 	}
+
+	@Override
+	public void updateChat(String string) {
+		// TODO Auto-generated method stub
+		
+	}
 }

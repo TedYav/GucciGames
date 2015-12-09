@@ -9,6 +9,8 @@ public abstract class GameEnginePlayer implements Runnable {
 
     private GameEngine mySuperEngine;
 	private GameLevelEngine myEngine;
+	
+	private int playerID;
 
 	public void setLevelEngine(GameLevelEngine currentLevel) {
 		setMyEngine(currentLevel);
@@ -28,6 +30,11 @@ public abstract class GameEnginePlayer implements Runnable {
 		this.getMySuperEngine().setLevel(getMyEngine().getLevelName(), getMyEngine());
 		this.getMySuperEngine().refreshGUI();
 
+	}
+	
+
+	protected void updateChat(String string) {
+		this.getMySuperEngine().updateChat(playerID, string);
 	}
 
     
@@ -51,6 +58,9 @@ public abstract class GameEnginePlayer implements Runnable {
 
 
 	public abstract void endTurn();
+
+
+	public abstract void sendMessage(String string);
 
 	
 }

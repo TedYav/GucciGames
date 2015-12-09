@@ -45,6 +45,8 @@ public class GameEngine implements IGameInfoToGAE, GameEngineToGamePlayerInterfa
 	private boolean isChangingLevel;
 	private List<String> transferablePlayerCharacteristics;
 	private boolean isEndTurn;
+	
+	private int playerID;
 
 	private transient volatile GameEnginePlayer iAmAPlayer;
 	private transient volatile Thread t;
@@ -320,6 +322,14 @@ public class GameEngine implements IGameInfoToGAE, GameEngineToGamePlayerInterfa
 	
 	public Map<String,MapObject> getBuild(){
 		return this.myBuild;
+	}
+
+	public void updateChat(int playerID2, String string) {
+		myController.updateChat("Player" + playerID2 + ": " + string);
+	}
+	
+	public void sendMessage(String string){
+		iAmAPlayer.sendMessage(string);
 	}
 
 }

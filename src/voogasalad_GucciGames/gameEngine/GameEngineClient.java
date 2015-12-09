@@ -76,6 +76,22 @@ public class GameEngineClient extends GameEnginePlayer implements Runnable{
 	                    this.updateGameEngine(myBuilder.toString());
 
 		            }
+                    
+                    if(input.startsWith("CHAT")){
+                    	  input = in.readLine();
+                      	
+                      	
+  	                    int lengthMessage = Integer.parseInt(input);
+	                    StringBuilder myBuilder = new StringBuilder();
+
+  	                  for(int i = 0; i < lengthMessage; i++){
+	                    	myBuilder.append((char) in.read());
+	                    }
+	                    
+	                    this.updateChat(myBuilder.toString());
+  	                    
+  	                    }
+                    
 		        }
 
 		} catch (UnknownHostException e) {
@@ -89,6 +105,7 @@ public class GameEngineClient extends GameEnginePlayer implements Runnable{
 
 	}
 	
+
 	private void updateServerGameEngine() {
 		// TODO Auto-generated method stub
 
@@ -105,5 +122,14 @@ public class GameEngineClient extends GameEnginePlayer implements Runnable{
 	@Override
 	public void endTurn() {
 		updateServerGameEngine();
+	}
+
+	@Override
+	public void sendMessage(String string) {
+		// TODO Auto-generated method stub
+		myWriterToServer.print("CHAT\n" + string.length() + "\n" + string + "\n");
+    	myWriterToServer.flush();
+
+		
 	}
 }
