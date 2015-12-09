@@ -40,6 +40,7 @@ public abstract class AMapObjectCharacteristic implements Cloneable{
 		return result.trim();
 	}
 
+	/*
 	public static void main(String[] args){
 		AMapObjectCharacteristic health = new HealthCharacteristic();
 		System.out.println(health.toString());
@@ -47,4 +48,5 @@ public abstract class AMapObjectCharacteristic implements Cloneable{
 		AMapObjectCharacteristic attack = new AttackCharacteristic(5,5,5);
 		System.out.println(attack.toString());
 	}
+	*/
 }
