@@ -225,7 +225,7 @@ public class GaeController extends AGuiGaeController implements IModelGaeControl
 	}
 
 	@Override
-	public int addLevel(String name) {
+	public int addLevel(String name, int width, int height) {
 		return myModel.addLevel(name);
 	}
 
