@@ -8,9 +8,14 @@ public class GCharParam{
 
 	private String name;
 	private Map<String, String> params = new HashMap<String, String>();
-
-	public GCharParam(String name){
+	private GroovyCharacteristics charType;;
+	public GCharParam(String name, GroovyCharacteristics charType){
 		this.name = name;
+		this.charType = charType;
+	}
+	
+	public GroovyCharacteristics getCharType(){
+		return charType;
 	}
 
 

@@ -88,7 +88,9 @@ public class ConditionOutcomePane extends GridPane {
 		OutcomeParamValue outcomeParam = null;
 		if(objParamPane != null){
 			
-			outcomeParam = new OutcomeParamValue(selectedOutcome.getText(), type, objParamPane.getAllInputs());
+			outcomeParam = new OutcomeParamValue(selectedOutcome.getText(), 
+					type, objParamPane.getAllInputs());
+			
 
 		}
 		return outcomeParam;
