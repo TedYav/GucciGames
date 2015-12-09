@@ -33,24 +33,38 @@ public class GameLevelEngine implements IGameLevelToGamePlayer {
 	private int myMapWidth;
 	private int myMapHeight;
 	private String myName;
+	private String myNextLevelName;
 	private boolean myChoosability;
 	private boolean hasLevelEnded;
 	private GameStats myGameStats;
 	
 	private List<Double> scoresList;
 
+	
+	public void setLevelName(String name){
+		myName = name;
+	}
+	
 	@Override
 	public String getLevelName() {
 		return myName;
+	}
+	
+	public void setNextLevelName(String lname){
+		this.myNextLevelName = lname;
+	}
+	
+	public String getNextLevel(){
+		return this.myNextLevelName;
 	}
 
 	public GameLevelEngine(AllPlayers gamePlayers) {
 		myGamePlayers = gamePlayers;
 		myCurrentTurnCounter = new TurnCounter();
 		myTurnDecider = new DefaultTurnDecider(myGamePlayers, myCurrentTurnCounter);
-//		hasLevelEnded = false;
+		hasLevelEnded = false;
 
-		myName = "Game " + Math.round((Math.random()*10000));
+//		myName = "Game " + Math.round((Math.random()*10000));
 	}
 
 	@Deprecated
@@ -209,9 +223,6 @@ public class GameLevelEngine implements IGameLevelToGamePlayer {
 
 		return pp;
 	}
-	public void setName(String name) {
-		myName = name;
-	}
 
 	@Override
 	public boolean hasLevelEnded() {
@@ -229,7 +240,7 @@ public class GameLevelEngine implements IGameLevelToGamePlayer {
 	public void setEndLevel(boolean gameWon) {
 		this.hasLevelEnded = gameWon;
 	}
-
+	
 	@Override
 	public boolean isMyChoosability() {
 		return myChoosability;

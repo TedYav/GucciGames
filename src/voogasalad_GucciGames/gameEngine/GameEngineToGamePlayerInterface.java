@@ -95,7 +95,6 @@ public interface GameEngineToGamePlayerInterface {
 	public void beClient(String string);
 	
 	public APlayerChars getPlayerCharacteristic(String name, int id);
-	public void levelStart();
 
     void setController (GameControllerEngineInterface myController);
 

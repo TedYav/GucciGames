@@ -44,7 +44,7 @@ public class GameEngine implements IGameInfoToGAE, GameEngineToGamePlayerInterfa
 	private String myInitialLevel;
 	private boolean isChangingLevel;
 	private List<String> transferablePlayerCharacteristics;
-	private boolean levelComplete;
+	private boolean isEndTurn;
 
 	private transient volatile GameEnginePlayer iAmAPlayer;
 	private transient volatile Thread t;
@@ -65,7 +65,7 @@ public class GameEngine implements IGameInfoToGAE, GameEngineToGamePlayerInterfa
 		this.transferablePlayerCharacteristics = new ArrayList<String>();
 		this.transferablePlayerCharacteristics.add("PlayerScore");
 		isChangingLevel = false;
-		levelComplete = false;
+		isEndTurn = false;
 		this.played = new ArrayList<>();
 
 	}
@@ -104,13 +104,11 @@ public class GameEngine implements IGameInfoToGAE, GameEngineToGamePlayerInterfa
 		}
 
 //		System.out.println(levelComplete);
-		if (levelComplete){
-			myCurrentLevel = newGameLevel;
-			levelComplete = false;
-		}
-		else{
-			System.out.println("JK level has NOT changed");
-		}
+		myCurrentLevel = newGameLevel;
+//		else{
+//			System.out.println("JK level has NOT changed");
+//		}
+
 		
 		if (iAmAPlayer != null) {
 			iAmAPlayer.setLevelEngine(getCurrentLevel());
@@ -121,7 +119,6 @@ public class GameEngine implements IGameInfoToGAE, GameEngineToGamePlayerInterfa
 		//if string returned is empty, assume game "won"
 		if (myCurrentLevel == ""){
 			getCurrentLevel().setEndLevel(true);
-			levelComplete = true;
 		}
 		// Have to have same number of players between levels
 //		myCurrentLevel = newGameLevel;
@@ -159,7 +156,7 @@ public class GameEngine implements IGameInfoToGAE, GameEngineToGamePlayerInterfa
 	 * @return
 	 */
 	public void addLevel(String levelName, GameLevelEngine myEngine) {
-		myEngine.setName(levelName);
+		myEngine.setLevelName(levelName);
 		myLevelsMap.put(levelName, myEngine);
 
 	}
@@ -187,7 +184,7 @@ public class GameEngine implements IGameInfoToGAE, GameEngineToGamePlayerInterfa
 
 	@Override
 	public void setLevel(String gameName, GameLevelEngine engine) {
-		engine.setName(gameName);
+		engine.setLevelName(gameName);
 		myLevelsMap.put(gameName, engine);
 
 	}
@@ -227,6 +224,7 @@ public class GameEngine implements IGameInfoToGAE, GameEngineToGamePlayerInterfa
 
 	@Override
 	public GameParametersInterface endTurn() {
+		
 		
 		GameParametersInterface myParams = getCurrentLevel().endTurn();
 		
@@ -272,15 +270,14 @@ public class GameEngine implements IGameInfoToGAE, GameEngineToGamePlayerInterfa
 
 	@Override
 	public boolean hasLevelEnded() {
-		levelComplete = true;
 		return getCurrentLevel().hasLevelEnded();
 	}
 	
-	@Override
-	public void levelStart(){
+//	@Override
+//	public void levelStart(){
 //		System.out.println("levelStart "+levelComplete);
-		levelComplete = true;
-	}
+//		levelComplete = true;
+//	}
 	
 //	public void setLevelStart(){
 //		getCurrentLevel().setStartLevel();
