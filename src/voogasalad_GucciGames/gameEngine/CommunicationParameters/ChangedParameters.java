@@ -9,6 +9,7 @@ public class ChangedParameters extends CommunicationParameters {
 	private List<Integer> playersChangedIDs;
 	private String level;
 	private List<PlayerMapObjectInterface> changedUnits;
+	private String nextLevel;
 
 	public ChangedParameters() {
 		changedUnits = new ArrayList<PlayerMapObjectInterface>();
@@ -39,5 +40,12 @@ public class ChangedParameters extends CommunicationParameters {
 	public void setLevel(String level) {
 		this.level = level;
 	}
-
+	
+	public void setNextLevel(String nextLevel){
+		this.nextLevel = nextLevel;
+	}
+	
+	public String getNextLevel(){
+		return this.nextLevel;
+	}
 }
