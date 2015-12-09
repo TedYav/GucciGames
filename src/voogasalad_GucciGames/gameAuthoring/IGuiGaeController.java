@@ -1,5 +1,6 @@
 package voogasalad_GucciGames.gameAuthoring;
 
+import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.paramObjects.ObjParamValue;
 import voogasalad_GucciGames.gameAuthoring.gui.levels.LevelTabPane;
 import voogasalad_GucciGames.gameAuthoring.gui.map.GridPoint;
 import voogasalad_GucciGames.gameAuthoring.model.DisplayMapObject;
@@ -10,23 +11,18 @@ import java.io.File;
 import java.util.List;
 
 import javafx.beans.property.BooleanProperty;
+import javafx.beans.property.IntegerProperty;
 import javafx.collections.ObservableList;
 import javafx.scene.control.Dialog;
-import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
 import voogasalad_GucciGames.gameEngine.mapObject.MapObject;
 
 public interface IGuiGaeController {
-	/**
-	 * Add Map Object
-	 * 
-	 * @param mapObj
-	 */
 
 	public void initGame(String name);
 
-	public void deleteComponent(DisplayMapObject mapObj);
+	public void deleteComponent(DisplayMapObject mapObj, int levelID);
 
 	public List<DisplayMapObject> getMapObjects(int id);
 
@@ -57,7 +53,7 @@ public interface IGuiGaeController {
 
 	public Stage getStage();
 
-	public Image requestImage(String path);
+	public ImageView requestImage(String path);
 
 	public ImageView getMapObjectImage(MapObjectType object);
 
@@ -69,7 +65,7 @@ public interface IGuiGaeController {
 
 	public LevelTabPane getLevelTabPane();
 
-	public int addLevel(String name);
+	public int addLevel(String name, int width, int height);
 	
 	public void setDefaultOwner(int ownerID);
 
@@ -78,6 +74,13 @@ public interface IGuiGaeController {
 	public GameResourceManagerToGAE getResourceManager();
 	
 	public Dialog<String> getImageBrowseDialog(String type);
+	
+	public void throwException(Exception e);
 
+	public void addPlayerCharacteristic(int playerID, ObjParamValue param);
+	
+	public IntegerProperty getNumberOfPlayersProperty();
+
+	public int getDefaultOwner();
 
 }

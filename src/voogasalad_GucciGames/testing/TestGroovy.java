@@ -1,8 +1,5 @@
 package voogasalad_GucciGames.testing;
 
-import java.io.BufferedReader;
-import java.io.FileNotFoundException;
-import java.io.FileReader;
 import java.lang.reflect.Constructor;
 import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
@@ -15,15 +12,10 @@ import javax.script.ScriptEngineManager;
 import javax.script.ScriptException;
 
 import junit.framework.TestCase;
-import voogasalad_GucciGames.gameEngine.CommunicationParameters.BasicParameters;
 import voogasalad_GucciGames.gameEngine.groovyEngine.AGroovyCustomObject;
 import voogasalad_GucciGames.gameEngine.groovyEngine.GameGroovyEngine;
 import voogasalad_GucciGames.gameEngine.groovyEngine.GroovyCustomCharacteristic;
-import voogasalad_GucciGames.gameEngine.groovyEngine.GroovyCustomEvent;
 import voogasalad_GucciGames.gameEngine.groovyEngine.GroovyLoader;
-import voogasalad_GucciGames.gameEngine.mapObject.MapObject;
-import voogasalad_GucciGames.gameEngine.objectActions.MapObjectEvent;
-import voogasalad_GucciGames.gameEngine.objectActions.MapObjectEventHandler;
 
 public class TestGroovy extends TestCase{
 
@@ -34,13 +26,18 @@ public class TestGroovy extends TestCase{
 		map.put("health", "Double");
 		map.put("regenerate", "Double");
 		GroovyCustomCharacteristic g = new GroovyCustomCharacteristic("SuperHealth",map);
+
+
 		GameGroovyEngine engine = new GameGroovyEngine();
 		List<AGroovyCustomObject> groovyCustom = new ArrayList<>();
 		System.out.println(g.getGroovyString());
 		groovyCustom.add(g);
 		GroovyLoader loader = engine.createLoader(groovyCustom);
 		Constructor<?> ctor = loader.load("SuperHealth").getDeclaredConstructor(Double.class,Double.class);
+
 		Object superHealth = ctor.newInstance(5.0,5.0);
+
+		//
 		ScriptEngineManager manager = new ScriptEngineManager();
 		ScriptEngine groovy = manager.getEngineByName("groovy");
 		groovy.put("superHealth", superHealth);
@@ -55,12 +52,12 @@ public class TestGroovy extends TestCase{
 	}
 
 	/*
-	 * General outline for how to use event creation.  However, you would need to create a whole 
+	 * General outline for how to use event creation.  However, you would need to create a whole
 	 * engine for it to work properly.
 	 */
 	/*
-	public void testEventCreation() throws InstantiationException, IllegalAccessException, 
-	NoSuchMethodException, SecurityException, IllegalArgumentException, 
+	public void testEventCreation() throws InstantiationException, IllegalAccessException,
+	NoSuchMethodException, SecurityException, IllegalArgumentException,
 	InvocationTargetException{
 		String name = "AttackSelf";
 		StringBuilder request = new StringBuilder();
@@ -84,7 +81,7 @@ public class TestGroovy extends TestCase{
 		groovyCustom.add(g);
 		GroovyLoader loader = engine.createLoader(groovyCustom);
 		Constructor<?> ctor = loader.load(name).getDeclaredConstructor(String.class, List.class, List.class);
-		MapObjectEvent moe = (MapObjectEvent) ctor.newInstance(null,new ArrayList<>(),new ArrayList<>()); 
+		MapObjectEvent moe = (MapObjectEvent) ctor.newInstance(null,new ArrayList<>(),new ArrayList<>());
 		MapObject mo = new MapObject("test","");
 		mo.addEvent(name, moe);
 	}

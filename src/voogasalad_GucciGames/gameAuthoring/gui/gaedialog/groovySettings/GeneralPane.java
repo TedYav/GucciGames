@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.Map;
 
 import voogasalad.util.reflection.Reflection;
+import voogasalad_GucciGames.gameAuthoring.IDialogGaeController;
 import javafx.geometry.Insets;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -20,13 +21,16 @@ public class GeneralPane extends GridPane {
 	private Label title;
 	private ISwitchGroovyPane controller;
 	private IDependencies addDepController;
+	private IDialogGaeController gaeController;
 	private static final String path = "voogasalad_GucciGames.gameAuthoring.gui.gaedialog.groovySettings.";
-	
+	private GroovyType groovyType;
 	List<String> attributes;
 	
-	public GeneralPane(List<String> attributes, ISwitchGroovyPane controller, IDependencies addDepController, String name){
+	public GeneralPane(List<String> attributes, GroovyType groovyType, ISwitchGroovyPane controller, IDialogGaeController gaeController,IDependencies addDepController, String name){
 		this.controller = controller;
+		this.groovyType = groovyType;
 		this.addDepController = addDepController;
+		this.gaeController = gaeController;
 		this.setHgap(5);
 		this.setVgap(5);
 		this.setPadding(new Insets(5,5,5,5));
@@ -35,6 +39,13 @@ public class GeneralPane extends GridPane {
 		title.setFont(new Font("Arial", 20));
 		this.getChildren().add(title);
 		addAttributes();
+		switch(groovyType){
+		case ACTION:
+			System.out.println("default action");
+			this.addDefaultTextToActionPane();
+		default:
+			
+		}
 	}
 	
 	public Map<String, String> getUserData(){
@@ -42,6 +53,20 @@ public class GeneralPane extends GridPane {
 			data.put(k.getText(), v.getText());
 		});
 		return data;
+	}
+	
+	private void addDefaultTextToActionPane(){
+		content.forEach((k, v) -> {
+			if (k.getText().equals("Action")){
+				v.setText("@Override protected ChangedParameters executeAction(LocationParameters params) {}");
+			} 
+			
+			if(k.getText().equals("Request")){
+				v.setText("@Override protected GridCoordinateParameters executeRequest(BasicParameters params) {}");
+			}
+			data.put(k.getText(), v.getText());
+		});
+		
 	}
 	
 	private void addAttributes(){
@@ -62,7 +87,7 @@ public class GeneralPane extends GridPane {
 			Reflection reflection = new Reflection();	
 			this.addDepController.setParams();		
 			controller.switchGroovyPane(
-					reflection.createInstance(path + "DependenciesPane", items, addDepController, name), title);
+					reflection.createInstance(path + "DependenciesPane", items, gaeController, addDepController, this.groovyType, name), title);
 			
 		});
 		

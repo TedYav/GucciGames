@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 import java.util.Properties;
+import java.lang.reflect.Constructor;
 
 import voogasalad.util.reflection.Reflection;
 import voogasalad_GucciGames.gameAuthoring.IDialogGaeController;
@@ -25,13 +26,13 @@ import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
-public class PlayerDialog extends AGaeDialog{
+public class PlayerDialog extends AGaeDialog<PlayerCharDialog> {
 	private static final String gaeDialogPath = "voogasalad_GucciGames.gameAuthoring.gui.gaedialog.maindialogs.";
 	private static final String settingsPackagePath = "voogasalad_GucciGames.gameAuthoring.gui.gaedialog.mapobjsettings.";
 
 	private static final int WIDTH = 600;
-	private static final int HEIGHT = 600;	
-	private VBox myContent = new VBox();	
+	private static final int HEIGHT = 600;
+	private VBox myContent = new VBox();
 	private IDialogGaeController controller;
 	private ISwitchSettingsPane settingsPaneController;
 	private List<PlayerContent> playerContentList = new ArrayList<PlayerContent>();
@@ -40,22 +41,25 @@ public class PlayerDialog extends AGaeDialog{
 	private int numOfPlayers;
 	private ScrollPane scrollPane = new ScrollPane();
 
+	List<ObjParam> myAllObjParams;
 	private PlayerContent playerContent;
 
-	public PlayerDialog(IDialogGaeController controller, int numberOfPlayers) {		
+	public PlayerDialog(IDialogGaeController controller, int numberOfPlayers) {
 		super();
 		GaeDialogHelper helper = new GaeDialogHelper();
-		prop = helper.loadProperties("dialogproperties/playerdialogproperties.properties");			
+		prop = helper
+				.loadProperties("dialogproperties/playerdialogproperties.properties");
 		this.controller = controller;
 		this.numOfPlayers = numberOfPlayers;
-		
+		this.myAllObjParams = controller.getPropertiesInterface().getAllPlayerCharParams();
+
 		initialize();
 		setScene();
 		setSaveAction();
 
 	}
 
-	private void setScene(){
+	private void setScene() {
 		scrollPane.setContent(myContent);
 		scrollPane.setPrefSize(WIDTH, HEIGHT);
 		this.getDialogPane().setContent(scrollPane);
@@ -68,15 +72,14 @@ public class PlayerDialog extends AGaeDialog{
 		title.setId("title");
 		myContent.getChildren().add(title);
 		int num = 1;
-		if (numOfPlayers == 0){
+		if (numOfPlayers == 0) {
 			Text warning = new Text(prop.getProperty("noplayerwarning"));
 			warning.setId("light");
 			myContent.getChildren().add(warning);
 		} else {
 
-
-			while(numOfPlayers  >=  num) {
-				playerContent = new PlayerContent(num, controller, prop);
+			while (numOfPlayers >= num) {
+				playerContent = new PlayerContent(num, controller, prop, myAllObjParams);
 				playerContentList.add(playerContent);
 				dialogElements = new DialogElements(prop, controller);
 				playerContent.setDialogElements(dialogElements);
@@ -86,40 +89,41 @@ public class PlayerDialog extends AGaeDialog{
 			}
 			this.getDialogPane().getButtonTypes().add(mySave);
 		}
-		
+
 		myContent.setId("vbox-element");
 	}
 
 	@Override
 	protected void setSaveAction() {
 		this.setResultConverter(dialogButton -> {
-    		if (dialogButton == mySave) {
-    			for(int i=0; i<playerContentList.size(); i++ ){
-    				PlayerContent currPlayerContent = playerContentList.get(i);
-    				int id = currPlayerContent.getPlayerId();
-    				String name = currPlayerContent.getPlayerName();
-    				int numMoves = currPlayerContent.getNumMoves();
-    				controller.addPlayerToList(name, id);
-    				// Save Player
-    				PlayerParams params = new PlayerParams(id, name, numMoves);
-    				controller.savePlayer(params);
-    			}
+			if (dialogButton == mySave) {
+				for (int i = 0; i < playerContentList.size(); i++) {
+					PlayerContent currPlayerContent = playerContentList.get(i);
+					int id = currPlayerContent.getPlayerId();
+					String name = currPlayerContent.getPlayerName();
+					int numMoves = currPlayerContent.getNumMoves();
+					controller.addPlayerToList(name, id);
+					// Save Player
+					PlayerParams params = new PlayerParams(id, name, numMoves);
+					controller.savePlayer(params);
 
-    			Reflection reflection = new Reflection();
-
-//    			List<ObjParam> allObjParams = controller.getAllPlayerCharParams();
-    			List<ObjParam> allObjParams = new ArrayList<ObjParam>();
-    			ObjParam o = new ObjParam("hi", null, 2);
-    			ObjParam b = new ObjParam("hi2", null, 2);
-
-    			allObjParams.add(o);
-    			allObjParams.add(b);
-    			
-    			String name = gaeDialogPath + "PlayerCharDialog";
-    			for(ObjParam objParam : allObjParams) reflection.createInstance(name, objParam);
-    		}
+					Reflection reflection = new Reflection();
+					List<ObjParam> currObjParams = currPlayerContent.getAllCheckedPlayerChars();
+					String className = gaeDialogPath + "PlayerCharDialog";
+					
+//					try {
+//						Class c = Class.forName(name2);
+//						Constructor con = c.getConstructor(List.class, IDialogGaeController.class, int.class);
+//						con.newInstance(allObjParams, controller, i);						
+//					} catch (Exception e) {
+//						// TODO Auto-generated catch block
+//						e.printStackTrace();
+//					}
+					Reflection
+							.createInstance(className, currObjParams, controller, i);
+				}
+			}
 			return null;
 		});
 	}
-
 }

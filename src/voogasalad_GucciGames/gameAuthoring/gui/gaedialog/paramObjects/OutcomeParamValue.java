@@ -17,9 +17,16 @@ public class OutcomeParamValue {
 		this.objParam = objParam;
 		this.conditions = new ArrayList<ObjParamValue>();		
 	}
-	
+
+	public String getName(){
+		return name;
+	}
 	public void setConditions(List<ObjParamValue> items){
 		this.conditions.addAll(items);
+	}
+	
+	public List<ObjParamValue> getConditions() {
+		return conditions;
 	}
 
 }

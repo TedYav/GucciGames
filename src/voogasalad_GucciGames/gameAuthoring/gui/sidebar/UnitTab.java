@@ -7,7 +7,7 @@ public class UnitTab extends ATab {
 	private static final String TYPE = "unit";
 	
 	public UnitTab(SideBar bar) {
-		super(bar);
+		super(bar, TYPE);
 		setText("Units");
 		init(myController.getImmutableUnitTypes());
 	}

@@ -4,10 +4,10 @@ import java.util.List;
 import java.util.Map;
 
 import javafx.collections.ObservableList;
-
 import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.paramObjects.ActionParamsValue;
 import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.paramObjects.GameSettingParams;
 import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.paramObjects.ObjParam;
+import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.paramObjects.ObjParamValue;
 import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.paramObjects.PlayerParams;
 import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.paramObjects.RuleParams;
 import voogasalad_GucciGames.gameAuthoring.model.IGameProperties;
@@ -17,6 +17,8 @@ import voogasalad_GucciGames.gameAuthoring.model.MapObjectType;
 
 public interface IDialogGaeController {
 	public void createCustomType(MapObjectType object, String type);
+	
+	public void deleteMapObjectType(MapObjectType object, String type);
 	
 	public ObservableList<MapObjectType> getImmutableTileTypes();
 
@@ -41,7 +43,7 @@ public interface IDialogGaeController {
 //	
 //	public List<ObjParam> getSelectedMapObjCharParams(List<String> selectedChar);
 //	
-	public List<ObjParam> getAllPlayerCharParams();
+//	public List<ObjParam> getAllPlayerCharParams();
 //	
 //	public List<ObjParam> getSelectedPlayerCharParams(List<String> selectedChar);
 //	
@@ -56,7 +58,7 @@ public interface IDialogGaeController {
 	// condense into this method
 	
 	public IGameProperties getPropertiesInterface();
-
+	
 	public GameResourceManagerToGAE getResourceManager();
 	
 	// Add
@@ -71,6 +73,9 @@ public interface IDialogGaeController {
 	// action name, list of rules, list of outcomes	
 
 	//public void add
+	
+	
+	public void throwException(Exception e);
 	
 	
 	

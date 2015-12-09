@@ -52,16 +52,12 @@ public class GameEngineServer extends GameEnginePlayer implements Runnable {
 
 	
 	public void updateClientGameEngine() {
-		System.out.println(this);
 		getWriters().stream().forEach(e -> {
 			XStream xstream = new XStream(new DomDriver());
 			String s = xstream.toXML(getMyEngine());
-			System.out.println("sending the following data " +  s );
         	e.print("GAMEDATA\n" + s.length() + "\n" + s + "\n");
+        	e.flush();
 
-		/*	e.println("GAMEDATA");
-			e.println(s.length());
-			e.println(s); */
 		});
 	}
 

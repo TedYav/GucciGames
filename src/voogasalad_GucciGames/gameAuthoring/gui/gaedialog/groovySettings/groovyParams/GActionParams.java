@@ -28,7 +28,6 @@ public class GActionParams extends AGroovyParams {
 	}
 
 	public void setRequest(String request) {
-		System.out.println("request: " + request);
 
 		this.request = request;
 	}
@@ -53,6 +52,13 @@ public class GActionParams extends AGroovyParams {
 	public String getType() {
 		// TODO Auto-generated method stub
 		return this.type;
+	}
+
+	@Override
+	public void setDependencies(List<String> dependencies) {
+		// TODO Auto-generated method stub
+		rules.addAll(dependencies);
+		
 	}
 	
 

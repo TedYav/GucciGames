@@ -1,15 +1,14 @@
 package voogasalad_GucciGames.gameAuthoring.model;
 
+import java.util.ArrayList;
 import java.util.List;
 
-import voogasalad_GucciGames.gameAuthoring.model.holder.ActionHolder;
-import voogasalad_GucciGames.gameAuthoring.model.holder.CharacteristicHolder;
 import voogasalad_GucciGames.gameEngine.mapObject.AMapObjectCharacteristic;
 import voogasalad_GucciGames.gameEngine.objectActions.MapObjectEvent;
 
 public class MapObjectType {
-	private List<AMapObjectCharacteristic> myCharacteristics;
-	private List<MapObjectEvent> myEvents;
+	private List<AMapObjectCharacteristic> myCharacteristics = new ArrayList<AMapObjectCharacteristic>();
+	private List<MapObjectEvent> myEvents = new ArrayList<>();
 	private double myWidth, myHeight, myX, myY;
 	private String myImagePath;
 	private String myName;
@@ -63,6 +62,15 @@ public class MapObjectType {
 	
 	public void addCharacteristic(AMapObjectCharacteristic characteristic) {
 		myCharacteristics.add(characteristic);
+	}
+	
+	public void addAction(MapObjectEvent action) {
+		myEvents.add(action);
+	}
+	
+	public MapObjectType makeCopy(){
+		MapObjectType type = new MapObjectType(myName, myImagePath, myLayer);
+		return type;
 	}
 
 }

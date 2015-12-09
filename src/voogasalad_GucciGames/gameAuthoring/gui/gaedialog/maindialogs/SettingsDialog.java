@@ -7,6 +7,7 @@ import java.util.Properties;
 
 import voogasalad_GucciGames.gameAuthoring.IDialogGaeController;
 import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.DialogElements;
+import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.groovySettings.ISwitchGroovyPane;
 import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.groovySettings.MainPane;
 import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.mapobjsettings.ActionPane;
 import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.paramObjects.ActionParamsValue;
@@ -43,39 +44,45 @@ public class SettingsDialog extends AGaeDialog implements ISwitchSettingsPane{
 
 
 	@SuppressWarnings("unchecked")
-	public SettingsDialog(IDialogGaeController controller, MapObjectType mapObjType){
+	public SettingsDialog(IDialogGaeController controller,  MapObjectType mapObjType){
 		super();
 		this.actionParamsValue = new ActionParamsValue(mapObjType);
 		this.mapObjType = mapObjType;
 		prop = helper.loadProperties("dialogproperties/actionsettings.properties");			
 		this.controller = controller;
+		
 		this.setHeaderText("Map Object Settings");
 		this.mainPane = new MainPane(
 				this, prop, controller, mapObjType, this.actionParamsValue, this.charParamValues);
 		scrollPane.setContent(mainPane);
 		this.getDialogPane().setContent(scrollPane);
 		this.getDialogPane().setPrefSize(WIDTH, HEIGHT);
+		final ButtonType saveBtn = new ButtonType("Save", ButtonData.FINISH);
+		this.getDialogPane().getButtonTypes().add(saveBtn);
 		
 		
 		this.setResultConverter(dialogButton -> {
-		    if (dialogButton == ButtonType.FINISH) {
+		    if (dialogButton == saveBtn) {
 		        System.out.println("save");
+
 		        if(this.charParamValues.size() != 0){
 		        	//TODO: charParamValue
 		        	charParamValues.forEach(e -> {
 		        		System.out.println("char saving: " + e.getName());
+		        		System.out.println("map obj type: "  + e.getMapObjectType());
 		        		e.getParamValues().forEach((k,v) -> {
-		        			System.out.println("Saved k: " + k);
+		        			System.out.println("Saved k: " + k);	        					        			
 		        		});
-		        	});
-		        	
+		        		this.controller.getPropertiesInterface().addMapObjectCharacteristic(e);
+
+		        	});		        	
 		        }
-		        
+		        System.out.println("action name: ________" + actionParamsValue.getName());
 		        if(this.actionParamsValue.getName() != null){
-		        	//TODO: actionParamValue
+		        	System.out.println("----------------Saving Action --------------");
 		        	actionParamsValue.print();
-		        }
-		        
+		        	this.controller.getPropertiesInterface().addActionParamValue(actionParamsValue);		       
+		        }  
 
 		    }
 		    return null;
@@ -101,15 +108,13 @@ public class SettingsDialog extends AGaeDialog implements ISwitchSettingsPane{
 		ObservableList<MapObjectType> currTileList = controller.getImmutableTileTypes();
 	}
 
-	@Override
-	public void addSaveButton(ButtonType save) {
-		this.getDialogPane().getButtonTypes().add(save);
-		
-	}
-
-
-
-
-
+//	@Override
+//	public void addSaveButton(ButtonType save) {
+//		if(!this.getDialogPane().getButtonTypes().contains(save)){
+//			this.getDialogPane().getButtonTypes().add(save);
+//		}
+//		
+//		
+//	}
 
 }

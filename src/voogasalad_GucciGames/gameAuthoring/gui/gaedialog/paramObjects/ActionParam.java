@@ -8,7 +8,7 @@ public class ActionParam {
 	
 	private List<String> myRules = new ArrayList<String>();
 	private List<String> myCharacteristics = new ArrayList<String>();
-	String name;
+	private String name;
 	
 	public ActionParam(String name){
 		this.name = name;

@@ -29,6 +29,37 @@
 -fx-vpos: center;
 }
 
+.gameresults{
+	-fx-hpos: center;	 
+-fx-node-hpos: center;	 
+-fx-spacing: 5;	 
+-fx-vpos: center;
+}
+
+.results-title{
+	-fx-font-size: 100px;
+	-fx-fill: #222222;
+}
+
+.results-title-xl{
+	-fx-font-size: 200px;
+	-fx-fill: #222222;
+}
+
+.results-field{
+	-fx-font-size: 48px;
+	-fx-fill: #dd3333;
+}
+.results-value{
+	-fx-font-size: 48px;
+	-fx-fill: #000000;
+}
+
+.results-end{
+	-fx-font-size: 72px;
+	-fx-fill: #222222;
+}
+
 .gametext{
 	-fx-font-family: PixelGameFont;
 }

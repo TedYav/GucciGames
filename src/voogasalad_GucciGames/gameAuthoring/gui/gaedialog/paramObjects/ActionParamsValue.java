@@ -63,7 +63,7 @@ public class ActionParamsValue extends AParams{
 		System.out.println("name: " + this.name);
 		System.out.println("Characteristics: ");
 		myCharacteristics.forEach(e -> {
-			System.out.println(e);
+			System.out.println(e.getName());
 		});
 		
 		System.out.println("Rules: ");
@@ -73,9 +73,22 @@ public class ActionParamsValue extends AParams{
 		
 		System.out.println("Outcomes: ");
 		myOutcomes.forEach(e -> {
-			System.out.println(e);
+			System.out.println(e.getName());
 		});
 		
 	}
+	
+	public MapObjectType getMapObjectType() {
+		return mapObjectType;
+	}
+	
+	public Set<OutcomeParamValue> getOutcomes() {
+		return myOutcomes;
+	}
+	
+	public Set<String> getRules() {
+		return myRules;
+	}
+	
 
 }

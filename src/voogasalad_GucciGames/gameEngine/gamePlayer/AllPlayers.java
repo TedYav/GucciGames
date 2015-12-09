@@ -30,6 +30,10 @@ public class AllPlayers {
 
 		}
 	}
+	
+	public Map<Integer, GamePlayerPerson> getPlayersMap(){
+		return this.myMapOfPlayers;
+	}
 
 	/***
 	 * y

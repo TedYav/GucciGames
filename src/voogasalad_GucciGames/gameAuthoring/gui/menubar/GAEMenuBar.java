@@ -11,9 +11,13 @@ public class GAEMenuBar extends MenuBar{
 	
 	private List<Menu> myMenus;
 	
-	public GAEMenuBar(AGuiGaeController controller) throws Exception{
+	public GAEMenuBar(AGuiGaeController controller){
 		MenuItemLoader loader = new MenuItemLoader();
-		myMenus = loader.load(controller);
+		try {
+			myMenus = loader.load(controller);
+		} catch (Exception e) {
+			controller.throwException(e);
+		}
 		getMenus().addAll(myMenus);
 		myMenus.forEach(m->m.setDisable(true));
 		myMenus.get(0).setDisable(false);

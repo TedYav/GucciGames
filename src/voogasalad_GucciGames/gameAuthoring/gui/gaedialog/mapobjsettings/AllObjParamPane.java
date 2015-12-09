@@ -12,22 +12,36 @@ import javafx.geometry.Insets;
 import javafx.scene.control.Button;
 import javafx.scene.control.ButtonBar.ButtonData;
 import javafx.scene.control.ButtonType;
+import javafx.scene.control.Label;
 import javafx.scene.layout.VBox;
+import javafx.scene.text.Font;
 
-public class ObjParamVBox extends VBox{
+public class AllObjParamPane extends VBox{
 	
+	private Label titleLbl;
 	private List<ObjParam> objParams = new ArrayList<ObjParam>();
 	private List<ObjParamPane> objPane = new ArrayList<ObjParamPane>();
 	private Button saveBtn = new Button("Save All");
 	private ISwitchSettingsPane controller;
-	List<ObjParamValue> allCharParams;
+	private List<ObjParamValue> allCharParams;
+	private boolean check = true;
 	
 	private MapObjectType mapObjectType;
 	
 
-	public ObjParamVBox(ISwitchSettingsPane controller, List<ObjParam> charParams, List<ObjParamValue> allCharParams, MapObjectType mapObjectType){
+	public AllObjParamPane(ISwitchSettingsPane controller, List<ObjParam> charParams, List<ObjParamValue> allCharParams, MapObjectType mapObjectType){
 		this.mapObjectType = mapObjectType;
 		init(controller, charParams, allCharParams);
+	}
+	
+	public AllObjParamPane(List<ObjParam> params, String titleName){
+		this.titleLbl = new Label(titleName);
+		this.titleLbl.setFont(new Font("Arial" , 20));
+		this.getChildren().add(titleLbl);
+		this.objParams = params;
+		setLayout();
+		setContents();
+		
 	}
 	
 	private void init(ISwitchSettingsPane controller, List<ObjParam> charParams, List<ObjParamValue> allCharParams){
@@ -36,10 +50,15 @@ public class ObjParamVBox extends VBox{
 		this.allCharParams = allCharParams;
 		this.saveBtn.setOnAction(e -> {
 			this.allCharParams.addAll(getAllParam());
+			allCharParams.forEach(element -> {
+				System.out.println("saving: " + element.getName());
+			});
+			
 		});
 		setLayout();
 		setContents();
-		controller.addSaveButton(ButtonType.FINISH);
+		this.getChildren().add(saveBtn);
+		//controller.addSaveButton(ButtonType.FINISH);
 	}
 	
 	private void setLayout(){
@@ -54,10 +73,25 @@ public class ObjParamVBox extends VBox{
 			objPane.add(pane);
 			this.getChildren().add(pane);
 		});
-		this.getChildren().add(saveBtn);
+		
 	}
 	
-	protected List<ObjParamValue> getAllParam(){
+	private void checkAllInputs(){
+		
+		objPane.forEach(pane -> {
+			if(!pane.checkAllInputs()){
+				check = false;
+			}
+		});
+	
+	}
+	
+	public boolean getCheckAllInputs(){
+		checkAllInputs();
+		return check;
+	}
+	
+	public List<ObjParamValue> getAllParam(){
 		List<ObjParamValue> data  = new ArrayList<ObjParamValue>();
 		objPane.forEach(pane -> data.add(pane.getAllInputs()));
 		return data;

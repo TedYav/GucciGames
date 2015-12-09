@@ -33,7 +33,7 @@ public class MainPane extends GridPane{
 	private Text title;
 	
 	private String selected;
-	private MapObjectType type;
+	private MapObjectType mapObjectType;
 
 	
 	private List<String> items = new ArrayList<String>();
@@ -44,10 +44,12 @@ public class MainPane extends GridPane{
 	private ActionParamsValue actionParamsValue;
 	private List<ObjParamValue> charParamValues;
 	
-	public MainPane(ISwitchSettingsPane settingsPaneController, 
+	public MainPane(ISwitchSettingsPane settingsPaneController,
 			Properties prop, IDialogGaeController dialogController , MapObjectType type, ActionParamsValue actionParamsValue, List<ObjParamValue> objParamValue){
 		title = new Text("I want to add a new ...");
-		this.type = type;
+		
+		this.mapObjectType = type;
+		
 		this.settingsPaneController = settingsPaneController;
 		this.prop = prop;
 		this.dialogController = dialogController;
@@ -63,9 +65,10 @@ public class MainPane extends GridPane{
 	}
 	
 	
-	public MainPane(ISwitchGroovyPane groovyPaneController){
+	public MainPane(ISwitchGroovyPane groovyPaneController, IDialogGaeController dialogController){
 		title = new Text("I want to create a new ...");
 		this.groovyPaneController = groovyPaneController;
+		this.dialogController = dialogController;
 		//this.setPrefSize(width, height);		
 		items.add("Action");
 		items.add("Characteristic");
@@ -98,8 +101,9 @@ public class MainPane extends GridPane{
 		nextBtn.setOnAction(e -> {
 			selected = radioBtnField.getSelected();
 			String name = groovyPackagePath + "NamePane";
+			System.out.println("groovy: " + this.groovyPaneController);
 			groovyPaneController.switchGroovyPane(
-					reflection.createInstance(name,  selected, groovyPaneController), "Custom " + selected);
+					Reflection.createInstance(name,  selected, groovyPaneController, dialogController), "Custom " + selected);
 		});
 		
 	}
@@ -109,14 +113,15 @@ public class MainPane extends GridPane{
 		nextBtn.setOnAction(e -> {
 			selected = radioBtnField.getSelected();	
 			String name = settingsPackagePath + selected + "Pane";
+			System.out.println("map obj: " + this.mapObjectType);
 			if (selected.equals("Action")){
 				settingsPaneController.switchSettingsPane(
-						reflection.createInstance(name, settingsPaneController,
-								dialogController, prop, type, this.actionParamsValue));
+						Reflection.createInstance(name, settingsPaneController,
+								dialogController, prop, mapObjectType, this.actionParamsValue));
 			} else {
 				settingsPaneController.switchSettingsPane(
 						reflection.createInstance(name, settingsPaneController,
-								dialogController, prop, type, this.charParamValues));
+								dialogController, prop, mapObjectType, this.charParamValues));
 			}
 			
 			

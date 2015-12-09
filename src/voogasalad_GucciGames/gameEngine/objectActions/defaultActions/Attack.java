@@ -56,13 +56,14 @@ public abstract class Attack extends MapObjectEvent {
 		// getting the range
 		MapObject calledMe = params.getCalledMe();
 		AttackCharacteristic ac;
+		System.out.println(calledMe.containsCharacteristic(ATTACK_CHARACTERISTIC));
 		if (calledMe.containsCharacteristic(ATTACK_CHARACTERISTIC)) {
 			ac = (AttackCharacteristic) calledMe.getCharacteristic(ATTACK_CHARACTERISTIC);
 
 		} else {
 			ac = new AttackCharacteristic();
 		}
-		double range = ac.getRange();
+		double range = ac.getAttackRange();
 
 		TargetCoordinateSingle caller = (TargetCoordinateSingle) calledMe.getCoordinate();
 
