@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Map;
 
 import voogasalad_GucciGames.gameEngine.GameLevelEngine;
+import voogasalad_GucciGames.gameEngine.IGameLevelToGamePlayer;
 
 public interface IGameInfoToGAE {
 	

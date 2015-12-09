@@ -29,7 +29,7 @@ import voogasalad_GucciGames.gameplayer.controller.GameParametersInterface;
 public class GameEngineServer extends GameEnginePlayer implements Runnable {
 
 	private int myPlayerID;
-	private Set<PrintWriter> writers;
+	private transient Set<PrintWriter> writers;
     private Set<String> names;
     
 

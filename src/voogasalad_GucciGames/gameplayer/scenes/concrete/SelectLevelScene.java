@@ -11,7 +11,7 @@ import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import javafx.util.Duration;
-import voogasalad_GucciGames.gameData.wrapper.IGameLevelToGamePlayer;
+import voogasalad_GucciGames.gameEngine.IGameLevelToGamePlayer;
 import voogasalad_GucciGames.gameplayer.gameloader.GameLoader;
 import voogasalad_GucciGames.gameplayer.scenes.GameScene;
 import voogasalad_GucciGames.gameplayer.scenes.GameSceneManager;

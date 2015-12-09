@@ -76,7 +76,7 @@ public class DemoMaker extends Application {
 		game.getGameEngine().addLevel("Easy", level1);
 		game.getGameEngine().addLevel("Medium", level2);
 		game.getGameEngine().addLevel("Hard", level3);
-		game.getGameEngine().addLevel("Ultra", level4);
+		//game.getGameEngine().addLevel("Ultra", level4);
 
 		GuiData gui = new GuiData();
 		game.setGuiData(gui);

@@ -13,7 +13,7 @@ import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.text.Text;
 import voogasalad.util.reflection.Reflection;
-import voogasalad_GucciGames.gameEngine.GameEngineToGamePlayerInterface;
+import voogasalad_GucciGames.gameData.wrapper.GameEngineToGamePlayerInterface;
 import voogasalad_GucciGames.gameplayer.controller.GameControllerInterface;
 import voogasalad_GucciGames.gameplayer.eventhandler.MapKeyHandler;
 import voogasalad_GucciGames.gameplayer.eventhandler.MapMouseHandler;

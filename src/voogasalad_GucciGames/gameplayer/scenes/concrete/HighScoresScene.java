@@ -14,7 +14,7 @@ import javafx.scene.text.Text;
 import javafx.util.Duration;
 import voogasalad.util.cloud.Cloud;
 import voogasalad.util.cloud.data.GameScore;
-import voogasalad_GucciGames.gameData.wrapper.IGameLevelToGamePlayer;
+import voogasalad_GucciGames.gameEngine.IGameLevelToGamePlayer;
 import voogasalad_GucciGames.gameplayer.gameloader.GameLoader;
 import voogasalad_GucciGames.gameplayer.scenes.GameScene;
 import voogasalad_GucciGames.gameplayer.scenes.GameSceneManager;

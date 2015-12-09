@@ -6,7 +6,7 @@ import java.util.Observable;
 import java.util.Observer;
 import javafx.collections.ListChangeListener;
 import javafx.scene.Parent;
-import voogasalad_GucciGames.gameEngine.GameEngineToGamePlayerInterface;
+import voogasalad_GucciGames.gameData.wrapper.GameEngineToGamePlayerInterface;
 import voogasalad_GucciGames.gameEngine.PlayerMapObjectInterface;
 import voogasalad_GucciGames.gameplayer.controller.GameControllerInterface;
 import voogasalad_GucciGames.gameplayer.scenes.GameScene;

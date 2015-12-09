@@ -11,8 +11,8 @@ import com.thoughtworks.xstream.annotations.XStreamOmitField;
 import voogasalad_GucciGames.gameEngine.GameEngineClient;
 import voogasalad_GucciGames.gameEngine.GameEnginePlayer;
 import voogasalad_GucciGames.gameEngine.GameEngineServer;
-import voogasalad_GucciGames.gameEngine.GameEngineToGamePlayerInterface;
 import voogasalad_GucciGames.gameEngine.GameLevelEngine;
+import voogasalad_GucciGames.gameEngine.IGameLevelToGamePlayer;
 import voogasalad_GucciGames.gameEngine.PlayerMapObjectInterface;
 import voogasalad_GucciGames.gameEngine.CommunicationParameters.ChangedParameters;
 import voogasalad_GucciGames.gameEngine.CommunicationParameters.GridCoordinateParameters;
@@ -42,14 +42,63 @@ public class GameEngine implements IGameInfoToGAE, GameEngineToGamePlayerInterfa
 
 	private String myInitialLevel;
 
-	private boolean isChangingLevel;
+
+    public Map<String, GameLevelEngine> getMyLevelsMap () {
+        return myLevelsMap;
+    }
+
+    public String getMyGameName () {
+        return myGameName;
+    }
+
+    public String getMyCurrentLevel () {
+        return myCurrentLevel;
+    }
+
+    public GameStats getMyGameStats () {
+        return myGameStats;
+    }
+
+    public List<String> getPlayed () {
+        return played;
+    }
+
+    public String getMyInitialLevel () {
+        return myInitialLevel;
+    }
+
+    public boolean isChangingLevel () {
+        return isChangingLevel;
+    }
+
+    public List<String> getTransferablePlayerCharacteristics () {
+        return transferablePlayerCharacteristics;
+    }
+
+    public GameEnginePlayer getiAmAPlayer () {
+        return iAmAPlayer;
+    }
+
+    public Thread getT () {
+        return t;
+    }
+
+    public GameController getMyController () {
+        return myController;
+    }
+
+    public Map<String, MapObject> getMyBuild () {
+        return myBuild;
+    }
+
+    private boolean isChangingLevel;
 	private List<String> transferablePlayerCharacteristics;
 
 	private volatile GameEnginePlayer iAmAPlayer;
-	private volatile Thread t;
+	private transient volatile Thread t;
 
 	@XStreamOmitField
-	private GameController myController;
+	private transient GameController myController;
 	
 	private Map<String,MapObject> myBuild;
 
@@ -305,5 +354,6 @@ public class GameEngine implements IGameInfoToGAE, GameEngineToGamePlayerInterfa
 	public Map<String,MapObject> getBuild(){
 		return this.myBuild;
 	}
+
 
 }

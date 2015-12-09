@@ -11,9 +11,9 @@ import javafx.geometry.Point2D;
 import java.util.Observer;
 
 import javafx.scene.image.Image;
+import voogasalad_GucciGames.gameData.wrapper.GameEngineToGamePlayerInterface;
 import voogasalad_GucciGames.gameData.wrapper.GameInfo;
 import voogasalad_GucciGames.gameData.wrapper.GameInfoToGamePlayer;
-import voogasalad_GucciGames.gameEngine.GameEngineToGamePlayerInterface;
 import voogasalad_GucciGames.gameEngine.PlayerMapObjectInterface;
 import voogasalad_GucciGames.gameEngine.targetCoordinate.ATargetCoordinate;
 import voogasalad_GucciGames.gameEngine.targetCoordinate.TargetCoordinateSingle;

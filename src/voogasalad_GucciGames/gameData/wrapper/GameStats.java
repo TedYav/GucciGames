@@ -15,7 +15,7 @@ public class GameStats {
 	private Map<Integer, Map<String,APlayerChars>> transferables;
 	
 	public GameStats(){
-		transferables = new HashMap<>();
+		transferables = new HashMap<Integer, Map<String,APlayerChars>>();
 	}
 	
 	public void clear(){
@@ -28,7 +28,7 @@ public class GameStats {
 				transferables.get(id).put(name,transfer);
 			}
 			else{
-				Map<String,APlayerChars> temp = new HashMap<>();
+				Map<String,APlayerChars> temp = new HashMap<String,APlayerChars>();
 				temp.put(name,transfer);
 				transferables.put(id, temp);
 			}
