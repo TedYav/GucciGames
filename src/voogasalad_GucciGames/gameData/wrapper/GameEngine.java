@@ -102,7 +102,7 @@ public class GameEngine implements IGameInfoToGAE, GameEngineToGamePlayerInterfa
 			return;
 		}
 
-		System.out.println(levelComplete);
+//		System.out.println(levelComplete);
 		if (levelComplete){
 			myCurrentLevel = newGameLevel;
 			levelComplete = false;
@@ -277,7 +277,7 @@ public class GameEngine implements IGameInfoToGAE, GameEngineToGamePlayerInterfa
 	
 	@Override
 	public void levelStart(){
-		System.out.println("levelStart "+levelComplete);
+//		System.out.println("levelStart "+levelComplete);
 		levelComplete = true;
 	}
 	
