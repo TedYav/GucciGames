@@ -12,6 +12,10 @@ import voogasalad_GucciGames.gameEngine.CommunicationParameters.ChangedParameter
 public class EndLevel extends Outcome {
 	private static final String NEXT_LEVEL="nextLevel";
 	private String myDestination;
+	
+	public EndLevel() {
+		
+	}
 
 	public EndLevel(String affectedPlayers,String destination) {
 		myDestination = destination;
