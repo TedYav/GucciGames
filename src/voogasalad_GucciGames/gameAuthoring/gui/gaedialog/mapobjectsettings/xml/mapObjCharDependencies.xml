@@ -18,4 +18,19 @@
 		 paramNames="vision"
 		 paramTypes="int">	
 	</element>
+	<element
+		 name="Tower"
+		 paramNames="tower"
+		 paramTypes="boolean">	
+	</element>
+	<element
+		 name="GroundUnit"
+		 paramNames="groundUnit"
+		 paramTypes="boolean">	
+	</element>
+	<element
+		 name="Archer"
+		 paramNames="range"
+		 paramTypes="int">	
+	</element>
 </characteristicDependencies>
