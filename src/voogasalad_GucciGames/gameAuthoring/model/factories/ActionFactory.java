@@ -68,7 +68,7 @@ public class ActionFactory {
 	InvocationTargetException {
 				
 		// constructs empty Action object
-		System.out.println(value.getName() + "at" + prop.getProperty(value.getName()));
+		System.out.println(value.getName() + " at " + prop.getProperty(value.getName()));
 		Class<MapObjectEvent> action = (Class<MapObjectEvent>) Class.forName(prop.getProperty(value.getName()));
 		Constructor<MapObjectEvent> actionConstructor = action.getDeclaredConstructor();
 		MapObjectEvent actionInstance = actionConstructor.newInstance();

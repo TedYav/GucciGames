@@ -64,10 +64,7 @@ public class OutcomeFactory {
 		// construct and add conditions
 		for(ObjParamValue param: value.getConditions()) {
 			outcomeInstance.addCondition((Conditions)conditionFactory.create(myConditions, param));
-		}
-
-		System.err.println("OUTCOME FACTORY NOT IMPLEMENTED");
-			
+		}			
 		
 		return (Outcome)outcomeInstance;
 		
