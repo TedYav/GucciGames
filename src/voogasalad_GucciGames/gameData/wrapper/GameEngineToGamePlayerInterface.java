@@ -99,29 +99,5 @@ public interface GameEngineToGamePlayerInterface {
 	
 	public void setController(GameController myController);
 	public APlayerChars getPlayerCharacteristic(String name, int id);
-
-
-	       public Map<String, GameLevelEngine> getMyLevelsMap ();
-
-	       public String getMyGameName ();
-
-	       public String getMyCurrentLevel ();
-
-	       public GameStats getMyGameStats ();
-
-	       public List<String> getPlayed ();
-
-	       public String getMyInitialLevel ();
-
-	       public boolean isChangingLevel ();
-
-	       public List<String> getTransferablePlayerCharacteristics ();
-
-	       public GameEnginePlayer getiAmAPlayer ();
-
-	       public Thread getT ();
-
-	       public GameController getMyController ();
-
-	       public Map<String, MapObject> getMyBuild ();
+	       
 }
