@@ -11,9 +11,9 @@ import java.io.File;
 import java.util.List;
 
 import javafx.beans.property.BooleanProperty;
+import javafx.beans.property.IntegerProperty;
 import javafx.collections.ObservableList;
 import javafx.scene.control.Dialog;
-import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
 import voogasalad_GucciGames.gameEngine.mapObject.MapObject;
@@ -65,7 +65,7 @@ public interface IGuiGaeController {
 
 	public LevelTabPane getLevelTabPane();
 
-	public int addLevel(String name);
+	public int addLevel(String name, int width, int height);
 	
 	public void setDefaultOwner(int ownerID);
 
@@ -78,5 +78,9 @@ public interface IGuiGaeController {
 	public void throwException(Exception e);
 
 	public void addPlayerCharacteristic(int playerID, ObjParamValue param);
+	
+	public IntegerProperty getNumberOfPlayersProperty();
+
+	public int getDefaultOwner();
 
 }

@@ -18,9 +18,12 @@ public class AddCharacteristicDialog extends javafx.scene.control.Dialog<List<Ob
 	private CharacteristicPane pane;
 	
 	private ActionParamsValue actionParamsValue;
+	private List<ObjParamValue> charParamValues;
 	
-	public AddCharacteristicDialog(IDialogGaeController controller, MapObjectType type, ActionParamsValue actionParamsValue){
-		pane = new CharacteristicPane(this, controller, null, type, null);
+	public AddCharacteristicDialog(IDialogGaeController controller, MapObjectType type, 
+			ActionParamsValue actionParamsValue, List<ObjParamValue> charParamValues){
+		this.charParamValues = charParamValues;
+		pane = new CharacteristicPane(this, controller, null, type, charParamValues);
 		this.actionParamsValue = actionParamsValue;
 		this.getDialogPane().setContent(pane);
 		this.getDialogPane().getButtonTypes().add(ButtonType.CANCEL);
@@ -48,10 +51,6 @@ public class AddCharacteristicDialog extends javafx.scene.control.Dialog<List<Ob
 		return null;
 	}
 
-	@Override
-	public void addSaveButton(ButtonType save) {
-		this.getDialogPane().getButtonTypes().add(save);		
-	}
 	
 
 }

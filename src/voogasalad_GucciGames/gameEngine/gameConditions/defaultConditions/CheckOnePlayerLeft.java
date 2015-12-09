@@ -11,8 +11,6 @@ import voogasalad_GucciGames.gameEngine.gamePlayer.GamePlayerPerson;
  */
 public class CheckOnePlayerLeft extends Conditions {
 
-	public CheckOnePlayerLeft() {
-	}
 
 	@Override
 	public Boolean execute(BasicParameters params, GamePlayerPerson player) {

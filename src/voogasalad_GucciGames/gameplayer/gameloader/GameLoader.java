@@ -73,9 +73,10 @@ public class GameLoader {
     public void loadSelectedGame() throws GameDataException{
     	if(!mySelectedGame.isEmpty()){
     		loadGame(mySelectedGame);
-    		mySelectedGame = "";
+    		//mySelectedGame = "";
     	}
     	else{
+    		System.out.println("WWWWWWWWWW");
     		throw new GameDataException("No game selected to load");
     	}
     }
