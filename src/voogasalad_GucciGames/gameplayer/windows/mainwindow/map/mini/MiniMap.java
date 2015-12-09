@@ -139,7 +139,9 @@ public class MiniMap extends DisplayComponent implements MiniMapInterface, Obser
 		for(int x=0; x<myWidth; x++){
 			for(int y=0; y<myHeight; y++){
 				Point2D coord = new Point2D(x,y);
-				MapCellInterface cell = getController().getMap().getCell(coord);				
+				MapCellInterface cell = getController().getMap().getCell(coord);	
+				if(coord == null)
+					continue;
 				myShapeMap.put(coord, new Rectangle(myCellWidth, myCellHeight));
 				myShapeMap.get(coord).setFill(cell.getColor());
 				cell.addObserver(this);
