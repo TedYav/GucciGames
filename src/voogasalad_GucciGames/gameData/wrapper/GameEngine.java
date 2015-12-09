@@ -331,5 +331,4 @@ public class GameEngine implements IGameInfoToGAE, GameEngineToGamePlayerInterfa
 	public void sendMessage(String string){
 		iAmAPlayer.sendMessage(string);
 	}
-
 }

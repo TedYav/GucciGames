@@ -7,6 +7,8 @@ import voogasalad_GucciGames.gameplayer.windows.mainwindow.components.DisplayCom
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Observable;
+import java.util.Observer;
 import java.util.ResourceBundle;
 import javafx.collections.FXCollections;
 import javafx.scene.Parent;
@@ -15,7 +17,7 @@ import javafx.scene.control.TextArea;
 import javafx.scene.input.KeyCode;
 import javafx.scene.layout.VBox;
 
-public class DisplayChat extends DisplayComponent{
+public class DisplayChat extends DisplayComponent implements Observer{
     private VBox chat;
     private TextArea inputArea;
     private ListView<String> chatHistory;
@@ -23,8 +25,9 @@ public class DisplayChat extends DisplayComponent{
     private ResourceBundle myBundle=PlayerConfig.load("components.Bar");
     private ResourceBundle myCssBundle = PlayerConfig.load(myBundle.getString("cssclass"));
 
-    public DisplayChat(GameScene scene, GameControllerInterface controller) {
+    public DisplayChat (GameScene scene, GameControllerInterface controller) {
         super(scene,controller);
+        getController().addChatObserver(this);
         chat = new VBox();
         inputArea=new TextArea();
         inputArea.setPromptText(myBundle.getString("chatprompt"));
@@ -43,15 +46,20 @@ public class DisplayChat extends DisplayComponent{
         chatHistory.getStyleClass().add(myCssBundle.getString("chathistory"));
     }
     private void updateArea() {
-        chatHistoryStrings.add(inputArea.getText());
-        chatHistory.setItems(FXCollections.observableList(chatHistoryStrings));
-        chatHistory.scrollTo(chatHistory.getItems().size()-1);
+        getController().sendMessage(inputArea.getText());
         inputArea.clear();
     }
 
     @Override
     public Parent getParent() {
         return chat;
+    }
+    @Override
+    public void update (Observable o, Object arg) {
+        System.out.println("UPDATINGCHATTTTTTTTTTTT");
+        chatHistoryStrings.add((String)arg);
+        chatHistory.setItems(FXCollections.observableList(chatHistoryStrings));
+        chatHistory.scrollTo(chatHistory.getItems().size()-1);
     }
 
 }
