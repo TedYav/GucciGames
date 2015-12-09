@@ -17,11 +17,13 @@ public class AddRuleDialog extends javafx.scene.control.Dialog {
 	private GridPane gridPane = new GridPane();
 	private ComboBox<String> dropDown;
 	private TextField textField = new TextField();
+	private ActionParamsValue actionParamsValue;
 	String selected = "";
 	@SuppressWarnings("unchecked")
 	public AddRuleDialog(List<String> availableRules, ActionParamsValue actionParamsValue){
 		final ButtonType save = new ButtonType("Save", ButtonData.FINISH);
 		this.getDialogPane().getButtonTypes().addAll(save, ButtonType.CANCEL);
+		this.actionParamsValue = actionParamsValue;
 		textField.setDisable(true);
 		dropDown = new ComboBox<String>();
 		dropDown.setItems(FXCollections.observableArrayList(availableRules));
@@ -35,6 +37,9 @@ public class AddRuleDialog extends javafx.scene.control.Dialog {
         });
 		this.setResultConverter(dialogButton -> {
 			if (dialogButton == save) {
+				selected = textField.getText();
+				System.out.println("saving rules for action: " + selected);
+				
 				actionParamsValue.addRule(selected);
 			}
 			return null;
