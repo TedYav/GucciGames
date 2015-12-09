@@ -121,7 +121,6 @@ public class XStreamGameEngine {
 //        if (file==null || !file.canRead()) {
 //            file = new File(defaultEngineLocation);
 //        }
-        System.out.println("Loading engine.");
         GameInfo game=null;
         try {
             List<String> path = Arrays.asList(file.getPath().split(File.separator));
@@ -129,6 +128,12 @@ public class XStreamGameEngine {
             System.out.println("LOADING LOADER FROMMMMMMM "+name);
             loader = myLoader.read(new File(gameNameToLoaderName(name)));
             //loader stuff
+        }
+        catch (Exception e) {
+            e.printStackTrace();
+        }
+        System.out.println("Loading engine.");
+        try {
             String gameXML = myLoader.read(file);
             game = (GameInfo) serializer.fromXML(gameXML);
         }
