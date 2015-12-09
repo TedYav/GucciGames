@@ -76,8 +76,9 @@ public class MiniMap extends DisplayComponent implements MiniMapInterface, Obser
 		myOverlayHeight = overlayDimensions.get(1);
 		myOverlay = new Rectangle(myOverlayWidth, myOverlayHeight);
 		double maxSize = Double.parseDouble(myConfig.getString("MaxOverlaySize"));
-		double opacity = (myOverlayWidth > maxSize && myOverlayHeight > maxSize)?0.0:Double.parseDouble(myConfig.getString("OverlayOpacity"));
-		myOverlay.setFill(Color.web(myConfig.getString("OverlayColor"), opacity));
+		//double opacity = (myOverlayWidth > maxSize && myOverlayHeight > maxSize)?0.0:Double.parseDouble(myConfig.getString("OverlayOpacity"));
+		//myOverlay.setFill(Color.web(myConfig.getString("OverlayColor"), opacity));
+		myOverlay.getStyleClass().add("minimap-overlay");
 		myStackPane.getChildren().add(myOverlayPane);
 		myOverlayPane.getChildren().add(myOverlay);
 	}
