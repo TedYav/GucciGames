@@ -25,7 +25,7 @@ public class CheckSteppingOn extends Conditions {
 	public Boolean execute(BasicParameters params, GamePlayerPerson player) {
 		MapObject calledMe = params.getCalledMe();
 		TargetCoordinateSingle myLocation = (TargetCoordinateSingle) calledMe.getCoordinate();
-		List<Integer> ids = params.getEngine().getPlayers().getAllIds();
+		List<Integer> ids = params.getEngine().getPlayers().getAllExistingIds();
 		for (Integer id : ids) {
 			List<MapObject> currPlayerObjects = params.getEngine().getPlayers().getPlayerById(id).getMapObjects();
 			for (int i = 0; i < currPlayerObjects.size(); i++) {

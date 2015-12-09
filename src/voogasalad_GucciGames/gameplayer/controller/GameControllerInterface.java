@@ -34,6 +34,7 @@ public interface GameControllerInterface{
 	public void setActiveMapObject(PlayerMapObjectInterface mapObj);
 	public PlayerMapObjectInterface getActiveMapObject();
 	public void addActiveMOObserver(Observer o);
+	public void addChatObserver (Observer o);
 	
 	public List<TargetCoordinateSingle> setActionInProgress(String action, PlayerMapObjectInterface unit);
 	public String getActionInProgress();
@@ -55,6 +56,8 @@ public interface GameControllerInterface{
 	public void performActionInProgress(Point2D target);
 	public ResourceManager getResource();
 	public void loadDefaultLevel();
+	
+	public void sendMessage(String s);
 	public void loadNextLevel();
 	public void loadLevel(String levelName);
 	public GameParametersInterface getEndLevelParams();
