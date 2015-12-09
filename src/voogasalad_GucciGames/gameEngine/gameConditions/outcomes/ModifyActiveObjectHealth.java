@@ -13,6 +13,10 @@ import voogasalad_GucciGames.gameEngine.mapObject.MapObject;
 public class ModifyActiveObjectHealth extends Outcome {
 	private static final String HEALTH = "HealthCharacteristic";
 	private int deltaHealth = 0;
+	
+	public ModifyActiveObjectHealth () {
+		
+	}
 
 	public ModifyActiveObjectHealth( String affectedPlayers, int value) {
 		super(affectedPlayers);

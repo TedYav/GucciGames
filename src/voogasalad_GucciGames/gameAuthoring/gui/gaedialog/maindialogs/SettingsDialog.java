@@ -77,8 +77,7 @@ public class SettingsDialog extends AGaeDialog implements ISwitchSettingsPane{
 		        
 		        if(this.actionParamsValue.getName() != null){
 		        	actionParamsValue.print();
-		        	this.controller.getPropertiesInterface().addActionParamValue(actionParamsValue);
-		       
+		        	this.controller.getPropertiesInterface().addActionParamValue(actionParamsValue);		       
 		        }  
 
 		    }
