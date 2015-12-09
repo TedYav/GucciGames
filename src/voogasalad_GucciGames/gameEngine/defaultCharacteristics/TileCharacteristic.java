@@ -11,7 +11,7 @@ public class TileCharacteristic extends AMapObjectCharacteristic{
 		this.CanMove = canMove;
 	}
 	
-	public boolean canMove(){
+	public boolean getCanMove(){
 		return this.CanMove;
 	}
 
