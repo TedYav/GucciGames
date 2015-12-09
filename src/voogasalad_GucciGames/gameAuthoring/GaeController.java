@@ -42,14 +42,11 @@ public class GaeController extends AGuiGaeController implements IModelGaeControl
 	private Map<Integer, String> allPlayers = new HashMap<Integer, String>();
 	private ImageBrowseDialogs myImageBrowseDialogs;
 	private final GameResourceManagerToGAE myResManager = new ResourceManager();
-	//private ArrayList<String> customGamePlayerComponents = new ArrayList<String>();
-
+	
 	public GaeController(Stage stage) {
 		myStage = stage;
 		myGui = new GAEGui(this, stage);
 		myModel = new GAEModel(this);
-		setNumberOfPlayers(1);
-		setDefaultOwner(0);
 	}
 	
 	private MapObjectType mySelectedType;
@@ -78,8 +75,7 @@ public class GaeController extends AGuiGaeController implements IModelGaeControl
 
 	@Override
 	public void deleteComponent(DisplayMapObject mapObj, int levelID) {
-		// TODO add levelID
-		//model.deleteComponent(mapObj);
+		myModel.deleteComponent(levelID, mapObj);
 	}
 
 	@Override
@@ -258,16 +254,6 @@ public class GaeController extends AGuiGaeController implements IModelGaeControl
 	public void addPlayerCharacteristic(int playerID, ObjParamValue param) {
 		myModel.addPlayerCharacteristic(playerID, param);
 	}
-
-//	@Override
-//	public void addMapObjectCharacteristic(MapObjectType type, ObjParamValue param) {
-//		myModel.addMapObjectCharacteristic(type, param);
-//	}
-//
-//	@Override
-//	public void addActionParamValue(MapObjectType type, ActionParamsValue param) {
-//		myModel.addActionParamValue(type, param);
-//	}
 	
 	private final BooleanProperty myHasGameProperty = new SimpleBooleanProperty(false);
 	
