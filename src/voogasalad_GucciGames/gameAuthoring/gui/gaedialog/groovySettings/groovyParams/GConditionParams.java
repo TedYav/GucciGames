@@ -45,4 +45,10 @@ public class GConditionParams extends AGroovyParams{
 		this.outcomes = outcomes;
 	}
 
+	@Override
+	public void setDependencies(List<String> dependencies) {
+		outcomes.addAll(dependencies);
+		
+	}
+
 }

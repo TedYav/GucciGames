@@ -54,6 +54,13 @@ public class GActionParams extends AGroovyParams {
 		// TODO Auto-generated method stub
 		return this.type;
 	}
+
+	@Override
+	public void setDependencies(List<String> dependencies) {
+		// TODO Auto-generated method stub
+		rules.addAll(dependencies);
+		
+	}
 	
 
 	
