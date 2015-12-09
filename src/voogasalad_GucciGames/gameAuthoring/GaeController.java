@@ -14,6 +14,7 @@ import javafx.scene.control.Dialog;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
+import voogasalad.util.fxsprite.Sprite;
 import voogasalad_GucciGames.gameAuthoring.gui.GAEGui;
 import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.paramObjects.ActionParamsValue;
 import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.maindialogs.ImageBrowseDialogs;
@@ -49,6 +50,7 @@ public class GaeController extends AGuiGaeController implements IModelGaeControl
 		myModel = new GAEModel(this);
 		myGui = new GAEGui(this, stage);
 		//(new SpriteBrowseDialog(myResManager)).show();
+		throwException(new IllegalAccessException("It's a nice day to have a nice day."));
 	}
 	
 	private MapObjectType mySelectedType;
@@ -174,20 +176,26 @@ public class GaeController extends AGuiGaeController implements IModelGaeControl
 	}
 
 	@Override
-	public Image requestImage(String path) {
-		return myResManager.getImage(path);
+	public ImageView requestImage(String path) {
+		String[] t = path.split(":");
+		if(t.length==1)
+			return new ImageView(myResManager.getImage(path));
+		else if(t.length==2){
+			Sprite s = myResManager.getSprite(t[0]);
+			try{
+				s.play(Integer.parseInt(t[1]));
+				return s;
+			}catch(NumberFormatException e){
+				throwException(e);
+			}
+		}
+		throwException(new Exception("\""+path+"\" is not a valid path"));
+		return null;
 	}
 
 	@Override
 	public ImageView getMapObjectImage(MapObjectType type) {
-		double width = type.getWidth();
-		double height = type.getHeight();
-		double myX1 = type.getX() * width;
-		double myY1 = type.getY() * height;
-		Rectangle2D rect = new Rectangle2D(myX1, myY1, width, height);
-		ImageView view = new ImageView(requestImage(type.getImagePath()));
-		view.setViewport(rect);
-		return view;
+		return requestImage(type.getImagePath());
 	}
 
 	@Override
@@ -272,7 +280,7 @@ public class GaeController extends AGuiGaeController implements IModelGaeControl
 			myModel.createCustomUnitType(object);
 			break;
 		default:
-			throw new RuntimeException("No "+type+" type");
+			throwException(new RuntimeException("No "+type+" type"));
 		}
 	}
 	
@@ -289,7 +297,7 @@ public class GaeController extends AGuiGaeController implements IModelGaeControl
 			myModel.deleteUnitType(object);
 			break;
 		default:
-			throw new RuntimeException("No "+type+" type");
+			throwException(new RuntimeException("No "+type+" type"));
 		}
 	}
 
