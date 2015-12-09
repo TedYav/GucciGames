@@ -22,6 +22,9 @@ import voogasalad_GucciGames.gameEngine.groovyEngine.GroovyLoader;
  *
  */
 public class GroovyMapChars extends GroovyFactory {
+//we own this map GobjParam
+// GCharParamValue from ying to create an instance
+//this factory is created after two processes 1. creating the outline of a char 2. create an instance of the char
 
 	public Object create(Map<String, GCharParam> GobjParam, ObjParamValue GCharParamValue)
 			throws NoSuchMethodException, SecurityException, ClassNotFoundException, InstantiationException,
@@ -48,6 +51,8 @@ public class GroovyMapChars extends GroovyFactory {
 		}
 
 		//create constructor;
+		// this creates the loader every time and adds the specific char ying send to us with the value thing and send it back
+		// save it in a list
 		GroovyCustomCharacteristic g = new GroovyCustomCharacteristic(GCharParamValue.getName(),(GobjParam.get(GCharParamValue.getName()).getAllParams()));
 		GameGroovyEngine engine = new GameGroovyEngine();
 		List<AGroovyCustomObject> groovyCustom = new ArrayList<>();
