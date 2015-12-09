@@ -124,4 +124,6 @@ public interface GameEngineToGamePlayerInterface {
 	       public GameController getMyController ();
 
 	       public Map<String, MapObject> getMyBuild ();
+	       
+	       public boolean gameOver();
 }
