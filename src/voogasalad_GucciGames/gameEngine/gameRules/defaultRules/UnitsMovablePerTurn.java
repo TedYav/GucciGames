@@ -17,7 +17,7 @@ public class UnitsMovablePerTurn extends Rules {
 
 	@Override
 	public Boolean executeRules(BasicParameters communicationParams) {
-		GamePlayerPerson player = communicationParams.getLevelEngine().getPlayers().getPlayerById(communicationParams.getCalledMe().getPlayerID());
+		GamePlayerPerson player = communicationParams.getEngine().getPlayers().getPlayerById(communicationParams.getCalledMe().getPlayerID());
 		int playerAllowedMoves = player.getAllowedMovesPerTurn();
 		int playerCurrentMoves = player.getMovesDoneThisTurn();
 		if (playerAllowedMoves == 1000) {
