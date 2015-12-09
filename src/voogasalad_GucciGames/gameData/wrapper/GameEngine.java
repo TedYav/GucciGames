@@ -329,6 +329,11 @@ public class GameEngine implements IGameInfoToGAE, GameEngineToGamePlayerInterfa
 	}
 	
 	public void sendMessage(String string){
+	    if (iAmAPlayer==null) {
+	        myController.updateChat("Player" + getCurrentLevel().getGameParameters().whoseTurn() + ": " + string);
+	    }
+	    else {
 		iAmAPlayer.sendMessage(string);
+	    }
 	}
 }

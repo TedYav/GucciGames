@@ -12,6 +12,7 @@ import java.util.Observer;
 import java.util.ResourceBundle;
 import javafx.collections.FXCollections;
 import javafx.scene.Parent;
+import javafx.scene.control.Button;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextArea;
 import javafx.scene.input.KeyCode;
@@ -33,14 +34,13 @@ public class DisplayChat extends DisplayComponent implements Observer{
         inputArea.setPromptText(myBundle.getString("chatprompt"));
         //inputArea.setMaxWidth(200);
         inputArea.prefHeightProperty().set(Integer.parseInt(myBundle.getString("chatprefheight")));
-        inputArea.setOnKeyReleased(e->{
-                if (e.getCode() == KeyCode.ENTER) {
-                    updateArea();
-                }});
+        Button enter=new Button("Send");
+        enter.setOnAction(e->updateArea());
         chatHistoryStrings = new ArrayList<String>();
         chatHistory=new ListView<String>(FXCollections.observableList(chatHistoryStrings));
         chat.getChildren().add(chatHistory);
         chat.getChildren().add(inputArea);
+        chat.getChildren().add(enter);
         chat.getStyleClass().add(myCssBundle.getString("left-chat-vbox"));
         inputArea.getStyleClass().add(myCssBundle.getString("chatinput"));
         chatHistory.getStyleClass().add(myCssBundle.getString("chathistory"));
