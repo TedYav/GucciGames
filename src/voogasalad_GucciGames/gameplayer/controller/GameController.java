@@ -76,6 +76,7 @@ public class GameController implements GameControllerInterface, GameControllerAd
 	public void loadLevel(String levelID){
 		if(myGame.getLevels().containsKey(levelID)){
 			System.out.println("level changed");
+			myCurrentEngine.setController(this);
 		    myCurrentEngine.changeCurrentLevel(levelID);
 		    //myCurrentLevelEngine = myGame.getLevels().get(levelID).getGameEngine();
 		}
