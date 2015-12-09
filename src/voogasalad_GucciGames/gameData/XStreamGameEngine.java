@@ -9,6 +9,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.ResourceBundle;
+import java.util.regex.Pattern;
 
 import com.thoughtworks.xstream.XStream;
 import com.thoughtworks.xstream.io.xml.DomDriver;
@@ -133,8 +134,11 @@ public class XStreamGameEngine {
         GameInfo game=null;
         try {
             List<String> path = Arrays.asList(file.getPath().split(File.separator));
-            String name=path.get(path.size()-1);
-            System.out.println("LOADING LOADER FROMMMMMMM "+name);
+            String dname=path.get(path.size()-1);
+            System.out.println("LOADING LOADER FROMMMMMMM "+dname);
+            List<String> temp = Arrays.asList(dname.split(Pattern.quote(System.getProperty("file.separator"))));
+            String namedd = temp.get(temp.size()-1);
+            String name = namedd.split("//.")[1];
             String loaderXML = myLoader.read(new File(gameNameToLoaderName(name)));
             loader = (GroovyLoaderData) serializer.fromXML(loaderXML);
             //loader stuff
