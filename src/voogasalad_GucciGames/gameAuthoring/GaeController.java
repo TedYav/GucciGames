@@ -9,9 +9,7 @@ import java.util.Map;
 import javafx.beans.property.BooleanProperty;
 import javafx.beans.property.SimpleBooleanProperty;
 import javafx.collections.ObservableList;
-import javafx.geometry.Rectangle2D;
 import javafx.scene.control.Dialog;
-import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
 import voogasalad.util.fxsprite.Sprite;
@@ -19,8 +17,6 @@ import voogasalad_GucciGames.gameAuthoring.gui.GAEGui;
 import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.paramObjects.ActionParamsValue;
 import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.maindialogs.ImageBrowseDialogs;
 import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.paramObjects.GameSettingParams;
-import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.paramObjects.ObjParam;
-import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.paramObjects.ObjParamValue;
 import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.paramObjects.PlayerParams;
 import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.paramObjects.RuleParams;
 import voogasalad_GucciGames.gameAuthoring.gui.levels.LevelTabPane;
@@ -47,10 +43,9 @@ public class GaeController extends AGuiGaeController implements IModelGaeControl
 
 	public GaeController(Stage stage) {
 		myStage = stage;
-		myModel = new GAEModel(this);
 		myGui = new GAEGui(this, stage);
-		//(new SpriteBrowseDialog(myResManager)).show();
-		throwException(new IllegalAccessException("It's a nice day to have a nice day."));
+		myModel = new GAEModel(this);
+		
 	}
 	
 	private MapObjectType mySelectedType;
@@ -211,7 +206,6 @@ public class GaeController extends AGuiGaeController implements IModelGaeControl
 		myResManager.loadGame(name);
 		myResManager.toggleCopyOnAccess(true);
 		myImageBrowseDialogs = new ImageBrowseDialogs(myResManager);
-		//System.out.println(myResManager.getImages("units"));
 	}
 
 	@Override
@@ -231,8 +225,8 @@ public class GaeController extends AGuiGaeController implements IModelGaeControl
 	}
 
 	@Override
-	public int addLevel(String name) {
-		return myModel.addLevel(name);
+	public int addLevel(String name, int width, int height) {
+		return myModel.addLevel(name, width, height);
 	}
 
 	

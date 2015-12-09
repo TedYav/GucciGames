@@ -1,7 +1,5 @@
 package voogasalad_GucciGames.gameAuthoring.gui.menubar.menuitem;
 
-import java.io.File;
-
 import javafx.scene.control.MenuItem;
 import javafx.scene.input.KeyCombination;
 import javafx.stage.Stage;
@@ -13,7 +11,7 @@ class LoadItem extends MenuItem {
 		super(name);
 		setAccelerator(KeyCombination.keyCombination("Ctrl+S"));
 		setOnAction(e -> {
-			controller.saveToXML(new File("./src/voogasalad_GucciGames/gameData/gaeengine.xml"));
+			controller.saveToXML();
 			PlayerMain main = new PlayerMain();
 			try {
 				main.start(new Stage());

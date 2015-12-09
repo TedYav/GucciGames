@@ -31,7 +31,7 @@ public interface IGAEModel {
     
 	public void changeOwner(MapObject mapObject, int playerID);
 
-	public int addLevel(String name);
+	public int addLevel(String name, int width, int height);
 	
 	public void saveToXML();
 	

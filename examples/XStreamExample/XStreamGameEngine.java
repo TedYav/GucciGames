@@ -30,7 +30,6 @@ public class XStreamGameEngine {
         String currentTurn = "Current Turn: ";
         String engineLocation = "./examples/XStreamExample/engine.xml";
 
-        System.out.println("Creating and saving engine.");
         try {
             List<GamePlayerPerson> myListOfPlayers = new ArrayList<GamePlayerPerson>();	
             /*				
