@@ -57,10 +57,12 @@ public class SettingsDialog extends AGaeDialog implements ISwitchSettingsPane{
 		scrollPane.setContent(mainPane);
 		this.getDialogPane().setContent(scrollPane);
 		this.getDialogPane().setPrefSize(WIDTH, HEIGHT);
+		final ButtonType saveBtn = new ButtonType("Save", ButtonData.FINISH);
+		this.getDialogPane().getButtonTypes().add(saveBtn);
 		
 		
 		this.setResultConverter(dialogButton -> {
-		    if (dialogButton == ButtonType.FINISH) {
+		    if (dialogButton == saveBtn) {
 		        System.out.println("save");
 		        if(this.charParamValues.size() != 0){
 		        	//TODO: charParamValue
@@ -74,8 +76,9 @@ public class SettingsDialog extends AGaeDialog implements ISwitchSettingsPane{
 
 		        	});		        	
 		        }
-		        
+		        System.out.println("action name: ________" + actionParamsValue.getName());
 		        if(this.actionParamsValue.getName() != null){
+		        	System.out.println("----------------Saving Action --------------");
 		        	actionParamsValue.print();
 		        	this.controller.getPropertiesInterface().addActionParamValue(actionParamsValue);
 		       
@@ -105,13 +108,13 @@ public class SettingsDialog extends AGaeDialog implements ISwitchSettingsPane{
 		ObservableList<MapObjectType> currTileList = controller.getImmutableTileTypes();
 	}
 
-	@Override
-	public void addSaveButton(ButtonType save) {
-		if(!this.getDialogPane().getButtonTypes().contains(save)){
-			this.getDialogPane().getButtonTypes().add(save);
-		}
-		
-		
-	}
+//	@Override
+//	public void addSaveButton(ButtonType save) {
+//		if(!this.getDialogPane().getButtonTypes().contains(save)){
+//			this.getDialogPane().getButtonTypes().add(save);
+//		}
+//		
+//		
+//	}
 
 }

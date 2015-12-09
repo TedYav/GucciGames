@@ -8,8 +8,9 @@ import javafx.scene.control.ButtonType;
 import voogasalad_GucciGames.gameAuthoring.IDialogGaeController;
 import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.dialogcomponents.DialogTableView;
 import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.maindialogs.AGaeDialog;
+import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.paramObjects.ObjParamValue;
 
-public class AddConditionToOutcomeDialog extends AGaeDialog<List<String>>{
+public class AddConditionToOutcomeDialog extends AGaeDialog<List<ObjParamValue>>{
 	
 	private DialogTableView tableView;
 	
@@ -28,7 +29,12 @@ public class AddConditionToOutcomeDialog extends AGaeDialog<List<String>>{
 			if(dialogButton == saveBtn){
 				ConditionParamsDialog conditionParamsDialog = 
 						new ConditionParamsDialog(controller, this.tableView.getData());
-				conditionParamsDialog.showAndWait();		
+				
+				List<ObjParamValue> conditionParamValue = conditionParamsDialog.showAndWait().get();
+				if(conditionParamValue != null){
+					// condition parameters set to valid values
+					return conditionParamValue;
+				}
 			}
 			return null;
 				
