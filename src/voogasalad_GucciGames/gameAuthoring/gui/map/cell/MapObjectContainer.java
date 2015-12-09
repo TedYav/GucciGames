@@ -56,6 +56,10 @@ public class MapObjectContainer extends GridPane {
 		mySize.set(1);
 	}
 	
+	public void setOwner(int id){
+		myObjects.keySet().forEach(k->k.setOwnerID(id));
+	}
+	
 	private void redraw(int size) {
 		getChildren().clear();
 		int idx = 0;

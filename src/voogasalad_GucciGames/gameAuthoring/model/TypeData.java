@@ -27,7 +27,6 @@ import voogasalad_GucciGames.gameAuthoring.model.factories.PlayerFactory;
 import voogasalad_GucciGames.gameEngine.gamePlayer.GamePlayerPerson;
 import voogasalad_GucciGames.gameEngine.gamePlayer.chars.APlayerChars;
 import voogasalad_GucciGames.gameEngine.mapObject.AMapObjectCharacteristic;
-import voogasalad_GucciGames.gameEngine.mapObject.MapObject;
 import voogasalad_GucciGames.gameEngine.objectActions.MapObjectEvent;
 
 public class TypeData implements IGameProperties {
@@ -242,13 +241,6 @@ public class TypeData implements IGameProperties {
 	@Override
 	public List<ActionParam> getAllActions() {
 		return new ArrayList<>(myActionParams.values());
-	}
-
-	public void changeOwner(MapObject mapObject, int playerID) {
-		int oldID = mapObject.getPlayerID();
-		mapOfPlayers.get(oldID).getMapObjects().remove(mapObject);
-		mapObject.setOwnerID(playerID);
-		mapOfPlayers.get(playerID).addMapObject(mapObject);
 	}
 
 	public Map<Integer, GamePlayerPerson> getMapOfPlayers() {

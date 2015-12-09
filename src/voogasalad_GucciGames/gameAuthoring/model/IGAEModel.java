@@ -5,7 +5,6 @@ import java.util.List;
 import javafx.collections.ObservableList;
 import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.paramObjects.ObjParamValue;
 import voogasalad_GucciGames.gameAuthoring.gui.map.GridPoint;
-import voogasalad_GucciGames.gameEngine.mapObject.MapObject;
 
 public interface IGAEModel {
 
@@ -32,8 +31,6 @@ public interface IGAEModel {
 	public List<String> getComponents(String location);
 
 	public void setGuiComponents(String location, List<String> components);
-
-	public void changeOwner(MapObject mapObject, int playerID);
 
 	public int addLevel(String name, int width, int height);
 
