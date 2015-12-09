@@ -9,6 +9,7 @@ import javafx.scene.control.TabPane;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Screen;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 import voogasalad_GucciGames.gameAuthoring.AGuiGaeController;
 import voogasalad_GucciGames.gameAuthoring.gui.sidebar.SideBar;
 import voogasalad_GucciGames.gameAuthoring.gui.statusbar.StatusBar;
@@ -25,13 +26,24 @@ import voogasalad_GucciGames.gameAuthoring.gui.menubar.GAEMenuBar;
  */
 public class GAEGui extends BorderPane {
 
-	private AGuiGaeController myController;
+	private final AGuiGaeController myController;
 	private LevelTabPane myLevelTabPane;
 	private StatusBar myStatusBar;
 	private GAEMenuBar myMenuBar;
+	private final WelcomeScreen myWelcomeScreen = new WelcomeScreen();
 
 	public GAEGui(AGuiGaeController controller, Stage stage) {
 		myController = controller;
+		GAEPreloader preloader = new GAEPreloader();
+		try {
+			preloader.start(stage, ()->init());
+		} catch (Exception e) {
+			controller.throwException(e);
+		}
+	}
+	
+	private void init(){
+		Stage stage = new Stage(StageStyle.DECORATED);
 		stage.setScene(new Scene(this));
 		Rectangle2D screenBounds = Screen.getPrimary().getVisualBounds();
 		stage.setWidth(screenBounds.getWidth());
@@ -43,7 +55,7 @@ public class GAEGui extends BorderPane {
 		// Add Status Bar
 		myStatusBar = new StatusBar(myController);
 		setBottom(myStatusBar);
-
+		setCenter(myWelcomeScreen);
 		stage.show();
 	}
 

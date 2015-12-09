@@ -14,7 +14,9 @@ import javafx.scene.control.Dialog;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
+import voogasalad.util.fxsprite.Sprite;
 import voogasalad_GucciGames.gameAuthoring.gui.GAEGui;
+import voogasalad_GucciGames.gameAuthoring.gui.WelcomeScreen;
 import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.paramObjects.ActionParamsValue;
 import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.maindialogs.ImageBrowseDialogs;
 import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.paramObjects.GameSettingParams;
@@ -46,9 +48,9 @@ public class GaeController extends AGuiGaeController implements IModelGaeControl
 
 	public GaeController(Stage stage) {
 		myStage = stage;
-		myModel = new GAEModel(this);
 		myGui = new GAEGui(this, stage);
-		//(new SpriteBrowseDialog(myResManager)).show();
+		myModel = new GAEModel(this);
+		
 	}
 	
 	private MapObjectType mySelectedType;
@@ -174,20 +176,26 @@ public class GaeController extends AGuiGaeController implements IModelGaeControl
 	}
 
 	@Override
-	public Image requestImage(String path) {
-		return myResManager.getImage(path);
+	public ImageView requestImage(String path) {
+		String[] t = path.split(":");
+		if(t.length==1)
+			return new ImageView(myResManager.getImage(path));
+		else if(t.length==2){
+			Sprite s = myResManager.getSprite(t[0]);
+			try{
+				s.play(Integer.parseInt(t[1]));
+				return s;
+			}catch(NumberFormatException e){
+				throwException(e);
+			}
+		}
+		throwException(new Exception("\""+path+"\" is not a valid path"));
+		return null;
 	}
 
 	@Override
 	public ImageView getMapObjectImage(MapObjectType type) {
-		double width = type.getWidth();
-		double height = type.getHeight();
-		double myX1 = type.getX() * width;
-		double myY1 = type.getY() * height;
-		Rectangle2D rect = new Rectangle2D(myX1, myY1, width, height);
-		ImageView view = new ImageView(requestImage(type.getImagePath()));
-		view.setViewport(rect);
-		return view;
+		return requestImage(type.getImagePath());
 	}
 
 	@Override
@@ -203,7 +211,6 @@ public class GaeController extends AGuiGaeController implements IModelGaeControl
 		myResManager.loadGame(name);
 		myResManager.toggleCopyOnAccess(true);
 		myImageBrowseDialogs = new ImageBrowseDialogs(myResManager);
-		//System.out.println(myResManager.getImages("units"));
 	}
 
 	@Override
@@ -236,21 +243,21 @@ public class GaeController extends AGuiGaeController implements IModelGaeControl
 	public IGameProperties getPropertiesInterface() {
 		return myModel.getPropertiesInterface();
 	}
-	
-	@Override
-	public void addPlayerCharacteristic(int playerID, ObjParamValue param) {
-		myModel.addPlayerCharacteristic(playerID, param);
-	}
 
-	@Override
-	public void addMapObjectCharacteristic(MapObjectType type, ObjParamValue param) {
-		myModel.addMapObjectCharacteristic(type, param);
-	}
-
-	@Override
-	public void addActionParamValue(MapObjectType type, ActionParamsValue param) {
-		myModel.addActionParamValue(type, param);
-	}
+//	@Override
+//	public void addPlayerCharacteristic(int playerID, ObjParamValue param) {
+//		myModel.addPlayerCharacteristic(playerID, param);
+//	}
+//
+//	@Override
+//	public void addMapObjectCharacteristic(MapObjectType type, ObjParamValue param) {
+//		myModel.addMapObjectCharacteristic(type, param);
+//	}
+//
+//	@Override
+//	public void addActionParamValue(MapObjectType type, ActionParamsValue param) {
+//		myModel.addActionParamValue(type, param);
+//	}
 	
 	private final BooleanProperty myHasGameProperty = new SimpleBooleanProperty(false);
 	
@@ -272,7 +279,7 @@ public class GaeController extends AGuiGaeController implements IModelGaeControl
 			myModel.createCustomUnitType(object);
 			break;
 		default:
-			throw new RuntimeException("No "+type+" type");
+			throwException(new RuntimeException("No "+type+" type"));
 		}
 	}
 	
@@ -289,7 +296,7 @@ public class GaeController extends AGuiGaeController implements IModelGaeControl
 			myModel.deleteUnitType(object);
 			break;
 		default:
-			throw new RuntimeException("No "+type+" type");
+			throwException(new RuntimeException("No "+type+" type"));
 		}
 	}
 

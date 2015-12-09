@@ -5,6 +5,8 @@ import java.util.List;
 import java.util.Map;
 
 import voogasalad.util.reflection.Reflection;
+import voogasalad_GucciGames.gameAuthoring.IDialogGaeController;
+import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.groovySettings.groovyParams.AGroovyParams;
 import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.groovySettings.groovyParams.GActionParams;
 import javafx.geometry.HPos;
 import javafx.scene.control.Button;
@@ -27,16 +29,22 @@ public class ActionPane extends GridPane implements IDependencies {
 	
 	private GeneralPane pane;
 	
-	public ActionPane(String name, ISwitchGroovyPane controller){
+	private IDialogGaeController gaeController;
+	
+	public ActionPane(String name, ISwitchGroovyPane controller, IDialogGaeController gaeController){
 		super();
+		this.gaeController = gaeController;
 		
 		param = new GActionParams(name);
 		attributes.add("Action");
 		attributes.add("Request");
 		
 		this.controller = controller;
-		pane = new GeneralPane(attributes,controller, this, name);
+		pane = new GeneralPane(attributes, GroovyType.ACTION, controller, gaeController, this, name);
 		List<String> rules = new ArrayList<String>();
+		gaeController.getPropertiesInterface().getAllRules().forEach(rule -> {
+			rules.add(rule.getName());
+		});
 		String title = "Add Rule(s) to Action";
 		String header = "Actions";
 		pane.init(rules, header, title);
@@ -57,6 +65,13 @@ public class ActionPane extends GridPane implements IDependencies {
 		Map<String, String> data = pane.getUserData();
 		param.setAction(data.get("Action"));
 		param.setRequest(data.get("Request"));		
+	}
+
+
+	@Override
+	public AGroovyParams getGroovyParamObject() {
+		// TODO Auto-generated method stub
+		return param;
 	}
 
 }

@@ -1,6 +1,7 @@
 package voogasalad_GucciGames.gameAuthoring.gui.gaedialog.groovySettings;
 
 import voogasalad.util.reflection.Reflection;
+import voogasalad_GucciGames.gameAuthoring.IDialogGaeController;
 import javafx.geometry.Insets;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -16,10 +17,13 @@ public class NamePane extends GridPane {
 	private Button nextBtn;
 	private String type;
 	private ISwitchGroovyPane paneController;
+	private IDialogGaeController dialogController;
 	private static final String path = "voogasalad_GucciGames.gameAuthoring.gui.gaedialog.groovySettings.";
 	
-	public NamePane(String type, ISwitchGroovyPane paneController){
+	public NamePane(String type, ISwitchGroovyPane paneController
+			, IDialogGaeController dialogController){
 		this.paneController = paneController;
+		this.dialogController = dialogController;
 		this.type = type;
 		instructionsLbl = new Label(" Please enter in a name ");
 		instructionsLbl.setFont(new Font("Arial", 20));
@@ -41,7 +45,7 @@ public class NamePane extends GridPane {
 			if(validate()){
 				Reflection reflection = new Reflection();
 				paneController.switchGroovyPane(reflection.createInstance(
-						path + type + "Pane", textField.getText(), paneController), 
+						path + type + "Pane", textField.getText(), paneController,  dialogController), 
 						"Custom " + type);
 			}
 			

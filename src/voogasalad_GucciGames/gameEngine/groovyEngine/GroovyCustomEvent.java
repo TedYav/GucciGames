@@ -18,7 +18,7 @@ public class GroovyCustomEvent extends AGroovyCustomObject{
 		String imports = getImports();
 		StringBuilder groovy = new StringBuilder();
 		groovy.append(imports);
-		this.myGroovyString = String.format(groovy.toString(), name,name,request,action);
+		this.myGroovyString = String.format(groovy.toString(), name,name,name,request,action);
 	}
 
 	@Override

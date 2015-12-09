@@ -29,8 +29,9 @@ public class GameInfoFactory {
 		for (int levelid: map.keySet()) {
 			levels.add(makeLevelEngine(typeData.getMapOfPlayers(), typeData, map.get(levelid)));
 		}
-		//GameInfo game = new GameInfo(levels.get(0));
-		return null;
+		GameInfo game = new GameInfo();
+		
+		return game;
 		
 	}
 
@@ -48,9 +49,9 @@ public class GameInfoFactory {
 			characteristics.stream().forEach(a -> {
 				mapObject.addCharacteristic(a.getClass().getSimpleName(), a);
 			});
-			events.stream().forEach(a -> {
-				mapObject.addEvent(a.getClass().getSimpleName(), a);
-			});
+//			events.stream().forEach(a -> {
+//				mapObject.addEvent(a.getClass().getSimpleName(), a);
+//			});
 			copyMapOfPlayers.get(obj.getOwnerID());
 			
 		}

@@ -25,7 +25,7 @@
 		 paramNames="affectedPlayers"
 		 paramTypes="String">
 	</element>
-		<element name="modifyActiveObjectHealth" 
+		<element name="ModifyActiveObjectHealth" 
 		 paramNames="health"
 		 paramTypes="int">
 	</element>		

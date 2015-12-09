@@ -21,7 +21,7 @@ import voogasalad_GucciGames.gameplayer.windows.GameWindowManager;
 import voogasalad_GucciGames.gameplayer.windows.mainwindow.map.MapInterface;
 import voogasalad_GucciGames.helpers.ResourceManager;
 
-public class GameController implements GameControllerInterface, GameControllerAdvancedInterface, GameControllerLoader {
+public class GameController implements GameControllerInterface, GameControllerAdvancedInterface, GameControllerLoader, GameControllerEngineInterface {
 
 	private GameWindowManager myManager;
 	private GameSceneManager mySceneManager;
@@ -61,6 +61,7 @@ public class GameController implements GameControllerInterface, GameControllerAd
 	        public void loadGameSave(GamePlayerSave game){
 	           System.out.println("LOADGAMESAVE");
 	                myGame=game.getInfo();
+	                myGame.getEngineInterface().setController(this);
 	                myCurrentEngine=myGame.getEngineInterface();
 	                loadLevel(game.getCurrentLevel());
 	       }

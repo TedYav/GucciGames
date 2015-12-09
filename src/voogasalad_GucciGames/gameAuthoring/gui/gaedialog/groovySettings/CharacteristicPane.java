@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import voogasalad.util.reflection.Reflection;
+import voogasalad_GucciGames.gameAuthoring.IDialogGaeController;
 import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.dialogcomponents.DropDownMenuField;
 import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.groovySettings.groovyParams.GCharParam;
 import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.paramObjects.Param;
@@ -36,12 +37,14 @@ public class CharacteristicPane extends GridPane{
 	private ObservableList<Param> data;
 	private GCharParam charParam;
 	private MapObjectType type;
+	private IDialogGaeController gaeController;
 
 	
 
-	public CharacteristicPane(String name, ISwitchGroovyPane controller){
+	public CharacteristicPane(String name, ISwitchGroovyPane controller, IDialogGaeController gaeController){
 		super();
 		this.type = type;
+		this.gaeController = gaeController;
 		tableView = new TableView();
 		nameLbl = new Label(name + " Characteristics");
 		nameLbl.setFont(new Font("Arial", 20));
@@ -89,8 +92,11 @@ public class CharacteristicPane extends GridPane{
 		saveBtn.setOnAction(e -> {
 			for(Param p: data){
 				charParam.addParam(p.getType(), p.getName());
-				//TODO: send to backend
+				charParam.getAllParams().forEach((k,v) -> {
+					System.out.println("name: " + k +  "type: " + v);
+				});
 			}
+			this.gaeController.getPropertiesInterface().addGroovyCharacteristic(charParam);
 		});
 		this.add(saveBtn, 1, 3);
 		

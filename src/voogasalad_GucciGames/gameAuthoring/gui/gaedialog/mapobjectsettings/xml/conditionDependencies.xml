@@ -1,14 +1,14 @@
 <conditionDependencies>
 
-	<element name="checkOnePlayerLeft" 
+	<element name="CheckOnePlayerLeft" 
 		 paramNames=""
 		 paramTypes="">
 	</element>	
-		<element name="checkPlayerObjects" 
+		<element name="CheckPlayerObjects" 
 		 paramNames=""
 		 paramTypes="">
 	</element>	
-		<element name="checkPlayerWealth" 
+		<element name="CheckPlayerWealth" 
 			paramNames=""
 			paramTypes="">
 

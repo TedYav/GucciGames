@@ -101,7 +101,6 @@ public class ResourceManager implements GameResourceManagerToGAE, GameResourceMa
 	}
 	
 	private void copyResource(String URI, String path) {
-		System.out.println(path+URI + myGameName + " COPYING");
 		myData.copyResourceToGame(path + URI, myGameName);
 	
 	}

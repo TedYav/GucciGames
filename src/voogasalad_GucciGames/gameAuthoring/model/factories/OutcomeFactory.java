@@ -52,6 +52,9 @@ public class OutcomeFactory {
 	InvocationTargetException {
 		
 		// constructs empty Action object
+		System.out.println(value.getName());
+		System.out.println(prop.getProperty(value.getName()));
+		
 		Class<Outcome> outcome = (Class<Outcome>) Class.forName(prop.getProperty(value.getName()));
 		Constructor<Outcome> outcomeConstructor = outcome.getDeclaredConstructor();
 		Outcome outcomeInstance = outcomeConstructor.newInstance();
@@ -61,10 +64,7 @@ public class OutcomeFactory {
 		// construct and add conditions
 		for(ObjParamValue param: value.getConditions()) {
 			outcomeInstance.addCondition((Conditions)conditionFactory.create(myConditions, param));
-		}
-
-		System.err.println("OUTCOME FACTORY NOT IMPLEMENTED");
-			
+		}			
 		
 		return (Outcome)outcomeInstance;
 		

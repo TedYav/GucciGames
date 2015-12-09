@@ -13,15 +13,18 @@ import voogasalad_GucciGames.gameEngine.gamePlayer.chars.PlayerWealthChar;
  */
 public class PlayerWealth extends Conditions {
 	private static final String WEALTH = "PlayerWealthChar";
-	private int myValue =0;
+	private int myValue = 0;
+
+	public PlayerWealth() {
+	}
 
 	public PlayerWealth(int value) {
 		myValue = value;
 	}
 
 	@Override
-	public Boolean execute(BasicParameters params,GamePlayerPerson player) {
-		PlayerWealthChar playerWealth = (PlayerWealthChar)player.getCharacteristics(WEALTH);
+	public Boolean execute(BasicParameters params, GamePlayerPerson player) {
+		PlayerWealthChar playerWealth = (PlayerWealthChar) player.getCharacteristics(WEALTH);
 		return (playerWealth.getWealth() == myValue);
 	}
 
