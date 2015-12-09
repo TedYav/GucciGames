@@ -6,7 +6,9 @@ import java.util.List;
 import voogasalad.util.reflection.Reflection;
 import voogasalad_GucciGames.gameAuthoring.IDialogGaeController;
 import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.dialogcomponents.DropDownMenuField;
+import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.dialogcomponents.RadioBtnField;
 import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.groovySettings.groovyParams.GCharParam;
+import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.groovySettings.groovyParams.GroovyCharacteristics;
 import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.paramObjects.Param;
 import voogasalad_GucciGames.gameAuthoring.model.MapObjectType;
 import javafx.collections.FXCollections;
@@ -38,13 +40,20 @@ public class CharacteristicPane extends GridPane{
 	private GCharParam charParam;
 	private MapObjectType type;
 	private IDialogGaeController gaeController;
+	private RadioBtnField typeField;
+	private String name;
 
 	
 
 	public CharacteristicPane(String name, ISwitchGroovyPane controller, IDialogGaeController gaeController){
 		super();
 		this.type = type;
+		this.name = name;
 		this.gaeController = gaeController;
+		List<String> typeList = new ArrayList<String>();
+		typeList.add("Player");
+		typeList.add("MapObject");
+		this.typeField = new RadioBtnField(typeList);
 		tableView = new TableView();
 		nameLbl = new Label(name + " Characteristics");
 		nameLbl.setFont(new Font("Arial", 20));
@@ -54,7 +63,7 @@ public class CharacteristicPane extends GridPane{
 		setTable();
 		setAddElementHBox();
 		setControlBtn();
-		charParam = new GCharParam(name);
+		
 		
 	
 	}
@@ -72,8 +81,9 @@ public class CharacteristicPane extends GridPane{
 		tableView.getColumns().addAll(paramNameCol, paramTypeCol);	
 
 	    this.add(lbl, 0, 0);
-	    this.add(nameLbl, 0, 1);
-	    this.add(tableView, 0, 2);
+	    this.add(typeField, 0, 1);
+	    this.add(nameLbl, 0, 2);
+	    this.add(tableView, 0, 4);
 	    this.setHalignment(lbl, HPos.CENTER);
 	    this.setHalignment(nameLbl, HPos.CENTER);
 	    this.setHalignment(tableView, HPos.CENTER);
@@ -86,19 +96,29 @@ public class CharacteristicPane extends GridPane{
 			data.remove(this.tableView.getSelectionModel().getSelectedItem());
 			this.tableView.getSelectionModel().clearSelection();
 		});
-		this.add(deleteBtn,1 , 2);
+		this.add(deleteBtn,1 , 3);
 		
 		final Button saveBtn = new Button("Save");
 		saveBtn.setOnAction(e -> {
 			for(Param p: data){
+				String typeString = typeField.getSelected();
+				if(typeString.equals("Player")){
+					charParam = new GCharParam(name, GroovyCharacteristics.PLAYER);
+				} else {
+					charParam = new GCharParam(name, GroovyCharacteristics.MAPOBJECT);
+				}
+				
 				charParam.addParam(p.getType(), p.getName());
 				charParam.getAllParams().forEach((k,v) -> {
 					System.out.println("name: " + k +  "type: " + v);
+					
 				});
+				System.out.println("type: " + charParam.getCharType());
 			}
+			// SAVE
 			this.gaeController.getPropertiesInterface().addGroovyCharacteristic(charParam);
 		});
-		this.add(saveBtn, 1, 3);
+		this.add(saveBtn, 1, 4);
 		
 	}
 	
