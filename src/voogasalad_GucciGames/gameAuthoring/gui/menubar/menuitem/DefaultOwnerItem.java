@@ -5,23 +5,27 @@ import javafx.scene.control.RadioMenuItem;
 import javafx.scene.control.ToggleGroup;
 import voogasalad_GucciGames.gameAuthoring.AGuiGaeController;
 
-public class DefaultOwnerItem extends Menu{
+public class DefaultOwnerItem extends Menu {
 	DefaultOwnerItem(String name, AGuiGaeController controller) {
 		super(name);
 		ToggleGroup group = new ToggleGroup();
-		RadioMenuItem on = new RadioMenuItem("Player 0");
-		on.setUserData(0);
-		on.setToggleGroup(group);
-		on.setSelected(true);
-		
-		RadioMenuItem off = new RadioMenuItem("Player 1");
-		off.setUserData(1);
-		off.setToggleGroup(group);
-		
-		getItems().addAll(on,off);
-		group.selectedToggleProperty().addListener((ob,oldV,newV)->{
+		RadioMenuItem p0 = new RadioMenuItem("Player 0");
+		p0.setUserData(0);
+		p0.setToggleGroup(group);
+		p0.setSelected(true);
+
+		RadioMenuItem p1 = new RadioMenuItem("Player 1");
+		p1.setUserData(1);
+		p1.setToggleGroup(group);
+
+		RadioMenuItem p2 = new RadioMenuItem("Player 2");
+		p2.setUserData(2);
+		p2.setToggleGroup(group);
+
+		getItems().addAll(p0, p1, p2);
+		group.selectedToggleProperty().addListener((ob, oldV, newV) -> {
 			if (group.getSelectedToggle() != null) {
-				controller.setDefaultOwner((int)newV.getUserData());
+				controller.setDefaultOwner((int) newV.getUserData());
 			}
 		});
 	}
