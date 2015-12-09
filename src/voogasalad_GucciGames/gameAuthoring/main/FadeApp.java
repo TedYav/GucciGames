@@ -74,13 +74,13 @@ public class FadeApp extends Application {
 
                 updateMessage("Finding friends . . .");
                 for (int i = 0; i < availableFriends.size(); i++) {
-                    Thread.sleep(400);
+                    Thread.sleep(10);
                     updateProgress(i + 1, availableFriends.size());
                     String nextFriend = availableFriends.get(i);
                     foundFriends.add(nextFriend);
                     updateMessage("Finding friends . . . found " + nextFriend);
                 }
-                Thread.sleep(400);
+                Thread.sleep(10);
                 updateMessage("All friends found.");
 
                 return foundFriends;

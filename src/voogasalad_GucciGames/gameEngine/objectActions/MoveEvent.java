@@ -39,7 +39,7 @@ public class MoveEvent extends MapObjectEvent {
 		TargetCoordinateSingle target = params.getNewLocation();
 		MapObject moving = params.getCalledMe();
 		moving.setCoordinate(target);
-		AllPlayers players = params.getLevelEngine().getPlayers();
+		AllPlayers players = params.getEngine().getPlayers();
 		GamePlayerPerson player = players.getActivePlayer(params.getCalledMe().getPlayerID());
 		player.getMovable().updateMoves();
 		ChangedParameters myParameters = new ChangedParameters();
@@ -51,7 +51,7 @@ public class MoveEvent extends MapObjectEvent {
 	@Override
 	protected GridCoordinateParameters executeRequest(BasicParameters params) {
 		System.out.println("Move Request");
-		AllPlayers players = params.getLevelEngine().getPlayers();
+		AllPlayers players = params.getEngine().getPlayers();
 		TargetCoordinateMultiple result = new TargetCoordinateMultiple();
 		MapObject calledMe = params.getCalledMe();
 

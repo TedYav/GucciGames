@@ -114,7 +114,8 @@ public class GAEModel implements IGAEModel{
     public void saveToXML() {
 //      AllPlayers myPlayers = new AllPlayers(mapOfPlayers);
 //      MainGameEngine engine = new MainGameEngine(myPlayers);
-    	myFactory.create(typeData, levelData, guiData);
+    	saveToXML(myFactory.create(typeData, levelData, guiData));
+    	
     	
     }
     
