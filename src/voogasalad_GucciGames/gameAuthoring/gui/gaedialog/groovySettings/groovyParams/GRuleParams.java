@@ -45,4 +45,10 @@ public class GRuleParams extends AGroovyParams {
 		this.actions = actions;
 	}
 
+	@Override
+	public void setDependencies(List<String> dependencies) {
+		actions.addAll(dependencies);
+		
+	}
+
 }

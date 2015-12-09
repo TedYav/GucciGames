@@ -98,9 +98,9 @@ public class ActionPane extends GridPane {
 		add(textField, 0, 0);
 		add(dropDown, 1, 0);
 		add(addBtn, 2, 0);
-		add(addOutConBtn, 3, 6);
-		add(addCharBtn, 4, 6);
-		add(addRuleBtn, 5 ,6);
+		add(addOutConBtn, 0, 1);
+		add(addCharBtn, 1, 1);
+		add(addRuleBtn, 2 ,1);
 	}
 
 	private void addActionToNextBtn(){				

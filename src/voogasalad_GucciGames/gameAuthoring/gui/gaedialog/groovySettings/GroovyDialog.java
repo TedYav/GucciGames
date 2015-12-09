@@ -1,6 +1,7 @@
 package voogasalad_GucciGames.gameAuthoring.gui.gaedialog.groovySettings;
 import java.util.Optional;
 
+import voogasalad_GucciGames.gameAuthoring.IDialogGaeController;
 import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.groovySettings.groovyParams.AGroovyParams;
 import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.maindialogs.AGaeDialog;
 import javafx.geometry.Insets;
@@ -29,12 +30,13 @@ public class GroovyDialog extends AGaeDialog implements ISwitchGroovyPane{
 	private GridPane nextPane;
 	private AGroovyParams param;
 	private String nextTitle;
+	private IDialogGaeController dialogController;
 	
 	//@SuppressWarnings("unchecked")
-	public GroovyDialog(){
+	public GroovyDialog(IDialogGaeController dialogController){
 		super();
-		
-		groovyMainPane = new MainPane(this);
+		this.dialogController = dialogController;		
+		groovyMainPane = new MainPane(this, dialogController);
 		stackPane.setPrefSize(WIDTH, HEIGHT);
 		stackPane.setPadding(new Insets(15,15,15,15));
 		

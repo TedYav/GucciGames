@@ -11,7 +11,7 @@ class GroovyItem extends MenuItem {
 		setAccelerator(KeyCombination.keyCombination("Ctrl+G"));
 		setOnAction(e -> {
 			//TODO
-			GroovyDialog dialog = new GroovyDialog();
+			GroovyDialog dialog = new GroovyDialog(controller);
 			dialog.show();
 			
 		});

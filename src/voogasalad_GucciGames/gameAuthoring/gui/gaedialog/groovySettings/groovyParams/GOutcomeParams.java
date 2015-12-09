@@ -47,4 +47,10 @@ public class GOutcomeParams extends AGroovyParams {
 		this.outcome = outcome;
 	}
 
+	@Override
+	public void setDependencies(List<String> dependencies) {
+		conditions.addAll(dependencies);
+		
+	}
+
 }
