@@ -55,18 +55,19 @@ public class GameController implements GameControllerInterface, GameControllerAd
 	@Override
 	public void loadGame(GameInfo game){
 	    System.out.println("LOADGAME-GAMEINFO");
-		myGame=game;
-		myCurrentEngine=myGame.getEngineInterface();
-		myCurrentEngine.setController(this);
-		loadLevel("1");
+	    loadGame(game,"1");
+	}
+	
+	private void loadGame(GameInfoToGamePlayer game, String level) {
+            myGame=game;
+            myCurrentEngine=myGame.getEngineInterface();
+            loadLevel(level);
 	}
 
 	@Override
     public void loadGameSave(GamePlayerSave game){
        System.out.println("LOADGAMESAVE");
-            myGame=game.getInfo();
-            myCurrentEngine=myGame.getEngineInterface();
-            loadLevel(game.getCurrentLevel());
+       loadGame(game.getInfo(),game.getCurrentLevel());
    }
 
 	public void loadLevel(String levelID){

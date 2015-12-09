@@ -2,8 +2,10 @@ package voogasalad_GucciGames.gameData;
 
 import java.io.File;
 import java.text.DateFormat;
+import java.util.Arrays;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.ResourceBundle;
 
@@ -23,7 +25,7 @@ public class XStreamGameEngine {
     String currentTurn = "Current Turn: ";
     private static FileLoader myLoader = new FileLoader();
     private GameListManager myManager = new GameListManager();
-
+    private Object loader;
     private final ResourceBundle myConfig = ResourceBundle.getBundle("voogasalad_GucciGames.gameData.config.GameData");
     
     public XStreamGameEngine(){
@@ -57,6 +59,16 @@ public class XStreamGameEngine {
     	saveGameInfo(game, new File(gameNameToFileName(game.getGameName())));
     }
     
+    public void saveGameLoader(Object loader, GameInfo game) {
+        try {
+        String gameXML = serializer.toXML(loader);
+        myLoader.save(new File(gameNameToLoaderName(game.getGameName())), gameXML);
+        }
+        catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+    
     public void saveGameState(GamePlayerSave game, File file) {
         try {
             String gameXML = serializer.toXML(game);
@@ -74,6 +86,9 @@ public class XStreamGameEngine {
     
     public String gameNameToFileName(String name){
     	return sanitizeGameName(name).append(myConfig.getString("GameExtension")).toString();
+    }
+    public String gameNameToLoaderName(String name){
+        return sanitizeGameName(name).append(myConfig.getString("LoaderExtension")).toString();
     }
     
 	public String gameNameToPathName(String name) {
@@ -102,13 +117,18 @@ public class XStreamGameEngine {
         return loadGameInfo(new File(path));
     }
 
-    public GameInfo loadGameInfo(File file) {
+    private GameInfo loadGameInfo(File file) {
 //        if (file==null || !file.canRead()) {
 //            file = new File(defaultEngineLocation);
 //        }
         System.out.println("Loading engine.");
         GameInfo game=null;
         try {
+            List<String> path = Arrays.asList(file.getPath().split(File.separator));
+            String name=path.get(path.size()-1);
+            System.out.println("LOADING LOADER FROMMMMMMM "+name);
+            loader = myLoader.read(new File(gameNameToLoaderName(name)));
+            //loader stuff
             String gameXML = myLoader.read(file);
             game = (GameInfo) serializer.fromXML(gameXML);
         }
