@@ -1,5 +1,6 @@
 package voogasalad_GucciGames.gameAuthoring;
 
+import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.paramObjects.ObjParamValue;
 import voogasalad_GucciGames.gameAuthoring.gui.levels.LevelTabPane;
 import voogasalad_GucciGames.gameAuthoring.gui.map.GridPoint;
 import voogasalad_GucciGames.gameAuthoring.model.DisplayMapObject;
@@ -52,7 +53,7 @@ public interface IGuiGaeController {
 
 	public Stage getStage();
 
-	public Image requestImage(String path);
+	public ImageView requestImage(String path);
 
 	public ImageView getMapObjectImage(MapObjectType object);
 
@@ -75,5 +76,7 @@ public interface IGuiGaeController {
 	public Dialog<String> getImageBrowseDialog(String type);
 	
 	public void throwException(Exception e);
+
+	public void addPlayerCharacteristic(int playerID, ObjParamValue param);
 
 }

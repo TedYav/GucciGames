@@ -7,6 +7,7 @@ public interface GameParametersInterface {
 
     public int whoseTurn();
 
+    public boolean isTurnEnded();
 
     public GameResultInterface getResults();
 }

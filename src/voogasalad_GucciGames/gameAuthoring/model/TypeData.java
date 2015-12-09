@@ -217,6 +217,7 @@ public class TypeData implements IGameProperties {
 	@Override
 	public void addPlayerCharacteristic(int playerID, ObjParamValue param) {
 		try {
+			System.out.println(playerID + " HI");
 			mapOfPlayers.get(playerID).addCharacterstic(param.getName(), (APlayerChars)playerCharacteristicFactory.create(myPlayerCharParams, param));
 		} catch (NoSuchMethodException | SecurityException | ClassNotFoundException | InstantiationException
 				| IllegalAccessException | IllegalArgumentException | InvocationTargetException e) {
@@ -240,6 +241,7 @@ public class TypeData implements IGameProperties {
 
 	@Override
 	public void addActionParamValue(ActionParamsValue param) {
+		System.out.println("adding action in type data");
 		try {
 			param.getMapObjectType().addAction(actionFactory.createAction(myActionParams, param));
 		} catch (ClassNotFoundException | NoSuchMethodException | SecurityException | InstantiationException
@@ -269,7 +271,6 @@ public class TypeData implements IGameProperties {
 
 	@Override
 	public void addGroovyCharacteristic(GCharParam param) {
-
 		// TODO Auto-generated method stub
 
 	}

@@ -5,6 +5,7 @@ import java.io.InputStream;
 import java.lang.reflect.Constructor;
 import java.util.Properties;
 
+import groovy.ui.SystemOutputInterceptor;
 import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.paramObjects.ObjParamValue;
 
 /**
@@ -28,7 +29,12 @@ public abstract class DefaultFactory extends AFactory{
 	protected abstract InputStream getStream();
 	@Override
 	protected Constructor makeConstractor(ObjParamValue objParamValue, Class<?>[] myParameters) throws NoSuchMethodException, SecurityException, ClassNotFoundException {
-			Constructor c = Class.forName(prop.getProperty(objParamValue.getName())).getConstructor(myParameters);
+		System.out.println("making condition in default factory");
+		System.out.println(objParamValue);
+		System.out.println(objParamValue.getName());
+		System.out.println(prop);
+		System.out.println(prop.getProperty(objParamValue.getName()));
+		Constructor c = Class.forName(prop.getProperty(objParamValue.getName())).getConstructor(myParameters);
 			return c;
 		}
 	}

@@ -29,7 +29,9 @@ public class PlayerCharDialog extends AGaeDialog<ObjParamValue>{
     		if (dialogButton == mySave) {
     			List<ObjParamValue> objParamValues = objParamListPane.getAllInputsList();
     			for(int i=0; i<objParamValues.size(); i++){
-        			controller.addPlayerCharacteristic(playerid, objParamValues.get(i));
+    				System.out.println(playerid);
+    				System.out.println(objParamValues.get(i).getName());
+        			controller.getPropertiesInterface().addPlayerCharacteristic(playerid, objParamValues.get(i));
     			}
     		}
     		return null;
