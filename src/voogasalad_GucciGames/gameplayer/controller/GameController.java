@@ -243,11 +243,31 @@ public class GameController implements GameControllerInterface, GameControllerAd
 
 	@Override
 	public void updateChat(String string) {
-	    notifyChatObservers(string);
-	}
+		
+		Platform.runLater(new Runnable() {
+			   @Override
+			   public void run() {
+			      // Update/Query the FX classes here
+
+				    notifyChatObservers(string);
+
+			   }
+			});
+		
+			}
 
     @Override
     public void sendMessage (String s) {
-        myCurrentEngine.sendMessage(s);
-    }
+    	
+    	Platform.runLater(new Runnable() {
+			   @Override
+			   public void run() {
+			      // Update/Query the FX classes here
+
+			        myCurrentEngine.sendMessage(s);
+			   
+			   }
+			});
+    	
+    	 }
 }

@@ -75,6 +75,31 @@ public class GameEngineConnectionHandler extends Thread {
 	                    	writer.flush();
 	                    }
 	                    }
+	                    
+	                    if(input.startsWith("CHAT")){
+		                    
+		                    System.out.println("OMG SOME DATA ON SERVER");
+		                    	
+		                    input = in.readLine();
+		                    int lengthXML = Integer.parseInt(input);
+
+		                    StringBuilder myBuilder = new StringBuilder();
+		                    
+		                    for(int i = 0; i < lengthXML; i++){
+		                    	myBuilder.append((char) in.read());
+		                    }
+		                    
+		                    myServer.updateChat(myBuilder.toString());
+
+		                    for (PrintWriter writer : myServer.getWriters()) {
+		                    	
+		                    	System.out.println("connection handler thinks the size is" + myBuilder.toString().length());
+		                    	writer.print("CHAT\n" + lengthXML + "\n" + myBuilder.toString() + "\n");
+		                    	writer.flush();
+		                    }
+		                    }
+	                    
+	                    
 	                }
 	            } catch (IOException e) {
 	                System.out.println(e);

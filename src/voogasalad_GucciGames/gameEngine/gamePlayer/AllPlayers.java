@@ -23,6 +23,7 @@ public class AllPlayers {
 		myMapOfPlayers = new HashMap<Integer, GamePlayerPerson>();
 	}
 
+	
 	public void reset() {
 		for (Integer i : myMapOfPlayers.keySet()) {
 			GamePlayerPerson person = myMapOfPlayers.get(i);
