@@ -339,4 +339,11 @@ public class GameEngine implements IGameInfoToGAE, GameEngineToGamePlayerInterfa
 	        myController.updateChat("Player" + getCurrentLevel().getGameParameters().whoseTurn() + ": " + string);
 	    }
 	}
+
+    public void addMapObjects (Map<String, MapObject> allMapObjects) {
+for(String s : myLevelsMap.keySet()){
+    myLevelsMap.get(s).addMapObjectsForLevels(allMapObjects);
+    
+}
+    }
 }

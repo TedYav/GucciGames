@@ -20,6 +20,7 @@ import voogasalad_GucciGames.gameEngine.gamePlayer.DefaultTurnDecider;
 import voogasalad_GucciGames.gameEngine.gamePlayer.GamePlayerPerson;
 import voogasalad_GucciGames.gameEngine.gamePlayer.TurnCounter;
 import voogasalad_GucciGames.gameEngine.gamePlayer.chars.PlayerScore;
+import voogasalad_GucciGames.gameEngine.mapObject.MapObject;
 import voogasalad_GucciGames.gameEngine.targetCoordinate.ATargetCoordinate;
 import voogasalad_GucciGames.gameplayer.controller.GameParametersInterface;
 
@@ -253,5 +254,20 @@ public class GameLevelEngine implements IGameLevelToGamePlayer {
 	public void setGameStats(GameStats clazz){
 		this.myGameStats = clazz;
 	}
+
+	private Map<String, MapObject> allObjects;
+	
+    public void addMapObjectsForLevels (Map<String, MapObject> allMapObjects) {
+        // TODO Auto-generated method stub
+        setAllObjects(allMapObjects);
+    }
+
+    public Map<String, MapObject> getAllObjects () {
+        return allObjects;
+    }
+
+    public void setAllObjects (Map<String, MapObject> allObjects) {
+        this.allObjects = allObjects;
+    }
 	
 }

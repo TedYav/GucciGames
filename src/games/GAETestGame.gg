@@ -1,8 +1,8 @@
-éi­ÓÅœO"mm<55aN¼wœèë:E%á<äSD<voogasalad__GucciGames.gameData.wrapper.GameInfo>
+«œh¸0O)@œöTyMs	Fëð S,—”Ezñi<voogasalad__GucciGames.gameData.wrapper.GameInfo>
   <myEngine>
     <myLevelsMap>
       <entry>
-        <string>Level 0</string>
+        <string>sadf</string>
         <voogasalad__GucciGames.gameEngine.GameLevelEngine>
           <myGamePlayers>
             <myMapOfPlayers>
@@ -10,25 +10,435 @@
                 <int>-1</int>
                 <voogasalad__GucciGames.gameEngine.gamePlayer.GamePlayerPerson>
                   <myPlayerId>-1</myPlayerId>
-                  <myMapObjects/>
-                  <myCharacteristics>
-                    <entry>
-                      <string>numOfMoves</string>
-                      <voogasalad__GucciGames.gameEngine.gamePlayer.chars.PlayerMovesPerTurn>
-                        <myNumberOfMoves>1000</myNumberOfMoves>
-                        <moveCount>0</moveCount>
-                      </voogasalad__GucciGames.gameEngine.gamePlayer.chars.PlayerMovesPerTurn>
-                    </entry>
-                  </myCharacteristics>
-                  <myStatus>DRAW</myStatus>
-                  <myMovable reference="../myCharacteristics/entry/voogasalad__GucciGames.gameEngine.gamePlayer.chars.PlayerMovesPerTurn"/>
-                </voogasalad__GucciGames.gameEngine.gamePlayer.GamePlayerPerson>
-              </entry>
-              <entry>
-                <int>0</int>
-                <voogasalad__GucciGames.gameEngine.gamePlayer.GamePlayerPerson>
-                  <myPlayerId>0</myPlayerId>
-                  <myMapObjects/>
+                  <myMapObjects>
+                    <voogasalad__GucciGames.gameEngine.mapObject.MapObject>
+                      <myCoordinate class="voogasalad_GucciGames.gameEngine.targetCoordinate.TargetCoordinateSingle">
+                        <myCenterX>1.0</myCenterX>
+                        <myCenterY>5.0</myCenterY>
+                      </myCoordinate>
+                      <myOwnerID>-1</myOwnerID>
+                      <myLayer>0</myLayer>
+                      <myName>tile</myName>
+                      <myImagePath>tiles/trippy.jpg</myImagePath>
+                      <myCharacteristics class="tree-map">
+                        <entry>
+                          <string>GroovyCharacteristic</string>
+                          <GroovyCharacteristic>
+                            <groovynum>1</groovynum>
+                          </GroovyCharacteristic>
+                        </entry>
+                      </myCharacteristics>
+                      <myEvents/>
+                    </voogasalad__GucciGames.gameEngine.mapObject.MapObject>
+                    <voogasalad__GucciGames.gameEngine.mapObject.MapObject>
+                      <myCoordinate class="voogasalad_GucciGames.gameEngine.targetCoordinate.TargetCoordinateSingle">
+                        <myCenterX>9.0</myCenterX>
+                        <myCenterY>2.0</myCenterY>
+                      </myCoordinate>
+                      <myOwnerID>-1</myOwnerID>
+                      <myLayer>0</myLayer>
+                      <myName>tile</myName>
+                      <myImagePath>tiles/trippy.jpg</myImagePath>
+                      <myCharacteristics class="tree-map">
+                        <entry>
+                          <string>GroovyCharacteristic</string>
+                          <GroovyCharacteristic reference="../../../../voogasalad__GucciGames.gameEngine.mapObject.MapObject/myCharacteristics/entry/GroovyCharacteristic"/>
+                        </entry>
+                      </myCharacteristics>
+                      <myEvents/>
+                    </voogasalad__GucciGames.gameEngine.mapObject.MapObject>
+                    <voogasalad__GucciGames.gameEngine.mapObject.MapObject>
+                      <myCoordinate class="voogasalad_GucciGames.gameEngine.targetCoordinate.TargetCoordinateSingle">
+                        <myCenterX>3.0</myCenterX>
+                        <myCenterY>1.0</myCenterY>
+                      </myCoordinate>
+                      <myOwnerID>-1</myOwnerID>
+                      <myLayer>0</myLayer>
+                      <myName>tile</myName>
+                      <myImagePath>tiles/trippy.jpg</myImagePath>
+                      <myCharacteristics class="tree-map">
+                        <entry>
+                          <string>GroovyCharacteristic</string>
+                          <GroovyCharacteristic reference="../../../../voogasalad__GucciGames.gameEngine.mapObject.MapObject/myCharacteristics/entry/GroovyCharacteristic"/>
+                        </entry>
+                      </myCharacteristics>
+                      <myEvents/>
+                    </voogasalad__GucciGames.gameEngine.mapObject.MapObject>
+                    <voogasalad__GucciGames.gameEngine.mapObject.MapObject>
+                      <myCoordinate class="voogasalad_GucciGames.gameEngine.targetCoordinate.TargetCoordinateSingle">
+                        <myCenterX>3.0</myCenterX>
+                        <myCenterY>0.0</myCenterY>
+                      </myCoordinate>
+                      <myOwnerID>-1</myOwnerID>
+                      <myLayer>0</myLayer>
+                      <myName>tile</myName>
+                      <myImagePath>tiles/trippy.jpg</myImagePath>
+                      <myCharacteristics class="tree-map">
+                        <entry>
+                          <string>GroovyCharacteristic</string>
+                          <GroovyCharacteristic reference="../../../../voogasalad__GucciGames.gameEngine.mapObject.MapObject/myCharacteristics/entry/GroovyCharacteristic"/>
+                        </entry>
+                      </myCharacteristics>
+                      <myEvents/>
+                    </voogasalad__GucciGames.gameEngine.mapObject.MapObject>
+                    <voogasalad__GucciGames.gameEngine.mapObject.MapObject>
+                      <myCoordinate class="voogasalad_GucciGames.gameEngine.targetCoordinate.TargetCoordinateSingle">
+                        <myCenterX>2.0</myCenterX>
+                        <myCenterY>0.0</myCenterY>
+                      </myCoordinate>
+                      <myOwnerID>-1</myOwnerID>
+                      <myLayer>0</myLayer>
+                      <myName>tile</myName>
+                      <myImagePath>tiles/trippy.jpg</myImagePath>
+                      <myCharacteristics class="tree-map">
+                        <entry>
+                          <string>GroovyCharacteristic</string>
+                          <GroovyCharacteristic reference="../../../../voogasalad__GucciGames.gameEngine.mapObject.MapObject/myCharacteristics/entry/GroovyCharacteristic"/>
+                        </entry>
+                      </myCharacteristics>
+                      <myEvents/>
+                    </voogasalad__GucciGames.gameEngine.mapObject.MapObject>
+                    <voogasalad__GucciGames.gameEngine.mapObject.MapObject>
+                      <myCoordinate class="voogasalad_GucciGames.gameEngine.targetCoordinate.TargetCoordinateSingle">
+                        <myCenterX>2.0</myCenterX>
+                        <myCenterY>3.0</myCenterY>
+                      </myCoordinate>
+                      <myOwnerID>-1</myOwnerID>
+                      <myLayer>0</myLayer>
+                      <myName>tile</myName>
+                      <myImagePath>tiles/trippy.jpg</myImagePath>
+                      <myCharacteristics class="tree-map">
+                        <entry>
+                          <string>GroovyCharacteristic</string>
+                          <GroovyCharacteristic reference="../../../../voogasalad__GucciGames.gameEngine.mapObject.MapObject/myCharacteristics/entry/GroovyCharacteristic"/>
+                        </entry>
+                      </myCharacteristics>
+                      <myEvents/>
+                    </voogasalad__GucciGames.gameEngine.mapObject.MapObject>
+                    <voogasalad__GucciGames.gameEngine.mapObject.MapObject>
+                      <myCoordinate class="voogasalad_GucciGames.gameEngine.targetCoordinate.TargetCoordinateSingle">
+                        <myCenterX>1.0</myCenterX>
+                        <myCenterY>2.0</myCenterY>
+                      </myCoordinate>
+                      <myOwnerID>-1</myOwnerID>
+                      <myLayer>0</myLayer>
+                      <myName>tile</myName>
+                      <myImagePath>tiles/trippy.jpg</myImagePath>
+                      <myCharacteristics class="tree-map">
+                        <entry>
+                          <string>GroovyCharacteristic</string>
+                          <GroovyCharacteristic reference="../../../../voogasalad__GucciGames.gameEngine.mapObject.MapObject/myCharacteristics/entry/GroovyCharacteristic"/>
+                        </entry>
+                      </myCharacteristics>
+                      <myEvents/>
+                    </voogasalad__GucciGames.gameEngine.mapObject.MapObject>
+                    <voogasalad__GucciGames.gameEngine.mapObject.MapObject>
+                      <myCoordinate class="voogasalad_GucciGames.gameEngine.targetCoordinate.TargetCoordinateSingle">
+                        <myCenterX>2.0</myCenterX>
+                        <myCenterY>2.0</myCenterY>
+                      </myCoordinate>
+                      <myOwnerID>-1</myOwnerID>
+                      <myLayer>0</myLayer>
+                      <myName>tile</myName>
+                      <myImagePath>tiles/trippy.jpg</myImagePath>
+                      <myCharacteristics class="tree-map">
+                        <entry>
+                          <string>GroovyCharacteristic</string>
+                          <GroovyCharacteristic reference="../../../../voogasalad__GucciGames.gameEngine.mapObject.MapObject/myCharacteristics/entry/GroovyCharacteristic"/>
+                        </entry>
+                      </myCharacteristics>
+                      <myEvents/>
+                    </voogasalad__GucciGames.gameEngine.mapObject.MapObject>
+                    <voogasalad__GucciGames.gameEngine.mapObject.MapObject>
+                      <myCoordinate class="voogasalad_GucciGames.gameEngine.targetCoordinate.TargetCoordinateSingle">
+                        <myCenterX>0.0</myCenterX>
+                        <myCenterY>1.0</myCenterY>
+                      </myCoordinate>
+                      <myOwnerID>-1</myOwnerID>
+                      <myLayer>0</myLayer>
+                      <myName>tile</myName>
+                      <myImagePath>tiles/trippy.jpg</myImagePath>
+                      <myCharacteristics class="tree-map">
+                        <entry>
+                          <string>GroovyCharacteristic</string>
+                          <GroovyCharacteristic reference="../../../../voogasalad__GucciGames.gameEngine.mapObject.MapObject/myCharacteristics/entry/GroovyCharacteristic"/>
+                        </entry>
+                      </myCharacteristics>
+                      <myEvents/>
+                    </voogasalad__GucciGames.gameEngine.mapObject.MapObject>
+                    <voogasalad__GucciGames.gameEngine.mapObject.MapObject>
+                      <myCoordinate class="voogasalad_GucciGames.gameEngine.targetCoordinate.TargetCoordinateSingle">
+                        <myCenterX>1.0</myCenterX>
+                        <myCenterY>4.0</myCenterY>
+                      </myCoordinate>
+                      <myOwnerID>-1</myOwnerID>
+                      <myLayer>0</myLayer>
+                      <myName>tile</myName>
+                      <myImagePath>tiles/trippy.jpg</myImagePath>
+                      <myCharacteristics class="tree-map">
+                        <entry>
+                          <string>GroovyCharacteristic</string>
+                          <GroovyCharacteristic reference="../../../../voogasalad__GucciGames.gameEngine.mapObject.MapObject/myCharacteristics/entry/GroovyCharacteristic"/>
+                        </entry>
+                      </myCharacteristics>
+                      <myEvents/>
+                    </voogasalad__GucciGames.gameEngine.mapObject.MapObject>
+                    <voogasalad__GucciGames.gameEngine.mapObject.MapObject>
+                      <myCoordinate class="voogasalad_GucciGames.gameEngine.targetCoordinate.TargetCoordinateSingle">
+                        <myCenterX>2.0</myCenterX>
+                        <myCenterY>5.0</myCenterY>
+                      </myCoordinate>
+                      <myOwnerID>-1</myOwnerID>
+                      <myLayer>0</myLayer>
+                      <myName>tile</myName>
+                      <myImagePath>tiles/trippy.jpg</myImagePath>
+                      <myCharacteristics class="tree-map">
+                        <entry>
+                          <string>GroovyCharacteristic</string>
+                          <GroovyCharacteristic reference="../../../../voogasalad__GucciGames.gameEngine.mapObject.MapObject/myCharacteristics/entry/GroovyCharacteristic"/>
+                        </entry>
+                      </myCharacteristics>
+                      <myEvents/>
+                    </voogasalad__GucciGames.gameEngine.mapObject.MapObject>
+                    <voogasalad__GucciGames.gameEngine.mapObject.MapObject>
+                      <myCoordinate class="voogasalad_GucciGames.gameEngine.targetCoordinate.TargetCoordinateSingle">
+                        <myCenterX>1.0</myCenterX>
+                        <myCenterY>1.0</myCenterY>
+                      </myCoordinate>
+                      <myOwnerID>-1</myOwnerID>
+                      <myLayer>0</myLayer>
+                      <myName>tile</myName>
+                      <myImagePath>tiles/trippy.jpg</myImagePath>
+                      <myCharacteristics class="tree-map">
+                        <entry>
+                          <string>GroovyCharacteristic</string>
+                          <GroovyCharacteristic reference="../../../../voogasalad__GucciGames.gameEngine.mapObject.MapObject/myCharacteristics/entry/GroovyCharacteristic"/>
+                        </entry>
+                      </myCharacteristics>
+                      <myEvents/>
+                    </voogasalad__GucciGames.gameEngine.mapObject.MapObject>
+                    <voogasalad__GucciGames.gameEngine.mapObject.MapObject>
+                      <myCoordinate class="voogasalad_GucciGames.gameEngine.targetCoordinate.TargetCoordinateSingle">
+                        <myCenterX>0.0</myCenterX>
+                        <myCenterY>4.0</myCenterY>
+                      </myCoordinate>
+                      <myOwnerID>-1</myOwnerID>
+                      <myLayer>0</myLayer>
+                      <myName>tile</myName>
+                      <myImagePath>tiles/trippy.jpg</myImagePath>
+                      <myCharacteristics class="tree-map">
+                        <entry>
+                          <string>GroovyCharacteristic</string>
+                          <GroovyCharacteristic reference="../../../../voogasalad__GucciGames.gameEngine.mapObject.MapObject/myCharacteristics/entry/GroovyCharacteristic"/>
+                        </entry>
+                      </myCharacteristics>
+                      <myEvents/>
+                    </voogasalad__GucciGames.gameEngine.mapObject.MapObject>
+                    <voogasalad__GucciGames.gameEngine.mapObject.MapObject>
+                      <myCoordinate class="voogasalad_GucciGames.gameEngine.targetCoordinate.TargetCoordinateSingle">
+                        <myCenterX>2.0</myCenterX>
+                        <myCenterY>4.0</myCenterY>
+                      </myCoordinate>
+                      <myOwnerID>-1</myOwnerID>
+                      <myLayer>0</myLayer>
+                      <myName>tile</myName>
+                      <myImagePath>tiles/trippy.jpg</myImagePath>
+                      <myCharacteristics class="tree-map">
+                        <entry>
+                          <string>GroovyCharacteristic</string>
+                          <GroovyCharacteristic reference="../../../../voogasalad__GucciGames.gameEngine.mapObject.MapObject/myCharacteristics/entry/GroovyCharacteristic"/>
+                        </entry>
+                      </myCharacteristics>
+                      <myEvents/>
+                    </voogasalad__GucciGames.gameEngine.mapObject.MapObject>
+                    <voogasalad__GucciGames.gameEngine.mapObject.MapObject>
+                      <myCoordinate class="voogasalad_GucciGames.gameEngine.targetCoordinate.TargetCoordinateSingle">
+                        <myCenterX>2.0</myCenterX>
+                        <myCenterY>1.0</myCenterY>
+                      </myCoordinate>
+                      <myOwnerID>-1</myOwnerID>
+                      <myLayer>0</myLayer>
+                      <myName>tile</myName>
+                      <myImagePath>tiles/trippy.jpg</myImagePath>
+                      <myCharacteristics class="tree-map">
+                        <entry>
+                          <string>GroovyCharacteristic</string>
+                          <GroovyCharacteristic reference="../../../../voogasalad__GucciGames.gameEngine.mapObject.MapObject/myCharacteristics/entry/GroovyCharacteristic"/>
+                        </entry>
+                      </myCharacteristics>
+                      <myEvents/>
+                    </voogasalad__GucciGames.gameEngine.mapObject.MapObject>
+                    <voogasalad__GucciGames.gameEngine.mapObject.MapObject>
+                      <myCoordinate class="voogasalad_GucciGames.gameEngine.targetCoordinate.TargetCoordinateSingle">
+                        <myCenterX>0.0</myCenterX>
+                        <myCenterY>3.0</myCenterY>
+                      </myCoordinate>
+                      <myOwnerID>-1</myOwnerID>
+                      <myLayer>0</myLayer>
+                      <myName>tile</myName>
+                      <myImagePath>tiles/trippy.jpg</myImagePath>
+                      <myCharacteristics class="tree-map">
+                        <entry>
+                          <string>GroovyCharacteristic</string>
+                          <GroovyCharacteristic reference="../../../../voogasalad__GucciGames.gameEngine.mapObject.MapObject/myCharacteristics/entry/GroovyCharacteristic"/>
+                        </entry>
+                      </myCharacteristics>
+                      <myEvents/>
+                    </voogasalad__GucciGames.gameEngine.mapObject.MapObject>
+                    <voogasalad__GucciGames.gameEngine.mapObject.MapObject>
+                      <myCoordinate class="voogasalad_GucciGames.gameEngine.targetCoordinate.TargetCoordinateSingle">
+                        <myCenterX>1.0</myCenterX>
+                        <myCenterY>3.0</myCenterY>
+                      </myCoordinate>
+                      <myOwnerID>-1</myOwnerID>
+                      <myLayer>0</myLayer>
+                      <myName>tile</myName>
+                      <myImagePath>tiles/trippy.jpg</myImagePath>
+                      <myCharacteristics class="tree-map">
+                        <entry>
+                          <string>GroovyCharacteristic</string>
+                          <GroovyCharacteristic reference="../../../../voogasalad__GucciGames.gameEngine.mapObject.MapObject/myCharacteristics/entry/GroovyCharacteristic"/>
+                        </entry>
+                      </myCharacteristics>
+                      <myEvents/>
+                    </voogasalad__GucciGames.gameEngine.mapObject.MapObject>
+                    <voogasalad__GucciGames.gameEngine.mapObject.MapObject>
+                      <myCoordinate class="voogasalad_GucciGames.gameEngine.targetCoordinate.TargetCoordinateSingle">
+                        <myCenterX>0.0</myCenterX>
+                        <myCenterY>5.0</myCenterY>
+                      </myCoordinate>
+                      <myOwnerID>-1</myOwnerID>
+                      <myLayer>0</myLayer>
+                      <myName>tile</myName>
+                      <myImagePath>tiles/trippy.jpg</myImagePath>
+                      <myCharacteristics class="tree-map">
+                        <entry>
+                          <string>GroovyCharacteristic</string>
+                          <GroovyCharacteristic reference="../../../../voogasalad__GucciGames.gameEngine.mapObject.MapObject/myCharacteristics/entry/GroovyCharacteristic"/>
+                        </entry>
+                      </myCharacteristics>
+                      <myEvents/>
+                    </voogasalad__GucciGames.gameEngine.mapObject.MapObject>
+                    <voogasalad__GucciGames.gameEngine.mapObject.MapObject>
+                      <myCoordinate class="voogasalad_GucciGames.gameEngine.targetCoordinate.TargetCoordinateSingle">
+                        <myCenterX>3.0</myCenterX>
+                        <myCenterY>5.0</myCenterY>
+                      </myCoordinate>
+                      <myOwnerID>-1</myOwnerID>
+                      <myLayer>0</myLayer>
+                      <myName>tile</myName>
+                      <myImagePath>tiles/trippy.jpg</myImagePath>
+                      <myCharacteristics class="tree-map">
+                        <entry>
+                          <string>GroovyCharacteristic</string>
+                          <GroovyCharacteristic reference="../../../../voogasalad__GucciGames.gameEngine.mapObject.MapObject/myCharacteristics/entry/GroovyCharacteristic"/>
+                        </entry>
+                      </myCharacteristics>
+                      <myEvents/>
+                    </voogasalad__GucciGames.gameEngine.mapObject.MapObject>
+                    <voogasalad__GucciGames.gameEngine.mapObject.MapObject>
+                      <myCoordinate class="voogasalad_GucciGames.gameEngine.targetCoordinate.TargetCoordinateSingle">
+                        <myCenterX>0.0</myCenterX>
+                        <myCenterY>2.0</myCenterY>
+                      </myCoordinate>
+                      <myOwnerID>-1</myOwnerID>
+                      <myLayer>0</myLayer>
+                      <myName>tile</myName>
+                      <myImagePath>tiles/trippy.jpg</myImagePath>
+                      <myCharacteristics class="tree-map">
+                        <entry>
+                          <string>GroovyCharacteristic</string>
+                          <GroovyCharacteristic reference="../../../../voogasalad__GucciGames.gameEngine.mapObject.MapObject/myCharacteristics/entry/GroovyCharacteristic"/>
+                        </entry>
+                      </myCharacteristics>
+                      <myEvents/>
+                    </voogasalad__GucciGames.gameEngine.mapObject.MapObject>
+                    <voogasalad__GucciGames.gameEngine.mapObject.MapObject>
+                      <myCoordinate class="voogasalad_GucciGames.gameEngine.targetCoordinate.TargetCoordinateSingle">
+                        <myCenterX>0.0</myCenterX>
+                        <myCenterY>0.0</myCenterY>
+                      </myCoordinate>
+                      <myOwnerID>-1</myOwnerID>
+                      <myLayer>0</myLayer>
+                      <myName>tile</myName>
+                      <myImagePath>tiles/trippy.jpg</myImagePath>
+                      <myCharacteristics class="tree-map">
+                        <entry>
+                          <string>GroovyCharacteristic</string>
+                          <GroovyCharacteristic reference="../../../../voogasalad__GucciGames.gameEngine.mapObject.MapObject/myCharacteristics/entry/GroovyCharacteristic"/>
+                        </entry>
+                      </myCharacteristics>
+                      <myEvents/>
+                    </voogasalad__GucciGames.gameEngine.mapObject.MapObject>
+                    <voogasalad__GucciGames.gameEngine.mapObject.MapObject>
+                      <myCoordinate class="voogasalad_GucciGames.gameEngine.targetCoordinate.TargetCoordinateSingle">
+                        <myCenterX>3.0</myCenterX>
+                        <myCenterY>2.0</myCenterY>
+                      </myCoordinate>
+                      <myOwnerID>-1</myOwnerID>
+                      <myLayer>0</myLayer>
+                      <myName>tile</myName>
+                      <myImagePath>tiles/trippy.jpg</myImagePath>
+                      <myCharacteristics class="tree-map">
+                        <entry>
+                          <string>GroovyCharacteristic</string>
+                          <GroovyCharacteristic reference="../../../../voogasalad__GucciGames.gameEngine.mapObject.MapObject/myCharacteristics/entry/GroovyCharacteristic"/>
+                        </entry>
+                      </myCharacteristics>
+                      <myEvents/>
+                    </voogasalad__GucciGames.gameEngine.mapObject.MapObject>
+                    <voogasalad__GucciGames.gameEngine.mapObject.MapObject>
+                      <myCoordinate class="voogasalad_GucciGames.gameEngine.targetCoordinate.TargetCoordinateSingle">
+                        <myCenterX>3.0</myCenterX>
+                        <myCenterY>4.0</myCenterY>
+                      </myCoordinate>
+                      <myOwnerID>-1</myOwnerID>
+                      <myLayer>0</myLayer>
+                      <myName>tile</myName>
+                      <myImagePath>tiles/trippy.jpg</myImagePath>
+                      <myCharacteristics class="tree-map">
+                        <entry>
+                          <string>GroovyCharacteristic</string>
+                          <GroovyCharacteristic reference="../../../../voogasalad__GucciGames.gameEngine.mapObject.MapObject/myCharacteristics/entry/GroovyCharacteristic"/>
+                        </entry>
+                      </myCharacteristics>
+                      <myEvents/>
+                    </voogasalad__GucciGames.gameEngine.mapObject.MapObject>
+                    <voogasalad__GucciGames.gameEngine.mapObject.MapObject>
+                      <myCoordinate class="voogasalad_GucciGames.gameEngine.targetCoordinate.TargetCoordinateSingle">
+                        <myCenterX>1.0</myCenterX>
+                        <myCenterY>0.0</myCenterY>
+                      </myCoordinate>
+                      <myOwnerID>-1</myOwnerID>
+                      <myLayer>0</myLayer>
+                      <myName>tile</myName>
+                      <myImagePath>tiles/trippy.jpg</myImagePath>
+                      <myCharacteristics class="tree-map">
+                        <entry>
+                          <string>GroovyCharacteristic</string>
+                          <GroovyCharacteristic reference="../../../../voogasalad__GucciGames.gameEngine.mapObject.MapObject/myCharacteristics/entry/GroovyCharacteristic"/>
+                        </entry>
+                      </myCharacteristics>
+                      <myEvents/>
+                    </voogasalad__GucciGames.gameEngine.mapObject.MapObject>
+                    <voogasalad__GucciGames.gameEngine.mapObject.MapObject>
+                      <myCoordinate class="voogasalad_GucciGames.gameEngine.targetCoordinate.TargetCoordinateSingle">
+                        <myCenterX>3.0</myCenterX>
+                        <myCenterY>3.0</myCenterY>
+                      </myCoordinate>
+                      <myOwnerID>-1</myOwnerID>
+                      <myLayer>0</myLayer>
+                      <myName>tile</myName>
+                      <myImagePath>tiles/trippy.jpg</myImagePath>
+                      <myCharacteristics class="tree-map">
+                        <entry>
+                          <string>GroovyCharacteristic</string>
+                          <GroovyCharacteristic reference="../../../../voogasalad__GucciGames.gameEngine.mapObject.MapObject/myCharacteristics/entry/GroovyCharacteristic"/>
+                        </entry>
+                      </myCharacteristics>
+                      <myEvents/>
+                    </voogasalad__GucciGames.gameEngine.mapObject.MapObject>
+                  </myMapObjects>
                   <myCharacteristics>
                     <entry>
                       <string>numOfMoves</string>
@@ -60,24 +470,6 @@
                   <myMovable reference="../myCharacteristics/entry/voogasalad__GucciGames.gameEngine.gamePlayer.chars.PlayerMovesPerTurn"/>
                 </voogasalad__GucciGames.gameEngine.gamePlayer.GamePlayerPerson>
               </entry>
-              <entry>
-                <int>2</int>
-                <voogasalad__GucciGames.gameEngine.gamePlayer.GamePlayerPerson>
-                  <myPlayerId>2</myPlayerId>
-                  <myMapObjects/>
-                  <myCharacteristics>
-                    <entry>
-                      <string>numOfMoves</string>
-                      <voogasalad__GucciGames.gameEngine.gamePlayer.chars.PlayerMovesPerTurn>
-                        <myNumberOfMoves>1000</myNumberOfMoves>
-                        <moveCount>0</moveCount>
-                      </voogasalad__GucciGames.gameEngine.gamePlayer.chars.PlayerMovesPerTurn>
-                    </entry>
-                  </myCharacteristics>
-                  <myStatus>DRAW</myStatus>
-                  <myMovable reference="../myCharacteristics/entry/voogasalad__GucciGames.gameEngine.gamePlayer.chars.PlayerMovesPerTurn"/>
-                </voogasalad__GucciGames.gameEngine.gamePlayer.GamePlayerPerson>
-              </entry>
             </myMapOfPlayers>
           </myGamePlayers>
           <myCurrentTurnCounter>
@@ -90,9 +482,9 @@
             <myActivePlayer reference="../../myGamePlayers/myMapOfPlayers/entry[2]/voogasalad__GucciGames.gameEngine.gamePlayer.GamePlayerPerson"/>
           </myTurnDecider>
           <mapDimensions>0</mapDimensions>
-          <myMapWidth>0</myMapWidth>
-          <myMapHeight>0</myMapHeight>
-          <myName>Level 0</myName>
+          <myMapWidth>10</myMapWidth>
+          <myMapHeight>10</myMapHeight>
+          <myName>sadf</myName>
           <myChoosability>true</myChoosability>
           <hasLevelEnded>false</hasLevelEnded>
         </voogasalad__GucciGames.gameEngine.GameLevelEngine>
@@ -109,6 +501,8 @@
     <transferablePlayerCharacteristics>
       <string>PlayerScore</string>
     </transferablePlayerCharacteristics>
+    <isEndTurn>false</isEndTurn>
+    <playerID>0</playerID>
   </myEngine>
   <guiData>
     <myRightComponents class="java.util.Arrays$ArrayList">
