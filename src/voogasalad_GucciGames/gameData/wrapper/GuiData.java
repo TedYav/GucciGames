@@ -38,4 +38,8 @@ public class GuiData {
 	public List<String> getComponents(String location) {
 		return myComponents.get(location);
 	}
+	
+	public Map<String, List<String>> getComponentsMap() {
+		return myComponents;
+	}
 }
