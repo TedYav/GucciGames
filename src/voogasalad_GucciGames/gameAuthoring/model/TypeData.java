@@ -27,7 +27,6 @@ import voogasalad_GucciGames.gameAuthoring.model.factories.PlayerFactory;
 import voogasalad_GucciGames.gameEngine.gamePlayer.GamePlayerPerson;
 import voogasalad_GucciGames.gameEngine.gamePlayer.chars.APlayerChars;
 import voogasalad_GucciGames.gameEngine.mapObject.AMapObjectCharacteristic;
-import voogasalad_GucciGames.gameEngine.mapObject.MapObject;
 import voogasalad_GucciGames.gameEngine.objectActions.MapObjectEvent;
 
 public class TypeData implements IGameProperties {
@@ -93,40 +92,6 @@ public class TypeData implements IGameProperties {
 		tileTypes = FXCollections.observableArrayList();
 		unitTypes = FXCollections.observableArrayList();
 		structureTypes = FXCollections.observableArrayList();
-
-
-		//		characteristicFactory = new CharacteristicFactory();
-		//		MapObjectType type = new MapObjectType("student", "./", 0);
-		//		ObjParamValue objParamVal = new ObjParamValue(type);
-		//		objParamVal.setObjName("MovableCharacteristic" );
-		//		Map<String, String> map = new HashMap<>();
-		//		map.put("range", "1");
-		//		map.put("maxNumOfMoves", "4");
-		//		objParamVal.setParamValues(map);
-		//		try {
-		//			characteristicFactory.create(myMapObjectCharParams, objParamVal);
-		//		} catch (NoSuchMethodException e) {
-		//			// TODO Auto-generated catch block
-		//			e.printStackTrace();
-		//		} catch (SecurityException e) {
-		//			// TODO Auto-generated catch block
-		//			e.printStackTrace();
-		//		} catch (ClassNotFoundException e) {
-		//			// TODO Auto-generated catch block
-		//			e.printStackTrace();
-		//		} catch (InstantiationException e) {
-		//			// TODO Auto-generated catch block
-		//			e.printStackTrace();
-		//		} catch (IllegalAccessException e) {
-		//			// TODO Auto-generated catch block
-		//			e.printStackTrace();
-		//		} catch (IllegalArgumentException e) {
-		//			// TODO Auto-generated catch block
-		//			e.printStackTrace();
-		//		} catch (InvocationTargetException e) {
-		//			// TODO Auto-generated catch block
-		//			e.printStackTrace();
-		//		}
 
 	}
 
@@ -281,13 +246,6 @@ public class TypeData implements IGameProperties {
 		return new ArrayList<>(myActionParams.values());
 	}
 
-	public void changeOwner(MapObject mapObject, int playerID) {
-		int oldID = mapObject.getPlayerID();
-		mapOfPlayers.get(oldID).getMapObjects().remove(mapObject);
-		mapObject.setOwnerID(playerID);
-		mapOfPlayers.get(playerID).addMapObject(mapObject);
-	}
-
 	public Map<Integer, GamePlayerPerson> getMapOfPlayers() {
 		return mapOfPlayers;
 	}
@@ -318,7 +276,7 @@ public class TypeData implements IGameProperties {
 	}
 
 	public int getNumberOfPlayers() {
-		return mapOfPlayers.size();
+		return mapOfPlayers.size() - 1;
 	}
 
 }

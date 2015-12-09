@@ -3,8 +3,6 @@ package voogasalad_GucciGames.gameAuthoring.gui.gaedialog;
 import java.util.Properties;
 
 import voogasalad_GucciGames.gameAuthoring.IDialogGaeController;
-import voogasalad_GucciGames.gameAuthoring.properties.ObjectProperty;
-import voogasalad_GucciGames.gameAuthoring.properties.Property;
 /**
  * Data class that stores information for setting up and saving states from dialog
  * 

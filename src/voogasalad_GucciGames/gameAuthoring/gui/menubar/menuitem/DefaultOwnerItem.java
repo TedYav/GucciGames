@@ -18,23 +18,23 @@ class DefaultOwnerItem extends Menu {
 				controller.setDefaultOwner((int) newV.getUserData());
 			}
 		});
+		update(controller.getNumberOfPlayers());
 	}
 
 	private void update(int n) {
 		myGroup.getToggles().clear();
+		getItems().clear();
 		addItem(-1);
-		for (int i = 0; i < n; i++) {
-			RadioMenuItem item = addItem(i);
-			if (i == myController.getDefaultOwner())
-				item.setSelected(true);
-		}
+		for (int i = 0; i < n; i++)
+			addItem(i);
 	}
 
-	private RadioMenuItem addItem(int i) {
+	private void addItem(int i) {
 		RadioMenuItem item = new RadioMenuItem(i == -1 ? "Neutral" : "Player " + i);
 		item.setUserData(i);
 		item.setToggleGroup(myGroup);
 		getItems().add(item);
-		return item;
+		if (i == myController.getDefaultOwner())
+			item.setSelected(true);
 	}
 }
