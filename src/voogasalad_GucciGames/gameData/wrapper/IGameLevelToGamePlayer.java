@@ -11,6 +11,8 @@ public interface IGameLevelToGamePlayer {
 	public String getNextLevel();
 	
 	public boolean hasLevelEnded();
+	
+	public boolean getGameOver();
 
 	//public GameEngineToGamePlayerInterface getGameEngine();
 

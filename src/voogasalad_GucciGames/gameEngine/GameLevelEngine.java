@@ -54,6 +54,7 @@ public class GameLevelEngine implements IGameLevelToGamePlayer {
 		this.myNextLevelName = lname;
 	}
 	
+	@Override
 	public String getNextLevel(){
 		return this.myNextLevelName;
 	}
@@ -252,6 +253,13 @@ public class GameLevelEngine implements IGameLevelToGamePlayer {
 	
 	public void setGameStats(GameStats clazz){
 		this.myGameStats = clazz;
+	}
+	
+	public boolean getGameOver(){
+		if (getNextLevel() == ""){
+			return true;
+		}
+		return false;
 	}
 	
 }

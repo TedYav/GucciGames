@@ -10,4 +10,6 @@ public interface GameParametersInterface {
     public boolean isTurnEnded();
 
     public GameResultInterface getResults();
+    
+//    public boolean gameOver();
 }
