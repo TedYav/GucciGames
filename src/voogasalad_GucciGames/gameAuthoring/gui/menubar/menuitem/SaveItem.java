@@ -13,13 +13,14 @@ class SaveItem extends MenuItem {
 		super(name);
 		setAccelerator(KeyCombination.keyCombination("Ctrl+S"));
 		setOnAction(e -> {
-			FileChooser f = new FileChooser();
-			f.setInitialDirectory(new File("./src/voogasalad_GucciGames/gameData"));
-			f.getExtensionFilters().add(new ExtensionFilter("XML", "*.xml"));
-			f.setInitialFileName("gaeengine.xml");
-			File file = f.showSaveDialog(controller.getStage());
-			if(file!=null)
-				controller.saveToXML(file);
+			controller.saveToXML();
+//			FileChooser f = new FileChooser();
+//			f.setInitialDirectory(new File("./src/voogasalad_GucciGames/gameData"));
+//			f.getExtensionFilters().add(new ExtensionFilter("XML", "*.xml"));
+//			f.setInitialFileName("gaeengine.xml");
+//			File file = f.showSaveDialog(controller.getStage());
+//			if(file!=null)
+//				controller.saveToXML(file);
 		});
 	}
 }
