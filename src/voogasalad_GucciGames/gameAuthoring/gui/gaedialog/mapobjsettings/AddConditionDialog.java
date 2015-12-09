@@ -15,7 +15,7 @@ import voogasalad_GucciGames.gameAuthoring.model.MapObjectType;
 
 public class AddConditionDialog extends javafx.scene.control.Dialog<List<ObjParamValue>>{
 	
-	private ObjParamVBox objParamPane;
+	private AllObjParamPane objParamPane;
 	private OutcomeParamValue outcomeVal;
 	private MapObjectType type;
 	public AddConditionDialog(ISwitchSettingsPane controller, 
@@ -30,7 +30,7 @@ public class AddConditionDialog extends javafx.scene.control.Dialog<List<ObjPara
 			});
 		});
 		List<ObjParamValue> conditionParamValues = new ArrayList<ObjParamValue>();
-		objParamPane = new ObjParamVBox(controller , conditions, conditionParamValues, type);
+		objParamPane = new AllObjParamPane(controller , conditions, conditionParamValues, type);
 		this.getDialogPane().setContent(objParamPane);
 		
 		this.getDialogPane().getButtonTypes().addAll(save, ButtonType.CANCEL);
