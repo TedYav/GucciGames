@@ -11,6 +11,7 @@ import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
+import voogasalad_GucciGames.gameplayer.controller.GameControllerEngineInterface;
 import voogasalad_GucciGames.gameplayer.scenes.GameSceneManager;
 import voogasalad_GucciGames.gameplayer.windows.GameWindow;
 import voogasalad_GucciGames.gameplayer.windows.mainwindow.components.MenuAction;
@@ -33,6 +34,7 @@ public class NetworkConfigScene extends GameMenuScene {
                         hostIP=input.getText();
                         System.out.println("IP"+hostIP);
                         try {
+                        	getManager().getController().getEngine().setController((GameControllerEngineInterface) getManager().getController());
                             getManager().getController().getEngine().beClient(hostIP);
                             getManager().getController().loadDefaultLevel();
                             getManager().sceneFinished();
@@ -58,7 +60,8 @@ public class NetworkConfigScene extends GameMenuScene {
 	@Override
     protected Map<String, MenuAction> buildOptionMap() {
 		Map<String, MenuAction> optionMap = new LinkedHashMap<>();
-		optionMap.put("Host Game", () -> {getManager().getController().getEngine().beHost();
+		optionMap.put("Host Game", () -> {getManager().getController().getEngine().setController((GameControllerEngineInterface) getManager().getController());
+			getManager().getController().getEngine().beHost();
 											getManager().getController().loadDefaultLevel();
 										getManager().sceneFinished();});
                 optionMap.put("Join Game", () -> ipDialog.fire());
