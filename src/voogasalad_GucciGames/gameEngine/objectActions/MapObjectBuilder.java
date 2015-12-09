@@ -17,6 +17,11 @@ public class MapObjectBuilder {
 		mo.setCoordinate(params.getNewLocation());
 		ChangedParameters result = new ChangedParameters();
 		result.addUnit(mo);
+		
+		int myOwnerID = 		params.getCalledMe().getOwnerID();
+		
+		params.getEngine().getPlayers().getPlayerById(myOwnerID).addMapObject(mo);
+		
 		return result;
 	}
 	
