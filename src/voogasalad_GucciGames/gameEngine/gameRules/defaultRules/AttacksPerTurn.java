@@ -21,7 +21,7 @@ private static final String ATTACK_CHARACTERISTIC = "AttackCharacteristic";
 		if (communicationParams.getCalledMe().hasCharacteristic(ATTACK_CHARACTERISTIC)) {
 			AttackCharacteristic myAtkCharacteristic = (AttackCharacteristic) (communicationParams.getCalledMe()
 					.getCharacteristic(ATTACK_CHARACTERISTIC));
-			return myAtkCharacteristic.getMaxAttacks() > myAtkCharacteristic.getCurrentNumberOfAttacks();
+			return myAtkCharacteristic.getMaxNumberOfAttacks() > myAtkCharacteristic.getCurrentNumberOfAttacks();
 		}
 		return false;
 	}

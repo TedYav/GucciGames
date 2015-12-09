@@ -63,7 +63,7 @@ public abstract class Attack extends MapObjectEvent {
 		} else {
 			ac = new AttackCharacteristic();
 		}
-		double range = ac.getRange();
+		double range = ac.getAttackRange();
 
 		TargetCoordinateSingle caller = (TargetCoordinateSingle) calledMe.getCoordinate();
 
