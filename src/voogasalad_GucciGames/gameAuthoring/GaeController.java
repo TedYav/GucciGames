@@ -48,10 +48,9 @@ public class GaeController extends AGuiGaeController implements IModelGaeControl
 
 	public GaeController(Stage stage) {
 		myStage = stage;
-		myModel = new GAEModel(this);
 		myGui = new GAEGui(this, stage);
-		//(new SpriteBrowseDialog(myResManager)).show();
-		throwException(new IllegalAccessException("It's a nice day to have a nice day."));
+		myModel = new GAEModel(this);
+		
 	}
 	
 	private MapObjectType mySelectedType;

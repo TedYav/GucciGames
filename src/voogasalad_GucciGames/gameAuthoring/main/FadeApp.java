@@ -26,8 +26,8 @@ public class FadeApp extends Application {
     private ProgressBar loadProgress;
     private Label progressText;
     private Stage mainStage;
-    private static final int SPLASH_WIDTH = 676;
-    private static final int SPLASH_HEIGHT = 227;
+    private static final int SPLASH_WIDTH = 1200;
+    private static final int SPLASH_HEIGHT = 800;
 
     public static void main(String[] args) throws Exception {
         launch(args);
@@ -44,17 +44,17 @@ public class FadeApp extends Application {
         splashLayout = new VBox();
         splashLayout.getChildren().addAll(splash, loadProgress, progressText);
         progressText.setAlignment(Pos.CENTER);
-        splashLayout.setStyle(
-                "-fx-padding: 5; " +
-                "-fx-background-color: cornsilk; " +
-                "-fx-border-width:5; " +
-                "-fx-border-color: " +
-                    "linear-gradient(" +
-                        "to bottom, " +
-                        "chocolate, " +
-                        "derive(chocolate, 50%)" +
-                    ");"
-        );
+//        splashLayout.setStyle(
+//                "-fx-padding: 5; " +
+//                "-fx-background-color: cornsilk; " +
+//                "-fx-border-width:5; " +
+//                "-fx-border-color: " +
+//                    "linear-gradient(" +
+//                        "to bottom, " +
+//                        "chocolate, " +
+//                        "derive(chocolate, 50%)" +
+//                    ");"
+//        );
         splashLayout.setEffect(new DropShadow());
     }
 
@@ -74,13 +74,13 @@ public class FadeApp extends Application {
 
                 updateMessage("Finding friends . . .");
                 for (int i = 0; i < availableFriends.size(); i++) {
-                    Thread.sleep(10);
+                    Thread.sleep(400);
                     updateProgress(i + 1, availableFriends.size());
                     String nextFriend = availableFriends.get(i);
                     foundFriends.add(nextFriend);
                     updateMessage("Finding friends . . . found " + nextFriend);
                 }
-                Thread.sleep(10);
+                Thread.sleep(400);
                 updateMessage("All friends found.");
 
                 return foundFriends;
@@ -135,24 +135,11 @@ public class FadeApp extends Application {
 
         Scene splashScene = new Scene(splashLayout);
         initStage.initStyle(StageStyle.UNDECORATED);
-        final Rectangle2D bounds = Screen.getPrimary().getBounds();
+        //final Rectangle2D bounds = Screen.getPrimary().getBounds();
         initStage.setScene(splashScene);
-        initStage.setX(bounds.getMinX() + bounds.getWidth() / 2 - SPLASH_WIDTH / 2);
-        initStage.setY(bounds.getMinY() + bounds.getHeight() / 2 - SPLASH_HEIGHT / 2);
+        //initStage.setX(bounds.getMinX() + bounds.getWidth() / 2 - SPLASH_WIDTH / 2);
+        //initStage.setY(bounds.getMinY() + bounds.getHeight() / 2 - SPLASH_HEIGHT / 2);
         initStage.show();
-        Stage stage = new Stage();
-        GridPane pane = new GridPane();
-        pane.setPrefSize(100, 100);
-        pane.setMaxSize(100, 100);
-        stage.setScene(new Scene(pane));
-        stage.show();
-        ImageView viewer = new ImageView();
-        viewer.setImage(new Image("http://fxexperience.com/wp-content/uploads/2010/06/logo.png"));
-        ImageView viewer1 = new ImageView();
-        viewer1.setImage(new Image("http://fxexperience.com/wp-content/uploads/2010/06/logo.png"));
-        pane.add(viewer, 0, 0);
-        pane.add(viewer1, 0, 1);
-        
     }
 
     public interface InitCompletionHandler {
