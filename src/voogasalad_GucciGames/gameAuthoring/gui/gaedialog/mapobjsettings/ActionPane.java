@@ -132,6 +132,7 @@ public class ActionPane extends GridPane {
 			outcomeNames.add(outcomeDialog.showAndWait().get());
 			
 			ObjParam selectedOutcomeParam = controller.getPropertiesInterface().getSelectedOutcomes(outcomeNames).get(0);
+			System.out.println("Selected outcome: " + selectedOutcomeParam.getName());
 			OutcomeParamsDialog outcomeParamsDialog = 
 					new OutcomeParamsDialog(selectedOutcomeParam);
 			// Dialog to select outcome parameters
@@ -140,14 +141,21 @@ public class ActionPane extends GridPane {
 			
 			if(paramValue != null){
 				// If valid parameters are selected, create new outcomeParamValue
+			
 				outcomeParamValue =
-						new OutcomeParamValue(selected, type, outcomeParamsDialog.getResult());
+						new OutcomeParamValue(selectedOutcomeParam.getName(), type, paramValue);
 				// add condition to outcomeParamValue
 				AddConditionToOutcomeDialog addConditionDialog = new AddConditionToOutcomeDialog(controller);
 				List<ObjParamValue> conditionParamValue = addConditionDialog.showAndWait().get() ;
 				if(conditionParamValue != null){
 					//condition parameters set
 					outcomeParamValue.setConditions(conditionParamValue);
+					outcomeParamValue.getConditions().forEach(cond -> {
+						System.out.println("condition: " + cond.getName());
+						cond.getParamValues().forEach((k ,v ) -> {
+							System.out.println("condition k: " + k + "condition v: " + v);
+						});
+					});
 				}
 			}
 			this.actionParamsValue.addOutcome(outcomeParamValue);
