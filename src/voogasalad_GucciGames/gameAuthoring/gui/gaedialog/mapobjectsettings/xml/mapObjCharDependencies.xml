@@ -33,4 +33,9 @@
 		 paramNames="range"
 		 paramTypes="int">	
 	</element>
+		<element
+		 name="Soldier"
+		 paramNames="soldier"
+		 paramTypes="boolean">	
+	</element>
 </characteristicDependencies>
