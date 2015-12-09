@@ -39,7 +39,6 @@ public class FontManager {
 	}
 	
 	public Font getFont(String name, double size) throws ResourceException{
-		System.out.println("Loading Font: " + name);
 		if(myConfig.getString(name)==null)
 			throw new ResourceException("Error: font " + name + " not found.");
 		Font f = Font.font("Verdana");

@@ -56,4 +56,6 @@ public interface GameControllerInterface{
 	public ResourceManager getResource();
 	public void loadDefaultLevel();
 	public void loadNextLevel();
+	public void loadLevel(String levelName);
+	public GameParametersInterface getEndLevelParams();
 }

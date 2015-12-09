@@ -21,7 +21,7 @@ public class ResultsScreen extends WindowComponent {
 
 	private Map<String, String> myInformation;
 	private String myTitle;
-	private Text myTitleText;
+	protected Text myTitleText;
 	
 	private StackPane myParent;
 	private VBox myTextBox;
@@ -52,7 +52,6 @@ public class ResultsScreen extends WindowComponent {
 		drawInformation();
 		drawEnd();
 		startAnimation();
-		startHandler();
 	}
 	
 	private void startAnimation() {
@@ -65,10 +64,6 @@ public class ResultsScreen extends WindowComponent {
 	private void flash(Text text) {
 		flashIndex++;
 		text.setFill(Color.web(PlayerConfig.getResourceNumber(myConfig, "FlashColor", flashIndex%maxFlashIndex)));
-	}
-
-	private void startHandler() {
-		myParent.addEventFilter(KeyEvent.ANY, (e) -> getController().loadNextLevel());
 	}
 
 	private void drawEnd() {
@@ -110,11 +105,11 @@ public class ResultsScreen extends WindowComponent {
 		myParent = new StackPane();
 		myTextBox = new VBox();
 		myParent.getChildren().addAll(myTextBox);
+		setParent(myParent);
 	}
 	
 	private void drawTitle() {
 		myTitleText = new Text(myTitle);
-		myTitleText.getStyleClass().addAll( "results-title", "gametext");
 		myTextBox.getChildren().add(myTitleText);
 	}
 

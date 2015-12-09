@@ -21,7 +21,7 @@ import voogasalad_GucciGames.gameplayer.windows.GameWindowManager;
 import voogasalad_GucciGames.gameplayer.windows.mainwindow.map.MapInterface;
 import voogasalad_GucciGames.helpers.ResourceManager;
 
-public class GameController implements GameControllerInterface, GameControllerAdvancedInterface, GameControllerLoader {
+public class GameController implements GameControllerInterface, GameControllerAdvancedInterface, GameControllerLoader, GameControllerEngineInterface {
 
 	private GameWindowManager myManager;
 	private GameSceneManager mySceneManager;
@@ -37,6 +37,8 @@ public class GameController implements GameControllerInterface, GameControllerAd
 	private PlayerMapObjectInterface activeMapObject;
 	private List<Observer> activeMOObservers;
 	private List<TargetCoordinateSingle> possibleMoves;
+	
+	private GameParametersInterface endLevelParams;
 
 	private GameLoader myLoader;
 
@@ -57,7 +59,7 @@ public class GameController implements GameControllerInterface, GameControllerAd
 		myCurrentEngine.setController(this);
 		loadLevel("1");
 	}
-   
+
 	@Override
     public void loadGameSave(GamePlayerSave game){
        System.out.println("LOADGAMESAVE");
@@ -66,7 +68,7 @@ public class GameController implements GameControllerInterface, GameControllerAd
             loadLevel(game.getCurrentLevel());
    }
 
-	private void loadLevel(String levelID){
+	public void loadLevel(String levelID){
 		if(myGame.getLevels().containsKey(levelID)){
 			System.out.println("level changed");
 		    myCurrentEngine.changeCurrentLevel(levelID);
@@ -147,14 +149,9 @@ public class GameController implements GameControllerInterface, GameControllerAd
 	        GameParametersInterface params = myCurrentEngine.endTurn();
 	        myManager.refresh();
 	        myCurrentEngine.getCurrentLevel().getLevelName();
-	        if(myCurrentEngine.hasLevelEnded()){
-	        	
-	        }
-	        GameResultInterface result = params.getResults();
-	        result.getEachPlayerConditions().get(1);
 	        if(myCurrentEngine.getCurrentLevel().hasLevelEnded()){
-	        	
-	        	
+	        	endLevelParams = params;
+	        	mySceneManager.sceneFinished();
 	        }
 	}
 
@@ -235,4 +232,10 @@ public class GameController implements GameControllerInterface, GameControllerAd
 		// TODO Auto-generated method stub
 		
 	}
+	
+	@Override
+	public GameParametersInterface getEndLevelParams() {
+		return endLevelParams;
+	}
+
 }

@@ -217,6 +217,7 @@ public class TypeData implements IGameProperties {
 	@Override
 	public void addPlayerCharacteristic(int playerID, ObjParamValue param) {
 		try {
+			System.out.println(playerID + " HI");
 			mapOfPlayers.get(playerID).addCharacterstic(param.getName(), (APlayerChars)playerCharacteristicFactory.create(myPlayerCharParams, param));
 		} catch (NoSuchMethodException | SecurityException | ClassNotFoundException | InstantiationException
 				| IllegalAccessException | IllegalArgumentException | InvocationTargetException e) {

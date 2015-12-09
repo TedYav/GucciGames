@@ -28,7 +28,6 @@ public class GActionParams extends AGroovyParams {
 	}
 
 	public void setRequest(String request) {
-		System.out.println("request: " + request);
 
 		this.request = request;
 	}

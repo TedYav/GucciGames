@@ -3,8 +3,8 @@ package voogasalad_GucciGames.gameEngine.defaultCharacteristics;
 import voogasalad_GucciGames.gameEngine.mapObject.AMapObjectCharacteristic;
 
 public class MovableCharacteristic extends AMapObjectCharacteristic{
-	private int myNumberOfMoves = 1;// by default each  map object can move once per turn.
-	private double myRange = 1;
+	private int NumberOfMoves = 1;// by default each  map object can move once per turn.
+	private double MoveRange = 1;
 
 
 	public MovableCharacteristic(){
@@ -12,22 +12,16 @@ public class MovableCharacteristic extends AMapObjectCharacteristic{
 	}
 
 	public MovableCharacteristic(double range, int maxNumOfMoves){
-		myRange = range;
-		myNumberOfMoves = maxNumOfMoves;
+		MoveRange = range;
+		NumberOfMoves = maxNumOfMoves;
 	}
 
 	public int getNumberOfMoves() {
-		return myNumberOfMoves;
+		return NumberOfMoves;
 	}
 
-	public double getRange() {
-		return myRange;
-	}
-
-	@Override
-	public String toString() {
-		// TODO Auto-generated method stub
-		return "Range = " + myRange;
+	public double getMoveRange() {
+		return MoveRange;
 	}
 
 

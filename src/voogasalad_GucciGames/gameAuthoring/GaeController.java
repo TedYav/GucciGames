@@ -16,6 +16,7 @@ import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
 import voogasalad.util.fxsprite.Sprite;
 import voogasalad_GucciGames.gameAuthoring.gui.GAEGui;
+import voogasalad_GucciGames.gameAuthoring.gui.WelcomeScreen;
 import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.paramObjects.ActionParamsValue;
 import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.maindialogs.ImageBrowseDialogs;
 import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.paramObjects.GameSettingParams;
@@ -47,10 +48,9 @@ public class GaeController extends AGuiGaeController implements IModelGaeControl
 
 	public GaeController(Stage stage) {
 		myStage = stage;
-		myModel = new GAEModel(this);
 		myGui = new GAEGui(this, stage);
-		//(new SpriteBrowseDialog(myResManager)).show();
-		throwException(new IllegalAccessException("It's a nice day to have a nice day."));
+		myModel = new GAEModel(this);
+		
 	}
 	
 	private MapObjectType mySelectedType;
@@ -211,7 +211,6 @@ public class GaeController extends AGuiGaeController implements IModelGaeControl
 		myResManager.loadGame(name);
 		myResManager.toggleCopyOnAccess(true);
 		myImageBrowseDialogs = new ImageBrowseDialogs(myResManager);
-		//System.out.println(myResManager.getImages("units"));
 	}
 
 	@Override
@@ -245,11 +244,11 @@ public class GaeController extends AGuiGaeController implements IModelGaeControl
 		return myModel.getPropertiesInterface();
 	}
 
-//	@Override
-//	public void addPlayerCharacteristic(int playerID, ObjParamValue param) {
-//		myModel.addPlayerCharacteristic(playerID, param);
-//	}
-//
+	@Override
+	public void addPlayerCharacteristic(int playerID, ObjParamValue param) {
+		myModel.addPlayerCharacteristic(playerID, param);
+	}
+
 //	@Override
 //	public void addMapObjectCharacteristic(MapObjectType type, ObjParamValue param) {
 //		myModel.addMapObjectCharacteristic(type, param);
