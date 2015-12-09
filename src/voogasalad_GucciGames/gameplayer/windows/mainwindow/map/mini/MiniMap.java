@@ -47,6 +47,7 @@ public class MiniMap extends DisplayComponent implements MiniMapInterface, Obser
 	
 	public MiniMap(GameScene scene, GameControllerInterface controller) {
 		super(scene, controller);
+		
 		initializeVariables();
 		initializePanes();
 		initializeMap();

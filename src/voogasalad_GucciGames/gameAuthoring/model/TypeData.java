@@ -80,23 +80,13 @@ public class TypeData implements IGameProperties {
     	}
 
     	mapOfPlayers = new HashMap<>();
-
-
+    	// add neutral player
+		mapOfPlayers.put(-1, new GamePlayerPerson(-1));
+		
+		
 		tileTypes = FXCollections.observableArrayList();
 		unitTypes = FXCollections.observableArrayList();
 		structureTypes = FXCollections.observableArrayList();
-
-		MapObjectType objType = new MapObjectType("Tile1", "tiles/water.jpg", 0);
-		MapObjectType objType2 = new MapObjectType("Tile2", "tiles/sand.jpg", 0);
-
-		tileTypes.add(objType);
-		tileTypes.add(objType2);
-
-    	// Probs need to change this
-		mapOfPlayers.put(-1, new GamePlayerPerson(-1));
-		mapOfPlayers.put(0, new GamePlayerPerson(0));
-		mapOfPlayers.put(1, new GamePlayerPerson(1));
-		mapOfPlayers.put(2, new GamePlayerPerson(2));
 
 
 //		characteristicFactory = new CharacteristicFactory();
@@ -279,6 +269,16 @@ public class TypeData implements IGameProperties {
 	public void addGroovyAction(GActionParams param) {
 		// TODO Auto-generated method stub
 
+	}
+
+	public void setNumberOfPlayers(int n) {
+		for (int i = 0; i < n; i ++) {
+			mapOfPlayers.put(n, new GamePlayerPerson(n));
+		}
+	}
+
+	public int getNumberOfPlayers() {
+		return mapOfPlayers.size();
 	}
 
 }

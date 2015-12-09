@@ -24,20 +24,24 @@ public class GameInfoFactory {
 
 	public GameInfo create(TypeData typeData, 
 			LevelData levelData, GuiData guiData) {
-		Map<Integer, MapData> map = levelData.getMap();
-		List<GameLevelEngine> levels = new ArrayList<GameLevelEngine>();
-		for (int levelid: map.keySet()) {
-			levels.add(makeLevelEngine(typeData.getMapOfPlayers(), typeData, map.get(levelid)));
+		
+		GameInfo game = new GameInfo("GAETestGame");
+		
+		game.setGuiData(guiData);
+		
+				
+		Map<Integer, MapData> levelMap = levelData.getMap();
+		for (int levelid: levelMap.keySet()) {
+			MapData level = levelMap.get(levelid);
+			game.getGameEngine().addLevel(level.getName(),makeLevel(typeData.getMapOfPlayers(), typeData, level));
 		}
-		GameInfo game = new GameInfo();
 		
 		return game;
-		
 	}
 
-	private GameLevelEngine makeLevelEngine(Map<Integer, GamePlayerPerson> mapOfPlayers, 
+	private GameLevelEngine makeLevel(Map<Integer, GamePlayerPerson> mapOfPlayers, 
 			TypeData typeData, MapData mapData) {
-		HashMap copyMapOfPlayers = new HashMap<>(mapOfPlayers);
+		Map<Integer, GamePlayerPerson> copyMapOfPlayers = new HashMap<>(mapOfPlayers);
 		for (DisplayMapObject obj: mapData.getMapObjects()) {
 			MapObjectType type = obj.getType();
 			List<AMapObjectCharacteristic> characteristics = type.getCharacteristics();
@@ -46,17 +50,24 @@ public class GameInfoFactory {
 					obj.getCoordinate().getY());
 			MapObject mapObject = new MapObject(coord, obj.getOwnerID(), 
 					type.getLayer(), type.getName(), type.getImagePath());
+			System.out.println("loading characteristics: " + characteristics.size()  + " " + characteristics);
+			System.out.println("loading events: " + events.size() + "  " + events);
 			characteristics.stream().forEach(a -> {
 				mapObject.addCharacteristic(a.getClass().getSimpleName(), a);
 			});
-//			events.stream().forEach(a -> {
-//				mapObject.addEvent(a.getClass().getSimpleName(), a);
-//			});
-			copyMapOfPlayers.get(obj.getOwnerID());
+			events.stream().forEach(a -> {
+				mapObject.addEvent(a.getClass().getSimpleName(), a);
+			});
+			copyMapOfPlayers.get(obj.getOwnerID()).addMapObject(mapObject);
 			
 		}
 		AllPlayers allplayers = new AllPlayers(copyMapOfPlayers);
-		return new GameLevelEngine(allplayers);
+		GameLevelEngine level = new GameLevelEngine(allplayers);
+		
+		level.setMapHeight(mapData.getHeight());
+		level.setMapWidth(mapData.getWidth());
+		level.setMyChoosability(true);
+		return level;
 		
 	}
 

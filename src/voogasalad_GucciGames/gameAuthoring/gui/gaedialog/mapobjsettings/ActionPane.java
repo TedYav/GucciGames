@@ -23,7 +23,13 @@ import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.dialogcomponents.TableE
 import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.maindialogs.GaeDialogHelper;
 import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.maindialogs.ISwitchSettingsPane;
 import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.mapobjectsettings.xml.ActionSAXHandler;
+import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.mapobjsettings.actionsubdialogs.AddConditionToOutcomeDialog;
+import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.mapobjsettings.actionsubdialogs.OutcomeDialog;
+import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.mapobjsettings.actionsubdialogs.OutcomeParamsDialog;
 import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.paramObjects.ActionParamsValue;
+import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.paramObjects.ObjParam;
+import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.paramObjects.ObjParamValue;
+import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.paramObjects.OutcomeParamValue;
 import voogasalad_GucciGames.gameAuthoring.model.MapObjectType;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -58,22 +64,23 @@ public class ActionPane extends GridPane {
 	private Button addRuleBtn = new Button("Add Rule");
 	private MapObjectType type;
 	private ActionParamsValue actionParamsValue;
+	private List<ObjParamValue> charParamValues;
 	
 	private ObservableList<TableElement> data;
 	
 	public ActionPane(ISwitchSettingsPane switchPaneInterface, 
-			IDialogGaeController controller,Properties prop, MapObjectType type, ActionParamsValue actionParamsValue){
+			IDialogGaeController controller,Properties prop, 
+			MapObjectType type, ActionParamsValue actionParamsValue){
 		super();
+		this.charParamValues = new ArrayList<ObjParamValue>();
 		this.type = type;
 		this.switchPaneInterface = switchPaneInterface;	
 		this.prop = prop;
 		this.controller = controller;
 		this.actionParamsValue = actionParamsValue;
-		
-		//TODO: get all actions
-		
+
 		List<String> items = new ArrayList<String>();
-				//helper.parseStringToList(prop, "action_items");
+
 		
 		controller.getPropertiesInterface().getAllActions().forEach(e -> {
 			items.add(e.getName());
@@ -83,8 +90,8 @@ public class ActionPane extends GridPane {
 		
 		textField.setText(selected);
 		textField.setDisable(true);
-		addActionToNextBtn();
 		addActionToAddBtn();
+		addActionToNextBtn();	
 		setLayout();
 		
 	}
@@ -105,15 +112,58 @@ public class ActionPane extends GridPane {
 
 	private void addActionToNextBtn(){				
 		addOutConBtn.setOnAction(e -> {
-			ConditionOutcomeDialog d = new ConditionOutcomeDialog(controller, switchPaneInterface, type, this.actionParamsValue);
-			d.showAndWait();
-
+			//ConditionOutcomeDialog d = new ConditionOutcomeDialog(controller, switchPaneInterface, type, this.actionParamsValue);
+			//d.showAndWait();
+			selected = dropDown.getSelectionModel().getSelectedItem();
+			this.actionParamsValue.setName(selected);
+			
+			List<String> outcomes = new ArrayList<String>();
+			
+			controller.getPropertiesInterface().getAllOutcomes().forEach(p -> {
+				outcomes.add(p.getName());
+			});
+			
+			
+			// Dialog to select outcome to add
+			
+			
+			OutcomeDialog outcomeDialog = new OutcomeDialog(controller, outcomes, type);				
+			List<String> outcomeNames = new ArrayList<String>();
+			outcomeNames.add(outcomeDialog.showAndWait().get());
+			
+			ObjParam selectedOutcomeParam = controller.getPropertiesInterface().getSelectedOutcomes(outcomeNames).get(0);
+			OutcomeParamsDialog outcomeParamsDialog = 
+					new OutcomeParamsDialog(selectedOutcomeParam);
+			// Dialog to select outcome parameters
+			ObjParamValue paramValue = outcomeParamsDialog.showAndWait().get();
+			OutcomeParamValue outcomeParamValue = null;
+			
+			if(paramValue != null){
+				// If valid parameters are selected, create new outcomeParamValue
+				outcomeParamValue =
+						new OutcomeParamValue(selected, type, outcomeParamsDialog.getResult());
+				// add condition to outcomeParamValue
+				AddConditionToOutcomeDialog addConditionDialog = new AddConditionToOutcomeDialog(controller);
+				List<ObjParamValue> conditionParamValue = addConditionDialog.showAndWait().get() ;
+				if(conditionParamValue != null){
+					//condition parameters set
+					outcomeParamValue.setConditions(conditionParamValue);
+				}
+			}
+			this.actionParamsValue.addOutcome(outcomeParamValue);
+			
+			
+			
 		});
 		
 		addCharBtn.setOnAction(e -> {
 			//new dialog for characteristics
-			AddCharacteristicDialog addCharDialog  = new AddCharacteristicDialog(controller, type, this.actionParamsValue);
+			AddCharacteristicDialog addCharDialog  = new AddCharacteristicDialog(controller, type, this.actionParamsValue, this.charParamValues);
 			addCharDialog.showAndWait();
+			this.charParamValues.forEach(p -> {
+				this.actionParamsValue.addCharacteristics(p);
+			});
+			
 		});
 		
 		addRuleBtn.setOnAction(e -> {
@@ -125,13 +175,14 @@ public class ActionPane extends GridPane {
 			AddRuleDialog ruleDialog = new AddRuleDialog(rules, this.actionParamsValue);
 			ruleDialog.showAndWait();
 		});
+		
 	}
 	
 	private void addActionToAddBtn(){
 		
 		addBtn.setOnAction(e -> {
 			selected = dropDown.getSelectionModel().getSelectedItem();
-			System.out.println("selected: " + selected);
+			System.out.println("selected action: " + selected);
 			this.textField.setText(selected);
 			this.actionParamsValue.setName(selected);
 
