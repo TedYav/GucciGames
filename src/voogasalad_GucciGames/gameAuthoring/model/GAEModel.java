@@ -84,16 +84,18 @@ public class GAEModel implements IGAEModel{
     @Override
 	public ObservableList<MapObjectType> getImmutableStructureTypes() {
 		return typeData.getImmutableStructureTypes();
-	}
-    
+    }
+
 
     private void saveToXML (GameInfo game) {    	
     	XStreamGameEngine saver = new XStreamGameEngine();
     	GroovyLoaderData gLoaderData = new GroovyLoaderData(typeData.getGroovyActionParams(),typeData.getGroovyMapObjectCharParams());
     	saver.saveGameLoader(gLoaderData,game);
-	saver.saveGameInfo(game);
+    	saver.saveGameInfo(game);
+    	typeData.cleanSave();
+
     }
-    
+
     public void saveToXML() {
 //      AllPlayers myPlayers = new AllPlayers(mapOfPlayers);
 //      MainGameEngine engine = new MainGameEngine(myPlayers);
