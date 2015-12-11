@@ -76,7 +76,6 @@ public class GameLoader {
     		//mySelectedGame = "";
     	}
     	else{
-    		System.out.println("WWWWWWWWWW");
     		throw new GameDataException("No game selected to load");
     	}
     }

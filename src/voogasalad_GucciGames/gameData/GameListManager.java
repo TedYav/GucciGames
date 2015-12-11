@@ -35,14 +35,13 @@ public class GameListManager {
     
     public void addGame(String gameName, String gameFile){
     	//System.err.println("ERROR: add games manually for now plz :) -> add this to XML FILE\n" + gameName + "\n" + gameFile);
-        System.out.println("addgame started");
+        //System.out.println("addgame started");
     	for (String s: listGames()) {
     	    if (s.equals(gameName)) {
-    	        System.out.println(gameName+" already added");
+    	        //System.out.println(gameName+" already added");
     	        return;
     	    }
     	}
-    	System.out.println("passed");
     	Element root = myDoc.getDocumentElement();
     	Element game = myDoc.createElement("game");
     	Element name = myDoc.createElement("name");

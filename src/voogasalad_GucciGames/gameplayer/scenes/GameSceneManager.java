@@ -55,7 +55,7 @@ public class GameSceneManager implements SceneManager{
 	}
 		
 	public void sceneFinished(){
-		System.out.println(myCurrentScene.getNext());
+		//System.out.println(myCurrentScene.getNext());
 		myCurrentScene = myScenes.get(myCurrentScene.getNext());
 		myCurrentScene.load();
 	}

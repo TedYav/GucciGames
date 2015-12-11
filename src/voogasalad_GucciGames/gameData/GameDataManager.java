@@ -154,7 +154,6 @@ public class GameDataManager implements GameDataInterface {
 
 	private void recopyResources(String oldName, String newName) {
 		for(String URI : myAccessedResources){
-			System.out.println("copying: " + URI + " TO " + newName);
 			copyResource(URI, newName, getGamePath(oldName) + myConfig.getString("ResourcePath"));
 		}
 	}
