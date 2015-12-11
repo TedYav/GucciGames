@@ -1,11 +1,6 @@
 package groovy;
 
-import org.codehaus.groovy.ant.Groovy;
-import org.codehaus.groovy.control.customizers.ImportCustomizer;
-
-import groovy.lang.Binding;
 import groovy.lang.GroovyClassLoader;
-import groovy.lang.GroovyShell;
 
 public class GroovyTest {
 

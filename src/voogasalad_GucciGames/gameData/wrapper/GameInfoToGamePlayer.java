@@ -2,6 +2,7 @@ package voogasalad_GucciGames.gameData.wrapper;
 
 import java.util.List;
 import java.util.Map;
+
 import voogasalad_GucciGames.gameEngine.GameEngineToGamePlayerInterface;
 
 public interface GameInfoToGamePlayer {

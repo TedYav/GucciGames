@@ -4,12 +4,10 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
-import voogasalad.util.reflection.Reflection;
+import javafx.scene.layout.GridPane;
 import voogasalad_GucciGames.gameAuthoring.IDialogGaeController;
 import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.groovySettings.groovyParams.AGroovyParams;
 import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.groovySettings.groovyParams.GOutcomeParams;
-import javafx.scene.control.Button;
-import javafx.scene.layout.GridPane;
 
 public class OutcomePane extends GridPane implements IDependencies {
 	private List<String> attributes = new ArrayList<String>();

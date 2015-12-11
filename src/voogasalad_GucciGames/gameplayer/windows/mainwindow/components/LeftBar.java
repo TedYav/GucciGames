@@ -2,7 +2,7 @@ package voogasalad_GucciGames.gameplayer.windows.mainwindow.components;
 
 import java.util.List;
 import java.util.ResourceBundle;
-import javafx.scene.Parent;
+
 import javafx.scene.layout.VBox;
 import voogasalad_GucciGames.gameplayer.config.PlayerConfig;
 import voogasalad_GucciGames.gameplayer.controller.GameControllerInterface;

@@ -1,7 +1,7 @@
 package voogasalad_GucciGames.gameData.wrapper;
 
-import java.util.HashMap;
 import java.util.Map;
+
 import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.groovySettings.groovyParams.GActionParams;
 import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.groovySettings.groovyParams.GCharParam;
 

@@ -25,8 +25,8 @@ public abstract class GameEnginePlayer implements Runnable {
 	public void updateGameEngine(String engineXML) {
 		XStream xstream = new XStream(new DomDriver());
 		setMyEngine((GameLevelEngine) xstream.fromXML(engineXML));
-		System.out.println(getMyEngine().getLevelName());
-		System.out.println("level stuff");
+		//System.out.println(getMyEngine().getLevelName());
+		//System.out.println("level stuff");
 		this.getMySuperEngine().setLevel(getMyEngine().getLevelName(), getMyEngine());
 		this.getMySuperEngine().refreshGUI();
 

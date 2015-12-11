@@ -1,8 +1,6 @@
 package voogasalad_GucciGames.gameData.wrapper;
 
-import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 import voogasalad_GucciGames.gameEngine.gamePlayer.chars.APlayerChars;

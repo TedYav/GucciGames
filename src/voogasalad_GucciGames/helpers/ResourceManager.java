@@ -9,7 +9,6 @@ import javafx.scene.paint.Color;
 import voogasalad.util.fxsprite.Sprite;
 import voogasalad_GucciGames.gameData.GameDataManager;
 import voogasalad_GucciGames.gameData.wrapper.GameInfo;
-import voogasalad_GucciGames.gameplayer.controller.GameControllerInterface;
 
 public class ResourceManager implements GameResourceManagerToGAE, GameResourceManagerToPlayer{
 

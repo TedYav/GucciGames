@@ -2,12 +2,12 @@ package voogasalad_GucciGames.gameplayer.windows.mainwindow.components;
 
 import java.util.List;
 import java.util.ResourceBundle;
+
 import javafx.scene.Parent;
 import javafx.scene.layout.HBox;
 import voogasalad_GucciGames.gameplayer.config.PlayerConfig;
 import voogasalad_GucciGames.gameplayer.controller.GameControllerInterface;
 import voogasalad_GucciGames.gameplayer.scenes.GameScene;
-import voogasalad_GucciGames.gameplayer.windows.mainwindow.map.mini.MiniMap;
 
 public class BottomBar extends WindowSideComponent{
     private HBox container;

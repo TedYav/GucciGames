@@ -21,7 +21,6 @@ import voogasalad_GucciGames.gameEngine.gamePlayer.GamePlayerPerson;
 import voogasalad_GucciGames.gameEngine.gamePlayer.chars.APlayerChars;
 import voogasalad_GucciGames.gameEngine.mapObject.MapObject;
 import voogasalad_GucciGames.gameEngine.targetCoordinate.ATargetCoordinate;
-import voogasalad_GucciGames.gameplayer.controller.GameController;
 import voogasalad_GucciGames.gameplayer.controller.GameControllerEngineInterface;
 import voogasalad_GucciGames.gameplayer.controller.GameParametersInterface;
 

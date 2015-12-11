@@ -4,9 +4,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Observer;
 
-import javafx.geometry.Point2D;
 import javafx.scene.paint.Color;
-import javafx.scene.paint.Paint;
 import voogasalad_GucciGames.gameEngine.PlayerMapObjectInterface;
 
 public interface MapCellInterface {

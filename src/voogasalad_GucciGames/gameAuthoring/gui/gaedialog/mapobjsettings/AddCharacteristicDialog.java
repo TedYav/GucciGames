@@ -2,12 +2,10 @@ package voogasalad_GucciGames.gameAuthoring.gui.gaedialog.mapobjsettings;
 
 import java.util.List;
 import java.util.Optional;
-import java.util.Properties;
 
 import javafx.scene.control.ButtonType;
 import javafx.scene.layout.Pane;
 import voogasalad_GucciGames.gameAuthoring.IDialogGaeController;
-import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.maindialogs.AGaeDialog;
 import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.maindialogs.ISwitchSettingsPane;
 import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.paramObjects.ActionParamsValue;
 import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.paramObjects.ObjParamValue;

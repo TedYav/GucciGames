@@ -2,13 +2,12 @@ package voogasalad_GucciGames.gameAuthoring.gui.gaedialog.groovySettings;
 
 import java.util.Properties;
 
-import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.DialogElements;
+import javafx.scene.layout.GridPane;
+import javafx.scene.text.Text;
 import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.dialogcomponents.DropDownMenuField;
 import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.dialogcomponents.ScrollBarField;
 import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.dialogcomponents.TextInputField;
 import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.maindialogs.GaeDialogHelper;
-import javafx.scene.layout.GridPane;
-import javafx.scene.text.Text;
 
 public class GameSettingsPane extends GridPane {
 	

@@ -1,13 +1,11 @@
 package voogasalad_GucciGames.gameplayer.windows.mainwindow.components.bar;
 
 import java.util.ResourceBundle;
-import javafx.scene.Group;
+
 import javafx.scene.Parent;
-import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.Priority;
 import javafx.scene.layout.VBox;
-import javafx.scene.text.Text;
 import voogasalad_GucciGames.gameplayer.config.PlayerConfig;
 import voogasalad_GucciGames.gameplayer.controller.GameControllerInterface;
 import voogasalad_GucciGames.gameplayer.scenes.GameScene;

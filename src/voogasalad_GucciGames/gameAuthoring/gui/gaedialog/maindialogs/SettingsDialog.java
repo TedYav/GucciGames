@@ -5,28 +5,16 @@ import java.util.List;
 import java.util.Optional;
 import java.util.Properties;
 
+import javafx.collections.ObservableList;
+import javafx.scene.control.ButtonBar.ButtonData;
+import javafx.scene.control.ButtonType;
+import javafx.scene.control.ScrollPane;
+import javafx.scene.layout.Pane;
 import voogasalad_GucciGames.gameAuthoring.IDialogGaeController;
-import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.DialogElements;
-import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.groovySettings.ISwitchGroovyPane;
 import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.groovySettings.MainPane;
-import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.mapobjsettings.ActionPane;
 import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.paramObjects.ActionParamsValue;
 import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.paramObjects.ObjParamValue;
 import voogasalad_GucciGames.gameAuthoring.model.MapObjectType;
-import javafx.collections.ObservableList;
-import javafx.scene.Node;
-import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.ButtonBar.ButtonData;
-import javafx.scene.control.ButtonType;
-import javafx.scene.control.Dialog;
-import javafx.scene.control.ScrollPane;
-import javafx.scene.layout.Background;
-import javafx.scene.layout.BackgroundFill;
-import javafx.scene.layout.Pane;
-import javafx.scene.layout.VBox;
-import javafx.scene.paint.Color;
-import javafx.stage.Stage;
 
 public class SettingsDialog extends AGaeDialog implements ISwitchSettingsPane{
 

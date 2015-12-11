@@ -4,17 +4,16 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Map.Entry;
 
-import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.groovySettings.groovyParams.GCharParam;
-import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.paramObjects.ObjParam;
-import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.paramObjects.ObjParamValue;
-import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.paramObjects.ObjType;
-import voogasalad_GucciGames.gameAuthoring.model.MapObjectType;
 import javafx.geometry.HPos;
 import javafx.geometry.Insets;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.GridPane;
 import javafx.scene.text.Font;
+import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.paramObjects.ObjParam;
+import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.paramObjects.ObjParamValue;
+import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.paramObjects.ObjType;
+import voogasalad_GucciGames.gameAuthoring.model.MapObjectType;
 /**
  * Create a pane for one objParam object
  * @author yingqi

@@ -2,11 +2,9 @@ package voogasalad_GucciGames.gameAuthoring.gui.gaedialog.dialogcomponents;
 
 import java.util.Properties;
 
-import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.DialogElements;
 import javafx.scene.control.TextField;
-import javafx.scene.control.ToggleGroup;
-import javafx.scene.layout.HBox;
 import javafx.scene.text.Text;
+import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.DialogElements;
 
 public class TextInputField extends DialogComponent{
 	

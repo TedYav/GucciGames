@@ -1,5 +1,6 @@
 package voogasalad_GucciGames.gameplayer.windows;
 
+import java.util.Map;
 import java.util.ResourceBundle;
 import java.util.stream.Collectors;
 
@@ -9,8 +10,6 @@ import javafx.stage.Screen;
 import javafx.stage.Stage;
 import voogasalad_GucciGames.gameplayer.config.PlayerConfig;
 import voogasalad_GucciGames.gameplayer.controller.GameController;
-
-import java.util.Map;
 
 public abstract class GameWindow implements GameWindowInterface {	
 	

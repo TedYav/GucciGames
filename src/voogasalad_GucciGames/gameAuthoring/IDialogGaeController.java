@@ -9,8 +9,8 @@ import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.paramObjects.GameSettin
 import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.paramObjects.PlayerParams;
 import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.paramObjects.RuleParams;
 import voogasalad_GucciGames.gameAuthoring.model.IGameProperties;
-import voogasalad_GucciGames.helpers.GameResourceManagerToGAE;
 import voogasalad_GucciGames.gameAuthoring.model.MapObjectType;
+import voogasalad_GucciGames.helpers.GameResourceManagerToGAE;
 
 public interface IDialogGaeController {
 	public void createCustomType(MapObjectType object, String type);

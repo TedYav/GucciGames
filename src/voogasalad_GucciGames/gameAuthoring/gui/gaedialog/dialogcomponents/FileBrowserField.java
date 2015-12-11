@@ -3,13 +3,12 @@ package voogasalad_GucciGames.gameAuthoring.gui.gaedialog.dialogcomponents;
 import java.io.File;
 import java.util.Properties;
 
-import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.DialogElements;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
-import javafx.scene.layout.HBox;
 import javafx.scene.text.Text;
 import javafx.stage.FileChooser;
 import javafx.stage.FileChooser.ExtensionFilter;
+import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.DialogElements;
 
 public class FileBrowserField extends DialogComponent{
 	private DialogElements dialogElements;

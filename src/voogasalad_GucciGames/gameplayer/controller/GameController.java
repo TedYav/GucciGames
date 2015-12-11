@@ -57,7 +57,7 @@ public class GameController implements GameControllerInterface, GameControllerAd
 
 	@Override
 	public void loadGame(GameInfo game){
-	    System.out.println("LOADGAME-GAMEINFO");
+	    //System.out.println("LOADGAME-GAMEINFO");
 	    loadGame(game,"1");
 	}
 	
@@ -69,13 +69,13 @@ public class GameController implements GameControllerInterface, GameControllerAd
 
 	@Override
     public void loadGameSave(GamePlayerSave game){
-       System.out.println("LOADGAMESAVE");
+       //System.out.println("LOADGAMESAVE");
        loadGame(game.getInfo(),game.getCurrentLevel());
    }
 
 	public void loadLevel(String levelID){
 		if(myGame.getLevels().containsKey(levelID)){
-			System.out.println("level changed");
+			//System.out.println("level changed");
 			myCurrentEngine.setController(this);
 		    myCurrentEngine.changeCurrentLevel(levelID);
 		    //myCurrentLevelEngine = myGame.getLevels().get(levelID).getGameEngine();
@@ -206,7 +206,7 @@ public class GameController implements GameControllerInterface, GameControllerAd
 	}
 	@Override
 	public GameInfoToGamePlayer getGame() {
-	    System.out.println("GETGAME");
+	    //System.out.println("GETGAME");
 	    return myGame;
 	}
 
@@ -224,7 +224,7 @@ public class GameController implements GameControllerInterface, GameControllerAd
 
 	public void refreshGUI() {
 		// TODO Auto-generated method stub
-		System.out.println("refresh? PLEASE");
+		//System.out.println("refresh? PLEASE");
 		
 		Platform.runLater(new Runnable() {
 			   @Override

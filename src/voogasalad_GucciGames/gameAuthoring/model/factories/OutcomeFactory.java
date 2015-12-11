@@ -10,15 +10,11 @@ import java.util.Properties;
 import java.util.Set;
 
 import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.mapobjectsettings.xml.ParamObjParser;
-import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.paramObjects.ActionParam;
-import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.paramObjects.ActionParamsValue;
 import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.paramObjects.ObjParam;
 import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.paramObjects.ObjParamValue;
 import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.paramObjects.OutcomeParamValue;
-import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.paramObjects.RuleParams;
 import voogasalad_GucciGames.gameEngine.gameConditions.Conditions;
 import voogasalad_GucciGames.gameEngine.gameConditions.outcomes.Outcome;
-import voogasalad_GucciGames.gameEngine.objectActions.MapObjectEvent;
 
 public class OutcomeFactory {
 	

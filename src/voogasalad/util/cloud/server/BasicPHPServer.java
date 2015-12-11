@@ -9,18 +9,21 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 import java.util.ResourceBundle;
-import java.util.function.Function;
 import java.util.stream.Collectors;
+
+import org.apache.commons.httpclient.DefaultHttpMethodRetryHandler;
+import org.apache.commons.httpclient.HttpClient;
+import org.apache.commons.httpclient.HttpException;
+import org.apache.commons.httpclient.HttpMethod;
+import org.apache.commons.httpclient.HttpStatus;
+import org.apache.commons.httpclient.methods.GetMethod;
+import org.apache.commons.httpclient.params.HttpMethodParams;
+import org.apache.commons.io.IOUtils;
 
 import voogasalad.util.cloud.config.ConfigLoader;
 import voogasalad.util.cloud.data.CloudParameter;
 import voogasalad.util.cloud.data.CloudVariable;
 import voogasalad.util.cloud.exception.CloudException;
-
-import org.apache.commons.httpclient.*;
-import org.apache.commons.httpclient.methods.GetMethod;
-import org.apache.commons.httpclient.params.HttpMethodParams;
-import org.apache.commons.io.IOUtils;
 
 public class BasicPHPServer implements CloudServer {
 	

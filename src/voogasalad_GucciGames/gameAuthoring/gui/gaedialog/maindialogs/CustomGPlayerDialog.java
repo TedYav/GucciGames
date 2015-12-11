@@ -5,8 +5,6 @@ import java.util.List;
 import java.util.Properties;
 import java.util.ResourceBundle;
 
-import javafx.scene.control.ButtonType;
-import javafx.scene.control.ButtonBar.ButtonData;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;

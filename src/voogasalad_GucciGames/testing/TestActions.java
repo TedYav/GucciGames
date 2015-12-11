@@ -1,19 +1,5 @@
 package voogasalad_GucciGames.testing;
 
-import static org.junit.Assert.assertEquals;
-
-import java.util.ArrayList;
-import java.util.List;
-
-
-import voogasalad_GucciGames.gameEngine.CommunicationParameters.BasicParameters;
-import voogasalad_GucciGames.gameEngine.gamePlayer.AllPlayers;
-import voogasalad_GucciGames.gameEngine.gamePlayer.GamePlayerPerson;
-import voogasalad_GucciGames.gameEngine.mapObject.MapObject;
-import voogasalad_GucciGames.gameEngine.targetCoordinate.ATargetCoordinate;
-import voogasalad_GucciGames.gameEngine.targetCoordinate.TargetCoordinateMultiple;
-import voogasalad_GucciGames.gameEngine.targetCoordinate.TargetCoordinateSingle;
-
 public class TestActions {
 /*
 	private MapObjectType test;

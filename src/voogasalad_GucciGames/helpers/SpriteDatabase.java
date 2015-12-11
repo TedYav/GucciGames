@@ -6,7 +6,6 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.ResourceBundle;
 
-import javafx.scene.image.Image;
 import voogasalad.util.fxsprite.Sprite;
 
 public class SpriteDatabase implements ResourceDatabase<Sprite>{

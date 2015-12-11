@@ -3,20 +3,17 @@ package voogasalad_GucciGames.gameAuthoring.gui.gaedialog.mapobjsettings;
 import java.util.ArrayList;
 import java.util.List;
 
-import voogasalad_GucciGames.gameAuthoring.IDialogGaeController;
-import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.dialogcomponents.DialogTableView;
-import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.dialogcomponents.DropDownMenuField;
-import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.paramObjects.ObjParam;
-import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.paramObjects.ObjParamValue;
-import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.paramObjects.OutcomeParam;
-import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.paramObjects.OutcomeParamValue;
-import voogasalad_GucciGames.gameAuthoring.model.MapObjectType;
 import javafx.scene.control.Button;
-import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.GridPane;
 import javafx.scene.text.Font;
+import voogasalad_GucciGames.gameAuthoring.IDialogGaeController;
+import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.dialogcomponents.DialogTableView;
+import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.dialogcomponents.DropDownMenuField;
+import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.paramObjects.ObjParam;
+import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.paramObjects.OutcomeParamValue;
+import voogasalad_GucciGames.gameAuthoring.model.MapObjectType;
 
 public class ConditionOutcomePane extends GridPane {
 	

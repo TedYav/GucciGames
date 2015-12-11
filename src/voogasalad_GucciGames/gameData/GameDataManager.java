@@ -1,11 +1,8 @@
 package voogasalad_GucciGames.gameData;
 
-import java.io.IOException;
-import java.nio.file.NoSuchFileException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-import java.util.Map;
 import java.util.ResourceBundle;
 import java.util.stream.Collectors;
 
@@ -23,15 +20,6 @@ public class GameDataManager implements GameDataInterface {
     private final ResourceBundle myConfig = ResourceBundle.getBundle("voogasalad_GucciGames.gameData.config.GameData");
 
     private String myBasePath;
-    
-//    public static void main(String[] args){
-//    	GameDataManager g = new GameDataManager();
-//    	g.buildGameDirectories("Duvall Tag");
-////    	g.copyResourceToGame("images/tiles/water.jpg", "Duvall Tag");
-////    	g.copyResourceToGame("images/units/duvall.png", "Duvall Tag");
-////    	g.renameGameDirectory("Duvall Tag", "PWNAGE");
-////    	System.out.println(g.getResources(Arrays.asList("jpg", "png"), "images/tiles/"));
-//    }
     
 	public GameDataManager(){
 		myXStream = new XStreamGameEngine();
@@ -154,7 +142,6 @@ public class GameDataManager implements GameDataInterface {
 
 	private void recopyResources(String oldName, String newName) {
 		for(String URI : myAccessedResources){
-			System.out.println("copying: " + URI + " TO " + newName);
 			copyResource(URI, newName, getGamePath(oldName) + myConfig.getString("ResourcePath"));
 		}
 	}

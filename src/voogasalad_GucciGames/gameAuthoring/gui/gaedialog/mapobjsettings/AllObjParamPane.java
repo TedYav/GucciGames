@@ -3,18 +3,15 @@ package voogasalad_GucciGames.gameAuthoring.gui.gaedialog.mapobjsettings;
 import java.util.ArrayList;
 import java.util.List;
 
-import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.maindialogs.ISwitchSettingsPane;
-import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.paramObjects.ObjParam;
-import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.paramObjects.ObjParamValue;
-import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.paramObjects.ObjType;
-import voogasalad_GucciGames.gameAuthoring.model.MapObjectType;
 import javafx.geometry.Insets;
 import javafx.scene.control.Button;
-import javafx.scene.control.ButtonBar.ButtonData;
-import javafx.scene.control.ButtonType;
 import javafx.scene.control.Label;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Font;
+import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.maindialogs.ISwitchSettingsPane;
+import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.paramObjects.ObjParam;
+import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.paramObjects.ObjParamValue;
+import voogasalad_GucciGames.gameAuthoring.model.MapObjectType;
 
 public class AllObjParamPane extends VBox{
 	

@@ -6,9 +6,6 @@ import javax.script.ScriptEngine;
 import javax.script.ScriptEngineManager;
 import javax.script.ScriptException;
 
-import voogasalad_GucciGames.gameEngine.defaultCharacteristics.AttackCharacteristic;
-import voogasalad_GucciGames.gameEngine.defaultCharacteristics.HealthCharacteristic;
-
 public abstract class AMapObjectCharacteristic implements Cloneable{
 
 	public AMapObjectCharacteristic clone() {

@@ -2,16 +2,15 @@ package voogasalad_GucciGames.gameAuthoring.gui.gaedialog.maindialogs;
 
 import java.util.Properties;
 
-import voogasalad_GucciGames.gameAuthoring.AGuiGaeController;
-import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.dialogcomponents.TextInputField;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 import javafx.scene.control.Button;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.GridPane;
-import javafx.scene.layout.Pane;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
+import voogasalad_GucciGames.gameAuthoring.AGuiGaeController;
+import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.dialogcomponents.TextInputField;
 
 public class NewObjMakerPane extends GridPane {
 	protected final Properties prop;

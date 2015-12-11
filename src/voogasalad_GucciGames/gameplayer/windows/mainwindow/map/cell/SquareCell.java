@@ -1,6 +1,5 @@
 package voogasalad_GucciGames.gameplayer.windows.mainwindow.map.cell;
 
-import javafx.scene.input.MouseEvent;
 import javafx.scene.shape.Rectangle;
 import voogasalad_GucciGames.gameplayer.controller.GameControllerInterface;
 
