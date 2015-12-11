@@ -2,7 +2,6 @@ package voogasalad.util.cloud;
 import java.util.Collections;
 import java.util.List;
 import java.util.ResourceBundle;
-import java.util.TreeMap;
 
 import voogasalad.util.cloud.config.ConfigLoader;
 import voogasalad.util.cloud.data.CloudLoader;

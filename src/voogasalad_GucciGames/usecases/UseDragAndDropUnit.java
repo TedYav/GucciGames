@@ -2,12 +2,6 @@ package voogasalad_GucciGames.usecases;
 
 import java.util.HashMap;
 import java.util.Map;
-import voogasalad_GucciGames.gameAuthoring.GaeController;
-import voogasalad_GucciGames.gameAuthoring.AGuiGaeController;
-import voogasalad_GucciGames.gameAuthoring.IModelGaeController;
-import voogasalad_GucciGames.gameAuthoring.model.GAEModel;
-import voogasalad_GucciGames.gameAuthoring.model.IGAEModel;
-import voogasalad_GucciGames.gameEngine.mapObject.MapObject;
 
 public class UseDragAndDropUnit {
 	

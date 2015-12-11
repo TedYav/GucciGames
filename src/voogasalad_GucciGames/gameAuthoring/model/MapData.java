@@ -3,8 +3,6 @@ package voogasalad_GucciGames.gameAuthoring.model;
 import java.util.ArrayList;
 import java.util.List;
 
-import voogasalad_GucciGames.gameEngine.mapObject.MapObject;
-
 public class MapData {
 	private List<DisplayMapObject> onMap;
 	private String myName;

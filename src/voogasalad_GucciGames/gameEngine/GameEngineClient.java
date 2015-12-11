@@ -6,17 +6,11 @@ import java.io.InputStreamReader;
 import java.io.PrintWriter;
 import java.net.Socket;
 import java.net.UnknownHostException;
-import java.util.List;
 
 import com.thoughtworks.xstream.XStream;
 import com.thoughtworks.xstream.io.xml.DomDriver;
 
 import voogasalad_GucciGames.gameData.wrapper.GameEngine;
-import voogasalad_GucciGames.gameEngine.CommunicationParameters.ChangedParameters;
-import voogasalad_GucciGames.gameEngine.CommunicationParameters.GridCoordinateParameters;
-import voogasalad_GucciGames.gameEngine.gamePlayer.chars.APlayerChars;
-import voogasalad_GucciGames.gameEngine.targetCoordinate.ATargetCoordinate;
-import voogasalad_GucciGames.gameplayer.controller.GameParametersInterface;
 
 /**
  * This is the wrapper for the client. May be merged with GameEngineServer later

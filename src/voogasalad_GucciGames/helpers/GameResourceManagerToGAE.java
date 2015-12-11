@@ -5,7 +5,6 @@ import java.util.List;
 import javafx.scene.image.Image;
 import javafx.scene.paint.Color;
 import voogasalad.util.fxsprite.Sprite;
-import voogasalad_GucciGames.gameData.wrapper.GameInfo;
 
 public interface GameResourceManagerToGAE {
 

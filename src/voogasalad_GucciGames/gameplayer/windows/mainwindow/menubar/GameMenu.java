@@ -1,6 +1,7 @@
 package voogasalad_GucciGames.gameplayer.windows.mainwindow.menubar;
 
 import java.util.ResourceBundle;
+
 import javafx.scene.Node;
 
 public interface GameMenu {

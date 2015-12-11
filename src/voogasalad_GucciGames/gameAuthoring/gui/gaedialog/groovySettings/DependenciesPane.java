@@ -1,17 +1,14 @@
 package voogasalad_GucciGames.gameAuthoring.gui.gaedialog.groovySettings;
 
-import java.util.ArrayList;
 import java.util.List;
 
-
+import javafx.geometry.Insets;
+import javafx.scene.control.Button;
+import javafx.scene.layout.GridPane;
 import voogasalad_GucciGames.gameAuthoring.IDialogGaeController;
 import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.dialogcomponents.DialogTableView;
 import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.groovySettings.groovyParams.AGroovyParams;
 import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.groovySettings.groovyParams.GActionParams;
-import javafx.geometry.Insets;
-import javafx.scene.control.Button;
-import javafx.scene.control.Dialog;
-import javafx.scene.layout.GridPane;
 
 public class DependenciesPane extends GridPane {
 	private DialogTableView dialogTableView;

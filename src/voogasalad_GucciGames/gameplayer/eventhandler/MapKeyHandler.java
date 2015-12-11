@@ -1,10 +1,8 @@
 package voogasalad_GucciGames.gameplayer.eventhandler;
 
-import javafx.event.Event;
 import javafx.event.EventHandler;
 import javafx.scene.input.KeyEvent;
 import voogasalad_GucciGames.gameplayer.controller.GameControllerInterface;
-import voogasalad_GucciGames.gameplayer.scenes.GameSceneController;
 
 public class MapKeyHandler extends GameEventHandler implements EventHandler<KeyEvent> {
 	

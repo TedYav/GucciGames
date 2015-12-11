@@ -37,7 +37,6 @@ public class GameInfoFactory {
 		}
 
 		Map<String, MapObject> allMapObjects = makeMapObjects(mapObjectTypeList);
-		System.err.println("Gameinfo:"+allMapObjects.size());
 		game.getGameEngine().addMapObjects(allMapObjects);
 
 		return game;

@@ -2,7 +2,6 @@ package voogasalad_GucciGames.gameEngine.targetCoordinate;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Random;
 
 public class TargetCoordinateSingle extends ATargetCoordinate{
 	private double myCenterX, myCenterY;

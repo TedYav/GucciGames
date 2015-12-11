@@ -1,11 +1,7 @@
 package voogasalad_GucciGames.gameEngine.groovyEngine;
 
-import java.util.HashMap;
 import java.util.Map;
 import java.util.ResourceBundle;
-import java.util.TreeMap;
-
-import groovy.lang.GroovyClassLoader;
 
 public class GroovyCustomCharacteristic extends AGroovyCustomObject{
 

@@ -7,10 +7,8 @@ import javafx.event.EventHandler;
 import javafx.event.EventType;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
 import voogasalad_GucciGames.gameplayer.config.PlayerConfig;
-import voogasalad_GucciGames.gameplayer.gameloader.GameLoader;
 import voogasalad_GucciGames.gameplayer.windows.GameWindowInterface;
 import voogasalad_GucciGames.gameplayer.windows.mainwindow.components.WindowComponent;
 

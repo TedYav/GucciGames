@@ -4,10 +4,8 @@ import java.util.Map;
 import java.util.ResourceBundle;
 import java.util.stream.Collectors;
 
-import javafx.scene.Scene;
 import javafx.stage.Stage;
 import voogasalad.util.reflection.Reflection;
-import voogasalad_GucciGames.gameData.XStreamGameEngine;
 import voogasalad_GucciGames.gameplayer.config.PlayerConfig;
 import voogasalad_GucciGames.gameplayer.controller.GameController;
 import voogasalad_GucciGames.gameplayer.controller.GameControllerInterface;

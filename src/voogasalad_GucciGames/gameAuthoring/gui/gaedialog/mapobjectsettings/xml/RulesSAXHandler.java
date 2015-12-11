@@ -1,9 +1,7 @@
 package voogasalad_GucciGames.gameAuthoring.gui.gaedialog.mapobjectsettings.xml;
 
 import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 
 import org.xml.sax.Attributes;
 import org.xml.sax.SAXException;

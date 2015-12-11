@@ -1,11 +1,8 @@
 package voogasalad_GucciGames.gameplayer.windows.mainwindow.map.cell;
 
 import java.util.ArrayList;
-
 import java.util.Arrays;
-import java.util.Collection;
 import java.util.HashMap;
-import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 import java.util.Observable;
@@ -15,12 +12,10 @@ import java.util.stream.Collectors;
 
 import javafx.animation.FadeTransition;
 import javafx.animation.Timeline;
-import javafx.event.EventHandler;
 import javafx.geometry.Point2D;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.image.ImageView;
-import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Color;
@@ -29,9 +24,6 @@ import javafx.util.Duration;
 import voogasalad_GucciGames.gameEngine.PlayerMapObjectInterface;
 import voogasalad_GucciGames.gameplayer.config.PlayerConfig;
 import voogasalad_GucciGames.gameplayer.controller.GameControllerInterface;
-import voogasalad_GucciGames.gameplayer.controller.dummy.MapObjectBasicType;
-import voogasalad_GucciGames.gameplayer.eventhandler.MapMouseHandler;
-import voogasalad_GucciGames.gameplayer.windows.mainwindow.map.MapInterface;
 import voogasalad_GucciGames.helpers.ColorUtility;
 
 public abstract class MapCell extends Observable implements MapCellInterface {

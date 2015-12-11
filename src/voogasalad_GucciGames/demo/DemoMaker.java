@@ -30,7 +30,6 @@ import voogasalad_GucciGames.gameEngine.gameRules.Rules;
 import voogasalad_GucciGames.gameEngine.gameRules.defaultRules.PlayersActivePerTurn;
 import voogasalad_GucciGames.gameEngine.mapObject.MapObject;
 import voogasalad_GucciGames.gameEngine.objectActions.AttackEvent;
-import voogasalad_GucciGames.gameEngine.objectActions.BuildArcherEvent;
 import voogasalad_GucciGames.gameEngine.objectActions.BuildSoldierEvent;
 import voogasalad_GucciGames.gameEngine.objectActions.MapObjectEventHandler;
 import voogasalad_GucciGames.gameEngine.objectActions.MoveEvent;

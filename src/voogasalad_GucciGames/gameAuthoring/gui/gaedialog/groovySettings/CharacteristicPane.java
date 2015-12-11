@@ -3,19 +3,10 @@ package voogasalad_GucciGames.gameAuthoring.gui.gaedialog.groovySettings;
 import java.util.ArrayList;
 import java.util.List;
 
-import voogasalad.util.reflection.Reflection;
-import voogasalad_GucciGames.gameAuthoring.IDialogGaeController;
-import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.dialogcomponents.DropDownMenuField;
-import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.dialogcomponents.RadioBtnField;
-import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.groovySettings.groovyParams.GCharParam;
-import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.groovySettings.groovyParams.GroovyCharacteristics;
-import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.paramObjects.Param;
-import voogasalad_GucciGames.gameAuthoring.model.MapObjectType;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.geometry.HPos;
 import javafx.geometry.Insets;
-import javafx.geometry.VPos;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
@@ -27,6 +18,12 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Font;
+import voogasalad_GucciGames.gameAuthoring.IDialogGaeController;
+import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.dialogcomponents.RadioBtnField;
+import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.groovySettings.groovyParams.GCharParam;
+import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.groovySettings.groovyParams.GroovyCharacteristics;
+import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.paramObjects.Param;
+import voogasalad_GucciGames.gameAuthoring.model.MapObjectType;
 
 public class CharacteristicPane extends GridPane{
 	

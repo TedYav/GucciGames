@@ -1,10 +1,8 @@
 package voogasalad_GucciGames.gameplayer.scenes.concrete;
 
-import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.Map;
-import voogasalad_GucciGames.gameData.GameDataException;
-import voogasalad_GucciGames.gameplayer.scenes.GameScene;
+
 import voogasalad_GucciGames.gameplayer.scenes.GameSceneManager;
 import voogasalad_GucciGames.gameplayer.windows.GameWindow;
 import voogasalad_GucciGames.gameplayer.windows.mainwindow.components.MenuAction;

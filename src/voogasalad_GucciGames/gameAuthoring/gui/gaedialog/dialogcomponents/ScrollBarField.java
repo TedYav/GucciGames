@@ -1,15 +1,11 @@
 package voogasalad_GucciGames.gameAuthoring.gui.gaedialog.dialogcomponents;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Properties;
 
-import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.DialogElements;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.scene.control.ScrollBar;
-import javafx.scene.control.ToggleGroup;
-import javafx.scene.layout.HBox;
 import javafx.scene.text.Text;
 
 public class ScrollBarField extends DialogComponent {

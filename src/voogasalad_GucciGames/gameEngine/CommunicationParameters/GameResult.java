@@ -1,6 +1,7 @@
 package voogasalad_GucciGames.gameEngine.CommunicationParameters;
 
 import java.util.Map;
+
 import voogasalad_GucciGames.gameEngine.gameConditions.EndGameConditions;
 import voogasalad_GucciGames.gameplayer.controller.GameResultInterface;
 

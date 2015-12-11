@@ -1,6 +1,5 @@
 package voogasalad_GucciGames.gameplayer.windows.mainwindow.components;
 
-import javax.sound.midi.ControllerEventListener;
 import javafx.collections.ListChangeListener;
 import voogasalad_GucciGames.gameEngine.PlayerMapObjectInterface;
 import voogasalad_GucciGames.gameplayer.controller.GameControllerInterface;

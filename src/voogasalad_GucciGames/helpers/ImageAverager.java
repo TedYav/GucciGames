@@ -6,7 +6,6 @@ import java.util.Map;
 import javafx.scene.image.Image;
 import javafx.scene.image.PixelReader;
 import javafx.scene.paint.Color;
-import voogasalad_GucciGames.gameplayer.controller.GameControllerInterface;
 
 public class ImageAverager implements ResourceDatabase<Color>{
 

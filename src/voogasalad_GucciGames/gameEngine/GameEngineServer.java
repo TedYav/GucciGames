@@ -5,18 +5,12 @@ import java.io.PrintWriter;
 import java.net.ServerSocket;
 import java.util.Collection;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Set;
 
 import com.thoughtworks.xstream.XStream;
 import com.thoughtworks.xstream.io.xml.DomDriver;
 
 import voogasalad_GucciGames.gameData.wrapper.GameEngine;
-import voogasalad_GucciGames.gameEngine.CommunicationParameters.ChangedParameters;
-import voogasalad_GucciGames.gameEngine.CommunicationParameters.GridCoordinateParameters;
-import voogasalad_GucciGames.gameEngine.gamePlayer.chars.APlayerChars;
-import voogasalad_GucciGames.gameEngine.targetCoordinate.ATargetCoordinate;
-import voogasalad_GucciGames.gameplayer.controller.GameParametersInterface;
 
 /**
  * This is a wrapper class around the game engine. It contains an instance of a

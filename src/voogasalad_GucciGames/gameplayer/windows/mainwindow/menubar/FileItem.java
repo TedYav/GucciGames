@@ -2,11 +2,12 @@ package voogasalad_GucciGames.gameplayer.windows.mainwindow.menubar;
 
 import java.io.File;
 import java.util.ResourceBundle;
+
 import javafx.scene.Node;
 import javafx.scene.control.ComboBox;
 import javafx.stage.FileChooser;
-import javafx.stage.Stage;
 import javafx.stage.FileChooser.ExtensionFilter;
+import javafx.stage.Stage;
 import voogasalad_GucciGames.gameData.GameDataInterface;
 
 public class FileItem implements GameMenu {
