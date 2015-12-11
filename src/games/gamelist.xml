@@ -3,4 +3,4 @@
 		<name>Duvall Tag</name>
 		<file>Duvall_Tag.gg</file>
 	</game>
-<game><name>Civ</name><file>./src/games/Civ.gg</file></game></body>
+<game><name>Civ</name><file>./src/games/Civ.gg</file></game><game><name>test</name><file>./src/games/test.gg</file></game><game><name>abc</name><file>./src/games/abc.gg</file></game><game><name>test1</name><file>./src/games/test1.gg</file></game><game><name>minim</name><file>./src/games/minim.gg</file></game><game><name>sdgda</name><file>./src/games/sdgda.gg</file></game><game><name>sdfasd</name><file>./src/games/sdfasd.gg</file></game><game><name>308FinalExam</name><file>./src/games/308FinalExam.gg</file></game></body>

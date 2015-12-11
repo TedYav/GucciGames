@@ -13,11 +13,13 @@ import voogasalad_GucciGames.gameAuthoring.model.TypeData;
 import voogasalad_GucciGames.gameData.wrapper.GameInfo;
 import voogasalad_GucciGames.gameData.wrapper.GuiData;
 import voogasalad_GucciGames.gameEngine.GameLevelEngine;
+import voogasalad_GucciGames.gameEngine.CommunicationParameters.BasicParameters;
 import voogasalad_GucciGames.gameEngine.gamePlayer.AllPlayers;
 import voogasalad_GucciGames.gameEngine.gamePlayer.GamePlayerPerson;
 import voogasalad_GucciGames.gameEngine.mapObject.AMapObjectCharacteristic;
 import voogasalad_GucciGames.gameEngine.mapObject.MapObject;
 import voogasalad_GucciGames.gameEngine.objectActions.MapObjectEvent;
+import voogasalad_GucciGames.gameEngine.objectActions.MapObjectEventHandler;
 import voogasalad_GucciGames.gameEngine.targetCoordinate.TargetCoordinateSingle;
 
 public class GameInfoFactory {
@@ -72,6 +74,11 @@ public class GameInfoFactory {
 	private GameLevelEngine makeLevel(Map<Integer, GamePlayerPerson> mapOfPlayers, 
 			TypeData typeData, MapData mapData) {
 		Map<Integer, GamePlayerPerson> copyMapOfPlayers = new HashMap<>(mapOfPlayers);
+
+		AllPlayers allplayers = new AllPlayers(copyMapOfPlayers);
+		GameLevelEngine level = new GameLevelEngine(allplayers);
+		
+		
 		for (DisplayMapObject obj: mapData.getMapObjects()) {
 			MapObjectType type = obj.getType();
 			List<AMapObjectCharacteristic> characteristics = type.getCharacteristics();
@@ -88,12 +95,11 @@ public class GameInfoFactory {
 			events.stream().forEach(a -> {
 				mapObject.addEvent(a.getClass().getSimpleName(), a);
 			});
+			BasicParameters basic = new BasicParameters(level);
+			mapObject.setMapObjectEventHandler(new MapObjectEventHandler(basic));
 			copyMapOfPlayers.get(obj.getOwnerID()).addMapObject(mapObject);
 			
 		}
-		AllPlayers allplayers = new AllPlayers(copyMapOfPlayers);
-		GameLevelEngine level = new GameLevelEngine(allplayers);
-		
 		level.setMapHeight(mapData.getHeight());
 		level.setMapWidth(mapData.getWidth());
 		level.setMyChoosability(true);
