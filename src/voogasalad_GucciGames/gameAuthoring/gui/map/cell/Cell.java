@@ -127,7 +127,9 @@ public class Cell extends StackPane implements ICell {
 
 	@Override
 	public void clear() {
+		myController.deleteComponent(myTileLayer.getTile(), myGrid.getLevelID());
 		myTileLayer.remove();
+		myMidLayer.getObjects().forEach(o->myController.deleteComponent(o, myGrid.getLevelID()));
 		myMidLayer.clear();
 		deselect();
 	}
