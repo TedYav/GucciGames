@@ -108,7 +108,7 @@ public class DemoMaker extends Application {
 		myMapOfPlayers.get(1).setMovable(new PlayerMovesPerTurn(2));
 
 		PlayersActivePerTurn moveOwn = new PlayersActivePerTurn();
-		TileCharacteristic myTileCharacteristic = new TileCharacteristic(false);
+		TileCharacteristic myTileCharacteristic = new TileCharacteristic(1);
 		List<Rules> moveRules = new ArrayList<Rules>();
 		moveRules.add(moveOwn);
 

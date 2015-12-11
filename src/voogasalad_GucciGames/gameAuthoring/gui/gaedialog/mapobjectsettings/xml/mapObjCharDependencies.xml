@@ -1,4 +1,8 @@
 <characteristicDependencies>
+	<element name="TileCharacteristic"
+	paramNames="canMove"
+	paramTypes="int">
+	</element>	
 	<element name="HealthCharacteristic" 
 		 paramNames="maxHealthPoints"
 		 paramTypes="double">

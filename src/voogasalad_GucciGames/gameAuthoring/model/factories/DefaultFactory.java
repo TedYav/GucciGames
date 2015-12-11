@@ -34,9 +34,9 @@ public abstract class DefaultFactory extends AFactory{
 		System.out.println(objParamValue.getName());
 		System.out.println(prop);
 		System.out.println(prop.getProperty(objParamValue.getName()));
-		for(Class<?> c: myParameters){
-			System.out.println(c.getName());
-		}
+		//for(Class<?> c: myParameters){
+		//	System.out.println(c.getName());
+		//}
 		System.out.println(myParameters.length);
 		Constructor c = Class.forName(prop.getProperty(objParamValue.getName())).getConstructor(myParameters);
 			return c;
