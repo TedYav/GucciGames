@@ -1,4 +1,4 @@
-package voogasalad_GucciGames.gameAuthoring.model.factories;
+package voogasalad_GucciGames.gameAuthoring.model.factories.defaultFactory;
 
 import java.io.InputStream;
 
@@ -7,10 +7,9 @@ import java.io.InputStream;
  * @author Sally Al
  *
  */
-public class ConditionFactory extends  DefaultFactory {
+public class ConditionFactory extends  Leaf {
 
 	private static final String PATH_TO_Condition = "conditionsPath.properties";
-	InputStream inputStream;
 
 	@Override
 	protected InputStream getStream() {

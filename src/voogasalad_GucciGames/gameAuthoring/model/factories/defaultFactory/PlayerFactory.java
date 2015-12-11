@@ -1,5 +1,5 @@
 
-package voogasalad_GucciGames.gameAuthoring.model.factories;
+package voogasalad_GucciGames.gameAuthoring.model.factories.defaultFactory;
 
 import java.io.InputStream;
 
@@ -8,9 +8,8 @@ import java.io.InputStream;
  * @author Sally Al
  *
  */
-public class PlayerFactory extends DefaultFactory  {
+public class PlayerFactory extends Leaf  {
 
-	private TypeMap typeMap = new TypeMap();
 	private static final String PATH_TO_PLAYER_CHARS = "playerCharsPath.properties";
 
 

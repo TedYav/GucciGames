@@ -1,9 +1,8 @@
-package voogasalad_GucciGames.gameAuthoring.model.factories;
+package voogasalad_GucciGames.gameAuthoring.model.factories.defaultFactory;
 
 import java.io.InputStream;
 
-public class CharacteristicMapFactory extends DefaultFactory {
-	private TypeMap typeMap = new TypeMap();
+public class CharacteristicMapFactory extends Leaf {
 	private static final String PATH_TO_RULE_PROPERTIES = "MapObjectCharacteristicsPath.properties";
 
 	@Override

@@ -4,7 +4,7 @@
 	<ruleId>1</ruleId>
 	<ruleId>2</ruleId>
 </action>
-<rule>
+  <rule>
 	<ruleId>1</ruleId>
 	<name>numAttacksPerTurn</name>
 	<displayName>Number of Attacks Per Turn</displayName>

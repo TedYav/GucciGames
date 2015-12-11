@@ -7,7 +7,6 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 import java.util.stream.Collectors;
-
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.groovySettings.groovyParams.GActionParams;
@@ -19,11 +18,12 @@ import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.paramObjects.ObjParam;
 import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.paramObjects.ObjParamValue;
 import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.paramObjects.ObjType;
 import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.paramObjects.RuleParams;
-import voogasalad_GucciGames.gameAuthoring.model.factories.ActionFactory;
-import voogasalad_GucciGames.gameAuthoring.model.factories.CharacteristicMapFactory;
 import voogasalad_GucciGames.gameAuthoring.model.factories.GroovyActionFactory;
 import voogasalad_GucciGames.gameAuthoring.model.factories.GroovyMapChars;
-import voogasalad_GucciGames.gameAuthoring.model.factories.PlayerFactory;
+import voogasalad_GucciGames.gameAuthoring.model.factories.ObjectValues;
+import voogasalad_GucciGames.gameAuthoring.model.factories.defaultFactory.ActionFactory;
+import voogasalad_GucciGames.gameAuthoring.model.factories.defaultFactory.CharacteristicMapFactory;
+import voogasalad_GucciGames.gameAuthoring.model.factories.defaultFactory.PlayerFactory;
 import voogasalad_GucciGames.gameEngine.gamePlayer.GamePlayerPerson;
 import voogasalad_GucciGames.gameEngine.gamePlayer.chars.APlayerChars;
 import voogasalad_GucciGames.gameEngine.mapObject.AMapObjectCharacteristic;
@@ -61,7 +61,7 @@ public class TypeData implements IGameProperties {
 		Set<ObjParam> mapObjCharacteristics = parser.getMapObjChars();
 		for (ObjParam param: mapObjCharacteristics){
 			myMapObjectCharParams.put(param.getName(), param);
-		}    
+		}
 		Set<ActionParam> actions = parser.getActions();
 		for (ActionParam action: actions){
 			myActionParams.put(action.getName(), action);
@@ -178,11 +178,8 @@ public class TypeData implements IGameProperties {
 	@Override
 	public void addPlayerCharacteristic(int playerID, ObjParamValue param) {
 		try {
-			System.out.println(playerID + " HI");
-			System.out.println(this.mapOfPlayers.size());
-			System.out.println(mapOfPlayers.get(playerID)==null);
-			System.out.println(param.getName());
-			mapOfPlayers.get(playerID).addCharacterstic(param.getName(), (APlayerChars)playerCharacteristicFactory.create(myPlayerCharParams, param));
+			ObjectValues values = new ObjectValues(param);
+			mapOfPlayers.get(playerID).addCharacterstic(param.getName(), (APlayerChars)playerCharacteristicFactory.create(myPlayerCharParams, values));
 		} catch (NoSuchMethodException | SecurityException | ClassNotFoundException | InstantiationException
 				| IllegalAccessException | IllegalArgumentException | InvocationTargetException e) {
 			e.printStackTrace();
@@ -205,7 +202,7 @@ public class TypeData implements IGameProperties {
 		}
 		else {
 			try {
-				param.getMapObjectType().addCharacteristic((AMapObjectCharacteristic)mapCharacteristicFactory.create(myMapObjectCharParams, param));
+				param.getMapObjectType().addCharacteristic((AMapObjectCharacteristic)mapCharacteristicFactory.create(myMapObjectCharParams, new ObjectValues(param)));
 			} catch (NoSuchMethodException | SecurityException | ClassNotFoundException | InstantiationException
 					| IllegalAccessException | IllegalArgumentException | InvocationTargetException e) {
 				e.printStackTrace();
@@ -285,7 +282,7 @@ public class TypeData implements IGameProperties {
 	public Map<String, GCharParam> getGroovyMapObjectCharParams() {
 		return myGroovyMapObjectCharParams;
 	}
-	
+
 	public List<MapObjectType> getAllMapObjectTypes() {
 		List<MapObjectType> list = new ArrayList<>();
 		list.addAll(tileTypes);
