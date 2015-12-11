@@ -5,4 +5,5 @@
 	</game>
 <game><name>Civ</name><file>./src/games/Civ.gg</file></game>
 
-<game><name>DuvallTag</name><file>./src/games/DuvallTag.gg</file></game><game><name>fun</name><file>./src/games/fun.gg</file></game><game><name>abc</name><file>./src/games/abc.gg</file></game></body>
+<game><name>DuvallTag</name><file>./src/games/DuvallTag.gg</file></game><game><name>fun</name><file>./src/games/fun.gg</file></game><game><name>hi</name><file>./src/games/hi.gg</file></game></body>
+
