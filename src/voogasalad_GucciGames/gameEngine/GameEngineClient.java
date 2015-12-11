@@ -26,7 +26,7 @@ public class GameEngineClient extends GameEnginePlayer implements Runnable{
     private String name;
 
 	private static int PORT = 6555; //hard code for now
-	private static String SERVER_ADDRESS = "10.190.209.220"; //harcode for now
+	private static String SERVER_ADDRESS = "10.191.241.104"; //harcode for now
 	
 	public GameEngineClient(GameEngine gameEngine, String ipAddr) {
 		super(gameEngine);
