@@ -6,32 +6,29 @@ import java.io.InputStream;
 import java.util.Properties;
 import voogasalad_GucciGames.gameAuthoring.model.factories.AFactory;
 
+
 /**
  *
  * @author Sally Al
  *
  */
-public abstract class DefaultFactory extends AFactory{
+public abstract class DefaultFactory extends AFactory {
     protected Properties prop;
 
-    public DefaultFactory() {
-        prop =addProperties();
+    public DefaultFactory () {
+        prop = addProperties();
     }
 
     protected Properties addProperties () {
-        prop = new Properties();
+        Properties temp = new Properties();
         try {
-            prop.load(getStream());
+                temp.load(getStream());
+        } catch (IOException e) {
+                e.printStackTrace();
         }
-        catch (IOException e) {
-            e.printStackTrace();
-        }
-        return prop;
+        return temp;
     }
 
-
-
-    protected abstract InputStream getStream ();
-
+    public abstract InputStream getStream ();
 
 }

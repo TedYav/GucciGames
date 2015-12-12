@@ -3,6 +3,7 @@ package voogasalad_GucciGames.gameAuthoring.model.factories;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
+import voogasalad_GucciGames.gameAuthoring.model.factories.defaultFactory.TypeName;
 
 /**
  *
@@ -15,14 +16,14 @@ public class TypeMap {
 
 	public TypeMap() {
 		map = new HashMap<String, Class>();
-		map.put("int", int.class);
-		map.put("String", String.class);
-		map.put("double", double.class);
-		map.put("Boolean", boolean.class);
+		map.put(TypeName.INT.getValue(), int.class);
+		map.put(TypeName.STRING.getValue(), String.class);
+		map.put(TypeName.DOUBLE.getValue(), double.class);
+		map.put(TypeName.BOOLEAN.getValue(), boolean.class);
 		Collections.unmodifiableMap(map);
 	}
 
-	public static Class getType(String name) {
+	public static Class<?> getType(String name) {
 		return map.get(name);
 	}
 

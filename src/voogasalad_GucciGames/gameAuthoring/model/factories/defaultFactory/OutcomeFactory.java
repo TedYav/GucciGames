@@ -18,20 +18,19 @@ import voogasalad_GucciGames.gameEngine.gameConditions.outcomes.Outcome;
 
 public class OutcomeFactory extends Leaf {
 
-    private static final String PATH_TO_OUTCOME_PROPERTIES = "outcomesPath.properties";
     private Map<String, ObjParam> myConditions = new HashMap<String, ObjParam>();
     private ConditionFactory conditionFactory = new ConditionFactory();
     protected Properties prop;
 
     public OutcomeFactory () {
-       prop =  addProperties();
+        prop = addProperties();
         createListOfConditions();
     }
 
     @Override
-    protected InputStream getStream () {
-        return getClass().getResourceAsStream(PATH_TO_OUTCOME_PROPERTIES);
-        }
+    public InputStream getStream () {
+        return FactoryPropertyFilePath.PATH_TO_OUTCOME_PROPERTIES.getValue();
+    }
 
     private void createListOfConditions () {
         ParamObjParser parser = new ParamObjParser();
@@ -41,9 +40,13 @@ public class OutcomeFactory extends Leaf {
         }
     }
 
-
     @Override
-    public Object create (Map<String, ObjParam> params, ObjectValues objValues) throws ClassNotFoundException, NoSuchMethodException, SecurityException, InstantiationException, IllegalAccessException,IllegalArgumentException, InvocationTargetException {
+    public Object create (Map<String, ObjParam> params,
+                          ObjectValues objValues) throws ClassNotFoundException,
+                                                  NoSuchMethodException, SecurityException,
+                                                  InstantiationException, IllegalAccessException,
+                                                  IllegalArgumentException,
+                                                  InvocationTargetException {
 
         OutcomeParamValue value = objValues.getMyOutcomeParamValue();
         String outcomeName = prop.getProperty(value.getName());
@@ -53,7 +56,10 @@ public class OutcomeFactory extends Leaf {
 
     }
 
-    private Outcome doReflection (String outcomeName) throws ClassNotFoundException, NoSuchMethodException, InstantiationException,IllegalAccessException, InvocationTargetException {
+    private Outcome doReflection (String outcomeName) throws ClassNotFoundException,
+                                                      NoSuchMethodException, InstantiationException,
+                                                      IllegalAccessException,
+                                                      InvocationTargetException {
         @SuppressWarnings("unchecked")
         Class<Outcome> outcome = (Class<Outcome>) Class.forName(outcomeName);
         Constructor<Outcome> outcomeConstructor = outcome.getDeclaredConstructor();
@@ -61,10 +67,16 @@ public class OutcomeFactory extends Leaf {
         return outcomeInstance;
     }
 
-    protected Outcome addConditions (OutcomeParamValue value,Outcome outcomeInstance) throws NoSuchMethodException,ClassNotFoundException,InstantiationException,IllegalAccessException,InvocationTargetException {
+    protected Outcome addConditions (OutcomeParamValue value,
+                                     Outcome outcomeInstance) throws NoSuchMethodException,
+                                                              ClassNotFoundException,
+                                                              InstantiationException,
+                                                              IllegalAccessException,
+                                                              InvocationTargetException {
         for (ObjParamValue param : value.getConditions()) {
-            outcomeInstance.addCondition((Conditions) conditionFactory.create(myConditions, new ObjectValues(param)));
-            }
+            outcomeInstance.addCondition((Conditions) conditionFactory
+                    .create(myConditions, new ObjectValues(param)));
+        }
         return outcomeInstance;
     }
 

@@ -19,34 +19,37 @@ import voogasalad_GucciGames.gameEngine.objectActions.MapObjectEvent;
 
 
 public class ActionFactory extends DefaultFactory {
-    private static final String PATH_TO_RULE_PROPERTIES = "actionsPath.properties";
-
 
     private Map<String, RuleParams> myRules = new HashMap<String, RuleParams>();
     private Map<String, ObjParam> myOutcomes = new HashMap<String, ObjParam>();
     private OutcomeFactory outcomeFactory = new OutcomeFactory();
     private RuleFactory ruleFactory = new RuleFactory();
     protected Properties prop;
-
     public ActionFactory () {
-      prop =  addProperties();
-
+        prop =  addProperties();
         ParamObjParser parser = new ParamObjParser();
+        initializeOutcomes(parser);
+        initializeRules(parser);
 
-        Set<ObjParam> outcomes = parser.getOutcomes();
-        for (ObjParam param : outcomes) {
-            myOutcomes.put(param.getName(), param);
-        }
+    }
+
+    private void initializeRules (ParamObjParser parser) {
         Set<RuleParams> rules = parser.getRules();
         for (RuleParams param : rules) {
             myRules.put(param.getName(), param);
         }
+    }
 
+    private void initializeOutcomes (ParamObjParser parser) {
+        Set<ObjParam> outcomes = parser.getOutcomes();
+        for (ObjParam param : outcomes) {
+            myOutcomes.put(param.getName(), param);
+        }
     }
 
     @Override
-    protected InputStream getStream () {
-        return getClass().getResourceAsStream(PATH_TO_RULE_PROPERTIES);
+    public InputStream getStream () {
+        return FactoryPropertyFilePath.PATH_TO_ACTION_PROPERTIES.getValue();
     }
 
     public MapObjectEvent createAction (Map<String, ActionParam> params, ActionParamsValue value) throws ClassNotFoundException, NoSuchMethodException, SecurityException,InstantiationException, IllegalAccessException, IllegalArgumentException,InvocationTargetException {

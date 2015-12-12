@@ -3,20 +3,18 @@ package voogasalad_GucciGames.gameAuthoring.model.factories.defaultFactory;
 
 import java.io.InputStream;
 
+
 /**
  *
  * @author Sally Al
  *
  */
-public class PlayerFactory extends Leaf  {
+public class PlayerFactory extends Leaf {
 
-	private static final String PATH_TO_PLAYER_CHARS = "playerCharsPath.properties";
+    @Override
+    public InputStream getStream () {
+        return FactoryPropertyFilePath.PATH_TO_PLAYER_CHARS.getValue();
 
-
-	@Override
-	protected InputStream getStream() {
-		return getClass().getResourceAsStream(PATH_TO_PLAYER_CHARS);
-
-	}
+    }
 
 }

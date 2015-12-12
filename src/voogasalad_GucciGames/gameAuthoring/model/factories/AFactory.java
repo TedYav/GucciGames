@@ -1,5 +1,8 @@
 package voogasalad_GucciGames.gameAuthoring.model.factories;
 
+import voogasalad_GucciGames.gameAuthoring.model.factories.defaultFactory.TypeName;
+
+
 /**
  *
  * @author Sally Al
@@ -7,18 +10,15 @@ package voogasalad_GucciGames.gameAuthoring.model.factories;
  */
 public abstract class AFactory {
 
-
-
-
     public Object getTranslatedValue (String type, String value) {
 
-        if (type.equals("int"))
+        if (type.equals(TypeName.INT.getValue()))
             return Integer.parseInt(value);
-        if (type.equals("double"))
+        if (type.equals(TypeName.DOUBLE.getValue()))
             return Double.parseDouble(value);
-        if (type.equals("String"))
+        if (type.equals(TypeName.STRING.getValue()))
             return value;
-        if (type.equals("boolean"))
+        if (type.equals(TypeName.BOOLEAN.getValue()))
             return Boolean.parseBoolean(value);
         return null;
 

@@ -9,30 +9,32 @@ import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.paramObjects.ObjParamVa
 import voogasalad_GucciGames.gameAuthoring.model.factories.ObjectValues;
 import voogasalad_GucciGames.gameAuthoring.model.factories.TypeMap;
 
+
 /**
  *
  * @author Sally Al
  *
- * any factory that requires mapObjectParams mapObjectValue
+ *         any factory that requires mapObjectParams mapObjectValue
  *
  */
-public abstract class Leaf extends DefaultFactory{
-
+public abstract class Leaf extends DefaultFactory {
 
     public Object create (Map<String, ObjParam> mapObjectParams, ObjectValues objValues)
-                                                                                              throws NoSuchMethodException,
-                                                                                              SecurityException,
-                                                                                              ClassNotFoundException,
-                                                                                              InstantiationException,
-                                                                                              IllegalAccessException,
-                                                                                              IllegalArgumentException,
-                                                                                              InvocationTargetException {
+                                                                                         throws NoSuchMethodException,
+                                                                                         SecurityException,
+                                                                                         ClassNotFoundException,
+                                                                                         InstantiationException,
+                                                                                         IllegalAccessException,
+                                                                                         IllegalArgumentException,
+                                                                                         InvocationTargetException {
 
         ObjParamValue objParamValue = objValues.getObjectParamValue();
 
-        Map<String, String> typeMap = mapObjectParams.get(objParamValue.getName()).getParamTypeMap();
+        Map<String, String> typeMap =
+                mapObjectParams.get(objParamValue.getName()).getParamTypeMap();
 
-        Map<Integer, String> orderMap = mapObjectParams.get(objParamValue.getName()).getParamOrderMap();
+        Map<Integer, String> orderMap =
+                mapObjectParams.get(objParamValue.getName()).getParamOrderMap();
 
         Map<String, String> valueMap = objParamValue.getMap();
 
@@ -61,7 +63,9 @@ public abstract class Leaf extends DefaultFactory{
             }
         }
 
-        Constructor<?> c  =Class.forName(prop.getProperty(objParamValue.getName())).getConstructor(myParameters);
+        Constructor<?> c =
+                Class.forName(prop.getProperty(objParamValue.getName()))
+                        .getConstructor(myParameters);
         Object myObject = c.newInstance(initargs);
         return myObject;
 
