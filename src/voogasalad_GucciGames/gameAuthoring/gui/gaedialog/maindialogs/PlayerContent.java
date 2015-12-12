@@ -73,14 +73,11 @@ public class PlayerContent extends GridPane{
 				"player"+playerNumber);
 		
 		browserField = new FileBrowserField(prop,"image", "browse", "filechoosertitle");
-		scrollBarField = new ScrollBarField(prop, "nummoves", "nummoves_items");
-		scrollBarField.addListenerForPlayer();
 		
 		this.getChildren().add(title);
 		
 		this.add(textInputField, 0, 1);
 		this.add(browserField, 0, 2);
-		this.add(scrollBarField, 0, 3);	
 		
 		int i = 4;
 		for(ObjParam eachObjParam : myAllObjParams){

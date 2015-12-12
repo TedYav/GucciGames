@@ -11,7 +11,6 @@ import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.dialogcomponents.CheckB
 import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.dialogcomponents.DropDownMenuField;
 import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.dialogcomponents.ScrollBarField;
 import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.dialogcomponents.TextInputField;
-import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.groovySettings.GameSettingsPane;
 import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.paramObjects.GameSettingParams;
 
 

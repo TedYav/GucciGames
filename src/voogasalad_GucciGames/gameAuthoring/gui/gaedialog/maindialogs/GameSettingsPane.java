@@ -1,4 +1,4 @@
-package voogasalad_GucciGames.gameAuthoring.gui.gaedialog.groovySettings;
+package voogasalad_GucciGames.gameAuthoring.gui.gaedialog.maindialogs;
 
 import java.util.Properties;
 
@@ -6,7 +6,6 @@ import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.DialogElements;
 import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.dialogcomponents.DropDownMenuField;
 import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.dialogcomponents.ScrollBarField;
 import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.dialogcomponents.TextInputField;
-import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.maindialogs.GaeDialogHelper;
 import javafx.scene.layout.GridPane;
 import javafx.scene.text.Text;
 
@@ -33,6 +32,8 @@ public class GameSettingsPane extends GridPane {
 		//this.add(nameText, 0, 1);
 		this.add(fogOfWar, 0, 2);
 		this.add(numPlayer, 0, 3);
+		this.setVgap(5);
+		this.setHgap(5);
 		
 	}
 	
