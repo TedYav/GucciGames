@@ -21,7 +21,5 @@ public class TopBar extends WindowComponent {
 		menu.getMenus().addAll(loader.load(myController));
 		return menu;
 	}
-	
-	
 
 }

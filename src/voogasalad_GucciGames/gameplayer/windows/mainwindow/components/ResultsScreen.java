@@ -21,27 +21,28 @@ public class ResultsScreen extends WindowComponent {
 	private Map<String, String> myInformation;
 	private String myTitle;
 	protected Text myTitleText;
-	
+
 	private StackPane myParent;
 	private VBox myTextBox;
-	
+
 	private List<Text> myText;
-	
-	private int flashIndex=1;
+
+	private int flashIndex = 1;
 	private int maxFlashIndex;
-	
+
 	private ResourceBundle myConfig = PlayerConfig.load("components.ResultsScreen");
-	
+
 	public ResultsScreen(GameScene scene, GameControllerInterface controller) {
 		super(scene, controller);
 	}
-	
-	public ResultsScreen(GameScene scene, GameControllerInterface controller, String title, Map<String, String> information) {
+
+	public ResultsScreen(GameScene scene, GameControllerInterface controller, String title,
+			Map<String, String> information) {
 		super(scene, controller);
 		initialize(title, information);
 	}
-	
-	public void initialize(String title, Map<String, String> information){
+
+	public void initialize(String title, Map<String, String> information) {
 		myInformation = information;
 		myTitle = title;
 		myText = new ArrayList<>();
@@ -52,17 +53,18 @@ public class ResultsScreen extends WindowComponent {
 		drawEnd();
 		startAnimation();
 	}
-	
+
 	private void startAnimation() {
 		maxFlashIndex = Integer.parseInt(myConfig.getString("FlashColors"));
-		Timeline flashTimeline = new Timeline(new KeyFrame(Duration.millis(Double.parseDouble(myConfig.getString("FlashRate"))),e -> flash(myTitleText)));
+		Timeline flashTimeline = new Timeline(new KeyFrame(
+				Duration.millis(Double.parseDouble(myConfig.getString("FlashRate"))), e -> flash(myTitleText)));
 		flashTimeline.setCycleCount(Timeline.INDEFINITE);
 		flashTimeline.play();
 	}
 
 	private void flash(Text text) {
 		flashIndex++;
-		text.setFill(Color.web(PlayerConfig.getResourceNumber(myConfig, "FlashColor", flashIndex%maxFlashIndex)));
+		text.setFill(Color.web(PlayerConfig.getResourceNumber(myConfig, "FlashColor", flashIndex % maxFlashIndex)));
 	}
 
 	private void drawEnd() {
@@ -73,10 +75,9 @@ public class ResultsScreen extends WindowComponent {
 	}
 
 	private void drawInformation() {
-		myInformation.keySet().stream()
-			.forEach(s -> drawText(s));
+		myInformation.keySet().stream().forEach(s -> drawText(s));
 	}
-	
+
 	private void drawText(String s) {
 		Text field = new Text(s);
 		field.getStyleClass().addAll("gametext", "results-field");
@@ -92,8 +93,8 @@ public class ResultsScreen extends WindowComponent {
 		double maxWidth = 0.0;
 		double maxHeight = 0.0;
 		double minHeight = Double.parseDouble(myConfig.getString("MinHeight"));
-		for(Text t : myText){
-			maxWidth = (t.getBoundsInLocal().getWidth()>maxWidth)?t.getBoundsInLocal().getWidth():maxWidth;
+		for (Text t : myText) {
+			maxWidth = (t.getBoundsInLocal().getWidth() > maxWidth) ? t.getBoundsInLocal().getWidth() : maxWidth;
 			maxHeight += t.getBoundsInLocal().getHeight();
 		}
 		myTextBox.setMaxHeight(Double.max(maxHeight, minHeight));
@@ -106,13 +107,10 @@ public class ResultsScreen extends WindowComponent {
 		myParent.getChildren().addAll(myTextBox);
 		setParent(myParent);
 	}
-	
+
 	private void drawTitle() {
 		myTitleText = new Text(myTitle);
 		myTextBox.getChildren().add(myTitleText);
 	}
 
-	
-	
-	
 }

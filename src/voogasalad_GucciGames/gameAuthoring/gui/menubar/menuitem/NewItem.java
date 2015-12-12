@@ -48,7 +48,7 @@ class NewItem extends MenuItem {
 			okButton.setDisable(tf.getText().trim().isEmpty());
 
 			getDialogPane().setContent(myGrid);
-			
+
 			tf.textProperty().addListener((ob, oV, nV) -> {
 				okButton.setDisable(nV.trim().isEmpty());
 			});

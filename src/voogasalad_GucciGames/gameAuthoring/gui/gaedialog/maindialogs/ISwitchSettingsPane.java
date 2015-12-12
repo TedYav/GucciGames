@@ -5,13 +5,11 @@ import java.util.Optional;
 import javafx.scene.control.ButtonType;
 
 public interface ISwitchSettingsPane {
-	
-	public void switchSettingsPane(Object p);
-		
-	public Optional<ButtonType> getDialogButtonResponse();
-	
-	//public void addSaveButton(ButtonType save);
-	
 
+	public void switchSettingsPane(Object p);
+
+	public Optional<ButtonType> getDialogButtonResponse();
+
+	// public void addSaveButton(ButtonType save);
 
 }

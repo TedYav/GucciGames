@@ -9,13 +9,13 @@ import voogasalad_GucciGames.gameplayer.controller.GameControllerInterface;
 import voogasalad_GucciGames.gameplayer.scenes.GameScene;
 
 public class OverlayComponent extends WindowComponent {
-	
+
 	private WindowComponent myChild;
 	private ResourceBundle myConfig = PlayerConfig.load("components.OverlayComponent");
 
 	private boolean showing = false;
 	private KeyCode myKeyCode;
-	
+
 	public OverlayComponent(GameScene scene, GameControllerInterface controller, WindowComponent child) {
 		super(scene, controller);
 		myChild = child;
@@ -23,10 +23,10 @@ public class OverlayComponent extends WindowComponent {
 	}
 
 	private void handleKey(KeyEvent e) {
-		if(e.getCode().equals(myKeyCode)){
-			if(showing){
-				hide();			}
-			else{
+		if (e.getCode().equals(myKeyCode)) {
+			if (showing) {
+				hide();
+			} else {
 				show();
 			}
 		}
@@ -36,13 +36,13 @@ public class OverlayComponent extends WindowComponent {
 		getGameScene().removeOverlay();
 		showing = false;
 	}
-	
-	public void activateKeyHandler(KeyCode code){
+
+	public void activateKeyHandler(KeyCode code) {
 		myKeyCode = code;
 		getGameScene().getScene().setOnKeyPressed(e -> handleKey(e));
 	}
-	
-	public void show(){
+
+	public void show() {
 		getGameScene().addOverlay(this, Double.parseDouble(myConfig.getString("Opacity")));
 		showing = true;
 	}

@@ -11,13 +11,14 @@ package voogasalad_GucciGames.gameEngine.gamePlayer.chars;
 public class PlayerWealthChar extends APlayerChars {
 	private int myWealth;
 
-	public PlayerWealthChar(){
+	public PlayerWealthChar() {
 		this.myWealth = 100;
 	}
-	
-	public PlayerWealthChar(int wealth){
+
+	public PlayerWealthChar(int wealth) {
 		myWealth = wealth;
 	}
+
 	public int getWealth() {
 		return myWealth;
 	}

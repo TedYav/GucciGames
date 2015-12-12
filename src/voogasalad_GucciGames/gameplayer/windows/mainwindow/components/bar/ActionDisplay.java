@@ -18,52 +18,51 @@ import voogasalad_GucciGames.gameplayer.scenes.GameScene;
 import voogasalad_GucciGames.gameplayer.windows.mainwindow.components.DisplayComponent;
 
 public class ActionDisplay extends DisplayComponent implements Observer {
-    private PlayerMapObjectInterface activeMapObject;
-    private ListView<Button> buttons;
-    private List<Button> baseButtons;
+	private PlayerMapObjectInterface activeMapObject;
+	private ListView<Button> buttons;
+	private List<Button> baseButtons;
 
-    public ActionDisplay(GameScene scene, GameControllerInterface controller) {
-        super(scene,controller);
-        getController().addActiveMOObserver(this);
-        baseButtons = new ArrayList<Button>();
-        buttons = new ListView<Button>(FXCollections.observableList(baseButtons));
-    }
+	public ActionDisplay(GameScene scene, GameControllerInterface controller) {
+		super(scene, controller);
+		getController().addActiveMOObserver(this);
+		baseButtons = new ArrayList<Button>();
+		buttons = new ListView<Button>(FXCollections.observableList(baseButtons));
+	}
 
-    private Button makeButton(String name) {
-        Button button = new Button();
-        button.setText(name);
-        button.setOnAction(new EventHandler<ActionEvent>() {
-            @Override
-            public void handle(ActionEvent event) {
-                List<TargetCoordinateSingle> targets = getController().setActionInProgress(name, activeMapObject);
-                getController().getMap().highlightCells(targets);
-            }
-        });
-        return button;
-    }
+	private Button makeButton(String name) {
+		Button button = new Button();
+		button.setText(name);
+		button.setOnAction(new EventHandler<ActionEvent>() {
+			@Override
+			public void handle(ActionEvent event) {
+				List<TargetCoordinateSingle> targets = getController().setActionInProgress(name, activeMapObject);
+				getController().getMap().highlightCells(targets);
+			}
+		});
+		return button;
+	}
 
-    private void updateButtons() {
-        List<Button> updatedActions = new ArrayList<>();
-        activeMapObject.getActionNames().stream().
-        forEach(action -> {
-            if (activeMapObject.getOwnerID()==getController().getEngine().getGameParameters().whoseTurn()) {
-                    updatedActions.add(makeButton(action));
-            }
-        });
-        baseButtons = updatedActions;
-        buttons.setItems(FXCollections.observableList(baseButtons));
-    }
+	private void updateButtons() {
+		List<Button> updatedActions = new ArrayList<>();
+		activeMapObject.getActionNames().stream().forEach(action -> {
+			if (activeMapObject.getOwnerID() == getController().getEngine().getGameParameters().whoseTurn()) {
+				updatedActions.add(makeButton(action));
+			}
+		});
+		baseButtons = updatedActions;
+		buttons.setItems(FXCollections.observableList(baseButtons));
+	}
 
-    @Override
-    public Parent getParent() {
-        return buttons;
-    }
+	@Override
+	public Parent getParent() {
+		return buttons;
+	}
 
-    @Override
-    public void update (Observable o, Object arg) {
-        if (arg!=null) {
-            activeMapObject = (PlayerMapObjectInterface)arg;
-        }
-        updateButtons();
-    }
+	@Override
+	public void update(Observable o, Object arg) {
+		if (arg != null) {
+			activeMapObject = (PlayerMapObjectInterface) arg;
+		}
+		updateButtons();
+	}
 }

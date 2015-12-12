@@ -14,11 +14,11 @@ public class MainGameWindow extends GameWindow {
 	}
 
 	/**
-	 * I'm separating this function out to make debugging easier.
-	 * Otherwise any null pointer exceptions get thrown as reflection exceptions.
+	 * I'm separating this function out to make debugging easier. Otherwise any
+	 * null pointer exceptions get thrown as reflection exceptions.
 	 */
 	@Override
-	public void initialize(){
+	public void initialize() {
 		mySceneManager = new GameSceneManager("PrimarySceneManager", this, myController);
 		myController.setSceneManager(mySceneManager);
 	}

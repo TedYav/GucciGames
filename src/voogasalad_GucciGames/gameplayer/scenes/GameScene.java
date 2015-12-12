@@ -12,7 +12,7 @@ import voogasalad_GucciGames.gameplayer.config.PlayerConfig;
 import voogasalad_GucciGames.gameplayer.windows.GameWindowInterface;
 import voogasalad_GucciGames.gameplayer.windows.mainwindow.components.WindowComponent;
 
-public abstract class GameScene implements GameSceneInterface{
+public abstract class GameScene implements GameSceneInterface {
 
 	private String myName;
 	private String myNext;
@@ -20,12 +20,13 @@ public abstract class GameScene implements GameSceneInterface{
 	protected GameWindowInterface myWindow;
 	protected ResourceBundle myConfig;
 	protected ResourceBundle myCSS = PlayerConfig.load("scenes.CssClasses");
-	protected ResourceBundle myGuiNames = ResourceBundle.getBundle("voogasalad_GucciGames.gameData.config.GuiComponents");
+	protected ResourceBundle myGuiNames = ResourceBundle
+			.getBundle("voogasalad_GucciGames.gameData.config.GuiComponents");
 	protected Scene myScene;
 	protected StackPane myParent;
 	private Parent myOverlay;
-	
-	public GameScene(GameSceneManager manager, GameWindowInterface window, String config){
+
+	public GameScene(GameSceneManager manager, GameWindowInterface window, String config) {
 		myManager = manager;
 		myWindow = window;
 		myConfig = PlayerConfig.load(config);
@@ -33,63 +34,66 @@ public abstract class GameScene implements GameSceneInterface{
 		myScene = new Scene(myParent);
 		readConfig();
 	}
-	
-	protected void readConfig(){
+
+	protected void readConfig() {
 		myName = myConfig.getString("Name");
 		myNext = myConfig.getString("NextScene");
 	}
-	
-	protected void loadParent(Parent parent){
+
+	protected void loadParent(Parent parent) {
 		myParent.getChildren().clear();
 		myParent.getChildren().add(parent);
 		myWindow.loadScene(myScene);
 		loadStyleSheets();
 	}
 
-	private void loadStyleSheets(){
-        myScene.getStylesheets().add(myCSS.getString("CssFile"));
+	private void loadStyleSheets() {
+		myScene.getStylesheets().add(myCSS.getString("CssFile"));
 	}
-	
+
 	/**
 	 * Returns name of the scene.
+	 * 
 	 * @return
 	 */
-	public String getName(){
+	public String getName() {
 		return myName;
 	}
-	
+
 	/**
-	 * Returns the current GameSceneManager 
+	 * Returns the current GameSceneManager
+	 * 
 	 * @return
 	 */
-	public GameSceneManager getManager(){
+	public GameSceneManager getManager() {
 		return myManager;
 	}
-	
+
 	/**
 	 * Returns the current GameWindow
+	 * 
 	 * @return
 	 */
-	public GameWindowInterface getWindow(){
+	public GameWindowInterface getWindow() {
 		return myWindow;
 	}
-	
+
 	/**
-	 * returns the name of the next scene to load
-	 * As defined in resource file.
+	 * returns the name of the next scene to load As defined in resource file.
+	 * 
 	 * @return
 	 */
-	public String getNext(){
+	public String getNext() {
 		return myNext;
 	}
-	
-	public Scene getScene(){
+
+	public Scene getScene() {
 		return myScene;
 	}
-	
-	
+
 	/**
-	 * Tells this scene to load its necessary information and write it to the GameWindow.
+	 * Tells this scene to load its necessary information and write it to the
+	 * GameWindow.
 	 */
 	public abstract void load();
 
@@ -102,8 +106,8 @@ public abstract class GameScene implements GameSceneInterface{
 	public <T extends Event> void addEventFilter(EventType<T> eventType, EventHandler<T> eventFilter) {
 		myScene.addEventFilter(eventType, eventFilter);
 	}
-	
-	public void addOverlay(WindowComponent overlay, double opacity){
+
+	public void addOverlay(WindowComponent overlay, double opacity) {
 		myParent.getChildren().remove(myOverlay);
 		myOverlay = overlay.getParent();
 		myOverlay.setOpacity(opacity);
@@ -111,10 +115,8 @@ public abstract class GameScene implements GameSceneInterface{
 	}
 
 	public void removeOverlay() {
-		if(myOverlay != null)
+		if (myOverlay != null)
 			myParent.getChildren().remove(myOverlay);
 	}
 
-	
-	
 }

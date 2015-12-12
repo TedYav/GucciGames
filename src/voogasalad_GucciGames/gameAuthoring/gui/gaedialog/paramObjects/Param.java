@@ -3,8 +3,8 @@ package voogasalad_GucciGames.gameAuthoring.gui.gaedialog.paramObjects;
 public class Param {
 	private String type;
 	private String name;
-	
-	public Param(String type, String name){
+
+	public Param(String type, String name) {
 		this.setType(type);
 		this.setName(name);
 	}
@@ -24,8 +24,5 @@ public class Param {
 	public void setName(String name) {
 		this.name = name;
 	}
-	
-	
-	
 
 }
