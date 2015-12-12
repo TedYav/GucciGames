@@ -16,7 +16,7 @@ import voogasalad_GucciGames.gameAuthoring.model.factories.TypeMap;
  * any factory that requires mapObjectParams mapObjectValue
  *
  */
-public abstract class Leaf extends AFactory{
+public abstract class Leaf extends DefaultFactory{
 
 
     public Object create (Map<String, ObjParam> mapObjectParams, ObjectValues objValues)

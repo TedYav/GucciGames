@@ -11,7 +11,7 @@ import voogasalad_GucciGames.gameEngine.gameRules.Rules;
  * @author Sally Al
  *
  */
-public class RuleFactory extends AFactory{
+public class RuleFactory extends DefaultFactory{
 	private static final String PATH_TO_RULE_PROPERTIES = "rulesPath.properties";
 
 	private Properties prop;

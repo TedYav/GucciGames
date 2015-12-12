@@ -18,7 +18,7 @@ import voogasalad_GucciGames.gameEngine.gameConditions.outcomes.Outcome;
 import voogasalad_GucciGames.gameEngine.objectActions.MapObjectEvent;
 
 
-public class ActionFactory extends AFactory {
+public class ActionFactory extends DefaultFactory {
     private static final String PATH_TO_RULE_PROPERTIES = "actionsPath.properties";
 
 

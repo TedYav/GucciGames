@@ -1,19 +1,20 @@
+
 package voogasalad_GucciGames.gameAuthoring.model.factories.defaultFactory;
 
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.Properties;
+import voogasalad_GucciGames.gameAuthoring.model.factories.AFactory;
 
 /**
  *
  * @author Sally Al
  *
  */
-public abstract class AFactory {
-
+public abstract class DefaultFactory extends AFactory{
     protected Properties prop;
 
-    public AFactory() {
+    public DefaultFactory() {
         prop =addProperties();
     }
 
@@ -32,20 +33,5 @@ public abstract class AFactory {
 
     protected abstract InputStream getStream ();
 
-
-
-    protected Object getTranslatedValue (String type, String value) {
-
-        if (type.equals("int"))
-            return Integer.parseInt(value);
-        if (type.equals("double"))
-            return Double.parseDouble(value);
-        if (type.equals("String"))
-            return value;
-        if (type.equals("boolean"))
-            return Boolean.parseBoolean(value);
-        return null;
-
-    }
 
 }
