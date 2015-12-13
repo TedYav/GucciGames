@@ -92,17 +92,8 @@ public class SettingsDialog extends AGaeDialog implements ISwitchSettingsPane{
 
 	@Override
 	protected void setSaveAction() {
-		// TODO Auto-generated method stub...add some kind of listener
+		// TODO add some kind of listener
 		ObservableList<MapObjectType> currTileList = controller.getImmutableTileTypes();
 	}
-
-//	@Override
-//	public void addSaveButton(ButtonType save) {
-//		if(!this.getDialogPane().getButtonTypes().contains(save)){
-//			this.getDialogPane().getButtonTypes().add(save);
-//		}
-//		
-//		
-//	}
 
 }

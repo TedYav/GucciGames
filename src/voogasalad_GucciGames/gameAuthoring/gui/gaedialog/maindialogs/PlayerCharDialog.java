@@ -30,8 +30,6 @@ public class PlayerCharDialog extends AGaeDialog<ObjParamValue>{
     			List<ObjParamValue> objParamValues = objParamListPane.getAllInputsList();
     			objParamValues.stream().forEach(o -> System.err.println("OPV" + o.getName() + o.getParamValues()));
     			for(int i=0; i<objParamValues.size(); i++){
-    				System.out.println(playerid);
-    				System.out.println(objParamValues.get(i).getName());
         			controller.getPropertiesInterface().addPlayerCharacteristic(playerid, objParamValues.get(i));
     			}
     		}

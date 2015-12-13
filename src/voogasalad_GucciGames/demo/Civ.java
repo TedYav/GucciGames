@@ -146,18 +146,18 @@ public class Civ extends Application {
 			for (int j = 0; j < height; j++) {
 				MapObject newObj;
 				if(numDuvalls == 0){
-				if ((i + j) % 2 == 0) {
-					newObj = new MapObject(new TargetCoordinateSingle(i, j), -1, 0, "Stones", "tiles/stones3.jpg");
-				} else {
-					newObj = new MapObject(new TargetCoordinateSingle(i, j), -1, 0, "Sand", "tiles/sand.jpg");
-				}}
+					if ((i + j) % 2 == 0) {
+						newObj = new MapObject(new TargetCoordinateSingle(i, j), -1, 0, "Stones", "tiles/stones3.jpg");
+					} else {
+						newObj = new MapObject(new TargetCoordinateSingle(i, j), -1, 0, "Sand", "tiles/sand.jpg");
+					}}
 				else{
 					newObj = new MapObject(new TargetCoordinateSingle(i, j), -1, 0, "Hedge", "tiles/hedge.jpg");
 				}
 				newObj.addCharacteristic("TileCharacteristic", myTileCharacteristic);
 				newObj.setOwnerID(-1);
 				myMapOfPlayers.get(-1).getMapObjects().add(newObj);
-				
+
 				if(numDuvalls > 0 && !((i + j) % 9 == 0)){
 					Random rand = new Random();
 					if(rand.nextInt(width*height) < numDuvalls){
@@ -167,12 +167,12 @@ public class Civ extends Application {
 						numDuvalls--;
 					}
 				}
-				
+
 				if ((i%4==0 || j%5==0)) {
 					//if (myMapOfPlayers.get(0).getMapObjects().isEmpty()){
-						MapObject arch = makeArcher(myMoveEvent, myAttackEvent, i, j);
+					MapObject arch = makeArcher(myMoveEvent, myAttackEvent, i, j);
 
-						myMapOfPlayers.get(1).getMapObjects().add(arch);
+					myMapOfPlayers.get(1).getMapObjects().add(arch);
 					//}
 				}	
 			}
@@ -182,9 +182,9 @@ public class Civ extends Application {
 		AllPlayers myPlayers = new AllPlayers(myMapOfPlayers);
 
 		GameLevelEngine engine = new GameLevelEngine(myPlayers);
-		
+
 		engine.setAllObjects(myAllMapObjects);
-		
+
 		engine.setMapHeight(height);
 		engine.setMapWidth(width);
 		for (Integer key : myMapOfPlayers.keySet()) {
