@@ -12,7 +12,7 @@
  - Mike Ma: Front end design for Game Authoring Environment, official Git blamer
  - Daniel McKee: 
  - Joy Patel: Back end design for Game Engine (Events for MapObjects, Groovy Extension)
- - Sally Merza:
+ - Sally Merza: designed and implemented outcomes, rules, conditions.  designed and implemented factories in the controller with Daniel Mckee
  - Karen Li:
  - Tina Liang:  
 * Files used to start the project: GucciGames.java
