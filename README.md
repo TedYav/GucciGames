@@ -6,7 +6,7 @@
 * Estimated Number of Hours: On the order of hundreds (Assuming an average input of 15 hours per person, 10x15x4 = 600)
 * Names/Roles:
  - Efe Aras: Team Lead, Main engine architecture, Networking
- - Ted Yavuzkurt: 
+ - Ted Yavuzkurt: Game Player main design and implementation of scenes, Cloud Utility, Resource Management Utilities, work on GameData 
  - Ying Qi: MVC architecture for Game Authoring Environment, Dialogs for Game Component properties.
  - John Dai:
  - Mike Ma: Front end design for Game Authoring Environment, official Git blamer
