@@ -7,7 +7,7 @@
 * Names/Roles:
  - Efe Aras: Team Lead, Main engine architecture, Networking
  - Ted Yavuzkurt: 
- - Ying Qi: MVC architecture for Game Authoring Environment
+ - Ying Qi: MVC architecture for Game Authoring Environment, Dialogs for Game Component properties.
  - John Dai:
  - Mike Ma: Front end design for Game Authoring Environment, official Git blamer
  - Daniel McKee: 
