@@ -9,7 +9,7 @@
  - Ted Yavuzkurt: 
  - Ying Qi: MVC architecture for Game Authoring Environment
  - John Dai:
- - Mike Ma: 
+ - Mike Ma: Front end design for Game Authoring Environment, official Git blamer
  - Daniel McKee: 
  - Joy Patel:
  - Sally Merza:
