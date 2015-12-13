@@ -6,12 +6,12 @@
 * Estimated Number of Hours: On the order of hundreds (Assuming an average input of 15 hours per person, 10x15x4 = 600)
 * Names/Roles:
  - Efe Aras: Team Lead, Main engine architecture, Networking
+ - Ted Yavuzkurt: 
  - Ying Qi:
  - John Dai:
  - Mike Ma: 
  - Daniel McKee: 
  - Joy Patel:
- - John Dai:
  - Sally Merza:
  - Karen Li:
  - Tina Liang:  
