@@ -26,7 +26,7 @@ public class MapObjectCollection {
 	public MapObjectCollection(MapObjectCollectionsListener myListener) {
 
 		this();
-		
+
 		myListenerMapObjectCollections.add(myListener);
 	}
 

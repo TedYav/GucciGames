@@ -60,7 +60,6 @@ public interface PlayerMapObjectInterface {
 	 */
 	public List<String> getActionNames();
 
-
 	/**
 	 * This method returns the owner id of the current map object.
 	 *

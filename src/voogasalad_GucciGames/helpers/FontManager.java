@@ -12,34 +12,36 @@ import javafx.scene.text.Font;
 /**
  * Helper class to manage fonts.
  * 
- * Uses Fonts.properties in resource folder as default font configuration location.
+ * Uses Fonts.properties in resource folder as default font configuration
+ * location.
+ * 
  * @author Ted Yavuzkurt
  *
  */
 public class FontManager {
-	
+
 	private static final String DEFAULTCONFIG = "Fonts";
 	private ResourceBundle myConfig;
-	
-	public FontManager(){
+
+	public FontManager() {
 		this(DEFAULTCONFIG);
 	}
-	
-	public FontManager(String config){
+
+	public FontManager(String config) {
 		myConfig = ResourceBundle.getBundle(config);
 		loadFonts();
 	}
 
 	private void loadFonts() {
-		myConfig.keySet().stream().forEach(s -> getFont(s,72));
+		myConfig.keySet().stream().forEach(s -> getFont(s, 72));
 	}
-	
-	public List<String> listFonts(){
+
+	public List<String> listFonts() {
 		return new ArrayList<String>(myConfig.keySet());
 	}
-	
-	public Font getFont(String name, double size) throws ResourceException{
-		if(myConfig.getString(name)==null)
+
+	public Font getFont(String name, double size) throws ResourceException {
+		if (myConfig.getString(name) == null)
 			throw new ResourceException("Error: font " + name + " not found.");
 		Font f = Font.font("Verdana");
 		try {
@@ -51,8 +53,8 @@ public class FontManager {
 		}
 		return f;
 	}
-	
-	public static void main(String[] args){
+
+	public static void main(String[] args) {
 		System.out.println(new FontManager().listFonts());
 	}
 }

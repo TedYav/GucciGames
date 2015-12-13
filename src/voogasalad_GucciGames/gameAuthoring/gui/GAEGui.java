@@ -39,20 +39,22 @@ public class GAEGui extends BorderPane {
 		myController = controller;
 		GAEPreloader preloader = new GAEPreloader();
 		try {
-			preloader.start(stage, ()->init());
+			preloader.start(stage, () -> init());
 		} catch (Exception e) {
 			controller.throwException(e);
 		}
 	}
-	
-	private void init(){
-		//throwException(new IllegalAccessException("Today's a nice day to have a nice day"));
+
+	private void init() {
+		myController.initModel();
+		// throwException(new IllegalAccessException("Today's a nice day to have
+		// a nice day"));
 		Stage stage = new Stage(StageStyle.DECORATED);
 		stage.setScene(new Scene(this));
 		Rectangle2D screenBounds = Screen.getPrimary().getVisualBounds();
 		stage.setWidth(screenBounds.getWidth());
 		stage.setHeight(screenBounds.getHeight());
-		
+
 		// Add Menu Bar
 		myMenuBar = new GAEMenuBar(myController);
 		setTop(myMenuBar);

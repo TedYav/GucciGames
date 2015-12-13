@@ -18,44 +18,39 @@ public class CharacteristicsSAXHandler extends DefaultHandler {
 	private final GaeDialogHelper helper = new GaeDialogHelper();
 	private ObjType type;
 
-	public CharacteristicsSAXHandler( ObjType type ){
+	public CharacteristicsSAXHandler(ObjType type) {
 		this.type = type;
 	}
 
-
-	public List<ObjParam> getObjParams(){
-		return characteristicsParams ;
+	public List<ObjParam> getObjParams() {
+		return characteristicsParams;
 	}
-	public void startElement(String uri, String localName,
-			String qName, Attributes attributes) throws SAXException {
 
-		if("element".equals(qName)){
+	public void startElement(String uri, String localName, String qName, Attributes attributes) throws SAXException {
+
+		if ("element".equals(qName)) {
 			String name = attributes.getValue("name");
 
 			characteristicsParam = new ObjParam(name, type, -1);
-			List<String> paramNames = helper.parseStringToList(
-					attributes.getValue("paramNames"));
-			List<String> paramTypes = helper.parseStringToList(
-					attributes.getValue("paramTypes"));
-			for(int i = 0; i < paramNames.size(); i++){
+			List<String> paramNames = helper.parseStringToList(attributes.getValue("paramNames"));
+			List<String> paramTypes = helper.parseStringToList(attributes.getValue("paramTypes"));
+			for (int i = 0; i < paramNames.size(); i++) {
 				characteristicsParam.addParam(paramTypes.get(i), paramNames.get(i));
 				characteristicsParam.addParamOrder(i, paramNames.get(i));
 			}
 
-		}           
+		}
 	}
-	public void endElement(String uri, String localName,
-			String qName) throws SAXException {
-		if(qName.equalsIgnoreCase("element") && characteristicsParam != null){
+
+	public void endElement(String uri, String localName, String qName) throws SAXException {
+		if (qName.equalsIgnoreCase("element") && characteristicsParam != null) {
 			this.characteristicsParams.add(characteristicsParam);
 		}
-
 
 	}
 
 	public void characters(char ch[], int start, int length) throws SAXException {
 
 	}
-
 
 }

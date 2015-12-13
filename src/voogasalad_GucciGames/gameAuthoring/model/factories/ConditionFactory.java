@@ -7,7 +7,7 @@ import java.io.InputStream;
  * @author Sally Al
  *
  */
-public class ConditionFactory extends  DefaultFactory {
+public class ConditionFactory extends DefaultFactory {
 
 	private static final String PATH_TO_Condition = "conditionsPath.properties";
 	InputStream inputStream;
@@ -16,6 +16,5 @@ public class ConditionFactory extends  DefaultFactory {
 	protected InputStream getStream() {
 		return getClass().getResourceAsStream(PATH_TO_Condition);
 	}
-
 
 }

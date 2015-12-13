@@ -33,18 +33,16 @@ public class LoaderComponent extends WindowComponent {
 		myText.getStyleClass().addAll(getStyleClasses(myConfig.getString("LoaderPrefix")));
 		setDisplay(myConfig.getString("LoaderText"));
 	}
-	
+
 	/*
 	 * TODO: factor this function out to the top
 	 */
 	private List<String> getStyleClasses(String prefix) {
-		return myConfig.keySet().stream()
-				.filter((s) -> s.startsWith(prefix))
-				.map((s) -> myConfig.getString(s))
+		return myConfig.keySet().stream().filter((s) -> s.startsWith(prefix)).map((s) -> myConfig.getString(s))
 				.collect(Collectors.toList());
 	}
 
-	public void setDisplay(String text){
+	public void setDisplay(String text) {
 		myText.setText(text);
 		animateText();
 	}
@@ -57,38 +55,37 @@ public class LoaderComponent extends WindowComponent {
 	}
 
 	private void updateText() {
-		myText.setText( myText.getText() + "." );
+		myText.setText(myText.getText() + ".");
 	}
-	
-//	private void aanimateText(){
-//		FadeTransition f = new FadeTransition(Duration.millis(mySpeed), myText);
-//		f.setFromValue(1.0);
-//		f.setToValue(0.0);
-//		f.setCycleCount(Timeline.INDEFINITE);
-//		f.setAutoReverse(true);
-//		f.play();
-//	}
-//	
-//	private void initializeImage(String image) {
-//		if(!image.isEmpty()){
-//			Image splash = new Image(image);
-//			myImage = new ImageView(splash);
-//			myImage.setFitHeight(Screen.getPrimary().getBounds().getHeight());
-//			myImage.setPreserveRatio(true);
-//			myPane.getChildren().add(myImage);
-//		}
-//	}
-//	
-//	private void setAdvanceTimer(){
-//		if(myDuration > 0){
-//			Timeline timeline = new Timeline(new KeyFrame(
-//			        Duration.millis(myDuration),
-//			        e -> getScene().getManager().sceneFinished()));
-//			timeline.play();
-//		}
-//		
-//	}
-//	
-	
+
+	// private void aanimateText(){
+	// FadeTransition f = new FadeTransition(Duration.millis(mySpeed), myText);
+	// f.setFromValue(1.0);
+	// f.setToValue(0.0);
+	// f.setCycleCount(Timeline.INDEFINITE);
+	// f.setAutoReverse(true);
+	// f.play();
+	// }
+	//
+	// private void initializeImage(String image) {
+	// if(!image.isEmpty()){
+	// Image splash = new Image(image);
+	// myImage = new ImageView(splash);
+	// myImage.setFitHeight(Screen.getPrimary().getBounds().getHeight());
+	// myImage.setPreserveRatio(true);
+	// myPane.getChildren().add(myImage);
+	// }
+	// }
+	//
+	// private void setAdvanceTimer(){
+	// if(myDuration > 0){
+	// Timeline timeline = new Timeline(new KeyFrame(
+	// Duration.millis(myDuration),
+	// e -> getScene().getManager().sceneFinished()));
+	// timeline.play();
+	// }
+	//
+	// }
+	//
 
 }

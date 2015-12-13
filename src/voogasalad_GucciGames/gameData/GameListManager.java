@@ -18,81 +18,80 @@ import org.w3c.dom.NodeList;
 
 public class GameListManager {
 
-    private final ResourceBundle myConfig = ResourceBundle.getBundle("voogasalad_GucciGames.gameData.config.GameData");
+	private final ResourceBundle myConfig = ResourceBundle.getBundle("voogasalad_GucciGames.gameData.config.GameData");
 
-    File myXML;
-    Document myDoc;
-    
-//    public static void main(String[] args){
-//        GameListManager m = new GameListManager();
-//        m.addGame("testname", "testfile");
-//    }
-    
-    public GameListManager(){
-    	loadXML();
-    	parseXML();
-    }
-    
-    public void addGame(String gameName, String gameFile){
-    	//System.err.println("ERROR: add games manually for now plz :) -> add this to XML FILE\n" + gameName + "\n" + gameFile);
-        //System.out.println("addgame started");
-    	for (String s: listGames()) {
-    	    if (s.equals(gameName)) {
-    	        //System.out.println(gameName+" already added");
-    	        return;
-    	    }
-    	}
-    	Element root = myDoc.getDocumentElement();
-    	Element game = myDoc.createElement("game");
-    	Element name = myDoc.createElement("name");
-    	Element file = myDoc.createElement("file");
-    	name.appendChild(myDoc.createTextNode(gameName));
-    	file.appendChild(myDoc.createTextNode(gameFile));
-    	game.appendChild(name);
-    	game.appendChild(file);
-    	root.appendChild(game);
-    	 DOMSource source = new DOMSource(myDoc);
-         TransformerFactory transformerFactory = TransformerFactory.newInstance();
-         Transformer transformer;
-        try {
-            transformer = transformerFactory.newTransformer();
-            StreamResult result = new StreamResult(myConfig.getString("GameStorageLocation") + myConfig.getString("GameListFile"));
-            transformer.transform(source, result);
-        }
-        catch (Exception e) {
-            // TODO -generated catch block
-            e.printStackTrace();
-        }
-    }
-    
-    public List<String> listGames(){
-    	List<String> games = new ArrayList<>();
-    	NodeList myGames = myDoc.getElementsByTagName("game");
-    	for(int i=0; i<myGames.getLength(); i++){
-    		Element curr = (Element)myGames.item(i);
-    		games.add(curr.getElementsByTagName("name").item(0).getTextContent());
-    	}
-    	return games;
-    }
+	File myXML;
+	Document myDoc;
+
+	// public static void main(String[] args){
+	// GameListManager m = new GameListManager();
+	// m.addGame("testname", "testfile");
+	// }
+
+	public GameListManager() {
+		loadXML();
+		parseXML();
+	}
+
+	public void addGame(String gameName, String gameFile) {
+		// System.err.println("ERROR: add games manually for now plz :) -> add
+		// this to XML FILE\n" + gameName + "\n" + gameFile);
+		// System.out.println("addgame started");
+		for (String s : listGames()) {
+			if (s.equals(gameName)) {
+				// System.out.println(gameName+" already added");
+				return;
+			}
+		}
+		Element root = myDoc.getDocumentElement();
+		Element game = myDoc.createElement("game");
+		Element name = myDoc.createElement("name");
+		Element file = myDoc.createElement("file");
+		name.appendChild(myDoc.createTextNode(gameName));
+		file.appendChild(myDoc.createTextNode(gameFile));
+		game.appendChild(name);
+		game.appendChild(file);
+		root.appendChild(game);
+		DOMSource source = new DOMSource(myDoc);
+		TransformerFactory transformerFactory = TransformerFactory.newInstance();
+		Transformer transformer;
+		try {
+			transformer = transformerFactory.newTransformer();
+			StreamResult result = new StreamResult(
+					myConfig.getString("GameStorageLocation") + myConfig.getString("GameListFile"));
+			transformer.transform(source, result);
+		} catch (Exception e) {
+			// TODO -generated catch block
+			e.printStackTrace();
+		}
+	}
+
+	public List<String> listGames() {
+		List<String> games = new ArrayList<>();
+		NodeList myGames = myDoc.getElementsByTagName("game");
+		for (int i = 0; i < myGames.getLength(); i++) {
+			Element curr = (Element) myGames.item(i);
+			games.add(curr.getElementsByTagName("name").item(0).getTextContent());
+		}
+		return games;
+	}
 
 	private void parseXML() {
-		try{
-    		DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
-        	DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();
-        	myDoc = dBuilder.parse(myXML);
-    	}
-    	catch(Exception e){
-    		e.printStackTrace();
-    	}
+		try {
+			DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
+			DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();
+			myDoc = dBuilder.parse(myXML);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 	}
-	
+
 	private void loadXML() {
-		try{
-    		myXML = new File(myConfig.getString("GameStorageLocation") + myConfig.getString("GameListFile"));
-    	}
-    	catch(Exception e){
-    		e.printStackTrace();
-    	}
+		try {
+			myXML = new File(myConfig.getString("GameStorageLocation") + myConfig.getString("GameListFile"));
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 	}
-	
+
 }

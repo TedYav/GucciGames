@@ -8,7 +8,7 @@ import voogasalad_GucciGames.gameEngine.gamePlayer.AllPlayers;
 import voogasalad_GucciGames.gameEngine.gamePlayer.GamePlayerPerson;
 import voogasalad_GucciGames.gameEngine.gamePlayer.chars.PlayerWealthChar;
 
-public class BuildArcherEvent extends MapObjectEvent{
+public class BuildArcherEvent extends MapObjectEvent {
 
 	@Override
 	protected ChangedParameters executeAction(LocationParameters params) {
@@ -16,8 +16,8 @@ public class BuildArcherEvent extends MapObjectEvent{
 		AllPlayers players = params.getEngine().getPlayers();
 		GamePlayerPerson player = players.getActivePlayer(params.getCalledMe().getPlayerID());
 		PlayerWealthChar wealth = (PlayerWealthChar) player.getCharacteristics("PlayerWealthChar");
-		if(wealth.getWealth() >= 50){
-			wealth.setWealth(wealth.getWealth()-50);
+		if (wealth.getWealth() >= 50) {
+			wealth.setWealth(wealth.getWealth() - 50);
 		}
 		return (new MapObjectBuilder()).build("Archer", params);
 	}

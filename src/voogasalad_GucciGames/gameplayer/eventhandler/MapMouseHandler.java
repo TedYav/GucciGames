@@ -8,16 +8,14 @@ import voogasalad_GucciGames.gameplayer.windows.mainwindow.map.cell.MapCellInter
 public class MapMouseHandler extends GameEventHandler implements EventHandler<MouseEvent> {
 
 	private MapCellInterface myCell;
-	
+
 	public MapMouseHandler(GameControllerInterface controller, MapCellInterface cell) {
 		super(controller);
 		myCell = cell;
 	}
 
 	@Override
-	public void handle(MouseEvent e) {		
+	public void handle(MouseEvent e) {
 	}
-	
-	
 
 }

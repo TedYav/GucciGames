@@ -5,15 +5,15 @@ import javafx.scene.input.KeyCombination;
 import voogasalad_GucciGames.gameAuthoring.AGuiGaeController;
 import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.maindialogs.GameSettingDialog;
 
-class GameItem extends MenuItem{
+class GameItem extends MenuItem {
 	GameItem(String name, AGuiGaeController controller) {
 		super(name);
 		setAccelerator(KeyCombination.keyCombination("Ctrl+M"));
 		setOnAction(e -> {
-			GameSettingDialog  gameSettingDialog = new GameSettingDialog(controller);
+			GameSettingDialog gameSettingDialog = new GameSettingDialog(controller);
 			gameSettingDialog.showAndWait();
-			//controller.saveToXML();
-			//TODO
+			// controller.saveToXML();
+			// TODO
 		});
 	}
 }

@@ -15,7 +15,6 @@ public class PlayerWealth extends Conditions {
 	private static final String WEALTH = "PlayerWealthChar";
 	private int myValue = 0;
 
-
 	public PlayerWealth(int value) {
 		myValue = value;
 	}

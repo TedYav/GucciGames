@@ -15,8 +15,6 @@ public class PlayerMovesPerTurn extends APlayerChars {
 		myNumberOfMoves = numofMoves;
 	}
 
-
-
 	public int getMyNumberOfMoves() {
 		return myNumberOfMoves;
 	}

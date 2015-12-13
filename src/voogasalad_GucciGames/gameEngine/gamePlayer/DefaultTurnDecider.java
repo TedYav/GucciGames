@@ -20,13 +20,12 @@ public class DefaultTurnDecider extends ATurnDecider {
 		updateActivePlayer();
 	}
 
-
 	@Override
 	public GamePlayerPerson getActivePlayer() {
 		return myActivePlayer;
 	}
-	
-	public void updateActivePlayer(){
+
+	public void updateActivePlayer() {
 		System.out.println("Current Turn Player ID is : " + decideTurn());
 		myActivePlayer = myPlayers.getPlayerById(decideTurn());
 	}
@@ -34,15 +33,15 @@ public class DefaultTurnDecider extends ATurnDecider {
 	public void setCurrentTurnPlayer(GamePlayerPerson myPlayer) {
 		myActivePlayer = myPlayer;
 	}
-	
-	public void setCurrentTurnPlayer(int id){
+
+	public void setCurrentTurnPlayer(int id) {
 		myActivePlayer = myPlayers.getPlayerById(id);
 	}
 
-
 	@Override
 	public int decideTurn() {
-		return myPlayers.getAllExistingIds().get((turnCounter.getCurrentTurn() % (myPlayers.getNumberOfPlayers() - 1)) + 1);
+		return myPlayers.getAllExistingIds()
+				.get((turnCounter.getCurrentTurn() % (myPlayers.getNumberOfPlayers() - 1)) + 1);
 	}
 
 }

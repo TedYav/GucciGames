@@ -10,18 +10,19 @@ import voogasalad_GucciGames.gameEngine.PlayerMapObjectInterface;
 public interface MapCellInterface {
 
 	public void activate();
-	
+
 	public void deactivate();
-		
+
 	public void toggleFog(boolean fog);
-	
+
 	public void toggleHighlight(boolean highlight);
-	
-	public Map<Integer,List<PlayerMapObjectInterface>> getUnits();
-	
+
+	public Map<Integer, List<PlayerMapObjectInterface>> getUnits();
+
 	public void addObject(PlayerMapObjectInterface object);
+
 	public void removeObject(PlayerMapObjectInterface object);
-		
+
 	public void addObserver(Observer o);
 
 	public Color getColor();

@@ -7,12 +7,12 @@ import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.mapobjsettings.ObjParam
 import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.paramObjects.ObjParam;
 import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.paramObjects.ObjParamValue;
 
-public class PlayerCharDialog extends AGaeDialog<ObjParamValue>{
+public class PlayerCharDialog extends AGaeDialog<ObjParamValue> {
 	private ObjParamListPane objParamListPane;
 	private IDialogGaeController controller;
 	private int playerid;
-	
-	public PlayerCharDialog(List<ObjParam> param, IDialogGaeController controller, int playerid){
+
+	public PlayerCharDialog(List<ObjParam> param, IDialogGaeController controller, int playerid) {
 		super();
 		objParamListPane = new ObjParamListPane(param, playerid);
 		this.controller = controller;
@@ -36,7 +36,5 @@ public class PlayerCharDialog extends AGaeDialog<ObjParamValue>{
     		return null;
 		});
 	}
-	
-	
 
 }

@@ -11,35 +11,35 @@ import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.paramObjects.ObjParamVa
 import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.paramObjects.OutcomeParamValue;
 import voogasalad_GucciGames.gameAuthoring.model.MapObjectType;
 
+public class AddConditionDialog extends javafx.scene.control.Dialog<List<ObjParamValue>> {
 
-public class AddConditionDialog extends javafx.scene.control.Dialog<List<ObjParamValue>>{
-	
 	private AllObjParamPane objParamPane;
 	private OutcomeParamValue outcomeVal;
 	private MapObjectType type;
-	public AddConditionDialog(ISwitchSettingsPane controller, 
-			List<ObjParam> conditions, OutcomeParamValue outcomeVal, MapObjectType type){
+
+	public AddConditionDialog(ISwitchSettingsPane controller, List<ObjParam> conditions, OutcomeParamValue outcomeVal,
+			MapObjectType type) {
 		this.outcomeVal = outcomeVal;
 		this.type = type;
-		final ButtonType save  = new ButtonType("Save", ButtonData.FINISH);
+		final ButtonType save = new ButtonType("Save", ButtonData.FINISH);
 		conditions.forEach(c -> {
 			System.out.println("condition name : " + c.getName());
-			c.getAllParams().forEach((k,v) -> {
-				System.out.println(k +  " " + v);
+			c.getAllParams().forEach((k, v) -> {
+				System.out.println(k + " " + v);
 			});
 		});
 		List<ObjParamValue> conditionParamValues = new ArrayList<ObjParamValue>();
-		objParamPane = new AllObjParamPane(controller , conditions, conditionParamValues, type);
+		objParamPane = new AllObjParamPane(controller, conditions, conditionParamValues, type);
 		this.getDialogPane().setContent(objParamPane);
-		
+
 		this.getDialogPane().getButtonTypes().addAll(save, ButtonType.CANCEL);
 		this.setResultConverter(dialogButton -> {
-		    if (dialogButton == save) {
-		    	outcomeVal.setConditions(conditionParamValues);
-		        
-		    }
-		    return null;
+			if (dialogButton == save) {
+				outcomeVal.setConditions(conditionParamValues);
+
+			}
+			return null;
 		});
-		
+
 	}
 }

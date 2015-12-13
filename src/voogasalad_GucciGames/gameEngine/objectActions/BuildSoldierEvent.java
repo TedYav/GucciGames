@@ -5,8 +5,7 @@ import voogasalad_GucciGames.gameEngine.CommunicationParameters.ChangedParameter
 import voogasalad_GucciGames.gameEngine.CommunicationParameters.GridCoordinateParameters;
 import voogasalad_GucciGames.gameEngine.CommunicationParameters.LocationParameters;
 
-public class BuildSoldierEvent extends MapObjectEvent{
-	
+public class BuildSoldierEvent extends MapObjectEvent {
 
 	@Override
 	protected ChangedParameters executeAction(LocationParameters params) {

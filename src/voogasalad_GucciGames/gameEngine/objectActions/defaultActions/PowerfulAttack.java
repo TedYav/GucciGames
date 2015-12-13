@@ -16,7 +16,6 @@ import voogasalad_GucciGames.gameEngine.targetCoordinate.TargetCoordinateSingle;
  */
 public class PowerfulAttack extends Attack {
 
-
 	public PowerfulAttack() {
 	}
 

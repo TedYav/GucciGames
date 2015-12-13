@@ -42,7 +42,7 @@ public class Civ extends Application {
 	private static String defaultGameLocation = "./src/games/demo.xml";
 
 	private static ResourceManager resourceManager = new ResourceManager("Civ");
-	
+
 	@Override
 	public void start(Stage stage) throws Exception {
 		XStreamGameEngine xStream = new XStreamGameEngine();
@@ -54,6 +54,7 @@ public class Civ extends Application {
 	public static void main(String[] args) {
 		launch(args);
 	}
+
 	private static GameInfo createGame() {
 		GameLevelEngine level1 = makeLevel(4, 4, 5);
 		level1.setMyChoosability(true);
@@ -73,7 +74,6 @@ public class Civ extends Application {
 		resourceManager.copyImageToGame("units/mace_windu___02-0.png");
 		resourceManager.copyImageToGame("units/droideka-0.png");
 
-		
 		GameInfo game = new GameInfo("Civ");
 		game.getGameEngine().addLevel("Easy", level1);
 		game.getGameEngine().addLevel("Medium", level2);
@@ -113,15 +113,12 @@ public class Civ extends Application {
 
 		MoveEvent myMoveEvent = new MoveEvent("Move", moveRules, new ArrayList<Outcome>());
 
-		
 		Map<String, MapObject> myAllMapObjects = new HashMap<String, MapObject>();
 
 		Conditions onePlayerLeft = new CheckOnePlayerLeft(0);
 		List<Conditions> endGameConditions = new ArrayList<Conditions>();
 		endGameConditions.add(onePlayerLeft);
 
-		
-		
 		Outcome endGame = new EndLevel("other", "Hard");
 		for (Conditions cond : endGameConditions) {
 			endGame.addCondition(cond);
@@ -136,9 +133,9 @@ public class Civ extends Application {
 		BuildSoldierEvent myBuildEvent = new BuildSoldierEvent();
 
 		soldier.addEvent("BuildItself", myBuildEvent);
-		
+
 		myAllMapObjects.put("Soldier", soldier);
-		
+
 		myMapOfPlayers.get(0).getMapObjects().add(soldier);
 		numDuvalls--;
 
@@ -150,8 +147,8 @@ public class Civ extends Application {
 						newObj = new MapObject(new TargetCoordinateSingle(i, j), -1, 0, "Stones", "tiles/stones3.jpg");
 					} else {
 						newObj = new MapObject(new TargetCoordinateSingle(i, j), -1, 0, "Sand", "tiles/sand.jpg");
-					}}
-				else{
+					}
+				} else {
 					newObj = new MapObject(new TargetCoordinateSingle(i, j), -1, 0, "Hedge", "tiles/hedge.jpg");
 				}
 				newObj.addCharacteristic("TileCharacteristic", myTileCharacteristic);
@@ -160,7 +157,7 @@ public class Civ extends Application {
 
 				if(numDuvalls > 0 && !((i + j) % 9 == 0)){
 					Random rand = new Random();
-					if(rand.nextInt(width*height) < numDuvalls){
+					if (rand.nextInt(width * height) < numDuvalls) {
 						MapObject littlesoldier = makeSoldier(myMoveEvent, myAttackEvent, i, j);
 						littlesoldier.addEvent("BuildItself", myBuildEvent);
 						myMapOfPlayers.get(0).getMapObjects().add(littlesoldier);
@@ -168,16 +165,15 @@ public class Civ extends Application {
 					}
 				}
 
-				if ((i%4==0 || j%5==0)) {
-					//if (myMapOfPlayers.get(0).getMapObjects().isEmpty()){
+				if ((i % 4 == 0 || j % 5 == 0)) {
+					// if (myMapOfPlayers.get(0).getMapObjects().isEmpty()){
 					MapObject arch = makeArcher(myMoveEvent, myAttackEvent, i, j);
 
 					myMapOfPlayers.get(1).getMapObjects().add(arch);
-					//}
-				}	
+					// }
+				}
 			}
 		}
-
 
 		AllPlayers myPlayers = new AllPlayers(myMapOfPlayers);
 
@@ -197,12 +193,10 @@ public class Civ extends Application {
 	}
 
 	private static MapObject makeArcher(MoveEvent myMoveEvent, AttackEvent myAttackEvent, int i, int j) {
-		MapObject arch = new MapObject(new TargetCoordinateSingle(i, j), 1, 1, "Empire",
-				"units/droideka-0.png");
+		MapObject arch = new MapObject(new TargetCoordinateSingle(i, j), 1, 1, "Empire", "units/droideka-0.png");
 		arch.addCharacteristic("HealthCharacteristic", new HealthCharacteristic(10));
 		arch.addCharacteristic("AttackCharacteristic", new AttackCharacteristic(3, 5, 2));
-		arch.addCharacteristic("MovableCha"
-				+ "racteristic", new MovableCharacteristic(5, 1));
+		arch.addCharacteristic("MovableCha" + "racteristic", new MovableCharacteristic(5, 1));
 		arch.addEvent("Move", myMoveEvent);
 
 		arch.addEvent("Attack", myAttackEvent);
@@ -210,13 +204,14 @@ public class Civ extends Application {
 	}
 
 	private static MapObject makeSoldier(MoveEvent moveEvent, AttackEvent attackEvent, int i, int j) {
-		
+
 		MovableCharacteristic myMovableCharacteristic = new MovableCharacteristic(1, 3);
 		HealthCharacteristic myHealthCharacteristic = new HealthCharacteristic(5);
-		MapObject soldier = new MapObject(new TargetCoordinateSingle(i, j), 0, 1, "Soldier", "units/mace_windu___02-0.png");
+		MapObject soldier = new MapObject(new TargetCoordinateSingle(i, j), 0, 1, "Soldier",
+				"units/mace_windu___02-0.png");
 
 		soldier.addEvent("Move", moveEvent);
-		
+
 		AttackCharacteristic myAttackCharacteristic = new AttackCharacteristic(3, 100, 2);
 
 		soldier.addCharacteristic("MovableCharacteristic", myMovableCharacteristic);

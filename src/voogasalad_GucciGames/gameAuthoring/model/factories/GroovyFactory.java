@@ -7,10 +7,6 @@ package voogasalad_GucciGames.gameAuthoring.model.factories;
  */
 public abstract class GroovyFactory {
 
-
-
-
-
 	protected Object getTranslatedValue(String type, String value) {
 		if (type.equals("int"))
 			return Integer.parseInt(value);

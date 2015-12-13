@@ -10,7 +10,7 @@ import voogasalad_GucciGames.gameEngine.gameRules.Rules;
  *
  */
 public class AttacksPerTurn extends Rules {
-private static final String ATTACK_CHARACTERISTIC = "AttackCharacteristic";
+	private static final String ATTACK_CHARACTERISTIC = "AttackCharacteristic";
 
 	public AttacksPerTurn() {
 	}

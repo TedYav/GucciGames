@@ -20,13 +20,14 @@ public class MainMenuOverlay extends WindowComponent {
 	private String myTitle;
 
 	private ResourceBundle myConfig = PlayerConfig.load("components.MainMenuOverlay");
-	
+
 	public MainMenuOverlay(GameScene scene, GameControllerInterface controller) {
 		super(scene, controller);
 		myTitle = myConfig.getString("MenuTitle");
 		myMenu = new MenuScreen(getGameScene(), getController(), buildOptionMap(), myTitle);
 		myParent = new StackPane();
-		myBackground = new Rectangle(Screen.getPrimary().getBounds().getWidth(), Screen.getPrimary().getBounds().getHeight());
+		myBackground = new Rectangle(Screen.getPrimary().getBounds().getWidth(),
+				Screen.getPrimary().getBounds().getHeight());
 		myBackground.getStyleClass().add("overlay-background");
 		myParent.getChildren().addAll(myBackground, myMenu.getParent());
 		setParent(myParent);
@@ -38,10 +39,13 @@ public class MainMenuOverlay extends WindowComponent {
 		options.put("Load Game", () -> getGameScene().getManager().loadScene("LoadGameScene"));
 		options.put("Save Game", () -> getGameScene().getManager().getLoader().saveGame());
 		options.put("View High Scores", () -> getGameScene().getManager().loadScene("HighScoresScene"));
-		options.put("Reload", () -> { getGameScene().getManager().getLoader().loadGame(getGameScene().getManager().getController().getGame().getGameName()); 
-		getGameScene().getManager().loadScene("GameSplashScene"); });
+		options.put("Reload", () -> {
+			getGameScene().getManager().getLoader()
+					.loadGame(getGameScene().getManager().getController().getGame().getGameName());
+			getGameScene().getManager().loadScene("GameSplashScene");
+		});
 		options.put("Quit", () -> getGameScene().getManager().loadScene("MainMenuScene"));
 		return options;
 	}
-	
+
 }

@@ -1,17 +1,17 @@
 package voogasalad_GucciGames.gameEngine.groovyEngine;
 
 public abstract class AGroovyCustomObject {
-	
+
 	protected String myName;
-	
-	public AGroovyCustomObject(String name){
+
+	public AGroovyCustomObject(String name) {
 		this.myName = name;
 	}
-	
-	public String getName(){
+
+	public String getName() {
 		return this.myName;
 	}
-	
-	public abstract String getGroovyString(); 
-	
+
+	public abstract String getGroovyString();
+
 }

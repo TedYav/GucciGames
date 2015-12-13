@@ -102,10 +102,10 @@ public class Cell extends StackPane implements ICell {
 	@Override
 	public boolean add(MapObjectType type) {
 		DisplayMapObject obj = myController.addObject(myGrid.getLevelID(), myPos, type);
-		//myController.getResourceManager().copyImageToGame(type.getImagePath());
+		// myController.getResourceManager().copyImageToGame(type.getImagePath());
 		if (obj != null) {
 			if (type.isTile()) {
-				if(myTileLayer.getTile()!=null)
+				if (myTileLayer.getTile() != null)
 					myController.deleteComponent(myTileLayer.getTile(), myGrid.getLevelID());
 				myTileLayer.add(obj);
 			} else {
@@ -129,7 +129,7 @@ public class Cell extends StackPane implements ICell {
 	public void clear() {
 		myController.deleteComponent(myTileLayer.getTile(), myGrid.getLevelID());
 		myTileLayer.remove();
-		myMidLayer.getObjects().forEach(o->myController.deleteComponent(o, myGrid.getLevelID()));
+		myMidLayer.getObjects().forEach(o -> myController.deleteComponent(o, myGrid.getLevelID()));
 		myMidLayer.clear();
 		deselect();
 	}
@@ -153,8 +153,8 @@ public class Cell extends StackPane implements ICell {
 		pane.maxHeightProperty().bind(heightProperty());
 		pane.prefHeightProperty().bind(heightProperty());
 	}
-	
-	public void setOwner(int id){
+
+	public void setOwner(int id) {
 		myMidLayer.setOwner(id);
 	}
 

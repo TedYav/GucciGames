@@ -5,30 +5,29 @@ import java.util.Arrays;
 import java.util.List;
 
 public class ActionParam {
-	
+
 	private List<String> myRules = new ArrayList<String>();
 	private List<String> myCharacteristics = new ArrayList<String>();
 	private String name;
-	
-	public ActionParam(String name){
+
+	public ActionParam(String name) {
 		this.name = name;
 	}
-	
-	public void setRules(String rules){
+
+	public void setRules(String rules) {
 		List<String> items = Arrays.asList(rules.split("\\s*,\\s*"));
 		myRules.addAll(items);
-		
-		
+
 	}
-	
-	public String getName(){
+
+	public String getName() {
 		return this.name;
 	}
-	
-	public void setCharacteristics(String characteristics){
+
+	public void setCharacteristics(String characteristics) {
 		List<String> items = Arrays.asList(characteristics.split("\\s*,\\s*"));
 		myCharacteristics.addAll(myRules);
-		
+
 	}
 
 }
