@@ -7,7 +7,7 @@
 * Names/Roles:
  - Efe Aras: Team Lead, Main engine architecture, Networking
  - Ted Yavuzkurt: 
- - Ying Qi:
+ - Ying Qi: MVC architecture for Game Authoring Environment
  - John Dai:
  - Mike Ma: 
  - Daniel McKee: 
