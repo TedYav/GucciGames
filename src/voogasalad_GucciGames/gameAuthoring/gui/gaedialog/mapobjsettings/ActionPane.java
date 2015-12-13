@@ -107,19 +107,22 @@ public class ActionPane extends GridPane {
 			List<String> outcomeNames = new ArrayList<String>();
 			outcomeNames.add(outcomeDialog.showAndWait().get());
 
-			ObjParam selectedOutcomeParam = controller.getPropertiesInterface().getSelectedOutcomes(outcomeNames)
-					.get(0);
-			System.out.println("Selected outcome: " + selectedOutcomeParam.getName());
+//			ObjParam selectedOutcomeParam = controller.getPropertiesInterface().getSelectedOutcomes(outcomeNames)
+//					.get(0);
+//			System.out.println("Selected outcome: " + selectedOutcomeParam.getName());
+//			OutcomeParamsDialog outcomeParamsDialog = new OutcomeParamsDialog(selectedOutcomeParam);
+			List<ObjParam> selectedOutcomeParam = controller.getPropertiesInterface().getSelectedOutcomes(outcomeNames);
+//			System.out.println("Selected outcome: " + selectedOutcomeParam.getName());
 			OutcomeParamsDialog outcomeParamsDialog = new OutcomeParamsDialog(selectedOutcomeParam);
 			// Dialog to select outcome parameters
-			ObjParamValue paramValue = outcomeParamsDialog.showAndWait().get();
+			List<ObjParamValue> paramValue = outcomeParamsDialog.showAndWait().get();
 			OutcomeParamValue outcomeParamValue = null;
 
 			if (paramValue != null) {
 				// If valid parameters are selected, create new
 				// outcomeParamValue
 
-				outcomeParamValue = new OutcomeParamValue(selectedOutcomeParam.getName(), type, paramValue);
+				outcomeParamValue = new OutcomeParamValue(selectedOutcomeParam.get(0).getName(), type, paramValue.get(0));
 				// add condition to outcomeParamValue
 				AddConditionToOutcomeDialog addConditionDialog = new AddConditionToOutcomeDialog(controller);
 				List<ObjParamValue> conditionParamValue = addConditionDialog.showAndWait().get();

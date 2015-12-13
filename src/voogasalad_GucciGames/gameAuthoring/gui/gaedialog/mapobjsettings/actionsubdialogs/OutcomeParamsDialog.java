@@ -1,33 +1,38 @@
 package voogasalad_GucciGames.gameAuthoring.gui.gaedialog.mapobjsettings.actionsubdialogs;
 
+import java.util.List;
+
 import javafx.scene.Node;
 import javafx.scene.control.ButtonBar.ButtonData;
 import javafx.scene.control.ButtonType;
 import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.maindialogs.AGaeDialog;
-import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.mapobjsettings.ObjParamPane;
+import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.mapobjsettings.ObjParamListPane;
 import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.paramObjects.ObjParam;
 import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.paramObjects.ObjParamValue;
 
-public class OutcomeParamsDialog extends AGaeDialog<ObjParamValue> {
+public class OutcomeParamsDialog extends AGaeDialog<List<ObjParamValue>> {
 
-	private ObjParamPane objParamPane;
+	private ObjParamListPane objParamListPane;
 
-	public OutcomeParamsDialog(ObjParam outcomeParam) {
-		objParamPane = new ObjParamPane(outcomeParam);
+	public OutcomeParamsDialog(List<ObjParam> outcomeParam) {
+		objParamListPane = new ObjParamListPane(outcomeParam);
 		final ButtonType saveBtn = new ButtonType("Save", ButtonData.NEXT_FORWARD);
 		this.getDialogPane().getButtonTypes().add(saveBtn);
 		Node saveBtnNode = getDialogPane().lookupButton(saveBtn);
-		saveBtnNode.setDisable(objParamPane.checkAllInputs());
-		this.getDialogPane().setContent(objParamPane);
+		saveBtnNode.setDisable(objParamListPane.checkAllInputs());
+		this.getDialogPane().setContent(objParamListPane);
 
 		this.setResultConverter(dialogButton -> {
 			if (dialogButton == saveBtn) {
-				if (objParamPane.checkAllInputs()) {
+				if (objParamListPane.checkAllInputs()) {
 					System.out.println();
-					objParamPane.getAllInputs().getMap().forEach((k, v) -> {
-						System.out.println("objParam k: " + k + "objParam v: " + v);
-					});
-					return objParamPane.getAllInputs();
+					List<ObjParamValue> objParamValueList = objParamListPane.getAllInputsList();
+					for(ObjParamValue eachObjParamValue : objParamValueList){
+						eachObjParamValue.getMap().forEach((k, v) -> {
+							System.out.println("objParam k: " + k + "objParam v: " + v);
+						});
+					}
+					return objParamListPane.getAllInputsList();
 				}
 			} else {
 				this.showAlert("Incomplete Input for Outcome", "No outcome saved");

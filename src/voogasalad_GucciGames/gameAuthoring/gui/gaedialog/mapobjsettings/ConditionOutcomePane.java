@@ -12,6 +12,7 @@ import voogasalad_GucciGames.gameAuthoring.IDialogGaeController;
 import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.dialogcomponents.DialogTableView;
 import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.dialogcomponents.DropDownMenuField;
 import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.paramObjects.ObjParam;
+import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.paramObjects.ObjParamValue;
 import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.paramObjects.OutcomeParamValue;
 import voogasalad_GucciGames.gameAuthoring.model.MapObjectType;
 
@@ -32,10 +33,14 @@ public class ConditionOutcomePane extends GridPane {
 	private IDialogGaeController controller;
 
 	private List<String> selectedOutcomes = new ArrayList<String>();
+	
+	List<ObjParam> outcomeParamList = new ArrayList<>();
+	
+	ObjParamListPane objParamListPane;
 
-	private ObjParam outcomeParam;
+//	private ObjParam outcomeParam;
 
-	private ObjParamPane objParamPane;
+//	private ObjParamPane objParamPane;
 
 	public ConditionOutcomePane(IDialogGaeController controller, List<String> conditions, List<String> outcomes,
 			MapObjectType type) {
@@ -66,26 +71,27 @@ public class ConditionOutcomePane extends GridPane {
 			selectedOutcomes.add(selected);
 			List<ObjParam> outcomes = controller.getPropertiesInterface().getSelectedOutcomes(selectedOutcomes);
 			System.out.println("outcome size: " + outcomes.size());
-			outcomeParam = controller.getPropertiesInterface().getSelectedOutcomes(selectedOutcomes).get(0);
+			outcomeParamList = controller.getPropertiesInterface().getSelectedOutcomes(selectedOutcomes);
 			this.setOutcomeParam();
 		});
 	}
 
 	private void setOutcomeParam() {
-		if (this.outcomeParam != null) {
-			this.getChildren().remove(objParamPane);
-			objParamPane = new ObjParamPane(outcomeParam);
-			this.add(objParamPane, 3, 2);
-
+		if (this.outcomeParamList != null) {
+			this.getChildren().remove(objParamListPane);
+			objParamListPane = new ObjParamListPane(outcomeParamList);
+			this.add(objParamListPane, 3, 2);
 		}
 	}
 
 	protected OutcomeParamValue getOutcomeValue() {
 		OutcomeParamValue outcomeParam = null;
-		if (objParamPane != null) {
-
-			outcomeParam = new OutcomeParamValue(selectedOutcome.getText(), type, objParamPane.getAllInputs());
-
+		if (objParamListPane != null) {
+			List<ObjParamValue> objParamValues = objParamListPane.getAllInputsList();
+			//TODO: check this for loop
+//			for(ObjParamValue eachObjParamValue : objParamValues){
+				outcomeParam = new OutcomeParamValue(selectedOutcome.getText(), type, objParamValues.get(0));
+//			}
 		}
 		return outcomeParam;
 

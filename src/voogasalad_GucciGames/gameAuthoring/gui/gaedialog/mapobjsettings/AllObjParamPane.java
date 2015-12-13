@@ -17,7 +17,7 @@ public class AllObjParamPane extends VBox {
 
 	private Label titleLbl;
 	private List<ObjParam> objParams = new ArrayList<ObjParam>();
-	private List<ObjParamPane> objPane = new ArrayList<ObjParamPane>();
+	private ObjParamListPane objParamListPane;
 	private Button saveBtn = new Button("Save All");
 	private ISwitchSettingsPane controller;
 	private List<ObjParamValue> allCharParams;
@@ -64,22 +64,12 @@ public class AllObjParamPane extends VBox {
 	}
 
 	private void setContents() {
-		objParams.forEach(p -> {
-			ObjParamPane pane = new ObjParamPane(p, this.mapObjectType);
-			objPane.add(pane);
-			this.getChildren().add(pane);
-		});
-
+		objParamListPane = new ObjParamListPane(objParams, this.mapObjectType);
+		this.getChildren().add(objParamListPane);
 	}
 
 	private void checkAllInputs() {
-
-		objPane.forEach(pane -> {
-			if (!pane.checkAllInputs()) {
-				check = false;
-			}
-		});
-
+		if(!objParamListPane.checkAllInputs()) check = false;
 	}
 
 	public boolean getCheckAllInputs() {
@@ -88,9 +78,7 @@ public class AllObjParamPane extends VBox {
 	}
 
 	public List<ObjParamValue> getAllParam() {
-		List<ObjParamValue> data = new ArrayList<ObjParamValue>();
-		objPane.forEach(pane -> data.add(pane.getAllInputs()));
-		return data;
+		return objParamListPane.getAllInputsList();
 	}
 
 }

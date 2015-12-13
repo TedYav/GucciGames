@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Map.Entry;
 
 import javafx.geometry.HPos;
 import javafx.geometry.Insets;
@@ -22,14 +23,47 @@ import voogasalad_GucciGames.gameAuthoring.model.MapObjectType;
  *
  */
 public class ObjParamListPane extends GridPane {
+	private boolean checkInput = true;
 
 	private List<ObjParam> param = new ArrayList<ObjParam>();
 	private Map<Label, TextField> contents = new HashMap<Label, TextField>();
 	private List<String> objName = new ArrayList<String>();
-	private List<ObjType> type = new ArrayList<ObjType>();
+	private List<ObjType> type = new ArrayList<ObjType>(); 
 
 	private MapObjectType mapObjectType;
 	private int playerId;
+	
+	public ObjParamListPane(List<ObjParam> param) {
+		for (ObjParam eachObjParam : param) {
+			String paramName = eachObjParam.getName();
+			objName.add(paramName);
+
+			ObjType objType = eachObjParam.getObjType();
+			type.add(objType);
+		}
+
+		this.param = param;
+
+		setContent();
+		init();
+	}
+	
+	public ObjParamListPane(List<ObjParam> param, MapObjectType mapObjectType) {
+		this.mapObjectType = mapObjectType;
+		for (ObjParam eachObjParam : param) {
+			String paramName = eachObjParam.getName();
+			objName.add(paramName);
+
+			ObjType objType = eachObjParam.getObjType();
+			type.add(objType);
+		}
+
+		this.param = param;
+
+		setContent();
+		init();
+	}
+
 
 	public ObjParamListPane(List<ObjParam> param, int playerId) {
 		for (ObjParam eachObjParam : param) {
@@ -72,6 +106,30 @@ public class ObjParamListPane extends GridPane {
 				i++;
 			}
 		}
+		this.listenForInputs();
+	}
+	
+	private void listenForInputs() {
+		for (Entry<Label, TextField> entry : contents.entrySet()) {
+			entry.getValue().textProperty().addListener((ob, oV, nV) -> {
+				if (nV.trim().isEmpty()) {
+					this.checkInput = false;
+				}
+			});
+		}
+	}
+	
+	public boolean getInputCheck() {
+		return checkInput;
+	}
+
+	public boolean checkAllInputs() {
+		for (Entry<Label, TextField> entry : contents.entrySet()) {
+			if (entry.getValue().getText().equals("")) {
+				return false;
+			}
+		}
+		return true;
 	}
 
 	public List<ObjParamValue> getAllInputsList() {
