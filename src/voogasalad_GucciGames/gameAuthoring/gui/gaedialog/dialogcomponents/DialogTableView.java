@@ -3,8 +3,6 @@ package voogasalad_GucciGames.gameAuthoring.gui.gaedialog.dialogcomponents;
 import java.util.ArrayList;
 import java.util.List;
 
-import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.paramObjects.AParams;
-import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.paramObjects.ActionParamsValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.geometry.Insets;
@@ -16,7 +14,6 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.GridPane;
-import javafx.scene.layout.HBox;
 import javafx.scene.text.Font;
 
 public class DialogTableView extends GridPane {

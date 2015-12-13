@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Properties;
 
-import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.DialogElements;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.scene.control.ComboBox;

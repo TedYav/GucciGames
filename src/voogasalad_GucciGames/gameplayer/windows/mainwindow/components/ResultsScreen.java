@@ -7,7 +7,6 @@ import java.util.ResourceBundle;
 
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
-import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;

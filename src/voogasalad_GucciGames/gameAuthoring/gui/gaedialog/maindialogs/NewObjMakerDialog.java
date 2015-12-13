@@ -2,10 +2,10 @@ package voogasalad_GucciGames.gameAuthoring.gui.gaedialog.maindialogs;
 
 import java.util.Properties;
 
+import javafx.scene.layout.GridPane;
 import voogasalad_GucciGames.gameAuthoring.AGuiGaeController;
 import voogasalad_GucciGames.gameAuthoring.IDialogGaeController;
 import voogasalad_GucciGames.gameAuthoring.model.MapObjectType;
-import javafx.scene.layout.GridPane;
 
 public class NewObjMakerDialog extends AGaeDialog<MapObjectType> {
 	private Properties prop;

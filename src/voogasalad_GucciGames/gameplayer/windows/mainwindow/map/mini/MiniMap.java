@@ -12,21 +12,16 @@ import javafx.beans.value.ObservableValue;
 import javafx.geometry.Point2D;
 import javafx.scene.Cursor;
 import javafx.scene.Parent;
-import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseDragEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
-import javafx.scene.paint.Color;
-import javafx.scene.paint.Paint;
 import javafx.scene.shape.Rectangle;
 import voogasalad_GucciGames.gameplayer.controller.GameControllerInterface;
 import voogasalad_GucciGames.gameplayer.scenes.GameScene;
 import voogasalad_GucciGames.gameplayer.windows.mainwindow.components.DisplayComponent;
-import voogasalad_GucciGames.gameplayer.windows.mainwindow.components.WindowComponent;
 import voogasalad_GucciGames.gameplayer.windows.mainwindow.map.cell.MapCellInterface;
-import voogasalad_GucciGames.helpers.ImageAverager;
 
 public class MiniMap extends DisplayComponent implements MiniMapInterface, Observer {
 
@@ -139,7 +134,9 @@ public class MiniMap extends DisplayComponent implements MiniMapInterface, Obser
 		for(int x=0; x<myWidth; x++){
 			for(int y=0; y<myHeight; y++){
 				Point2D coord = new Point2D(x,y);
-				MapCellInterface cell = getController().getMap().getCell(coord);				
+				MapCellInterface cell = getController().getMap().getCell(coord);	
+				if(coord == null)
+					continue;
 				myShapeMap.put(coord, new Rectangle(myCellWidth, myCellHeight));
 				myShapeMap.get(coord).setFill(cell.getColor());
 				cell.addObserver(this);

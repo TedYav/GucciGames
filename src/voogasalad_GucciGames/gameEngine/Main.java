@@ -1,17 +1,5 @@
 package voogasalad_GucciGames.gameEngine;
 
-import java.util.HashMap;
-import java.util.Map;
-
-import voogasalad_GucciGames.gameEngine.defaultCharacteristics.HealthCharacteristic;
-import voogasalad_GucciGames.gameEngine.defaultCharacteristics.HealthCharacteristic;
-import voogasalad_GucciGames.gameEngine.defaultCharacteristics.MovableCharacteristic;
-import voogasalad_GucciGames.gameEngine.gamePlayer.AllPlayers;
-import voogasalad_GucciGames.gameEngine.gamePlayer.GamePlayerPerson;
-import voogasalad_GucciGames.gameEngine.mapObject.MapObject;
-import voogasalad_GucciGames.gameEngine.objectActions.MoveEvent;
-import voogasalad_GucciGames.gameEngine.targetCoordinate.TargetCoordinateSingle;
-
 public class Main {
 
 	/*

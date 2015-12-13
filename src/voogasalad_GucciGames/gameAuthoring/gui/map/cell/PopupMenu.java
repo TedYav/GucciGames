@@ -21,7 +21,7 @@ public class PopupMenu extends ContextMenu {
 		MenuItem item1 = new MenuItem("Edit");
 		item1.setOnAction(new EventHandler<ActionEvent>() {
 			public void handle(ActionEvent e) {
-				System.out.println("Edit");
+				//System.out.println("Edit");
 			}
 		});
 		MenuItem item2 = new MenuItem("Remove");

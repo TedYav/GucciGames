@@ -5,20 +5,19 @@ import java.text.DateFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Date;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.ResourceBundle;
+import java.util.regex.Pattern;
 
 import com.thoughtworks.xstream.XStream;
 import com.thoughtworks.xstream.io.xml.DomDriver;
-import groovy.lang.GroovyClassLoader;
+
 import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.groovySettings.groovyParams.GActionParams;
 import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.groovySettings.groovyParams.GCharParam;
 import voogasalad_GucciGames.gameData.wrapper.GameInfo;
 import voogasalad_GucciGames.gameData.wrapper.GamePlayerSave;
 import voogasalad_GucciGames.gameData.wrapper.GroovyLoaderData;
-import voogasalad_GucciGames.gameEngine.GameEngineToGamePlayerInterface;
 import voogasalad_GucciGames.gameEngine.groovyEngine.AGroovyCustomObject;
 import voogasalad_GucciGames.gameEngine.groovyEngine.GameGroovyEngine;
 import voogasalad_GucciGames.gameEngine.groovyEngine.GroovyCustomCharacteristic;
@@ -26,9 +25,6 @@ import voogasalad_GucciGames.gameEngine.groovyEngine.GroovyCustomEvent;
 import voogasalad_GucciGames.gameEngine.groovyEngine.GroovyLoader;
 
 public class XStreamGameEngine {
-
-    //@SuppressWarnings("resource")
-	// TODO: refactor constants to resource bundle
 
     XStream serializer = new XStream(new DomDriver());
     String currentTurn = "Current Turn: ";
@@ -90,7 +86,6 @@ public class XStreamGameEngine {
     }
     public void saveGameState(GamePlayerSave game){
         saveGameState(game, new File(gameNameToPathName(game.getInfo().getGameName()) + myConfig.getString("SaveDirectory") + DateFormat.getDateInstance().format(new Date()) +" "+ DateFormat.getTimeInstance().format(new Date()).replace(':', '-') + myConfig.getString("SaveExtension")));
-        System.out.println("SAVED");
     }
     
     public String gameNameToFileName(String name){
@@ -111,30 +106,22 @@ public class XStreamGameEngine {
 	}
 
 
-//    public GameEngineToGamePlayerInterface loadEngine() {
-//        return loadEngine("");
-//    }
-
     public GameInfo loadGameByName(String name){
     	return loadGameInfo(new File(gameNameToFileName(name)));
     }
     
     public GameInfo loadGameInfo(String path) {
-//        if (path.isEmpty()) {
-//            path=defaultEngineLocation;
-//        }
         return loadGameInfo(new File(path));
     }
 
     private GameInfo loadGameInfo(File file) {
-//        if (file==null || !file.canRead()) {
-//            file = new File(defaultEngineLocation);
-//        }
         GameInfo game=null;
         try {
             List<String> path = Arrays.asList(file.getPath().split(File.separator));
-            String name=path.get(path.size()-1);
-            System.out.println("LOADING LOADER FROMMMMMMM "+name);
+            String dname=path.get(path.size()-1);
+            List<String> temp = Arrays.asList(dname.split(Pattern.quote(System.getProperty("file.separator"))));
+            String namedd = temp.get(temp.size()-1);
+            String name=namedd.substring(0, namedd.length()-3);
             String loaderXML = myLoader.read(new File(gameNameToLoaderName(name)));
             loader = (GroovyLoaderData) serializer.fromXML(loaderXML);
             //loader stuff
@@ -142,26 +129,22 @@ public class XStreamGameEngine {
             List<AGroovyCustomObject> groovyCustoms = new ArrayList<AGroovyCustomObject>();
             AGroovyCustomObject custom;
             Map<String,GCharParam> cMap = loader.getGroovyMapObjectCharParams();
-            System.out.println("STARTING LOAD CUSTOM CHARACTERISTICS");
             for (String s: cMap.keySet()) {
                 custom = new GroovyCustomCharacteristic(s,cMap.get(s).getAllParams());
                 groovyCustoms.add(custom);
             }
-            System.out.println("FINISHED, STARING LOAD CUSTOM ACTIONS");
             Map<String,GActionParams> aMap = loader.getGroovyActionParams();
             for (String s: aMap.keySet()) {
                 custom = new GroovyCustomEvent(s,aMap.get(s).getRequest(),aMap.get(s).getAction());
                 groovyCustoms.add(custom);
             }
-            System.out.println("FINISHED ACTIONS, CREATING GLOADER");
             GroovyLoader gLoader = engine.createLoader(groovyCustoms);
             serializer.setClassLoader(gLoader);
             Thread.currentThread().setContextClassLoader(gLoader);
         }
         catch (Exception e) {
-            e.printStackTrace();
+            //e.printStackTrace();
         }
-        System.out.println("Loading engine.");
         try {
             String gameXML = myLoader.read(file);
             game = (GameInfo) serializer.fromXML(gameXML);
@@ -169,14 +152,11 @@ public class XStreamGameEngine {
         catch (Exception e) {
             e.printStackTrace();
         }
-        System.out.println("Load complete.");
         return game;
     }
 
     public GamePlayerSave loadGameState (String saveName, String gameName) {
-        // TODO Auto-generated method stub
         File file = new File(gameNameToPathName(gameName) + myConfig.getString("SaveDirectory") + saveName);
-        System.out.println("Loading SAVE."+saveName);
         GamePlayerSave game=null;
         try {
             String gameXML = myLoader.read(file);
@@ -185,7 +165,6 @@ public class XStreamGameEngine {
         catch (Exception e) {
             e.printStackTrace();
         }
-        System.out.println("Load complete.");
         return game;
     }
 

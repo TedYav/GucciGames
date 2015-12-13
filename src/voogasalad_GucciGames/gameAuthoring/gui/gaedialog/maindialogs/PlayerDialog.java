@@ -1,30 +1,17 @@
 package voogasalad_GucciGames.gameAuthoring.gui.gaedialog.maindialogs;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
-import java.util.Optional;
 import java.util.Properties;
-import java.lang.reflect.Constructor;
 
+import javafx.scene.control.ScrollPane;
+import javafx.scene.layout.VBox;
+import javafx.scene.text.Text;
 import voogasalad.util.reflection.Reflection;
 import voogasalad_GucciGames.gameAuthoring.IDialogGaeController;
 import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.DialogElements;
-import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.ISaveObjProperty;
-import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.groovySettings.ISwitchGroovyPane;
 import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.paramObjects.ObjParam;
 import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.paramObjects.PlayerParams;
-import voogasalad_GucciGames.gameAuthoring.properties.ObjectProperty;
-import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.ButtonType;
-import javafx.scene.control.ScrollPane;
-import javafx.scene.control.ButtonBar.ButtonData;
-import javafx.scene.layout.GridPane;
-import javafx.scene.layout.VBox;
-import javafx.scene.text.Text;
-import javafx.stage.Stage;
 
 public class PlayerDialog extends AGaeDialog<PlayerCharDialog> {
 	private static final String gaeDialogPath = "voogasalad_GucciGames.gameAuthoring.gui.gaedialog.maindialogs.";

@@ -1,13 +1,6 @@
 package voogasalad_GucciGames.gameplayer.windows.mainwindow.components;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Observable;
-import java.util.Observer;
-import javafx.collections.ListChangeListener;
 import javafx.scene.Parent;
-import voogasalad_GucciGames.gameEngine.GameEngineToGamePlayerInterface;
-import voogasalad_GucciGames.gameEngine.PlayerMapObjectInterface;
 import voogasalad_GucciGames.gameplayer.controller.GameControllerInterface;
 import voogasalad_GucciGames.gameplayer.scenes.GameScene;
 

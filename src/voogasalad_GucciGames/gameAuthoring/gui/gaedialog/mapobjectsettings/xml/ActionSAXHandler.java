@@ -1,19 +1,15 @@
 package voogasalad_GucciGames.gameAuthoring.gui.gaedialog.mapobjectsettings.xml;
 
-import org.xml.sax.Attributes;
-import org.xml.sax.SAXException;
-
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
-import java.util.Stack;
 
+import org.xml.sax.Attributes;
+import org.xml.sax.SAXException;
 import org.xml.sax.helpers.DefaultHandler;
 
 import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.paramObjects.ActionParam;
-import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.paramObjects.ActionParamsValue;
-import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.paramObjects.RuleParams;
 
 public class ActionSAXHandler extends DefaultHandler {
 

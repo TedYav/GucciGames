@@ -1,6 +1,4 @@
 package voogasalad_GucciGames.gameEngine;
-import java.util.ArrayList;
-
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
@@ -8,7 +6,6 @@ import java.util.Map;
 
 import voogasalad_GucciGames.gameData.wrapper.GameStats;
 import voogasalad_GucciGames.gameData.wrapper.IGameLevelToGamePlayer;
-import voogasalad_GucciGames.gameEngine.CommunicationParameters.BasicParameters;
 import voogasalad_GucciGames.gameEngine.CommunicationParameters.ChangedParameters;
 import voogasalad_GucciGames.gameEngine.CommunicationParameters.GameParameters;
 import voogasalad_GucciGames.gameEngine.CommunicationParameters.GameResult;

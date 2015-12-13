@@ -10,15 +10,11 @@ import java.util.Properties;
 import java.util.Set;
 
 import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.mapobjectsettings.xml.ParamObjParser;
-import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.paramObjects.ActionParam;
-import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.paramObjects.ActionParamsValue;
 import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.paramObjects.ObjParam;
 import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.paramObjects.ObjParamValue;
 import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.paramObjects.OutcomeParamValue;
-import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.paramObjects.RuleParams;
 import voogasalad_GucciGames.gameEngine.gameConditions.Conditions;
 import voogasalad_GucciGames.gameEngine.gameConditions.outcomes.Outcome;
-import voogasalad_GucciGames.gameEngine.objectActions.MapObjectEvent;
 
 public class OutcomeFactory {
 	
@@ -52,8 +48,9 @@ public class OutcomeFactory {
 	InvocationTargetException {
 		
 		// constructs empty Action object
-		System.out.println(value.getName());
-		System.out.println(prop.getProperty(value.getName()));
+		System.out.println("From outcome factory value name: " + value.getName());
+		
+		System.out.println("From outcome factory: " + prop.getProperty(value.getName()));
 		
 		Class<Outcome> outcome = (Class<Outcome>) Class.forName(prop.getProperty(value.getName()));
 		Constructor<Outcome> outcomeConstructor = outcome.getDeclaredConstructor();

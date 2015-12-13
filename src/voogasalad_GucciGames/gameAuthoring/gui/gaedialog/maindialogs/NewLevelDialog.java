@@ -6,12 +6,12 @@ import java.util.Map;
 import javafx.application.Platform;
 import javafx.geometry.Insets;
 import javafx.scene.Node;
+import javafx.scene.control.ButtonBar.ButtonData;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.Dialog;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.control.Tooltip;
-import javafx.scene.control.ButtonBar.ButtonData;
 import javafx.scene.layout.GridPane;
 import voogasalad_GucciGames.gameAuthoring.IGuiGaeController;
 

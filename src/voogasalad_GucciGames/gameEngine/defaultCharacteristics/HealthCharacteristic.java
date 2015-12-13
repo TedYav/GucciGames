@@ -1,7 +1,5 @@
 package voogasalad_GucciGames.gameEngine.defaultCharacteristics;
 
-import java.lang.reflect.Field;
-
 import voogasalad_GucciGames.gameEngine.mapObject.AMapObjectCharacteristic;
 
 public class HealthCharacteristic extends AMapObjectCharacteristic {

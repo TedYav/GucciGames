@@ -7,15 +7,16 @@ import java.util.Map;
 import java.util.Observable;
 import java.util.Observer;
 import java.util.ResourceBundle;
+
+import javafx.collections.FXCollections;
+import javafx.collections.ListChangeListener;
+import javafx.scene.Parent;
+import javafx.scene.control.ListView;
 import voogasalad_GucciGames.gameEngine.PlayerMapObjectInterface;
 import voogasalad_GucciGames.gameplayer.config.PlayerConfig;
 import voogasalad_GucciGames.gameplayer.controller.GameControllerInterface;
 import voogasalad_GucciGames.gameplayer.scenes.GameScene;
 import voogasalad_GucciGames.gameplayer.windows.mainwindow.components.DisplayComponent;
-import javafx.collections.FXCollections;
-import javafx.collections.ListChangeListener;
-import javafx.scene.Parent;
-import javafx.scene.control.ListView;
 
 public class DisplayMapObjectDetails extends DisplayComponent implements ListChangeListener<PlayerMapObjectInterface>, Observer{
     private ListView<String> listView;

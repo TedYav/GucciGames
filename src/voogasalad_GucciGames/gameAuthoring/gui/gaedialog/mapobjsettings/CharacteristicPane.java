@@ -3,18 +3,16 @@ package voogasalad_GucciGames.gameAuthoring.gui.gaedialog.mapobjsettings;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Properties;
-import java.util.Set;
 
+import javafx.geometry.Insets;
+import javafx.scene.control.Button;
+import javafx.scene.layout.GridPane;
 import voogasalad_GucciGames.gameAuthoring.IDialogGaeController;
 import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.dialogcomponents.DialogTableView;
-import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.groovySettings.DependenciesPane;
 import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.maindialogs.ISwitchSettingsPane;
 import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.paramObjects.ObjParam;
 import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.paramObjects.ObjParamValue;
 import voogasalad_GucciGames.gameAuthoring.model.MapObjectType;
-import javafx.geometry.Insets;
-import javafx.scene.control.Button;
-import javafx.scene.layout.GridPane;
 
 public class CharacteristicPane extends GridPane {
 	

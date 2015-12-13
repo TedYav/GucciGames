@@ -1,32 +1,22 @@
 package voogasalad_GucciGames.gameplayer.windows.mainwindow.components;
 
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.ResourceBundle;
-import java.util.function.Consumer;
-import java.util.function.Function;
 
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
-import javafx.event.EventType;
-import javafx.scene.Parent;
-import javafx.scene.control.Label;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
-import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import javafx.util.Duration;
 import voogasalad_GucciGames.gameplayer.config.PlayerConfig;
 import voogasalad_GucciGames.gameplayer.controller.GameControllerInterface;
 import voogasalad_GucciGames.gameplayer.scenes.GameScene;
-import voogasalad_GucciGames.helpers.FontManager;
 
 public class MenuScreen extends WindowComponent {
 

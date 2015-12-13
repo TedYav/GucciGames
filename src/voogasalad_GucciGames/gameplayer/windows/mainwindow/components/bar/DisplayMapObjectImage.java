@@ -1,19 +1,19 @@
 package voogasalad_GucciGames.gameplayer.windows.mainwindow.components.bar;
 
-import voogasalad_GucciGames.gameEngine.PlayerMapObjectInterface;
-import voogasalad_GucciGames.gameplayer.config.PlayerConfig;
-import voogasalad_GucciGames.gameplayer.controller.GameControllerInterface;
-import voogasalad_GucciGames.gameplayer.scenes.GameScene;
-import voogasalad_GucciGames.gameplayer.windows.mainwindow.components.DisplayComponent;
-
 import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
+
 import javafx.collections.ListChangeListener;
 import javafx.scene.Parent;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.FlowPane;
+import voogasalad_GucciGames.gameEngine.PlayerMapObjectInterface;
+import voogasalad_GucciGames.gameplayer.config.PlayerConfig;
+import voogasalad_GucciGames.gameplayer.controller.GameControllerInterface;
+import voogasalad_GucciGames.gameplayer.scenes.GameScene;
+import voogasalad_GucciGames.gameplayer.windows.mainwindow.components.DisplayComponent;
 
 public class DisplayMapObjectImage extends DisplayComponent implements ListChangeListener<PlayerMapObjectInterface>{
     private List<PlayerMapObjectInterface> mapObjectsOnCell;

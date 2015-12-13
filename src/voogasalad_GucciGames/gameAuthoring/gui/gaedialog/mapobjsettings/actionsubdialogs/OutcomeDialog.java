@@ -3,21 +3,15 @@ package voogasalad_GucciGames.gameAuthoring.gui.gaedialog.mapobjsettings.actions
 import java.util.List;
 
 import javafx.scene.Node;
-import javafx.scene.control.Alert;
-import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
 import javafx.scene.control.ButtonBar.ButtonData;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.Label;
-import javafx.scene.control.TextField;
 import javafx.scene.layout.GridPane;
 import javafx.scene.text.Font;
 import voogasalad_GucciGames.gameAuthoring.IDialogGaeController;
 import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.dialogcomponents.DropDownMenuField;
 import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.maindialogs.AGaeDialog;
-import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.paramObjects.ActionParamsValue;
-import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.paramObjects.ObjParam;
-import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.paramObjects.OutcomeParamValue;
 import voogasalad_GucciGames.gameAuthoring.model.MapObjectType;
 
 public class OutcomeDialog extends AGaeDialog<String> {

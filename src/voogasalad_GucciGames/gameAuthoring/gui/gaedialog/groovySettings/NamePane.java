@@ -1,13 +1,13 @@
 package voogasalad_GucciGames.gameAuthoring.gui.gaedialog.groovySettings;
 
-import voogasalad.util.reflection.Reflection;
-import voogasalad_GucciGames.gameAuthoring.IDialogGaeController;
 import javafx.geometry.Insets;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.GridPane;
 import javafx.scene.text.Font;
+import voogasalad.util.reflection.Reflection;
+import voogasalad_GucciGames.gameAuthoring.IDialogGaeController;
 
 public class NamePane extends GridPane {
 	

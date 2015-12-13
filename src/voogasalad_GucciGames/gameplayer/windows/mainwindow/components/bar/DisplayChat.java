@@ -1,22 +1,21 @@
 package voogasalad_GucciGames.gameplayer.windows.mainwindow.components.bar;
 
-import voogasalad_GucciGames.gameplayer.config.PlayerConfig;
-import voogasalad_GucciGames.gameplayer.controller.GameControllerInterface;
-import voogasalad_GucciGames.gameplayer.scenes.GameScene;
-import voogasalad_GucciGames.gameplayer.windows.mainwindow.components.DisplayComponent;
-
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Observable;
 import java.util.Observer;
 import java.util.ResourceBundle;
+
 import javafx.collections.FXCollections;
 import javafx.scene.Parent;
 import javafx.scene.control.Button;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextArea;
-import javafx.scene.input.KeyCode;
 import javafx.scene.layout.VBox;
+import voogasalad_GucciGames.gameplayer.config.PlayerConfig;
+import voogasalad_GucciGames.gameplayer.controller.GameControllerInterface;
+import voogasalad_GucciGames.gameplayer.scenes.GameScene;
+import voogasalad_GucciGames.gameplayer.windows.mainwindow.components.DisplayComponent;
 
 public class DisplayChat extends DisplayComponent implements Observer{
     private VBox chat;

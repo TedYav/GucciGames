@@ -1,7 +1,9 @@
 package voogasalad_GucciGames.gameAuthoring.gui.map.cell;
 
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Set;
 
 import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.SimpleIntegerProperty;
@@ -72,6 +74,10 @@ public class MapObjectContainer extends GridPane {
 	private void fit(ImageView view){
 		view.fitWidthProperty().bind(widthProperty().divide(mySize));
 		view.fitHeightProperty().bind(heightProperty().divide(mySize));
+	}
+	
+	public Set<DisplayMapObject> getObjects(){
+		return Collections.unmodifiableSet(myObjects.keySet());
 	}
 	
 }

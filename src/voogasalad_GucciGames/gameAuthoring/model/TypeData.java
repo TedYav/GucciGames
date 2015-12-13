@@ -287,10 +287,16 @@ public class TypeData implements IGameProperties {
 	}
 	
 	public List<MapObjectType> getAllMapObjectTypes() {
-        List<MapObjectType> list = new ArrayList<>();
-        list.addAll(tileTypes);
-        list.addAll(structureTypes);
-        list.addAll(unitTypes);
-        return list;
-    }
+		List<MapObjectType> list = new ArrayList<>();
+		list.addAll(tileTypes);
+		list.addAll(structureTypes);
+		list.addAll(unitTypes);
+		return list;
+	}
+
+	public void cleanSave() {
+		mapOfPlayers.values().forEach(p -> {
+			p.clearMapObjects();
+		});
+	}
 }

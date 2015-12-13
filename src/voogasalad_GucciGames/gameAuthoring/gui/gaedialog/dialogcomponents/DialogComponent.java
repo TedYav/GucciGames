@@ -5,10 +5,7 @@ import java.util.List;
 import java.util.Properties;
 
 import javafx.geometry.Insets;
-import javafx.scene.Node;
 import javafx.scene.layout.GridPane;
-import javafx.scene.layout.HBox;
-import javafx.scene.text.Text;
 
 public abstract class DialogComponent extends GridPane {
 

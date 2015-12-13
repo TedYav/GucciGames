@@ -1,6 +1,7 @@
 package voogasalad_GucciGames.demo;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Random;
@@ -29,6 +30,7 @@ import voogasalad_GucciGames.gameEngine.gameRules.Rules;
 import voogasalad_GucciGames.gameEngine.gameRules.defaultRules.PlayersActivePerTurn;
 import voogasalad_GucciGames.gameEngine.mapObject.MapObject;
 import voogasalad_GucciGames.gameEngine.objectActions.AttackEvent;
+import voogasalad_GucciGames.gameEngine.objectActions.BuildSoldierEvent;
 import voogasalad_GucciGames.gameEngine.objectActions.MapObjectEventHandler;
 import voogasalad_GucciGames.gameEngine.objectActions.MoveEvent;
 import voogasalad_GucciGames.gameEngine.targetCoordinate.TargetCoordinateSingle;
@@ -72,7 +74,7 @@ public class DemoMaker extends Application {
 		resourceManager.copyImageToGame("units/smile.jpg");
 
 		
-		GameInfo game = new GameInfo("Duvall Tag");
+		GameInfo game = new GameInfo("Civ");
 		game.getGameEngine().addLevel("Easy", level1);
 		game.getGameEngine().addLevel("Medium", level2);
 		game.getGameEngine().addLevel("Hard", level3);
@@ -105,17 +107,22 @@ public class DemoMaker extends Application {
 		myMapOfPlayers.get(1).setMovable(new PlayerMovesPerTurn(2));
 
 		PlayersActivePerTurn moveOwn = new PlayersActivePerTurn();
-		TileCharacteristic myTileCharacteristic = new TileCharacteristic(false);
+		TileCharacteristic myTileCharacteristic = new TileCharacteristic(1);
 		List<Rules> moveRules = new ArrayList<Rules>();
 		moveRules.add(moveOwn);
 
 		MoveEvent myMoveEvent = new MoveEvent("Move", moveRules, new ArrayList<Outcome>());
 
+		BuildSoldierEvent myBuildEvent = new BuildSoldierEvent();
+		
+		Map<String, MapObject> myAllMapObjects = new HashMap<String, MapObject>();
 
-		Conditions onePlayerLeft = new CheckOnePlayerLeft();
+		Conditions onePlayerLeft = new CheckOnePlayerLeft(1);
 		List<Conditions> endGameConditions = new ArrayList<Conditions>();
 		endGameConditions.add(onePlayerLeft);
 
+		
+		
 		Outcome endGame = new EndLevel("other", "Hard");
 		for (Conditions cond : endGameConditions) {
 			endGame.addCondition(cond);
@@ -127,6 +134,10 @@ public class DemoMaker extends Application {
 		AttackEvent myAttackEvent = new AttackEvent("Attack", attackRules, attackOutcomes);
 
 		MapObject soldier = makeSoldier(myMoveEvent, myAttackEvent, 1, 0);
+		soldier.addEvent("buildItself", myBuildEvent);
+		
+		myAllMapObjects.put("Soldier", soldier);
+		
 		myMapOfPlayers.get(0).getMapObjects().add(soldier);
 		numDuvalls--;
 
@@ -167,6 +178,9 @@ public class DemoMaker extends Application {
 		AllPlayers myPlayers = new AllPlayers(myMapOfPlayers);
 
 		GameLevelEngine engine = new GameLevelEngine(myPlayers);
+		
+		engine.setAllObjects(myAllMapObjects);
+		
 		engine.setMapHeight(height);
 		engine.setMapWidth(width);
 		for (Integer key : myMapOfPlayers.keySet()) {

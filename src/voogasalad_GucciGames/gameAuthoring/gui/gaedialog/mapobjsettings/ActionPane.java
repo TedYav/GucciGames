@@ -1,28 +1,20 @@
  package voogasalad_GucciGames.gameAuthoring.gui.gaedialog.mapobjsettings;
-import java.io.IOException;
 import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Optional;
 import java.util.Properties;
-import java.util.Set;
-import java.io.File;
 
-import javax.xml.parsers.SAXParser;
-import javax.xml.parsers.SAXParserFactory;
-
-import org.xml.sax.SAXException;
-
-import javax.xml.parsers.ParserConfigurationException;
-
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+import javafx.geometry.Insets;
+import javafx.scene.control.Button;
+import javafx.scene.control.ComboBox;
+import javafx.scene.control.TextField;
+import javafx.scene.layout.GridPane;
+import javafx.scene.text.Text;
 import voogasalad_GucciGames.gameAuthoring.IDialogGaeController;
-import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.DialogElements;
-import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.dialogcomponents.DialogTableView;
-import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.dialogcomponents.DropDownMenuField;
 import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.dialogcomponents.TableElement;
 import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.maindialogs.GaeDialogHelper;
 import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.maindialogs.ISwitchSettingsPane;
-import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.mapobjectsettings.xml.ActionSAXHandler;
 import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.mapobjsettings.actionsubdialogs.AddConditionToOutcomeDialog;
 import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.mapobjsettings.actionsubdialogs.OutcomeDialog;
 import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.mapobjsettings.actionsubdialogs.OutcomeParamsDialog;
@@ -31,18 +23,6 @@ import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.paramObjects.ObjParam;
 import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.paramObjects.ObjParamValue;
 import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.paramObjects.OutcomeParamValue;
 import voogasalad_GucciGames.gameAuthoring.model.MapObjectType;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
-import javafx.geometry.Insets;
-import javafx.scene.control.Button;
-import javafx.scene.control.ComboBox;
-import javafx.scene.control.Dialog;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
-import javafx.scene.control.TextField;
-import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.scene.layout.GridPane;
-import javafx.scene.text.Text;
 
 public class ActionPane extends GridPane {	
 	
@@ -132,6 +112,7 @@ public class ActionPane extends GridPane {
 			outcomeNames.add(outcomeDialog.showAndWait().get());
 			
 			ObjParam selectedOutcomeParam = controller.getPropertiesInterface().getSelectedOutcomes(outcomeNames).get(0);
+			System.out.println("Selected outcome: " + selectedOutcomeParam.getName());
 			OutcomeParamsDialog outcomeParamsDialog = 
 					new OutcomeParamsDialog(selectedOutcomeParam);
 			// Dialog to select outcome parameters
@@ -140,14 +121,21 @@ public class ActionPane extends GridPane {
 			
 			if(paramValue != null){
 				// If valid parameters are selected, create new outcomeParamValue
+			
 				outcomeParamValue =
-						new OutcomeParamValue(selected, type, outcomeParamsDialog.getResult());
+						new OutcomeParamValue(selectedOutcomeParam.getName(), type, paramValue);
 				// add condition to outcomeParamValue
 				AddConditionToOutcomeDialog addConditionDialog = new AddConditionToOutcomeDialog(controller);
 				List<ObjParamValue> conditionParamValue = addConditionDialog.showAndWait().get() ;
 				if(conditionParamValue != null){
 					//condition parameters set
 					outcomeParamValue.setConditions(conditionParamValue);
+					outcomeParamValue.getConditions().forEach(cond -> {
+						System.out.println("condition: " + cond.getName());
+						cond.getParamValues().forEach((k ,v ) -> {
+							System.out.println("condition k: " + k + "condition v: " + v);
+						});
+					});
 				}
 			}
 			this.actionParamsValue.addOutcome(outcomeParamValue);

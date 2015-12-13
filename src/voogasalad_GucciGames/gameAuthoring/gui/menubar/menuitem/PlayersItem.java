@@ -10,8 +10,6 @@ class PlayersItem extends MenuItem{
 		super(name);
 		setAccelerator(KeyCombination.keyCombination("Ctrl+P"));
 		setOnAction(e -> {
-			//controller.saveToXML();
-			System.out.println(controller.getNumberOfPlayers());
 			PlayerDialog playerDialog = new PlayerDialog(controller, controller.getNumberOfPlayers());
 			playerDialog.showAndWait();
 			

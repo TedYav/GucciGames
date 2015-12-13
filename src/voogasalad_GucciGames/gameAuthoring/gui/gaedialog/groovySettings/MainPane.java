@@ -4,6 +4,12 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Properties;
 
+import javafx.geometry.HPos;
+import javafx.geometry.Insets;
+import javafx.geometry.VPos;
+import javafx.scene.control.Button;
+import javafx.scene.layout.GridPane;
+import javafx.scene.text.Text;
 import voogasalad.util.reflection.Reflection;
 import voogasalad_GucciGames.gameAuthoring.IDialogGaeController;
 import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.dialogcomponents.RadioBtnField;
@@ -11,14 +17,6 @@ import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.maindialogs.ISwitchSett
 import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.paramObjects.ActionParamsValue;
 import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.paramObjects.ObjParamValue;
 import voogasalad_GucciGames.gameAuthoring.model.MapObjectType;
-import javafx.geometry.HPos;
-import javafx.geometry.Insets;
-import javafx.geometry.VPos;
-import javafx.scene.control.Button;
-import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.GridPane;
-import javafx.scene.layout.VBox;
-import javafx.scene.text.Text;
 
 public class MainPane extends GridPane{
 	

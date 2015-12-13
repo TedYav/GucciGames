@@ -1,9 +1,7 @@
 package voogasalad.util.cloud.tests;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
-import java.util.ResourceBundle;
 
 import junit.framework.TestCase;
 import voogasalad.util.cloud.data.CloudParameter;

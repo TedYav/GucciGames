@@ -1,13 +1,12 @@
 package voogasalad_GucciGames.gameplayer.windows;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import java.util.ResourceBundle;
+
 import voogasalad.util.reflection.Reflection;
 import voogasalad_GucciGames.gameplayer.config.PlayerConfig;
 import voogasalad_GucciGames.gameplayer.controller.GameController;
-import voogasalad_GucciGames.gameplayer.gameloader.GameLoader;
 import voogasalad_GucciGames.helpers.FontManager;
 
 public class GameWindowManager {

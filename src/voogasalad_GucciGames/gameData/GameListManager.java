@@ -1,20 +1,20 @@
 package voogasalad_GucciGames.gameData;
 
-import javax.xml.parsers.DocumentBuilderFactory;
-import javax.xml.transform.Transformer;
-import javax.xml.transform.TransformerConfigurationException;
-import javax.xml.transform.TransformerFactory;
-import javax.xml.transform.dom.DOMSource;
-import javax.xml.transform.stream.StreamResult;
-import javax.xml.parsers.DocumentBuilder;
-import org.w3c.dom.Document;
-import org.w3c.dom.NodeList;
-import org.w3c.dom.Node;
-import org.w3c.dom.Element;
 import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
+
+import javax.xml.parsers.DocumentBuilder;
+import javax.xml.parsers.DocumentBuilderFactory;
+import javax.xml.transform.Transformer;
+import javax.xml.transform.TransformerFactory;
+import javax.xml.transform.dom.DOMSource;
+import javax.xml.transform.stream.StreamResult;
+
+import org.w3c.dom.Document;
+import org.w3c.dom.Element;
+import org.w3c.dom.NodeList;
 
 public class GameListManager {
 
@@ -35,14 +35,13 @@ public class GameListManager {
     
     public void addGame(String gameName, String gameFile){
     	//System.err.println("ERROR: add games manually for now plz :) -> add this to XML FILE\n" + gameName + "\n" + gameFile);
-        System.out.println("addgame started");
+        //System.out.println("addgame started");
     	for (String s: listGames()) {
     	    if (s.equals(gameName)) {
-    	        System.out.println(gameName+" already added");
+    	        //System.out.println(gameName+" already added");
     	        return;
     	    }
     	}
-    	System.out.println("passed");
     	Element root = myDoc.getDocumentElement();
     	Element game = myDoc.createElement("game");
     	Element name = myDoc.createElement("name");

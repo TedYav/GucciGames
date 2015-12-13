@@ -5,12 +5,9 @@ import java.util.Map;
 import java.util.ResourceBundle;
 
 import javafx.scene.layout.StackPane;
-import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.shape.Shape;
 import javafx.stage.Screen;
-import voogasalad_GucciGames.gameData.wrapper.GameInfo;
-import voogasalad_GucciGames.gameData.wrapper.GamePlayerSave;
 import voogasalad_GucciGames.gameplayer.config.PlayerConfig;
 import voogasalad_GucciGames.gameplayer.controller.GameControllerInterface;
 import voogasalad_GucciGames.gameplayer.scenes.GameScene;
