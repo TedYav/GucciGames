@@ -8,7 +8,9 @@ import voogasalad_GucciGames.gameplayer.windows.mainwindow.map.cell.MapCellInter
 public interface MiniMapInterface {
 
 	public void recenter(MapCellInterface cell);
+
 	public void recenter(Point2D coordinate);
+
 	void initialize(Map<Point2D, String> images);
-	
+
 }

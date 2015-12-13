@@ -12,15 +12,15 @@ class SideBarMenu extends ContextMenu {
 	private final AGuiGaeController myController;
 	private MapObjectType myType;
 	private final String myTypeName;
-	
-	SideBarMenu(AGuiGaeController controller, String typeName){
+
+	SideBarMenu(AGuiGaeController controller, String typeName) {
 		myController = controller;
 		myTypeName = typeName;
 		MenuItem item1 = new MenuItem("Edit");
 		item1.setOnAction(new EventHandler<ActionEvent>() {
 			public void handle(ActionEvent e) {
 				SettingsDialog dialog = new SettingsDialog(controller, myType);
-				dialog.show();	
+				dialog.show();
 			}
 		});
 		MenuItem item2 = new MenuItem("Duplicate");
@@ -35,11 +35,11 @@ class SideBarMenu extends ContextMenu {
 				controller.deleteMapObjectType(myType, myTypeName);
 			}
 		});
-		
-		getItems().addAll(item1,item2,item3);
+
+		getItems().addAll(item1, item2, item3);
 	}
-	
-	public void setCurrType(MapObjectType type){
+
+	public void setCurrType(MapObjectType type) {
 		myType = type;
 	}
 }

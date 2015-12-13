@@ -21,8 +21,8 @@ public class LevelTabPane extends TabPane {
 			e.consume();
 		});
 	}
-	
-	public int levelCount(){
+
+	public int levelCount() {
 		return myTabCount;
 	}
 

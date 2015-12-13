@@ -17,48 +17,50 @@ import voogasalad_GucciGames.gameplayer.controller.GameControllerInterface;
 import voogasalad_GucciGames.gameplayer.scenes.GameScene;
 import voogasalad_GucciGames.gameplayer.windows.mainwindow.components.DisplayComponent;
 
-public class DisplayChat extends DisplayComponent implements Observer{
-    private VBox chat;
-    private TextArea inputArea;
-    private ListView<String> chatHistory;
-    private List<String> chatHistoryStrings;
-    private ResourceBundle myBundle=PlayerConfig.load("components.Bar");
-    private ResourceBundle myCssBundle = PlayerConfig.load(myBundle.getString("cssclass"));
+public class DisplayChat extends DisplayComponent implements Observer {
+	private VBox chat;
+	private TextArea inputArea;
+	private ListView<String> chatHistory;
+	private List<String> chatHistoryStrings;
+	private ResourceBundle myBundle = PlayerConfig.load("components.Bar");
+	private ResourceBundle myCssBundle = PlayerConfig.load(myBundle.getString("cssclass"));
 
-    public DisplayChat (GameScene scene, GameControllerInterface controller) {
-        super(scene,controller);
-        getController().addChatObserver(this);
-        chat = new VBox();
-        inputArea=new TextArea();
-        inputArea.setPromptText(myBundle.getString("chatprompt"));
-        //inputArea.setMaxWidth(200);
-        inputArea.prefHeightProperty().set(Integer.parseInt(myBundle.getString("chatprefheight")));
-        Button enter=new Button("Send");
-        enter.setOnAction(e->updateArea());
-        chatHistoryStrings = new ArrayList<String>();
-        chatHistory=new ListView<String>(FXCollections.observableList(chatHistoryStrings));
-        chat.getChildren().add(chatHistory);
-        chat.getChildren().add(inputArea);
-        chat.getChildren().add(enter);
-        chat.getStyleClass().add(myCssBundle.getString("left-chat-vbox"));
-        inputArea.getStyleClass().add(myCssBundle.getString("chatinput"));
-        chatHistory.getStyleClass().add(myCssBundle.getString("chathistory"));
-    }
-    private void updateArea() {
-        getController().sendMessage(inputArea.getText());
-        inputArea.clear();
-    }
+	public DisplayChat(GameScene scene, GameControllerInterface controller) {
+		super(scene, controller);
+		getController().addChatObserver(this);
+		chat = new VBox();
+		inputArea = new TextArea();
+		inputArea.setPromptText(myBundle.getString("chatprompt"));
+		// inputArea.setMaxWidth(200);
+		inputArea.prefHeightProperty().set(Integer.parseInt(myBundle.getString("chatprefheight")));
+		Button enter = new Button("Send");
+		enter.setOnAction(e -> updateArea());
+		chatHistoryStrings = new ArrayList<String>();
+		chatHistory = new ListView<String>(FXCollections.observableList(chatHistoryStrings));
+		chat.getChildren().add(chatHistory);
+		chat.getChildren().add(inputArea);
+		chat.getChildren().add(enter);
+		chat.getStyleClass().add(myCssBundle.getString("left-chat-vbox"));
+		inputArea.getStyleClass().add(myCssBundle.getString("chatinput"));
+		chatHistory.getStyleClass().add(myCssBundle.getString("chathistory"));
+	}
 
-    @Override
-    public Parent getParent() {
-        return chat;
-    }
-    @Override
-    public void update (Observable o, Object arg) {
-        System.out.println("UPDATINGCHATTTTTTTTTTTT");
-        chatHistoryStrings.add((String)arg);
-        chatHistory.setItems(FXCollections.observableList(chatHistoryStrings));
-        chatHistory.scrollTo(chatHistory.getItems().size()-1);
-    }
+	private void updateArea() {
+		getController().sendMessage(inputArea.getText());
+		inputArea.clear();
+	}
+
+	@Override
+	public Parent getParent() {
+		return chat;
+	}
+
+	@Override
+	public void update(Observable o, Object arg) {
+		System.out.println("UPDATINGCHATTTTTTTTTTTT");
+		chatHistoryStrings.add((String) arg);
+		chatHistory.setItems(FXCollections.observableList(chatHistoryStrings));
+		chatHistory.scrollTo(chatHistory.getItems().size() - 1);
+	}
 
 }

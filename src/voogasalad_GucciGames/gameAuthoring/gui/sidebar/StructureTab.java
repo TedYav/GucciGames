@@ -2,6 +2,7 @@ package voogasalad_GucciGames.gameAuthoring.gui.sidebar;
 
 import javafx.event.ActionEvent;
 import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.maindialogs.NewObjMakerDialog;
+
 public class StructureTab extends ATab {
 	private static final String TYPE = "structure";
 

@@ -6,12 +6,11 @@ import javafx.scene.control.ButtonType;
 import javafx.scene.layout.GridPane;
 
 public interface ISwitchGroovyPane {
-	
-	public void switchGroovyPane(Object p, String title);
-	
-	public Optional<ButtonType> getRet();
-	
-	public void setNextPane(GridPane p, String title);
 
+	public void switchGroovyPane(Object p, String title);
+
+	public Optional<ButtonType> getRet();
+
+	public void setNextPane(GridPane p, String title);
 
 }

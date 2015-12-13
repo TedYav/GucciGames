@@ -5,12 +5,12 @@ package voogasalad_GucciGames.gameEngine.mapObject;
 public class AbilityException extends Exception {
 
 	private String myReason;
-	
-	public AbilityException(String reason){
+
+	public AbilityException(String reason) {
 		myReason = reason;
 	}
-	
-	public String getReason(){
+
+	public String getReason() {
 		return myReason;
 	}
 }

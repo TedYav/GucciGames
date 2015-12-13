@@ -40,12 +40,12 @@ public class ChangedParameters extends CommunicationParameters {
 	public void setLevel(String level) {
 		this.level = level;
 	}
-	
-	public void setNextLevel(String nextLevel){
+
+	public void setNextLevel(String nextLevel) {
 		this.nextLevel = nextLevel;
 	}
-	
-	public String getNextLevel(){
+
+	public String getNextLevel() {
 		return this.nextLevel;
 	}
 }

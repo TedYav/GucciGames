@@ -25,8 +25,8 @@ public class HealthCharacteristic extends AMapObjectCharacteristic {
 	public double getCurrentHealth() {
 		return CurrentHealth;
 	}
-	
-	public double getMaxHealth(){
+
+	public double getMaxHealth() {
 		return MaxHealth;
 	}
 
@@ -41,12 +41,8 @@ public class HealthCharacteristic extends AMapObjectCharacteristic {
 	}
 
 	/*
-	@Override
-	public String toString() {
-		// TODO Auto-generated method stub
-		return "Current Health = " + myCurrentHealth;
-	}
-	*/
-	
+	 * @Override public String toString() { // TODO Auto-generated method stub
+	 * return "Current Health = " + myCurrentHealth; }
+	 */
 
 }

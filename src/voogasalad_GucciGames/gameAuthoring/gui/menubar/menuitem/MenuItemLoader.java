@@ -15,7 +15,7 @@ public class MenuItemLoader {
 	private static final String PREFIX = MenuItemLoader.class.getPackage().getName();
 	private static final String PATH = PREFIX.replace(".", "/") + "/menu.properties";
 
-	public List<Menu> load(AGuiGaeController controller) throws Exception{
+	public List<Menu> load(AGuiGaeController controller) throws Exception {
 		List<String> nameList = new ArrayList<>();
 		Map<String, Menu> map = new HashMap<>();
 		Scanner scanner = new Scanner(getClass().getClassLoader().getResourceAsStream(PATH));
@@ -44,7 +44,7 @@ public class MenuItemLoader {
 				.newInstance(itemName, controller);
 	}
 
-	public static void main(String[] args) throws Exception{
+	public static void main(String[] args) throws Exception {
 		MenuItemLoader loader = new MenuItemLoader();
 		loader.load(null);
 	}

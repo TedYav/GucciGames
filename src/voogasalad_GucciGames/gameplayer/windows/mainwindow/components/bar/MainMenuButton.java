@@ -9,20 +9,21 @@ import voogasalad_GucciGames.gameplayer.controller.GameControllerInterface;
 import voogasalad_GucciGames.gameplayer.scenes.GameScene;
 import voogasalad_GucciGames.gameplayer.windows.mainwindow.components.DisplayComponent;
 
-public class MainMenuButton extends DisplayComponent{
-    private Button endTurn;
-    private ResourceBundle myBundle=PlayerConfig.load("components.MainMenuButton");
-    public MainMenuButton(GameScene scene, GameControllerInterface controller) {
-        super(scene,controller);
-        endTurn=new Button(myBundle.getString("mainmenu"));
-        endTurn.setOnMouseClicked(e->{
-            getGameScene().getManager().loadScene("MainMenuScene");
-        });
-    }
+public class MainMenuButton extends DisplayComponent {
+	private Button endTurn;
+	private ResourceBundle myBundle = PlayerConfig.load("components.MainMenuButton");
 
-    @Override
-    public Parent getParent() {
-        return endTurn;
-    }
+	public MainMenuButton(GameScene scene, GameControllerInterface controller) {
+		super(scene, controller);
+		endTurn = new Button(myBundle.getString("mainmenu"));
+		endTurn.setOnMouseClicked(e -> {
+			getGameScene().getManager().loadScene("MainMenuScene");
+		});
+	}
+
+	@Override
+	public Parent getParent() {
+		return endTurn;
+	}
 
 }

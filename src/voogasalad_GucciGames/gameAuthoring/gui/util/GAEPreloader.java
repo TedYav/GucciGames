@@ -41,10 +41,11 @@ public class GAEPreloader {
 		StackPane pane = new StackPane();
 		Rectangle rect = new Rectangle(SPLASH_WIDTH, 40);
 		rect.setFill(Color.BLACK);
-		Text text = new Text("Authors:\tEfe Aras John Dai Karen Li Tina Liang Mike Ma Daniel Mckee\n\t\tSally Merza Joy Patel Ying Qi Ted Yavuzkurt");
+		Text text = new Text(
+				"Authors:\tEfe Aras John Dai Karen Li Tina Liang Mike Ma Daniel Mckee\n\t\tSally Merza Joy Patel Ying Qi Ted Yavuzkurt");
 		text.setFill(Color.WHITE);
-		pane.getChildren().addAll(rect,text);
-		splashLayout.getChildren().addAll(splash,pane, loadProgress, progressText);
+		pane.getChildren().addAll(rect, text);
+		splashLayout.getChildren().addAll(splash, pane, loadProgress, progressText);
 		progressText.setAlignment(Pos.CENTER);
 		splashLayout.setEffect(new DropShadow());
 	}

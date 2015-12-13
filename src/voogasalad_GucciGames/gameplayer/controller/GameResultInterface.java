@@ -16,8 +16,8 @@ public interface GameResultInterface {
 	@Deprecated
 	/**
 	 * This method returned a map of player names to their scores. It turns out
-	 * that it is wiser the Game Player should access the names of the players through their
-	 * IDs.
+	 * that it is wiser the Game Player should access the names of the players
+	 * through their IDs.
 	 * 
 	 * @return
 	 */

@@ -8,13 +8,13 @@ import voogasalad_GucciGames.gameplayer.windows.GameWindow;
 import voogasalad_GucciGames.gameplayer.windows.mainwindow.components.MenuAction;
 
 public class SelectGameTypeScene extends GameMenuScene {
-	
+
 	public SelectGameTypeScene(GameSceneManager manager, GameWindow window, String config) {
 		super(manager, window, config);
 	}
-	
+
 	@Override
-    protected Map<String, MenuAction> buildOptionMap() {
+	protected Map<String, MenuAction> buildOptionMap() {
 		Map<String, MenuAction> optionMap = new LinkedHashMap<>();
 		optionMap.put("Local Game", () -> myManager.loadScene("SelectLevelScene"));
 		optionMap.put("Network Game", () -> myManager.loadScene("NetworkConfigScene"));

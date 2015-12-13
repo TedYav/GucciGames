@@ -53,7 +53,7 @@ public abstract class ATab extends Tab {
 	private void setLayout() {
 		myGridPane.setVgap(GAP);
 		myGridPane.setHgap(GAP);
-		Insets padding = new Insets(GAP,GAP,GAP,GAP);
+		Insets padding = new Insets(GAP, GAP, GAP, GAP);
 		myGridPane.setPadding(padding);
 		VBox container = new VBox(myGridPane, myAddButton);
 		container.setPadding(padding);
@@ -80,9 +80,9 @@ public abstract class ATab extends Tab {
 
 	private void addType(MapObjectType type) {
 		ImageView imageView = myController.getMapObjectImage(type);
-		
-		imageView.setFitHeight(2*GAP);
-		imageView.setFitWidth(2*GAP);
+
+		imageView.setFitHeight(2 * GAP);
+		imageView.setFitWidth(2 * GAP);
 
 		imageView.setOnMouseClicked(e -> mouseClicked(imageView, e));
 		imageView.setOnDragDetected(e -> dragDetected(imageView, e));
@@ -93,7 +93,7 @@ public abstract class ATab extends Tab {
 	}
 
 	private void dragDetected(ImageView imageView, MouseEvent e) {
-		if(myTrace != null)
+		if (myTrace != null)
 			myTrace.setVisible(false);
 		/* allow any transfer mode */
 		Dragboard db = imageView.startDragAndDrop(TransferMode.ANY);

@@ -10,15 +10,15 @@ import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.groovySettings.groovyPa
 import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.groovySettings.groovyParams.GRuleParams;
 
 public class RulePane extends GridPane implements IDependencies {
-	
+
 	private List<String> attributes = new ArrayList<String>();
-	private ISwitchGroovyPane controller;	
+	private ISwitchGroovyPane controller;
 	private static final String path = "voogasalad_GucciGames.gameAuthoring.gui.gaedialog.groovySettings.";
 	private GRuleParams param;
 	private GeneralPane pane;
 	private IDialogGaeController gaeController;
-	
-	public RulePane(String name, IDialogGaeController gaeController, ISwitchGroovyPane controller){
+
+	public RulePane(String name, IDialogGaeController gaeController, ISwitchGroovyPane controller) {
 		param = new GRuleParams(name);
 		attributes.add("Rule");
 		this.controller = controller;
@@ -31,28 +31,23 @@ public class RulePane extends GridPane implements IDependencies {
 		this.getChildren().add(pane);
 	}
 
-
 	@Override
 	public void addDependencies(List<String> dep) {
 		param.setActions(dep);
-		
-	}
 
+	}
 
 	@Override
 	public void setParams() {
 		Map<String, String> data = pane.getUserData();
 		param.setRule(data.get("Rule"));
-		
-	}
 
+	}
 
 	@Override
 	public AGroovyParams getGroovyParamObject() {
-		
+
 		return param;
 	}
-	
-
 
 }

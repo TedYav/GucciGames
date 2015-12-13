@@ -5,7 +5,7 @@ import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.maindialogs.NewObjMaker
 
 public class UnitTab extends ATab {
 	private static final String TYPE = "unit";
-	
+
 	public UnitTab(SideBar bar) {
 		super(bar, TYPE);
 		setText("Units");
@@ -14,7 +14,7 @@ public class UnitTab extends ATab {
 
 	@Override
 	protected void addNewTypeDialog(ActionEvent e) {
-		NewObjMakerDialog unitMaker = new NewObjMakerDialog( myController, TYPE);
+		NewObjMakerDialog unitMaker = new NewObjMakerDialog(myController, TYPE);
 		unitMaker.showAndWait();
 	}
 

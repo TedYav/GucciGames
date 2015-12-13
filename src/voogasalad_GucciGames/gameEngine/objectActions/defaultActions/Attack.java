@@ -24,10 +24,10 @@ public abstract class Attack extends MapObjectEvent {
 	protected static final String ATTACK_CHARACTERISTIC = "AttackCharacteristic";
 	protected static final String HEALTH_CHARACTERISTIC = "HealthCharacteristic";
 
-
 	public Attack() {
 
 	}
+
 	public Attack(String actionName) {
 		super(actionName);
 	}

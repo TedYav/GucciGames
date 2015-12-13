@@ -8,15 +8,15 @@ public class GaeMain extends Application {
 
 	@Override
 	public void start(Stage stage) throws Exception {
-	
+
 		stage.setResizable(false);
 		new GaeController(stage);
 
 	}
-	
-	public static void main(String[] args){
+
+	public static void main(String[] args) {
 		launch(args);
-	
+
 	}
 
 }

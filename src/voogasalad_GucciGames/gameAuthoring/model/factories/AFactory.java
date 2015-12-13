@@ -17,9 +17,6 @@ import voogasalad_GucciGames.gameEngine.gamePlayer.chars.PlayerWealthChar;
  */
 public abstract class AFactory {
 
-
-
-
 	public Object create(Map<String, ObjParam> mapObjectParams, ObjParamValue objParamValue)
 			throws NoSuchMethodException, SecurityException, ClassNotFoundException, InstantiationException,
 			IllegalAccessException, IllegalArgumentException, InvocationTargetException {
@@ -47,14 +44,13 @@ public abstract class AFactory {
 			System.out.println("type " + typeMap.get(orderMap.get(i)));
 			System.out.println("value " + valueMap.get(orderMap.get(i)));
 			Object o = getTranslatedValue(typeMap.get(orderMap.get(i)), valueMap.get(orderMap.get(i)));
-			if(!o.equals("")){
+			if (!o.equals("")) {
 				initargs[i] = o;
-			}
-			else{
+			} else {
 				// SUPER SKETCHY!!!
 				Object[] temp = initargs;
-				initargs = new Object[temp.length-1];
-				for(int j = 0; j < initargs.length; j++){
+				initargs = new Object[temp.length - 1];
+				for (int j = 0; j < initargs.length; j++) {
 					initargs[j] = temp[j];
 				}
 				myParameters = new Class<?>[0];
@@ -63,23 +59,24 @@ public abstract class AFactory {
 
 		Constructor<?> c = makeConstractor(objParamValue, myParameters);
 		Object myObject = c.newInstance(initargs);
-		if(myObject instanceof PlayerScore){
+		if (myObject instanceof PlayerScore) {
 			System.out.println(((PlayerScore) myObject).getScore());
 		}
-		if(myObject instanceof PlayerWealthChar){
+		if (myObject instanceof PlayerWealthChar) {
 			System.out.println(((PlayerWealthChar) myObject).getWealth());
 		}
-		if(myObject instanceof PlayerMovesPerTurn){
+		if (myObject instanceof PlayerMovesPerTurn) {
 			System.out.println(((PlayerMovesPerTurn) myObject).getMyNumberOfMoves());
 		}
 		return myObject;
 
 	}
 
-	protected abstract Constructor makeConstractor(ObjParamValue objParamValue, Class<?>[] myParameters) throws NoSuchMethodException, SecurityException, ClassNotFoundException;
+	protected abstract Constructor makeConstractor(ObjParamValue objParamValue, Class<?>[] myParameters)
+			throws NoSuchMethodException, SecurityException, ClassNotFoundException;
 
 	private Object getTranslatedValue(String type, String value) {
-		if(value.equals(""))
+		if (value.equals(""))
 			return "";
 		if (type.equals("int"))
 			return Integer.parseInt(value);
