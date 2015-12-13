@@ -7,11 +7,11 @@ import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.geometry.Insets;
 import javafx.scene.Node;
+import javafx.scene.control.ButtonBar.ButtonData;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.Dialog;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
-import javafx.scene.control.ButtonBar.ButtonData;
 import javafx.scene.layout.GridPane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
@@ -34,7 +34,7 @@ class ImageBrowseDialog extends Dialog<String> {
 		ButtonType ok = new ButtonType("OK", ButtonData.OK_DONE);
 		getDialogPane().getButtonTypes().addAll(ok, ButtonType.CANCEL);
 		addGrid();
-		
+
 		List<String> images = getImgs(type);
 		addImgs(images);
 
@@ -50,21 +50,21 @@ class ImageBrowseDialog extends Dialog<String> {
 			return null;
 		});
 	}
-	
+
 	protected List<String> getImgs(String type) {
 		return myResManager.getImages(type);
 	}
 
 	private void addImgs(List<String> images) {
-		imgPerRow = (int)Math.sqrt(images.size());
+		imgPerRow = (int) Math.sqrt(images.size());
 		for (int i = 0; i < images.size(); i++) {
 			ImageView img = addImg(images.get(i));
 			myMap.put(i, img);
 			myGrid.add(img, i % imgPerRow, i / imgPerRow);
 		}
 	}
-	
-	protected ImageView getImgFromDatabase(String URI){
+
+	protected ImageView getImgFromDatabase(String URI) {
 		return new ImageView(myResManager.getImage(URI));
 	}
 
@@ -77,9 +77,9 @@ class ImageBrowseDialog extends Dialog<String> {
 	}
 
 	private void onClicked(ImageView source, MouseEvent e) {
-		if(mySelectImg.get()!=-1){
+		if (mySelectImg.get() != -1) {
 			removeBound();
-			if(myMap.getKey(source) == mySelectImg.get()){
+			if (myMap.getKey(source) == mySelectImg.get()) {
 				mySelectImg.set(-1);
 				return;
 			}
@@ -87,9 +87,9 @@ class ImageBrowseDialog extends Dialog<String> {
 		mySelectImg.set(myMap.getKey(source));
 		addBound(mySelectImg.get());
 	}
-	
+
 	private void addBound(int index) {
-		myBound = new Rectangle(SIZE,SIZE);
+		myBound = new Rectangle(SIZE, SIZE);
 		myBound.setFill(Color.rgb(0, 0, 255, 0.4));
 		myBound.setMouseTransparent(true);
 		myGrid.add(myBound, index % imgPerRow, index / imgPerRow);

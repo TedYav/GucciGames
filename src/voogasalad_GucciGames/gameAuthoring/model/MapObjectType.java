@@ -13,7 +13,7 @@ public class MapObjectType {
 	private String myImagePath;
 	private String myName;
 	private int myLayer;
-	
+
 	public MapObjectType(String name, String imagePath, int layer) {
 		myImagePath = imagePath;
 		myName = name;
@@ -23,27 +23,27 @@ public class MapObjectType {
 	public boolean isTile() {
 		return myLayer == 0;
 	}
-	
+
 	public double getWidth() {
 		return myWidth;
 	}
-	
+
 	public double getHeight() {
 		return myHeight;
 	}
-	
+
 	public double getX() {
 		return myX;
 	}
-	
+
 	public double getY() {
 		return myY;
 	}
-	
+
 	public String getImagePath() {
 		return myImagePath;
 	}
-	
+
 	public String getName() {
 		return myName;
 	}
@@ -59,16 +59,16 @@ public class MapObjectType {
 	public List<MapObjectEvent> getEvents() {
 		return myEvents;
 	}
-	
+
 	public void addCharacteristic(AMapObjectCharacteristic characteristic) {
 		myCharacteristics.add(characteristic);
 	}
-	
+
 	public void addAction(MapObjectEvent action) {
 		myEvents.add(action);
 	}
-	
-	public MapObjectType makeCopy(){
+
+	public MapObjectType makeCopy() {
 		MapObjectType type = new MapObjectType(myName, myImagePath, myLayer);
 		return type;
 	}

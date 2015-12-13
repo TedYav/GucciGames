@@ -3,21 +3,20 @@ package voogasalad_GucciGames.gameAuthoring.gui.gaedialog.groovySettings.groovyP
 import java.util.HashMap;
 import java.util.Map;
 
-
-public class GCharParam{
+public class GCharParam {
 
 	private String name;
 	private Map<String, String> params = new HashMap<String, String>();
 	private GroovyCharacteristics charType;;
-	public GCharParam(String name, GroovyCharacteristics charType){
+
+	public GCharParam(String name, GroovyCharacteristics charType) {
 		this.name = name;
 		this.charType = charType;
 	}
-	
-	public GroovyCharacteristics getCharType(){
+
+	public GroovyCharacteristics getCharType() {
 		return charType;
 	}
-
 
 	public String getName() {
 		return name;
@@ -27,11 +26,11 @@ public class GCharParam{
 		this.name = name;
 	}
 
-	public void addParam(String type, String name){
+	public void addParam(String type, String name) {
 		params.put(name, type);
 	}
 
-	public void removeParam(String name){
+	public void removeParam(String name) {
 		params.remove(name);
 	}
 
@@ -43,13 +42,8 @@ public class GCharParam{
 		return null;
 	}
 
-
-
 	public Map<String, String> getParamOrderMap() {
 		return params;
 	}
-
-
-
 
 }

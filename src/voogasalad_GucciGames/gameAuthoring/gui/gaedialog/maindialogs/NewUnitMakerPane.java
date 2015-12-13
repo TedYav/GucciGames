@@ -21,10 +21,10 @@ public class NewUnitMakerPane extends NewObjMakerPane {
 	public NewUnitMakerPane(AGuiGaeController controller, Properties prop, String type) {
 		super(controller, prop, type);
 		myRow.addListener((ch, oV, nV) -> {
-			if (myImgPath.get()==null)
+			if (myImgPath.get() == null)
 				removeImg();
-			else{
-				myImgPath.set(myImgPath.get().split(":")[0]+(nV.intValue()<0?"":":"+nV));
+			else {
+				myImgPath.set(myImgPath.get().split(":")[0] + (nV.intValue() < 0 ? "" : ":" + nV));
 				addImg(myImgPath.get());
 			}
 		});
@@ -46,7 +46,7 @@ public class NewUnitMakerPane extends NewObjMakerPane {
 		btn = new Button("Sprite");
 		btn.setOnAction(e -> {
 			myController.getImageBrowseDialog("sprites").showAndWait().ifPresent(s -> {
-				myImgPath.set(s+":0");
+				myImgPath.set(s + ":0");
 				myRow.set(0);
 				addImg(myImgPath.get());
 			});
@@ -64,33 +64,36 @@ public class NewUnitMakerPane extends NewObjMakerPane {
 		if (myImgBrowser != null)
 			removeImg();
 		myImgBrowser = myController.requestImage(URI);
-		if(URI.contains(":")){
-			myMenu = new SelectMenu(4, myRow.get()); // I don't think s.getNumAnimation works. So just hard coded something
-			myImgBrowser.setOnMousePressed(e->{
-				if(e.isSecondaryButtonDown()){
-					myMenu.show(myImgBrowser, e.getScreenX(),e.getScreenY());
-				}	
+		if (URI.contains(":")) {
+			myMenu = new SelectMenu(4, myRow.get()); // I don't think
+														// s.getNumAnimation
+														// works. So just hard
+														// coded something
+			myImgBrowser.setOnMousePressed(e -> {
+				if (e.isSecondaryButtonDown()) {
+					myMenu.show(myImgBrowser, e.getScreenX(), e.getScreenY());
+				}
 			});
 		}
 		myImgBrowser.setFitHeight(40);
 		myImgBrowser.setFitWidth(40);
 		myPane.add(myImgBrowser, 0, 0);
 	}
-	
-	private class SelectMenu extends ContextMenu{
+
+	private class SelectMenu extends ContextMenu {
 		public SelectMenu(int n, int sel) {
 			ToggleGroup group = new ToggleGroup();
-			for(int i = 0;i<n;i++){
-				RadioMenuItem item = new RadioMenuItem("Animation "+i);
+			for (int i = 0; i < n; i++) {
+				RadioMenuItem item = new RadioMenuItem("Animation " + i);
 				item.setUserData(i);
 				item.setToggleGroup(group);
-				if(i==sel)
+				if (i == sel)
 					item.setSelected(true);
 				getItems().add(item);
 			}
-			group.selectedToggleProperty().addListener((ob,oldV,newV)->{
+			group.selectedToggleProperty().addListener((ob, oldV, newV) -> {
 				if (group.getSelectedToggle() != null) {
-					myRow.set((int)newV.getUserData());
+					myRow.set((int) newV.getUserData());
 				}
 			});
 		}

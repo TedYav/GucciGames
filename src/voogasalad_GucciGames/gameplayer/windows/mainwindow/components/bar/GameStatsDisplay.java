@@ -15,35 +15,37 @@ import voogasalad_GucciGames.gameplayer.scenes.GameScene;
 import voogasalad_GucciGames.gameplayer.windows.mainwindow.components.DisplayComponent;
 
 public class GameStatsDisplay extends DisplayComponent {
-    private ListView<String> listView;
-    private List<String> stats;
-    private ObservableList<String> observeStats;
-    private ResourceBundle myBundle=PlayerConfig.load("components.Bar");
+	private ListView<String> listView;
+	private List<String> stats;
+	private ObservableList<String> observeStats;
+	private ResourceBundle myBundle = PlayerConfig.load("components.Bar");
 
-    public GameStatsDisplay(GameScene scene, GameControllerInterface controller) {
-        super(scene,controller);
-        stats = new ArrayList<String>();
-        observeStats = FXCollections.observableList(stats);
-        listView=new ListView<String>(observeStats);
-        updateDisplay();
-    }
+	public GameStatsDisplay(GameScene scene, GameControllerInterface controller) {
+		super(scene, controller);
+		stats = new ArrayList<String>();
+		observeStats = FXCollections.observableList(stats);
+		listView = new ListView<String>(observeStats);
+		updateDisplay();
+	}
 
-    @Override
-    public void updateDisplay() {
-        observeStats.clear();
-        int myID = getController().getEngine().getGameParameters().whoseTurn();
-        boolean levelEnd = getController().getEngine().hasLevelEnded();
-        if (levelEnd) {
-            observeStats.add(myBundle.getString("statswin"));
-        }
-        //System.out.println(myBundle.getString("statsscore")+getController().getEngine().getGameParameters().getScore().get("Player" + myID));
-        double score = ((PlayerScore) getController().getEngine().getPlayerCharacteristic("PlayerScore", myID)).getScore();
-        observeStats.add(myBundle.getString("statsscore")+score);
-    }
+	@Override
+	public void updateDisplay() {
+		observeStats.clear();
+		int myID = getController().getEngine().getGameParameters().whoseTurn();
+		boolean levelEnd = getController().getEngine().hasLevelEnded();
+		if (levelEnd) {
+			observeStats.add(myBundle.getString("statswin"));
+		}
+		// System.out.println(myBundle.getString("statsscore")+getController().getEngine().getGameParameters().getScore().get("Player"
+		// + myID));
+		double score = ((PlayerScore) getController().getEngine().getPlayerCharacteristic("PlayerScore", myID))
+				.getScore();
+		observeStats.add(myBundle.getString("statsscore") + score);
+	}
 
-    @Override
-    public Parent getParent() {
-        return listView;
-    }
+	@Override
+	public Parent getParent() {
+		return listView;
+	}
 
 }

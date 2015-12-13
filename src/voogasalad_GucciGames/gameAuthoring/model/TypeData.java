@@ -46,7 +46,6 @@ public class TypeData implements IGameProperties {
 	private Map<String, GActionParams> myGroovyActionParams = new HashMap<String, GActionParams>();
 	private Map<String, GCharParam> myGroovyMapObjectCharParams = new HashMap<String, GCharParam>();
 
-
 	private CharacteristicMapFactory mapCharacteristicFactory = new CharacteristicMapFactory();
 	private GroovyMapChars groovyMapCharacteristicFactory = new GroovyMapChars();
 	private GroovyActionFactory groovyActionFactory = new GroovyActionFactory();
@@ -59,35 +58,34 @@ public class TypeData implements IGameProperties {
 		structureTypes = FXCollections.observableArrayList();
 		ParamObjParser parser = new ParamObjParser();
 		Set<ObjParam> mapObjCharacteristics = parser.getMapObjChars();
-		for (ObjParam param: mapObjCharacteristics){
+		for (ObjParam param : mapObjCharacteristics) {
 			myMapObjectCharParams.put(param.getName(), param);
-		}    
+		}
 		Set<ActionParam> actions = parser.getActions();
-		for (ActionParam action: actions){
+		for (ActionParam action : actions) {
 			myActionParams.put(action.getName(), action);
 			System.out.println(action.getName());
 		}
 		Set<ObjParam> playerChar = parser.getPlayerChars();
-		for (ObjParam characteristics: playerChar){
+		for (ObjParam characteristics : playerChar) {
 			myPlayerCharParams.put(characteristics.getName(), characteristics);
 		}
 		Set<ObjParam> conditions = parser.getConditions();
-		for (ObjParam param: conditions){
+		for (ObjParam param : conditions) {
 			myConditions.put(param.getName(), param);
 		}
 		Set<ObjParam> outcomes = parser.getOutcomes();
-		for (ObjParam param: outcomes){
+		for (ObjParam param : outcomes) {
 			myOutcomes.put(param.getName(), param);
 		}
 		Set<RuleParams> rules = parser.getRules();
-		for (RuleParams param: rules){
+		for (RuleParams param : rules) {
 			myRules.put(param.getName(), param);
 		}
 
 		mapOfPlayers = new HashMap<>();
 		// add neutral player
 		mapOfPlayers.put(-1, new GamePlayerPerson(-1));
-
 
 		tileTypes = FXCollections.observableArrayList();
 		unitTypes = FXCollections.observableArrayList();
@@ -98,18 +96,23 @@ public class TypeData implements IGameProperties {
 	public void addTileType(MapObjectType type) {
 		tileTypes.add(type);
 	}
+
 	public void addUnitType(MapObjectType type) {
 		unitTypes.add(type);
 	}
+
 	public void addStructureType(MapObjectType type) {
 		structureTypes.add(type);
 	}
+
 	public ObservableList<MapObjectType> getImmutableTileTypes() {
 		return FXCollections.unmodifiableObservableList(tileTypes);
 	}
+
 	public ObservableList<MapObjectType> getImmutableUnitTypes() {
 		return FXCollections.unmodifiableObservableList(unitTypes);
 	}
+
 	public ObservableList<MapObjectType> getImmutableStructureTypes() {
 		return FXCollections.unmodifiableObservableList(structureTypes);
 	}
@@ -121,8 +124,7 @@ public class TypeData implements IGameProperties {
 
 	@Override
 	public List<ObjParam> getSelectedMapObjCharParams(List<String> selectedChar) {
-		return myMapObjectCharParams.values().stream()
-				.filter(c -> selectedChar.contains(c.getName()))
+		return myMapObjectCharParams.values().stream().filter(c -> selectedChar.contains(c.getName()))
 				.collect(Collectors.toList());
 	}
 
@@ -133,8 +135,7 @@ public class TypeData implements IGameProperties {
 
 	@Override
 	public List<ObjParam> getSelectedPlayerCharParams(List<String> selectedChar) {
-		return myPlayerCharParams.values().stream()
-				.filter(c -> selectedChar.contains(c.getName()))
+		return myPlayerCharParams.values().stream().filter(c -> selectedChar.contains(c.getName()))
 				.collect(Collectors.toList());
 	}
 
@@ -145,8 +146,7 @@ public class TypeData implements IGameProperties {
 
 	@Override
 	public List<ObjParam> getSelectedOutcomes(List<String> selectedOutcomes) {
-		return myOutcomes.values().stream()
-				.filter(c -> selectedOutcomes.contains(c.getName()))
+		return myOutcomes.values().stream().filter(c -> selectedOutcomes.contains(c.getName()))
 				.collect(Collectors.toList());
 	}
 
@@ -157,8 +157,7 @@ public class TypeData implements IGameProperties {
 
 	@Override
 	public List<ObjParam> getSelectedConditions(List<String> selectedConditions) {
-		return myConditions.values().stream()
-				.filter(c -> selectedConditions.contains(c.getName()))
+		return myConditions.values().stream().filter(c -> selectedConditions.contains(c.getName()))
 				.collect(Collectors.toList());
 	}
 
@@ -167,12 +166,9 @@ public class TypeData implements IGameProperties {
 		return new ArrayList<>(myRules.values());
 	}
 
-
 	@Override
 	public List<RuleParams> getSelectedRules(List<String> selectedRules) {
-		return myRules.values().stream()
-				.filter(c -> selectedRules.contains(c.getName()))
-				.collect(Collectors.toList());
+		return myRules.values().stream().filter(c -> selectedRules.contains(c.getName())).collect(Collectors.toList());
 	}
 
 	@Override
@@ -180,9 +176,10 @@ public class TypeData implements IGameProperties {
 		try {
 			System.out.println(playerID + " HI");
 			System.out.println(this.mapOfPlayers.size());
-			System.out.println(mapOfPlayers.get(playerID)==null);
+			System.out.println(mapOfPlayers.get(playerID) == null);
 			System.out.println(param.getName());
-			mapOfPlayers.get(playerID).addCharacterstic(param.getName(), (APlayerChars)playerCharacteristicFactory.create(myPlayerCharParams, param));
+			mapOfPlayers.get(playerID).addCharacterstic(param.getName(),
+					(APlayerChars) playerCharacteristicFactory.create(myPlayerCharParams, param));
 		} catch (NoSuchMethodException | SecurityException | ClassNotFoundException | InstantiationException
 				| IllegalAccessException | IllegalArgumentException | InvocationTargetException e) {
 			e.printStackTrace();
@@ -195,17 +192,18 @@ public class TypeData implements IGameProperties {
 	public void addMapObjectCharacteristic(ObjParamValue param) {
 		if (myGroovyMapObjectCharParams.containsKey(param.getName())) {
 			try {
-				param.getMapObjectType().addCharacteristic((AMapObjectCharacteristic)groovyMapCharacteristicFactory.create(myGroovyMapObjectCharParams, param));
+				param.getMapObjectType().addCharacteristic((AMapObjectCharacteristic) groovyMapCharacteristicFactory
+						.create(myGroovyMapObjectCharParams, param));
 			} catch (NoSuchMethodException | SecurityException | ClassNotFoundException | InstantiationException
 					| IllegalAccessException | IllegalArgumentException | InvocationTargetException e) {
 				e.printStackTrace();
 				System.err.println("FAILED TO ADD GROOVY CHARACTERISTIC");
 			}
 
-		}
-		else {
+		} else {
 			try {
-				param.getMapObjectType().addCharacteristic((AMapObjectCharacteristic)mapCharacteristicFactory.create(myMapObjectCharParams, param));
+				param.getMapObjectType().addCharacteristic(
+						(AMapObjectCharacteristic) mapCharacteristicFactory.create(myMapObjectCharParams, param));
 			} catch (NoSuchMethodException | SecurityException | ClassNotFoundException | InstantiationException
 					| IllegalAccessException | IllegalArgumentException | InvocationTargetException e) {
 				e.printStackTrace();
@@ -220,16 +218,15 @@ public class TypeData implements IGameProperties {
 		System.out.println("adding action in type data");
 		if (myGroovyActionParams.containsKey(param.getName())) {
 			try {
-				param.getMapObjectType().addAction((MapObjectEvent)groovyActionFactory.create(myGroovyActionParams, param));
+				param.getMapObjectType()
+						.addAction((MapObjectEvent) groovyActionFactory.create(myGroovyActionParams, param));
 			} catch (NoSuchMethodException | SecurityException | InstantiationException | IllegalAccessException
 					| IllegalArgumentException | InvocationTargetException e) {
 				e.printStackTrace();
 				System.err.println("FAILED TO ADD GROOVY ACTION");
 			}
 
-
-		}
-		else {
+		} else {
 			try {
 				param.getMapObjectType().addAction(actionFactory.createAction(myActionParams, param));
 			} catch (ClassNotFoundException | NoSuchMethodException | SecurityException | InstantiationException
@@ -269,7 +266,7 @@ public class TypeData implements IGameProperties {
 	}
 
 	public void setNumberOfPlayers(int n) {
-		for (int i = 0; i < n; i ++) {
+		for (int i = 0; i < n; i++) {
 			System.out.println("Adding to map!");
 			mapOfPlayers.put(i, new GamePlayerPerson(i));
 		}
@@ -282,15 +279,22 @@ public class TypeData implements IGameProperties {
 	public Map<String, GActionParams> getGroovyActionParams() {
 		return myGroovyActionParams;
 	}
+
 	public Map<String, GCharParam> getGroovyMapObjectCharParams() {
 		return myGroovyMapObjectCharParams;
 	}
-	
+
 	public List<MapObjectType> getAllMapObjectTypes() {
-        List<MapObjectType> list = new ArrayList<>();
-        list.addAll(tileTypes);
-        list.addAll(structureTypes);
-        list.addAll(unitTypes);
-        return list;
-    }
+		List<MapObjectType> list = new ArrayList<>();
+		list.addAll(tileTypes);
+		list.addAll(structureTypes);
+		list.addAll(unitTypes);
+		return list;
+	}
+
+	public void cleanSave() {
+		mapOfPlayers.values().forEach(p -> {
+			p.clearMapObjects();
+		});
+	}
 }

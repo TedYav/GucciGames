@@ -4,11 +4,12 @@ import voogasalad_GucciGames.gameEngine.gamePlayer.AllPlayers;
 
 /**
  * Data required to initialize the game
- * @author 
+ * 
+ * @author
  *
  */
 public class SomeData {
 
 	private AllPlayers storedPlayers;
-	
+
 }

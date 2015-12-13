@@ -1,31 +1,28 @@
 package voogasalad_GucciGames.gameplayer.windows.mainwindow.map.cell.contents;
 
-import java.util.Observable;
-import java.util.Observer;
-
 import voogasalad_GucciGames.gameEngine.PlayerMapObjectInterface;
 import voogasalad_GucciGames.gameplayer.windows.mainwindow.map.MapInterface;
 import voogasalad_GucciGames.gameplayer.windows.mainwindow.map.cell.MapCellInterface;
 
-public class CellUnit{
+public class CellUnit {
 
 	private String myImage;
 	private MapInterface myMap;
 	private MapCellInterface myCell;
-	
+
 	private PlayerMapObjectInterface myUnit;
-		
-	public CellUnit(MapInterface map, MapCellInterface cell, PlayerMapObjectInterface unit){
+
+	public CellUnit(MapInterface map, MapCellInterface cell, PlayerMapObjectInterface unit) {
 		myMap = map;
 		myCell = cell;
 		myUnit = unit;
 	}
-	
-	public void updateImage(String image){
+
+	public void updateImage(String image) {
 		myImage = image;
 	}
-	
-	public String getImage(){
+
+	public String getImage() {
 		return myImage;
 	}
 

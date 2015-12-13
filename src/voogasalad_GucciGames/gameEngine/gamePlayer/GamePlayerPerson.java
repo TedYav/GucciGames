@@ -107,4 +107,8 @@ public class GamePlayerPerson {
 		this.myCharacteristics.put(name, charInstance);
 	}
 
+	public void clearMapObjects() {
+		myMapObjects.clear();
+	}
+
 }

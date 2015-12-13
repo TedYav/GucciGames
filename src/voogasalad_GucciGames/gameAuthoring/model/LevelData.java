@@ -5,13 +5,13 @@ import java.util.List;
 import java.util.Map;
 
 public class LevelData {
-	
+
 	private Map<Integer, MapData> myLevels;
 	private int nextLevel;
-	
-	public LevelData () {
-    	myLevels = new HashMap<>();
-    	nextLevel = 0;
+
+	public LevelData() {
+		myLevels = new HashMap<>();
+		nextLevel = 0;
 	}
 
 	public void clearLevelMap(int level) {
@@ -31,17 +31,16 @@ public class LevelData {
 		myLevels.put(newLevelID, new MapData(name, width, height));
 		nextLevel += 1;
 		return newLevelID;
-		
+
 	}
 
 	public void deleteObject(int levelID, DisplayMapObject mapObj) {
 		myLevels.get(levelID).deleteObject(mapObj);
-		
+
 	}
-	
+
 	public Map<Integer, MapData> getMap() {
 		return myLevels;
 	}
-	
 
 }

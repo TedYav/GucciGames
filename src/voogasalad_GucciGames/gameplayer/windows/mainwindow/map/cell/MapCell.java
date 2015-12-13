@@ -1,11 +1,8 @@
 package voogasalad_GucciGames.gameplayer.windows.mainwindow.map.cell;
 
 import java.util.ArrayList;
-
 import java.util.Arrays;
-import java.util.Collection;
 import java.util.HashMap;
-import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 import java.util.Observable;
@@ -15,12 +12,10 @@ import java.util.stream.Collectors;
 
 import javafx.animation.FadeTransition;
 import javafx.animation.Timeline;
-import javafx.event.EventHandler;
 import javafx.geometry.Point2D;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.image.ImageView;
-import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Color;
@@ -29,16 +24,14 @@ import javafx.util.Duration;
 import voogasalad_GucciGames.gameEngine.PlayerMapObjectInterface;
 import voogasalad_GucciGames.gameplayer.config.PlayerConfig;
 import voogasalad_GucciGames.gameplayer.controller.GameControllerInterface;
-import voogasalad_GucciGames.gameplayer.controller.dummy.MapObjectBasicType;
-import voogasalad_GucciGames.gameplayer.eventhandler.MapMouseHandler;
-import voogasalad_GucciGames.gameplayer.windows.mainwindow.map.MapInterface;
 import voogasalad_GucciGames.helpers.ColorUtility;
 
 public abstract class MapCell extends Observable implements MapCellInterface {
 
-	private ResourceBundle myConfig = ResourceBundle.getBundle("voogasalad_GucciGames.gameplayer.config.components.MapCell");
+	private ResourceBundle myConfig = ResourceBundle
+			.getBundle("voogasalad_GucciGames.gameplayer.config.components.MapCell");
 
-	// TODO: factor this into two or three classes eventually	
+	// TODO: factor this into two or three classes eventually
 	private StackPane myParent;
 	private StackPane myObjectLayer;
 	protected Map<Integer, GridPane> myLayerMap;
@@ -52,13 +45,13 @@ public abstract class MapCell extends Observable implements MapCellInterface {
 	private GameControllerInterface myController;
 
 	protected double mySize;
-	private Point2D myCoordinate;	
+	private Point2D myCoordinate;
 
 	private Map<Integer, List<PlayerMapObjectInterface>> myObjects;
 
 	private FadeTransition myBlinker;
 
-	public MapCell(GameControllerInterface controller, double myCellSize){
+	public MapCell(GameControllerInterface controller, double myCellSize) {
 		initializeVariables(controller, myCellSize);
 		initializePanes();
 		initializeOverlays();
@@ -68,7 +61,7 @@ public abstract class MapCell extends Observable implements MapCellInterface {
 	// dependent on shape
 	protected abstract void initializeOverlayShapes();
 
-	private void initializeVariables(GameControllerInterface controller, double myCellSize){
+	private void initializeVariables(GameControllerInterface controller, double myCellSize) {
 		myController = controller;
 		mySize = myCellSize;
 		myObjects = new HashMap<>();
@@ -97,22 +90,22 @@ public abstract class MapCell extends Observable implements MapCellInterface {
 	}
 
 	private void initializeHandlers() {
-		myParent.setOnMouseClicked(e-> activate() );
+		myParent.setOnMouseClicked(e -> activate());
 	}
 
-	public Parent getParent(){
+	public Parent getParent() {
 		return myParent;
 	}
 
-	public void addObject(PlayerMapObjectInterface object){
-		if(!myObjects.containsKey(object.getLayer())){
+	public void addObject(PlayerMapObjectInterface object) {
+		if (!myObjects.containsKey(object.getLayer())) {
 			myObjects.put(object.getLayer(), new ArrayList<PlayerMapObjectInterface>());
 		}
 		myObjects.get(object.getLayer()).add(object);
 		redrawLayer(object.getLayer());
 	}
 
-	public void removeObject(PlayerMapObjectInterface object){
+	public void removeObject(PlayerMapObjectInterface object) {
 		myObjects.get(object.getLayer()).remove(object);
 		myLayerMap.get(object.getLayer()).getChildren().remove(object);
 		redrawLayer(object.getLayer());
@@ -120,10 +113,9 @@ public abstract class MapCell extends Observable implements MapCellInterface {
 
 	@Override
 	public void activate() {
-		if(myController.actionInProgress()){
+		if (myController.actionInProgress()) {
 			handleActionInProgress();
-		}
-		else{
+		} else {
 			myController.cancelAction();
 			myController.getMap().selectCell(this);
 			active = true;
@@ -153,35 +145,37 @@ public abstract class MapCell extends Observable implements MapCellInterface {
 	@Override
 	public void toggleHighlight(boolean highlight) {
 		myOverlay.getStyleClass().clear();
-		myOverlay.getStyleClass().add( (highlight)?("highlightcell"):("inactivecell") );
+		myOverlay.getStyleClass().add((highlight) ? ("highlightcell") : ("inactivecell"));
 		blink(highlight);
 	}
 
 	private void blink(boolean on) {
-		if(on){
+		if (on) {
 			myBlinker.play();
-		}
-		else{
+		} else {
 			myBlinker.stop();
 		}
 	}
 
-	//	private void redraw(){
-	//		myObjects.keySet().forEach((i) -> redrawLayer(i));
-	//	}
+	// private void redraw(){
+	// myObjects.keySet().forEach((i) -> redrawLayer(i));
+	// }
 
-	private void redrawLayer(int layer){
+	private void redrawLayer(int layer) {
 		makeLayers(layer);
 		int count = myObjects.get(layer).size();
 		myLayerMap.get(layer).getChildren().clear();
-		if(count > 0){
+		if (count > 0) {
 			// I'm sorry. I'm really sorry.
-			if(layer == 0) count = 1;
+			if (layer == 0)
+				count = 1;
 			double countPerRow = Math.ceil(Math.sqrt(count));
-			for(int i=0, total=0; i<countPerRow; i++){
-				for(int j=0; j<countPerRow; j++, total++){
-					if(total==count) break;
-					myLayerMap.get(layer).add(renderImage(myObjects.get(layer).get(total), (mySize/countPerRow)), j, i);
+			for (int i = 0, total = 0; i < countPerRow; i++) {
+				for (int j = 0; j < countPerRow; j++, total++) {
+					if (total == count)
+						break;
+					myLayerMap.get(layer).add(renderImage(myObjects.get(layer).get(total), (mySize / countPerRow)), j,
+							i);
 				}
 			}
 		}
@@ -197,9 +191,9 @@ public abstract class MapCell extends Observable implements MapCellInterface {
 	}
 
 	private void makeLayers(int layer) {
-		if(!myLayerMap.containsKey(layer)){
-			for(int i=0; i<=layer; i++){
-				if(myLayerMap.containsKey(i))
+		if (!myLayerMap.containsKey(layer)) {
+			for (int i = 0; i <= layer; i++) {
+				if (myLayerMap.containsKey(i))
 					continue;
 				GridPane g = new GridPane();
 				myLayerMap.put(i, g);
@@ -208,59 +202,50 @@ public abstract class MapCell extends Observable implements MapCellInterface {
 		}
 	}
 
-	public void addTemporaryOverlay(Node overlay, double duration){
+	public void addTemporaryOverlay(Node overlay, double duration) {
 
 	}
 
-	private List<String> getImageList(){
-		return myObjects.values().stream()
-				.filter( l -> !l.isEmpty())
-				.flatMap(l -> 
-				l.stream()
-				.map(o -> o.getImageURI())).collect(Collectors.toList());
+	private List<String> getImageList() {
+		return myObjects.values().stream().filter(l -> !l.isEmpty()).flatMap(l -> l.stream().map(o -> o.getImageURI()))
+				.collect(Collectors.toList());
 	}
-
 
 	@Override
-	public Map<Integer, List<PlayerMapObjectInterface>> getUnits () {
+	public Map<Integer, List<PlayerMapObjectInterface>> getUnits() {
 		return myObjects;
 	}
 
-	public Color getColor(){
+	public Color getColor() {
 		List<Color> myColors;
-		if(!fogActive)
+		if (!fogActive)
 			myColors = getColorsByPlayer();
 		else
 			myColors = Arrays.asList(Color.BLACK);
-		return  ColorUtility.average(myColors);
+		return ColorUtility.average(myColors);
 	}
 
 	private List<Color> getColorsByImage() {
-		List<Color> myColors = getImageList().stream()
-				.map( (s) -> myController.getResource().getImageColor(s) )
+		List<Color> myColors = getImageList().stream().map((s) -> myController.getResource().getImageColor(s))
 				.collect(Collectors.toList());
 		return myColors;
 	}
 
 	private List<Color> getColorsByPlayer() {
-		List<Color> result = myObjects.values().stream()
-				.filter( l -> !l.isEmpty())
-				.flatMap( l -> 
-					l.stream()
-					.map( o -> getObjectColors(o)))
-				.flatMap(l -> l.stream())
+		List<Color> result = myObjects.values().stream().filter(l -> !l.isEmpty())
+				.flatMap(l -> l.stream().map(o -> getObjectColors(o))).flatMap(l -> l.stream())
 				.collect(Collectors.toList());
 		return result;
 	}
-	
-	private List<Color> getObjectColors(PlayerMapObjectInterface object){
-		if(object.getOwnerID() == -1){
-			return Arrays.asList( myController.getResource().getImageColor(object.getImageURI()));
-		}
-		else{
+
+	private List<Color> getObjectColors(PlayerMapObjectInterface object) {
+		if (object.getOwnerID() == -1) {
+			return Arrays.asList(myController.getResource().getImageColor(object.getImageURI()));
+		} else {
 			List<Color> result = new ArrayList<>();
-			Color c = Color.web(PlayerConfig.getResourceNumber(PlayerConfig.globalConfig(), "PlayerColor", object.getOwnerID()));
-			for(int i=0; i<= Integer.parseInt(myConfig.getString("PlayerMultiplier")); i++){
+			Color c = Color.web(
+					PlayerConfig.getResourceNumber(PlayerConfig.globalConfig(), "PlayerColor", object.getOwnerID()));
+			for (int i = 0; i <= Integer.parseInt(myConfig.getString("PlayerMultiplier")); i++) {
 				result.add(c);
 			}
 			return result;

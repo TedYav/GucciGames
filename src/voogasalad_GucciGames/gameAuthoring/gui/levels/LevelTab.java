@@ -1,9 +1,9 @@
 package voogasalad_GucciGames.gameAuthoring.gui.levels;
 
-import voogasalad_GucciGames.gameAuthoring.AGuiGaeController;
-import voogasalad_GucciGames.gameAuthoring.gui.map.GuiMap;
 import javafx.scene.control.Tab;
 import javafx.scene.image.Image;
+import voogasalad_GucciGames.gameAuthoring.AGuiGaeController;
+import voogasalad_GucciGames.gameAuthoring.gui.map.GuiMap;
 
 public class LevelTab extends Tab {
 	private final GuiMap myMap;

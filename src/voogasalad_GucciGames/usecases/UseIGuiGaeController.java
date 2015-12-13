@@ -8,27 +8,26 @@ import voogasalad_GucciGames.gameEngine.mapObject.MapObject;
 public interface UseIGuiGaeController {
 	/**
 	 * Add Map Object
+	 * 
 	 * @param mapObj
 	 */
-    public void addComponent(MapObject mapObj); //validate in back end
+	public void addComponent(MapObject mapObj); // validate in back end
 
-    public void deleteComponent(MapObject mapObj);
+	public void deleteComponent(MapObject mapObj);
 
-    public void clearMap();
+	public void clearMap();
 
-    public void createCustomTileType(Map<String,String> m);
+	public void createCustomTileType(Map<String, String> m);
 
-    public void createCustomUnitType(Map<String,String> m);
+	public void createCustomUnitType(Map<String, String> m);
 
-    public List<MapObject> getTileTypes();
+	public List<MapObject> getTileTypes();
 
-    public List<MapObject> getUnitTypes();
+	public List<MapObject> getUnitTypes();
 
+	public void saveToXML();
 
+	public void setMapWidth(double x);
 
-
-    public void saveToXML();
-
-    public void setMapWidth(double x);
-    public void setMapHeight(double y);
+	public void setMapHeight(double y);
 }

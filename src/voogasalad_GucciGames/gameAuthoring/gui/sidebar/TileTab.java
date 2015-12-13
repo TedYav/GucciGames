@@ -3,15 +3,14 @@ package voogasalad_GucciGames.gameAuthoring.gui.sidebar;
 import javafx.event.ActionEvent;
 import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.maindialogs.NewObjMakerDialog;
 
-
 public class TileTab extends ATab {
 	private static final String TYPE = "tile";
-	
-	public TileTab(SideBar bar){
+
+	public TileTab(SideBar bar) {
 		super(bar, TYPE);
 
 		setText("Tiles");
-		
+
 		init(myController.getImmutableTileTypes());
 	}
 
@@ -19,7 +18,7 @@ public class TileTab extends ATab {
 	protected void addNewTypeDialog(ActionEvent e) {
 		NewObjMakerDialog addNewTileDialog = new NewObjMakerDialog(myController, TYPE);
 		addNewTileDialog.showAndWait();
-		
+
 	}
 
 }

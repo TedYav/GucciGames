@@ -4,28 +4,26 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
-import voogasalad.util.reflection.Reflection;
+import javafx.scene.layout.GridPane;
 import voogasalad_GucciGames.gameAuthoring.IDialogGaeController;
 import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.groovySettings.groovyParams.AGroovyParams;
 import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.groovySettings.groovyParams.GConditionParams;
-import javafx.scene.control.Button;
-import javafx.scene.layout.GridPane;
 
-public class ConditionPane extends GridPane implements IDependencies{
+public class ConditionPane extends GridPane implements IDependencies {
 	private List<String> attributes = new ArrayList<String>();
 	private ISwitchGroovyPane controller;
 	private GConditionParams params;
 	private GeneralPane pane;
 	private IDialogGaeController gaeController;
-	
+
 	private static final String path = "voogasalad_GucciGames.gameAuthoring.gui.gaedialog.groovySettings.";
-	
-	public ConditionPane(String name, IDialogGaeController gaeController, ISwitchGroovyPane controller){
+
+	public ConditionPane(String name, IDialogGaeController gaeController, ISwitchGroovyPane controller) {
 		attributes.add("Condition");
 		this.gaeController = gaeController;
 		params = new GConditionParams(name);
 		pane = new GeneralPane(attributes, GroovyType.CONDITION, controller, null, this, name);
-		//TODO: Get Outcomes from backend
+		// TODO: Get Outcomes from backend
 		List<String> outcomes = new ArrayList<String>();
 		String title = "Add Outcome(s) to Conditions";
 		String header = "Outcomes";
@@ -35,13 +33,13 @@ public class ConditionPane extends GridPane implements IDependencies{
 
 	@Override
 	public void addDependencies(List<String> dep) {
-		params.setOutcomes(dep);		
+		params.setOutcomes(dep);
 	}
 
 	@Override
 	public void setParams() {
 		Map<String, String> data = pane.getUserData();
-		params.setCondition(data.get("Condition"));	
+		params.setCondition(data.get("Condition"));
 	}
 
 	@Override
@@ -49,6 +47,5 @@ public class ConditionPane extends GridPane implements IDependencies{
 		// TODO Auto-generated method stub
 		return params;
 	}
-	
 
 }

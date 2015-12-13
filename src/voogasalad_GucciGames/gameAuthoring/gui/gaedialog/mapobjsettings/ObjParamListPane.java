@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.Set;
 
 import javafx.geometry.HPos;
 import javafx.geometry.Insets;
@@ -15,9 +14,11 @@ import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.paramObjects.ObjParam;
 import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.paramObjects.ObjParamValue;
 import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.paramObjects.ObjType;
 import voogasalad_GucciGames.gameAuthoring.model.MapObjectType;
+
 /**
  * Create a pane for all objParam object
- * @author 
+ * 
+ * @author
  *
  */
 public class ObjParamListPane extends GridPane {
@@ -30,8 +31,8 @@ public class ObjParamListPane extends GridPane {
 	private MapObjectType mapObjectType;
 	private int playerId;
 
-	public ObjParamListPane(List<ObjParam> param, int playerId){
-		for (ObjParam eachObjParam : param){
+	public ObjParamListPane(List<ObjParam> param, int playerId) {
+		for (ObjParam eachObjParam : param) {
 			String paramName = eachObjParam.getName();
 			objName.add(paramName);
 
@@ -39,29 +40,29 @@ public class ObjParamListPane extends GridPane {
 			type.add(objType);
 		}
 
-		this.param = param;	
+		this.param = param;
 		this.playerId = playerId;
 
 		setContent();
 		init();
 	}
 
-	private void init(){
+	private void init() {
 		setContent();
 		this.setHgap(5);
 		this.setVgap(5);
-		this.setPadding(new Insets(5,5,5,5));	
+		this.setPadding(new Insets(5, 5, 5, 5));
 	}
 
-	private void setContent(){
-		int i  = 2;
+	private void setContent() {
+		int i = 2;
 
 		Label playerLabel = new Label("Player " + playerId);
 		this.add(playerLabel, 0, 1);
 
-		for (ObjParam eachObjParam : param){
+		for (ObjParam eachObjParam : param) {
 			for (Map.Entry<String, String> entry : eachObjParam.getAllParams().entrySet()) {
-				Label label = new Label(entry.getKey()); 
+				Label label = new Label(entry.getKey());
 				label.setPrefWidth(200);
 				TextField textField = new TextField();
 				contents.put(label, textField);
@@ -69,20 +70,20 @@ public class ObjParamListPane extends GridPane {
 				this.add(textField, 2, i);
 				this.setHalignment(textField, HPos.RIGHT);
 				i++;
-			}		
+			}
 		}
 	}
 
-	public List<ObjParamValue> getAllInputsList(){
+	public List<ObjParamValue> getAllInputsList() {
 		List<ObjParamValue> allObjParamValues = new ArrayList<ObjParamValue>();
-		for(int i=0; i<objName.size(); i++){
+		for (int i = 0; i < objName.size(); i++) {
 			String currObjName = objName.get(i);
 			ObjType currObjType = type.get(i);
 			ObjParamValue currObjParamValue = new ObjParamValue(currObjName, currObjType, mapObjectType);
 
 			Map<String, String> map = new HashMap<String, String>();
-			for(Label key: contents.keySet()){
-				if(!contents.get(key).getText().isEmpty())
+			for (Label key : contents.keySet()) {
+				if (!contents.get(key).getText().isEmpty())
 					map.put(key.getText(), contents.get(key).getText());
 			}
 			currObjParamValue.setParamValues(map);

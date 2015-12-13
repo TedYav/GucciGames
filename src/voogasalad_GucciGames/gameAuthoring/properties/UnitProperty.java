@@ -6,7 +6,7 @@ import java.util.Map;
 import voogasalad_GucciGames.gameAuthoring.guiexceptions.InvalidInputException;
 
 public class UnitProperty extends Property {
-	private Map<String, String> myMap  = new HashMap<String, String>();
+	private Map<String, String> myMap = new HashMap<String, String>();
 
 	@Override
 	public void setProperty(String key, String value) throws InvalidInputException {

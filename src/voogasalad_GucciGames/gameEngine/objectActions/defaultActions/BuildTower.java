@@ -13,8 +13,7 @@ import voogasalad_GucciGames.gameEngine.objectActions.MapObjectEvent;
  * @author Sally Al
  *
  */
-public class BuildTower extends MapObjectEvent{
-
+public class BuildTower extends MapObjectEvent {
 
 	@Override
 	protected ChangedParameters executeAction(LocationParameters params) {

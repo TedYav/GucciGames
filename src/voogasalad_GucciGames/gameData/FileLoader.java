@@ -15,8 +15,8 @@ import javax.crypto.NoSuchPaddingException;
 import javax.crypto.spec.SecretKeySpec;
 
 /**
- * A class to save/load commands with capability to encrypt commands
- * Used AES encryption & SHA-256 checksum
+ * A class to save/load commands with capability to encrypt commands Used AES
+ * encryption & SHA-256 checksum
  * 
  * @author Mike Ma (ym67)
  *
@@ -29,7 +29,7 @@ public class FileLoader {
 	private Cipher myCipher;
 	private SecretKeySpec myKey;
 
-	public FileLoader(){
+	public FileLoader() {
 		try {
 			myCipher = Cipher.getInstance("AES");
 		} catch (NoSuchAlgorithmException | NoSuchPaddingException e) {
@@ -43,14 +43,14 @@ public class FileLoader {
 		OutputStream out = new BufferedOutputStream(new FileOutputStream(file));
 		byte[] hash = MessageDigest.getInstance("SHA-256").digest(textToSave.getBytes());
 		byte[] text = textToSave.getBytes();
-		byte[] input = new byte[hash.length+text.length];
+		byte[] input = new byte[hash.length + text.length];
 		System.arraycopy(hash, 0, input, 0, hash.length);
 		System.arraycopy(text, 0, input, hash.length, text.length);
 		out.write(crypto(myCipher.ENCRYPT_MODE, input));
 		out.flush();
 		out.close();
 	}
-	
+
 	@SuppressWarnings("static-access")
 	public String read(File file) throws Exception {
 		InputStream in = new BufferedInputStream(new FileInputStream(file));
@@ -58,12 +58,12 @@ public class FileLoader {
 		in.read(input);
 		in.close();
 		byte[] output = crypto(myCipher.DECRYPT_MODE, input);
-		String text = new String(output,BLOCK,output.length-BLOCK);
+		String text = new String(output, BLOCK, output.length - BLOCK);
 		MessageDigest md = MessageDigest.getInstance("SHA-256");
-		md.update(output, BLOCK, output.length-BLOCK);
-		if(compare(md.digest(),output)){
+		md.update(output, BLOCK, output.length - BLOCK);
+		if (compare(md.digest(), output)) {
 			return text;
-		}else{
+		} else {
 			throw new Exception("Hash failed");
 		}
 	}
@@ -78,7 +78,7 @@ public class FileLoader {
 
 	private byte[] crypto(int cipherMode, byte[] input) throws Exception {
 		myCipher.init(cipherMode, myKey);
-		if(CIPHER)
+		if (CIPHER)
 			return myCipher.doFinal(input);
 		else
 			return input;

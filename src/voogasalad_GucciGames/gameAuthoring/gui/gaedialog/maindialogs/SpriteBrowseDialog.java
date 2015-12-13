@@ -11,11 +11,12 @@ public class SpriteBrowseDialog extends ImageBrowseDialog {
 	public SpriteBrowseDialog(GameResourceManagerToGAE resManager) {
 		super(resManager, null);
 	}
+
 	@Override
 	protected List<String> getImgs(String type) {
 		return myResManager.getSprites();
 	}
-	
+
 	@Override
 	protected ImageView getImgFromDatabase(String URI) {
 		Sprite s = myResManager.getSprite(URI);

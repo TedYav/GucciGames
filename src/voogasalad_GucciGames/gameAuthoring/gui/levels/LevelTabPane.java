@@ -2,10 +2,10 @@ package voogasalad_GucciGames.gameAuthoring.gui.levels;
 
 import java.util.ArrayList;
 
-import voogasalad_GucciGames.gameAuthoring.AGuiGaeController;
-import voogasalad_GucciGames.gameAuthoring.gui.map.GuiMap;
 import javafx.scene.control.TabPane;
 import javafx.scene.input.KeyEvent;
+import voogasalad_GucciGames.gameAuthoring.AGuiGaeController;
+import voogasalad_GucciGames.gameAuthoring.gui.map.GuiMap;
 
 public class LevelTabPane extends TabPane {
 	private final ArrayList<LevelTab> myTabs = new ArrayList<LevelTab>();
@@ -21,8 +21,8 @@ public class LevelTabPane extends TabPane {
 			e.consume();
 		});
 	}
-	
-	public int levelCount(){
+
+	public int levelCount() {
 		return myTabCount;
 	}
 

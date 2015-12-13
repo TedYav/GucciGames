@@ -8,54 +8,54 @@ public class TargetCoordinateMultiple extends ATargetCoordinate {
 
 	private List<TargetCoordinateSingle> myCoordinates;
 
-	public TargetCoordinateMultiple(){
+	public TargetCoordinateMultiple() {
 		this.myCoordinates = new ArrayList<>();
 	}
 
 	public TargetCoordinateMultiple(List<ATargetCoordinate> result) {
 		this();
 
-		for(ATargetCoordinate coord : result){
+		for (ATargetCoordinate coord : result) {
 			addCoordinate(coord);
 		}
 	}
 
-	public void addTargetCoordinateSingle(ATargetCoordinate coord){
-		if(!this.myCoordinates.contains(coord)){
+	public void addTargetCoordinateSingle(ATargetCoordinate coord) {
+		if (!this.myCoordinates.contains(coord)) {
 			myCoordinates.add((TargetCoordinateSingle) coord);
 		}
 	}
 
-	public void addTargetCoordinateMultiple(ATargetCoordinate coord){
+	public void addTargetCoordinateMultiple(ATargetCoordinate coord) {
 		TargetCoordinateMultiple multCoord = (TargetCoordinateMultiple) coord;
 		multCoord.getListOfCoordinates().stream().forEach(coor -> this.addTargetCoordinateSingle(coor));
 	}
 
 	// NOT ACTUALLY ADDING TO LIST! FIX THIS!
-	public void addCoordinate(ATargetCoordinate coord){
+	public void addCoordinate(ATargetCoordinate coord) {
 
 		Method m;
 		try {
-			m = Class.forName(this.getClass().getName()).getMethod("add" + coord.getClass().getSimpleName(),ATargetCoordinate.class);
+			m = Class.forName(this.getClass().getName()).getMethod("add" + coord.getClass().getSimpleName(),
+					ATargetCoordinate.class);
 			m.invoke(((ATargetCoordinate) coord));
 
-		} catch (Exception e){
+		} catch (Exception e) {
 			e.printStackTrace();
 		}
 
-
 	}
 
-	//public List<ATargetCoordinate> getCoordinates(){
-	//	return this.myCoordinates;
-	//}
+	// public List<ATargetCoordinate> getCoordinates(){
+	// return this.myCoordinates;
+	// }
 
 	@Override
 	public ATargetCoordinate clone() {
 		// TODO Auto-generated method stub
 		List<ATargetCoordinate> myList = new ArrayList<ATargetCoordinate>();
 
-		for(ATargetCoordinate coord : this.myCoordinates){
+		for (ATargetCoordinate coord : this.myCoordinates) {
 			myList.add((ATargetCoordinate) coord);
 		}
 
@@ -72,11 +72,11 @@ public class TargetCoordinateMultiple extends ATargetCoordinate {
 	public boolean equals(Object o) {
 		// TODO Auto-generated method stub
 		TargetCoordinateMultiple other = (TargetCoordinateMultiple) o;
-		if(this.myCoordinates.size() != other.myCoordinates.size()){
+		if (this.myCoordinates.size() != other.myCoordinates.size()) {
 			return false;
 		}
-		for(int i = 0; i < this.myCoordinates.size(); i++){
-			if(!this.myCoordinates.get(i).equals(other.myCoordinates.get(i))){
+		for (int i = 0; i < this.myCoordinates.size(); i++) {
+			if (!this.myCoordinates.get(i).equals(other.myCoordinates.get(i))) {
 				return false;
 			}
 		}
@@ -87,7 +87,7 @@ public class TargetCoordinateMultiple extends ATargetCoordinate {
 	public int hashCode() {
 		// TODO Auto-generated method stub
 		int num = 0;
-		for(TargetCoordinateSingle coor: this.myCoordinates){
+		for (TargetCoordinateSingle coor : this.myCoordinates) {
 			num += coor.hashCode();
 		}
 		return num;

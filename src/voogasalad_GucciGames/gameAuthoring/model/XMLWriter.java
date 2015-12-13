@@ -5,19 +5,21 @@ import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 
-import voogasalad_GucciGames.gameEngine.GameLevelEngine;
-
 import com.thoughtworks.xstream.XStream;
 import com.thoughtworks.xstream.io.xml.DomDriver;
 
+import voogasalad_GucciGames.gameEngine.GameLevelEngine;
+
 public class XMLWriter {
-	
+
 	public void write(GameLevelEngine engine) {
 		XStream serializer = new XStream(new DomDriver());
 		String engineLocation = "./examples/SavedGames/newengine.xml";
-		
-		String engineXML = serializer.toXML(engine); // saved XML File should have current turn as 2
-		
+
+		String engineXML = serializer.toXML(engine); // saved XML File should
+														// have current turn as
+														// 2
+
 		File file = new File(engineLocation);
 		try {
 			BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter(file));
@@ -26,8 +28,7 @@ public class XMLWriter {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-		
-		
+
 	}
 
 }

@@ -3,12 +3,12 @@ package voogasalad_GucciGames.gameAuthoring.gui.menubar.menuitem;
 import javafx.application.Platform;
 import javafx.geometry.Insets;
 import javafx.scene.Node;
+import javafx.scene.control.ButtonBar.ButtonData;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.Label;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.TextField;
 import javafx.scene.control.Tooltip;
-import javafx.scene.control.ButtonBar.ButtonData;
 import javafx.scene.input.KeyCombination;
 import javafx.scene.layout.GridPane;
 import voogasalad_GucciGames.gameAuthoring.AGuiGaeController;
@@ -48,7 +48,7 @@ class NewItem extends MenuItem {
 			okButton.setDisable(tf.getText().trim().isEmpty());
 
 			getDialogPane().setContent(myGrid);
-			
+
 			tf.textProperty().addListener((ob, oV, nV) -> {
 				okButton.setDisable(nV.trim().isEmpty());
 			});

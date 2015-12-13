@@ -1,6 +1,5 @@
 package voogasalad_GucciGames.gameplayer.scenes.concrete;
 
-import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
@@ -15,12 +14,12 @@ import voogasalad_GucciGames.gameplayer.windows.mainwindow.components.GameResult
 import voogasalad_GucciGames.gameplayer.windows.mainwindow.components.LevelResultsScreen;
 import voogasalad_GucciGames.gameplayer.windows.mainwindow.components.ResultsScreen;
 
-public class ResultsScene extends GameScene{
+public class ResultsScene extends GameScene {
 
 	private ResultsScreen myResultsScreen;
-	
+
 	private Map<String, String> myInfoMap;
-		
+
 	public ResultsScene(GameSceneManager manager, GameWindowInterface window, String config) {
 		super(manager, window, config);
 	}
@@ -28,27 +27,29 @@ public class ResultsScene extends GameScene{
 	@Override
 	public void refresh() {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	@Override
 	public void load() {
 		buildInfoMap();
-		if(gameOver()){
-			myResultsScreen = new GameResultsScreen(this, myManager.getController(), myConfig.getString("EndGameTitle"), myInfoMap);
-		}else{
-			myResultsScreen = new LevelResultsScreen(this, myManager.getController(), myConfig.getString("EndLevelTitle"), myInfoMap);
+		if (gameOver()) {
+			myResultsScreen = new GameResultsScreen(this, myManager.getController(), myConfig.getString("EndGameTitle"),
+					myInfoMap);
+		} else {
+			myResultsScreen = new LevelResultsScreen(this, myManager.getController(),
+					myConfig.getString("EndLevelTitle"), myInfoMap);
 		}
 		loadParent(myResultsScreen.getParent());
 		getScene().addEventFilter(KeyEvent.ANY, e -> done());
 	}
 
 	private void done() {
-		if(gameOver()){
+		if (gameOver()) {
 			myManager.loadScene("MainMenuScene");
-		}
-		else{
-			myManager.getController().getEngine().changeCurrentLevel(myManager.getController().getEngine().getCurrentLevel().getNextLevel());
+		} else {
+			myManager.getController().getEngine()
+					.changeCurrentLevel(myManager.getController().getEngine().getCurrentLevel().getNextLevel());
 			myManager.sceneFinished();
 		}
 	}
@@ -56,23 +57,27 @@ public class ResultsScene extends GameScene{
 	private void buildInfoMap() {
 		myInfoMap = new LinkedHashMap<>();
 		GameParametersInterface results = myManager.getController().getEndLevelParams();
-		results.getResults().getEachPlayerConditions().keySet().forEach( s -> addPlayerResults(s));
+		results.getResults().getEachPlayerConditions().keySet().forEach(s -> addPlayerResults(s));
 	}
 
 	private void addPlayerResults(Integer id) {
-		double score = ((PlayerScore) myManager.getController().getEngine().getPlayerCharacteristic("PlayerScore", id)).getScore();
-		myInfoMap.put("Player " + id, ((Double)score).toString() + " " + playerState(id));
-		if(gameOver()){
+		double score = ((PlayerScore) myManager.getController().getEngine().getPlayerCharacteristic("PlayerScore", id))
+				.getScore();
+		myInfoMap.put("Player " + id, ((Double) score).toString() + " " + playerState(id));
+		if (gameOver()) {
 			myManager.getController().uploadScore("Player" + id, score);
 		}
 	}
 
 	private String playerState(Integer s) {
-		return gameOver() ? getOutcomeText(myManager.getController().getEndLevelParams().getResults().getEachPlayerConditions().get(s)) : "";
+		return gameOver()
+				? getOutcomeText(
+						myManager.getController().getEndLevelParams().getResults().getEachPlayerConditions().get(s))
+				: "";
 	}
 
 	private String getOutcomeText(EndGameConditions endGameConditions) {
-		switch(endGameConditions){
+		switch (endGameConditions) {
 		case WIN:
 			return myConfig.getString("WinText");
 		case DRAW:
