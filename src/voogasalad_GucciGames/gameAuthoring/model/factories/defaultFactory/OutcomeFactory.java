@@ -1,3 +1,5 @@
+// This entire file is part of my masterpiece.
+// Sally Al Khamees
 package voogasalad_GucciGames.gameAuthoring.model.factories.defaultFactory;
 
 import java.io.InputStream;

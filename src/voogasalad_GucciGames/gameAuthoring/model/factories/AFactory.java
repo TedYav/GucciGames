@@ -1,3 +1,5 @@
+// This entire file is part of my masterpiece.
+// Sally Al Khamees
 package voogasalad_GucciGames.gameAuthoring.model.factories;
 
 import voogasalad_GucciGames.gameAuthoring.model.factories.defaultFactory.TypeName;
@@ -5,7 +7,7 @@ import voogasalad_GucciGames.gameAuthoring.model.factories.defaultFactory.TypeNa
 
 /**
  *
- * @author Sally Al
+ * @author Sally Al and Daniel McKee
  *
  */
 public abstract class AFactory {

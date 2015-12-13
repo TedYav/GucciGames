@@ -1,3 +1,5 @@
+// This entire file is part of my masterpiece.
+// Sally Al Khamees
 package voogasalad_GucciGames.gameAuthoring.model.factories.defaultFactory;
 
 import java.io.InputStream;
@@ -9,7 +11,7 @@ import voogasalad_GucciGames.gameEngine.gameRules.Rules;
 
 /**
  *
- * @author Sally Al
+ * @author Sally Al and Daniel McKee
  *
  */
 public class RuleFactory extends DefaultFactory {

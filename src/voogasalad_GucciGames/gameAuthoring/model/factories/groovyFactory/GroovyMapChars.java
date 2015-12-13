@@ -1,3 +1,5 @@
+// This entire file is part of my masterpiece.
+// Sally Al Khamees
 
 package voogasalad_GucciGames.gameAuthoring.model.factories.groovyFactory;
 
@@ -18,7 +20,7 @@ import voogasalad_GucciGames.gameEngine.groovyEngine.GroovyLoader;
 
 /**
  *
- * @author Sally Al
+ * @author Sally Al and Daniel McKee
  *
  */
 public class GroovyMapChars extends GroovyFactory {

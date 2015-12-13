@@ -13,12 +13,12 @@ public class WelcomeScreen extends Pane{
 		img.fitHeightProperty().bind(heightProperty());
 		img.fitWidthProperty().bind(widthProperty());
 		getChildren().add(img);
-		Text text = new Text("uSe MeNu To StArT eDiTiNg A nEw GaMe");
+		Text text = new Text("Use menu to start editing a new game");
 		text.setFont(new Font(40));
 		text.setFill(Color.ALICEBLUE);
 		getChildren().add(text);
 		text.setX(100);
 		text.yProperty().bind(heightProperty().divide(2));
-		
+
 	}
 }

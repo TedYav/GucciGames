@@ -1,3 +1,5 @@
+// This entire file is part of my masterpiece.
+// Sally Al Khamees
 
 package voogasalad_GucciGames.gameAuthoring.model.factories.defaultFactory;
 
@@ -12,7 +14,7 @@ import voogasalad_GucciGames.gameAuthoring.model.factories.TypeMap;
 
 /**
  *
- * @author Sally Al
+ * @author Sally Al and Daniel McKee
  *
  *         any factory that requires mapObjectParams mapObjectValue
  *
@@ -39,6 +41,8 @@ public abstract class Leaf extends DefaultFactory {
         Map<String, String> valueMap = objParamValue.getMap();
 
         Class<?>[] myParameters = new Class<?>[typeMap.size()];
+
+
         for (int i = 0; i < myParameters.length; i++) {
             myParameters[i] = TypeMap.getType(typeMap.get(orderMap.get(i)));
         }
