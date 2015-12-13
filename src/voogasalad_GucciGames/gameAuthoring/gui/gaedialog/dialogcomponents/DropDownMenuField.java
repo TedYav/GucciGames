@@ -9,17 +9,16 @@ import javafx.collections.ObservableList;
 import javafx.scene.control.ComboBox;
 import javafx.scene.text.Text;
 
-public class DropDownMenuField  extends DialogComponent{
-	
+public class DropDownMenuField extends DialogComponent {
+
 	private Properties prop;
 	private String propKey;
 	private String itemsKey;
 	private Text label = new Text();
 	private List<String> propertiesList = new ArrayList<String>();
 	private ComboBox<String> dropDown = new ComboBox<String>();
-	
-	public DropDownMenuField(Properties prop, String propKey, 
-			String itemsKey){
+
+	public DropDownMenuField(Properties prop, String propKey, String itemsKey) {
 		super();
 		this.prop = prop;
 		this.propKey = propKey;
@@ -27,37 +26,34 @@ public class DropDownMenuField  extends DialogComponent{
 		label = new Text(propKey);
 		propertiesList = parseStringToList(prop, itemsKey);
 		this.makeDropDownList();
-		
-	}
-	
-	public DropDownMenuField(List<String> items){
-		this.propertiesList = items;
-		makeDropDownList();		
-	}
-	
 
-	
-	protected void makeDropDownList(){	
-		ObservableList<String> options = FXCollections.observableArrayList(propertiesList);
-		dropDown.setItems(options);	
-		
-		this.add(label, 0, 0);
-		this.add(dropDown, 1 , 0);
-		
 	}
-	
-	public ComboBox<String> getDropDown(){
+
+	public DropDownMenuField(List<String> items) {
+		this.propertiesList = items;
+		makeDropDownList();
+	}
+
+	protected void makeDropDownList() {
+		ObservableList<String> options = FXCollections.observableArrayList(propertiesList);
+		dropDown.setItems(options);
+
+		this.add(label, 0, 0);
+		this.add(dropDown, 1, 0);
+
+	}
+
+	public ComboBox<String> getDropDown() {
 		return dropDown;
 	}
-	
 
 	@Override
 	public void setSelected(String s) {
 		dropDown.getSelectionModel().select(s);
 	}
-	
-	public String getSelected(){
-		if(dropDown.getSelectionModel().getSelectedItem() == null){
+
+	public String getSelected() {
+		if (dropDown.getSelectionModel().getSelectedItem() == null) {
 			return "";
 		}
 		return dropDown.getSelectionModel().getSelectedItem().toString();

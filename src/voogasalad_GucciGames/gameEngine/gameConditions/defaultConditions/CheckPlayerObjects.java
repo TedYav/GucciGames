@@ -12,11 +12,11 @@ import voogasalad_GucciGames.gameEngine.gamePlayer.GamePlayerPerson;
 public class CheckPlayerObjects extends Conditions {
 
 	public CheckPlayerObjects(int i) {
-		
+
 	}
-	
+
 	@Override
-	public Boolean execute(BasicParameters params,GamePlayerPerson player) {
+	public Boolean execute(BasicParameters params, GamePlayerPerson player) {
 		if (player.getMapObjects().size() == 0)
 			return true;
 		else

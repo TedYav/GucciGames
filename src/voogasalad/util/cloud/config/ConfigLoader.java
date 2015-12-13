@@ -7,17 +7,17 @@ public class ConfigLoader {
 	private static String PREFIX = "voogasalad.util.cloud.config.";
 	private static final String MAINCONFIG = "CloudConfig";
 	private static final String INTERNALCONFIG = "InternalConfig";
-	
-	public static void setPrefix(String prefix){
+
+	public static void setPrefix(String prefix) {
 		PREFIX = prefix;
 	}
-	
-	public static ResourceBundle mainConfig(){
+
+	public static ResourceBundle mainConfig() {
 		return ResourceBundle.getBundle(PREFIX + MAINCONFIG);
 	}
-	
-	public static ResourceBundle internalConfig(){
+
+	public static ResourceBundle internalConfig() {
 		return ResourceBundle.getBundle(PREFIX + INTERNALCONFIG);
 	}
-	
+
 }

@@ -36,11 +36,11 @@ public interface IGuiGaeController {
 	public void saveToXML(File file);
 
 	public void saveToXML();
-	
+
 	public void setSelectedType(MapObjectType mapType);
 
 	public MapObjectType getSelectedType();
-	
+
 	public void setDragType(MapObjectType mapType);
 
 	public MapObjectType getDragType();
@@ -62,21 +62,23 @@ public interface IGuiGaeController {
 	public LevelTabPane getLevelTabPane();
 
 	public int addLevel(String name, int width, int height);
-	
+
 	public void setDefaultOwner(int ownerID);
 
 	public BooleanProperty getHasGameProperty();
-	
+
 	public GameResourceManagerToGAE getResourceManager();
-	
+
 	public Dialog<String> getImageBrowseDialog(String type);
-	
+
 	public void throwException(Exception e);
 
 	public void addPlayerCharacteristic(int playerID, ObjParamValue param);
-	
+
 	public IntegerProperty getNumberOfPlayersProperty();
 
 	public int getDefaultOwner();
+
+	void initModel();
 
 }

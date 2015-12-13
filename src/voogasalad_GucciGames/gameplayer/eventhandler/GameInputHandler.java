@@ -8,14 +8,14 @@ public class GameInputHandler {
 
 	private GameControllerInterface myController;
 	private MapKeyHandler myMapKeyHandler;
-	
-	public GameInputHandler(GameControllerInterface controller){
+
+	public GameInputHandler(GameControllerInterface controller) {
 		myController = controller;
 		myMapKeyHandler = new MapKeyHandler(myController);
 	}
-	
-	public EventHandler<KeyEvent> mapKeyHandler(){
+
+	public EventHandler<KeyEvent> mapKeyHandler() {
 		return myMapKeyHandler;
 	}
-	
+
 }

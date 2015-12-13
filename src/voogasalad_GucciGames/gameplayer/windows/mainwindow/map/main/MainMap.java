@@ -33,8 +33,8 @@ import voogasalad_GucciGames.gameplayer.windows.mainwindow.map.cell.MapCellInter
 
 public class MainMap extends WindowComponent implements MapInterface {
 
-        private ResourceBundle myConfig = PlayerConfig.load("components.Map");
-        private ResourceBundle myCssBundle = PlayerConfig.load("scenes.CssClasses");
+	private ResourceBundle myConfig = PlayerConfig.load("components.Map");
+	private ResourceBundle myCssBundle = PlayerConfig.load("scenes.CssClasses");
 
 	private TwoWayMap<Point2D, MapCellInterface> myCellMap;
 	private List<MapCellInterface> myHighlightedCells;
@@ -72,11 +72,11 @@ public class MainMap extends WindowComponent implements MapInterface {
 		((GameControllerAdvancedInterface) getController()).setMap(this);
 	}
 
-
 	private double calculateCellSize() {
-		double size = Screen.getPrimary().getBounds().getWidth()/Double.parseDouble(myConfig.getString("NumCells"));
-		double stretchSize = (Screen.getPrimary().getBounds().getHeight()-Double.parseDouble(myConfig.getString("MapVBorder")))/myCellsTall;
-		return (size>stretchSize)?size:stretchSize;
+		double size = Screen.getPrimary().getBounds().getWidth() / Double.parseDouble(myConfig.getString("NumCells"));
+		double stretchSize = (Screen.getPrimary().getBounds().getHeight()
+				- Double.parseDouble(myConfig.getString("MapVBorder"))) / myCellsTall;
+		return (size > stretchSize) ? size : stretchSize;
 	}
 
 	private void initializeMap() {
@@ -85,7 +85,7 @@ public class MainMap extends WindowComponent implements MapInterface {
 		mySelectedCells = new ArrayList<>();
 	}
 
-	private void initializePanes(){
+	private void initializePanes() {
 		myParent = new StackPane();
 		myFirstLayer = new ScrollPane();
 		myMap = new GridPane();
@@ -93,25 +93,29 @@ public class MainMap extends WindowComponent implements MapInterface {
 
 		myParent.getChildren().add(myFirstLayer);
 		myFirstLayer.setContent(myMap);
-//		myParent.getChildren().add(mySecondLayer);
-//
+		// myParent.getChildren().add(mySecondLayer);
+		//
 		myFirstLayer.setVbarPolicy(ScrollBarPolicy.NEVER);
 		myFirstLayer.setHbarPolicy(ScrollBarPolicy.NEVER);
 		myFirstLayer.setPannable(true);
 	}
 
-	private void drawMap(List<PlayerMapObjectInterface> initialState){
-		initialState.stream()
-			.forEach(o->addToMap(o));
+	private void drawMap(List<PlayerMapObjectInterface> initialState) {
+		initialState.stream().forEach(o -> addToMap(o));
 		myParent.getStyleClass().add(myCssBundle.getString("mapstackpane"));
 	}
 
 	private void addToMap(PlayerMapObjectInterface object) {
 		Point2D key = Coordinate.CoordinateToPoint(object.getCoordinate());
-		if(!myCellMap.containsKey(key)){
-			MapCell newCell = (MapCell)Reflection.createInstance(myConfig.getString("CellClass"), getController(), myCellSize);
+		if (!myCellMap.containsKey(key)) {
+			MapCell newCell = (MapCell) Reflection.createInstance(myConfig.getString("CellClass"), getController(),
+					myCellSize);
 			myCellMap.put(key, newCell);
-			myMap.add(newCell.getParent(), ((Double)object.getCoordinate().getListOfCoordinates().get(0).getCenterX()).intValue(), ((Double)object.getCoordinate().getListOfCoordinates().get(0).getCenterY()).intValue()); //TODO: get non-zero
+			myMap.add(newCell.getParent(),
+					((Double) object.getCoordinate().getListOfCoordinates().get(0).getCenterX()).intValue(),
+					((Double) object.getCoordinate().getListOfCoordinates().get(0).getCenterY()).intValue()); // TODO:
+																												// get
+																												// non-zero
 		}
 		MapCellInterface target = myCellMap.get(key);
 		target.addObject(object);
@@ -140,58 +144,59 @@ public class MainMap extends WindowComponent implements MapInterface {
 	}
 
 	// for doing animations and such
-	private void recenter(PlayerMapObjectInterface target){
+	private void recenter(PlayerMapObjectInterface target) {
 
 	}
 
 	@Override
 	public void recenter(Point2D center) {
-		recenter(center.getX()/myCellsWide, center.getY()/myCellsTall);
+		recenter(center.getX() / myCellsWide, center.getY() / myCellsTall);
 	}
 
 	@Override
-	public void recenter(double xPercent, double yPercent){
+	public void recenter(double xPercent, double yPercent) {
 		myFirstLayer.setHvalue(xPercent);
 		myFirstLayer.setVvalue(yPercent);
 	}
 
-	public void addUnitListener(List<ListChangeListener<PlayerMapObjectInterface>> listeners){
-	    for (ListChangeListener l: listeners) {
-		mySelectedUnits.addListener(l);
-	    }
+	public void addUnitListener(List<ListChangeListener<PlayerMapObjectInterface>> listeners) {
+		for (ListChangeListener l : listeners) {
+			mySelectedUnits.addListener(l);
+		}
 	}
 
 	@Override
 	public void highlightCells(List<TargetCoordinateSingle> targets) {
 		targets.stream()
-			.map((t) -> new Point2D(t.getListOfCoordinates().get(0).getCenterX(), t.getListOfCoordinates().get(0).getCenterY())) //TODO: get non-zero
-			.map((c) -> myCellMap.get(c))
-			.filter((c) -> c!=null)
-			.forEach((c) -> { c.toggleHighlight(true); myHighlightedCells.add(c);} );
+				.map((t) -> new Point2D(t.getListOfCoordinates().get(0).getCenterX(),
+						t.getListOfCoordinates().get(0).getCenterY())) // TODO:
+																		// get
+																		// non-zero
+				.map((c) -> myCellMap.get(c)).filter((c) -> c != null).forEach((c) -> {
+					c.toggleHighlight(true);
+					myHighlightedCells.add(c);
+				});
 	}
 
 	@Override
-	public void clearHighlights(){
-		myHighlightedCells.forEach((c) -> c.toggleHighlight(false) );
+	public void clearHighlights() {
+		myHighlightedCells.forEach((c) -> c.toggleHighlight(false));
 		myHighlightedCells.clear();
 	}
-
 
 	@Override
 	public void selectCell(MapCellInterface cell) {
 		clearActiveCells();
-	    for (Integer i: cell.getUnits().keySet()) {
-	        mySelectedUnits.addAll(cell.getUnits().get(i));
-	    }
-	    mySelectedCells.add(cell);
+		for (Integer i : cell.getUnits().keySet()) {
+			mySelectedUnits.addAll(cell.getUnits().get(i));
+		}
+		mySelectedCells.add(cell);
 	}
-
 
 	@Override
 	public List<MapCellInterface> getSelectedCells() {
 		return mySelectedCells;
 	}
-
 
 	@Override
 	public void clearActiveCells() {
@@ -200,54 +205,53 @@ public class MainMap extends WindowComponent implements MapInterface {
 		mySelectedCells.clear();
 	}
 
-
 	@Override
 	public void update(List<PlayerMapObjectInterface> result) {
-            result.stream().forEach(u -> redrawUnit(u));
-            result.stream().forEach(u ->  {
-                if (u.isRemoved()) {
-                    removeUnitFromMap(u);
-                }
-            });
+		result.stream().forEach(u -> redrawUnit(u));
+		result.stream().forEach(u -> {
+			if (u.isRemoved()) {
+				removeUnitFromMap(u);
+			}
+		});
 		update();
 	}
-
 
 	private void redrawUnit(PlayerMapObjectInterface unit) {
 		removeUnitFromMap(unit);
 		addToMap(unit);
 	}
-	private void removeUnitFromMap(PlayerMapObjectInterface unit) {
-	    if(myUnitMap.containsValue(unit)){
-                myUnitMap.getKey(unit).removeObject(unit);
-                myUnitMap.remove(unit);
-                myUnitMap.removeKey(unit);
-        }
-	}
 
+	private void removeUnitFromMap(PlayerMapObjectInterface unit) {
+		if (myUnitMap.containsValue(unit)) {
+			myUnitMap.getKey(unit).removeObject(unit);
+			myUnitMap.remove(unit);
+			myUnitMap.removeKey(unit);
+		}
+	}
 
 	@Override
 	public Point2D getCellCoordinate(MapCellInterface cell) {
 		return myCellMap.getKey(cell);
 	}
 
-
 	@Override
 	public MapCellInterface getCell(Point2D coordinate) {
 		return myCellMap.get(coordinate);
 	}
-	
+
 	@Override
-	public List<Double> getVisibleArea(){
-		double numCellsWide = (Screen.getPrimary().getBounds().getWidth() - Double.parseDouble(myConfig.getString("MapHBorder")))/myCellSize;
-		double numCellsTall = (Screen.getPrimary().getBounds().getHeight() - Double.parseDouble(myConfig.getString("MapVBorder")))/myCellSize;
-		double myPercentWide = numCellsWide/myCellsWide;
-		double myPercentTall = numCellsTall/myCellsTall;
+	public List<Double> getVisibleArea() {
+		double numCellsWide = (Screen.getPrimary().getBounds().getWidth()
+				- Double.parseDouble(myConfig.getString("MapHBorder"))) / myCellSize;
+		double numCellsTall = (Screen.getPrimary().getBounds().getHeight()
+				- Double.parseDouble(myConfig.getString("MapVBorder"))) / myCellSize;
+		double myPercentWide = numCellsWide / myCellsWide;
+		double myPercentTall = numCellsTall / myCellsTall;
 		return Arrays.asList(myPercentWide, myPercentTall);
 	}
-	
+
 	@Override
-	public void addHListener(ChangeListener <? super Number> listener){
+	public void addHListener(ChangeListener<? super Number> listener) {
 		myFirstLayer.hvalueProperty().addListener(listener);
 	}
 

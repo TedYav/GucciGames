@@ -8,25 +8,25 @@ import voogasalad_GucciGames.gameplayer.config.PlayerConfig;
 import voogasalad_GucciGames.gameplayer.controller.GameControllerInterface;
 import voogasalad_GucciGames.gameplayer.scenes.GameScene;
 
-public class RightBar extends WindowSideComponent{
-    private VBox container;
-    private double spacing = 5;
-    private ResourceBundle myBundle = PlayerConfig.load("components.Bar");
-    private ResourceBundle myCssBundle = PlayerConfig.load(myBundle.getString("cssclass"));
+public class RightBar extends WindowSideComponent {
+	private VBox container;
+	private double spacing = 5;
+	private ResourceBundle myBundle = PlayerConfig.load("components.Bar");
+	private ResourceBundle myCssBundle = PlayerConfig.load(myBundle.getString("cssclass"));
 
-    public RightBar(GameScene scene, GameControllerInterface controller, List<DisplayComponent> components) {
-        super(scene, controller, components);
-        container = new VBox(spacing);
-        setParent(container);
-        initializeData();
-    }
+	public RightBar(GameScene scene, GameControllerInterface controller, List<DisplayComponent> components) {
+		super(scene, controller, components);
+		container = new VBox(spacing);
+		setParent(container);
+		initializeData();
+	}
 
-    @Override
-    protected void initializeData() {
-        for (DisplayComponent d: getMyComponents()) {
-            container.getChildren().add(d.getParent());
-        }
-        container.getStyleClass().add(myCssBundle.getString("RightVBox"));
-        container.setPrefWidth(Double.parseDouble(myCssBundle.getString("rightprefwidth")));
-    }
+	@Override
+	protected void initializeData() {
+		for (DisplayComponent d : getMyComponents()) {
+			container.getChildren().add(d.getParent());
+		}
+		container.getStyleClass().add(myCssBundle.getString("RightVBox"));
+		container.setPrefWidth(Double.parseDouble(myCssBundle.getString("rightprefwidth")));
+	}
 }

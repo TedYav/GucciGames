@@ -13,15 +13,15 @@ import voogasalad_GucciGames.gameplayer.gameloader.GameLoader;
 import voogasalad_GucciGames.gameplayer.windows.GameWindowInterface;
 import voogasalad_GucciGames.gameplayer.windows.SceneManager;
 
-public class GameSceneManager implements SceneManager{
+public class GameSceneManager implements SceneManager {
 
 	private Map<String, GameScene> myScenes;
 	private ResourceBundle myConfig;
 	private GameScene myCurrentScene;
 	private GameWindowInterface myWindow;
 	private GameController myController;
-	
-	public GameSceneManager(String config, GameWindowInterface window, GameController controller){
+
+	public GameSceneManager(String config, GameWindowInterface window, GameController controller) {
 		myConfig = PlayerConfig.load(config);
 		myController = controller;
 		myWindow = window;
@@ -29,38 +29,40 @@ public class GameSceneManager implements SceneManager{
 		myCurrentScene = myScenes.get(myConfig.getString("DefaultScene"));
 		myCurrentScene.load();
 	}
-	
-	private Map<String, GameScene> generateScenes(){
+
+	private Map<String, GameScene> generateScenes() {
 		return myConfig.keySet().stream()
-			.filter((s) -> s.matches("SceneClass\\d+"))
-			.map( (s) -> (GameScene)Reflection.createInstance(sceneClassPath(s), this, myWindow, configClassPath(s)))
-			.collect(Collectors.toMap((s)->s.getName(), (s)->s));
+				.filter((s) -> s.matches("SceneClass\\d+")).map((s) -> (GameScene) Reflection
+						.createInstance(sceneClassPath(s), this, myWindow, configClassPath(s)))
+				.collect(Collectors.toMap((s) -> s.getName(), (s) -> s));
 	}
-	
-	private String sceneClassPath(String scene){
+
+	private String sceneClassPath(String scene) {
 		return myConfig.getString("ClassPath") + "." + myConfig.getString(scene);
 	}
-	
-	private String configClassPath(String scene){
+
+	private String configClassPath(String scene) {
 		return myConfig.getString("ConfigPath") + "." + myConfig.getString(scene);
 	}
-	
-	public void loadScene(String sceneName){
-		if(myScenes.get(sceneName)!=null){
+
+	public void loadScene(String sceneName) {
+		if (myScenes.get(sceneName) != null) {
 			myCurrentScene = myScenes.get(sceneName);
 			myCurrentScene.load();
 		}
 	}
-		
-	public void sceneFinished(){
-		//System.out.println(myCurrentScene.getNext());
+
+	public void sceneFinished() {
+		// System.out.println(myCurrentScene.getNext());
 		myCurrentScene = myScenes.get(myCurrentScene.getNext());
 		myCurrentScene.load();
 	}
+
 	public Stage getStage() {
-	    return myWindow.getStage();
+		return myWindow.getStage();
 	}
-	public GameLoader getLoader(){
+
+	public GameLoader getLoader() {
 		return myController.getLoader();
 	}
 
@@ -71,5 +73,5 @@ public class GameSceneManager implements SceneManager{
 	public GameControllerInterface getController() {
 		return myController;
 	}
-	
+
 }

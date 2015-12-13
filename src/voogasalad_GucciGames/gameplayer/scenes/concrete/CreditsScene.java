@@ -5,13 +5,13 @@ import voogasalad_GucciGames.gameplayer.scenes.GameSceneManager;
 import voogasalad_GucciGames.gameplayer.windows.GameWindow;
 
 public class CreditsScene extends GameScene {
-	
+
 	public CreditsScene(GameSceneManager manager, GameWindow window, String config) {
 		super(manager, window, config);
 	}
-	
+
 	@Override
-	protected void readConfig(){
+	protected void readConfig() {
 		super.readConfig();
 	}
 
@@ -21,9 +21,9 @@ public class CreditsScene extends GameScene {
 		myManager.sceneFinished();
 	}
 
-    @Override
-    public void refresh () {
-        // TODO Auto-generated method stub
-        
-    }
+	@Override
+	public void refresh() {
+		// TODO Auto-generated method stub
+
+	}
 }

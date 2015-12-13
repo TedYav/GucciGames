@@ -106,7 +106,7 @@ public class GamePlayerPerson {
 	public void addCharacterstic(String name, APlayerChars charInstance) {
 		this.myCharacteristics.put(name, charInstance);
 	}
-	
+
 	public void clearMapObjects() {
 		myMapObjects.clear();
 	}

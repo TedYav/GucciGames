@@ -8,5 +8,5 @@ import voogasalad_GucciGames.gameEngine.targetCoordinate.ATargetCoordinate;
 public abstract class ADummy {
 
 	public abstract List<PlayerMapObjectInterface> performAction(String action, ATargetCoordinate target);
-	
+
 }

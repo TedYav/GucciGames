@@ -41,7 +41,8 @@ public abstract class MapObjectEvent implements IGamePlayerMapObjectAction {
 	public void addOutcome(Outcome outcome) {
 		myOutcomes.add(outcome);
 	}
-	public void addActionName(String name){
+
+	public void addActionName(String name) {
 		myName = name;
 	}
 

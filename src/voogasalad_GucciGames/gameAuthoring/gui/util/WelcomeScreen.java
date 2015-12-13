@@ -6,7 +6,7 @@ import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 
-public class WelcomeScreen extends Pane{
+public class WelcomeScreen extends Pane {
 	public WelcomeScreen() {
 		super();
 		ImageView img = new ImageView("http://p1.pichost.me/i/19/1421181.jpg");

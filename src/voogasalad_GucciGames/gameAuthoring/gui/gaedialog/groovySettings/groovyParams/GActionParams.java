@@ -4,14 +4,14 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class GActionParams extends AGroovyParams {
-	
+
 	private String name;
 	private String action;
 	private String request;
 	private List<String> rules = new ArrayList<String>();
 	private final String type = "action";
-	
-	public GActionParams(String name){
+
+	public GActionParams(String name) {
 		this.setName(name);
 	}
 
@@ -58,11 +58,7 @@ public class GActionParams extends AGroovyParams {
 	public void setDependencies(List<String> dependencies) {
 		// TODO Auto-generated method stub
 		rules.addAll(dependencies);
-		
-	}
-	
 
-	
-	
+	}
 
 }

@@ -5,27 +5,27 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Set;
 
-public class TwoWayMap<K,V> implements Map<K,V>{
-	
-	private Map<K,V> myForwardMap;
-	private Map<V,K> myReverseMap;
-	
-	public TwoWayMap(){
+public class TwoWayMap<K, V> implements Map<K, V> {
+
+	private Map<K, V> myForwardMap;
+	private Map<V, K> myReverseMap;
+
+	public TwoWayMap() {
 		myForwardMap = new HashMap<>();
 		myReverseMap = new HashMap<>();
 	}
-	
-	public TwoWayMap(int size){
+
+	public TwoWayMap(int size) {
 		myForwardMap = new HashMap<>(size);
 		myReverseMap = new HashMap<>(size);
 	}
-	
-	public V put(K k, V v){
+
+	public V put(K k, V v) {
 		myForwardMap.put(k, v);
 		myReverseMap.put(v, k);
 		return v;
 	}
-	
+
 	@Override
 	public void clear() {
 		myForwardMap.clear();
@@ -51,8 +51,8 @@ public class TwoWayMap<K,V> implements Map<K,V>{
 	public V get(Object key) {
 		return myForwardMap.get(key);
 	}
-	
-	public K getKey(Object value){
+
+	public K getKey(Object value) {
 		return myReverseMap.get(value);
 	}
 
@@ -78,8 +78,8 @@ public class TwoWayMap<K,V> implements Map<K,V>{
 		myReverseMap.remove(removed);
 		return removed;
 	}
-	
-	public K removeKey(Object key){
+
+	public K removeKey(Object key) {
 		K removed = myReverseMap.remove(key);
 		myForwardMap.remove(removed);
 		return removed;

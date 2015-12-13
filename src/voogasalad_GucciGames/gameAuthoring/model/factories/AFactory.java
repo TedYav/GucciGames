@@ -12,6 +12,7 @@ import voogasalad_GucciGames.gameAuthoring.model.factories.defaultFactory.TypeNa
  */
 public abstract class AFactory {
 
+
     public Object getTranslatedValue (String type, String value) {
 
         if (type.equals(TypeName.INT.getValue()))
@@ -25,5 +26,6 @@ public abstract class AFactory {
         return null;
 
     }
+
 
 }
