@@ -11,7 +11,7 @@
  - John Dai:
  - Mike Ma: Front end design for Game Authoring Environment, official Git blamer
  - Daniel McKee: 
- - Joy Patel:
+ - Joy Patel: Back end design for Game Engine (Events for MapObjects, Groovy Extension)
  - Sally Merza:
  - Karen Li:
  - Tina Liang:  
@@ -19,4 +19,4 @@
 * Any data or resource files required by the project: They are in the resources folder
 * Information about the program: 
 * Any known bugs, crashes or problems with the project's functionality: 
-* Extra features: Networking
+* Extra features: Networking, Groovy
