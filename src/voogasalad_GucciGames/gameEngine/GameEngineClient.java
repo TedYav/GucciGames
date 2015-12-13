@@ -4,9 +4,12 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.PrintWriter;
+import java.io.UncheckedIOException;
 import java.net.Socket;
 import java.net.UnknownHostException;
 import java.util.List;
+import java.util.ResourceBundle;
+import java.util.stream.Collectors;
 
 import com.thoughtworks.xstream.XStream;
 import com.thoughtworks.xstream.io.xml.DomDriver;
@@ -25,111 +28,49 @@ import voogasalad_GucciGames.gameplayer.controller.GameParametersInterface;
  * @author Efe Aras
  *
  */
-public class GameEngineClient extends GameEnginePlayer implements Runnable{
+public class GameEngineClient extends GameNetworkRole implements Runnable {
 
-	private int myPlayerID;
-	private PrintWriter myWriterToServer;
-    private String name;
+	private int myPort;
+	private String myServerAddress;
 
-	private static int PORT = 6555; //hard code for now
-	private static String SERVER_ADDRESS = "10.190.108.47"; //harcode for now
-	
-	public GameEngineClient(GameEngine gameEngine, String ipAddr) {
+	public GameEngineClient(GameEngine gameEngine) {
 		super(gameEngine);
+		myServerAddress = getNetworkBundle().getString("defaultServerAddress");
+		myPort = Integer.parseInt(getNetworkBundle().getString("defaultPort"));
+	}
+
+	public GameEngineClient(GameEngine gameEngine, String ipAddr) {
+		this(gameEngine);
+		myServerAddress = ipAddr;
+	}
+
+	public GameEngineClient(GameEngine gameEngine, String ipAddr, int port) {
+		this(gameEngine, ipAddr);
+		myPort = port;
 	}
 
 	@Override
-	public void run(){
+	public void run() {
 
-        try {
-			Socket socket = new Socket(SERVER_ADDRESS, PORT);
-			BufferedReader in = new BufferedReader(new InputStreamReader(
-		            socket.getInputStream()));
-		       myWriterToServer = new PrintWriter(socket.getOutputStream(), true);
+		try {
+			Socket socket = new Socket(myServerAddress, myPort);
+			BufferedReader in = new BufferedReader(new InputStreamReader(socket.getInputStream()));
+			PrintWriter myWriterToServer = new PrintWriter(socket.getOutputStream(), true);
 
-		        while (true) {
-                    System.out.println("waiting for server input");
-		            String input = in.readLine();
-		            
-                    if (input == null) {
-                        return;
-                    }
-                    System.out.println("client has:" + input);
-                    if(input.startsWith("GAMEDATA")){
-	                   // input = in.readLine();
-                        System.out.println("OMG SOME DATA ON CLIENT");
-                    	
-	                    input = in.readLine();
-                    	
-                    	
-	                    int lengthXML = Integer.parseInt(input);
-	                    System.out.println("according to input the length is" + lengthXML);
-	                    StringBuilder myBuilder = new StringBuilder();
-
-	                    for(int i = 0; i < lengthXML; i++){
-	                    	myBuilder.append((char) in.read());
-	                    }
-	                    
-	                    System.out.println("actual input is" + myBuilder.toString().length());
-
-	                    
-	                    this.updateGameEngine(myBuilder.toString());
-
-		            }
-                    
-                    if(input.startsWith("CHAT")){
-                    	  input = in.readLine();
-                      	
-                      	
-  	                    int lengthMessage = Integer.parseInt(input);
-	                    StringBuilder myBuilder = new StringBuilder();
-
-  	                  for(int i = 0; i < lengthMessage; i++){
-	                    	myBuilder.append((char) in.read());
-	                    }
-	                    
-	                    this.updateChat(myBuilder.toString());
-  	                    
-  	                    }
-                    
-		        }
-
+			beginConnection();
+			runConnection(in);
+			endConnection(socket, in, myWriterToServer);
+			
 		} catch (UnknownHostException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			getMySuperEngine().notifyEngine(new NetworkException(getNetworkBundle().getString("hostException")));
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			getMySuperEngine().notifyEngine(new NetworkException(getNetworkBundle().getString("ioException")));
 		}
 
-
-	}
-	
-
-	private void updateServerGameEngine() {
-		// TODO Auto-generated method stub
-
-		XStream xstream = new XStream(new DomDriver());
-		String s = xstream.toXML(getMyEngine());
-		System.out.println("updating the server");
-		System.out.println(s.length());
-    	myWriterToServer.print("GAMEDATA\n" + s.length() + "\n" + s + "\n");
-    	myWriterToServer.flush();
-
-
 	}
 
 	@Override
-	public void endTurn() {
-		updateServerGameEngine();
-	}
-
-	@Override
-	public void sendMessage(String string) {
-		// TODO Auto-generated method stub
-		myWriterToServer.print("CHAT\n" + string.length() + "\n" + string + "\n");
-    	myWriterToServer.flush();
-
-		
+	public GameNetworkRoleType getRoleType() {
+		return GameNetworkRoleType.CLIENT;
 	}
 }

@@ -25,26 +25,20 @@ import voogasalad_GucciGames.gameplayer.controller.GameParametersInterface;
  * @author Efe Aras
  *
  */
-
+@Deprecated
 public class GameEngineServer extends GameEnginePlayer implements Runnable {
 
 	private int myPlayerID;
 	private Set<PrintWriter> writers;
     private Set<String> names;
-    
 
 	private static int PORT = 6555; //hard code for now
 	
 	public GameEngineServer(GameEngine gameEngine) {
 		super(gameEngine);
-		setWriters(new HashSet<PrintWriter>());
+		writers = new HashSet<PrintWriter>();
 		names = new HashSet<String>();
 	}
-
-	private void setWriters(HashSet<PrintWriter> hashSet) {
-		writers = hashSet;
-	}
-
 
 	public Collection<PrintWriter> getWriters() {
 		return writers;
@@ -54,7 +48,8 @@ public class GameEngineServer extends GameEnginePlayer implements Runnable {
 	public void updateClientGameEngine() {
 		getWriters().stream().forEach(e -> {
 			XStream xstream = new XStream(new DomDriver());
-			String s = xstream.toXML(getMyEngine());
+		//	String s = xstream.toXML(getMyEngine());
+			String s = "";
         	e.print("GAMEDATA\n" + s.length() + "\n" + s + "\n");
         	e.flush();
 
@@ -62,6 +57,10 @@ public class GameEngineServer extends GameEnginePlayer implements Runnable {
 	}
 
 	//add a listener to handle exceptions and report to front end.
+	
+	/**
+	 * for reference, look here: <a href="http://www.google.com">Google</a>
+	 */
 	@Override
 	public void run(){
 		ServerSocket listener = null;
@@ -73,7 +72,6 @@ public class GameEngineServer extends GameEnginePlayer implements Runnable {
         
         try {
         	while(true){
-        	
 			new GameEngineConnectionHandler(listener.accept(), this).start();
         	
         	}
@@ -84,19 +82,11 @@ public class GameEngineServer extends GameEnginePlayer implements Runnable {
         		   
 	}
 
-	@Override
-	public void endTurn() {
-		updateClientGameEngine();
-	}
-
-	@Override
-	public void sendMessage(String string) {
-		sendClientsIncomingMessage(string);
-	}
+	
 
 	private void sendClientsIncomingMessage(String string) {
 		// TODO Auto-generated method stub
-		getWriters().stream().forEach(e -> {
+		writers.stream().forEach(e -> {
         	e.print("CHAT\n" + string.length() + "\n" + string + "\n");
         	e.flush();
 

@@ -66,7 +66,7 @@ public class GameEngineConnectionHandler extends Thread {
 	                    	myBuilder.append((char) in.read());
 	                    }
 	                    
-	                    myServer.updateGameEngine(myBuilder.toString());
+	                    //myServer.updateGameEngine(myBuilder.toString());
 
 	                    for (PrintWriter writer : myServer.getWriters()) {
 	                    	
@@ -89,7 +89,7 @@ public class GameEngineConnectionHandler extends Thread {
 		                    	myBuilder.append((char) in.read());
 		                    }
 		                    
-		                    myServer.updateChat(myBuilder.toString());
+		                  //  myServer.updateChat(myBuilder.toString());
 
 		                    for (PrintWriter writer : myServer.getWriters()) {
 		                    	

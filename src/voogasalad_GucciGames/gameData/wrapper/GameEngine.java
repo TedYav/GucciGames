@@ -5,6 +5,7 @@ import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 import com.thoughtworks.xstream.annotations.XStreamOmitField;
 
@@ -13,6 +14,7 @@ import voogasalad_GucciGames.gameEngine.GameEnginePlayer;
 import voogasalad_GucciGames.gameEngine.GameEngineServer;
 import voogasalad_GucciGames.gameEngine.GameEngineToGamePlayerInterface;
 import voogasalad_GucciGames.gameEngine.GameLevelEngine;
+import voogasalad_GucciGames.gameEngine.NetworkException;
 import voogasalad_GucciGames.gameEngine.PlayerMapObjectInterface;
 import voogasalad_GucciGames.gameEngine.CommunicationParameters.ChangedParameters;
 import voogasalad_GucciGames.gameEngine.CommunicationParameters.GridCoordinateParameters;
@@ -46,7 +48,6 @@ public class GameEngine implements IGameInfoToGAE, GameEngineToGamePlayerInterfa
 	private List<String> transferablePlayerCharacteristics;
 	private boolean isEndTurn;
 	
-	private int playerID;
 
 	private transient volatile GameEnginePlayer iAmAPlayer;
 	private transient volatile Thread t;
@@ -55,6 +56,7 @@ public class GameEngine implements IGameInfoToGAE, GameEngineToGamePlayerInterfa
 	private transient GameControllerEngineInterface myController;
 	
 	private Map<String,MapObject> myBuild;
+	private Set<Integer> playerIDs;
 
 	public GameEngine(String initialLevel) {
 		myLevelsMap = new HashMap<String, GameLevelEngine>();
@@ -88,7 +90,7 @@ public class GameEngine implements IGameInfoToGAE, GameEngineToGamePlayerInterfa
 	}
 
 	public void beClient(String ipAddr) {
-		iAmAPlayer = new GameEngineClient(this, ipAddr);
+	//	iAmAPlayer = new GameEngineClient(this, ipAddr);
 		t = new Thread(iAmAPlayer);
 		t.start();
 
@@ -113,7 +115,7 @@ public class GameEngine implements IGameInfoToGAE, GameEngineToGamePlayerInterfa
 
 		
 		if (iAmAPlayer != null) {
-			iAmAPlayer.setLevelEngine(getCurrentLevel());
+			//iAmAPlayer.setLevelEngine(getCurrentLevel());
 		}
 
 		isChangingLevel = true;
@@ -231,7 +233,7 @@ public class GameEngine implements IGameInfoToGAE, GameEngineToGamePlayerInterfa
 		GameParametersInterface myParams = getCurrentLevel().endTurn();
 		
 		if (iAmAPlayer != null) {
-			iAmAPlayer.endTurn();
+			//iAmAPlayer.endTurn();
 		}
 		return myParams;
 	}
@@ -333,7 +335,7 @@ public class GameEngine implements IGameInfoToGAE, GameEngineToGamePlayerInterfa
 	        myController.updateChat("Player" + getCurrentLevel().getGameParameters().whoseTurn() + ": " + string);
 	    }
 	    else {
-		iAmAPlayer.sendMessage(string);
+		//iAmAPlayer.sendMessage(string);
 	    }
 	    if (iAmAPlayer.getClass().getSimpleName().equals(GameEngineServer.class.getSimpleName())) {
 	        myController.updateChat("Player" + getCurrentLevel().getGameParameters().whoseTurn() + ": " + string);
@@ -346,4 +348,14 @@ public class GameEngine implements IGameInfoToGAE, GameEngineToGamePlayerInterfa
 		}
 		
 	}
+
+	public void notifyEngine(NetworkException networkException) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	public Set<Integer> getPlayerIDs() {
+		return playerIDs;
+	}
+
 }
