@@ -35,7 +35,7 @@ import java.util.stream.Collectors;
 public class GameEngineNetworkThreadActor implements GameEngineNetworkActorInterface, Runnable {
 
 	private GameNetworkEngineInterface mySuperEngine;
-	private Set<GameInformationProtocol> myProtocols;
+	private Collection<GameInformationProtocol> myProtocols;
 	private GameNetworkRole myRole;
 
 	/**
