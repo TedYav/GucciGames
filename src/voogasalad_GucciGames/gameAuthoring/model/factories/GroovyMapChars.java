@@ -11,6 +11,7 @@ import java.util.TreeMap;
 
 import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.groovySettings.groovyParams.GCharParam;
 import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.paramObjects.ObjParamValue;
+import voogasalad_GucciGames.gameAuthoring.model.factories.TypeParser.TypeMap;
 import voogasalad_GucciGames.gameEngine.groovyEngine.AGroovyCustomObject;
 import voogasalad_GucciGames.gameEngine.groovyEngine.GameGroovyEngine;
 import voogasalad_GucciGames.gameEngine.groovyEngine.GroovyCustomCharacteristic;

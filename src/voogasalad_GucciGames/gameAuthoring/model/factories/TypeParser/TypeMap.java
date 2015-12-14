@@ -1,4 +1,4 @@
-package voogasalad_GucciGames.gameAuthoring.model.factories;
+package voogasalad_GucciGames.gameAuthoring.model.factories.TypeParser;
 
 import java.util.Collections;
 import java.util.HashMap;

@@ -3,6 +3,8 @@ package voogasalad_GucciGames.gameAuthoring.model.factories;
 
 import java.io.InputStream;
 
+import voogasalad_GucciGames.gameAuthoring.model.factories.TypeParser.TypeMap;
+
 /**
  *
  * @author Sally Al

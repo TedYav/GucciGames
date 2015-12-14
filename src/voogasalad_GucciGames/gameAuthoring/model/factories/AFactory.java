@@ -2,10 +2,17 @@ package voogasalad_GucciGames.gameAuthoring.model.factories;
 
 import java.lang.reflect.Constructor;
 import java.lang.reflect.InvocationTargetException;
+import java.util.HashMap;
 import java.util.Map;
 
 import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.paramObjects.ObjParam;
 import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.paramObjects.ObjParamValue;
+import voogasalad_GucciGames.gameAuthoring.model.factories.TypeParser.BooleanParser;
+import voogasalad_GucciGames.gameAuthoring.model.factories.TypeParser.DoubleParser;
+import voogasalad_GucciGames.gameAuthoring.model.factories.TypeParser.EmptyParser;
+import voogasalad_GucciGames.gameAuthoring.model.factories.TypeParser.ITypeParser;
+import voogasalad_GucciGames.gameAuthoring.model.factories.TypeParser.IntParser;
+import voogasalad_GucciGames.gameAuthoring.model.factories.TypeParser.TypeMap;
 import voogasalad_GucciGames.gameEngine.gamePlayer.chars.PlayerMovesPerTurn;
 import voogasalad_GucciGames.gameEngine.gamePlayer.chars.PlayerScore;
 import voogasalad_GucciGames.gameEngine.gamePlayer.chars.PlayerWealthChar;
@@ -16,6 +23,15 @@ import voogasalad_GucciGames.gameEngine.gamePlayer.chars.PlayerWealthChar;
  *
  */
 public abstract class AFactory {
+	
+	private static final Map<String,ITypeParser> myTranslater = new HashMap<>();
+	static{
+		myTranslater.put("int", new IntParser());
+		myTranslater.put("double", new DoubleParser());
+		myTranslater.put("String", new StringParser());
+		myTranslater.put("boolean", new BooleanParser());
+		myTranslater.put("", new EmptyParser());
+	}
 
 	public Object create(Map<String, ObjParam> mapObjectParams, ObjParamValue objParamValue)
 			throws NoSuchMethodException, SecurityException, ClassNotFoundException, InstantiationException,
@@ -37,12 +53,6 @@ public abstract class AFactory {
 		for (int i = 0; i < initargs.length; i++) {
 			Class<?> constr = myParameters[i];
 			initargs[i] = (valueMap.get(orderMap.get(i)));
-			System.out.println("in AFactory" + i);
-			System.out.println("typemap " + typeMap);
-			System.out.println("orderMap" + orderMap);
-			System.out.println("valueMap" + valueMap);
-			System.out.println("type " + typeMap.get(orderMap.get(i)));
-			System.out.println("value " + valueMap.get(orderMap.get(i)));
 			Object o = getTranslatedValue(typeMap.get(orderMap.get(i)), valueMap.get(orderMap.get(i)));
 			if (!o.equals("")) {
 				initargs[i] = o;
@@ -74,20 +84,9 @@ public abstract class AFactory {
 
 	protected abstract Constructor makeConstractor(ObjParamValue objParamValue, Class<?>[] myParameters)
 			throws NoSuchMethodException, SecurityException, ClassNotFoundException;
-
+	
 	private Object getTranslatedValue(String type, String value) {
-		if (value.equals(""))
-			return "";
-		if (type.equals("int"))
-			return Integer.parseInt(value);
-		if (type.equals("double"))
-			return Double.parseDouble(value);
-		if (type.equals("String"))
-			return value;
-		if (type.equals("boolean"))
-			return Boolean.parseBoolean(value);
-		return null;
-
+		return myTranslater.get(type).parse(value);
 	}
 
 }
