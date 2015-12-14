@@ -25,7 +25,6 @@ import voogasalad_GucciGames.gameplayer.windows.mainwindow.components.DisplayCom
  * MapObject as the currently active one.
  * 
  * @author John Dai, Ted Yavuzkurt
- * @
  */
 public class DisplayMapObjectImage extends DisplayComponent
         implements ListChangeListener<PlayerMapObjectInterface> {
