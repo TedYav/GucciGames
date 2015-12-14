@@ -9,12 +9,8 @@ import java.util.Set;
 
 import com.thoughtworks.xstream.annotations.XStreamOmitField;
 
-import voogasalad_GucciGames.gameEngine.GameEngineClient;
-import voogasalad_GucciGames.gameEngine.GameEnginePlayer;
-import voogasalad_GucciGames.gameEngine.GameEngineServer;
 import voogasalad_GucciGames.gameEngine.GameEngineToGamePlayerInterface;
 import voogasalad_GucciGames.gameEngine.GameLevelEngine;
-import voogasalad_GucciGames.gameEngine.NetworkException;
 import voogasalad_GucciGames.gameEngine.PlayerMapObjectInterface;
 import voogasalad_GucciGames.gameEngine.CommunicationParameters.ChangedParameters;
 import voogasalad_GucciGames.gameEngine.CommunicationParameters.GridCoordinateParameters;
@@ -22,6 +18,10 @@ import voogasalad_GucciGames.gameEngine.gamePlayer.AllPlayers;
 import voogasalad_GucciGames.gameEngine.gamePlayer.GamePlayerPerson;
 import voogasalad_GucciGames.gameEngine.gamePlayer.chars.APlayerChars;
 import voogasalad_GucciGames.gameEngine.mapObject.MapObject;
+import voogasalad_GucciGames.gameEngine.networking.GameEngineClient;
+import voogasalad_GucciGames.gameEngine.networking.GameEngineNetworkActor;
+import voogasalad_GucciGames.gameEngine.networking.GameEngineServer;
+import voogasalad_GucciGames.gameEngine.networking.NetworkException;
 import voogasalad_GucciGames.gameEngine.targetCoordinate.ATargetCoordinate;
 import voogasalad_GucciGames.gameplayer.controller.GameController;
 import voogasalad_GucciGames.gameplayer.controller.GameControllerEngineInterface;
@@ -49,7 +49,7 @@ public class GameEngine implements IGameInfoToGAE, GameEngineToGamePlayerInterfa
 	private boolean isEndTurn;
 	
 
-	private transient volatile GameEnginePlayer iAmAPlayer;
+	private transient volatile GameEngineNetworkActor iAmAPlayer;
 	private transient volatile Thread t;
 
 	@XStreamOmitField
@@ -84,7 +84,7 @@ public class GameEngine implements IGameInfoToGAE, GameEngineToGamePlayerInterfa
 	}
 	
 	public void beHost() {
-		iAmAPlayer = new GameEngineServer(this);
+		iAmAPlayer = null; //new GameEngineServer(this);
 		t = new Thread(iAmAPlayer);
 		t.start();
 	}

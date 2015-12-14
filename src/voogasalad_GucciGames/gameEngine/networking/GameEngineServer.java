@@ -1,4 +1,4 @@
-package voogasalad_GucciGames.gameEngine;
+package voogasalad_GucciGames.gameEngine.networking;
 
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -26,7 +26,7 @@ import voogasalad_GucciGames.gameplayer.controller.GameParametersInterface;
  *
  */
 @Deprecated
-public class GameEngineServer extends GameEnginePlayer implements Runnable {
+public class GameEngineServer extends GameEngineNetworkActor implements Runnable {
 
 	private int myPlayerID;
 	private Set<PrintWriter> writers;
@@ -34,7 +34,7 @@ public class GameEngineServer extends GameEnginePlayer implements Runnable {
 
 	private static int PORT = 6555; //hard code for now
 	
-	public GameEngineServer(GameEngine gameEngine) {
+	public GameEngineServer(GameNetworkEngineInterface gameEngine) {
 		super(gameEngine);
 		writers = new HashSet<PrintWriter>();
 		names = new HashSet<String>();

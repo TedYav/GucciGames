@@ -1,4 +1,4 @@
-package voogasalad_GucciGames.gameEngine;
+package voogasalad_GucciGames.gameEngine.networking;
 
 import java.io.BufferedReader;
 
