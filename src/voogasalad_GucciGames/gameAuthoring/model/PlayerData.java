@@ -20,6 +20,7 @@ public class PlayerData {
 	private Map<Integer, GamePlayerPerson> myMapOfPlayers = new HashMap<>();
 	private Map<String, ObjectParam> myPlayerCharacteristicParams = new HashMap<>();
 	private PlayerCharacteristicFactory myPlayerCharacteristicFactory;
+	private int nextID = 0;
 
 	public PlayerData() {
 		myPlayerCharacteristicFactory = new PlayerCharacteristicFactory();
@@ -39,16 +40,6 @@ public class PlayerData {
 				.collect(Collectors.toList());
 	}
 
-	public void setNumberOfPlayers(int n) {
-		for (int i = 0; i < n; i++) {
-			myMapOfPlayers.put(i, new GamePlayerPerson(i));
-		}
-	}
-
-	public int getNumberOfPlayers() {
-		return myMapOfPlayers.size();
-	}
-
 	public void clearObjects() {
 		myMapOfPlayers.values().forEach(p -> {
 			p.clearMapObjects();
@@ -58,11 +49,20 @@ public class PlayerData {
 	public void addPlayerCharacteristic(int playerID, ObjParamValue param) {
 		myMapOfPlayers.get(playerID).addCharacterstic(param.getName(),
 				myPlayerCharacteristicFactory.create(myPlayerCharacteristicParams, param));
-
 	}
 
 	public Map<Integer, GamePlayerPerson> getMapOfPlayers() {
 		return myMapOfPlayers;
+	}
+
+	public int getNumberOfPlayers() {
+		return myMapOfPlayers.size();
+	}
+
+	public int addPlayer() {
+		myMapOfPlayers.put(nextID, new GamePlayerPerson(nextID));
+		nextID += 1;
+		return nextID - 1;
 	}
 
 }

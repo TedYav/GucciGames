@@ -142,7 +142,7 @@ public class GameProperties implements IGameProperties {
 	}
 
 	public void setNumberOfPlayers(int n) {
-		myPlayerData.setNumberOfPlayers(n);
+		myPlayerData.initNumberOfPlayers(n);
 	}
 
 	public int getNumberOfPlayers() {
