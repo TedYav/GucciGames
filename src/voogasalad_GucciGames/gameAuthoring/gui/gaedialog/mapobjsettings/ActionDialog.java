@@ -16,6 +16,9 @@ public class ActionDialog extends AGaeDialog{
 	public ActionDialog(IDialogGaeController controller, MapObjectType type, 
 			ActionParamsValue actionParamsValue){
 		actionPane = new ActionPane(controller, type, actionParamsValue);
+		this.actionParamsValue = actionParamsValue;
+		this.controller = controller;
+		this.type = type;
 		final ButtonType saveBtn = new ButtonType("Save", ButtonData.NEXT_FORWARD);
 		this.getDialogPane().getButtonTypes().add(saveBtn);
 		this.getDialogPane().setContent(actionPane);
