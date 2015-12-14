@@ -1,3 +1,5 @@
+// This entire file is part of my masterpiece.
+// Joy Patel
 package voogasalad_GucciGames.gameEngine.objectActions;
 
 import java.util.HashSet;

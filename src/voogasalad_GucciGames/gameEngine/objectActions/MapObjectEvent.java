@@ -1,3 +1,5 @@
+// This entire file is part of my masterpiece.
+// Joy Patel
 package voogasalad_GucciGames.gameEngine.objectActions;
 
 import java.util.ArrayList;
@@ -68,7 +70,7 @@ public abstract class MapObjectEvent implements IGamePlayerMapObjectAction {
 	// Must keep final
 
 	/*
-	 * Execution of Attack
+	 * Execution of Action.
 	 */
 	public final ChangedParameters executeAction(LocationParameters params, int playerID) {
 		return checkRules(playerID, params) ? executeOutcome(params, executeAction(params)) : null;
