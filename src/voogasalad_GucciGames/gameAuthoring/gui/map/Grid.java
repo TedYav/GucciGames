@@ -33,8 +33,6 @@ class Grid extends Pane implements ICellGrid {
 		myCellSize = cellSize;
 		new GridMouseTracker(this);
 		new GridSelector(this);
-
-		// myMapObjects = controller.getMapObjects();
 	}
 
 	public void initGrid(int width, int height) {

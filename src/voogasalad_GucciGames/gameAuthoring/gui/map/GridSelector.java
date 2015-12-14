@@ -1,3 +1,5 @@
+// This entire file is part of my masterpiece.
+// Mike Ma (ym67)
 package voogasalad_GucciGames.gameAuthoring.gui.map;
 
 import java.util.HashSet;
