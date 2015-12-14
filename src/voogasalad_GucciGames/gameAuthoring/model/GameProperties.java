@@ -31,7 +31,7 @@ import voogasalad_GucciGames.gameEngine.objectActions.MapObjectEvent;
 
 public class GameProperties implements IGameProperties {
 	private TypeData myTypeData;
-	private PlayerData myPlayerData;
+	private IPlayerData myPlayerData;
 	private MapObjectTypeData myMapObjectTypeData;
 
 	public GameProperties() {
@@ -140,9 +140,9 @@ public class GameProperties implements IGameProperties {
 	public void addGroovyAction(GActionParams param) {
 		myMapObjectTypeData.addGroovyAction(param);
 	}
-
-	public void setNumberOfPlayers(int n) {
-		myPlayerData.initNumberOfPlayers(n);
+	
+	public void addPlayer() {
+		myPlayerData.addPlayer();
 	}
 
 	public int getNumberOfPlayers() {
