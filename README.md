@@ -10,7 +10,7 @@
  - Ying Qi: MVC architecture for Game Authoring Environment, Dialogs for Game Component properties.
  - John Dai: Game Player GUI components design, system integration centering on Game Data functionality and API 
  - Mike Ma: Front end design for Game Authoring Environment, official Git blamer, most interesting commit message award
- - Daniel McKee: Back end of game authoring environment, including model and factories to transfer data into game file
+ - Daniel McKee: Back end of game authoring environment, including model and factories to transfer data into savable object
  - Joy Patel: Back end design for Game Engine (Events for MapObjects, Groovy Extension)
  - Sally Merza: back end design and implementation for outcomes, rules, conditions.  design and implementtion for factories in the controller
  - Karen Li: Front end design of Game Authoring Environment
