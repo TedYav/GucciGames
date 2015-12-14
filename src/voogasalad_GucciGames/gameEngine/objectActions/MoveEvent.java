@@ -23,7 +23,8 @@ import voogasalad_GucciGames.gameEngine.targetCoordinate.TargetCoordinateSingle;
 
 public class MoveEvent extends MapObjectEvent {
 
-	private static final String MOVABLE_CHARACTERISTIC = "MovableCharacteristic";
+	private static final String MOVABLE_CHARACTERISTIC = "MovableCharacteristic",
+			Tile_Characteristic = "TileCharacteristic";
 
 	public MoveEvent() {
 	}
@@ -38,7 +39,6 @@ public class MoveEvent extends MapObjectEvent {
 
 	@Override
 	protected ChangedParameters executeAction(LocationParameters params) {
-		System.out.println("Move Action");
 		TargetCoordinateSingle target = params.getNewLocation();
 		MapObject moving = params.getCalledMe();
 		moving.setCoordinate(target);
@@ -53,7 +53,6 @@ public class MoveEvent extends MapObjectEvent {
 
 	@Override
 	protected GridCoordinateParameters executeRequest(BasicParameters params) {
-		System.out.println("Move Request");
 		AllPlayers players = params.getEngine().getPlayers();
 		TargetCoordinateMultiple result = new TargetCoordinateMultiple();
 		MapObject calledMe = params.getCalledMe();
@@ -75,7 +74,7 @@ public class MoveEvent extends MapObjectEvent {
 		});
 		players.getActivePlayer(-1).getMapObjects().stream().forEach(mo -> {
 			// Fix this
-			if (mo.hasCharacteristic("TileCharacteristic") || mo.getName().equals("TileCharacteristic")) {
+			if (mo.hasCharacteristic(Tile_Characteristic) || mo.getName().equals(Tile_Characteristic)) {
 				TargetCoordinateSingle single = (TargetCoordinateSingle) mo.getCoordinate();
 				double dx = Math.abs(single.getCenterX() - caller.getCenterX());
 				double dy = Math.abs(single.getCenterY() - caller.getCenterY());
