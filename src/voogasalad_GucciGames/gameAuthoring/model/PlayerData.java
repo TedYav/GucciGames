@@ -20,7 +20,7 @@ public class PlayerData {
 	private Map<Integer, GamePlayerPerson> myMapOfPlayers = new HashMap<>();
 	private Map<String, ObjectParam> myPlayerCharacteristicParams = new HashMap<>();
 	private PlayerCharacteristicFactory myPlayerCharacteristicFactory;
-	private int nextID = 0;
+	private int nextID = -1;
 
 	public PlayerData() {
 		myPlayerCharacteristicFactory = new PlayerCharacteristicFactory();
