@@ -18,5 +18,5 @@
 * Files used to start the project: GucciGames.java
 * Any data or resource files required by the project: They are in the resources folder
 * Information about the program: 
-* Any known bugs, crashes or problems with the project's functionality: 
+* Any known bugs, crashes or problems with the project's functionality: Note: after cloning the repository if running the Game Player gives a Hash Failed exception for preexisting games, this is likely due to a leftover part of encryption from someelse's local repository. To fix this either run Civ.java or DemoMaker.java in the demo package to reencode the corresponding XML file or create/load a new game from the Authoring Environment and save it.
 * Extra features: Networking, Groovy
