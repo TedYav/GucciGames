@@ -8,11 +8,10 @@ import java.io.InputStream;
  * @author Sally Al
  *
  */
-public class PlayerFactory extends DefaultFactory  {
+public class PlayerFactory extends DefaultFactory {
 
 	private TypeMap typeMap = new TypeMap();
 	private static final String PATH_TO_PLAYER_CHARS = "playerCharsPath.properties";
-
 
 	@Override
 	protected InputStream getStream() {

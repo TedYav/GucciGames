@@ -1,17 +1,17 @@
 package voogasalad_GucciGames.gameAuthoring.gui.gaedialog.paramObjects;
 
-public class GameSettingParams extends AParams{
-	
-	private String name="";
-	private String mapSize="";
-	private boolean fogOfWar=false;
-	private double numberOfPlayers=0;
-	
-	public GameSettingParams(){
-		
+public class GameSettingParams extends AParams {
+
+	private String name = "";
+	private String mapSize = "";
+	private boolean fogOfWar = false;
+	private double numberOfPlayers = 0;
+
+	public GameSettingParams() {
+
 	}
-	
-	public GameSettingParams(String name, String mapSize, boolean fogOfWar, double numberOfPlayers){
+
+	public GameSettingParams(String name, String mapSize, boolean fogOfWar, double numberOfPlayers) {
 		this.setName(name);
 		this.setMapSize(mapSize);
 		this.setFogOfWar(fogOfWar);
@@ -39,7 +39,7 @@ public class GameSettingParams extends AParams{
 	}
 
 	public void setFogOfWar(boolean fogOfWar) {
-		
+
 		this.fogOfWar = fogOfWar;
 	}
 
@@ -54,9 +54,7 @@ public class GameSettingParams extends AParams{
 	@Override
 	public void print() {
 		// TODO Auto-generated method stub
-		
-	}
-	
 
+	}
 
 }

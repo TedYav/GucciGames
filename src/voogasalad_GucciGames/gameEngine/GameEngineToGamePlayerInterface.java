@@ -6,7 +6,6 @@ import voogasalad_GucciGames.gameEngine.CommunicationParameters.ChangedParameter
 import voogasalad_GucciGames.gameEngine.CommunicationParameters.GridCoordinateParameters;
 import voogasalad_GucciGames.gameEngine.gamePlayer.chars.APlayerChars;
 import voogasalad_GucciGames.gameEngine.targetCoordinate.ATargetCoordinate;
-import voogasalad_GucciGames.gameplayer.controller.GameController;
 import voogasalad_GucciGames.gameplayer.controller.GameControllerEngineInterface;
 import voogasalad_GucciGames.gameplayer.controller.GameParametersInterface;
 
@@ -22,6 +21,7 @@ public interface GameEngineToGamePlayerInterface {
 
 	/**
 	 * Returns the name of the level associated with this engine.
+	 * 
 	 * @return
 	 */
 	public String getName();
@@ -59,7 +59,9 @@ public interface GameEngineToGamePlayerInterface {
 
 	@Deprecated
 	/**
-	 * Not supported anymore (returns null); access MapObject.performRequest(String action)
+	 * Not supported anymore (returns null); access
+	 * MapObject.performRequest(String action)
+	 * 
 	 * @param action
 	 * @param mapObject
 	 * @return
@@ -74,8 +76,7 @@ public interface GameEngineToGamePlayerInterface {
 	 * @param target
 	 * @return
 	 */
-	public ChangedParameters performAction(String action, PlayerMapObjectInterface mapObject,
-			ATargetCoordinate target);
+	public ChangedParameters performAction(String action, PlayerMapObjectInterface mapObject, ATargetCoordinate target);
 
 	public int getMapWidth();
 
@@ -87,17 +88,20 @@ public interface GameEngineToGamePlayerInterface {
 
 	public GameLevelEngine getCurrentLevel();
 
-
 	public boolean hasLevelEnded();
 
 	public void beHost();
 
 	public void beClient(String string);
-	
+
 	public APlayerChars getPlayerCharacteristic(String name, int id);
 
-    void setController (GameControllerEngineInterface myController);
+	void setController(GameControllerEngineInterface myController);
+
+	public abstract void sendMessage(String string);
 
 	public boolean gameOver();
+
+	public String nextLevel();
 
 }

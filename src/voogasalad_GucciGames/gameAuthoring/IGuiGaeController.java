@@ -1,12 +1,5 @@
 package voogasalad_GucciGames.gameAuthoring;
 
-import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.paramObjects.ObjParamValue;
-import voogasalad_GucciGames.gameAuthoring.gui.levels.LevelTabPane;
-import voogasalad_GucciGames.gameAuthoring.gui.map.GridPoint;
-import voogasalad_GucciGames.gameAuthoring.model.DisplayMapObject;
-import voogasalad_GucciGames.gameAuthoring.model.MapObjectType;
-import voogasalad_GucciGames.helpers.GameResourceManagerToGAE;
-
 import java.io.File;
 import java.util.List;
 
@@ -16,7 +9,12 @@ import javafx.collections.ObservableList;
 import javafx.scene.control.Dialog;
 import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
-import voogasalad_GucciGames.gameEngine.mapObject.MapObject;
+import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.paramObjects.ObjParamValue;
+import voogasalad_GucciGames.gameAuthoring.gui.levels.LevelTabPane;
+import voogasalad_GucciGames.gameAuthoring.gui.map.GridPoint;
+import voogasalad_GucciGames.gameAuthoring.model.DisplayMapObject;
+import voogasalad_GucciGames.gameAuthoring.model.MapObjectType;
+import voogasalad_GucciGames.helpers.GameResourceManagerToGAE;
 
 public interface IGuiGaeController {
 
@@ -38,18 +36,16 @@ public interface IGuiGaeController {
 	public void saveToXML(File file);
 
 	public void saveToXML();
-	
+
 	public void setSelectedType(MapObjectType mapType);
 
 	public MapObjectType getSelectedType();
-	
+
 	public void setDragType(MapObjectType mapType);
 
 	public MapObjectType getDragType();
 
 	public DisplayMapObject addObject(int levelID, GridPoint gridpoint, MapObjectType mapObjType);
-
-	public void changeOwner(MapObject mapObject, int playerID);
 
 	public Stage getStage();
 
@@ -66,21 +62,23 @@ public interface IGuiGaeController {
 	public LevelTabPane getLevelTabPane();
 
 	public int addLevel(String name, int width, int height);
-	
+
 	public void setDefaultOwner(int ownerID);
 
 	public BooleanProperty getHasGameProperty();
-	
+
 	public GameResourceManagerToGAE getResourceManager();
-	
+
 	public Dialog<String> getImageBrowseDialog(String type);
-	
+
 	public void throwException(Exception e);
 
 	public void addPlayerCharacteristic(int playerID, ObjParamValue param);
-	
+
 	public IntegerProperty getNumberOfPlayersProperty();
 
 	public int getDefaultOwner();
+
+	void initModel();
 
 }

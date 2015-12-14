@@ -11,12 +11,15 @@ import javafx.stage.Screen;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import voogasalad_GucciGames.gameAuthoring.AGuiGaeController;
-import voogasalad_GucciGames.gameAuthoring.gui.sidebar.SideBar;
-import voogasalad_GucciGames.gameAuthoring.gui.statusbar.StatusBar;
-import voogasalad_GucciGames.gameAuthoring.guiexceptions.ErrorDialog;
 import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.maindialogs.NewLevelDialog;
 import voogasalad_GucciGames.gameAuthoring.gui.levels.LevelTabPane;
 import voogasalad_GucciGames.gameAuthoring.gui.menubar.GAEMenuBar;
+import voogasalad_GucciGames.gameAuthoring.gui.sidebar.SideBar;
+import voogasalad_GucciGames.gameAuthoring.gui.statusbar.StatusBar;
+import voogasalad_GucciGames.gameAuthoring.gui.util.GAEPreloader;
+import voogasalad_GucciGames.gameAuthoring.gui.util.ShortcutAdder;
+import voogasalad_GucciGames.gameAuthoring.gui.util.WelcomeScreen;
+import voogasalad_GucciGames.gameAuthoring.guiexceptions.ErrorDialog;
 
 /**
  * TODO: 1. Select animation 2. Add components in backend
@@ -36,20 +39,22 @@ public class GAEGui extends BorderPane {
 		myController = controller;
 		GAEPreloader preloader = new GAEPreloader();
 		try {
-			preloader.start(stage, ()->init());
+			preloader.start(stage, () -> init());
 		} catch (Exception e) {
 			controller.throwException(e);
 		}
 	}
-	
-	private void init(){
-		//throwException(new IllegalAccessException("Today's a nice day to have a nice day"));
+
+	private void init() {
+		myController.initModel();
+		// throwException(new IllegalAccessException("Today's a nice day to have
+		// a nice day"));
 		Stage stage = new Stage(StageStyle.DECORATED);
 		stage.setScene(new Scene(this));
 		Rectangle2D screenBounds = Screen.getPrimary().getVisualBounds();
 		stage.setWidth(screenBounds.getWidth());
 		stage.setHeight(screenBounds.getHeight());
-		
+
 		// Add Menu Bar
 		myMenuBar = new GAEMenuBar(myController);
 		setTop(myMenuBar);
@@ -58,6 +63,7 @@ public class GAEGui extends BorderPane {
 		setBottom(myStatusBar);
 		setCenter(myWelcomeScreen);
 		stage.show();
+		new ShortcutAdder(myController, this);
 	}
 
 	private void initLayout() {

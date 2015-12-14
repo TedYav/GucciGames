@@ -6,14 +6,13 @@ import java.util.Map;
 import voogasalad_GucciGames.gameAuthoring.guiexceptions.InvalidInputException;
 
 public class TileProperty extends Property {
-	
+
 	private Map<String, String> myMap = new HashMap<String, String>();
-	
 
 	@Override
 	public void setProperty(String key, String value) throws InvalidInputException {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	@Override
@@ -22,6 +21,5 @@ public class TileProperty extends Property {
 		myMap.put(propName, prop);
 		printProperty(myMap);
 	}
-	
 
 }

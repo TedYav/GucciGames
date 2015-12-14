@@ -25,6 +25,7 @@ public class MoveEvent extends MapObjectEvent {
 
 	public MoveEvent() {
 	}
+
 	public MoveEvent(String actionName) {
 		super(actionName);
 	}

@@ -1,16 +1,16 @@
 package voogasalad_GucciGames.gameAuthoring.gui.gaedialog.groovySettings;
 
-import voogasalad.util.reflection.Reflection;
-import voogasalad_GucciGames.gameAuthoring.IDialogGaeController;
 import javafx.geometry.Insets;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.GridPane;
 import javafx.scene.text.Font;
+import voogasalad.util.reflection.Reflection;
+import voogasalad_GucciGames.gameAuthoring.IDialogGaeController;
 
 public class NamePane extends GridPane {
-	
+
 	private Label instructionsLbl;
 	private Label textFieldLbl;
 	private TextField textField;
@@ -19,9 +19,8 @@ public class NamePane extends GridPane {
 	private ISwitchGroovyPane paneController;
 	private IDialogGaeController dialogController;
 	private static final String path = "voogasalad_GucciGames.gameAuthoring.gui.gaedialog.groovySettings.";
-	
-	public NamePane(String type, ISwitchGroovyPane paneController
-			, IDialogGaeController dialogController){
+
+	public NamePane(String type, ISwitchGroovyPane paneController, IDialogGaeController dialogController) {
 		this.paneController = paneController;
 		this.dialogController = dialogController;
 		this.type = type;
@@ -39,27 +38,26 @@ public class NamePane extends GridPane {
 		this.setHgap(10);
 		init();
 	}
-	
-	void init(){
+
+	void init() {
 		nextBtn.setOnAction(e -> {
-			if(validate()){
+			if (validate()) {
 				Reflection reflection = new Reflection();
-				paneController.switchGroovyPane(reflection.createInstance(
-						path + type + "Pane", textField.getText(), paneController,  dialogController), 
-						"Custom " + type);
+				paneController.switchGroovyPane(reflection.createInstance(path + type + "Pane", textField.getText(),
+						paneController, dialogController), "Custom " + type);
 			}
-			
+
 		});
 	}
-	
-	private boolean validate(){
-		try{
+
+	private boolean validate() {
+		try {
 			String name = textField.getText();
 			return (name != "");
-		} catch(Exception e){
+		} catch (Exception e) {
 			nextBtn.setDisable(true);
 			return false;
-		}		
+		}
 	}
 
 }

@@ -1,12 +1,11 @@
 package voogasalad_GucciGames.gameAuthoring.gui.menubar.menuitem;
 
-import voogasalad_GucciGames.gameAuthoring.AGuiGaeController;
-import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.maindialogs.NewLevelDialog;
-
 import java.util.Map;
 
 import javafx.scene.control.Dialog;
 import javafx.scene.control.MenuItem;
+import voogasalad_GucciGames.gameAuthoring.AGuiGaeController;
+import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.maindialogs.NewLevelDialog;
 
 class AddLevelItem extends MenuItem {
 

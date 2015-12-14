@@ -6,5 +6,6 @@ import javafx.stage.Stage;
 public interface GameWindowInterface {
 
 	public void loadScene(Scene scene);
+
 	public Stage getStage();
 }

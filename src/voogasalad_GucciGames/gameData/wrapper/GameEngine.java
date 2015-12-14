@@ -21,7 +21,6 @@ import voogasalad_GucciGames.gameEngine.gamePlayer.GamePlayerPerson;
 import voogasalad_GucciGames.gameEngine.gamePlayer.chars.APlayerChars;
 import voogasalad_GucciGames.gameEngine.mapObject.MapObject;
 import voogasalad_GucciGames.gameEngine.targetCoordinate.ATargetCoordinate;
-import voogasalad_GucciGames.gameplayer.controller.GameController;
 import voogasalad_GucciGames.gameplayer.controller.GameControllerEngineInterface;
 import voogasalad_GucciGames.gameplayer.controller.GameParametersInterface;
 
@@ -43,13 +42,15 @@ public class GameEngine implements IGameInfoToGAE, GameEngineToGamePlayerInterfa
 	private boolean isChangingLevel;
 	private List<String> transferablePlayerCharacteristics;
 
+	private int playerID;
+
 	private transient volatile GameEnginePlayer iAmAPlayer;
 	private transient volatile Thread t;
 
 	@XStreamOmitField
 	private transient GameControllerEngineInterface myController;
-	
-	private Map<String,MapObject> myBuild;
+
+	private Map<String, MapObject> myBuild;
 
 	public GameEngine(String initialLevel) {
 		
@@ -81,7 +82,7 @@ public class GameEngine implements IGameInfoToGAE, GameEngineToGamePlayerInterfa
 		this(initialLevel);
 		myGameName = gameName;
 	}
-	
+
 	public void beHost() {
 		iAmAPlayer = new GameEngineServer(this);
 		t = new Thread(iAmAPlayer);
@@ -102,6 +103,11 @@ public class GameEngine implements IGameInfoToGAE, GameEngineToGamePlayerInterfa
 	
 	//this is how you change levels, how do you know what to change to? that's when you should call IlevelChooser.nextLevel();
 	//creates a string that's passed into here.
+	@Override 
+	public String nextLevel(){
+		return myGameStats.nextLevel();
+	}
+	
 	@Override
 	public void changeCurrentLevel(String newGameLevel) {
 		//where did this come from?
@@ -115,17 +121,19 @@ public class GameEngine implements IGameInfoToGAE, GameEngineToGamePlayerInterfa
 //			System.out.println("JK level has NOT changed");
 //		}
 
-		
+
 		if (iAmAPlayer != null) {
 			iAmAPlayer.setLevelEngine(getCurrentLevel());
 		}
 
 		isChangingLevel = true;
-		
-		//if string returned is empty, assume game "won"
 
+		// if string returned is empty, assume game "won"
+		if (myGameStats.getMyCurrentLevel() == "") {
+			getCurrentLevel().setEndLevel(true);
+		}
 		// Have to have same number of players between levels
-//		myCurrentLevel = newGameLevel;
+		// myCurrentLevel = newGameLevel;
 
 		setUpGameStats();
 
@@ -134,7 +142,7 @@ public class GameEngine implements IGameInfoToGAE, GameEngineToGamePlayerInterfa
 	private boolean setUpGameStats() {
 		this.getCurrentLevel().setGameStats(myGameStats);
 		AllPlayers players = this.getCurrentLevel().getPlayers();
-		for (Integer id : players.getAllIds()) {
+		for (Integer id : players.getAllExistingIds()) {
 			GamePlayerPerson player = players.getPlayerById(id);
 			for (String ch : transferablePlayerCharacteristics) {
 				if (player.hasCharacteristic(ch)) {
@@ -145,13 +153,10 @@ public class GameEngine implements IGameInfoToGAE, GameEngineToGamePlayerInterfa
 		return true;
 	}
 
-	
-
 	@Override
 	public String getGameName() {
 		return this.myGameName;
 	}
-
 
 	/**
 	 * Adds a new level and returns a reference to it.
@@ -203,7 +208,7 @@ public class GameEngine implements IGameInfoToGAE, GameEngineToGamePlayerInterfa
 
 	private boolean updateTransfer() {
 		AllPlayers players = this.myGameStats.getLevelsMap().get(myGameStats.getMyCurrentLevel()).getPlayers();
-		for (Integer id : players.getAllIds()) {
+		for (Integer id : players.getAllExistingIds()) {
 			if (this.myGameStats.contains(id)) {
 				GamePlayerPerson player = players.getPlayerById(id);
 				Map<String, APlayerChars> map = this.myGameStats.getCharacteristics(id);
@@ -227,10 +232,9 @@ public class GameEngine implements IGameInfoToGAE, GameEngineToGamePlayerInterfa
 
 	@Override
 	public GameParametersInterface endTurn() {
-		
-		
+
 		GameParametersInterface myParams = getCurrentLevel().endTurn();
-		
+
 		if (iAmAPlayer != null) {
 			iAmAPlayer.endTurn();
 		}
@@ -275,17 +279,16 @@ public class GameEngine implements IGameInfoToGAE, GameEngineToGamePlayerInterfa
 	public boolean hasLevelEnded() {
 		return getCurrentLevel().hasLevelEnded();
 	}
-	
-//	@Override
-//	public void levelStart(){
-//		System.out.println("levelStart "+levelComplete);
-//		levelComplete = true;
-//	}
-	
-//	public void setLevelStart(){
-//		getCurrentLevel().setStartLevel();
-//	}
 
+	// @Override
+	// public void levelStart(){
+	// System.out.println("levelStart "+levelComplete);
+	// levelComplete = true;
+	// }
+
+	// public void setLevelStart(){
+	// getCurrentLevel().setStartLevel();
+	// }
 
 	@Override
 	public APlayerChars getPlayerCharacteristic(String name, int id) {
@@ -316,12 +319,12 @@ public class GameEngine implements IGameInfoToGAE, GameEngineToGamePlayerInterfa
 	public void setEngine(String gameName, GameLevelEngine engine) {
 		myGameStats.getLevelsMap().put(gameName, engine);
 	}
-	
-	public void addToBuild(String name, MapObject mo){
+
+	public void addToBuild(String name, MapObject mo) {
 		this.myBuild.put(name, mo);
 	}
-	
-	public Map<String,MapObject> getBuild(){
+
+	public Map<String, MapObject> getBuild() {
 		return this.myBuild;
 	}
 	
@@ -333,4 +336,25 @@ public class GameEngine implements IGameInfoToGAE, GameEngineToGamePlayerInterfa
 		return false;
 	}
 
+	public void updateChat(int playerID2, String string) {
+		myController.updateChat("Player" + playerID2 + ": " + string);
+	}
+
+	public void sendMessage(String string) {
+		if (iAmAPlayer == null) {
+			myController.updateChat("Player" + getCurrentLevel().getGameParameters().whoseTurn() + ": " + string);
+		} else {
+			iAmAPlayer.sendMessage(string);
+		}
+		if (iAmAPlayer.getClass().getSimpleName().equals(GameEngineServer.class.getSimpleName())) {
+			myController.updateChat("Player" + getCurrentLevel().getGameParameters().whoseTurn() + ": " + string);
+		}
+	}
+
+	public void addMapObjects(Map<String, MapObject> allMapObjects) {
+		for (String s : myGameStats.getLevelsMap().keySet()) {
+			myGameStats.getLevelsMap().get(s).addMapObjectsForLevels(allMapObjects);
+		}
+
+	}
 }

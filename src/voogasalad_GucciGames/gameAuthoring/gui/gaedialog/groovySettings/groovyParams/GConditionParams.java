@@ -3,14 +3,14 @@ package voogasalad_GucciGames.gameAuthoring.gui.gaedialog.groovySettings.groovyP
 import java.util.ArrayList;
 import java.util.List;
 
-public class GConditionParams extends AGroovyParams{
-	
+public class GConditionParams extends AGroovyParams {
+
 	private String name;
 	private String condition;
 	private List<String> outcomes = new ArrayList<String>();
 	private final String type = "condition";
-	
-	public GConditionParams(String name){
+
+	public GConditionParams(String name) {
 		this.name = name;
 	}
 
@@ -48,7 +48,7 @@ public class GConditionParams extends AGroovyParams{
 	@Override
 	public void setDependencies(List<String> dependencies) {
 		outcomes.addAll(dependencies);
-		
+
 	}
 
 }

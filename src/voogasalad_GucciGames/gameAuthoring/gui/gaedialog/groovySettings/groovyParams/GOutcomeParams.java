@@ -4,13 +4,13 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class GOutcomeParams extends AGroovyParams {
-	
+
 	private String name;
 	private String outcome;
 	private List<String> conditions = new ArrayList<String>();
 	private final String type = "outcome";
-	
-	public GOutcomeParams(String name){
+
+	public GOutcomeParams(String name) {
 		this.name = name;
 	}
 
@@ -28,7 +28,7 @@ public class GOutcomeParams extends AGroovyParams {
 	@Override
 	public void setName(String name) {
 		this.name = name;
-		
+
 	}
 
 	public List<String> getConditions() {
@@ -50,7 +50,7 @@ public class GOutcomeParams extends AGroovyParams {
 	@Override
 	public void setDependencies(List<String> dependencies) {
 		conditions.addAll(dependencies);
-		
+
 	}
 
 }

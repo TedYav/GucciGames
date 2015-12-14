@@ -6,10 +6,7 @@ import javax.script.ScriptEngine;
 import javax.script.ScriptEngineManager;
 import javax.script.ScriptException;
 
-import voogasalad_GucciGames.gameEngine.defaultCharacteristics.AttackCharacteristic;
-import voogasalad_GucciGames.gameEngine.defaultCharacteristics.HealthCharacteristic;
-
-public abstract class AMapObjectCharacteristic implements Cloneable{
+public abstract class AMapObjectCharacteristic implements Cloneable {
 
 	public AMapObjectCharacteristic clone() {
 		try {
@@ -20,7 +17,7 @@ public abstract class AMapObjectCharacteristic implements Cloneable{
 		}
 		return null;
 	}
-	
+
 	@Override
 	public String toString() {
 		Field[] fields = this.getClass().getDeclaredFields();
@@ -28,10 +25,10 @@ public abstract class AMapObjectCharacteristic implements Cloneable{
 		ScriptEngine groovy = manager.getEngineByName("groovy");
 		groovy.put("prop", this);
 		String result = "";
-		for(Field field: fields){
+		for (Field field : fields) {
 			String var = field.getName();
 			try {
-				result += var + " = " + groovy.eval("prop.get"+var+"();") + "\n";
+				result += var + " = " + groovy.eval("prop.get" + var + "();") + "\n";
 			} catch (ScriptException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
@@ -41,12 +38,10 @@ public abstract class AMapObjectCharacteristic implements Cloneable{
 	}
 
 	/*
-	public static void main(String[] args){
-		AMapObjectCharacteristic health = new HealthCharacteristic();
-		System.out.println(health.toString());
-		
-		AMapObjectCharacteristic attack = new AttackCharacteristic(5,5,5);
-		System.out.println(attack.toString());
-	}
-	*/
+	 * public static void main(String[] args){ AMapObjectCharacteristic health =
+	 * new HealthCharacteristic(); System.out.println(health.toString());
+	 * 
+	 * AMapObjectCharacteristic attack = new AttackCharacteristic(5,5,5);
+	 * System.out.println(attack.toString()); }
+	 */
 }

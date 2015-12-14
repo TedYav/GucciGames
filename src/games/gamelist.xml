@@ -1,6 +1,3 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?><body>
-	<game>
-		<name>Duvall Tag</name>
-		<file>Duvall_Tag.gg</file>
-	</game>
-<game><name>RandomName</name><file>./src/games/RandomName.gg</file></game><game><name>GAETestGame</name><file>./src/games/GAETestGame.gg</file></game></body>
+<game><name>Duvall Tag</name><file>./src/games/Duvall_Tag.gg</file></game>
+<game><name>Civ</name><file>./src/games/Civ.gg</file></game></body>

@@ -16,8 +16,8 @@ import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
 import voogasalad.util.fxsprite.Sprite;
 import voogasalad_GucciGames.gameAuthoring.gui.GAEGui;
-import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.paramObjects.ActionParamsValue;
 import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.maindialogs.ImageBrowseDialogs;
+import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.paramObjects.ActionParamsValue;
 import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.paramObjects.GameSettingParams;
 import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.paramObjects.ObjParamValue;
 import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.paramObjects.PlayerParams;
@@ -26,35 +26,34 @@ import voogasalad_GucciGames.gameAuthoring.gui.levels.LevelTabPane;
 import voogasalad_GucciGames.gameAuthoring.gui.map.GridPoint;
 import voogasalad_GucciGames.gameAuthoring.model.DisplayMapObject;
 import voogasalad_GucciGames.gameAuthoring.model.GAEModel;
-import voogasalad_GucciGames.gameAuthoring.model.IGameProperties;
 import voogasalad_GucciGames.gameAuthoring.model.IGAEModel;
+import voogasalad_GucciGames.gameAuthoring.model.IGameProperties;
 import voogasalad_GucciGames.gameAuthoring.model.MapObjectType;
-import voogasalad_GucciGames.gameEngine.mapObject.MapObject;
 import voogasalad_GucciGames.helpers.GameResourceManagerToGAE;
 import voogasalad_GucciGames.helpers.ResourceManager;
 
 public class GaeController extends AGuiGaeController implements IModelGaeController {
 
-	private final IGAEModel myModel;
+	private IGAEModel myModel;
 	private final GAEGui myGui;
 	private final Stage myStage;
 	private final IntegerProperty numberOfPlayers = new SimpleIntegerProperty(0);
 	private Map<Integer, String> allPlayers = new HashMap<Integer, String>();
 	private ImageBrowseDialogs myImageBrowseDialogs;
 	private final GameResourceManagerToGAE myResManager = new ResourceManager();
-	//private ArrayList<String> customGamePlayerComponents = new ArrayList<String>();
 
 	public GaeController(Stage stage) {
 		myStage = stage;
 		myGui = new GAEGui(this, stage);
-		myModel = new GAEModel(this);
-		setNumberOfPlayers(1);
-		setDefaultOwner(0);
 	}
-	
+
+	@Override
+	public void initModel() {
+		myModel = new GAEModel(this);
+	}
+
 	private MapObjectType mySelectedType;
 
-	
 	public void setSelectedType(MapObjectType mapType) {
 		mySelectedType = mapType;
 	}
@@ -63,9 +62,9 @@ public class GaeController extends AGuiGaeController implements IModelGaeControl
 	public MapObjectType getSelectedType() {
 		return mySelectedType;
 	}
-	
+
 	private MapObjectType myDragType;
-	
+
 	@Override
 	public void setDragType(MapObjectType mapType) {
 		myDragType = mapType;
@@ -78,8 +77,7 @@ public class GaeController extends AGuiGaeController implements IModelGaeControl
 
 	@Override
 	public void deleteComponent(DisplayMapObject mapObj, int levelID) {
-		// TODO add levelID
-		//model.deleteComponent(mapObj);
+		myModel.deleteComponent(levelID, mapObj);
 	}
 
 	@Override
@@ -115,11 +113,11 @@ public class GaeController extends AGuiGaeController implements IModelGaeControl
 	@Override
 	@Deprecated
 	public void saveToXML(File file) {
-		
+
 	}
-	
+
 	@Override
-	public void saveToXML( ){
+	public void saveToXML() {
 		myModel.saveToXML();
 	}
 
@@ -133,7 +131,7 @@ public class GaeController extends AGuiGaeController implements IModelGaeControl
 	public int getNumberOfPlayers() {
 		return numberOfPlayers.get();
 	}
-	
+
 	@Override
 	public IntegerProperty getNumberOfPlayersProperty() {
 		return numberOfPlayers;
@@ -149,12 +147,6 @@ public class GaeController extends AGuiGaeController implements IModelGaeControl
 		allPlayers.put(id, name);
 		// TODO DEBUG:
 		allPlayers.forEach((k, v) -> System.out.println("k: " + k + " " + " v: " + v));
-
-	}
-
-	@Override
-	public void changeOwner(MapObject mapObject, int playerID) {
-		myModel.changeOwner(mapObject, playerID);
 
 	}
 
@@ -183,18 +175,18 @@ public class GaeController extends AGuiGaeController implements IModelGaeControl
 	@Override
 	public ImageView requestImage(String path) {
 		String[] t = path.split(":");
-		if(t.length==1)
+		if (t.length == 1)
 			return new ImageView(myResManager.getImage(path));
-		else if(t.length==2){
+		else if (t.length == 2) {
 			Sprite s = myResManager.getSprite(t[0]);
-			try{
+			try {
 				s.play(Integer.parseInt(t[1]));
 				return s;
-			}catch(NumberFormatException e){
+			} catch (NumberFormatException e) {
 				throwException(e);
 			}
 		}
-		throwException(new Exception("\""+path+"\" is not a valid path"));
+		throwException(new Exception("\"" + path + "\" is not a valid path"));
 		return null;
 	}
 
@@ -210,16 +202,17 @@ public class GaeController extends AGuiGaeController implements IModelGaeControl
 
 	@Override
 	public void initGame(String name) {
-		//TODO: Add the name somewhere
+		// TODO: Add the name somewhere
 		myHasGameProperty.set(true);
 		myGui.initGame();
 		myResManager.loadGame(name);
 		myResManager.toggleCopyOnAccess(true);
 		myImageBrowseDialogs = new ImageBrowseDialogs(myResManager);
+		myModel.setGameName(name);
 	}
 
 	@Override
-	public LevelTabPane getLevelTabPane(){
+	public LevelTabPane getLevelTabPane() {
 		return myGui.getLevelTabPane();
 	}
 
@@ -229,8 +222,7 @@ public class GaeController extends AGuiGaeController implements IModelGaeControl
 	}
 
 	@Override
-	public void setCustomGamePlayerComponents(String location,
-			List<String> allComponents) {
+	public void setCustomGamePlayerComponents(String location, List<String> allComponents) {
 		myModel.setGuiComponents(location, allComponents);
 	}
 
@@ -243,7 +235,7 @@ public class GaeController extends AGuiGaeController implements IModelGaeControl
 	public void setDefaultOwner(int ownerID) {
 		myModel.setDefaultOwner(ownerID);
 	}
-	
+
 	@Override
 	public int getDefaultOwner() {
 		return myModel.getDefaultOwner();
@@ -259,23 +251,13 @@ public class GaeController extends AGuiGaeController implements IModelGaeControl
 		myModel.addPlayerCharacteristic(playerID, param);
 	}
 
-//	@Override
-//	public void addMapObjectCharacteristic(MapObjectType type, ObjParamValue param) {
-//		myModel.addMapObjectCharacteristic(type, param);
-//	}
-//
-//	@Override
-//	public void addActionParamValue(MapObjectType type, ActionParamsValue param) {
-//		myModel.addActionParamValue(type, param);
-//	}
-	
 	private final BooleanProperty myHasGameProperty = new SimpleBooleanProperty(false);
-	
+
 	@Override
-	public BooleanProperty getHasGameProperty(){
+	public BooleanProperty getHasGameProperty() {
 		return myHasGameProperty;
 	}
-	
+
 	@Override
 	public void createCustomType(MapObjectType object, String type) {
 		switch (type) {
@@ -289,12 +271,12 @@ public class GaeController extends AGuiGaeController implements IModelGaeControl
 			myModel.createCustomUnitType(object);
 			break;
 		default:
-			throwException(new RuntimeException("No "+type+" type"));
+			throwException(new RuntimeException("No " + type + " type"));
 		}
 	}
-	
+
 	@Override
-	public void deleteMapObjectType(MapObjectType object, String type){
+	public void deleteMapObjectType(MapObjectType object, String type) {
 		switch (type) {
 		case "tile":
 			myModel.deleteTileType(object);
@@ -306,7 +288,7 @@ public class GaeController extends AGuiGaeController implements IModelGaeControl
 			myModel.deleteUnitType(object);
 			break;
 		default:
-			throwException(new RuntimeException("No "+type+" type"));
+			throwException(new RuntimeException("No " + type + " type"));
 		}
 	}
 
@@ -322,12 +304,10 @@ public class GaeController extends AGuiGaeController implements IModelGaeControl
 		return null;
 	}
 
-
-
 	@Override
 	public void addActionParam() {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	public GameResourceManagerToGAE getResourceManager() {

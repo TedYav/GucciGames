@@ -1,4 +1,8 @@
 <characteristicDependencies>
+	<element name="TileCharacteristic"
+	paramNames="canMove"
+	paramTypes="int">
+	</element>	
 	<element name="HealthCharacteristic" 
 		 paramNames="maxHealthPoints"
 		 paramTypes="double">
@@ -17,5 +21,25 @@
 		 name="VisionCharacteristic"
 		 paramNames="vision"
 		 paramTypes="int">	
+	</element>
+	<element
+		 name="Tower"
+		 paramNames="tower"
+		 paramTypes="boolean">	
+	</element>
+	<element
+		 name="GroundUnit"
+		 paramNames="groundUnit"
+		 paramTypes="boolean">	
+	</element>
+	<element
+		 name="Archer"
+		 paramNames="range"
+		 paramTypes="int">	
+	</element>
+		<element
+		 name="Soldier"
+		 paramNames="soldier"
+		 paramTypes="boolean">	
 	</element>
 </characteristicDependencies>

@@ -2,20 +2,20 @@ package voogasalad_GucciGames.gameEngine.defaultCharacteristics;
 
 import voogasalad_GucciGames.gameEngine.mapObject.AMapObjectCharacteristic;
 
-public class TileCharacteristic extends AMapObjectCharacteristic{
-	private boolean CanMove = true;
+public class TileCharacteristic extends AMapObjectCharacteristic {
+	private int CanMove = 1;
 
-
-	public TileCharacteristic(boolean canMove) {
-
+	public TileCharacteristic(int canMove) {
+		System.out.println("Made Tile Characteristic.");
 		this.CanMove = canMove;
 	}
-	
-	public boolean getCanMove(){
+
+	public int getCanMove() {
 		return this.CanMove;
 	}
 
-	public TileCharacteristic(){
+	public TileCharacteristic() {
+		System.out.println("Made Tile Characteristic.");
 	}
 
 }

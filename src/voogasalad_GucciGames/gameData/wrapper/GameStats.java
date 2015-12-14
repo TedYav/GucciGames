@@ -1,8 +1,6 @@
 package voogasalad_GucciGames.gameData.wrapper;
 
-import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 import voogasalad_GucciGames.gameEngine.GameLevelEngine;
@@ -56,29 +54,25 @@ public class GameStats {
 	public void clear(){
 		this.transferables.clear();
 	}
-	
-	public void addTransferableCharacteristic(Integer id, APlayerChars transfer, String name){
-		if (transfer != null){	
-			if(transferables.containsKey(id)){
-				transferables.get(id).put(name,transfer);
-			}
-			else{
-				Map<String,APlayerChars> temp = new HashMap<>();
-				temp.put(name,transfer);
+
+	public void addTransferableCharacteristic(Integer id, APlayerChars transfer, String name) {
+		if (transfer != null) {
+			if (transferables.containsKey(id)) {
+				transferables.get(id).put(name, transfer);
+			} else {
+				Map<String, APlayerChars> temp = new HashMap<>();
+				temp.put(name, transfer);
 				transferables.put(id, temp);
 			}
 		}
 	}
-	
-	
-	public boolean contains(int id){
+
+	public boolean contains(int id) {
 		return this.transferables.containsKey(id);
 	}
-	
-	public Map<String,APlayerChars> getCharacteristics(int id){
+
+	public Map<String, APlayerChars> getCharacteristics(int id) {
 		return this.transferables.get(id);
 	}
 
-
-	
 }

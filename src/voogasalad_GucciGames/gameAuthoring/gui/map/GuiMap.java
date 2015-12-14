@@ -65,6 +65,12 @@ public class GuiMap extends Pane implements IGuiMap {
 			if (e.getCode() == KeyCode.CONTROL)
 				myGridViewer.setPannable(true);
 		});
+		addEventHandler(KeyEvent.KEY_RELEASED, e -> {
+			if (e.getCode() == KeyCode.A && e.isControlDown()) {
+				myGrid.selectAll();
+				e.consume();
+			}
+		});
 		addEventHandler(KeyEvent.KEY_PRESSED, e -> keyZoom(e));
 		addEventHandler(ZoomEvent.ANY, e -> gestureZoom(e));
 	}

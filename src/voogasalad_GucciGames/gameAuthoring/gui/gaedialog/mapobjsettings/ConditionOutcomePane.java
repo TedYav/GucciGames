@@ -3,45 +3,42 @@ package voogasalad_GucciGames.gameAuthoring.gui.gaedialog.mapobjsettings;
 import java.util.ArrayList;
 import java.util.List;
 
-import voogasalad_GucciGames.gameAuthoring.IDialogGaeController;
-import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.dialogcomponents.DialogTableView;
-import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.dialogcomponents.DropDownMenuField;
-import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.paramObjects.ObjParam;
-import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.paramObjects.ObjParamValue;
-import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.paramObjects.OutcomeParam;
-import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.paramObjects.OutcomeParamValue;
-import voogasalad_GucciGames.gameAuthoring.model.MapObjectType;
 import javafx.scene.control.Button;
-import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.GridPane;
 import javafx.scene.text.Font;
+import voogasalad_GucciGames.gameAuthoring.IDialogGaeController;
+import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.dialogcomponents.DialogTableView;
+import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.dialogcomponents.DropDownMenuField;
+import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.paramObjects.ObjParam;
+import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.paramObjects.OutcomeParamValue;
+import voogasalad_GucciGames.gameAuthoring.model.MapObjectType;
 
 public class ConditionOutcomePane extends GridPane {
-	
-	private Label title  = new Label("Add an Outcome to Action");
-	
+
+	private Label title = new Label("Add an Outcome to Action");
+
 	private TextField selectedOutcome = new TextField();
-	
+
 	private Button addOutcome = new Button("Add Outcome");
-		
-	
+
 	private DialogTableView tableView;
-		
+
 	private DropDownMenuField outcomesMenuField;
-	
+
 	private MapObjectType type;
-	
+
 	private IDialogGaeController controller;
-	
+
 	private List<String> selectedOutcomes = new ArrayList<String>();
-	
+
 	private ObjParam outcomeParam;
-	
+
 	private ObjParamPane objParamPane;
-	
-	public ConditionOutcomePane(IDialogGaeController controller, List<String> conditions, List<String> outcomes, MapObjectType type){
+
+	public ConditionOutcomePane(IDialogGaeController controller, List<String> conditions, List<String> outcomes,
+			MapObjectType type) {
 		super();
 		this.title.setFont(new Font("Arial", 20));
 		this.title.setMinWidth(200);
@@ -50,7 +47,7 @@ public class ConditionOutcomePane extends GridPane {
 		this.outcomesMenuField = new DropDownMenuField(outcomes);
 		this.selectedOutcome.setDisable(true);
 		this.controller = controller;
-		
+
 		this.getChildren().add(title);
 		this.add(selectedOutcome, 1, 1);
 		this.add(outcomesMenuField, 2, 1);
@@ -58,10 +55,9 @@ public class ConditionOutcomePane extends GridPane {
 		this.add(tableView, 1, 2);
 		setActionForAddCondition();
 
-		
 	}
-	
-	private void setActionForAddCondition(){
+
+	private void setActionForAddCondition() {
 		addOutcome.setOnAction(e -> {
 			String selected = this.outcomesMenuField.getSelected();
 			System.out.println(selected);
@@ -74,33 +70,29 @@ public class ConditionOutcomePane extends GridPane {
 			this.setOutcomeParam();
 		});
 	}
-	
-	private void setOutcomeParam(){
-		if(this.outcomeParam != null){
+
+	private void setOutcomeParam() {
+		if (this.outcomeParam != null) {
 			this.getChildren().remove(objParamPane);
-			objParamPane  = new ObjParamPane(outcomeParam);
+			objParamPane = new ObjParamPane(outcomeParam);
 			this.add(objParamPane, 3, 2);
-			
+
 		}
 	}
-	
-	protected OutcomeParamValue getOutcomeValue(){
+
+	protected OutcomeParamValue getOutcomeValue() {
 		OutcomeParamValue outcomeParam = null;
-		if(objParamPane != null){
-			
-			outcomeParam = new OutcomeParamValue(selectedOutcome.getText(), 
-					type, objParamPane.getAllInputs());
-			
+		if (objParamPane != null) {
+
+			outcomeParam = new OutcomeParamValue(selectedOutcome.getText(), type, objParamPane.getAllInputs());
 
 		}
 		return outcomeParam;
-		
-		
+
 	}
-	
-	protected List<String> getConditions(){
+
+	protected List<String> getConditions() {
 		return tableView.getData();
 	}
-	
-	
+
 }

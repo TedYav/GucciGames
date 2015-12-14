@@ -16,4 +16,19 @@
 	chars = "AttackCharacteristic"
 	outcomes = "">
 	</action>
+	<action displayName="Build a soldier" name="BuildSoldier" 
+	rules = "" 
+	chars = ""
+	outcomes = "">
+	</action>
+	<action displayName="Build a Archer" name="BuildArcherEvent" 
+	rules = "" 
+	chars = ""
+	outcomes = "">
+	</action>
+	<action displayName="Build a tower" name="BuildTower" 
+	rules = "" 
+	chars = ""
+	outcomes = "">
+	</action>
 </actionDependencies>

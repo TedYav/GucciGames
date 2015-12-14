@@ -4,5 +4,5 @@ package voogasalad_GucciGames.gameplayer.windows.mainwindow.components;
 public interface MenuAction {
 
 	public void activate();
-	
+
 }

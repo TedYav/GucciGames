@@ -126,4 +126,6 @@ public interface GameEngineToGamePlayerInterface {
 	       public Map<String, MapObject> getMyBuild ();
 	       
 	       public boolean gameOver();
+	       
+	       public String nextLevel();
 }

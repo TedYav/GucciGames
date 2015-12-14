@@ -1,5 +1,5 @@
 package voogasalad_GucciGames.gameAuthoring;
 
-public interface IModelGaeController{
-    
+public interface IModelGaeController {
+
 }

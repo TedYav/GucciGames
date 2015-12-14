@@ -14,7 +14,7 @@ import voogasalad_GucciGames.gameAuthoring.gui.map.cell.Cell;
 import voogasalad_GucciGames.gameAuthoring.gui.map.cell.ICell;
 import voogasalad_GucciGames.gameAuthoring.model.MapObjectType;
 
-class Grid extends Pane implements ICellGrid{
+class Grid extends Pane implements ICellGrid {
 
 	private final ImageView myBackground;
 	private final DoubleProperty myCellSize;
@@ -34,7 +34,7 @@ class Grid extends Pane implements ICellGrid{
 		new GridMouseTracker(this);
 		new GridSelector(this);
 
-		//myMapObjects = controller.getMapObjects();
+		// myMapObjects = controller.getMapObjects();
 	}
 
 	public void initGrid(int width, int height) {
@@ -69,11 +69,11 @@ class Grid extends Pane implements ICellGrid{
 
 	public void removeSelectedCells() {
 		Set<ICell> set = new HashSet<>(selectedCells);
-		set.forEach(cell->cell.clear());
+		set.forEach(cell -> cell.clear());
 	}
-	
-	public void addTypeToSelectedCells(MapObjectType type){
-		selectedCells.forEach(cell->cell.add(type));
+
+	public void addTypeToSelectedCells(MapObjectType type) {
+		selectedCells.forEach(cell -> cell.add(type));
 	}
 
 	public ICell getCell(GridPoint pt) {
@@ -88,6 +88,13 @@ class Grid extends Pane implements ICellGrid{
 	public int getLevelID() {
 		return myLevelID;
 	}
-	
+
+	protected void selectAll() {
+		if (myCells.size() == selectedCells.size()) {
+			myCells.forEach((g, c) -> c.deselect());
+		} else {
+			myCells.forEach((g, c) -> c.select());
+		}
+	}
 
 }

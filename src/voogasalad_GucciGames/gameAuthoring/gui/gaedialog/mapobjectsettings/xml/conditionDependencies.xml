@@ -1,16 +1,16 @@
 <conditionDependencies>
 
 	<element name="CheckOnePlayerLeft" 
-		 paramNames=""
-		 paramTypes="">
+		 paramNames="Checked"
+		 paramTypes="int">
 	</element>	
 		<element name="CheckPlayerObjects" 
-		 paramNames=""
-		 paramTypes="">
+		 paramNames="Checked"
+		 paramTypes="int">
 	</element>	
 		<element name="CheckPlayerWealth" 
-			paramNames=""
-			paramTypes="">
+			paramNames="Checked"
+			paramTypes="int">
 
 	</element>	
 		<element name="CheckSteppingOn" 

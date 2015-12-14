@@ -11,15 +11,17 @@ import voogasalad_GucciGames.gameAuthoring.AGuiGaeController;
 
 public class PopupMenu extends ContextMenu {
 
-	private AGuiGaeController myController;
-	private Menu myOwnerMenu;
+	private final AGuiGaeController myController;
+	private final Menu myOwnerMenu;
+	private final Cell myCell;
 
 	public PopupMenu(AGuiGaeController controller, Cell cell) {
 		myController = controller;
+		myCell = cell;
 		MenuItem item1 = new MenuItem("Edit");
 		item1.setOnAction(new EventHandler<ActionEvent>() {
 			public void handle(ActionEvent e) {
-				System.out.println("Edit");
+				// System.out.println("Edit");
 			}
 		});
 		MenuItem item2 = new MenuItem("Remove");
@@ -43,8 +45,7 @@ public class PopupMenu extends ContextMenu {
 
 		group.selectedToggleProperty().addListener((ob, oldV, newV) -> {
 			if (group.getSelectedToggle() != null) {
-				int id = (int) newV.getUserData();
-				// cell.setPlayerID(id);
+				myCell.setOwner((int) newV.getUserData());
 			}
 		});
 	}

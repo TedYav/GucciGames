@@ -24,10 +24,10 @@ public abstract class Attack extends MapObjectEvent {
 	protected static final String ATTACK_CHARACTERISTIC = "AttackCharacteristic";
 	protected static final String HEALTH_CHARACTERISTIC = "HealthCharacteristic";
 
-
 	public Attack() {
 
 	}
+
 	public Attack(String actionName) {
 		super(actionName);
 	}
@@ -37,7 +37,7 @@ public abstract class Attack extends MapObjectEvent {
 	}
 
 	protected List<Integer> extractAllPlayersExceptNutral(LocationParameters params) {
-		List<Integer> ids1 = params.getEngine().getPlayers().getAllIds();
+		List<Integer> ids1 = params.getEngine().getPlayers().getAllExistingIds();
 
 		List<Integer> ids = new ArrayList<Integer>();
 		for (int i = 1; i < ids1.size(); i++) {
@@ -67,7 +67,7 @@ public abstract class Attack extends MapObjectEvent {
 
 		TargetCoordinateSingle caller = (TargetCoordinateSingle) calledMe.getCoordinate();
 
-		players.getAllIds().stream().forEach(id -> {
+		players.getAllExistingIds().stream().forEach(id -> {
 			players.getPlayerById(id).getMapObjects().stream().forEach(mo -> {
 				if (mo.hasCharacteristic(HEALTH_CHARACTERISTIC)) {
 					TargetCoordinateSingle single = (TargetCoordinateSingle) mo.getCoordinate();

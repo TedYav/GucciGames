@@ -1,26 +1,26 @@
 package voogasalad_GucciGames.gameEngine.gamePlayer;
 
 public class TurnCounter {
-	
+
 	int currentTurn;
-	
-	public TurnCounter(int currTurn){
+
+	public TurnCounter(int currTurn) {
 		currentTurn = currTurn;
 	}
-	
-	public TurnCounter(){
+
+	public TurnCounter() {
 		this(0);
 	}
-	
-	public void update(){
+
+	public void update() {
 		currentTurn++;
 	}
-	
-	public void setCurrentTurn(int currTurn){
+
+	public void setCurrentTurn(int currTurn) {
 		currentTurn = currTurn;
 	}
-	
-	public int getCurrentTurn(){
+
+	public int getCurrentTurn() {
 		return currentTurn;
 	}
 

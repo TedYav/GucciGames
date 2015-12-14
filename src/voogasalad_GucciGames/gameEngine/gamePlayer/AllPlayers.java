@@ -12,10 +12,12 @@ import voogasalad_GucciGames.gameEngine.mapObject.MapObject;
 public class AllPlayers {
 
 	private Map<Integer, GamePlayerPerson> myMapOfPlayers;
+	private Map<Integer, GamePlayerPerson> myMapOFAllPlayers;
 
 	public AllPlayers(Map<Integer, GamePlayerPerson> players) {
 
 		myMapOfPlayers = players;
+
 	}
 
 	public AllPlayers() {
@@ -30,8 +32,8 @@ public class AllPlayers {
 
 		}
 	}
-	
-	public Map<Integer, GamePlayerPerson> getPlayersMap(){
+
+	public Map<Integer, GamePlayerPerson> getPlayersMap() {
 		return this.myMapOfPlayers;
 	}
 
@@ -58,12 +60,12 @@ public class AllPlayers {
 	}
 
 	public void removePlayer(int id) {
-		if(myMapOfPlayers.containsKey(id)&& myMapOfPlayers!=null){
+		if (myMapOfPlayers.containsKey(id) && myMapOfPlayers != null) {
 			myMapOfPlayers.remove(id);
 		}
 	}
 
-	public List<Integer> getAllIds() {
+	public List<Integer> getAllExistingIds() {
 		/*
 		 * List<Integer> result = new ArrayList<>(); for(GamePlayerPerson
 		 * player: this.myMapOfPlayers){ result.add(player.getMyPlayerId()); }
@@ -104,10 +106,10 @@ public class AllPlayers {
 		return myInitObjects;
 	}
 
-	public List<MapObject> getNonNeutralMapObjects(){
+	public List<MapObject> getNonNeutralMapObjects() {
 		List<MapObject> result = new ArrayList<MapObject>();
 		this.myMapOfPlayers.keySet().stream().forEach(key -> {
-			if(key != -1){
+			if (key != -1) {
 				result.addAll(this.myMapOfPlayers.get(key).getMapObjects());
 			}
 		});

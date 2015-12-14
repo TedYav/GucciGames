@@ -60,7 +60,7 @@ public abstract class Outcome {
 			temp.add(params.getEngine().getTurnPlayerID());
 
 		} else if (myAffectedPlayers.equals("other")) {
-			List<Integer> list = params.getEngine().getPlayers().getAllIds();
+			List<Integer> list = params.getEngine().getPlayers().getAllExistingIds();
 			for (int i = 0; i < list.size(); i++) {
 				if (params.getEngine().getTurnPlayerID() != list.get(i)) {
 					temp.add(list.get(i));

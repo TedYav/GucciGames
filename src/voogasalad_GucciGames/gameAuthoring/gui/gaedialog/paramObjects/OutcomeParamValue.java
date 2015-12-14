@@ -9,22 +9,27 @@ public class OutcomeParamValue {
 
 	private List<ObjParamValue> conditions;
 	private ObjParamValue objParam;
-	
+
 	private String name;
-	
-	public OutcomeParamValue (String name, MapObjectType type, ObjParamValue objParam){
+
+	public OutcomeParamValue(String name, MapObjectType type, ObjParamValue objParam) {
 		this.name = name;
 		this.objParam = objParam;
-		this.conditions = new ArrayList<ObjParamValue>();		
+		this.conditions = new ArrayList<ObjParamValue>();
 	}
 
-	public String getName(){
+	public String getName() {
 		return name;
 	}
-	public void setConditions(List<ObjParamValue> items){
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public void setConditions(List<ObjParamValue> items) {
 		this.conditions.addAll(items);
 	}
-	
+
 	public List<ObjParamValue> getConditions() {
 		return conditions;
 	}

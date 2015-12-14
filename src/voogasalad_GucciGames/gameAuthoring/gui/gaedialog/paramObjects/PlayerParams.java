@@ -1,4 +1,5 @@
 package voogasalad_GucciGames.gameAuthoring.gui.gaedialog.paramObjects;
+
 /**
  * Contains parameters for player
  * 
@@ -11,17 +12,17 @@ package voogasalad_GucciGames.gameAuthoring.gui.gaedialog.paramObjects;
  * @author yingqi
  *
  */
-public class PlayerParams extends AParams{
-	
+public class PlayerParams extends AParams {
+
 	private int id;
 	private String name;
 	private int numMoves;
-	
-	public PlayerParams(int id, String name, int numMoves){
+
+	public PlayerParams(int id, String name, int numMoves) {
 		this.id = id;
 		this.name = name;
 		this.numMoves = numMoves;
-		
+
 	}
 
 	public int getId() {
@@ -51,7 +52,7 @@ public class PlayerParams extends AParams{
 	@Override
 	public void print() {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 }

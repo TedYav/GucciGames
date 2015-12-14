@@ -22,15 +22,17 @@ import voogasalad_GucciGames.gameEngine.groovyEngine.GroovyLoader;
  *
  */
 public class GroovyMapChars extends GroovyFactory {
-//we own this map GobjParam
-// GCharParamValue from ying to create an instance
-//this factory is created after two processes 1. creating the outline of a char 2. create an instance of the char
+	// we own this map GobjParam
+	// GCharParamValue from ying to create an instance
+	// this factory is created after two processes 1. creating the outline of a
+	// char 2. create an instance of the char
 
 	public Object create(Map<String, GCharParam> GobjParam, ObjParamValue GCharParamValue)
 			throws NoSuchMethodException, SecurityException, ClassNotFoundException, InstantiationException,
 			IllegalAccessException, IllegalArgumentException, InvocationTargetException {
 		// param name to type
-		Map<String, String> typeMap = new TreeMap<String, String>(GobjParam.get(GCharParamValue.getName()).getParamOrderMap());
+		Map<String, String> typeMap = new TreeMap<String, String>(
+				GobjParam.get(GCharParamValue.getName()).getParamOrderMap());
 		// param name to value
 		Map<String, String> valueMap = GCharParamValue.getMap();
 
@@ -42,6 +44,11 @@ public class GroovyMapChars extends GroovyFactory {
 		myTypes.addAll(typeMap.keySet());
 		Collections.sort(myTypes);
 
+		List<String> paramKeys = new ArrayList<>(typeMap.keySet());
+		for (int i = 0; i < paramKeys.size(); i++) {
+			myParameters[i] = TypeMap.getType(typeMap.get(paramKeys.get(i)));
+		}
+
 		for (int i = 0; i < initargs.length; i++) {
 			Class<?> constr = myParameters[i];
 
@@ -50,10 +57,12 @@ public class GroovyMapChars extends GroovyFactory {
 
 		}
 
-		//create constructor;
-		// this creates the loader every time and adds the specific char ying send to us with the value thing and send it back
+		// create constructor;
+		// this creates the loader every time and adds the specific char ying
+		// send to us with the value thing and send it back
 		// save it in a list
-		GroovyCustomCharacteristic g = new GroovyCustomCharacteristic(GCharParamValue.getName(),(GobjParam.get(GCharParamValue.getName()).getAllParams()));
+		GroovyCustomCharacteristic g = new GroovyCustomCharacteristic(GCharParamValue.getName(),
+				(GobjParam.get(GCharParamValue.getName()).getAllParams()));
 		GameGroovyEngine engine = new GameGroovyEngine();
 		List<AGroovyCustomObject> groovyCustom = new ArrayList<>();
 		groovyCustom.add(g);
@@ -65,7 +74,5 @@ public class GroovyMapChars extends GroovyFactory {
 		return myObject;
 
 	}
-
-
 
 }

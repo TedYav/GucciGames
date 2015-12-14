@@ -33,10 +33,9 @@ public class MapObject implements PlayerMapObjectInterface {
 	private String myImagePath;
 	private Map<String, AMapObjectCharacteristic> myCharacteristics;
 	private MapObjectEventHandler myEventHandler;
-	private Map<String, MapObjectEvent> myEvents; //test
-	
-	public MapObject(ATargetCoordinate coor, int id, int layer, 
-			String name, String imagePath){
+	private Map<String, MapObjectEvent> myEvents; // test
+
+	public MapObject(ATargetCoordinate coor, int id, int layer, String name, String imagePath) {
 
 		this.myCoordinate = coor;
 		this.myOwnerID = id;
@@ -48,16 +47,16 @@ public class MapObject implements PlayerMapObjectInterface {
 		this.myEvents = new HashMap<>();
 	}
 
-	public MapObject(String name, String imagePath){
-		this(null,-1,0,name,imagePath);
+	public MapObject(String name, String imagePath) {
+		this(null, -1, 0, name, imagePath);
 	}
 
 	public MapObject(MapObject obj, ATargetCoordinate coor, int id) {
 		this(obj, coor, id, 0);
 	}
 
-	public MapObject(MapObject obj, ATargetCoordinate coor, int id, int layer){
-		this(coor,id,layer,obj.getName(),obj.getImagePath());
+	public MapObject(MapObject obj, ATargetCoordinate coor, int id, int layer) {
+		this(coor, id, layer, obj.getName(), obj.getImagePath());
 	}
 
 	public MapObject(ATargetCoordinate coor, int ownerID) {
@@ -196,8 +195,8 @@ public class MapObject implements PlayerMapObjectInterface {
 		return this.myEvents.containsKey(name);
 	}
 
-public void setMapObjectEventHandler(MapObjectEventHandler handler){
-	this.myEventHandler = handler;
+	public void setMapObjectEventHandler(MapObjectEventHandler handler) {
+		this.myEventHandler = handler;
 	}
 
 	@Override
@@ -223,14 +222,15 @@ public void setMapObjectEventHandler(MapObjectEventHandler handler){
 		Collections.sort(list);
 		return list;
 	}
-	
-	public MapObject clone(){
-		MapObject result = new MapObject(this.myCoordinate.clone(),this.myOwnerID,this.myLayer,this.myName,this.myImagePath);
+
+	public MapObject clone() {
+		MapObject result = new MapObject(this.myCoordinate.clone(), this.myOwnerID, this.myLayer, this.myName,
+				this.myImagePath);
 		result.myCharacteristics = new HashMap<>();
-		for(String key: this.myCharacteristics.keySet()){
+		for (String key : this.myCharacteristics.keySet()) {
 			result.myCharacteristics.put(key, this.myCharacteristics.get(key).clone());
 		}
-		result.myEventHandler = this.myEventHandler.clone(this);
+		result.myEventHandler = this.myEventHandler;
 		result.myEvents = new HashMap<>(this.myEvents);
 		return result;
 	}
@@ -240,19 +240,18 @@ public void setMapObjectEventHandler(MapObjectEventHandler handler){
 		// TODO Auto-generated method stub
 		return this.myCharacteristics.containsKey(name);
 	}
-	
+
 	/*
-	public static void main(String[] args){
-		MapObject mo = new MapObject(new TargetCoordinateSingle(50,50),0,0,"test","test");
-		mo.addCharacteristic("HealthCharacteristic", new HealthCharacteristic());
-		HealthCharacteristic hc = (HealthCharacteristic) mo.getCharacteristic("HealthCharacteristic");
-		System.out.println(hc.getCurrentHealth());
-		MapObject mo1 = mo.clone();
-		HealthCharacteristic hc1 = (HealthCharacteristic) mo1.getCharacteristic("HealthCharacteristic");
-		System.out.println(hc1.getCurrentHealth());
-		hc1.changeHealth(50);
-		System.out.println(hc1.getCurrentHealth());
-		System.out.println(hc.getCurrentHealth());
-	}
-	*/
+	 * public static void main(String[] args){ MapObject mo = new MapObject(new
+	 * TargetCoordinateSingle(50,50),0,0,"test","test");
+	 * mo.addCharacteristic("HealthCharacteristic", new HealthCharacteristic());
+	 * HealthCharacteristic hc = (HealthCharacteristic)
+	 * mo.getCharacteristic("HealthCharacteristic");
+	 * System.out.println(hc.getCurrentHealth()); MapObject mo1 = mo.clone();
+	 * HealthCharacteristic hc1 = (HealthCharacteristic)
+	 * mo1.getCharacteristic("HealthCharacteristic");
+	 * System.out.println(hc1.getCurrentHealth()); hc1.changeHealth(50);
+	 * System.out.println(hc1.getCurrentHealth());
+	 * System.out.println(hc.getCurrentHealth()); }
+	 */
 }

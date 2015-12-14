@@ -1,7 +1,5 @@
 package voogasalad_GucciGames.gameEngine.defaultCharacteristics;
 
-import java.lang.reflect.Field;
-
 import voogasalad_GucciGames.gameEngine.mapObject.AMapObjectCharacteristic;
 
 public class HealthCharacteristic extends AMapObjectCharacteristic {
@@ -27,8 +25,8 @@ public class HealthCharacteristic extends AMapObjectCharacteristic {
 	public double getCurrentHealth() {
 		return CurrentHealth;
 	}
-	
-	public double getMaxHealth(){
+
+	public double getMaxHealth() {
 		return MaxHealth;
 	}
 
@@ -43,12 +41,8 @@ public class HealthCharacteristic extends AMapObjectCharacteristic {
 	}
 
 	/*
-	@Override
-	public String toString() {
-		// TODO Auto-generated method stub
-		return "Current Health = " + myCurrentHealth;
-	}
-	*/
-	
+	 * @Override public String toString() { // TODO Auto-generated method stub
+	 * return "Current Health = " + myCurrentHealth; }
+	 */
 
 }

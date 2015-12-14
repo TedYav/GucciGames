@@ -11,10 +11,13 @@ import voogasalad_GucciGames.gameEngine.gamePlayer.GamePlayerPerson;
  */
 public class CheckOnePlayerLeft extends Conditions {
 
+	public CheckOnePlayerLeft(int i) {
+
+	}
 
 	@Override
 	public Boolean execute(BasicParameters params, GamePlayerPerson player) {
-		return (params.getEngine().getPlayers().getAllIds().size() == 2);
+		return (params.getEngine().getPlayers().getAllExistingIds().size() == 2);
 
 	}
 
