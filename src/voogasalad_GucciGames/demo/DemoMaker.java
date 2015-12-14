@@ -74,7 +74,7 @@ public class DemoMaker extends Application {
 		resourceManager.copyImageToGame("units/duvall.jpg");
 		resourceManager.copyImageToGame("units/smile.jpg");
 
-		GameInfo game = new GameInfo("Civ");
+		GameInfo game = new GameInfo("Duvall Tag");
 		game.getGameEngine().addLevel("Easy", level1);
 		game.getGameEngine().addLevel("Medium", level2);
 		game.getGameEngine().addLevel("Hard", level3);
@@ -113,8 +113,6 @@ public class DemoMaker extends Application {
 
 		MoveEvent myMoveEvent = new MoveEvent("Move", moveRules, new ArrayList<Outcome>());
 
-		BuildSoldierEvent myBuildEvent = new BuildSoldierEvent();
-
 		Map<String, MapObject> myAllMapObjects = new HashMap<String, MapObject>();
 
 		Conditions onePlayerLeft = new CheckOnePlayerLeft(1);
@@ -132,7 +130,10 @@ public class DemoMaker extends Application {
 		AttackEvent myAttackEvent = new AttackEvent("Attack", attackRules, attackOutcomes);
 
 		MapObject soldier = makeSoldier(myMoveEvent, myAttackEvent, 1, 0);
-		soldier.addEvent("buildItself", myBuildEvent);
+
+		BuildSoldierEvent myBuildEvent = new BuildSoldierEvent();
+
+		soldier.addEvent("BuildItself", myBuildEvent);
 
 		myAllMapObjects.put("Soldier", soldier);
 

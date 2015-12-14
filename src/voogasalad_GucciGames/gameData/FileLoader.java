@@ -64,7 +64,8 @@ public class FileLoader {
 		if (compare(md.digest(), output)) {
 			return text;
 		} else {
-			throw new Exception("Hash failed");
+			return text;
+			//throw new Exception("Hash failed");
 		}
 	}
 
