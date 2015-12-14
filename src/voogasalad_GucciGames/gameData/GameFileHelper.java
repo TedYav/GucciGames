@@ -49,7 +49,7 @@ public class GameFileHelper {
 		}
 	}
 
-	public void listf(String directoryName, List<String> files, List<String> extensions) {
+	private void listf(String directoryName, List<String> files, List<String> extensions) {
 		File directory = new File(directoryName);
 		// System.out.println("STARTING IN DIRECTORY " + directoryName);
 		// get all the files from a directory

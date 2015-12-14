@@ -1,3 +1,6 @@
+// This entire file is part of my masterpiece.
+// Ted Yavuzkurt
+
 package voogasalad.util.cloud.server;
 
 import java.util.List;
@@ -8,14 +11,10 @@ import voogasalad.util.cloud.exception.CloudException;
 
 public interface CloudServer {
 
-	void upload(List<CloudParameter> parameters, String filename) throws CloudException;
+	public int initializeID() throws CloudException;
 
-	void upload(List<CloudParameter> parameters);
+	public void upload(List<CloudParameter> parameters);
 
-	String getRequestString(List<CloudParameter> parameters);
-
-	int initializeID() throws CloudException;
-
-	List<Map<String, String>> retrieve(List<CloudParameter> parameters, List<String> values);
+	public List<Map<String, String>> retrieve(List<CloudParameter> parameters, List<String> values);
 
 }

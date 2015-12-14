@@ -1,8 +1,13 @@
+// This entire file is part of my masterpiece.
+// Ted Yavuzkurt
+
 package voogasalad.util.cloud.data;
 
 import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
+
+import voogasalad.util.cloud.config.ConfigLoader;
 
 public class CloudScore extends CloudObject implements GameScore {
 
@@ -10,19 +15,25 @@ public class CloudScore extends CloudObject implements GameScore {
 	private Double myScore;
 	private String myTitle;
 
-	public CloudScore(Map<String, String> map) {
-		this(map.get(CloudVariable.GAMENAME.getValue()), map.get(CloudVariable.PLAYERNAME.getValue()),
-				Double.parseDouble(map.get(CloudVariable.SCORE.getValue())), map.get(CloudVariable.TITLE.getValue()));
-
+	/**
+	 * Used when reflecting a CloudScore
+	 */
+	public CloudScore(){
+		super();
 	}
-
-	public CloudScore(String gameName) {
-		this(gameName, "", 0);
+	
+	/**
+	 * Used when one needs to duplicate a CloudScore, or create one from server data
+	 */
+	public CloudScore(Map<String, String> dataMap) {
+		this(dataMap.get(CloudVariable.GAMENAME.getValue()), 
+			dataMap.get(CloudVariable.PLAYERNAME.getValue()),
+			Double.parseDouble(dataMap.get(CloudVariable.SCORE.getValue())), 
+			dataMap.get(CloudVariable.TITLE.getValue()));
 	}
 
 	public CloudScore(String gameName, String playerName, double score) {
 		this(gameName, playerName, score, "");
-
 	}
 
 	public CloudScore(String gameName, String playerName, double score, String title) {
@@ -52,7 +63,7 @@ public class CloudScore extends CloudObject implements GameScore {
 
 	@Override
 	public String toString() {
-		return myPlayerName + " -- " + myScore;
+		return String.format(ConfigLoader.internalConfig().getString("ScoreFormat"), myPlayerName, myScore);
 	}
 
 	@Override

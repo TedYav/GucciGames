@@ -1,3 +1,6 @@
+// This entire file is part of my masterpiece.
+// Ted Yavuzkurt
+
 package voogasalad.util.cloud;
 
 import java.util.Collections;
@@ -9,8 +12,8 @@ import voogasalad.util.cloud.data.CloudLoader;
 import voogasalad.util.cloud.data.CloudScore;
 import voogasalad.util.cloud.data.GameScore;
 import voogasalad.util.cloud.exception.CloudException;
-import voogasalad.util.cloud.server.BasicPHPServer;
 import voogasalad.util.cloud.server.CloudServer;
+import voogasalad.util.reflection.Reflection;
 
 /**
  * Cloud Utility Dispatcher Class
@@ -27,7 +30,7 @@ public class Cloud {
 	private static final String CONFIGROOT = "voogasalad.util.cloud.config.";
 
 	/**
-	 * EXAMPLE: Cloud c = new CLoud(); c.retrieveHighScores("GameName");
+	 * EXAMPLE: Cloud c = new Cloud(); c.retrieveHighScores("GameName");
 	 */
 
 	public Cloud() {
@@ -36,7 +39,7 @@ public class Cloud {
 		if (myConfig.getString("GroupName").isEmpty()) {
 			throw new CloudException("ERROR: Please put your group name in CloudConfig.properties!");
 		}
-		myServer = new BasicPHPServer();
+		myServer = (CloudServer) Reflection.createInstance(ConfigLoader.internalConfig().getString("ServerClass"));
 	}
 
 	/**
@@ -44,13 +47,12 @@ public class Cloud {
 	 * 
 	 * @param gameName
 	 * @param playerName
-	 *            - leave blank if your game does not use players
+	 *            - pass empty string if your game does not use players
 	 * @param score
 	 * @throws CloudException
 	 */
 	public void addHighScore(String gameName, String playerName, double score) throws CloudException {
 		new CloudScore(gameName, playerName, score).upload(myServer);
-		;
 	}
 
 	/**
@@ -64,7 +66,7 @@ public class Cloud {
 	 * @throws CloudException
 	 */
 	public List<GameScore> retrieveHighScores(String gameName) throws CloudException {
-		CloudLoader<CloudScore> loader = new CloudLoader<>(new CloudScore(gameName), myServer);
+		CloudLoader<CloudScore> loader = new CloudLoader<>(myServer, CloudScore.class);
 		return Collections.unmodifiableList(loader.retrieve());
 	}
 

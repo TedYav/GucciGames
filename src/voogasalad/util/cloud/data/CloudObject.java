@@ -13,6 +13,10 @@ public abstract class CloudObject {
 	private List<CloudParameter> myParameters;
 	private String myGameName;
 
+	public CloudObject(){
+		this("");
+	}
+	
 	public CloudObject(String gameName) {
 		myParameters = new ArrayList<>();
 		myParameters.add(this.requestString());
@@ -31,6 +35,9 @@ public abstract class CloudObject {
 		server.upload(myParameters);
 	}
 
+	/**
+	 * Returns a representation of this object which can be used by a CloudServer
+	 */
 	public abstract CloudParameter requestString();
 
 	public List<CloudParameter> getParameters() {

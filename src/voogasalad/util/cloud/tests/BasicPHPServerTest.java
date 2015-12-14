@@ -1,5 +1,7 @@
 package voogasalad.util.cloud.tests;
 
+import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -68,7 +70,24 @@ public class BasicPHPServerTest extends TestCase {
 	}
 
 	public void testEncoding() {
-		String result = myServer.getRequestString(myParams);
+		Method method = null;
+		try {
+			method = myServer.getClass().getDeclaredMethod("getRequestString", List.class );
+		} catch (NoSuchMethodException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		} catch (SecurityException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+		method.setAccessible(true);
+		String result = "";
+		try {
+			result = (String) method.invoke(myServer, myParams);
+		} catch (IllegalAccessException | IllegalArgumentException | InvocationTargetException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		assertEquals("http://www.evokeone.com/voogasalad/dispatcher.php?action=upload&name=Pwnage+BBQ&type=gamedata",
 				result);
 	}

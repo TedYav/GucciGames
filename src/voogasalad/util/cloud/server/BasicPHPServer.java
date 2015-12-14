@@ -79,8 +79,7 @@ public class BasicPHPServer implements CloudServer {
 				.collect(Collectors.toMap((s) -> s.split("=")[0], (s) -> s.split("=")[1]));
 	}
 
-	@Override
-	public String getRequestString(List<CloudParameter> parameters) {
+	private String getRequestString(List<CloudParameter> parameters) {
 		return buildRequestString(parameters);
 	}
 
@@ -145,12 +144,6 @@ public class BasicPHPServer implements CloudServer {
 			method.releaseConnection();
 		}
 		return result;
-	}
-
-	@Override
-	public void upload(List<CloudParameter> parameters, String filename) throws CloudException {
-		appendID(parameters);
-
 	}
 
 	private String buildRequestString(List<CloudParameter> parameters) {

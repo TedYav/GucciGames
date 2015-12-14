@@ -1,3 +1,6 @@
+// This entire file is part of my masterpiece.
+// Ted Yavuzkurt
+
 package voogasalad.util.cloud.data;
 
 import java.util.Arrays;

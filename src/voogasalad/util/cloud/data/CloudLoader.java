@@ -1,3 +1,5 @@
+// This entire file is part of my masterpiece.
+// Ted Yavuzkurt
 package voogasalad.util.cloud.data;
 
 import java.util.List;
@@ -13,12 +15,11 @@ public class CloudLoader<T extends CloudObject> {
 	private CloudObject myTemplate;
 	private CloudServer myServer;
 
-	public CloudLoader(CloudObject template, CloudServer server) {
-		myTemplate = template;
+	public CloudLoader(CloudServer server, Class<T> templateClass) {
+		myTemplate = makeTemplate(templateClass);
 		myServer = server;
 		myParameters = myTemplate.getParameters();
 		myFields = myTemplate.getFields();
-
 	}
 
 	public List<T> retrieve() {
@@ -29,5 +30,17 @@ public class CloudLoader<T extends CloudObject> {
 	@SuppressWarnings("unchecked")
 	private List<T> parse(List<Map<String, String>> rawData) {
 		return (List<T>) rawData.stream().map((m) -> myTemplate.cloneFromTemplate(m)).collect(Collectors.toList());
+	}
+	
+	private T makeTemplate(Class<T> clazz) {
+		T result = null;
+		try {
+			result = clazz.newInstance();
+		} catch (InstantiationException e) {
+			e.printStackTrace();
+		} catch (IllegalAccessException e) {
+			e.printStackTrace();
+		}
+		return result;
 	}
 }
