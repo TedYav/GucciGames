@@ -23,9 +23,9 @@ public class BottomBar extends WindowSideComponent {
 
 	@Override
 	protected void initializeData() {
-		for (DisplayComponent d : getMyComponents()) {
-			container.getChildren().add(d.getParent());
-		}
+	    while (getComponentParentsIter().hasNext()) {
+	        container.getChildren().add(getComponentParentsIter().next());
+	    }
 		container.getStyleClass().add(myCssBundle.getString("BottomHBox"));
 		container.setPrefHeight(Double.parseDouble(myCssBundle.getString("bottomprefheight")));
 	}

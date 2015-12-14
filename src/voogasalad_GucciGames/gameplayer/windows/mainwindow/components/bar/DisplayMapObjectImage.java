@@ -3,12 +3,12 @@ package voogasalad_GucciGames.gameplayer.windows.mainwindow.components.bar;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
-
 import javafx.collections.ListChangeListener;
 import javafx.scene.Parent;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.FlowPane;
+import javafx.scene.layout.Pane;
 import voogasalad_GucciGames.gameEngine.PlayerMapObjectInterface;
 import voogasalad_GucciGames.gameplayer.config.PlayerConfig;
 import voogasalad_GucciGames.gameplayer.controller.GameControllerInterface;
@@ -17,7 +17,7 @@ import voogasalad_GucciGames.gameplayer.windows.mainwindow.components.DisplayCom
 
 public class DisplayMapObjectImage extends DisplayComponent implements ListChangeListener<PlayerMapObjectInterface> {
 	private List<PlayerMapObjectInterface> mapObjectsOnCell;
-	private FlowPane display;
+	private Pane display;
 	private Image buffer;
 	private ImageView imgView;
 	private ResourceBundle myBundle = PlayerConfig.load("components.Bar");
@@ -27,16 +27,13 @@ public class DisplayMapObjectImage extends DisplayComponent implements ListChang
 		super(scene, controller);
 		display = new FlowPane();
 		display.getStyleClass().add(myCssBundle.getString("leftimageflowpane"));
-		// display.setAlignment(Pos.CENTER);
 		mapObjectsOnCell = new ArrayList<PlayerMapObjectInterface>();
 		updateImages();
 	}
 
 	public void updateImages() {
 		display.getChildren().clear();
-		for (PlayerMapObjectInterface m : mapObjectsOnCell) {
-			initializeImage(m);
-		}
+		mapObjectsOnCell.forEach(m->initializeImage(m));
 		if (display.getChildren().size() == 0) {
 			showImagePlaceholder(myBundle.getString("imageplaceholder"));
 		}
@@ -46,13 +43,18 @@ public class DisplayMapObjectImage extends DisplayComponent implements ListChang
 		if (m != null) {
 			buffer = getController().getResource().getImage(m.getImageURI());
 		}
-		imgView = new ImageView(buffer);
-		imgView.setPreserveRatio(true);
-		imgView.setFitWidth(Integer.parseInt(myBundle.getString("imagefitwidth")));
+		imgView=createImageView(buffer);
 		imgView.setOnMouseClicked(e -> {
 			updateActiveMapObject(m);
 		});
 		display.getChildren().add(imgView);
+	}
+	
+	private ImageView createImageView(Image buffer) {
+	    ImageView imageView = new ImageView(buffer);
+            imageView.setPreserveRatio(true);
+            imageView.setFitWidth(Integer.parseInt(myBundle.getString("imagefitwidth")));
+            return imageView;
 	}
 
 	private void updateActiveMapObject(PlayerMapObjectInterface mapObj) {
@@ -70,12 +72,8 @@ public class DisplayMapObjectImage extends DisplayComponent implements ListChang
 	 * @param url
 	 */
 	private void showImagePlaceholder(String url) {
-		// buffer = new
-		// Image(url,Integer.parseInt(myBundle.getString("imagefitwidth")),0,true,false,true);
 		buffer = getController().getResource().getImage(url);
-		imgView = new ImageView(buffer);
-		imgView.setFitWidth(Integer.parseInt(myBundle.getString("imagefitwidth")));
-		imgView.setPreserveRatio(true);
+		imgView = createImageView(buffer);
 		imgView.setOnMouseClicked(e -> {
 			updateActiveMapObject(null);
 		});
@@ -98,15 +96,17 @@ public class DisplayMapObjectImage extends DisplayComponent implements ListChang
 			List<PlayerMapObjectInterface> list = c.getList();
 			if (list.size() > 0) {
 				mapObjectsOnCell.clear();
-				for (PlayerMapObjectInterface o : list) {
-					mapObjectsOnCell.add(o);
-				}
+				list.forEach(o->mapObjectsOnCell.add(o));
 				updateImages();
-				if (mapObjectsOnCell.size() > 0) {
-					updateActiveMapObject(
-							mapObjectsOnCell.stream().reduce((u1, u2) -> u2).orElseGet(() -> mapObjectsOnCell.get(0)));
-				}
+				setDefaultSelectedImage();
 			}
 		}
+	}
+	
+	private void setDefaultSelectedImage() {
+	    if (mapObjectsOnCell.size() > 0) {
+                updateActiveMapObject(
+                                mapObjectsOnCell.stream().reduce((u1, u2) -> u2).orElseGet(() -> mapObjectsOnCell.get(0)));
+            }
 	}
 }

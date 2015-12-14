@@ -23,10 +23,10 @@ public class LeftBar extends WindowSideComponent {
 
 	@Override
 	protected void initializeData() {
-		for (DisplayComponent d : getMyComponents()) {
-			container.getChildren().add(d.getParent());
-		}
-		container.getStyleClass().add(myCssBundle.getString("LeftVBox"));
+            while (getComponentParentsIter().hasNext()) {
+                container.getChildren().add(getComponentParentsIter().next());
+            }
+            container.getStyleClass().add(myCssBundle.getString("LeftVBox"));
 		container.setPrefWidth(Double.parseDouble(myCssBundle.getString("leftprefwidth")));
 	}
 

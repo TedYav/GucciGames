@@ -23,10 +23,10 @@ public class RightBar extends WindowSideComponent {
 
 	@Override
 	protected void initializeData() {
-		for (DisplayComponent d : getMyComponents()) {
-			container.getChildren().add(d.getParent());
-		}
-		container.getStyleClass().add(myCssBundle.getString("RightVBox"));
+            while (getComponentParentsIter().hasNext()) {
+                container.getChildren().add(getComponentParentsIter().next());
+            }
+            container.getStyleClass().add(myCssBundle.getString("RightVBox"));
 		container.setPrefWidth(Double.parseDouble(myCssBundle.getString("rightprefwidth")));
 	}
 }

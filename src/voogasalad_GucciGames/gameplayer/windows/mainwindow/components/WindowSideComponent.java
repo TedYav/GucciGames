@@ -1,11 +1,13 @@
 package voogasalad_GucciGames.gameplayer.windows.mainwindow.components;
 
-import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Observable;
 import java.util.Observer;
-
+import java.util.stream.Collectors;
 import javafx.collections.ListChangeListener;
+import javafx.scene.Node;
 import voogasalad_GucciGames.gameEngine.PlayerMapObjectInterface;
 import voogasalad_GucciGames.gameplayer.controller.GameControllerInterface;
 import voogasalad_GucciGames.gameplayer.scenes.GameScene;
@@ -17,17 +19,15 @@ public abstract class WindowSideComponent extends WindowComponent implements Obs
 	public WindowSideComponent(GameScene scene, GameControllerInterface controller, List<DisplayComponent> components) {
 		super(scene, controller);
 		getController().addActiveMOObserver(this);
-		setMyComponents(components);
+		setComponents(components);
 	}
 
 	public List<ListChangeListener<PlayerMapObjectInterface>> requestListeners() {
-		List<ListChangeListener<PlayerMapObjectInterface>> listeners = new ArrayList<ListChangeListener<PlayerMapObjectInterface>>();
-		for (DisplayComponent d : getMyComponents()) {
-			if (d.getListener() != null) {
-				listeners.add(d.getListener());
-			}
-		}
-		return listeners;
+	        List<ListChangeListener<PlayerMapObjectInterface>> listeners = myComponents.stream()
+	                .filter(d->d.getListener()!=null)
+	                .map(d->d.getListener())
+	                .collect(Collectors.toList());
+		return Collections.unmodifiableList(listeners);
 	}
 
 	@Override
@@ -38,9 +38,7 @@ public abstract class WindowSideComponent extends WindowComponent implements Obs
 	}
 
 	public void updateComponents() {
-		for (DisplayComponent d : myComponents) {
-			d.updateDisplay();
-		}
+	    myComponents.forEach(d->d.updateDisplay());
 	}
 
 	/**
@@ -49,11 +47,11 @@ public abstract class WindowSideComponent extends WindowComponent implements Obs
 	 */
 	protected abstract void initializeData();
 
-	public List<DisplayComponent> getMyComponents() {
-		return myComponents;
+	public Iterator<? extends Node> getComponentParentsIter() {
+		return myComponents.stream().map(c->c.getParent()).collect(Collectors.toList()).iterator();
 	}
 
-	public void setMyComponents(List<DisplayComponent> myComponents) {
+	public void setComponents(List<DisplayComponent> myComponents) {
 		this.myComponents = myComponents;
 	}
 
