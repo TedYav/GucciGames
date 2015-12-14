@@ -21,10 +21,8 @@ import voogasalad_GucciGames.gameAuthoring.model.MapObjectType;
 public class MainPane extends GridPane {
 
 	private ISwitchGroovyPane groovyPaneController;
-	private ISwitchSettingsPane settingsPaneController;
 
 	private static final String groovyPackagePath = "voogasalad_GucciGames.gameAuthoring.gui.gaedialog.groovySettings.";
-	private static final String settingsPackagePath = "voogasalad_GucciGames.gameAuthoring.gui.gaedialog.mapobjsettings.";
 	private Button nextBtn = new Button("Next");
 
 	private Text title;
@@ -46,7 +44,6 @@ public class MainPane extends GridPane {
 
 		this.mapObjectType = type;
 
-		this.settingsPaneController = settingsPaneController;
 		this.prop = prop;
 		this.dialogController = dialogController;
 		this.actionParamsValue = actionParamsValue;
@@ -54,7 +51,6 @@ public class MainPane extends GridPane {
 		items.add("Action");
 		items.add("Characteristic");
 		radioBtnField = new RadioBtnField(items);
-		addActionForSettingsNextBtn();
 		setLayout();
 
 	}
@@ -102,21 +98,6 @@ public class MainPane extends GridPane {
 
 	}
 
-	private void addActionForSettingsNextBtn() {
-		Reflection reflection = new Reflection();
-		nextBtn.setOnAction(e -> {
-			selected = radioBtnField.getSelected();
-			String name = settingsPackagePath + selected + "Pane";
-			System.out.println("map obj: " + this.mapObjectType);
-			if (selected.equals("Action")) {
-				settingsPaneController.switchSettingsPane(Reflection.createInstance(name, settingsPaneController,
-						dialogController, prop, mapObjectType, this.actionParamsValue));
-			} else {
-				settingsPaneController.switchSettingsPane(reflection.createInstance(name, settingsPaneController,
-						dialogController, prop, mapObjectType, this.charParamValues));
-			}
 
-		});
-	}
 
 }

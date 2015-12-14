@@ -5,7 +5,6 @@ import javafx.event.EventHandler;
 import javafx.scene.control.ContextMenu;
 import javafx.scene.control.MenuItem;
 import voogasalad_GucciGames.gameAuthoring.AGuiGaeController;
-import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.maindialogs.SettingsDialog;
 import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.mapobjsettings.MainDialog;
 import voogasalad_GucciGames.gameAuthoring.model.MapObjectType;
 
