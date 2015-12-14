@@ -1,3 +1,5 @@
+// This entire file is part of my masterpiece.
+// Ying Qi
 package voogasalad_GucciGames.gameAuthoring.gui.gaedialog.mapobjsettings;
 
 import javafx.scene.control.ButtonBar.ButtonData;
