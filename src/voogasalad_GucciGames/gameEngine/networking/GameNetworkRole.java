@@ -54,7 +54,7 @@ public abstract class GameNetworkRole implements Runnable {
 	 * 
 	 * @param gameEnginePlayer
 	 */
-	public void setActor(GameEngineNetworkActor gameEnginePlayer) {
+	public void setActor(GameEngineNetworkThreadActor gameEnginePlayer) {
 
 		myActor = Optional.ofNullable(gameEnginePlayer);
 	}

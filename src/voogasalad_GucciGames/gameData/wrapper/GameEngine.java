@@ -19,7 +19,7 @@ import voogasalad_GucciGames.gameEngine.gamePlayer.GamePlayerPerson;
 import voogasalad_GucciGames.gameEngine.gamePlayer.chars.APlayerChars;
 import voogasalad_GucciGames.gameEngine.mapObject.MapObject;
 import voogasalad_GucciGames.gameEngine.networking.GameEngineClient;
-import voogasalad_GucciGames.gameEngine.networking.GameEngineNetworkActor;
+import voogasalad_GucciGames.gameEngine.networking.GameEngineNetworkThreadActor;
 import voogasalad_GucciGames.gameEngine.networking.GameEngineServer;
 import voogasalad_GucciGames.gameEngine.networking.NetworkException;
 import voogasalad_GucciGames.gameEngine.targetCoordinate.ATargetCoordinate;
@@ -49,7 +49,7 @@ public class GameEngine implements IGameInfoToGAE, GameEngineToGamePlayerInterfa
 	private boolean isEndTurn;
 	
 
-	private transient volatile GameEngineNetworkActor iAmAPlayer;
+	private transient volatile GameEngineNetworkThreadActor iAmAPlayer;
 	private transient volatile Thread t;
 
 	@XStreamOmitField

@@ -26,7 +26,7 @@ import voogasalad_GucciGames.gameplayer.controller.GameParametersInterface;
  *
  */
 @Deprecated
-public class GameEngineServer extends GameEngineNetworkActor implements Runnable {
+public class GameEngineServer extends GameEngineNetworkThreadActor implements Runnable {
 
 	private int myPlayerID;
 	private Set<PrintWriter> writers;

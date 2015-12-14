@@ -14,23 +14,7 @@ import java.util.function.Consumer;
  * network-compatible, you have to instantiate a network actor on different JVMs
  * and assign them different GameNetworkRoles. <br>
  * <br>
- * Note that this actor is designed to run on a separate thread from your
- * frontend thread, so when you run it, you can run it in a different thread.
- * <br>
- * <br>
- * Ideally, the engine using the network actor would first initialize the
- * network actor in its constructor, and then assign it a role and different
- * protocols when the user makes a decision. The actor comes with a Null role,
- * which is compatible with Single Player games, so it will not cause any errors
- * if it is initialized even in a Single Player scenario. <br>
- * <br>
  * Example usage: <br>
- * <br>
- * public Engine(){<br>
- * ...<br>
- * GameEngineNetworkActorInterface myActor = new GameEngineNetworkActor((GameNetworkEngineInterface) this);<br>
- * }<br>
- * 
  * ... <br>
  * Game loader loads which protocols to use for the game and calls
  * myActor.addProtocol(GameInformationProtocol) <br>
@@ -39,7 +23,7 @@ import java.util.function.Consumer;
  * myActor.assignRole(GameNetworkRole)<br>
  * ... <br>
  * User starts the game <br>
- * myActor.run();
+ * myActor.play();
  * 
  * 
  * 
@@ -109,7 +93,7 @@ public interface GameEngineNetworkActorInterface {
 	 * Different networking classes, like protocols and roles, are expected to
 	 * access this method.
 	 * 
-	 * Look at {@link GameEngineNetworkActor#checkProtocols(String, Consumer)
+	 * Look at {@link GameEngineNetworkThreadActor#checkProtocols(String, Consumer)
 	 * checkProtocols} method to understand the inputs and the outputs.
 	 * 
 	 */
@@ -166,8 +150,10 @@ public interface GameEngineNetworkActorInterface {
 	 */
 	public void assignRole(GameNetworkRole role);
 	
-	
-	
+	/**
+	 * Asks the actor to play its role.
+	 */
+	public void play();
 	
 
 }

@@ -11,13 +11,39 @@ import java.util.function.Consumer;
 import java.util.function.Predicate;
 import java.util.stream.Collectors;
 
-public class GameEngineNetworkActor implements GameEngineNetworkActorInterface, Runnable {
+/**
+ * This is an implementation of a GameEngineNetworkActionInterface that allows
+ * this actor to run on a separate thread than the main program.
+ * 
+ * <br>
+ * Note that this actor is designed to run on a separate thread from your
+ * frontend thread, so when you run it, you can run it in a different thread
+ * since it implements Runnable. <br>
+ * <br>
+ * Ideally, the engine using the network actor would first initialize the
+ * network actor in its constructor, and then assign it a role and different
+ * protocols when the user makes a decision. This actor comes with a NullRole,
+ * which is compatible with Single Player games, so it will not cause any errors
+ * if it is initialized even in a Single Player scenario. <br>
+ * 
+ * Also look at {@link GameEngineNetworkActorInterface} to see example usage for
+ * this class.
+ * 
+ * @author Efe Aras
+ *
+ */
+public class GameEngineNetworkThreadActor implements GameEngineNetworkActorInterface, Runnable {
 
 	private GameNetworkEngineInterface mySuperEngine;
 	private Set<GameInformationProtocol> myProtocols;
 	private GameNetworkRole myRole;
 
-	public GameEngineNetworkActor(GameNetworkEngineInterface engine) {
+	/**
+	 * Allows constructing an actor for a given engine
+	 * 
+	 * @param engine
+	 */
+	public GameEngineNetworkThreadActor(GameNetworkEngineInterface engine) {
 		mySuperEngine = engine;
 		myRole = new GameEngineNullRole(engine);
 	}
@@ -81,9 +107,13 @@ public class GameEngineNetworkActor implements GameEngineNetworkActorInterface, 
 		role.setActor(this);
 	}
 
-
 	public void run() {
 		myRole.run();
+	}
+
+	@Override
+	public void play() {
+		run();
 	}
 
 }
