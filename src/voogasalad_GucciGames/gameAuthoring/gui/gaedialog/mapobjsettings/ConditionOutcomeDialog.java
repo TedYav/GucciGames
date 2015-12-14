@@ -9,7 +9,7 @@ import javafx.util.Pair;
 import voogasalad_GucciGames.gameAuthoring.IDialogGaeController;
 import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.maindialogs.ISwitchSettingsPane;
 import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.paramObjects.ActionParamsValue;
-import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.paramObjects.ObjParam;
+import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.paramObjects.ObjectParam;
 import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.paramObjects.ObjParamValue;
 import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.paramObjects.OutcomeParamValue;
 import voogasalad_GucciGames.gameAuthoring.model.MapObjectType;
@@ -45,7 +45,7 @@ public class ConditionOutcomeDialog extends javafx.scene.control.Dialog<Pair<Lis
 			if (dialogButton == save) {
 				List<String> conditions = this.pane.getConditions();
 
-				List<ObjParam> condParam = controller.getPropertiesInterface().getSelectedConditions(conditions);
+				List<ObjectParam> condParam = controller.getPropertiesInterface().getSelectedConditions(conditions);
 
 				OutcomeParamValue outcomeVal = pane.getOutcomeValue();
 

@@ -11,7 +11,7 @@ import javafx.scene.text.Font;
 import voogasalad_GucciGames.gameAuthoring.IDialogGaeController;
 import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.dialogcomponents.DialogTableView;
 import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.dialogcomponents.DropDownMenuField;
-import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.paramObjects.ObjParam;
+import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.paramObjects.ObjectParam;
 import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.paramObjects.OutcomeParamValue;
 import voogasalad_GucciGames.gameAuthoring.model.MapObjectType;
 
@@ -33,7 +33,7 @@ public class ConditionOutcomePane extends GridPane {
 
 	private List<String> selectedOutcomes = new ArrayList<String>();
 
-	private ObjParam outcomeParam;
+	private ObjectParam outcomeParam;
 
 	private ObjParamPane objParamPane;
 
@@ -64,7 +64,7 @@ public class ConditionOutcomePane extends GridPane {
 			this.selectedOutcome.setText(selected);
 			List<String> selectedOutcomes = new ArrayList<String>();
 			selectedOutcomes.add(selected);
-			List<ObjParam> outcomes = controller.getPropertiesInterface().getSelectedOutcomes(selectedOutcomes);
+			List<ObjectParam> outcomes = controller.getPropertiesInterface().getSelectedOutcomes(selectedOutcomes);
 			System.out.println("outcome size: " + outcomes.size());
 			outcomeParam = controller.getPropertiesInterface().getSelectedOutcomes(selectedOutcomes).get(0);
 			this.setOutcomeParam();

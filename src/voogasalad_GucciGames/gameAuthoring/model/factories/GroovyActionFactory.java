@@ -22,9 +22,16 @@ public class GroovyActionFactory {
 	// outline vs instance which has values.
 	// add default rules to action
 
-	public Object create(Map<String, GActionParams> actionParams, ActionParamsValue actionValues)
-			throws NoSuchMethodException, SecurityException, InstantiationException, IllegalAccessException,
-			IllegalArgumentException, InvocationTargetException {
+	public Object create(Map<String, GActionParams> actionParams, ActionParamsValue actionValues) {
+		try {
+			return makeActions(actionParams, actionValues);
+		} catch (NoSuchMethodException | SecurityException | InstantiationException | IllegalAccessException
+				| IllegalArgumentException | InvocationTargetException e) {
+			throw new CreatePropertyException();
+		}
+	}
+	
+	public Object makeActions(Map<String, GActionParams> actionParams, ActionParamsValue actionValues) throws NoSuchMethodException, SecurityException, InstantiationException, IllegalAccessException, IllegalArgumentException, InvocationTargetException {
 		// param name to type
 		// groovycustevent instance to loader.
 
@@ -43,6 +50,5 @@ public class GroovyActionFactory {
 		System.out.println(myObject.getClass().toString());
 
 		return myObject;
-
 	}
 }

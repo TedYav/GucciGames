@@ -3,7 +3,7 @@ package voogasalad_GucciGames.gameAuthoring.gui.gaedialog.paramObjects;
 import java.util.HashMap;
 import java.util.Map;
 
-public class ObjParam {
+public class ObjectParam {
 
 	private String name;
 	private Map<String, String> params = new HashMap<String, String>();
@@ -11,7 +11,7 @@ public class ObjParam {
 	private ObjType type;
 	private int ownerId;
 
-	public ObjParam(String name, ObjType type, int ownerId) {
+	public ObjectParam(String name, ObjType type, int ownerId) {
 		this.name = name;
 		this.type = type;
 		this.ownerId = ownerId;

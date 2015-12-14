@@ -10,15 +10,14 @@ import java.util.Properties;
 import java.util.Set;
 
 import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.mapobjectsettings.xml.ParamObjParser;
-import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.paramObjects.ObjParam;
+import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.paramObjects.ObjectParam;
 import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.paramObjects.ObjParamValue;
 import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.paramObjects.OutcomeParamValue;
+import voogasalad_GucciGames.gameAuthoring.model.AllParamsHolder;
 import voogasalad_GucciGames.gameEngine.gameConditions.Conditions;
 import voogasalad_GucciGames.gameEngine.gameConditions.outcomes.Outcome;
 
 public class OutcomeFactory {
-
-	private Map<String, ObjParam> myConditions = new HashMap<String, ObjParam>();
 
 	InputStream inputStream;
 	private Properties prop;
@@ -35,32 +34,21 @@ public class OutcomeFactory {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-		ParamObjParser parser = new ParamObjParser();
-		Set<ObjParam> conditions = parser.getConditions();
-		for (ObjParam param : conditions) {
-			myConditions.put(param.getName(), param);
-		}
-
 	}
 
-	public Outcome createOutcome(Map<String, ObjParam> params, OutcomeParamValue value)
+	public Outcome createOutcome(AllParamsHolder params, OutcomeParamValue value)
 			throws ClassNotFoundException, NoSuchMethodException, SecurityException, InstantiationException,
 			IllegalAccessException, IllegalArgumentException, InvocationTargetException {
-
-		// constructs empty Action object
-		System.out.println("From outcome factory value name: " + value.getName());
-
-		System.out.println("From outcome factory: " + prop.getProperty(value.getName()));
 
 		Class<Outcome> outcome = (Class<Outcome>) Class.forName(prop.getProperty(value.getName()));
 		Constructor<Outcome> outcomeConstructor = outcome.getDeclaredConstructor();
 		Outcome outcomeInstance = outcomeConstructor.newInstance();
 
-		ObjParam outcomeParam = params.get(value.getName());
+		ObjectParam outcomeParam = params.getOutcomeParams().get(value.getName());
 
 		// construct and add conditions
 		for (ObjParamValue param : value.getConditions()) {
-			outcomeInstance.addCondition((Conditions) conditionFactory.create(myConditions, param));
+			outcomeInstance.addCondition((Conditions) conditionFactory.create(params.getConditionParams(), param));
 		}
 
 		return (Outcome) outcomeInstance;

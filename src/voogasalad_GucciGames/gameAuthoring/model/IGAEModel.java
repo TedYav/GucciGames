@@ -8,11 +8,11 @@ import voogasalad_GucciGames.gameAuthoring.gui.map.GridPoint;
 
 public interface IGAEModel {
 
-	public void deleteComponent(int levelID, DisplayMapObject mapObj);
+	public void deleteMapObject(int levelID, DisplayMapObject mapObj);
 
 	public List<DisplayMapObject> getMapObjects(int id);
 
-	public DisplayMapObject addObject(int levelID, GridPoint gridpoint, MapObjectType mapObjType);
+	public DisplayMapObject addMapObject(int levelID, GridPoint gridpoint, MapObjectType mapObjType);
 
 	public void clearMap(int id);
 
@@ -38,16 +38,9 @@ public interface IGAEModel {
 
 	public void setDefaultOwner(int ownerID);
 
-	// All consolidated into this interface:
 	public IGameProperties getPropertiesInterface();
 
 	public void addPlayerCharacteristic(int playerID, ObjParamValue param);
-
-	public void deleteTileType(MapObjectType object);
-
-	public void deleteStructureType(MapObjectType object);
-
-	public void deleteUnitType(MapObjectType object);
 
 	public void setNumberOfPlayers(int n);
 
@@ -56,4 +49,6 @@ public interface IGAEModel {
 	public int getDefaultOwner();
 
 	public void setGameName(String name);
+	
+	public void deleteMapObjectType(MapObjectType obj);
 }

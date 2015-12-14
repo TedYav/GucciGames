@@ -8,13 +8,13 @@ import org.xml.sax.SAXException;
 import org.xml.sax.helpers.DefaultHandler;
 
 import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.maindialogs.GaeDialogHelper;
-import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.paramObjects.ObjParam;
+import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.paramObjects.ObjectParam;
 import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.paramObjects.ObjType;
 
 public class CharacteristicsSAXHandler extends DefaultHandler {
 
-	private List<ObjParam> characteristicsParams = new ArrayList<ObjParam>();
-	private ObjParam characteristicsParam = null;
+	private List<ObjectParam> characteristicsParams = new ArrayList<ObjectParam>();
+	private ObjectParam characteristicsParam = null;
 	private final GaeDialogHelper helper = new GaeDialogHelper();
 	private ObjType type;
 
@@ -22,7 +22,7 @@ public class CharacteristicsSAXHandler extends DefaultHandler {
 		this.type = type;
 	}
 
-	public List<ObjParam> getObjParams() {
+	public List<ObjectParam> getObjParams() {
 		return characteristicsParams;
 	}
 
@@ -31,7 +31,7 @@ public class CharacteristicsSAXHandler extends DefaultHandler {
 		if ("element".equals(qName)) {
 			String name = attributes.getValue("name");
 
-			characteristicsParam = new ObjParam(name, type, -1);
+			characteristicsParam = new ObjectParam(name, type, -1);
 			List<String> paramNames = helper.parseStringToList(attributes.getValue("paramNames"));
 			List<String> paramTypes = helper.parseStringToList(attributes.getValue("paramTypes"));
 			for (int i = 0; i < paramNames.size(); i++) {

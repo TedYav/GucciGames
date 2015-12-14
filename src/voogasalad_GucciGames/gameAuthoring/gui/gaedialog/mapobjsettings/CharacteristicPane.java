@@ -10,7 +10,7 @@ import javafx.scene.layout.GridPane;
 import voogasalad_GucciGames.gameAuthoring.IDialogGaeController;
 import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.dialogcomponents.DialogTableView;
 import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.maindialogs.ISwitchSettingsPane;
-import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.paramObjects.ObjParam;
+import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.paramObjects.ObjectParam;
 import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.paramObjects.ObjParamValue;
 import voogasalad_GucciGames.gameAuthoring.model.MapObjectType;
 
@@ -54,7 +54,7 @@ public class CharacteristicPane extends GridPane {
 		saveBtn.setOnAction(e -> {
 
 			List<String> data = dialogTableView.getData();
-			List<ObjParam> charParams = controller.getPropertiesInterface().getSelectedMapObjCharParams(data);
+			List<ObjectParam> charParams = controller.getPropertiesInterface().getSelectedMapObjCharParams(data);
 
 			objParamVBox = new AllObjParamPane(switchPane, charParams, this.allCharParams, this.mapObjectType);
 

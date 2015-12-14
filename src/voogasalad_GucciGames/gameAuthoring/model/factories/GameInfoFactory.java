@@ -8,7 +8,7 @@ import voogasalad_GucciGames.gameAuthoring.model.DisplayMapObject;
 import voogasalad_GucciGames.gameAuthoring.model.LevelData;
 import voogasalad_GucciGames.gameAuthoring.model.MapData;
 import voogasalad_GucciGames.gameAuthoring.model.MapObjectType;
-import voogasalad_GucciGames.gameAuthoring.model.TypeData;
+import voogasalad_GucciGames.gameAuthoring.model.GameProperties;
 import voogasalad_GucciGames.gameData.wrapper.GameInfo;
 import voogasalad_GucciGames.gameData.wrapper.GuiData;
 import voogasalad_GucciGames.gameEngine.GameLevelEngine;
@@ -23,7 +23,7 @@ import voogasalad_GucciGames.gameEngine.targetCoordinate.TargetCoordinateSingle;
 
 public class GameInfoFactory {
 
-	public GameInfo create(TypeData typeData, LevelData levelData, GuiData guiData,
+	public GameInfo create(GameProperties typeData, LevelData levelData, GuiData guiData,
 			List<MapObjectType> mapObjectTypeList, String name) {
 
 		GameInfo game = new GameInfo(name);
@@ -59,10 +59,8 @@ public class GameInfoFactory {
 		return mapObjects;
 	}
 
-	private GameLevelEngine makeLevel(Map<Integer, GamePlayerPerson> mapOfPlayers, TypeData typeData, MapData mapData) {
-		Map<Integer, GamePlayerPerson> copyMapOfPlayers = new HashMap<>(mapOfPlayers);
-
-		AllPlayers allplayers = new AllPlayers(copyMapOfPlayers);
+	private GameLevelEngine makeLevel(Map<Integer, GamePlayerPerson> mapOfPlayers, GameProperties typeData, MapData mapData) {
+		AllPlayers allplayers = new AllPlayers(mapOfPlayers);
 		GameLevelEngine level = new GameLevelEngine(allplayers);
 
 		for (DisplayMapObject obj : mapData.getMapObjects()) {
@@ -77,7 +75,7 @@ public class GameInfoFactory {
 			events.forEach(a -> mapObject.addEvent(a.getClass().getSimpleName(), a));
 			BasicParameters basic = new BasicParameters(level);
 			mapObject.setMapObjectEventHandler(new MapObjectEventHandler(basic));
-			copyMapOfPlayers.get(obj.getOwnerID()).addMapObject(mapObject);
+			mapOfPlayers.get(obj.getOwnerID()).addMapObject(mapObject);
 
 		}
 		level.setMapHeight(mapData.getHeight());

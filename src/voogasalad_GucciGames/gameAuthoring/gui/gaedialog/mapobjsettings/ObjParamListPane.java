@@ -10,7 +10,7 @@ import javafx.geometry.Insets;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.GridPane;
-import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.paramObjects.ObjParam;
+import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.paramObjects.ObjectParam;
 import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.paramObjects.ObjParamValue;
 import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.paramObjects.ObjType;
 import voogasalad_GucciGames.gameAuthoring.model.MapObjectType;
@@ -23,7 +23,7 @@ import voogasalad_GucciGames.gameAuthoring.model.MapObjectType;
  */
 public class ObjParamListPane extends GridPane {
 
-	private List<ObjParam> param = new ArrayList<ObjParam>();
+	private List<ObjectParam> param = new ArrayList<ObjectParam>();
 	private Map<Label, TextField> contents = new HashMap<Label, TextField>();
 	private List<String> objName = new ArrayList<String>();
 	private List<ObjType> type = new ArrayList<ObjType>();
@@ -31,8 +31,8 @@ public class ObjParamListPane extends GridPane {
 	private MapObjectType mapObjectType;
 	private int playerId;
 
-	public ObjParamListPane(List<ObjParam> param, int playerId) {
-		for (ObjParam eachObjParam : param) {
+	public ObjParamListPane(List<ObjectParam> param, int playerId) {
+		for (ObjectParam eachObjParam : param) {
 			String paramName = eachObjParam.getName();
 			objName.add(paramName);
 
@@ -60,7 +60,7 @@ public class ObjParamListPane extends GridPane {
 		Label playerLabel = new Label("Player " + playerId);
 		this.add(playerLabel, 0, 1);
 
-		for (ObjParam eachObjParam : param) {
+		for (ObjectParam eachObjParam : param) {
 			for (Map.Entry<String, String> entry : eachObjParam.getAllParams().entrySet()) {
 				Label label = new Label(entry.getKey());
 				label.setPrefWidth(200);

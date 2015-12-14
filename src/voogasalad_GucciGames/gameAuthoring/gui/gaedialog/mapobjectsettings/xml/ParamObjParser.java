@@ -13,19 +13,19 @@ import javax.xml.parsers.SAXParserFactory;
 import org.xml.sax.SAXException;
 
 import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.paramObjects.ActionParam;
-import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.paramObjects.ObjParam;
+import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.paramObjects.ObjectParam;
 import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.paramObjects.ObjType;
 import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.paramObjects.RuleParams;
 
 public class ParamObjParser {
 
-	private Set<ObjParam> allMapObjCharParams = new HashSet<ObjParam>();
+	private Set<ObjectParam> allMapObjCharParams = new HashSet<ObjectParam>();
 
-	private Set<ObjParam> allPlayerCharParams = new HashSet<ObjParam>();
+	private Set<ObjectParam> allPlayerCharParams = new HashSet<ObjectParam>();
 
-	private Set<ObjParam> allOutcomeParams = new HashSet<ObjParam>();
+	private Set<ObjectParam> allOutcomeParams = new HashSet<ObjectParam>();
 
-	private Set<ObjParam> allConditionParams = new HashSet<ObjParam>();
+	private Set<ObjectParam> allConditionParams = new HashSet<ObjectParam>();
 
 	Set<RuleParams> allRules = new HashSet<RuleParams>();
 
@@ -43,19 +43,19 @@ public class ParamObjParser {
 		parseAll();
 	}
 
-	public Set<ObjParam> getMapObjChars() {
+	public Set<ObjectParam> getMapObjChars() {
 		return allMapObjCharParams;
 	}
 
-	public Set<ObjParam> getPlayerChars() {
+	public Set<ObjectParam> getPlayerChars() {
 		return allPlayerCharParams;
 	}
 
-	public Set<ObjParam> getOutcomes() {
+	public Set<ObjectParam> getOutcomes() {
 		return allOutcomeParams;
 	}
 
-	public Set<ObjParam> getConditions() {
+	public Set<ObjectParam> getConditions() {
 		return allConditionParams;
 	}
 
@@ -115,14 +115,14 @@ public class ParamObjParser {
 
 	}
 
-	private void parse(String path, Set<ObjParam> set, ObjType type) {
+	private void parse(String path, Set<ObjectParam> set, ObjType type) {
 		SAXParserFactory saxParserFactory = SAXParserFactory.newInstance();
 		try {
 			SAXParser saxParser = saxParserFactory.newSAXParser();
 
 			CharacteristicsSAXHandler handler = new CharacteristicsSAXHandler(type);
 			saxParser.parse(new File(path), handler);
-			List<ObjParam> list = handler.getObjParams();
+			List<ObjectParam> list = handler.getObjParams();
 			set.addAll(list);
 
 		} catch (ParserConfigurationException | SAXException | IOException ex) {

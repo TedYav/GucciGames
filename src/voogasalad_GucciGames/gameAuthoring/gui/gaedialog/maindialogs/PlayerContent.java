@@ -15,7 +15,7 @@ import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.DialogElements;
 import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.dialogcomponents.FileBrowserField;
 import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.dialogcomponents.ScrollBarField;
 import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.dialogcomponents.TextInputField;
-import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.paramObjects.ObjParam;
+import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.paramObjects.ObjectParam;
 
 public class PlayerContent extends GridPane {
 	private static final String gaeDialogPath = "voogasalad_GucciGames.gameAuthoring.gui.gaedialog.";
@@ -33,7 +33,7 @@ public class PlayerContent extends GridPane {
 
 	private IDialogGaeController controller;
 
-	private List<ObjParam> myAllObjParams;
+	private List<ObjectParam> myAllObjParams;
 
 	private List<CheckBox> allCheckedBoxes = new ArrayList<CheckBox>();
 	private List<String> allCheckedStrings = new ArrayList<String>();
@@ -41,7 +41,7 @@ public class PlayerContent extends GridPane {
 	// private Button nextBtn = new Button("Next");
 
 	public PlayerContent(int playerNumber, IDialogGaeController controller, Properties prop,
-			List<ObjParam> objParamList) {
+			List<ObjectParam> objParamList) {
 		this.playerNumber = playerNumber;
 		this.controller = controller;
 		this.prop = prop;
@@ -77,7 +77,7 @@ public class PlayerContent extends GridPane {
 		this.add(scrollBarField, 0, 3);
 
 		int i = 4;
-		for (ObjParam eachObjParam : myAllObjParams) {
+		for (ObjectParam eachObjParam : myAllObjParams) {
 			for (Map.Entry<String, String> entry : eachObjParam.getAllParams().entrySet()) {
 				CheckBox cb = new CheckBox(entry.getKey());
 				allCheckedBoxes.add(cb);
@@ -125,9 +125,9 @@ public class PlayerContent extends GridPane {
 		}
 	}
 
-	public List<ObjParam> getAllCheckedPlayerChars() {
-		List<ObjParam> checkedObjParam = new ArrayList<ObjParam>();
-		for (ObjParam objParam : myAllObjParams) {
+	public List<ObjectParam> getAllCheckedPlayerChars() {
+		List<ObjectParam> checkedObjParam = new ArrayList<ObjectParam>();
+		for (ObjectParam objParam : myAllObjParams) {
 			for (Map.Entry<String, String> entry : objParam.getAllParams().entrySet()) {
 				if (allCheckedStrings.contains(entry.getKey())) {
 					checkedObjParam.add(objParam);

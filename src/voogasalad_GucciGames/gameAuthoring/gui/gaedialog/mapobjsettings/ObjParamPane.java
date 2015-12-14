@@ -10,7 +10,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.GridPane;
 import javafx.scene.text.Font;
-import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.paramObjects.ObjParam;
+import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.paramObjects.ObjectParam;
 import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.paramObjects.ObjParamValue;
 import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.paramObjects.ObjType;
 import voogasalad_GucciGames.gameAuthoring.model.MapObjectType;
@@ -24,14 +24,14 @@ import voogasalad_GucciGames.gameAuthoring.model.MapObjectType;
 public class ObjParamPane extends GridPane {
 	private boolean checkInput = true;
 
-	private ObjParam param;
+	private ObjectParam param;
 	private Map<Label, TextField> contents = new HashMap<Label, TextField>();
 	private Label nameLbl;
 	private String objName;
 	private ObjType type;
 	private MapObjectType mapObjectType;
 
-	public ObjParamPane(ObjParam param) {
+	public ObjParamPane(ObjectParam param) {
 		this.nameLbl = new Label(param.getName());
 		nameLbl.setFont(new Font("Arial", 20));
 		this.objName = param.getName();
@@ -42,7 +42,7 @@ public class ObjParamPane extends GridPane {
 
 	}
 
-	public ObjParamPane(ObjParam param, MapObjectType mapObjectType) {
+	public ObjParamPane(ObjectParam param, MapObjectType mapObjectType) {
 		this.nameLbl = new Label(param.getName());
 		this.mapObjectType = mapObjectType;
 		this.objName = param.getName();

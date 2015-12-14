@@ -13,11 +13,13 @@ public class MapObjectType {
 	private String myImagePath;
 	private String myName;
 	private int myLayer;
+	private ObjectTypes myType;
 
-	public MapObjectType(String name, String imagePath, int layer) {
+	public MapObjectType(String name, String imagePath, int layer, ObjectTypes type) {
 		myImagePath = imagePath;
 		myName = name;
 		myLayer = layer;
+		myType = type;
 	}
 
 	public boolean isTile() {
@@ -51,6 +53,10 @@ public class MapObjectType {
 	public int getLayer() {
 		return myLayer;
 	}
+	
+	public ObjectTypes getType() {
+		return myType;
+	}
 
 	public List<AMapObjectCharacteristic> getCharacteristics() {
 		return myCharacteristics;
@@ -69,7 +75,7 @@ public class MapObjectType {
 	}
 
 	public MapObjectType makeCopy() {
-		MapObjectType type = new MapObjectType(myName, myImagePath, myLayer);
+		MapObjectType type = new MapObjectType(myName, myImagePath, myLayer, myType);
 		return type;
 	}
 

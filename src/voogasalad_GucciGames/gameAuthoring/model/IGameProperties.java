@@ -1,32 +1,34 @@
 package voogasalad_GucciGames.gameAuthoring.model;
 
 import java.util.List;
+import java.util.Map;
 
 import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.groovySettings.groovyParams.GActionParams;
 import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.groovySettings.groovyParams.GCharParam;
 import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.paramObjects.ActionParam;
 import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.paramObjects.ActionParamsValue;
-import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.paramObjects.ObjParam;
+import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.paramObjects.ObjectParam;
 import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.paramObjects.ObjParamValue;
 import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.paramObjects.RuleParams;
+import voogasalad_GucciGames.gameEngine.gamePlayer.GamePlayerPerson;
 
 public interface IGameProperties {
 
-	public List<ObjParam> getAllMapObjCharParams();
+	public List<ObjectParam> getAllMapObjCharParams();
 
-	public List<ObjParam> getSelectedMapObjCharParams(List<String> selectedChar);
+	public List<ObjectParam> getSelectedMapObjCharParams(List<String> selectedChar);
 
-	public List<ObjParam> getAllPlayerCharParams();
+	public List<ObjectParam> getAllPlayerCharParams();
 
-	public List<ObjParam> getSelectedPlayerCharParams(List<String> selectedChar);
+	public List<ObjectParam> getSelectedPlayerCharParams(List<String> selectedChar);
 
-	public List<ObjParam> getAllOutcomes();
+	public List<ObjectParam> getAllOutcomes();
 
-	public List<ObjParam> getSelectedOutcomes(List<String> selectedOutcomes);
+	public List<ObjectParam> getSelectedOutcomes(List<String> selectedOutcomes);
 
-	public List<ObjParam> getAllConditions();
+	public List<ObjectParam> getAllConditions();
 
-	public List<ObjParam> getSelectedConditions(List<String> selectedConditions);
+	public List<ObjectParam> getSelectedConditions(List<String> selectedConditions);
 
 	public List<RuleParams> getAllRules();
 
@@ -45,6 +47,8 @@ public interface IGameProperties {
 	public void addGroovyCharacteristic(GCharParam param);
 
 	public void addGroovyAction(GActionParams param);
+
+	Map<Integer, GamePlayerPerson> getMapOfPlayers();
 
 	// public void addCharParamValue(ObjParamValue param);
 

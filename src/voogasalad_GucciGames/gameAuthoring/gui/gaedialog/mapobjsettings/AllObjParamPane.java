@@ -9,14 +9,14 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Font;
 import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.maindialogs.ISwitchSettingsPane;
-import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.paramObjects.ObjParam;
+import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.paramObjects.ObjectParam;
 import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.paramObjects.ObjParamValue;
 import voogasalad_GucciGames.gameAuthoring.model.MapObjectType;
 
 public class AllObjParamPane extends VBox {
 
 	private Label titleLbl;
-	private List<ObjParam> objParams = new ArrayList<ObjParam>();
+	private List<ObjectParam> objParams = new ArrayList<ObjectParam>();
 	private List<ObjParamPane> objPane = new ArrayList<ObjParamPane>();
 	private Button saveBtn = new Button("Save All");
 	private ISwitchSettingsPane controller;
@@ -25,13 +25,13 @@ public class AllObjParamPane extends VBox {
 
 	private MapObjectType mapObjectType;
 
-	public AllObjParamPane(ISwitchSettingsPane controller, List<ObjParam> charParams, List<ObjParamValue> allCharParams,
+	public AllObjParamPane(ISwitchSettingsPane controller, List<ObjectParam> charParams, List<ObjParamValue> allCharParams,
 			MapObjectType mapObjectType) {
 		this.mapObjectType = mapObjectType;
 		init(controller, charParams, allCharParams);
 	}
 
-	public AllObjParamPane(List<ObjParam> params, String titleName) {
+	public AllObjParamPane(List<ObjectParam> params, String titleName) {
 		this.titleLbl = new Label(titleName);
 		this.titleLbl.setFont(new Font("Arial", 20));
 		this.getChildren().add(titleLbl);
@@ -41,7 +41,7 @@ public class AllObjParamPane extends VBox {
 
 	}
 
-	private void init(ISwitchSettingsPane controller, List<ObjParam> charParams, List<ObjParamValue> allCharParams) {
+	private void init(ISwitchSettingsPane controller, List<ObjectParam> charParams, List<ObjParamValue> allCharParams) {
 		this.objParams = charParams;
 		this.controller = controller;
 		this.allCharParams = allCharParams;

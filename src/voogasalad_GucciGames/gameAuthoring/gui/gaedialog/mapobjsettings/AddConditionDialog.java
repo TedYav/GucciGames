@@ -6,7 +6,7 @@ import java.util.List;
 import javafx.scene.control.ButtonBar.ButtonData;
 import javafx.scene.control.ButtonType;
 import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.maindialogs.ISwitchSettingsPane;
-import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.paramObjects.ObjParam;
+import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.paramObjects.ObjectParam;
 import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.paramObjects.ObjParamValue;
 import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.paramObjects.OutcomeParamValue;
 import voogasalad_GucciGames.gameAuthoring.model.MapObjectType;
@@ -17,7 +17,7 @@ public class AddConditionDialog extends javafx.scene.control.Dialog<List<ObjPara
 	private OutcomeParamValue outcomeVal;
 	private MapObjectType type;
 
-	public AddConditionDialog(ISwitchSettingsPane controller, List<ObjParam> conditions, OutcomeParamValue outcomeVal,
+	public AddConditionDialog(ISwitchSettingsPane controller, List<ObjectParam> conditions, OutcomeParamValue outcomeVal,
 			MapObjectType type) {
 		this.outcomeVal = outcomeVal;
 		this.type = type;

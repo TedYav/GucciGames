@@ -12,20 +12,16 @@ import java.util.Set;
 import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.mapobjectsettings.xml.ParamObjParser;
 import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.paramObjects.ActionParam;
 import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.paramObjects.ActionParamsValue;
-import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.paramObjects.ObjParam;
+import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.paramObjects.ObjectParam;
 import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.paramObjects.OutcomeParamValue;
 import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.paramObjects.RuleParams;
+import voogasalad_GucciGames.gameAuthoring.model.AllParamsHolder;
 import voogasalad_GucciGames.gameEngine.objectActions.MapObjectEvent;
 
 public class ActionFactory {
-	private Map<String, RuleParams> myRules = new HashMap<String, RuleParams>();
-	private Map<String, ObjParam> myConditions = new HashMap<String, ObjParam>();
-	private Map<String, ObjParam> myOutcomes = new HashMap<String, ObjParam>();
-
 	InputStream inputStream;
 	private Properties prop;
 
-	private TypeMap typeMap = new TypeMap();
 	private static final String PATH_TO_RULE_PROPERTIES = "actionsPath.properties";
 
 	private OutcomeFactory outcomeFactory = new OutcomeFactory();
@@ -39,19 +35,6 @@ public class ActionFactory {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-		ParamObjParser parser = new ParamObjParser();
-		Set<ObjParam> conditions = parser.getConditions();
-		for (ObjParam param : conditions) {
-			myConditions.put(param.getName(), param);
-		}
-		Set<ObjParam> outcomes = parser.getOutcomes();
-		for (ObjParam param : outcomes) {
-			myOutcomes.put(param.getName(), param);
-		}
-		Set<RuleParams> rules = parser.getRules();
-		for (RuleParams param : rules) {
-			myRules.put(param.getName(), param);
-		}
 
 	}
 
@@ -59,32 +42,38 @@ public class ActionFactory {
 		return getClass().getResourceAsStream(PATH_TO_RULE_PROPERTIES);
 	}
 
-	public MapObjectEvent createAction(Map<String, ActionParam> params, ActionParamsValue value)
+	public MapObjectEvent createAction(AllParamsHolder params, ActionParamsValue value)
+			throws CreatePropertyException {
+		try {
+			return makeAction(params, value);
+		} catch (ClassNotFoundException | NoSuchMethodException | SecurityException | InstantiationException
+				| IllegalAccessException | IllegalArgumentException | InvocationTargetException e) {
+			throw new CreatePropertyException();
+		}
+	}
+
+	public MapObjectEvent makeAction(AllParamsHolder params, ActionParamsValue value)
 			throws ClassNotFoundException, NoSuchMethodException, SecurityException, InstantiationException,
 			IllegalAccessException, IllegalArgumentException, InvocationTargetException {
 
 		// constructs empty Action object
-		System.out.println(value.getName() + " at " + prop.getProperty(value.getName()));
-		Class<MapObjectEvent> action = (Class<MapObjectEvent>) Class.forName(prop.getProperty(value.getName()));
-		Constructor<MapObjectEvent> actionConstructor = action.getDeclaredConstructor();
-		MapObjectEvent actionInstance = actionConstructor.newInstance();
-
-		// NOT USING BECAUSE NOT ENFORCING CREATION OF CERTAIN CHARS
-		// ActionParam actionParam = params.get(value.getName());
-
+		Class<MapObjectEvent> action;
+		action = (Class<MapObjectEvent>) Class.forName(prop.getProperty(value.getName()));
+		Constructor<MapObjectEvent> actionConstructor;
+		actionConstructor = action.getDeclaredConstructor();
+		MapObjectEvent actionInstance;
+		actionInstance = actionConstructor.newInstance();
+		
 		// construct and add rules
 		for (String ruleName : value.getAllRules()) {
 			actionInstance.addRule(ruleFactory.createRule(ruleName));
 		}
-
+		
 		// construct and add outcomes
 		for (OutcomeParamValue param : value.getAllOutcomes()) {
-			actionInstance.addOutcome(outcomeFactory.createOutcome(myOutcomes, param));
+			actionInstance.addOutcome(outcomeFactory.createOutcome(params, param));
 		}
-
-		System.out.println("Adding action in factory");
-		System.out.println(actionInstance);
-
+		
 		return (MapObjectEvent) actionInstance;
 
 	}

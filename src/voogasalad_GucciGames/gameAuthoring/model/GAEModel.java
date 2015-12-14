@@ -13,33 +13,22 @@ import voogasalad_GucciGames.gameData.wrapper.GroovyLoaderData;
 import voogasalad_GucciGames.gameData.wrapper.GuiData;
 
 public class GAEModel implements IGAEModel {
-	private TypeData typeData;
+	private GameProperties gameData;
 	private GuiData guiData;
-	private IModelGaeController myController;
-	private GameInfoFactory myFactory;
-	private int defaultOwnerID;
+	private int defaultOwnerID = -1;
 	private LevelData levelData;
 	private String gameName;
+	private ModelSaver saver;
 
-	public GAEModel(IModelGaeController controller) {
-		myController = controller;
-		typeData = new TypeData();
-		myFactory = new GameInfoFactory();
+	public GAEModel() {
+		gameData = new GameProperties();
 		guiData = new GuiData();
 		levelData = new LevelData();
-		defaultOwnerID = -1;
-
-		// load all default properites
-		// myActions =
-		// parser.getActions().stream().collect(Collectors.groupingBy(ObjParam::getName,
-		// ));
-
+		saver = new ModelSaver();
 	}
 
 	@Override
-	public void deleteComponent(int levelID, DisplayMapObject mapObj) {
-		// int owner = mapObj.getOwnerID();
-		// mapOfPlayers.get(owner).getMapObjects().remove(mapObj);
+	public void deleteMapObject(int levelID, DisplayMapObject mapObj) {
 		levelData.deleteObject(levelID, mapObj);
 	}
 
@@ -54,57 +43,37 @@ public class GAEModel implements IGAEModel {
 	}
 
 	@Override
-
 	public void createCustomTileType(MapObjectType m) {
-		typeData.addTileType(m);
+		gameData.addMapObjectType(m);
 	}
 
 	@Override
 	public void createCustomUnitType(MapObjectType m) {
-		typeData.addUnitType(m);
+		gameData.addMapObjectType(m);
 	}
 
 	@Override
-
 	public void createCustomStructureType(MapObjectType m) {
-		typeData.addStructureType(m);
+		gameData.addMapObjectType(m);
 	}
 
 	@Override
 	public ObservableList<MapObjectType> getImmutableTileTypes() {
-		return typeData.getImmutableTileTypes();
+		return gameData.getImmutableTileTypes();
 	}
 
 	@Override
 	public ObservableList<MapObjectType> getImmutableUnitTypes() {
-		return typeData.getImmutableUnitTypes();
+		return gameData.getImmutableUnitTypes();
 	}
 
 	@Override
 	public ObservableList<MapObjectType> getImmutableStructureTypes() {
-		return typeData.getImmutableStructureTypes();
-	}
-
-	private void saveToXML(GameInfo game) {
-		XStreamGameEngine saver = new XStreamGameEngine();
-		GroovyLoaderData gLoaderData = new GroovyLoaderData(typeData.getGroovyActionParams(),
-				typeData.getGroovyMapObjectCharParams());
-		saver.saveGameLoader(gLoaderData, game);
-		saver.saveGameInfo(game);
-		typeData.cleanSave();
-
+		return gameData.getImmutableStructureTypes();
 	}
 
 	public void saveToXML() {
-		// AllPlayers myPlayers = new AllPlayers(mapOfPlayers);
-		// MainGameEngine engine = new MainGameEngine(myPlayers);
-		List<MapObjectType> mapObjectTypeList = typeData.getAllMapObjectTypes();
-		saveToXML(myFactory.create(typeData, levelData, guiData, mapObjectTypeList, gameName));
-
-	}
-
-	private boolean validate() { // TODO
-		return false;
+		saver.saveGame(gameData, levelData, guiData, gameName);
 	}
 
 	@Override
@@ -121,15 +90,11 @@ public class GAEModel implements IGAEModel {
 	@Override
 	public int addLevel(String name, int width, int height) {
 		return levelData.addLevel(name, width, height);
-
 	}
 
 	@Override
-	public DisplayMapObject addObject(int levelID, GridPoint gridpoint, MapObjectType mapObjType) {
-
-		DisplayMapObject mapObj = new DisplayMapObject(mapObjType, gridpoint, defaultOwnerID, mapObjType.getLayer());
-		levelData.add(levelID, mapObj);
-		return mapObj;
+	public DisplayMapObject addMapObject(int levelID, GridPoint gridpoint, MapObjectType mapObjType) {
+		return levelData.addMapObject(levelID, gridpoint, defaultOwnerID, mapObjType);
 	}
 
 	@Override
@@ -139,54 +104,22 @@ public class GAEModel implements IGAEModel {
 
 	@Override
 	public IGameProperties getPropertiesInterface() {
-		return typeData;
+		return gameData;
 	}
 
 	@Override
 	public void addPlayerCharacteristic(int playerID, ObjParamValue param) {
-		typeData.addPlayerCharacteristic(playerID, param);
-	}
-
-	// @Override
-	// public void addMapObjectCharacteristic(MapObjectType type, ObjParamValue
-	// param) {
-	// // TODO Auto-generated method stub
-	//
-	// }
-
-	// @Override
-	// public void addActionParamValue(MapObjectType type, ActionParamsValue
-	// param) {
-	// // TODO Auto-generated method stub
-	//
-	// }
-
-	@Override
-	public void deleteTileType(MapObjectType object) {
-		// TODO Auto-generated method stub
-
-	}
-
-	@Override
-	public void deleteStructureType(MapObjectType object) {
-		// TODO Auto-generated method stub
-
-	}
-
-	@Override
-	public void deleteUnitType(MapObjectType object) {
-		// TODO Auto-generated method stub
-
+		gameData.addPlayerCharacteristic(playerID, param);
 	}
 
 	@Override
 	public void setNumberOfPlayers(int n) {
-		typeData.setNumberOfPlayers(n);
+		gameData.setNumberOfPlayers(n);
 	}
 
 	@Override
 	public int getNumberOfPlayers() {
-		return typeData.getNumberOfPlayers();
+		return gameData.getNumberOfPlayers();
 	}
 
 	@Override
@@ -196,6 +129,11 @@ public class GAEModel implements IGAEModel {
 
 	public void setGameName(String name) {
 		gameName = name;
+	}
+
+	@Override
+	public void deleteMapObjectType(MapObjectType obj) {
+		gameData.deleteMapObjectType(obj);
 	}
 
 }

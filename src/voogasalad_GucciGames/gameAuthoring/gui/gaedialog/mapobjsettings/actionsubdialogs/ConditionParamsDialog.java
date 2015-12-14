@@ -8,7 +8,7 @@ import javafx.scene.control.ButtonType;
 import voogasalad_GucciGames.gameAuthoring.IDialogGaeController;
 import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.maindialogs.AGaeDialog;
 import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.mapobjsettings.AllObjParamPane;
-import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.paramObjects.ObjParam;
+import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.paramObjects.ObjectParam;
 import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.paramObjects.ObjParamValue;
 
 public class ConditionParamsDialog extends AGaeDialog<List<ObjParamValue>> {
@@ -16,7 +16,7 @@ public class ConditionParamsDialog extends AGaeDialog<List<ObjParamValue>> {
 	private AllObjParamPane objParamPane;
 
 	public ConditionParamsDialog(IDialogGaeController controller, List<String> selectedConditions) {
-		List<ObjParam> conditionParam = new ArrayList<ObjParam>();
+		List<ObjectParam> conditionParam = new ArrayList<ObjectParam>();
 		conditionParam.addAll(controller.getPropertiesInterface().getSelectedConditions(selectedConditions));
 		objParamPane = new AllObjParamPane(conditionParam, "Selected Conditions");
 		this.getDialogPane().setContent(objParamPane);

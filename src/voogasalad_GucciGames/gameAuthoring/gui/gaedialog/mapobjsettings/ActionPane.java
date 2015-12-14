@@ -20,7 +20,7 @@ import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.mapobjsettings.actionsu
 import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.mapobjsettings.actionsubdialogs.OutcomeDialog;
 import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.mapobjsettings.actionsubdialogs.OutcomeParamsDialog;
 import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.paramObjects.ActionParamsValue;
-import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.paramObjects.ObjParam;
+import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.paramObjects.ObjectParam;
 import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.paramObjects.ObjParamValue;
 import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.paramObjects.OutcomeParamValue;
 import voogasalad_GucciGames.gameAuthoring.model.MapObjectType;
@@ -107,7 +107,7 @@ public class ActionPane extends GridPane {
 			List<String> outcomeNames = new ArrayList<String>();
 			outcomeNames.add(outcomeDialog.showAndWait().get());
 
-			ObjParam selectedOutcomeParam = controller.getPropertiesInterface().getSelectedOutcomes(outcomeNames)
+			ObjectParam selectedOutcomeParam = controller.getPropertiesInterface().getSelectedOutcomes(outcomeNames)
 					.get(0);
 			System.out.println("Selected outcome: " + selectedOutcomeParam.getName());
 			OutcomeParamsDialog outcomeParamsDialog = new OutcomeParamsDialog(selectedOutcomeParam);

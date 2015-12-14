@@ -17,11 +17,9 @@ import javafx.stage.Stage;
 import voogasalad.util.fxsprite.Sprite;
 import voogasalad_GucciGames.gameAuthoring.gui.GAEGui;
 import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.maindialogs.ImageBrowseDialogs;
-import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.paramObjects.ActionParamsValue;
 import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.paramObjects.GameSettingParams;
 import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.paramObjects.ObjParamValue;
 import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.paramObjects.PlayerParams;
-import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.paramObjects.RuleParams;
 import voogasalad_GucciGames.gameAuthoring.gui.levels.LevelTabPane;
 import voogasalad_GucciGames.gameAuthoring.gui.map.GridPoint;
 import voogasalad_GucciGames.gameAuthoring.model.DisplayMapObject;
@@ -49,7 +47,7 @@ public class GaeController extends AGuiGaeController implements IModelGaeControl
 
 	@Override
 	public void initModel() {
-		myModel = new GAEModel(this);
+		myModel = new GAEModel();
 	}
 
 	private MapObjectType mySelectedType;
@@ -77,12 +75,12 @@ public class GaeController extends AGuiGaeController implements IModelGaeControl
 
 	@Override
 	public void deleteComponent(DisplayMapObject mapObj, int levelID) {
-		myModel.deleteComponent(levelID, mapObj);
+		myModel.deleteMapObject(levelID, mapObj);
 	}
 
 	@Override
 	public DisplayMapObject addObject(int levelID, GridPoint gridpoint, MapObjectType mapObjType) {
-		return myModel.addObject(levelID, gridpoint, mapObjType);
+		return myModel.addMapObject(levelID, gridpoint, mapObjType);
 	}
 
 	@Override
@@ -259,55 +257,13 @@ public class GaeController extends AGuiGaeController implements IModelGaeControl
 	}
 
 	@Override
-	public void createCustomType(MapObjectType object, String type) {
-		switch (type) {
-		case "tile":
-			myModel.createCustomTileType(object);
-			break;
-		case "structure":
-			myModel.createCustomStructureType(object);
-			break;
-		case "unit":
-			myModel.createCustomUnitType(object);
-			break;
-		default:
-			throwException(new RuntimeException("No " + type + " type"));
-		}
+	public void createCustomType(MapObjectType object) {
+		myModel.createCustomUnitType(object);
 	}
 
 	@Override
-	public void deleteMapObjectType(MapObjectType object, String type) {
-		switch (type) {
-		case "tile":
-			myModel.deleteTileType(object);
-			break;
-		case "structure":
-			myModel.deleteStructureType(object);
-			break;
-		case "unit":
-			myModel.deleteUnitType(object);
-			break;
-		default:
-			throwException(new RuntimeException("No " + type + " type"));
-		}
-	}
-
-	@Override
-	public List<ActionParamsValue> getAllActions() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public List<RuleParams> getAllRules() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public void addActionParam() {
-		// TODO Auto-generated method stub
-
+	public void deleteMapObjectType(MapObjectType object) {
+		myModel.deleteMapObjectType(object);
 	}
 
 	public GameResourceManagerToGAE getResourceManager() {

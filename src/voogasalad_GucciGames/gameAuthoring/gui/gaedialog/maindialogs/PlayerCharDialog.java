@@ -4,7 +4,7 @@ import java.util.List;
 
 import voogasalad_GucciGames.gameAuthoring.IDialogGaeController;
 import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.mapobjsettings.ObjParamListPane;
-import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.paramObjects.ObjParam;
+import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.paramObjects.ObjectParam;
 import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.paramObjects.ObjParamValue;
 
 public class PlayerCharDialog extends AGaeDialog<ObjParamValue> {
@@ -12,7 +12,7 @@ public class PlayerCharDialog extends AGaeDialog<ObjParamValue> {
 	private IDialogGaeController controller;
 	private int playerid;
 
-	public PlayerCharDialog(List<ObjParam> param, IDialogGaeController controller, int playerid) {
+	public PlayerCharDialog(List<ObjectParam> param, IDialogGaeController controller, int playerid) {
 		super();
 		objParamListPane = new ObjParamListPane(param, playerid);
 		this.controller = controller;

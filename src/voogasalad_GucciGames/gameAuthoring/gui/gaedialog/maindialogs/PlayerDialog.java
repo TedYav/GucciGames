@@ -10,7 +10,7 @@ import javafx.scene.text.Text;
 import voogasalad.util.reflection.Reflection;
 import voogasalad_GucciGames.gameAuthoring.IDialogGaeController;
 import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.DialogElements;
-import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.paramObjects.ObjParam;
+import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.paramObjects.ObjectParam;
 import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.paramObjects.PlayerParams;
 
 public class PlayerDialog extends AGaeDialog<PlayerCharDialog> {
@@ -28,7 +28,7 @@ public class PlayerDialog extends AGaeDialog<PlayerCharDialog> {
 	private int numOfPlayers;
 	private ScrollPane scrollPane = new ScrollPane();
 
-	List<ObjParam> myAllObjParams;
+	List<ObjectParam> myAllObjParams;
 	private PlayerContent playerContent;
 
 	public PlayerDialog(IDialogGaeController controller, int numberOfPlayers) {
@@ -92,7 +92,7 @@ public class PlayerDialog extends AGaeDialog<PlayerCharDialog> {
 					// Save Player
 					PlayerParams params = new PlayerParams(id, name, numMoves);
 					controller.savePlayer(params);
-					List<ObjParam> currObjParams = currPlayerContent.getAllCheckedPlayerChars();
+					List<ObjectParam> currObjParams = currPlayerContent.getAllCheckedPlayerChars();
 					String className = gaeDialogPath + "PlayerCharDialog";
 
 					Reflection.createInstance(className, currObjParams, controller, i);
