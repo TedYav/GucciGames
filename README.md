@@ -13,7 +13,7 @@
  - Daniel McKee: 
  - Joy Patel: Back end design for Game Engine (Events for MapObjects, Groovy Extension)
  - Sally Merza: back end design and implementation for outcomes, rules, conditions.  design and implementtion for factories in the controller
- - Karen Li:
+ - Karen Li: Front end design of Game Authoring Environment
  - Tina Liang:  
 * Files used to start the project: GucciGames.java
 * Any data or resource files required by the project: They are in the resources folder
