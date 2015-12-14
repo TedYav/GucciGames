@@ -8,7 +8,7 @@ public interface IGameLevelToGamePlayer {
 	
 	public String getLevelName();
 	
-	public String getNextLevel();
+//	public String getNextLevel();
 	
 	public boolean hasLevelEnded();
 	

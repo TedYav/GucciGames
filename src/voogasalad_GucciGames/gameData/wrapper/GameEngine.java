@@ -32,12 +32,10 @@ import voogasalad_GucciGames.gameplayer.controller.GameParametersInterface;
  *
  */
 
+
 public class GameEngine implements IGameInfoToGAE, GameEngineToGamePlayerInterface {
 	private static final int MAINMENU = -1;
-	private Map<String, GameLevelEngine> myLevelsMap;
-
 	private String myGameName;
-	private String myCurrentLevel;
 	private GameStats myGameStats;
 	private List<String> played;
 
@@ -54,11 +52,14 @@ public class GameEngine implements IGameInfoToGAE, GameEngineToGamePlayerInterfa
 	private Map<String,MapObject> myBuild;
 
 	public GameEngine(String initialLevel) {
-		myLevelsMap = new HashMap<String, GameLevelEngine>();
+		
 		this.myInitialLevel = initialLevel;
-		this.myCurrentLevel = initialLevel;
 		this.myGameStats = new GameStats();
-
+		myGameStats.setMyCurrentLevel(initialLevel);
+		
+		//default
+		myGameStats.setLevelChooser(new DefaultLevelChooser());
+		
 		myGameName = "RandomName";
 
 		this.transferablePlayerCharacteristics = new ArrayList<String>();
@@ -67,9 +68,13 @@ public class GameEngine implements IGameInfoToGAE, GameEngineToGamePlayerInterfa
 		this.played = new ArrayList<>();
 
 	}
+	
+	public void setLevelChooser(ILevelChooser c){
+		myGameStats.setLevelChooser(c);
+	}
 
 	public void setCurrentLevel(String level) {
-		myCurrentLevel = level;
+		myGameStats.setMyCurrentLevel(level);
 	}
 
 	public GameEngine(String initialLevel, String gameName) {
@@ -91,18 +96,21 @@ public class GameEngine implements IGameInfoToGAE, GameEngineToGamePlayerInterfa
 	}
 
 	public void resetGame() {		
-		myCurrentLevel = myInitialLevel;
+		myGameStats.setMyCurrentLevel(myInitialLevel);
 	}
 
+	
+	//this is how you change levels, how do you know what to change to? that's when you should call IlevelChooser.nextLevel();
+	//creates a string that's passed into here.
 	@Override
 	public void changeCurrentLevel(String newGameLevel) {
-
+		//where did this come from?
 		if (this == null) {
 			return;
 		}
 
 //		System.out.println(levelComplete);
-		myCurrentLevel = newGameLevel;
+		myGameStats.setMyCurrentLevel(newGameLevel);
 //		else{
 //			System.out.println("JK level has NOT changed");
 //		}
@@ -153,7 +161,7 @@ public class GameEngine implements IGameInfoToGAE, GameEngineToGamePlayerInterfa
 	 */
 	public void addLevel(String levelName, GameLevelEngine myEngine) {
 		myEngine.setLevelName(levelName);
-		myLevelsMap.put(levelName, myEngine);
+		myGameStats.getLevelsMap().put(levelName, myEngine);
 
 	}
 
@@ -164,13 +172,13 @@ public class GameEngine implements IGameInfoToGAE, GameEngineToGamePlayerInterfa
 
 	@Override
 	public Map<String, IGameLevelToGamePlayer> getLevelsMap() {
-		return Collections.unmodifiableMap(myLevelsMap);
+		return Collections.unmodifiableMap(myGameStats.getLevelsMap());
 	}
 
 	@Override
 	public List<String> getChoosableLevels() {
 		List<String> levelNames = new ArrayList<String>();
-		for (GameLevelEngine engine : myLevelsMap.values()) {
+		for (GameLevelEngine engine : myGameStats.getLevelsMap().values()) {
 			if (engine.isMyChoosability()) {
 				levelNames.add(engine.getLevelName());
 			}
@@ -181,8 +189,7 @@ public class GameEngine implements IGameInfoToGAE, GameEngineToGamePlayerInterfa
 	@Override
 	public void setLevel(String gameName, GameLevelEngine engine) {
 		engine.setLevelName(gameName);
-		myLevelsMap.put(gameName, engine);
-
+		myGameStats.getLevelsMap().put(gameName, engine);
 	}
 
 	public GameLevelEngine getCurrentLevel() {
@@ -191,11 +198,11 @@ public class GameEngine implements IGameInfoToGAE, GameEngineToGamePlayerInterfa
 			updateTransfer();
 			isChangingLevel = false;
 		}
-		return myLevelsMap.get(myCurrentLevel);
+		return myGameStats.getLevelsMap().get(myGameStats.getMyCurrentLevel());
 	}
 
 	private boolean updateTransfer() {
-		AllPlayers players = this.myLevelsMap.get(myCurrentLevel).getPlayers();
+		AllPlayers players = this.myGameStats.getLevelsMap().get(myGameStats.getMyCurrentLevel()).getPlayers();
 		for (Integer id : players.getAllIds()) {
 			if (this.myGameStats.contains(id)) {
 				GamePlayerPerson player = players.getPlayerById(id);
@@ -283,7 +290,7 @@ public class GameEngine implements IGameInfoToGAE, GameEngineToGamePlayerInterfa
 	@Override
 	public APlayerChars getPlayerCharacteristic(String name, int id) {
 		// TODO Auto-generated method stub
-		return this.myLevelsMap.get(myCurrentLevel).getPlayers().getPlayerById(id).getCharacteristics(name);
+		return this.myGameStats.getLevelsMap().get(myGameStats.getMyCurrentLevel()).getPlayers().getPlayerById(id).getCharacteristics(name);
 	}
 
 	@Override
@@ -307,7 +314,7 @@ public class GameEngine implements IGameInfoToGAE, GameEngineToGamePlayerInterfa
 
 	@Override
 	public void setEngine(String gameName, GameLevelEngine engine) {
-		myLevelsMap.put(gameName, engine);
+		myGameStats.getLevelsMap().put(gameName, engine);
 	}
 	
 	public void addToBuild(String name, MapObject mo){
@@ -316,6 +323,14 @@ public class GameEngine implements IGameInfoToGAE, GameEngineToGamePlayerInterfa
 	
 	public Map<String,MapObject> getBuild(){
 		return this.myBuild;
+	}
+	
+	@Override
+	public boolean gameOver(){
+		if(myGameStats.nextLevel().equals("")){
+			return true;
+		}
+		return false;
 	}
 
 }

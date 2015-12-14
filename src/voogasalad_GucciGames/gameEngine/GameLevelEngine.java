@@ -50,14 +50,14 @@ public class GameLevelEngine implements IGameLevelToGamePlayer {
 		return myName;
 	}
 	
-	public void setNextLevelName(String lname){
-		this.myNextLevelName = lname;
-	}
-	
-	@Override
-	public String getNextLevel(){
-		return this.myNextLevelName;
-	}
+//	public void setNextLevelName(String lname){
+//		this.myNextLevelName = lname;
+//	}
+//	
+//	@Override
+//	public String getNextLevel(){
+//		return this.myNextLevelName;
+//	}
 
 	public GameLevelEngine(AllPlayers gamePlayers) {
 		myGamePlayers = gamePlayers;
@@ -256,10 +256,10 @@ public class GameLevelEngine implements IGameLevelToGamePlayer {
 	}
 	
 	public boolean getGameOver(){
-		if (getNextLevel() == ""){
-			return true;
-		}
-		return false;
+//		if (getNextLevel() == ""){
+//			return true;
+//		}		
+		return this.hasLevelEnded;
 	}
 	
 }
