@@ -8,7 +8,7 @@
  - Efe Aras: Team Lead, Main engine architecture, Networking
  - Ted Yavuzkurt: Game Player main design and implementation of scenes, Cloud Utility, Resource Management Utilities, work on GameData 
  - Ying Qi: MVC architecture for Game Authoring Environment, Dialogs for Game Component properties.
- - John Dai:
+ - John Dai: Game Player GUI components design, system integration centering on Game Data functionality and API 
  - Mike Ma: Front end design for Game Authoring Environment, official Git blamer
  - Daniel McKee: 
  - Joy Patel: Back end design for Game Engine (Events for MapObjects, Groovy Extension)
