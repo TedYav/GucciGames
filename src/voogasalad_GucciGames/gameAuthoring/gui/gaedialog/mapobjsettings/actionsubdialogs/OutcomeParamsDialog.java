@@ -1,3 +1,6 @@
+// This entire file is part of my masterpiece.
+// Karen Li (kjl32)
+
 package voogasalad_GucciGames.gameAuthoring.gui.gaedialog.mapobjsettings.actionsubdialogs;
 
 import java.util.List;
