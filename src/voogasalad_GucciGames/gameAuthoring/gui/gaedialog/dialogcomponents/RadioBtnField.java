@@ -63,9 +63,18 @@ public class RadioBtnField extends DialogComponent {
 			}
 		}
 	}
+	
+	
+	public void addListener(IListener listener){
+		listener.setListener(group);
+	}
 
 	public String getSelected() {
-		return group.getSelectedToggle().getUserData().toString();
+		if (group.getSelectedToggle() != null){
+			return group.getSelectedToggle().getUserData().toString();
+		} else {
+			return "";
+		}
 	}
 
 }

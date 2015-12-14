@@ -6,6 +6,7 @@ import javafx.scene.control.ContextMenu;
 import javafx.scene.control.MenuItem;
 import voogasalad_GucciGames.gameAuthoring.AGuiGaeController;
 import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.maindialogs.SettingsDialog;
+import voogasalad_GucciGames.gameAuthoring.gui.gaedialog.mapobjsettings.MainDialog;
 import voogasalad_GucciGames.gameAuthoring.model.MapObjectType;
 
 class SideBarMenu extends ContextMenu {
@@ -19,7 +20,8 @@ class SideBarMenu extends ContextMenu {
 		MenuItem item1 = new MenuItem("Edit");
 		item1.setOnAction(new EventHandler<ActionEvent>() {
 			public void handle(ActionEvent e) {
-				SettingsDialog dialog = new SettingsDialog(controller, myType);
+				MainDialog dialog = new MainDialog(controller, myType);
+				//SettingsDialog dialog = new SettingsDialog(controller, myType);
 				dialog.show();
 			}
 		});

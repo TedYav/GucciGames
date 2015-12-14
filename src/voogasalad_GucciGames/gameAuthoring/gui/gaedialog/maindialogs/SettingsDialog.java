@@ -50,21 +50,13 @@ public class SettingsDialog extends AGaeDialog implements ISwitchSettingsPane {
 				System.out.println("save");
 
 				if (this.charParamValues.size() != 0) {
-					// TODO: charParamValue
 					charParamValues.forEach(e -> {
-						System.out.println("char saving: " + e.getName());
-						System.out.println("map obj type: " + e.getMapObjectType());
-						e.getParamValues().forEach((k, v) -> {
-							System.out.println("Saved k: " + k);
-						});
 						this.controller.getPropertiesInterface().addMapObjectCharacteristic(e);
 
 					});
 				}
-				System.out.println("action name: ________" + actionParamsValue.getName());
 				if (this.actionParamsValue.getName() != null) {
-					System.out.println("----------------Saving Action --------------");
-					actionParamsValue.print();
+					
 					this.controller.getPropertiesInterface().addActionParamValue(actionParamsValue);
 				}
 
@@ -87,17 +79,7 @@ public class SettingsDialog extends AGaeDialog implements ISwitchSettingsPane {
 
 	@Override
 	protected void setSaveAction() {
-		// TODO Auto-generated method stub...add some kind of listener
 		ObservableList<MapObjectType> currTileList = controller.getImmutableTileTypes();
 	}
-
-	// @Override
-	// public void addSaveButton(ButtonType save) {
-	// if(!this.getDialogPane().getButtonTypes().contains(save)){
-	// this.getDialogPane().getButtonTypes().add(save);
-	// }
-	//
-	//
-	// }
 
 }

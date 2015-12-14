@@ -48,6 +48,28 @@ public class ActionPane extends GridPane {
 	private List<ObjParamValue> charParamValues;
 
 	private ObservableList<TableElement> data;
+	
+	public ActionPane(IDialogGaeController controller, MapObjectType type, 
+			ActionParamsValue actionParamsValue){
+		super();
+		this.charParamValues = new ArrayList<ObjParamValue>();
+		this.type = type;
+		this.controller = controller;
+		this.actionParamsValue = actionParamsValue;
+		List<String> items = new ArrayList<String>();
+
+		controller.getPropertiesInterface().getAllActions().forEach(e -> {
+			items.add(e.getName());
+		});
+		ObservableList<String> options = FXCollections.observableArrayList(items);
+		dropDown.setItems(options);
+
+		textField.setText(selected);
+		textField.setDisable(true);
+		addActionToAddBtn();
+		addActionToNextBtn();
+		setLayout();
+	}
 
 	public ActionPane(ISwitchSettingsPane switchPaneInterface, IDialogGaeController controller, Properties prop,
 			MapObjectType type, ActionParamsValue actionParamsValue) {
@@ -89,9 +111,7 @@ public class ActionPane extends GridPane {
 
 	private void addActionToNextBtn() {
 		addOutConBtn.setOnAction(e -> {
-			// ConditionOutcomeDialog d = new ConditionOutcomeDialog(controller,
-			// switchPaneInterface, type, this.actionParamsValue);
-			// d.showAndWait();
+
 			selected = dropDown.getSelectionModel().getSelectedItem();
 			this.actionParamsValue.setName(selected);
 
