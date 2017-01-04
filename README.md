@@ -1,3 +1,12 @@
+# Demo [Click Here to Download Archive](https://www.dropbox.com/s/hnf0bord6y7fr9o/VOOGASaladRunnable.zip?dl=0)
+
+For whatever reason, the code here on Github does not run (as I'm guessing someone pushed broken code to master during our analysis period.) I've thus created a working archive of the code that's a slightly earlier build. With this build, one can create games, and one can play games. However, we never did fully get the creating a game and loading it in the game player functionality working. However, there are two sample "games" to play with.
+
+Additionally, the High Scores functionality will not work, and will crash the game. Saving / Loading may do the same, because the server for the cloud utility is no longer running.
+
+In order to run the project, use Eclipse Mars (which is what it is tested under). It'll likely work under a future version but cannot be sure.
+
+Download archive, go to Import -> Existing Project. Select the archive. There are two run configurations included -- Game Authoring and Game Player. If you do not see these run configurations, you can either manually launch the `PlayerMain.java` or `GaeMain.java` classes, or create new Java Application run configurations for them. Cheers!
 
 ##README
 
